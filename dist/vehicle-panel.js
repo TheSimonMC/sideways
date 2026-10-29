@@ -50,7 +50,8 @@ export class VehiclePanel{
    row.row.classList.toggle('damaged',health<.5);row.row.classList.toggle('failed',health<=.025);row.row.classList.toggle('hot',part.status==='hot'||part.status==='critical');
    row.name.textContent=part.label;row.reason.textContent=part.reason||'';row.reason.classList.toggle('hidden',!part.reason);
    row.value.textContent=status({...part,health})+' · '+Math.round(health*100)+'%';
-   row.temperature.textContent=Number.isFinite(part.temperature)?degrees(part.temperature):'';
+   row.row.classList.toggle('tyre-row',Number.isFinite(part.pressureBar));
+   row.temperature.textContent=(Number.isFinite(part.temperature)?degrees(part.temperature):'')+(Number.isFinite(part.pressureBar)?' · '+part.pressureBar.toFixed(1)+' BAR\nCASING '+Math.round(part.carcass*100)+'%\nFLAT SPOT '+Math.round(part.flatspot*100)+'%':'');
    row.fill.style.transform='scaleX('+health+')';row.button.classList.toggle('hidden',!options.service);row.button.disabled=!!options.busy||health>=.999;
   }
   for(const filter of ['all','engine','cooling','drivetrain','chassis']){const selected=this.filter===filter;$('vehicle-tab-'+filter).classList.toggle('active',selected);$('vehicle-tab-'+filter).setAttribute('aria-pressed',String(selected));}

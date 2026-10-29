@@ -197,6 +197,9 @@ export class GameAudio {
    w.targetRoll=contact?(.026+.040*rollSpeed)*rollSpeed*profile.roll*Math.sqrt(load)*motion*this.mix.tyres*perspective:0;
    w.targetScrub=contact?work*.17*profile.squeal*Math.sqrt(load)*this.mix.tyres*perspective:0;
    w.pan=this.world.wheelPan(i,i%2?.48:-.48);
+   const tyre=s?.tyres?.[i];if(tyre&&w.burstCount!=null&&tyre.burstCount>w.burstCount&&s?.wheelAttached?.[i]!==false)this._event('tyreBlowout',.32,w.pan,.22,1450,110);w.burstCount=tyre?.burstCount??0;
+   w.flap=contact?(tyre?.blown?.8:(tyre?.flatspot??0)*.5)*motion:0;w.flapRate=(s?.wheelOmegas?.[i]??0)/RATE;w.flapPhase=(s?.wheelSpins?.[i]??0)-(tyre?.blown?0:tyre?.flatspotAngle??0);
+
    w.targetSampleRate=(TYRE_SAMPLE_RATE/RATE)*clamp(.89+Math.min(scrubSpeed,30)*.006+Math.min(groundSpeed,55)*.0013+(i<2?.045:-.035),.78,1.22);
    w.targetGrit=contact?profile.grit*Math.sqrt(Math.max(0,groundSpeed+slipSpeed*.65)/22)*.13*Math.sqrt(load)*this.mix.tyres:0;
    const brakePower=a?.brakePower??Math.abs((s?.brakePressure?.[i]??0)*wheelSpeed)*450;
@@ -223,7 +226,7 @@ export class GameAudio {
 
  _event(kind,level,pan=0,duration=.1,hz=1000,body=140){
   if(this.suspended||this.muted)return;if(this._events.length>=24)this._events.shift();
-  const mechanical=kind==='ui'?1:kind==='nitro'?this.mix.engine:this.mix.mechanical;
+  const mechanical=kind==='ui'?1:kind==='nitro'?this.mix.engine:kind==='tyreBlowout'?this.mix.tyres:this.mix.mechanical;
   this._events.push({kind,level:clamp(level*mechanical,0,.6),pan:clamp(pan,-.8,.8),age:0,length:Math.max(1,Math.round(duration*RATE)),filter:new Band(hz,.72),body:new Band(body,1.1),seed:(this._noise.seed+(this._eventCount[kind]??0)*1927)>>>0});
   this._eventCount[kind]=(this._eventCount[kind]??0)+1;
  }
@@ -256,7 +259,7 @@ export class GameAudio {
     w.roll+=(w.targetRoll-w.roll)*controlPole;w.scrub+=(w.targetScrub-w.scrub)*(w.targetScrub>w.scrub?tyreAttack:tyreRelease);w.brake+=(w.targetBrake-w.brake)*controlPole;w.grit+=(w.targetGrit-w.grit)*controlPole;w.damper+=(w.targetDamper-w.damper)*controlPole;
     const noise=random(w);w.low+=(noise-w.low)*w.bodyPole;w.texture+=(noise-w.texture)*w.texturePole;
     if((noise+1)*.5<w.grainRate)w.grain=Math.max(w.grain,.25+(random(w)+1)*.375);w.grain*=.9955;
-    const rolling=(w.low*2.6+(w.texture-w.low)*.72)*w.roll;
+    w.flapPhase=(w.flapPhase??0)+(w.flapRate??0);const rolling=(w.low*2.6+(w.texture-w.low)*.72)*w.roll*(1+(w.flap??0)*Math.max(0,Math.cos(w.flapPhase))**8*5);
     w.sampleRate+=(w.targetSampleRate-w.sampleRate)*controlPole;
     const recorded=sampleLoop(TYRE_SAMPLE,w.samplePosition);w.samplePosition=(w.samplePosition+w.sampleRate)%TYRE_SAMPLE.length;
     w.sampleLow+=(recorded-w.sampleLow)*pRubber;const rubber=(w.sampleLow*.93+(w.rubberA.sample(noise)*.06+w.rubberB.sample(noise)*.03))*w.scrub;

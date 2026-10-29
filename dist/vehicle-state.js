@@ -1,6 +1,7 @@
 /** Fictional vehicle condition and tank sizes used by the game.
  * Fuel quantity comes from MotorLab's injected mass. Density is a fixed game
  * conversion, not a temperature-dependent fuel chemistry simulation. */
+import {createTyre} from './tyres.js';
 import {createBodyDamage,snapshotBodyDamage} from './body-damage.js';
 import {createMechanicalCondition,snapshotMechanicalCondition,validEngineFault} from './mechanical.js';
 export const FUEL_DENSITY_KG_PER_LITRE=.745;
@@ -20,6 +21,6 @@ export function createVehicleCondition(build,saved={}){
   fuelConsumedLitres:clamp(saved.fuelConsumedLitres??0,0,1e9),boost:Number.isFinite(saved.boost)?clamp(saved.boost,0,1):1,
   engineFault:engineHealth<=.025?validEngineFault(saved.engineFault):null,
   damageEnergyJ:clamp(saved.damageEnergyJ??0,0,1e12),distanceMeters:clamp(saved.distanceMeters??0,0,1e12),maxRpm:clamp(saved.maxRpm??0,0,100000),damageRevision:Math.round(clamp(saved.damageRevision??0,0,1e9))};
- condition.bodyDamage=createBodyDamage(build,saved.bodyDamage,condition.bodyHealth);condition.mechanical=createMechanicalCondition(build,saved.mechanical,condition);return condition;
+ condition.tyres=condition.wheelHealth.map((health,i)=>createTyre(saved.tyres?.[i],health));condition.bodyDamage=createBodyDamage(build,saved.bodyDamage,condition.bodyHealth);condition.mechanical=createMechanicalCondition(build,saved.mechanical,condition);return condition;
 }
-export function snapshotVehicleCondition(condition){return {...condition,bodyDamage:snapshotBodyDamage(condition.bodyDamage),mechanical:snapshotMechanicalCondition(condition.mechanical),wheelHealth:[...condition.wheelHealth],wheelAttached:[...condition.wheelAttached],suspensionHealth:[...condition.suspensionHealth],brakeHealth:[...condition.brakeHealth],wheelToe:[...condition.wheelToe]};}
+export function snapshotVehicleCondition(condition){return {...condition,tyres:condition.tyres.map(t=>({...t})),bodyDamage:snapshotBodyDamage(condition.bodyDamage),mechanical:snapshotMechanicalCondition(condition.mechanical),wheelHealth:[...condition.wheelHealth],wheelAttached:[...condition.wheelAttached],suspensionHealth:[...condition.suspensionHealth],brakeHealth:[...condition.brakeHealth],wheelToe:[...condition.wheelToe]};}

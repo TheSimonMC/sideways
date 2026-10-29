@@ -1,0 +1,27 @@
+{
+  "version": 19,
+  "status": "passed",
+  "checks": [
+    "Old saves and invalid cosmetic IDs resolve to the original factory parts",
+    "Every cosmetic choice produces distinct finite geometry on all four bodies and releases its models",
+    "Visual parts preserve drivetrain parameters and engine audio",
+    "Preview is free; installation charges once, ownership survives save/load and unaffordable purchases are rejected"
+  ],
+  "variants": 84,
+  "verifiedInRelease": 19,
+  "suiteSource": "qa/cosmetics-v15-check.mjs",
+  "suiteSHA256": "d7479b9a4730ee99433b4c958a7e057fd82a9bc0a9d0befdbbf30edb33f0f9fc",
+  "sourceSHA256": {
+    "dist/drivetrain.js": "9927f12d0ab5de0ad2de6f59b5f5f21cfb1ec0ce6c1efc81ca253ded1efb16d3",
+    "dist/physics.js": "c2f692d97e7477e0df88b33c2cbf0cdbceacfe94ede489416b1c0bfaaa30f952",
+    "dist/mechanical.js": "de5eabc2157f19951e3cbb3f19d0655643eb29ce8b6d4fa6037670ffe0b245ac",
+    "dist/car.js": "a64705b16758899decd2f90e3249ec761326a325da9d416d7e29110426831507",
+    "dist/catalog.js": "c5da9ed3102fe56916bf85badb4a9c355de106cbcf29dda37f92f6d551425065",
+    "dist/career.js": "e609ca9085aba7ced8eca015b637bcbfb7b9b6f594d6c04bfbf4dbad80de1e67",
+    "dist/garage.js": "433365d6d28b2f8444982b003cdb5d2d5adc6f89f93e84caa0057585c3691f37",
+    "dist/audio.js": "2979b4e2dbe52ee8c1fc7e14562f2fdd096e796ad873f30340e48c96948c8bcc",
+    "dist/audio-anchors.js": "ed65635fad9d265e2ab6cd964489bcd703b28397999fd16d4e609fd6fb7a15e5",
+    "dist/main.js": "2fd013c68107a61fae47b736fb6954b21a178a7ce6f9facd66124019a842133e",
+    "dist/multiplayer.js": "8ecddc1c2bbe3d6b6abf9d579e1c2e3731b6c9047b55ef386e12f47fb1486247"
+  }
+}

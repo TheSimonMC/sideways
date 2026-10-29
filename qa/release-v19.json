@@ -1,0 +1,183 @@
+{
+  "game": "SIDEWAYS",
+  "version": 19,
+  "date": "2026-10-29",
+  "status": "verified-with-documented-limits",
+  "base": "Published V18, commit 6b7ad3b74a836b1c6d9a38f46e34b62535402ddb. Only reports listed here are current. Prior reports remain historical; the regression wrapper adapts 30 part categories, protocol 15 and the intentional aero/mass changes from V18.",
+  "scope": "Phase 2A: four persistent pressure/casing/flatspot states, punctures and overload blowouts integrated with physical contact, rendering, sound, diagnosis and replacement. Phase 0 complete; Phase 1 and Phase 2 partial. Next Phase 2B wheel bearings and steering/brake components.",
+  "delivery": {
+    "entry": "SIDEWAYS.html",
+    "separateFile": "SIDEWAYS-v19.html",
+    "htmlBytes": 10578047,
+    "htmlSha256": "45b288dcd36e23a79f800842b6ccb20f4fd2346a8ea35031778ca5b8a1b449a6",
+    "offlineSinglePlayer": true,
+    "externalRuntimeRequestsDuringOfflineTest": 0,
+    "publishedToSites": false
+  },
+  "currentFunctionalSuites": [
+    {
+      "file": "qa/aero-hop-browser-v19-results.json",
+      "status": "passed",
+      "groups": 3,
+      "sha256": "4877627e62af7641143ca54108a9a5dbed0d9133c948005e6dfde32fc6a3c2ab"
+    },
+    {
+      "file": "qa/aero-hop-v19-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "4d849910a930b47acf6f8ad042a6308b0433d31106983269fca2e2cd2cf91925"
+    },
+    {
+      "file": "qa/archipelago-v19-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "82ad4c1c10d2850d264d329e35ce714c770cd160714f6f0a859990ea6fcf6dee"
+    },
+    {
+      "file": "qa/audio-v19-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "8566117cd03a6776f4c7ed481e3b8181817fda2f485045337305de22171cbe18"
+    },
+    {
+      "file": "qa/chassis-v19-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "5ff268b67348ed2909630d06da5f1e501b9cca7c65a2edba2490c4eb74ffe410"
+    },
+    {
+      "file": "qa/cosmetics-v19-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "30c26c819440c9909f2236e615dc0657530c1314b302575d3f83abae3e6919d4"
+    },
+    {
+      "file": "qa/damage-v19-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "f2ab6796eb961d87c61e703bd5e3a8134a9782ab416152d6a056e45c376608a2"
+    },
+    {
+      "file": "qa/drivetrain-browser-v19-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "e3411372cbd166788de84c95349042b5c7d9c2dd60e01200a15d628af665f1b0"
+    },
+    {
+      "file": "qa/drivetrain-v19-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "eb9f5e8d19024a36f72eeada33125516af69116a476e11ec58f72496808963f0"
+    },
+    {
+      "file": "qa/goal-coverage-v19-results.json",
+      "status": "passed",
+      "groups": 2,
+      "sha256": "e0bd5a67b4f8bb71b115d035b3ce6aee0d408c5aed8a7f6d0d5130d12c770f8e"
+    },
+    {
+      "file": "qa/input-taps-v19-results.json",
+      "status": "passed",
+      "groups": 11,
+      "sha256": "2fa8483cbb1f6d41a2cc46b2d78265093d7a7a8891fb84669277d8b5b46931d7"
+    },
+    {
+      "file": "qa/modular-v19-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "ef86b867725f275cdc6335842aa9a8dd3b5db6a41c370229ae7b4187452484b0"
+    },
+    {
+      "file": "qa/multiplayer-v19-results.json",
+      "status": "passed",
+      "groups": 11,
+      "sha256": "83ef02d539dce863a2709d67d91958c6f7a1063cd9932eaa13bd98cabb8d108e"
+    },
+    {
+      "file": "qa/navigation-main-v19-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "9d69ef45e204fbf6ff216af5bc8bc8c34cec2295f1bb7fb8d023faa0cba6206a"
+    },
+    {
+      "file": "qa/physics-v19-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "b84a96b27df4731bfa9fe7e23a97fdb176ba271c17628e8d1204bea0cbe2d3ea"
+    },
+    {
+      "file": "qa/police-v19-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "0e6878b28dd36b73709b7ca181b1be40317d3a15d1b98558e595cdc5764a525f"
+    },
+    {
+      "file": "qa/race-v19-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "dc3f9c71908e15369c6eb64d3114c523a0d3c3a67913ebb5ff13f9c9ec77725d"
+    },
+    {
+      "file": "qa/restart-v19-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "d9db4a5d8b28707b4890c14eabb5c7d8da9d7b0151042675e4aada6e3d888966"
+    },
+    {
+      "file": "qa/road-contact-v19-results.json",
+      "status": "passed",
+      "groups": 7,
+      "sha256": "2ed1bfd7133719760fbf70a197cf5bad0c9c3ff30c8b0ace745e951e22dbda3c"
+    },
+    {
+      "file": "qa/standalone-browser-v19-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "80c659b3955e37d9de169374013ce3c1aa3b20944f05a33fb471d38e04bce2a8"
+    },
+    {
+      "file": "qa/standalone-v19-results.json",
+      "status": "passed",
+      "groups": 0,
+      "sha256": "04227d5d06ec256c58f8be427d4cf7ac874acd0539bb95a195ab205ca212f967"
+    },
+    {
+      "file": "qa/thermal-v19-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "7f23e0dcc5d53f9a6ab8c4eae5894f9c90ec3ed422fb4ed7a5c14e82f3527fc7"
+    },
+    {
+      "file": "qa/tyres-browser-v19-results.json",
+      "status": "passed",
+      "groups": 3,
+      "sha256": "3bb5392c928ea9154b8de2cfb0a11d579057e577863b5ed489fcaf1a4195add3"
+    },
+    {
+      "file": "qa/tyres-v19-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "de4db737a83845a1c6197d23fd27d031f20f4a090ba33156856c6294cc6afdaf"
+    }
+  ],
+  "performanceMeasurement": {
+    "file": "qa/chassis-performance-v19-results.json",
+    "status": "measured",
+    "sha256": "83429919362200414415ee27508ae1665b6bdfa517119f38157c7bcf4afe06ca"
+  },
+  "review": {
+    "file": "qa/review-v19.json",
+    "sha256": "3d0b99233458c45fdf4ee2680ed8c4f8a3f7c8ba69eb307567fc5ceca44a7d98"
+  },
+  "limits": [
+    "Fixed-volume pressure proxy and one shared tyre/air temperature, a single dominant flat spot, no detailed belt/tear model or inflation service.",
+    "Radial rubber deformation, retained nominal shape for fully detached wheel debris; no independent rim condition.",
+    "Software renderer, no subjective listening, physical wheel or live multi-PC network test.",
+    "CPU measurement excludes world/GPU/AI/audio and does not establish an FPS guarantee.",
+    "Long burnout and selective repair tested in the native game modules; browser checks exercise saved damage, purchase, reload, drive, new run, pause and diagnostics.",
+    "The tyre model is fictional game calibration. Heat, pressure and structural wear are lumped approximations; no real-car validity claim.",
+    "Detailed remote tyre damage is not replicated in multiplayer. The version bump prevents mixing incompatible releases.",
+    "Other Phase-2 components, weather, cockpit/driver, engine bay, further body parts, world/LOD/AI and spatial garage transitions remain incomplete in the full checklist.",
+    "SDK unchanged; historical replay-fixture discrepancy remains in qa/sdk-v12-baseline.json."
+  ]
+}

@@ -1,8 +1,8 @@
 # SIDEWAYS – verbindliche Fortschrittsliste
 
-Stand: V18, Phase 0 und Phase 1 Teile A/B/C/D. Grundlage: unveränderte Kopie in `docs/goal.txt`.
+Stand: V19, Phase 0, Phase 1 Teile A/B/C/D und Phase 2 Teil A. Grundlage: unveränderte Kopie in `docs/goal.txt`.
 
-Status bezieht sich auf den gesamten Wortlaut eines Punktes. Teilweise bedeutet, dass wesentliche Teile noch fehlen. Nur Phase 0 ist abgeschlossen. Die nächste Reifen-Grundlage aus Phase 2 wird benötigt, um die offenen Reifeneffekte von Phase 1 konsistent zu ergänzen. Phase 1 bleibt bis dahin ausdrücklich teilweise; Wetter hängt zusätzlich von Phase 7 ab.
+Status bezieht sich auf den gesamten Wortlaut eines Punktes. Teilweise bedeutet, dass wesentliche Teile noch fehlen. Nur Phase 0 ist abgeschlossen. V19 ergänzt die gemeinsame Reifen-Grundlage aus Phase 2 und ihre Folgen für Phase 1. Phase 1 bleibt wegen Wetter/Nässe und breiterer Kalibrierung teilweise; Phase 2 wegen weiterer fehlender Baugruppen. Wetter hängt zusätzlich von Phase 7 ab.
 
 Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc282ea844a1b96dca`.
 
@@ -18,7 +18,7 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 1: REALISTISCHERE FAHRPHYSIK
 
-**teilweise erledigt** — V15: teileabhängige Lenkung, Reifen und Stabilisatoren statt freier Physikmodi/künstlicher Gierhilfe. V16: Hang-/Kontaktkräfte und einzelne Federwege. V17: FWD/RWD/AWD, Differenziale, thermische Arbeit, Schaden, Einzelreparatur und Persistenz. V18 Teil D: geschwindigkeitsabhängige Kräfte von Spoiler, Splitter und Diffusor, drei GT-Flügelstellungen sowie beschädigungsabhängiger Abtrieb. Ein aus tatsächlicher Reifenschlupfarbeit gespeistes Wheel-Hop-Modell verändert Radlasten und Kontakt; verstärkte Achsführungen reduzieren die Schwingung. Die vier Serienautos bleiben RWD. Vergleichsfahrten bleiben innerhalb dokumentierter kleiner Toleranzen; wegen der neuen Transienten wird keine numerische Identität behauptet. Noch offen: Reifendruck, Karkasse/Flatspots, Nässe/Wetter und breitere Kalibrierung. Heightfield-Chassis, endliche Antriebsbedingungen und der reduzierte Hop-Modus ersetzen keine vollständige 6-DOF-/Fahrwerkssimulation. Nächster Baustein ist die dafür erforderliche Reifen-Grundlage aus Phase 2A.
+**teilweise erledigt** — V15: teileabhängige Lenkung, Reifen und Stabilisatoren statt freier Physikmodi/künstlicher Gierhilfe. V16: Hang-/Kontaktkräfte und einzelne Federwege. V17: FWD/RWD/AWD, Differenziale, thermische Arbeit, Schaden, Einzelreparatur und Persistenz. V18 Teil D: geschwindigkeitsabhängige Kräfte von Spoiler, Splitter und Diffusor, drei GT-Flügelstellungen sowie beschädigungsabhängiger Abtrieb. Ein aus tatsächlicher Reifenschlupfarbeit gespeistes Wheel-Hop-Modell verändert Radlasten und Kontakt; verstärkte Achsführungen reduzieren die Schwingung. Die vier Serienautos bleiben RWD. Vergleichsfahrten bleiben innerhalb dokumentierter kleiner Toleranzen; wegen der neuen Transienten wird keine numerische Identität behauptet. V19 ergänzt vier Druck-/Karkassenzustände, gerichtete Flatspots und überlastabhängige Reifenplatzer mit Folgen für Radius, Kontakt, Seitenführung und Rollwiderstand. Noch offen: Nässe/Wetter und breitere Kalibrierung. Heightfield-Chassis, endliche Antriebsbedingungen und der reduzierte Hop-Modus ersetzen keine vollständige 6-DOF-/Fahrwerkssimulation. Die neuen Reifeneffekte sind eine effiziente Näherung mit fiktiven Spielkoeffizienten.
 
 - **P01.01 · teilweise erledigt** — Der Serienzustand eines Fahrzeugs soll ein nachvollziehbares, deutlich weniger arcade-lastiges Fahrverhalten haben. Serienfahrzeuge dürfen nicht ständig von selbst driften.
 - **P01.02 · teilweise erledigt** — Reifenkräfte mit sanftem Übergang zwischen Haftung und Rutschen; realistisches Untersteuern und Übersteuern.
@@ -34,12 +34,12 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 2: EINZELNE MECHANISCHE SCHÄDEN, TEMPERATUR UND VERSCHLEISS
 
-**teilweise erledigt** — mechanical.js hat Motor-Unterbaugruppen, Kühler-/Öllecks, Kupplung, Gänge, Differenzial und Wellen sowie vier Brems-/Reifentemperaturen. vehicle-state.js speichert Zustand je Auto, vehicle-panel.js bietet Einzelreparaturen. Reifen nutzen noch wheelHealth gemeinsam für Rad/Reifen: Druck, Flatspots, Blowout und eigene Karkassenschäden fehlen. Riemen, Generator, Lüfterzustand, einzelne Leitungen, Lager und Bremsen-Glow fehlen ebenfalls. Dafür muss das bestehende Zustandsschema erweitert und migriert werden.
+**teilweise erledigt** — Motor-Unterbaugruppen, Flüssigkeiten, Kupplung, Gänge, Differenziale und Wellen bestehen weiter. V19 ergänzt vier unabhängige Reifen mit gespeichertem Gasinhalt, Temperatur, Karkasse, Mischung, Abrieb, gerichtetem Flatspot, Leck und Blowout. Aufprall oder Überlast verändern reale Kontaktkräfte; Platzen verliert sofort Druck, verkleinert das Gummi um die montierte Felge und erzeugt ein Geräusch sowie begrenzte Partikel. Diagnose und Einzelreparatur benutzen denselben Zustand. Riemen, Generator, Lüfterzustand, einzelne Leitungen, Radlager und Bremsen-Glow fehlen weiterhin. Reifen nutzen eine zusammengefasste Temperatur und einen dominanten Flatspot; keine vollständige Karkassen-/Risssimulation. Einzelreparatur übernimmt den bisherigen Radmontagepfad; separate Felgenfestigkeit und Reifen-Aufpumpen sind noch nicht vorhanden.
 
 - **P02.01 · teilweise erledigt** — Weg vom einzigen allgemeinen Auto-Health-Wert als Schadensquelle. Jede wesentliche Baugruppe erhält einen eigenen Zustand, Verschleiß und bei Bedarf Temperatur, Belastung und Ausfallart.
-- **P02.02 · teilweise erledigt** — Vier unabhängige Reifen: Temperatur, Luftdruck, Reifenmischung, Abrieb, Gripverlust, Flatspots, Platten, Beschädigung und Blowout.
-- **P02.03 · offen** — Längere Burnouts oder dauerhaft hohe Schlupfwerte erhitzen die Reifen. Nach nachvollziehbarer Überlast können sie einzeln platzen. Reaktion: plötzlicher Druckverlust, veränderte Seitenführung, Fahrwerks-/Lenkreaktion, Geräusch und Partikeleffekte.
-- **P02.04 · teilweise erledigt** — Rauchmenge hängt von Radschlupf, Temperatur und Oberfläche ab. Nicht jeder Reifen platzt nach einer festen Zeit unabhängig von den Umständen.
+- **P02.02 · erledigt** — Vier unabhängige Reifen: Temperatur, Luftdruck, Reifenmischung, Abrieb, Gripverlust, Flatspots, Platten, Beschädigung und Blowout.
+- **P02.03 · erledigt** — Längere Burnouts oder dauerhaft hohe Schlupfwerte erhitzen die Reifen. Nach nachvollziehbarer Überlast können sie einzeln platzen. Reaktion: plötzlicher Druckverlust, veränderte Seitenführung, Fahrwerks-/Lenkreaktion, Geräusch und Partikeleffekte.
+- **P02.04 · erledigt** — Rauchmenge hängt von Radschlupf, Temperatur und Oberfläche ab. Nicht jeder Reifen platzt nach einer festen Zeit unabhängig von den Umständen.
 - **P02.05 · teilweise erledigt** — Motor separat: Block, Kolben/Pleuel, Kurbeltrieb, Zylinderkopf, Dichtung, Ölkreislauf/Öldruck, Kühler/Kühlmittel, Lüfter, Ansaugung, Auspuff, Turbo/Kompressor, Riemen, Lichtmaschine und relevante Nebenaggregate.
 - **P02.06 · teilweise erledigt** — Schaden durch Überdrehen, schlechte Kühlung, Ölverlust, Überlast, Kollisionen und lange Überhitzung. Folgen: Leistungsverlust, ungewöhnliche Geräusche, Fehlzündungen, Rauch, Ruckeln, Klopfen, Lecks und schlimmstenfalls Motorausfall.
 - **P02.07 · teilweise erledigt** — Beschädigter Kühler verursacht Kühlmittelverlust und steigende Motortemperatur; falsches Weiterfahren kann Folgeschäden erzeugen.
@@ -212,7 +212,7 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 16: FAHRZEUGBESITZ, ZUSTAND, INSPEKTION UND ZUSAMMENSPIEL
 
-**teilweise erledigt** — Zustände je Fahrzeug, Teilebesitz, Einzelreparaturen, Temperaturen und Diagnose sind gespeichert. Serien-/Tuningänderungen erhalten Schäden. V18 ergänzt die gespeicherte Spoilerbefestigung und ihre Aero-Folgen; die Garage zeigt den fehlenden Spoiler auch nach Neuladen. Reifendruck, frei bedienbarer Aus-/Einbau weiterer Teile, Licht-/Fensterfolgen und Wetterkopplung fehlen. Neuer Lauf repariert weiterhin bewusst gemäß früherem Nutzerauftrag; Straßenbergung erhält Schäden.
+**teilweise erledigt** — Zustände je Fahrzeug, Teilebesitz, Einzelreparaturen, Temperaturen und Diagnose sind gespeichert. V19 ergänzt Gasinhalt, Karkasse, Flatspot samt Winkel, Leck und Blowout ohne Altstände oder Schäden zu löschen. Wechsel der Reifenmischung repariert den vorhandenen Satz nicht; gezielter Ersatz repariert nur dieses Rad/Reifen, nicht dessen Aufhängung. Freier Aus-/Einbau weiterer Teile, Licht-/Fensterfolgen und Wetterkopplung fehlen. Neuer Lauf repariert weiterhin bewusst gemäß früherem Nutzerauftrag; Straßenbergung erhält Schäden.
 
 - **P16.01 · teilweise erledigt** — Bauteilzustände, Reifen, Reparaturen, Tuning, aus- oder eingebaute Teile, Einstellungen und Fahrzeugzustand sollen bei vorhandener Speichermöglichkeit zuverlässig persistieren.
 - **P16.02 · teilweise erledigt** — Werkstatt ersetzt die tatsächlich defekten Baugruppen, statt immer einen unspezifischen Komplettschaden zu reparieren.
@@ -237,12 +237,12 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 18: TESTS UND ABSCHLUSSKRITERIEN
 
-**teilweise erledigt** — V18 prüft den bearbeiteten Teil mit MotorLab, realen Geometriemodulen und drei Browserabläufen auf denselben Offline-HTML-Bytes. Spoilerverlust wird über Aufprall, fehlendes Modell, passende Trümmergeometrie, Aero-Verlust, Speichern und Einzelreparatur geprüft (P18.07). Das ersetzt keine Prüfung der noch fehlenden Türen, Cockpits oder Garagenübergänge. Frühere Release-Berichte sind historisch; nur qa/release-v18.json benennt die aktuellen Nachweise. Die vollständigen End-to-End-Szenarien bleiben bis zur Umsetzung ihrer Systeme offen oder teilweise.
+**teilweise erledigt** — V19 prüft den Reifenbaustein mit dem echten MotorLab-/Chassis-Pfad, Geometrie-/PCM-Modulen und vier Browserabläufen auf denselben Offline-HTML-Bytes. Der native Burnout erreicht nach etwa 232,45 simulierten Sekunden den ersten Hinterreifenplatzer. Einseitiger Platten, Flatspot-Radbewegung, gezielter Ersatz, Save-Migration und Neuladen sind separat geprüft. P18.04 ist damit für das bestehende Spiel nachgewiesen; keine Aussage über reale Fahrzeugkalibrierung. Nur qa/release-v19.json benennt die aktuellen Nachweise. Cockpits, weitere Bauteile und Garagenübergänge bleiben offen oder teilweise.
 
 - **P18.01 · teilweise erledigt** — Nach jeder Phase die vorhandenen Funktionen prüfen und sicherstellen, dass das Spiel spielbar bleibt.
 - **P18.02 · teilweise erledigt** — Konkrete End-to-End-Szenarien testen:
 - **P18.03 · teilweise erledigt** — Serienauto fährt griffig und driftet erst bei passender Belastung; Drift-Kit verändert Fahrverhalten nachvollziehbar.
-- **P18.04 · offen** — Langer Burnout erhitzt einen Reifen; Verschleiß, Gripverlust und schließlich Blowout können auftreten; Fahrverhalten reagiert darauf.
+- **P18.04 · erledigt** — Langer Burnout erhitzt einen Reifen; Verschleiß, Gripverlust und schließlich Blowout können auftreten; Fahrverhalten reagiert darauf.
 - **P18.05 · teilweise erledigt** — Frontalaufprall beschädigt Kühler; Motortemperatur steigt; Reparatur des Kühlers behebt Ursache, ein bereits beschädigter Motor braucht ggf. gesonderte Reparatur.
 - **P18.06 · teilweise erledigt** — Kupplung verschleißt durch Missbrauch, rutscht und kann ausfallen. Heiße Bremsen verzögern schlechter.
 - **P18.07 · erledigt** — Tür oder Spoiler fällt durch Unfall ab und fehlt anschließend sichtbar am Fahrzeug.
@@ -259,7 +259,7 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Nächster abgeschlossener Arbeitsschritt
 
-Phase 2A: vier unabhängige Reifen mit Druck, Karkassenzustand, Flatspots und überlastabhängigem Blowout, verbunden mit Kontaktkräften, sichtbarem Zustand, Geräusch, Reparatur und Save-Migration. Diese gemeinsame Datenbasis ist Voraussetzung für die offenen Reifeneffekte von Phase 1. Anschließend deren Fahrverhalten erneut kalibrieren. Wetter/Nässe benötigt zusätzlich Phase 7. Phase 1 und spätere Phasen werden durch V18 nicht als vollständig betrachtet.
+Phase 2B: Radlager sowie Lenkungs- und Bremskomponenten mit echten Auswirkungen, Diagnose, Reparatur und Persistenz ergänzen. Danach verbleibende Motor-Nebenaggregate innerhalb Phase 2; deren sichtbare Animation benötigt später Phase 6. Breitere Fahrwerkskalibrierung bleibt offen, Wetter/Nässe benötigt Phase 7. Die übrigen Anforderungen bleiben vollständig in dieser Liste erhalten.
 
 ## V16 – bearbeitete Teilziele
 
@@ -268,3 +268,7 @@ Phase 1B vertieft P01.01–P01.03, P01.06–P01.07 und P01.11. Prüfungen betref
 ## V18 – bearbeitete Teilziele
 
 Phase 1D vertieft P01.03/P01.04/P01.06–P01.08. Die dafür notwendige Spoilerbefestigung ergänzt P03.02–P03.04/P03.07, Teileauswahl P05.04–P05.07 und gespeicherte Aero-Schäden P16.01/P16.02/P16.06. P18.07 ist für den ausdrücklich alternativ geforderten Spoiler nachgewiesen; Türen bleiben offen. Alle übrigen Vollumfänge behalten ihren Status. Details: [Phasenbericht](phase-1d-report.md). Alle 156 Originalformulierungen bleiben unverändert.
+
+## V19 – bearbeitete Teilziele
+
+Phase 2A erfüllt P02.02–P02.04 mit einer browsergerechten Reifen-Näherung und weist P18.04 im nativen Spielpfad nach. Sie vertieft P01.04/P01.08, P02.11/P02.12, P16.01–P16.03/P16.06/P16.08. Phase 1 und Phase 2 bleiben insgesamt teilweise. Grenzen und Nachweise: [Phasenbericht](phase-2a-report.md). Alle 156 Originalformulierungen bleiben unverändert; V18 und ältere Abschnitte beschreiben historische Inkremente.

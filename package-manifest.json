@@ -1,6 +1,6 @@
 {
   "game": "SIDEWAYS",
-  "version": 18,
+  "version": 19,
   "entry": "SIDEWAYS.html",
   "sdk": "1.6.3 + SIDEWAYS spatial extension",
   "files": {
@@ -65,8 +65,8 @@
       "sha256": "ed65635fad9d265e2ab6cd964489bcd703b28397999fd16d4e609fd6fb7a15e5"
     },
     "dist/audio.js": {
-      "bytes": 37422,
-      "sha256": "6ad87c53a39ba0394b9c59350afdca001c236729460a291c1bcd952df4a0dab6"
+      "bytes": 37947,
+      "sha256": "2979b4e2dbe52ee8c1fc7e14562f2fdd096e796ad873f30340e48c96948c8bcc"
     },
     "dist/body-damage.js": {
       "bytes": 4577,
@@ -77,8 +77,8 @@
       "sha256": "b4777e409ac5665cbd1b5614fb62f39ed5476ae5d4c4e945cca44b0fa39d8cb4"
     },
     "dist/car.js": {
-      "bytes": 36313,
-      "sha256": "6029f68b4284f7a5bdd4947c6a37d80380f5e5fd7a2ecd176a38f49f4ab52e05"
+      "bytes": 37837,
+      "sha256": "a64705b16758899decd2f90e3249ec761326a325da9d416d7e29110426831507"
     },
     "dist/career.js": {
       "bytes": 14630,
@@ -206,7 +206,7 @@
     },
     "dist/index.html": {
       "bytes": 52858,
-      "sha256": "a658b3ab729dff39bc1a94808407ed6ac2f08159faf48548c4629ff838f1b898"
+      "sha256": "be269ec12eb9b568075f7dbfe7073385050eed00037882082d115300048ed309"
     },
     "dist/input-prompts.js": {
       "bytes": 3213,
@@ -225,20 +225,20 @@
       "sha256": "040d8dcef7beb4b391cbc7b9ee19c30964b5f344757b365c3ed2c53085b9ba49"
     },
     "dist/main.js": {
-      "bytes": 104471,
-      "sha256": "ed5336708a26858d9ebba3818915f99de4972d75984a63db46b6c7a1f05e502a"
+      "bytes": 104588,
+      "sha256": "2fd013c68107a61fae47b736fb6954b21a178a7ce6f9facd66124019a842133e"
     },
     "dist/map-v12.css": {
       "bytes": 10016,
       "sha256": "221c468e89388c784d0708597b8df20255e00a6ed108bbc4efaefd6766e454e3"
     },
     "dist/mechanical.js": {
-      "bytes": 30883,
-      "sha256": "0de7bff4f8ae0f7c30a94c6bbbc3b85d3a2103a0f1b9d9aea92894f18c380bfa"
+      "bytes": 32332,
+      "sha256": "de5eabc2157f19951e3cbb3f19d0655643eb29ce8b6d4fa6037670ffe0b245ac"
     },
     "dist/multiplayer.js": {
       "bytes": 32692,
-      "sha256": "049670c76ef89fe228d2bf99f45116a018849b88d8ec4f27dfb02a3bfed42302"
+      "sha256": "8ecddc1c2bbe3d6b6abf9d579e1c2e3731b6c9047b55ef386e12f47fb1486247"
     },
     "dist/music.js": {
       "bytes": 15392,
@@ -265,8 +265,8 @@
       "sha256": "3574b9a61e1451632bff5ce072b4286f5dcc04df7ff1307122c547d97cc64413"
     },
     "dist/physics.js": {
-      "bytes": 45325,
-      "sha256": "1a2264ee66e80873d48fe90bfecf9481f449a237bedf6f34335bffdfaecde0ca"
+      "bytes": 47242,
+      "sha256": "c2f692d97e7477e0df88b33c2cbf0cdbceacfe94ede489416b1c0bfaaa30f952"
     },
     "dist/police.js": {
       "bytes": 33900,
@@ -305,8 +305,8 @@
       "sha256": "0b3d66e3ea2b4fb50618c84a39a1e73e44d1fd9af4896f9e33d9f95d24bacf89"
     },
     "dist/style.css": {
-      "bytes": 124384,
-      "sha256": "476a863750d8293411712beb1c7e849b1a26b0434af75102efe80de1aa9e7f10"
+      "bytes": 124555,
+      "sha256": "2a5e7a65b0b695a7b8951974bdf6ff2705da099f98bc93954147e94d10fe0465"
     },
     "dist/terrain-fx.js": {
       "bytes": 6984,
@@ -316,13 +316,17 @@
       "bytes": 30361,
       "sha256": "75ea00a208580ea0bf044869f5c38ffafb7ff5d53739c4bc5f3e97f00dc4915d"
     },
+    "dist/tyres.js": {
+      "bytes": 2710,
+      "sha256": "b222bd0f4f2be0e519505c653dc9b96f76abffc527d2ca9b82838bb6c55a5f14"
+    },
     "dist/vehicle-panel.js": {
-      "bytes": 6162,
-      "sha256": "ba499944e2e00641b01176cbb3d6d3206fdee9101725097d82c2efc47a15e1be"
+      "bytes": 6408,
+      "sha256": "002dbb22e3c21523ed5daa4318720a821cc1626b418217c3d3a058a22b71e4f1"
     },
     "dist/vehicle-state.js": {
-      "bytes": 2580,
-      "sha256": "ef218457b5940396e1729a1f6ebf30cfde88cb44abfa1e7b0046cf23db8ddeb0"
+      "bytes": 2749,
+      "sha256": "888f606612f2a452c8fe4693a77fba4020a1b7aa3538f9ae8e848129bef4af3e"
     },
     "dist/vendor/motor-engine.js": {
       "bytes": 377303,
@@ -485,12 +489,12 @@
       "sha256": "5b970ff5b92a21bc92bfbeb83a004f2da669d408d9100e20251e4b07c00ca351"
     },
     "docs/goal-progress.json": {
-      "bytes": 42201,
-      "sha256": "e1b0abc8b48a68c16a774090e34e6f5f93e722c307c570e059555b288fec9932"
+      "bytes": 42124,
+      "sha256": "703fc1544c88a932432a33638869c9028c79936bc5cdb6f6536e844eb0b55209"
     },
     "docs/goal-progress.md": {
-      "bytes": 40458,
-      "sha256": "f236152e8d1d225959fe4a5fb5a92628078ec5e15183d5ee4912d72b2ff6313f"
+      "bytes": 41447,
+      "sha256": "2e34becf20234a537ee611d4f18d0d652eb87a9902625dadfdd3b036503925ae"
     },
     "docs/goal.txt": {
       "bytes": 27283,
@@ -524,6 +528,10 @@
       "bytes": 3397,
       "sha256": "def378fe098d03b6a5d13f5ea34fb76f4953235b0dcc6e1a6fbc5ea4e54be7b0"
     },
+    "docs/kontext-v18-historisch.md": {
+      "bytes": 4558,
+      "sha256": "af3860c2ff3126864007e4e38d21a0132949e4e059ac6c2fd4b69f77dc07e0f3"
+    },
     "docs/multiplayer.md": {
       "bytes": 12297,
       "sha256": "18e010bd09dea712cf874645d7eadd13cfbfe20ac43c4a962e18243e978bef51"
@@ -548,6 +556,10 @@
       "bytes": 9323,
       "sha256": "59b0620ee82974358b354b99a1bc21f467b2b6b715e4a0571429515f58251189"
     },
+    "docs/phase-2a-report.md": {
+      "bytes": 8304,
+      "sha256": "3a4c5f4965ad7f2d4422513a0f1fedf51a2b6b4e06c4241645e370367e87fcee"
+    },
     "qa/aero-hop-browser-v18-results.json": {
       "bytes": 711,
       "sha256": "c1a4f3c2b667bc04e51033c38279d0c4d37415256684470284e05b213e613a9f"
@@ -556,6 +568,14 @@
       "bytes": 5163,
       "sha256": "da0c7c2e067c51ce57de22cb2ef61cc019b6f90b462b9fe5deed9f62fcf4c381"
     },
+    "qa/aero-hop-browser-v19-results.json": {
+      "bytes": 711,
+      "sha256": "4877627e62af7641143ca54108a9a5dbed0d9133c948005e6dfde32fc6a3c2ab"
+    },
+    "qa/aero-hop-browser-v19.cjs": {
+      "bytes": 5163,
+      "sha256": "6d06e48a74a05e0efcf206ce38b000e61b9ef3213ca3ff7a836de706152fc0a1"
+    },
     "qa/aero-hop-v18-check.mjs": {
       "bytes": 11305,
       "sha256": "85f8fe8f43e901036dc268fde07de99a348a7e84babfa959606ab9524f809e45"
@@ -563,6 +583,14 @@
     "qa/aero-hop-v18-results.json": {
       "bytes": 7426,
       "sha256": "c15273e5cca99d913cd99c58e9bdf6beeb59c2370a2ea6a0d8c7fd343f982422"
+    },
+    "qa/aero-hop-v19-check.mjs": {
+      "bytes": 11305,
+      "sha256": "0239ed55f2244310c08e4929bd7b744934967f1825b76a2a4c005ac3d421e5c0"
+    },
+    "qa/aero-hop-v19-results.json": {
+      "bytes": 7420,
+      "sha256": "4d849910a930b47acf6f8ad042a6308b0433d31106983269fca2e2cd2cf91925"
     },
     "qa/ai-v7-check.mjs": {
       "bytes": 10010,
@@ -603,6 +631,10 @@
     "qa/archipelago-v18-results.json": {
       "bytes": 2355,
       "sha256": "9f98dc25383a14a0903ae3e1e410986ccacc5038012dba095cf9ee2ae79515bc"
+    },
+    "qa/archipelago-v19-results.json": {
+      "bytes": 2355,
+      "sha256": "82ad4c1c10d2850d264d329e35ce714c770cd160714f6f0a859990ea6fcf6dee"
     },
     "qa/archive.mjs": {
       "bytes": 3536,
@@ -647,6 +679,10 @@
     "qa/audio-v18-results.json": {
       "bytes": 2217,
       "sha256": "ee110dc03a6b722763c2737bdfb2b93c9d815316ac93749c28d18ef9eb187184"
+    },
+    "qa/audio-v19-results.json": {
+      "bytes": 2217,
+      "sha256": "8566117cd03a6776f4c7ed481e3b8181817fda2f485045337305de22171cbe18"
     },
     "qa/audio-v3-check.mjs": {
       "bytes": 6437,
@@ -796,6 +832,14 @@
       "bytes": 2292,
       "sha256": "c80d85a024a10173e7004a3cf1132679470162c963a5e52c063d2af02b9956ef"
     },
+    "qa/chassis-performance-v19-results.json": {
+      "bytes": 2797,
+      "sha256": "83429919362200414415ee27508ae1665b6bdfa517119f38157c7bcf4afe06ca"
+    },
+    "qa/chassis-performance-v19.mjs": {
+      "bytes": 2313,
+      "sha256": "64e4e7e3e0716b21a0b62e74a3c7fc21a2aa45399eb348e0c9a0267c4111de38"
+    },
     "qa/chassis-v15-check.mjs": {
       "bytes": 7308,
       "sha256": "7bf33be5be21645bbe7ffbb2d072cf45f386b7017b59208a7179646436e6339a"
@@ -815,6 +859,10 @@
     "qa/chassis-v18-results.json": {
       "bytes": 5260,
       "sha256": "42e07c441874ac7591f84557166c399cd85d3ac82d03d345471d4669ba3b647c"
+    },
+    "qa/chassis-v19-results.json": {
+      "bytes": 5290,
+      "sha256": "5ff268b67348ed2909630d06da5f1e501b9cca7c65a2edba2490c4eb74ffe410"
     },
     "qa/city-v5-check.mjs": {
       "bytes": 4911,
@@ -884,6 +932,10 @@
       "bytes": 1641,
       "sha256": "460f08c57840ecf1e8d7d2a25bcb9fc9411eb13558788cb823f02514c667df2e"
     },
+    "qa/cosmetics-v19-results.json": {
+      "bytes": 1641,
+      "sha256": "30c26c819440c9909f2236e615dc0657530c1314b302575d3f83abae3e6919d4"
+    },
     "qa/county-agents-v13-check.mjs": {
       "bytes": 2449,
       "sha256": "23d5658e031b4dded246b6da4c04168ff8dc22b5366a539e9110fbc77d613de2"
@@ -952,6 +1004,10 @@
       "bytes": 3606,
       "sha256": "c8ef9e86c138d4c65b69156e14585f3850621d60d4fcc55edc0ca2d4a6585c9b"
     },
+    "qa/damage-v19-results.json": {
+      "bytes": 3606,
+      "sha256": "f2ab6796eb961d87c61e703bd5e3a8134a9782ab416152d6a056e45c376608a2"
+    },
     "qa/damage-v8-check.mjs": {
       "bytes": 7676,
       "sha256": "baed9ef03734abe5c548539506b074306142c62803eeef12c4d38a8edf435224"
@@ -1000,6 +1056,14 @@
       "bytes": 5510,
       "sha256": "990987c99430140b410cdd9bfd1b8c64c6b41efff6f569c300b53fabe6af3910"
     },
+    "qa/drivetrain-browser-v19-results.json": {
+      "bytes": 711,
+      "sha256": "e3411372cbd166788de84c95349042b5c7d9c2dd60e01200a15d628af665f1b0"
+    },
+    "qa/drivetrain-browser-v19.cjs": {
+      "bytes": 5490,
+      "sha256": "a7127c305af0280fe978f6c4bd0a237df798916aa9b7be82a49388fcb6724235"
+    },
     "qa/drivetrain-v17-check.mjs": {
       "bytes": 10265,
       "sha256": "64c049c8137f23c8ad5830fdda7e7dfcb2c8a26d1f636e8c8a803967e1aae6bb"
@@ -1015,6 +1079,14 @@
     "qa/drivetrain-v18-results.json": {
       "bytes": 4891,
       "sha256": "f3639af13d4d24c10ba110970f62f317832eabbb0ed038586cb9e5f96227e0f6"
+    },
+    "qa/drivetrain-v19-check.mjs": {
+      "bytes": 10324,
+      "sha256": "da99616fe39856371c2eccafff7f63dcb18043ab83487c619f10c764512ba014"
+    },
+    "qa/drivetrain-v19-results.json": {
+      "bytes": 4891,
+      "sha256": "eb9f5e8d19024a36f72eeada33125516af69116a476e11ec58f72496808963f0"
     },
     "qa/driving-input-v2-check.mjs": {
       "bytes": 3854,
@@ -1104,6 +1176,14 @@
       "bytes": 365,
       "sha256": "80d8251276c5d8ba96e3ea02c2cf18c6523827a5723d28571552679b7096dae9"
     },
+    "qa/goal-coverage-v19-check.mjs": {
+      "bytes": 1513,
+      "sha256": "8011c63a9e58c23f9545e85b6ef558049564d3f1a624fb2df9c05dfaa19c43aa"
+    },
+    "qa/goal-coverage-v19-results.json": {
+      "bytes": 365,
+      "sha256": "e0bd5a67b4f8bb71b115d035b3ce6aee0d408c5aed8a7f6d0d5130d12c770f8e"
+    },
     "qa/haptics-v8-check.mjs": {
       "bytes": 6655,
       "sha256": "c84c2330bb9b6d16eb685f88d33f5ed6355a6fcaa21ffdfd105906b3803eccca"
@@ -1139,6 +1219,10 @@
     "qa/input-taps-v18-results.json": {
       "bytes": 2427,
       "sha256": "740d3d944ab2439b793027e98c6c3b8808abdc54b3ba9e446c08c9eeb51f9a23"
+    },
+    "qa/input-taps-v19-results.json": {
+      "bytes": 2427,
+      "sha256": "2fa8483cbb1f6d41a2cc46b2d78265093d7a7a8891fb84669277d8b5b46931d7"
     },
     "qa/input-v2-results.json": {
       "bytes": 1628,
@@ -1304,6 +1388,10 @@
       "bytes": 4489,
       "sha256": "88df9e9aab367ea1f13027fadf4913f235e807b85b6e71a39adb764f2237376c"
     },
+    "qa/modular-v19-results.json": {
+      "bytes": 4489,
+      "sha256": "ef86b867725f275cdc6335842aa9a8dd3b5db6a41c370229ae7b4187452484b0"
+    },
     "qa/multiplayer-v15-results.json": {
       "bytes": 2575,
       "sha256": "eea4cd3f1d79708ca0c55b95d7a04e5b9bfbef68962d087bc4a65e0cd391679c"
@@ -1319,6 +1407,10 @@
     "qa/multiplayer-v18-results.json": {
       "bytes": 3652,
       "sha256": "2eb9bdad709227af82f860272f99940aab5e44456763c45492cf6616ec06b305"
+    },
+    "qa/multiplayer-v19-results.json": {
+      "bytes": 3652,
+      "sha256": "83ef02d539dce863a2709d67d91958c6f7a1063cd9932eaa13bd98cabb8d108e"
     },
     "qa/multiplayer-v8-check.mjs": {
       "bytes": 16160,
@@ -1375,6 +1467,10 @@
     "qa/navigation-main-v18-results.json": {
       "bytes": 2284,
       "sha256": "b4c1f76bc7734d831f2f2a92eb1f4aea4827ba5de0e584f4c2d04b1160d3cd23"
+    },
+    "qa/navigation-main-v19-results.json": {
+      "bytes": 2284,
+      "sha256": "9d69ef45e204fbf6ff216af5bc8bc8c34cec2295f1bb7fb8d023faa0cba6206a"
     },
     "qa/navigation-v12-check.mjs": {
       "bytes": 8050,
@@ -1460,6 +1556,10 @@
       "bytes": 2663,
       "sha256": "d8afe8b693bfc2455d0a039cebf2170b6323e9fb64c9f840205118c1647f9b0c"
     },
+    "qa/package-v19.mjs": {
+      "bytes": 2632,
+      "sha256": "fe789aa723f641a734c593f769147744ad5b117f6c0dd371b5ec94230f674092"
+    },
     "qa/peerjs-codec-v9-check.mjs": {
       "bytes": 6969,
       "sha256": "48026d69b1925ca41816941bdbde5338a7a2088607a386a0dbce22498583436b"
@@ -1495,6 +1595,10 @@
     "qa/physics-v18-results.json": {
       "bytes": 3300,
       "sha256": "5382b09bb96118f78aac5d5482becaec71185c9a463c74fac1735cb3300e0d1e"
+    },
+    "qa/physics-v19-results.json": {
+      "bytes": 3299,
+      "sha256": "b84a96b27df4731bfa9fe7e23a97fdb176ba271c17628e8d1204bea0cbe2d3ea"
     },
     "qa/physics-v2-check.mjs": {
       "bytes": 5753,
@@ -1592,6 +1696,10 @@
       "bytes": 3877,
       "sha256": "cc2643280f33d3a47ac334989942825ff7bec535a0365cd2a1b050a08e02e287"
     },
+    "qa/police-v19-results.json": {
+      "bytes": 3877,
+      "sha256": "0e6878b28dd36b73709b7ca181b1be40317d3a15d1b98558e595cdc5764a525f"
+    },
     "qa/police-v6-check.mjs": {
       "bytes": 8384,
       "sha256": "e1a75cd513b9df16659077b82285bd84e874b239fb6d27e4b62fd8a5242404d4"
@@ -1680,6 +1788,10 @@
       "bytes": 3969,
       "sha256": "29fd8275e95a640ff67a12f99f077962d6ce110c83c7a5be55d1db27e25d426f"
     },
+    "qa/race-v19-results.json": {
+      "bytes": 3969,
+      "sha256": "dc3f9c71908e15369c6eb64d3114c523a0d3c3a67913ebb5ff13f9c9ec77725d"
+    },
     "qa/regression-v10-check.mjs": {
       "bytes": 2620,
       "sha256": "9fde1c0e01f5a8c1e7f290d6adf8e9fee39b5eae5023a5cd41d9ab22349eaf75"
@@ -1699,6 +1811,10 @@
     "qa/regressions-v18.mjs": {
       "bytes": 3279,
       "sha256": "78bc618a8e8712dab326a7933eb299023e3d33721d32a042556970cf427bc340"
+    },
+    "qa/regressions-v19.mjs": {
+      "bytes": 3280,
+      "sha256": "9c7214c0bffef955425f398a6a6428a043d7199a5750bb8fc6db6e94f1bfa257"
     },
     "qa/release-v10.json": {
       "bytes": 10210,
@@ -1731,6 +1847,10 @@
     "qa/release-v18.json": {
       "bytes": 6464,
       "sha256": "21c919ce920a744735a818431521010773f65cb7d8c4dc33ed1cd5eb56c46bee"
+    },
+    "qa/release-v19.json": {
+      "bytes": 7072,
+      "sha256": "492c0a618f02057755adea051f55531c38af6ea8b33c6f2478a52607c5ee1b1d"
     },
     "qa/release-v6.json": {
       "bytes": 6466,
@@ -1792,6 +1912,10 @@
       "bytes": 1653,
       "sha256": "6e7a06dc456f7de279f41784cb56fbab03a1693d3740b8d3e7cd4bbc4b9a4e90"
     },
+    "qa/restart-v19-results.json": {
+      "bytes": 1653,
+      "sha256": "d9db4a5d8b28707b4890c14eabb5c7d8da9d7b0151042675e4aada6e3d888966"
+    },
     "qa/review-v16.json": {
       "bytes": 1142,
       "sha256": "7b09108f851a95f8c9f595f1c710235422348d5355f6f61a632c05bedd81322c"
@@ -1803,6 +1927,10 @@
     "qa/review-v18.json": {
       "bytes": 3191,
       "sha256": "8a78c4c62943e0247966f07c1dc4504b7b04713f6d4a9c34efd21855051df174"
+    },
+    "qa/review-v19.json": {
+      "bytes": 3043,
+      "sha256": "3d0b99233458c45fdf4ee2680ed8c4f8a3f7c8ba69eb307567fc5ceca44a7d98"
     },
     "qa/road-contact-v16-check.mjs": {
       "bytes": 9546,
@@ -1827,6 +1955,14 @@
     "qa/road-contact-v18-results.json": {
       "bytes": 5393,
       "sha256": "f525fa97cd3705358e706d9cf94a50ad9f7c6df51417fa028ab69e5605ea1494"
+    },
+    "qa/road-contact-v19-check.mjs": {
+      "bytes": 9564,
+      "sha256": "c144b718753b70649a9852f9b8caea4801db607d26fb452fafa71d1877420ae8"
+    },
+    "qa/road-contact-v19-results.json": {
+      "bytes": 5394,
+      "sha256": "2ed1bfd7133719760fbf70a197cf5bad0c9c3ff30c8b0ace745e951e22dbda3c"
     },
     "qa/sdk-v10-camera-levels-results.json": {
       "bytes": 3158,
@@ -1932,6 +2068,14 @@
       "bytes": 5740,
       "sha256": "a329d4e8c5fe8695b6e60d2153e464e79108f9548cdcaa45af669933131ff661"
     },
+    "qa/standalone-browser-v19-results.json": {
+      "bytes": 826,
+      "sha256": "80c659b3955e37d9de169374013ce3c1aa3b20944f05a33fb471d38e04bce2a8"
+    },
+    "qa/standalone-browser-v19.cjs": {
+      "bytes": 5714,
+      "sha256": "dcfdb835f57ad0f5ac438926eb2ebd87b50f8f8c0a721bf0427bc3d886122f13"
+    },
     "qa/standalone-check.mjs": {
       "bytes": 2660,
       "sha256": "91662588ecdc1d3b8ad2352de98ddd47d4c569d0f5cb736655be3b9c65d17ca3"
@@ -2004,6 +2148,14 @@
       "bytes": 210,
       "sha256": "686f5656b0dea48fc55268ed5efd9f6764ad2372359b890d22a95d52dea2de82"
     },
+    "qa/standalone-v19-check.mjs": {
+      "bytes": 2719,
+      "sha256": "350ec615978a515cff2bbb77b8357c606cebafc74677e7d8bed9f142c2249ddf"
+    },
+    "qa/standalone-v19-results.json": {
+      "bytes": 210,
+      "sha256": "04227d5d06ec256c58f8be427d4cf7ac874acd0539bb95a195ab205ca212f967"
+    },
     "qa/standalone-v2-results.json": {
       "bytes": 140,
       "sha256": "08d675b2fe76c79e763438bfbfd882337f3cee479f64b4262e71c1284717e37f"
@@ -2072,6 +2224,10 @@
       "bytes": 4502,
       "sha256": "72635db6960d0048a95cca2e3a190b68e320390042abcee74c5fa987bf12fc1c"
     },
+    "qa/thermal-v19-results.json": {
+      "bytes": 4502,
+      "sha256": "7f23e0dcc5d53f9a6ab8c4eae5894f9c90ec3ed422fb4ed7a5c14e82f3527fc7"
+    },
     "qa/thermal-v9-check.mjs": {
       "bytes": 10148,
       "sha256": "91b7045e739ef5389072ceec6c301a49cd9a28ff8d8528bb7b146f46eb8d3c9a"
@@ -2103,6 +2259,22 @@
     "qa/traffic-v7-results.json": {
       "bytes": 2289,
       "sha256": "13aef551ae2265deb64fb5119a034b0fdc9f802c816c1c9bea749f6fc9b827dc"
+    },
+    "qa/tyres-browser-v19-results.json": {
+      "bytes": 791,
+      "sha256": "3bb5392c928ea9154b8de2cfb0a11d579057e577863b5ed489fcaf1a4195add3"
+    },
+    "qa/tyres-browser-v19.cjs": {
+      "bytes": 5583,
+      "sha256": "6bc673b76e9ab9e3c43dcb2abcc21ed6e8ea4ab9362566ffc08973c3d9efe329"
+    },
+    "qa/tyres-v19-check.mjs": {
+      "bytes": 11566,
+      "sha256": "1ed99166d5f38384f73ba650a491c6f4c1932845eac0790f0b6453a2f1ce78b4"
+    },
+    "qa/tyres-v19-results.json": {
+      "bytes": 5819,
+      "sha256": "de4db737a83845a1c6197d23fd27d031f20f4a090ba33156856c6294cc6afdaf"
     },
     "qa/ui-v5-check.mjs": {
       "bytes": 8904,
@@ -2169,16 +2341,16 @@
       "sha256": "8cec0167696644671c7f2c11c37404332f6f48053f5e44e083c85ade06d8cb60"
     },
     "README.md": {
-      "bytes": 36047,
-      "sha256": "39215255eb8589520a16495fbb30e185fe0b436056c02f02d0b1da3061263754"
+      "bytes": 37202,
+      "sha256": "d19db197979abf9d03fd7e58251d2fd947d9bc52da792534edf24cabaab08f64"
     },
-    "READ-ME-V18.txt": {
-      "bytes": 5138,
-      "sha256": "1792994fd450f4d801c2652e69d6a6c4df32291d37651177f04ac706d0e9f601"
+    "READ-ME-V19.txt": {
+      "bytes": 5968,
+      "sha256": "b8b2400597b8ac327bdfb0a443598383f4df654b57949352710f6a522602afe9"
     },
     "kontext.md": {
-      "bytes": 4558,
-      "sha256": "af3860c2ff3126864007e4e38d21a0132949e4e059ac6c2fd4b69f77dc07e0f3"
+      "bytes": 3981,
+      "sha256": "d309ae7b791f781084198b5f25691bb50c5e125d0ca0ecd50aae3de2a1d72732"
     },
     "package.json": {
       "bytes": 249,
@@ -2193,8 +2365,8 @@
       "sha256": "dff8170fe7d5f3c73de6e2262c8a48773c16e5065e2282ae76207d7b2c368e57"
     },
     "SIDEWAYS.html": {
-      "bytes": 10571291,
-      "sha256": "a30f80181cf5e610e509c2a71f2c8590b0bbdbba5d3e8f1dc69e8beeacc5573b"
+      "bytes": 10578047,
+      "sha256": "45b288dcd36e23a79f800842b6ccb20f4fd2346a8ea35031778ca5b8a1b449a6"
     }
   }
 }

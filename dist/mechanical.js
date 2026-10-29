@@ -3,6 +3,7 @@
  * and friction work feed these thermal masses; wheel/clutch work is supplied
  * by the constraint solver. Masses, thresholds and wear coefficients are
  * fictional vehicle calibration, not a reproduction of another simulator. */
+import {createTyre,stepTyre,tyrePressure} from './tyres.js';
 import {BODY_PANELS,repairBody} from './body-damage.js';
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,Number.isFinite(v)?v:a));
 const smooth=v=>(v=clamp(v,0,1),v*v*(3-2*v));
@@ -139,7 +140,7 @@ export class MechanicalSystem{
  observe(gear,omega,speed=0){this._lastSample={...this._lastSample,gear,omega,speed};this.refreshEffects(gear,omega);return this.publish(true);}
  step(dt,sample={},damageEnabled=true){
   dt=clamp(dt,0,.05);if(!dt)return this.diagnostics;
-  if(dt>1/120+1e-9){const n=Math.ceil(dt*120);for(let i=0;i<n;i++){const part={...sample};for(const key of ['wallHeatJ','frictionJ','extraFrictionJ','nosHeatJ','clutchWorkJ','gearboxWorkJ','differentialWorkJ','frontDifferentialWorkJ','centerDifferentialWorkJ'])part[key]=finite(sample[key])/n;for(const key of ['brakeWorkJ','tyreWorkJ'])part[key]=(sample[key]||[0,0,0,0]).map(v=>v/n);this.step(dt/n,part,damageEnabled);}return this.diagnostics;}
+  if(dt>1/120+1e-9){const n=Math.ceil(dt*120);for(let i=0;i<n;i++){const part={...sample};for(const key of ['wallHeatJ','frictionJ','extraFrictionJ','nosHeatJ','clutchWorkJ','gearboxWorkJ','differentialWorkJ','frontDifferentialWorkJ','centerDifferentialWorkJ'])part[key]=finite(sample[key])/n;for(const key of ['brakeWorkJ','tyreWorkJ','tyreLockedWorkJ','tyreRollingWorkJ'])part[key]=(sample[key]||[0,0,0,0]).map(v=>v/n);this.step(dt/n,part,damageEnabled);}return this.diagnostics;}
   this._lastSample=sample;
   const m=this.m,h=m.health,t=m.temperatures,e=this.refreshEffects(sample.gear||0,finite(sample.omega)),rpm=Math.abs(finite(sample.omega))*60/TAU,speed=Math.abs(finite(sample.speed));
   // Chassis hardware keeps its original torque rating after an engine/clutch
@@ -166,19 +167,21 @@ export class MechanicalSystem{
   cool('clutch',12000,90+speed*3);cool('gearbox',24000,18+speed*3);cool('differential',18000,14+speed*2.6);
   if(this.build.engine.turbo){const exhaustC=clamp(finite(sample.exhaustC,AMBIENT),AMBIENT,1500),gasConductance=Math.min(90,Math.abs(finite(sample.exhaustFlow))*70),q=(exhaustC-t.turbo)*(-Math.expm1(-gasConductance*dt/3600))*3600;t.turbo+=q/3600;exchange('turbo','oil',3600,oilC,12*rotating*h.oilPump);cool('turbo',3600,2+speed*.10);}
   for(let i=0;i<4;i++){
-   const brakeJ=Math.max(0,finite(sample.brakeWorkJ?.[i])),tyreJ=Math.max(0,finite(sample.tyreWorkJ?.[i]));
+   const brakeJ=Math.max(0,finite(sample.brakeWorkJ?.[i])),tyreJ=Math.max(0,finite(sample.tyreWorkJ?.[i])),rollingJ=Math.max(0,finite(sample.tyreRollingWorkJ?.[i]));
    t.brakes[i]=AMBIENT+(t.brakes[i]+brakeJ/4300-AMBIENT)*Math.exp(-dt*(.012+speed*.0017));
-   t.tyres[i]=AMBIENT+(t.tyres[i]+tyreJ/9500-AMBIENT)*Math.exp(-dt*(.016+speed*.0008));
+   t.tyres[i]=AMBIENT+(t.tyres[i]+(tyreJ+rollingJ)/9500-AMBIENT)*Math.exp(-dt*(.016+speed*.0008));
    t.brakes[i]=clamp(t.brakes[i],AMBIENT,1600);t.tyres[i]=clamp(t.tyres[i],AMBIENT,900);
-   m.energy.brakeJ[i]+=brakeJ;m.energy.tyreJ[i]+=tyreJ;
+   m.energy.brakeJ[i]+=brakeJ;m.energy.tyreJ[i]+=tyreJ+rollingJ;
    if(damageEnabled){
     const beforeBrake=this.condition.brakeHealth[i],beforeTyre=this.condition.wheelHealth[i];
     this.condition.brakeHealth[i]=clamp(beforeBrake-brakeJ/1.8e9*(1+30*smooth((t.brakes[i]-650)/400)),0,1);
     this.condition.wheelHealth[i]=clamp(beforeTyre-tyreJ/90e6*(1+18*smooth((t.tyres[i]-150)/150)),0,1);
     if(beforeBrake!==this.condition.brakeHealth[i])m.causes['brake'+CORNERS[i]]=t.brakes[i]>650?'Brake overheating':'Pad wear';
     if(beforeTyre!==this.condition.wheelHealth[i])m.causes['tyre'+CORNERS[i]]=t.tyres[i]>150?'Tyre overheating':'Tread wear';
-    if(beforeTyre>.025&&this.condition.wheelHealth[i]<=.025)this._event('tyre'+CORNERS[i],'tyre-failed','critical',CORNER_NAMES[i]+' tyre worn through');
+
    }
+   const tyre=this.condition.tyres[i],burst=stepTyre(tyre,{dt,temperature:t.tyres[i],tread:this.condition.wheelHealth[i],slipWork:tyreJ,lockedWork:sample.tyreLockedWorkJ?.[i],rollingWork:sample.tyreRollingWorkJ?.[i],speed:sample.tyreSpeeds?.[i]??speed,load:sample.tyreLoads?.[i]??0,angle:sample.tyreAngles?.[i]??0,attached:this.condition.wheelAttached[i],enabled:damageEnabled});
+   if(burst){m.causes['tyre'+CORNERS[i]]='Casing rupture / tread worn through';this.condition.damageRevision++;this._event('tyre'+CORNERS[i],'tyre-blowout','critical',CORNER_NAMES[i]+' tyre burst');}
   }
   e.oilLeakLps=.035*(1-h.oilPan)**2+.003*(1-h.pistons)**2*rotating+(this.build.engine.turbo?.004*(1-h.turbo)**2*rotating:0);
   e.coolantLeakLps=.055*(1-h.radiator)**2+.012*(1-h.waterPump)**2+.018*(1-h.headGasket)**2*rotating;
@@ -223,10 +226,12 @@ export class MechanicalSystem{
   };
   for(const [id,[label,group,temp]]of Object.entries(PARTS)){const axle=this.build.physics.driveLayout==='FWD'?'Front':'Rear',name=id==='differential'?axle+' differential':id==='driveshaft'?axle+' drive shafts':this.build.engine.rotors?(id==='pistons'?'Rotors and apex seals':id==='headGasket'?'Housing seals':label):label;add(id,name,group,h[id],temp?t[temp]:null,AWD_PARTS.includes(id)?this.build.physics.driveLayout==='AWD':id==='turbo'?!!this.build.engine.turbo:id==='valvetrain'?!this.build.engine.rotors:true);}
   m.gearHealth.forEach((health,i)=>add(i?'gear'+i:'gearR',i?'Gear '+i:'Reverse gear','drivetrain',health,t.gearbox));
-  for(let i=0;i<4;i++){add('brake'+CORNERS[i],CORNER_NAMES[i]+' brake','chassis',c.brakeHealth[i],t.brakes[i]);add('tyre'+CORNERS[i],CORNER_NAMES[i]+' tyre','chassis',c.wheelHealth[i],t.tyres[i]);add('suspension'+CORNERS[i],CORNER_NAMES[i]+' suspension','chassis',c.suspensionHealth[i],null);}
+  for(let i=0;i<4;i++){add('brake'+CORNERS[i],CORNER_NAMES[i]+' brake','chassis',c.brakeHealth[i],t.brakes[i]);const tyre=c.tyres[i],pressure=tyrePressure(tyre,t.tyres[i]);add('tyre'+CORNERS[i],CORNER_NAMES[i]+' tyre','chassis',tyre.blown?0:Math.min(c.wheelHealth[i],tyre.carcass,1-tyre.flatspot,pressure/2.3),t.tyres[i]);Object.assign(components.at(-1),{pressureBar:pressure,carcass:tyre.carcass,flatspot:tyre.flatspot,reason:tyre.blown?'Blowout: replace tyre':tyre.punctured?'Puncture: leaking air':tyre.flatspot>.05?'Flat spot from locked-wheel sliding':components.at(-1).reason});add('suspension'+CORNERS[i],CORNER_NAMES[i]+' suspension','chassis',c.suspensionHealth[i],null);}
   add('body','Body structure','chassis',c.bodyHealth,null);
   for(const [id,panel]of Object.entries(BODY_PANELS)){const zone=c.bodyDamage?.zones[id];if(zone&&(id!=='spoiler'||this.build.selection.spoiler!=='none')){add('panel:'+id,panel.label,'chassis',zone.health,null);const row=components.at(-1);if(zone.detached){row.status='failed';row.reason='Panel detached';}else if(zone.crush>.01)row.reason=Math.round(zone.crush*100)+' cm local crush';}}
   const warn=(id,label,severity,reason)=>warnings.push({id,label,severity,reason});
+  for(let i=0;i<4;i++){const tyre=c.tyres[i],pressure=tyrePressure(tyre,t.tyres[i]);if(!c.wheelAttached[i])warn('wheel-'+CORNERS[i],CORNER_NAMES[i]+' wheel missing','critical','Replace the wheel assembly');else if(tyre.blown||pressure<1.5)warn('tyre-'+CORNERS[i],CORNER_NAMES[i]+(tyre.blown?' tyre burst':' tyre pressure low'),tyre.blown||pressure<.6?'critical':'warning',pressure.toFixed(1)+' bar; replace the damaged tyre');}
+
   if(c.engineFault)warn('engine-failure',c.engineFault,'critical','Repair the failed engine components');
   if(rpm>700&&e.oilPressureBar<.55)warn('oil-pressure','Low oil pressure','critical','Stop the engine to protect the bearings');
   if(m.oilLitres<m.oilCapacity*.45)warn('oil-level','Oil level low',m.oilLitres<m.oilCapacity*.18?'critical':'warning',e.oilLeakLps>.001||h.oilPan<.7?'Oil leak: repair the source and refill':'Refill engine oil');
@@ -258,7 +263,7 @@ export class MechanicalSystem{
    if(id in m.health){m.health[id]=1;delete m.causes[id];const temp=PARTS[id][2];if(temp&&!['engine','oil','coolant'].includes(temp))m.temperatures[temp]=AMBIENT;this._revisionHealth[id]=1;repaired.push(id);continue;}
    const gear=/^gear(R|[1-9])$/.exec(id);if(gear){const index=gear[1]==='R'?0:Number(gear[1]);if(index<m.gearHealth.length){m.gearHealth[index]=1;delete m.causes[id];repaired.push(id);}continue;}
    let corner=CORNERS.findIndex(v=>id==='brake'+v);if(corner>=0){c.brakeHealth[corner]=1;m.temperatures.brakes[corner]=AMBIENT;delete m.causes[id];repaired.push(id);continue;}
-   corner=CORNERS.findIndex(v=>id==='tyre'+v);if(corner>=0){c.wheelHealth[corner]=1;c.wheelAttached[corner]=true;m.temperatures.tyres[corner]=AMBIENT;delete m.causes[id];repaired.push(id);continue;}
+   corner=CORNERS.findIndex(v=>id==='tyre'+v);if(corner>=0){c.wheelHealth[corner]=1;c.tyres[corner]=createTyre();c.wheelAttached[corner]=true;m.temperatures.tyres[corner]=AMBIENT;delete m.causes[id];repaired.push(id);continue;}
    corner=CORNERS.findIndex(v=>id==='suspension'+v);if(corner>=0){c.suspensionHealth[corner]=1;c.wheelToe[corner]=0;delete m.causes[id];repaired.push(id);continue;}
    if(id==='body'){c.bodyHealth=1;if(c.bodyDamage)repairBody(c.bodyDamage);repaired.push(id);}
    else if(id.startsWith('panel:')&&c.bodyDamage&&repairBody(c.bodyDamage,id))repaired.push(id);

@@ -1,7 +1,7 @@
 {
   "source": "docs/goal.txt",
   "sourceSHA256": "4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc282ea844a1b96dca",
-  "version": 18,
+  "version": 19,
   "requirements": [
     {
       "id": "P00.01",
@@ -108,19 +108,19 @@
     {
       "id": "P02.02",
       "phase": 2,
-      "status": "teilweise erledigt",
+      "status": "erledigt",
       "requirement": "Vier unabhängige Reifen: Temperatur, Luftdruck, Reifenmischung, Abrieb, Gripverlust, Flatspots, Platten, Beschädigung und Blowout."
     },
     {
       "id": "P02.03",
       "phase": 2,
-      "status": "offen",
+      "status": "erledigt",
       "requirement": "Längere Burnouts oder dauerhaft hohe Schlupfwerte erhitzen die Reifen. Nach nachvollziehbarer Überlast können sie einzeln platzen. Reaktion: plötzlicher Druckverlust, veränderte Seitenführung, Fahrwerks-/Lenkreaktion, Geräusch und Partikeleffekte."
     },
     {
       "id": "P02.04",
       "phase": 2,
-      "status": "teilweise erledigt",
+      "status": "erledigt",
       "requirement": "Rauchmenge hängt von Radschlupf, Temperatur und Oberfläche ab. Nicht jeder Reifen platzt nach einer festen Zeit unabhängig von den Umständen."
     },
     {
@@ -858,7 +858,7 @@
     {
       "id": "P18.04",
       "phase": 18,
-      "status": "offen",
+      "status": "erledigt",
       "requirement": "Langer Burnout erhitzt einen Reifen; Verschleiß, Gripverlust und schließlich Blowout können auftreten; Fahrverhalten reagiert darauf."
     },
     {
@@ -941,14 +941,14 @@
     }
   ],
   "currentIncrement": {
-    "phase": 1,
-    "part": "D",
+    "phase": 2,
+    "part": "A",
     "status": "teilweise erledigt",
     "implemented": [
-      "Teileabhängiger Abtrieb/Luftwiderstand, drei GT-Flügelwinkel und gespeicherte Spoilerbefestigung mit sichtbarem Abreißen/Einzelreparatur",
-      "Durch reale Schlupfarbeit begrenzter Wheel-Hop-Modus mit Radlaständerungen; verstärkte Achsführungen dämpfen ihn",
-      "30 kompatible Garagenslots, Kauf, Masse, Migration und bestehende Schäden bleiben konsistent"
+      "Vier unabhängige gespeicherte Reifen mit Druck, Karkasse, Flatspot, Leck und überlastabhängigem Blowout",
+      "Kontaktkräfte, Rollwiderstand, Radius, Gummigeometrie, begrenzte Partikel und radgebundene Geräusche folgen demselben Zustand",
+      "Altstand-Migration, Diagnose, gezielter Ersatz und Tuning ohne unbeabsichtigte Reparatur"
     ],
-    "next": "Phase 2A: Druck/Karkasse/Flatspots/Blowout als Voraussetzung für offene Phase-1-Reifeneffekte. Phase 1 bleibt teilweise; Wetterkopplung benötigt Phase 7."
+    "next": "Phase 2B: Radlager, Lenkungs-/Bremskomponenten und ihre Diagnose-/Reparaturpfade; anschließend übrige Nebenaggregate."
   }
 }

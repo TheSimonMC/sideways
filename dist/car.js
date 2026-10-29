@@ -231,7 +231,7 @@ export function createCar(scene, initialBuild = resolveBuild()) {
       const front=index<2,side=index%2===0?-1:1;
       const pivot=new THREE.Group();pivot.position.set(side*p.halfTrack,R,front?p.frontAxle:-p.rearAxle);content.add(pivot);
       const spin=new THREE.Group();pivot.add(spin);
-      const tyre=new THREE.Mesh(new THREE.CylinderGeometry(R,R,tyreWidth,12,1),rubber);tyre.rotation.z=Math.PI/2;tyre.castShadow=true;spin.add(tyre);
+      const tyre=new THREE.Mesh(new THREE.CylinderGeometry(R,R,tyreWidth,12,1),rubber);tyre.rotation.z=Math.PI/2;tyre.castShadow=true;tyre.name='tyre-'+index;spin.add(tyre);
       const rim=new THREE.Mesh(new THREE.CylinderGeometry(R*.72,R*.72,tyreWidth+.005,12),graphite);rim.rotation.z=Math.PI/2;spin.add(rim);
       if(build.selection.rims==='stock'){
       const ring=new THREE.Mesh(new THREE.TorusGeometry(R*.73,.017,3,12),kind==='muscle'?chrome:white);ring.rotation.y=Math.PI/2;ring.position.x=side*(tyreWidth*.5+.009);spin.add(ring);
@@ -241,7 +241,7 @@ export function createCar(scene, initialBuild = resolveBuild()) {
       const hub=new THREE.Mesh(new THREE.CylinderGeometry(.064,.064,tyreWidth+.03,8),dark);hub.rotation.z=Math.PI/2;spin.add(hub);
       const rotor=new THREE.Mesh(new THREE.CylinderGeometry(R*.57,R*.57,.012,12),chrome);rotor.rotation.z=Math.PI/2;rotor.position.x=side*(tyreWidth*.5-.015);pivot.add(rotor);
       box(pivot,side*(tyreWidth*.5-.005),.09,.11,.045,.16,.08,accent);
-      wheels.push(pivot);spinGroups.push({spin,pivot,front,side,index});
+      wheels.push(pivot);spinGroups.push({spin,pivot,front,side,index,tyre,tyreBase:tyre.geometry.attributes.position.array.slice(),tyreShape:null});
     }
     const number=decalTexture(spec.number,256,128,'#f5f0da');
     for(const side of [-1,1])decal(chassis,number,side*W*1.01,.68,-.02,.62,.29,side*Math.PI/2);
@@ -286,6 +286,8 @@ export function createCar(scene, initialBuild = resolveBuild()) {
         w.pivot.position.y=Number.isFinite(corner?.wheelY)?corner.wheelY:p.wheelRadius;
         const angle=state.wheelSpins?.[w.index] ?? (w.front?(w.side<0?state.wheelSpinFL:state.wheelSpinFR):(w.side<0?state.wheelSpinL:state.wheelSpinR));
         w.spin.rotation.x=Number.isFinite(angle)?angle:0;
+        const t=state.tyres?.[w.index],scale=t?.casingScale??1,spot=t?.flatspot??0,shape=Math.round(scale*1000)+':'+Math.round(spot*1000)+':'+(t?.flatspotAngle??0);
+        if(shape!==w.tyreShape){w.tyreShape=shape;const pos=w.tyre.geometry.attributes.position;for(let j=0;j<pos.count;j++){const x=w.tyreBase[j*3],y=w.tyreBase[j*3+1],z=w.tyreBase[j*3+2],r=Math.hypot(x,z),f=scale*(1-.045*spot*Math.max(0,(-x*Math.cos(t?.flatspotAngle??0)+z*Math.sin(t?.flatspotAngle??0))/Math.max(r,.001))**8);pos.setXYZ(j,x*f,y*(1+(1-scale)*.5),z*f);}pos.needsUpdate=true;w.tyre.geometry.computeVertexNormals();w.tyre.geometry.computeBoundingSphere();}
       }
       m.tail.emissiveIntensity=state.brake>.1?3:state.headlights?.9:.15;
       m.headlamp.emissiveIntensity=state.headlights?Math.max(.2,2.8*(state.bodyHealth??1)):.015;
@@ -322,6 +324,7 @@ export function createCar(scene, initialBuild = resolveBuild()) {
 
 export function createEffects(scene, initialBuild = resolveBuild()) {
   let build=initialBuild;
+  const lastBursts=[null,null,null,null];let burstParticles=0;
   const terrain=createTerrainEffects(scene,initialBuild);
   const FX_COUNT=160, SKID_COUNT=400, TRAIL_COUNT=60;
   const dummy=new THREE.Object3D();
@@ -334,6 +337,7 @@ export function createEffects(scene, initialBuild = resolveBuild()) {
   const coolantSteam=[new THREE.Color(0xe0e9eb),new THREE.Color(0xc9d6e1),new THREE.Color(0xf0eeec)];
   const engineSmoke=[new THREE.Color(0x646872),new THREE.Color(0x8a8b93),new THREE.Color(0x3d4652)];
   const earthColors=[new THREE.Color(0x8c8663),new THREE.Color(0x6c7958),new THREE.Color(0xa09b78)];
+  const rubberColors=[new THREE.Color(0x15151b),new THREE.Color(0x292933),new THREE.Color(0x393941)];
   const sparkColors=[new THREE.Color(ACID),new THREE.Color(0xffb74c),new THREE.Color(PINK)];
   const skidGeo=new THREE.PlaneGeometry(1,1);skidGeo.rotateX(-Math.PI/2);
   const skids=new THREE.InstancedMesh(skidGeo,new THREE.MeshBasicMaterial({color:0x181629,transparent:true,opacity:.48,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-1}),SKID_COUNT);
@@ -350,10 +354,10 @@ export function createEffects(scene, initialBuild = resolveBuild()) {
   for(let i=0;i<SKID_COUNT;i++)skids.setMatrixAt(i,dummy.matrix);
   for(let i=0;i<TRAIL_COUNT;i++)trails.setMatrixAt(i,dummy.matrix);
   function spawn(x,y,z,vx,vz,intensity,kind=0){
-    const p=particlesData[pIndex],spark=kind===1,dust=kind===2||kind===3;p.life=p.max=spark?.28+Math.random()*.3:dust?.35+Math.random()*.4:.45+Math.random()*.5;
-    p.x=x;p.y=y;p.z=z;p.floor=dust?y-.065:.08;p.vx=vx+(Math.random()-.5)*(spark?10:dust?1.2:2);p.vy=spark?1+Math.random()*4:dust?.25+Math.random()*.3:.6+Math.random();p.vz=vz+(Math.random()-.5)*(spark?10:dust?1.2:2);
-    p.size=spark?.035+Math.random()*.035:dust?.065+intensity*.11+Math.random()*.04:.13+intensity*.12+Math.random()*.1;p.rot=Math.random()*Math.PI*2;p.kind=kind;
-    const colors=kind===5?coolantSteam:kind===4?engineSmoke:spark?sparkColors:kind===2?dustColors:kind===3?earthColors:smokeColors;
+    const p=particlesData[pIndex],spark=kind===1,rubber=kind===6,dust=kind===2||kind===3;p.life=p.max=spark?.28+Math.random()*.3:dust?.35+Math.random()*.4:.45+Math.random()*.5;
+    p.x=x;p.y=y;p.z=z;p.floor=rubber?y-.16:dust?y-.065:.08;p.vx=vx+(Math.random()-.5)*(spark?10:dust?1.2:2);p.vy=spark?1+Math.random()*4:dust?.25+Math.random()*.3:.6+Math.random();p.vz=vz+(Math.random()-.5)*(spark?10:dust?1.2:2);
+    p.size=rubber?.025+Math.random()*.025:spark?.035+Math.random()*.035:dust?.065+intensity*.11+Math.random()*.04:.13+intensity*.12+Math.random()*.1;p.rot=Math.random()*Math.PI*2;p.kind=kind;
+    const colors=rubber?rubberColors:kind===5?coolantSteam:kind===4?engineSmoke:spark?sparkColors:kind===2?dustColors:kind===3?earthColors:smokeColors;
     particles.setColorAt(pIndex,colors[Math.floor(Math.random()*colors.length)]);
     pIndex=(pIndex+1)%FX_COUNT;
   }
@@ -374,7 +378,7 @@ export function createEffects(scene, initialBuild = resolveBuild()) {
   return {
     setBuild(nextBuild){if(nextBuild?.physics){build=nextBuild;terrain.setBuild(nextBuild);}this.reset();return this;},
     setGroundSampler(fn){terrain.setGroundSampler(fn);return this;},
-    debug(){return {wheelParticles:[...wheelParticles],activeParticles:particlesData.filter(p=>p.life>0).length,activeSmoke:particlesData.filter(p=>p.life>0&&p.kind===0).length,activeSteam:particlesData.filter(p=>p.life>0&&p.kind===5).length,activeEngineSmoke:particlesData.filter(p=>p.life>0&&p.kind===4).length,activeDust:particlesData.filter(p=>p.life>0&&(p.kind===2||p.kind===3)).length,terrain:terrain.diagnostics(),skidCursor:sIndex,carId:build.vehicle.id};},
+    debug(){return {wheelParticles:[...wheelParticles],activeParticles:particlesData.filter(p=>p.life>0).length,burstParticles,activeRubber:particlesData.filter(p=>p.life>0&&p.kind===6).length,activeSmoke:particlesData.filter(p=>p.life>0&&p.kind===0).length,activeSteam:particlesData.filter(p=>p.life>0&&p.kind===5).length,activeEngineSmoke:particlesData.filter(p=>p.life>0&&p.kind===4).length,activeDust:particlesData.filter(p=>p.life>0&&(p.kind===2||p.kind===3)).length,terrain:terrain.diagnostics(),skidCursor:sIndex,carId:build.vehicle.id};},
     update(s,dt,time){
       terrain.update(s,dt);
       const speed=s.speed||0;
@@ -383,6 +387,7 @@ export function createEffects(scene, initialBuild = resolveBuild()) {
 
       for(let i=0;i<4;i++){
         const wheel=s.wheelAudio?.[i],point=contact(s,i),corner=s.suspension?.[i];
+        const tyre=s.tyres?.[i];if(tyre&&lastBursts[i]!=null&&tyre.burstCount>lastBursts[i]&&s.wheelAttached?.[i]!==false){for(let n=0;n<10;n++)spawn(point.x,point.y+.16,point.z,-fX*speed*.12,-fZ*speed*.12,.7,6);burstParticles+=10;}lastBursts[i]=tyre?.burstCount??0;
         const surface=wheel?.surface||corner?.material||'asphalt',loose=['gravel','grass','dirt'].includes(surface);
         const fallbackSlip=s.wheelOmegas?Math.abs(s.wheelOmegas[i]*build.physics.wheelRadius-(s.forwardSpeed||0)):Math.abs(s.wheelSlip?.[i]??(i<2?0:i%2?s.wheelSlipR||0:s.wheelSlipL||0))*Math.max(5,speed);
         const slip=Math.abs(wheel?.slipSpeed??fallbackSlip),lateral=Math.abs(wheel?.lateralSpeed??Math.sin(s.driftAngle||0)*speed),rolling=Math.abs(wheel?.longitudinalSpeed??speed);
@@ -393,7 +398,7 @@ export function createEffects(scene, initialBuild = resolveBuild()) {
         if(!loose&&burnout){if(!burnoutStamps[i]||Math.hypot(point.x-burnoutStamps[i].x,point.z-burnoutStamps[i].z)>.35){stamp(point,s.heading);burnoutStamps[i]=point;}}else burnoutStamps[i]=null;
         const emitting=dust||!loose&&(sliding||burnout);
         if(!emitting){wheelClocks[i]=0;continue;}
-        const intensity=loose?clamp(rolling*.008+slip*.027+lateral*.06,.08,.8)*(surface==='grass'?.6:1):clamp(lateral*.15+slip*.027,0,1);
+        const temperatureFactor=.55+.45*clamp(((s.tyreTemps?.[i]??24)-24)/130,0,1);const intensity=loose?clamp(rolling*.008+slip*.027+lateral*.06,.08,.8)*(surface==='grass'?.6:1):clamp(lateral*.15+slip*.027,0,1)*temperatureFactor*(tyre?.blown?.35:1);
         wheelClocks[i]+=dt;
         if(wheelClocks[i]>(loose?.10-intensity*.045:.025)){
           wheelClocks[i]=0;wheelParticles[i]++;
@@ -410,9 +415,9 @@ export function createEffects(scene, initialBuild = resolveBuild()) {
       for(let i=0;i<FX_COUNT;i++){
         const p=particlesData[i];
         if(p.life<=0){zero();particles.setMatrixAt(i,dummy.matrix);continue;}
-        p.life=Math.max(0,p.life-dt);p.x+=p.vx*dt;p.y+=p.vy*dt;p.z+=p.vz*dt;p.vx*=Math.exp(-dt*2);p.vz*=Math.exp(-dt*2);if(p.kind===1)p.vy-=10*dt;
+        p.life=Math.max(0,p.life-dt);p.x+=p.vx*dt;p.y+=p.vy*dt;p.z+=p.vz*dt;p.vx*=Math.exp(-dt*2);p.vz*=Math.exp(-dt*2);if(p.kind===1||p.kind===6)p.vy-=10*dt;
         const age=1-p.life/p.max;
-        const size=p.kind===1?p.size*(1-age):p.size*(1+age*(p.kind>=2?2:3.3))*Math.min(1,p.life*5);
+        const size=p.kind===6?p.size*(1-age*.5):p.kind===1?p.size*(1-age):p.size*(1+age*(p.kind>=2?2:3.3))*Math.min(1,p.life*5);
         dummy.position.set(p.x,Math.max(p.floor??.08,p.y),p.z);dummy.rotation.set(p.rot+age,p.rot*.5+time*.2,p.rot*.8);dummy.scale.set(size,p.kind===1?size*3:size*.8,size);dummy.updateMatrix();particles.setMatrixAt(i,dummy.matrix);
       }
       for(let i=0;i<TRAIL_COUNT;i++){
@@ -425,7 +430,7 @@ export function createEffects(scene, initialBuild = resolveBuild()) {
     },
     impact(x,z,strength=1){for(let i=0;i<Math.min(24,Math.ceil(8+strength*12));i++)spawn(x,.35,z,0,0,strength,1);},
     reset(){
-      terrain.reset();
+      terrain.reset();lastBursts.fill(null);burstParticles=0;
       for(const p of particlesData)p.life=0;for(const p of trailData)p.life=0;
       zero();for(let i=0;i<SKID_COUNT;i++)skids.setMatrixAt(i,dummy.matrix);skids.instanceMatrix.needsUpdate=true;
       for(let i=0;i<FX_COUNT;i++)particles.setMatrixAt(i,dummy.matrix);particles.instanceMatrix.needsUpdate=true;

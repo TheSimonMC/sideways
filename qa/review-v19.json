@@ -1,0 +1,40 @@
+{
+  "status": "reviewed",
+  "result": "No findings.",
+  "method": "Read-only review of the complete runtime diff, related state/render/audio/service call sites and regression evidence after implementation, using review-agent instructions. Performed by the implementation agent, not an independent reviewer. Implementation fixes were made outside the read-only review.",
+  "baseCommit": "6b7ad3b74a836b1c6d9a38f46e34b62535402ddb",
+  "sourceSHA256": {
+    "dist/tyres.js": "b222bd0f4f2be0e519505c653dc9b96f76abffc527d2ca9b82838bb6c55a5f14",
+    "dist/vehicle-state.js": "888f606612f2a452c8fe4693a77fba4020a1b7aa3538f9ae8e848129bef4af3e",
+    "dist/mechanical.js": "de5eabc2157f19951e3cbb3f19d0655643eb29ce8b6d4fa6037670ffe0b245ac",
+    "dist/physics.js": "c2f692d97e7477e0df88b33c2cbf0cdbceacfe94ede489416b1c0bfaaa30f952",
+    "dist/car.js": "a64705b16758899decd2f90e3249ec761326a325da9d416d7e29110426831507",
+    "dist/audio.js": "2979b4e2dbe52ee8c1fc7e14562f2fdd096e796ad873f30340e48c96948c8bcc",
+    "dist/vehicle-panel.js": "002dbb22e3c21523ed5daa4318720a821cc1626b418217c3d3a058a22b71e4f1",
+    "dist/style.css": "2a5e7a65b0b695a7b8951974bdf6ff2705da099f98bc93954147e94d10fe0465",
+    "dist/main.js": "2fd013c68107a61fae47b736fb6954b21a178a7ce6f9facd66124019a842133e",
+    "dist/index.html": "be269ec12eb9b568075f7dbfe7073385050eed00037882082d115300048ed309",
+    "dist/multiplayer.js": "8ecddc1c2bbe3d6b6abf9d579e1c2e3731b6c9047b55ef386e12f47fb1486247",
+    ".github/workflows/pages.yml": "1a987379e1e9cfcb8b0622041d5aef1ecd1d9c89cb647b783ad7019fb9208f52"
+  },
+  "resolvedFindings": [
+    "Guard null tyre entries when migrating malformed saves.",
+    "Keep ground height separate from the stance caused by tyre deflation during reset.",
+    "Include dissipated deflated-tyre rolling work in the thermal energy ledger.",
+    "Follow signed wheel rotation in damaged-tyre rolling sound.",
+    "Keep tyre-only repair geometry above ground without adding its update to debris processing.",
+    "Wrap pressure/casing/flat-spot readouts within the diagnostic column at desktop and narrow width.",
+    "Correct UTF-8 copying of the goal-coverage parser, then verify all 156 requirements verbatim."
+  ],
+  "limits": [
+    "Fixed-volume pressure proxy and one shared tyre/air temperature, a single dominant flat spot, no detailed belt/tear model or inflation service.",
+    "Radial rubber deformation, retained nominal shape for fully detached wheel debris; no independent rim condition.",
+    "Software renderer, no subjective listening, physical wheel or live multi-PC network test.",
+    "CPU measurement excludes world/GPU/AI/audio and does not establish an FPS guarantee."
+  ],
+  "visualCheck": [
+    "Garage: existing car and sport-tyre purchase render with the saved tyre condition.",
+    "Condition panel: pressure, casing and flat-spot values fit their rows at 1440px and 390px viewport width.",
+    "Existing drive/map and aero/drivetrain previews render; wide-scale district-label crowding remains a pre-existing map limitation."
+  ]
+}
