@@ -1,0 +1,150 @@
+{
+  "status": "passed",
+  "version": 22,
+  "checks": [
+    "Old saves gain healthy auxiliaries without healing previous damage; nested snapshots are independent and malformed inputs are sanitized.",
+    "Pure observations do not consume charge; actual loads consume amp-hours and alternator speed and belt drive determine charging.",
+    "All four native engines can crank after stopping; an empty or failed battery and failed starter prevent cranking without fabricating crank speed.",
+    "Weak battery voltage or worn starter reduces native cranking speed, and prolonged cranking heats and wears that starter.",
+    "Electrical loss cuts real combustion and lamps without destroying the engine; component charging and replacement repair only the selected fault.",
+    "Recovery, build changes and garage saves retain electrical damage and charge; a new run repairs auxiliaries.",
+    "A failed fan loses stationary cooling; road airflow still cools it; a broken accessory belt stops the water pump.",
+    "Tensioner damage creates rotational slip, belt heat and wear; no rotation and damage-off cannot wear the belt.",
+    "Diagnosis exposes voltage, charge and distinct repair actions; actual car lamp materials follow electrical power.",
+    "Fan and slipping belt produce mechanical PCM targets only when their real states are active; mechanical mute disables both."
+  ],
+  "fixtures": {
+    "Old saves gain healthy auxiliaries without healing previous damage; nested snapshots are independent and malformed inputs are sanitized.": {},
+    "Pure observations do not consume charge; actual loads consume amp-hours and alternator speed and belt drive determine charging.": {
+      "off": {
+        "voltage": 12.275969625,
+        "attemptVoltage": 11.106361802201866,
+        "charge": 0.85,
+        "netA": -5,
+        "generatorA": 0,
+        "starterA": 0,
+        "starterActive": false,
+        "canCrank": true,
+        "starterBlocked": false,
+        "starterFactor": 0,
+        "starterDrag": 0,
+        "ignition": true,
+        "lampFactor": 1,
+        "fan": 0,
+        "beltDrive": 1,
+        "beltSlip": 0,
+        "loadTorque": 0,
+        "generatorW": 0,
+        "capacityAh": 60
+      },
+      "lights": {
+        "voltage": 12.257908875,
+        "attemptVoltage": 11.088301052201865,
+        "charge": 0.85,
+        "netA": -15,
+        "generatorA": 0,
+        "starterA": 0,
+        "starterActive": false,
+        "canCrank": true,
+        "starterBlocked": false,
+        "starterFactor": 0,
+        "starterDrag": 0,
+        "ignition": true,
+        "lampFactor": 1,
+        "fan": 0,
+        "beltDrive": 1,
+        "beltSlip": 0,
+        "loadTorque": 0,
+        "generatorW": 0,
+        "capacityAh": 60
+      },
+      "running": {
+        "voltage": 14.2,
+        "attemptVoltage": 11.115935572753434,
+        "charge": 0.8458333333333333,
+        "netA": 5.395833333333336,
+        "generatorA": 27.395833333333336,
+        "starterA": 0,
+        "starterActive": false,
+        "canCrank": true,
+        "starterBlocked": false,
+        "starterFactor": 0,
+        "starterDrag": 0,
+        "ignition": true,
+        "lampFactor": 1,
+        "fan": 0,
+        "beltDrive": 1,
+        "beltSlip": 0,
+        "loadTorque": 2.2883578431372547,
+        "generatorW": 389.02083333333337,
+        "capacityAh": 60
+      }
+    },
+    "All four native engines can crank after stopping; an empty or failed battery and failed starter prevent cranking without fabricating crank speed.": [
+      {
+        "car": "hachi",
+        "rpm": 895.8971662152662
+      },
+      {
+        "car": "atlas",
+        "rpm": 851.5759322458093
+      },
+      {
+        "car": "kitsune",
+        "rpm": 994.3478840886921
+      },
+      {
+        "car": "vector",
+        "rpm": 883.364957763848
+      }
+    ],
+    "Weak battery voltage or worn starter reduces native cranking speed, and prolonged cranking heats and wears that starter.": {
+      "rpm": [
+        785.075013701525,
+        560.1280160960332
+      ],
+      "temperature": 180.5434532514201
+    },
+    "Electrical loss cuts real combustion and lamps without destroying the engine; component charging and replacement repair only the selected fault.": {},
+    "Recovery, build changes and garage saves retain electrical damage and charge; a new run repairs auxiliaries.": {},
+    "A failed fan loses stationary cooling; road airflow still cools it; a broken accessory belt stops the water pump.": {
+      "healthy": {
+        "engine": 111.19499251856261,
+        "coolant": 106.31569039399679
+      },
+      "fan": {
+        "engine": 123.54975906620805,
+        "coolant": 119.06976744186046
+      },
+      "moving": {
+        "engine": 94.9013881210524,
+        "coolant": 90.13688781218991
+      },
+      "belt": {
+        "engine": 137.25236139286943,
+        "coolant": 96.6544604308548
+      }
+    },
+    "Tensioner damage creates rotational slip, belt heat and wear; no rotation and damage-off cannot wear the belt.": {
+      "before": 0.9882120417520781,
+      "temperature": 24
+    },
+    "Diagnosis exposes voltage, charge and distinct repair actions; actual car lamp materials follow electrical power.": {},
+    "Fan and slipping belt produce mechanical PCM targets only when their real states are active; mechanical mute disables both.": {}
+  },
+  "sourceSHA256": {
+    "dist/engine-auxiliaries.js": "76e968fdc9cb4041cdcd0a2c754843bda5ddcfe2f21d248d95013f8748aa68ca",
+    "dist/physics.js": "0aa78e6f93d31f13873039f887c96663ea74d219b5f130127d945a7a2faa9128",
+    "dist/mechanical.js": "778520605914d20e5c16bde051841519b959f74a31fc55180f8884cd75d1e860",
+    "dist/vehicle-state.js": "888f606612f2a452c8fe4693a77fba4020a1b7aa3538f9ae8e848129bef4af3e",
+    "dist/car.js": "26493b81c4fd177889abaedb2c40f7289d19e85eee54a9f6b816e3ddaa99e3f9",
+    "dist/environment.js": "c033c63242c6df18208a06020881f70263610663905a27d66a209181b0956c90",
+    "dist/audio.js": "478ab3c7f5c0e1955aa04842fc3a14234837c4e2b537107b6d1741b07bd6cc58",
+    "dist/main.js": "82fc9205288f29d1fa5ae7a654abb74233027f9f30f28ccb2c77ccf9fe6eca91"
+  },
+  "limits": [
+    "Fictional lumped 12 V model, not vehicle-certified electrical calibration.",
+    "No visible engine bay yet; Phase 6 remains open.",
+    "Starter torque loss uses native crank load; alternator losses are kept out of engine/oil load heat."
+  ]
+}

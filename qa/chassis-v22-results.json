@@ -1,0 +1,137 @@
+{
+  "version": 22,
+  "status": "passed",
+  "checks": [
+    "All four factory cars accelerate straight without self-initiated drift and corner with dynamic wheel load transfer.",
+    "Factory 100 km/h braking remains bounded; reduced surface grip lengthens the same stop.",
+    "The fitted angle kit, alignment, bars, differential and compound change actual wheel geometry, load transfer and breakaway.",
+    "Legacy handling names cannot alter the solver; steering cannot rotate an airborne chassis.",
+    "Wheel axes retain their full rack travel at speed; keyboard/gamepad filtering and tyre slip transitions stay continuous.",
+    "New chassis slots migrate to stock; purchases persist once while existing damage, heat, fuel and upgrades survive changing the setup."
+  ],
+  "fixtures": {
+    "All four factory cars accelerate straight without self-initiated drift and corner with dynamic wheel load transfer.": [
+      {
+        "car": "hachi",
+        "straight": {
+          "speed": 25.968353335180808,
+          "maxBeta": 0.0001315588715969478,
+          "maxRoll": 0.00000198659060522111
+        },
+        "turn": {
+          "speed": 20.098003288867854,
+          "maxBeta": 0.0451604289611752,
+          "maxRoll": 0.02606466459024986
+        }
+      },
+      {
+        "car": "atlas",
+        "straight": {
+          "speed": 25.966368647901717,
+          "maxBeta": 0.00014345282590764525,
+          "maxRoll": 0.0000024560781987557664
+        },
+        "turn": {
+          "speed": 20.309489634281405,
+          "maxBeta": 0.050429836959418786,
+          "maxRoll": 0.02321711945636085
+        }
+      },
+      {
+        "car": "kitsune",
+        "straight": {
+          "speed": 26.622308598374524,
+          "maxBeta": 0.00013158754753420294,
+          "maxRoll": 0.0000019001962836308894
+        },
+        "turn": {
+          "speed": 19.95962877806005,
+          "maxBeta": 0.043577672016927096,
+          "maxRoll": 0.02708090875130527
+        }
+      },
+      {
+        "car": "vector",
+        "straight": {
+          "speed": 20.426437953319816,
+          "maxBeta": 0.0001504382216703583,
+          "maxRoll": 0.000002770255992199271
+        },
+        "turn": {
+          "speed": 20.205977668210117,
+          "maxBeta": 0.04504654738924722,
+          "maxRoll": 0.026868305352657013
+        }
+      }
+    ],
+    "Factory 100 km/h braking remains bounded; reduced surface grip lengthens the same stop.": {
+      "cars": [
+        {
+          "car": "hachi",
+          "distance": 35.957320754830015,
+          "time": 2.56666666666666
+        },
+        {
+          "car": "atlas",
+          "distance": 37.6855761260233,
+          "time": 2.674999999999993
+        },
+        {
+          "car": "kitsune",
+          "distance": 35.13360260423408,
+          "time": 2.5166666666666604
+        },
+        {
+          "car": "vector",
+          "distance": 36.60056477765317,
+          "time": 2.6083333333333267
+        }
+      ],
+      "wet": {
+        "distance": 58.43792851608619,
+        "time": 4.241666666666667
+      },
+      "limit": "Synthetic flat road, new tyres and ABS; not measured real vehicle performance."
+    },
+    "The fitted angle kit, alignment, bars, differential and compound change actual wheel geometry, load transfer and breakaway.": {
+      "factory": {
+        "speed": 18.063605180777976,
+        "maxBeta": 0.10953730050221316,
+        "maxRoll": 0.03910708281922347
+      },
+      "fitted": {
+        "speed": 14.369701461281698,
+        "maxBeta": 0.33739994148490465,
+        "maxRoll": 0.032201693869164945
+      },
+      "stockLock": 0.5759586531581288,
+      "kitLock": 0.9599310885968813
+    },
+    "Legacy handling names cannot alter the solver; steering cannot rotate an airborne chassis.": {
+      "legacyIdentical": true,
+      "airborneYaw": 0.4
+    },
+    "Wheel axes retain their full rack travel at speed; keyboard/gamepad filtering and tyre slip transitions stay continuous.": {
+      "maxCoefficientStep": 0.0004849084484421784
+    },
+    "New chassis slots migrate to stock; purchases persist once while existing damage, heat, fuel and upgrades survive changing the setup.": {
+      "price": 18500,
+      "wallet": 1500
+    }
+  },
+  "sourceSHA256": {
+    "dist/chassis-setup.js": "7b549bb8aaea26d70b7075b25db5331ef462acccab09b6d19704270980be81b2",
+    "dist/catalog.js": "c5da9ed3102fe56916bf85badb4a9c355de106cbcf29dda37f92f6d551425065",
+    "dist/career.js": "e609ca9085aba7ced8eca015b637bcbfb7b9b6f594d6c04bfbf4dbad80de1e67",
+    "dist/physics.js": "0aa78e6f93d31f13873039f887c96663ea74d219b5f130127d945a7a2faa9128",
+    "dist/main.js": "82fc9205288f29d1fa5ae7a654abb74233027f9f30f28ccb2c77ccf9fe6eca91",
+    "dist/garage.js": "433365d6d28b2f8444982b003cdb5d2d5adc6f89f93e84caa0057585c3691f37"
+  },
+  "limits": [
+    "This reused chassis suite covers factory RWD; qa/drivetrain-v22-results.json covers conversions. Weather remains open; pressure/blowouts are covered by tyres-v22-check.mjs; aero/hop are covered by aero-hop-v22-check.mjs.",
+    "Synthetic inputs on the native SDK, no physical wheel/gamepad or measured real-world calibration."
+  ],
+  "verifiedInRelease": 22,
+  "suiteSource": "qa/chassis-v15-check.mjs",
+  "suiteSHA256": "7bf33be5be21645bbe7ffbb2d072cf45f386b7017b59208a7179646436e6339a"
+}

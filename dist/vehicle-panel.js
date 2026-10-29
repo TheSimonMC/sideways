@@ -24,7 +24,7 @@ export class VehiclePanel{
  render(state,build,options={}){
   this.current={state,build,options};const m=state?.mechanical,parts=(m?.components||[]).filter(part=>part.applicable!==false);
   $('vehicle-name').textContent=build?.vehicle?.name||'YOUR CAR';
-  const warning=primaryMechanicalWarning(state),failed=parts.filter(part=>part.health<=.025).length;
+  const warning=primaryMechanicalWarning(state),failed=parts.filter(part=>part.status==='failed'||!part.status&&part.health<=.025).length;
   $('vehicle-summary').textContent=warning?warning.label+(warning.reason?'. '+warning.reason:''):failed?failed+' component'+(failed===1?' has':'s have')+' failed.':m?'No active faults. Inspect each part below.':'Component data is not available yet.';
   $('vehicle-summary').classList.toggle('warning',!!warning||failed>0);
   $('vehicle-coolant').textContent=degrees(m?.temperatures?.coolant);
@@ -47,7 +47,7 @@ export class VehiclePanel{
   for(const part of parts){
    const row=this.rows.get(part.id),health=clamp(Number.isFinite(part.health)?part.health:1,0,1);
    row.row.classList.toggle('hidden',this.filter!=='all'&&category(part)!==this.filter);
-   row.row.classList.toggle('damaged',health<.5);row.row.classList.toggle('failed',health<=.025);row.row.classList.toggle('hot',part.status==='hot'||part.status==='critical');
+   row.row.classList.toggle('damaged',health<.5);row.row.classList.toggle('failed',part.status==='failed'||!part.status&&health<=.025);row.row.classList.toggle('hot',part.status==='hot'||part.status==='critical');
    row.name.textContent=part.label;row.reason.textContent=part.reason||'';row.reason.classList.toggle('hidden',!part.reason);
    row.value.textContent=status({...part,health})+' · '+Math.round(health*100)+'%';
    row.row.classList.toggle('tyre-row',Number.isFinite(part.pressureBar));

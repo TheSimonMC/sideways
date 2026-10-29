@@ -302,8 +302,8 @@ export function createCar(scene, initialBuild = resolveBuild()) {
         rodMid.copy(rodStart).lerp(rodEnd,.55);rodMid.z+=(damage?.bend||0)*.35;
         for(let n=0;n<2;n++){const a=n?(broken?rodEnd:rodMid):rodStart,b=n?(broken?rodMid:rodEnd):rodMid,mesh=r.halves[n];rodDirection.copy(b).sub(a);if(broken){rodDirection.multiplyScalar(.42);rodDirection.y-=.14;}mesh.position.copy(a).addScaledVector(rodDirection,.5);mesh.scale.y=rodDirection.length();mesh.quaternion.setFromUnitVectors(rodAxis,rodDirection.normalize());mesh.visible=n===0||r.pivot.visible;}
       }
-      m.tail.emissiveIntensity=state.brake>.1?3:state.headlights?.9:.15;
-      m.headlamp.emissiveIntensity=state.headlights?Math.max(.2,2.8*(state.bodyHealth??1)):.015;
+      m.tail.emissiveIntensity=(state.brake>.1?3:state.headlights?.9:.15)*(state.mechanical?.auxiliaries?.lampFactor??1);
+      m.headlamp.emissiveIntensity=(state.headlights?Math.max(.2,2.8*(state.bodyHealth??1)):.015)*(state.mechanical?.auxiliaries?.lampFactor??1);
       m.paint.color.set(paintHex).lerp(damageColour,(1-(state.bodyHealth??1))*.5);
       const body=state.bodyDamage,revision=body?.revision??0;
       if(revision!==m.bodyRevision||body!==m.bodyState){

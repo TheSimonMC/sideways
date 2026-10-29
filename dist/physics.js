@@ -59,12 +59,12 @@ export class CarPhysics {
   // PCM transport has no async device teardown; the SDK releases its clock
   // synchronously before returning the cleanup promise.
   if(this.engine.getTiming().clock!=='manual')void this.engine.disconnectAudio();
-  this.engine.load(this._warmState);this.engineState=this.engine.getState();
+  this.engine.load(this._warmState);this.engineState=this.engine.getState();this._mechanics._lastSample={...this._mechanics._lastSample,starterRequested:false,starterTorque:this.engineState.config.starterTorque,starterNoLoadRpm:this.engineState.config.starterNoLoadRpm};
   this._omega=this.engineState.omega;this._wheelOmega=[0,0,0,0];this._drive.reset(this._wheelOmega);this._hop.reset();this._fuelMeter=this.engineState.totals?.fuelInjected??0;this._heatMeter={wall:this.engineState.totals?.wallHeat??0,friction:this.engineState.totals?.frictionWork??0,load:this.engineState.totals?.loadWork??0};
-  if(this.condition.engineFault||this.condition.fuelLitres<=0){this.engine.stop();this.engine.applyShaftImpulse(-this._omega*this.engineState.config.inertia);this.engineState=this.engine.getState();this._omega=0;}
+  if(this.condition.engineFault||this.condition.fuelLitres<=0||!this._mechanics.refreshEffects(0,0).auxiliaries.canCrank){this.engine.stop();this.engine.applyShaftImpulse(-this._omega*this.engineState.config.inertia);this.engineState=this.engine.getState();this._omega=0;}
   this._shift=this._reverseHold=this._shiftMessageTime=0;
   this._shiftUpHeld=this._shiftDownHeld=false;this._accelLong=this._accelLat=0;
-  this._tc=1;this._autoEngagement=0;this._stallTime=0;this._stalled=!!this.condition.engineFault||this.condition.fuelLitres<=0;this._nitrousBlend=0;this._nitrousBlocked=false;this._nitrousCooldown=0;
+  this._tc=1;this._autoEngagement=0;this._stallTime=0;this._stalled=!!this.condition.engineFault||this.condition.fuelLitres<=0||!this._mechanics.refreshEffects(0,0).auxiliaries.canCrank;this._nitrousBlend=0;this._nitrousBlocked=false;this._nitrousCooldown=0;
   this._heaveVelocity=this._pitchVelocity=this._rollVelocity=0;
   this._brakePressures=[0,0,0,0];this._brakeTemps=this.condition.mechanical.temperatures.brakes;
   this._tyreTemps=this.condition.mechanical.temperatures.tyres;this._clutchTemp=this.condition.mechanical.temperatures.clutch;
@@ -120,7 +120,7 @@ export class CarPhysics {
   this.condition=createVehicleCondition(this.build,saved);this._conditions.set(this.build.vehicle.id,this.condition);
   this._mechanics=new MechanicalSystem(this.build,this.condition,event=>{this._mechanicalEvents.push(event);if(this._mechanicalEvents.length>64)this._mechanicalEvents.shift();});
   this._brakeTemps=this.condition.mechanical.temperatures.brakes;this._tyreTemps=this.condition.mechanical.temperatures.tyres;this._clutchTemp=this.condition.mechanical.temperatures.clutch;this._publishCondition();
-  this.state.boost=this.condition.boost;if(this.condition.engineFault||this.condition.fuelLitres<=0){this.engine.stop();this._stalled=true;this.state.engineRunning=false;this.state.engineStalled=true;if(this.condition.engineFault){const crank=this.engine.getState();this.engine.applyShaftImpulse(-crank.omega*crank.config.inertia);this._omega=0;this.engineState=this.engine.getState();this.state.rpm=0;}}
+  this._mechanics._lastSample={...this._mechanics._lastSample,starterRequested:false,starterTorque:this.engineState.config.starterTorque,starterNoLoadRpm:this.engineState.config.starterNoLoadRpm};this.state.boost=this.condition.boost;const electricalFailure=!this._mechanics.refreshEffects(0,0).auxiliaries.canCrank;if(this.condition.engineFault||this.condition.fuelLitres<=0||electricalFailure){this.engine.stop();this._stalled=true;this.state.engineRunning=false;this.state.engineStalled=true;if(this.condition.engineFault||electricalFailure){const crank=this.engine.getState();this.engine.applyShaftImpulse(-crank.omega*crank.config.inertia);this._omega=0;this.engineState=this.engine.getState();this.state.rpm=0;}}
   this._mechanics.observe(this.state.gear,this._omega,this.state.speed);this._publishCondition();return this.getCondition();
  }
  exportGarageState(){this.getCondition();return Object.fromEntries([...this._conditions].map(([id,c])=>[id,snapshotVehicleCondition(c)]));}
@@ -139,7 +139,7 @@ export class CarPhysics {
   const wasFailed=!!this.condition.engineFault,repaired=this._mechanics.repair(ids);
   if(repaired.length){
    this._brakeTemps=this.condition.mechanical.temperatures.brakes;this._tyreTemps=this.condition.mechanical.temperatures.tyres;this._clutchTemp=this.condition.mechanical.temperatures.clutch;
-   if(wasFailed&&!this.condition.engineFault){if(this.engine.getTiming().clock!=='manual')void this.engine.disconnectAudio();this.engine.load(this._warmState);this.engineState=this.engine.getState();this._omega=this.engineState.omega;this._stalled=false;this._stallTime=0;this._fuelMeter=this.engineState.totals?.fuelInjected??0;this._heatMeter={wall:this.engineState.totals?.wallHeat??0,friction:this.engineState.totals?.frictionWork??0,load:this.engineState.totals?.loadWork??0};this.state.engineRunning=this.condition.fuelLitres>0;this.state.engineStalled=false;this.state.rpm=this.engineState.rpm;}
+   if(wasFailed&&!this.condition.engineFault&&this._mechanics.refreshEffects(0,0).auxiliaries.canCrank){if(this.engine.getTiming().clock!=='manual')void this.engine.disconnectAudio();this.engine.load(this._warmState);this.engineState=this.engine.getState();this._mechanics._lastSample={...this._mechanics._lastSample,starterRequested:false,starterTorque:this.engineState.config.starterTorque,starterNoLoadRpm:this.engineState.config.starterNoLoadRpm};this._omega=this.engineState.omega;this._stalled=false;this._stallTime=0;this._fuelMeter=this.engineState.totals?.fuelInjected??0;this._heatMeter={wall:this.engineState.totals?.wallHeat??0,friction:this.engineState.totals?.frictionWork??0,load:this.engineState.totals?.loadWork??0};this.state.engineRunning=this.condition.fuelLitres>0;this.state.engineStalled=false;this.state.rpm=this.engineState.rpm;}
    for(let i=0;i<4;i++)if(repaired.includes('tyre'+['FL','FR','RL','RR'][i])){this._previousTyreRadii[i]=this.wheelRadius;this.state.suspension[i].wheelY=this.state.suspension[i].groundHeight+this.wheelRadius;}
    this.state.detachedWheels=this.state.detachedWheels.filter(w=>!this.condition.wheelAttached[w.index]);this.state.detachedPanels=this.state.detachedPanels.filter(p=>this.condition.bodyDamage.zones[p.panel]?.detached);this.state.damageMessage='Repairs complete';this._mechanics.observe(this.state.gear,this._omega,this.state.speed);this._publishCondition();
   }
@@ -203,7 +203,8 @@ export class CarPhysics {
   s.fuelFlowLph+=(used/dt*3600-s.fuelFlowLph)*(1-Math.exp(-dt*4));
   const wall=this.engineState.totals?.wallHeat??this._heatMeter.wall,friction=this.engineState.totals?.frictionWork??this._heatMeter.friction,load=this.engineState.totals?.loadWork??this._heatMeter.load;
   this._mechanics.step(dt,{omega,speed:s.speed,lateralAcceleration:s.accelerationLat,gear:s.gear,ratio:this._ratio(s.gear),clutchTorque:s.clutchTorque,
-   wallHeatJ:Math.max(0,wall-this._heatMeter.wall),frictionJ:Math.max(0,friction-this._heatMeter.friction),extraFrictionJ:Math.max(0,load-this._heatMeter.load),
+   wallHeatJ:Math.max(0,wall-this._heatMeter.wall),frictionJ:Math.max(0,friction-this._heatMeter.friction),// Generator work powers electrics and heats the alternator, not engine oil.
+   extraFrictionJ:Math.max(0,load-this._heatMeter.load)*(1-(this._auxLoadFraction||0)),
    nosHeatJ:nosLitres*FUEL_DENSITY_KG_PER_LITRE*44e6*.22,exhaustC:(this.engineState.exhaust?.T??297.15)-273.15,exhaustFlow:this.engineState.flows?.turbine??0,turboRpm:this.engineState.boost?.rpm??0,...work},this.damageEnabled);
   this._heatMeter={wall,friction,load};this._clutchTemp=c.mechanical.temperatures.clutch;
   if(c.engineFault){this._stalled=true;this.engine.stop();s.engineRunning=false;s.engineStalled=true;s.damageMessage=c.engineFault;}
@@ -315,15 +316,18 @@ export class CarPhysics {
   this._tc+=(tcTarget-this._tc)*Math.min(1,dt*9);
   s.throttle+=(pedal*this._tc-s.throttle)*Math.min(1,dt*15);s.brake=brake;
   const restartRequested=!!input.starter&&!this.condition.engineFault&&(!manualClutch||ratio===0||clutchPedal>.65);
-  const starter=restartRequested&&rpm<1200;
+  this._mechanics._lastSample={...this._mechanics._lastSample,headlights:!!input.headlights,starterRequested:restartRequested,starterTorque:this.engineState.config.starterTorque,starterNoLoadRpm:this.engineState.config.starterNoLoadRpm};
+  const mechanical=this._mechanics.refreshEffects(s.gear,this._omega),aux=mechanical.auxiliaries,starter=aux.starterActive;
+  const damageDrag=mechanical.loadTorqueNm+aux.loadTorque+aux.starterDrag;this._auxLoadFraction=damageDrag>0?(aux.loadTorque+aux.starterDrag)/damageDrag:0;
+  if(!aux.ignition)this._stalled=true;
   // Re-enabling ignition can catch a crank still coasting after starvation;
   // the starter motor itself does not engage above its safe cranking speed.
-  if(restartRequested&&(this.condition.fuelLitres>0||starter))this._stalled=false;
+  if(aux.ignition&&restartRequested&&(this.condition.fuelLitres>0||starter))this._stalled=false;
   // Bump-starting is possible when the driven wheels turn an otherwise stalled
   // crank fast enough. No RPM assignment or artificial restart torque is used.
-  if(this._stalled&&rpm>400&&ratio!==0&&!this.condition.engineFault&&this.condition.fuelLitres>0)this._stalled=false;
-  const canFire=!this._stalled&&!this.condition.engineFault&&this.condition.fuelLitres>0;
-  const mechanical=this._mechanics.refreshEffects(s.gear,this._omega),damageDrag=mechanical.loadTorqueNm;
+  if(aux.ignition&&this._stalled&&rpm>400&&ratio!==0&&!this.condition.engineFault&&this.condition.fuelLitres>0)this._stalled=false;
+  const canFire=aux.ignition&&!this._stalled&&!this.condition.engineFault&&this.condition.fuelLitres>0;
+  if(!canFire){s.nitrousTorque=0;s.nitrousIntensity=0;s.boosting=false;}
   const misfire=mechanical.misfire,cycle=Math.floor((this.engineState.angle||0)/(TAU*2));
   const cylinders=this.engineState.controls.cylinders.map((_,i)=>((cycle+i*7)%19+19)%19>=misfire*19);
   this.engine.setInputs({throttle:clamp(s.throttle,0,1),externalTorqueNm:s.nitrousTorque,loadNm:damageDrag,boostTarget:this.boostTarget*mechanical.boostFactor,
@@ -495,7 +499,7 @@ export class CarPhysics {
   const drivenSlipSpeed=Math.max(...this._drive.driven.map(i=>Math.abs(s.wheelAudio[i].slipSpeed)));
   s.burnoutIntensity=clamp((drivenSlipSpeed-2)/15,0,1)*clamp(1-s.speed/12,0,1);s.burnout=s.burnoutIntensity>.12;
   s.shiftProgress=clamp(this._shift/.19,0,1);s.engineClock=this.engine.getTiming().clock;
-  this._updateCondition(dt,omega,{...drive,brakePedal:brake,clutchWorkJ,bearingWorkJ,referenceLoads:this._staticLoads,wheelOmegas:wheels,attached:this.condition.wheelAttached,brakeWorkJ,tyreWorkJ,tyreLockedWorkJ,tyreRollingWorkJ,tyreSpeeds:s.wheelAudio.map(w=>w.longitudinalSpeed),tyreLoads:s.wheelLoads,tyreAngles:s.wheelSpins});this._updateDebris(dt);this._publishCondition();
+  this._updateCondition(dt,omega,{...drive,headlights:!!input.headlights,starterRequested:restartRequested,starterTorque:this.engineState.config.starterTorque,starterNoLoadRpm:this.engineState.config.starterNoLoadRpm,brakePedal:brake,clutchWorkJ,bearingWorkJ,referenceLoads:this._staticLoads,wheelOmegas:wheels,attached:this.condition.wheelAttached,brakeWorkJ,tyreWorkJ,tyreLockedWorkJ,tyreRollingWorkJ,tyreSpeeds:s.wheelAudio.map(w=>w.longitudinalSpeed),tyreLoads:s.wheelLoads,tyreAngles:s.wheelSpins});this._updateDebris(dt);this._publishCondition();
   return s;
  }
 }

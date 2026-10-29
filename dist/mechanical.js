@@ -3,6 +3,7 @@
  * and friction work feed these thermal masses; wheel/clutch work is supplied
  * by the constraint solver. Masses, thresholds and wear coefficients are
  * fictional vehicle calibration, not a reproduction of another simulator. */
+import {createAuxiliaries,snapshotAuxiliaries,auxiliaryResponse,stepAuxiliaries,repairAuxiliary,AUXILIARY_PARTS} from './engine-auxiliaries.js';
 import {createBrakeHydraulics,snapshotBrakeHydraulics,hydraulicFactors,stepBrakeHydraulics,BRAKE_CIRCUITS,BRAKE_FLUID_CAPACITY,brakePedalTravel,repairBrakeCircuit} from './brake-hydraulics.js';
 import {createChassisDamage,snapshotChassisDamage,stepChassisDamage} from './chassis-damage.js';
 import {createTyre,stepTyre,tyrePressure} from './tyres.js';
@@ -46,11 +47,11 @@ export function createMechanicalCondition(build,saved={},legacy={}){
  const causes={};for(const id of [...HEALTH_KEYS,...gearHealth.map((_,i)=>i?'gear'+i:'gearR'),...CORNERS.flatMap(c=>['brake'+c,'tyre'+c,'suspension'+c])])if(typeof saved.causes?.[id]==='string')causes[id]=saved.causes[id].slice(0,140);
  const energy={};for(const key of ['clutchJ','gearboxJ','differentialJ','frontDifferentialJ','centerDifferentialJ','engineHeatJ','oilHeatJ'])energy[key]=clamp(finite(saved.energy?.[key]),0,1e15);
  energy.brakeJ=CORNERS.map((_,i)=>clamp(finite(saved.energy?.brakeJ?.[i]),0,1e15));energy.tyreJ=CORNERS.map((_,i)=>clamp(finite(saved.energy?.tyreJ?.[i]),0,1e15));
- return {version:4,chassisDamage:createChassisDamage(saved.chassisDamage),health,gearHealth,temperatures,oilCapacity,coolantCapacity,brakeHydraulics:createBrakeHydraulics(saved.brakeHydraulics),
+ return {version:5,auxiliaries:createAuxiliaries(saved.auxiliaries),chassisDamage:createChassisDamage(saved.chassisDamage),health,gearHealth,temperatures,oilCapacity,coolantCapacity,brakeHydraulics:createBrakeHydraulics(saved.brakeHydraulics),
   oilLitres:clamp(finite(saved.oilLitres,oilCapacity),0,oilCapacity),coolantLitres:clamp(finite(saved.coolantLitres,coolantCapacity),0,coolantCapacity),oilQuality:clamp(finite(saved.oilQuality,1),0,1),
   causes,energy,eventSequence:Math.round(clamp(finite(saved.eventSequence),0,1e12))};
 }
-export function snapshotMechanicalCondition(m){return {...m,chassisDamage:snapshotChassisDamage(m.chassisDamage),brakeHydraulics:snapshotBrakeHydraulics(m.brakeHydraulics),health:{...m.health},gearHealth:[...m.gearHealth],temperatures:{...m.temperatures,brakes:[...m.temperatures.brakes],tyres:[...m.temperatures.tyres]},causes:{...m.causes},energy:{...m.energy,brakeJ:[...m.energy.brakeJ],tyreJ:[...m.energy.tyreJ]}};}
+export function snapshotMechanicalCondition(m){return {...m,auxiliaries:snapshotAuxiliaries(m.auxiliaries),chassisDamage:snapshotChassisDamage(m.chassisDamage),brakeHydraulics:snapshotBrakeHydraulics(m.brakeHydraulics),health:{...m.health},gearHealth:[...m.gearHealth],temperatures:{...m.temperatures,brakes:[...m.temperatures.brakes],tyres:[...m.temperatures.tyres]},causes:{...m.causes},energy:{...m.energy,brakeJ:[...m.energy.brakeJ],tyreJ:[...m.energy.tyreJ]}};}
 export function validEngineFault(value){return HEALTHY_FAULTS.has(value)?value:'Engine failure';}
 
 export class MechanicalSystem{
@@ -86,6 +87,7 @@ export class MechanicalSystem{
  }
  refreshEffects(gear,omega){
   const m=this.m,h=m.health,t=m.temperatures,e=this.effects,rpm=Math.abs(finite(omega))*60/TAU,rpmRatio=rpm/(this.build.physics.redlineRpm*(this.build.physics.safeRpmFactor??1));
+  e.auxiliaries=auxiliaryResponse(m.auxiliaries,{...this._lastSample,omega,coolant:t.coolant,waterPump:h.waterPump,starterTorque:this._lastSample.starterTorque??this.build.engine.starterTorque,starterNoLoadRpm:this._lastSample.starterNoLoadRpm??this.build.engine.starterNoLoadRpm});
   e.brakeHydraulicFactors=hydraulicFactors(m.brakeHydraulics);e.brakePedalTravel=brakePedalTravel(m.brakeHydraulics,this._lastSample.brakePedal);
   const oilLevel=m.oilLitres/m.oilCapacity,hotThin=1-.72*smooth((t.oil-125)/85),oilFeed=smooth((oilLevel-.08)/.5)*h.oilPump*(.25+.75*m.oilQuality);
   const surge=1-clamp((Math.abs(finite(this._lastSample.lateralAcceleration))-6)/10,0,.65)*(1-smooth((oilLevel-.35)/.45))/(this.build.physics.oilSurgeProtection??1);
@@ -133,6 +135,7 @@ export class MechanicalSystem{
   if(front>.5){const cooling=damage*front*1.2;this._damage('radiator',cooling,'Front impact');this._damage('waterPump',cooling*.25,'Front impact');this._damage('headGasket',severityEngine*.16,'Front impact');}
   const center=1-smooth((Math.abs(local.x)-.15)/1.2);
   if(front>.6&&closing>9){const shock=damage*center*front;this.m.chassisDamage.rack=clamp(this.m.chassisDamage.rack-shock*.8,0,1);const h=this.m.brakeHydraulics;h.booster=clamp(h.booster-shock*.35,0,1);for(let i=0;i<2;i++)h.master[i]=clamp(h.master[i]-shock*.3,0,1);}
+  if(front>.6&&closing>9){const a=this.m.auxiliaries.health;for(const [id,factor] of [['radiatorFan',1.1],['alternator',.5],['beltTensioner',.7],['accessoryBelt',.8],['battery',.35]])a[id]=clamp(a[id]-damage*center*front*factor,0,1);}
   this._damage('oilPan',damage*center*(.22+.25*front),'Underbody impact');this._damage('oilPump',severityEngine*.16,'Impact load');
   const mainFront=this.build.physics.driveLayout==='FWD',mainLocation=mainFront?front:1-front;
   this._damage('driveshaft',damage*center*mainLocation*.55,'Underbody impact');this._damage('differential',damage*mainLocation*.45,mainFront?'Front impact':'Rear impact');
@@ -147,6 +150,7 @@ export class MechanicalSystem{
   if(dt>1/120+1e-9){const n=Math.ceil(dt*120);for(let i=0;i<n;i++){const part={...sample};for(const key of ['wallHeatJ','frictionJ','extraFrictionJ','nosHeatJ','clutchWorkJ','gearboxWorkJ','differentialWorkJ','frontDifferentialWorkJ','centerDifferentialWorkJ'])part[key]=finite(sample[key])/n;for(const key of ['bearingWorkJ','brakeWorkJ','tyreWorkJ','tyreLockedWorkJ','tyreRollingWorkJ'])part[key]=(sample[key]||[0,0,0,0]).map(v=>v/n);this.step(dt/n,part,damageEnabled);}return this.diagnostics;}
   this._lastSample=sample;stepBrakeHydraulics(this.m.brakeHydraulics,dt,sample.brakePedal,damageEnabled,this.m.temperatures.brakes);stepChassisDamage(this.m.chassisDamage,dt,sample,damageEnabled);
   const m=this.m,h=m.health,t=m.temperatures,e=this.refreshEffects(sample.gear||0,finite(sample.omega)),rpm=Math.abs(finite(sample.omega))*60/TAU,speed=Math.abs(finite(sample.speed));
+  stepAuxiliaries(m.auxiliaries,dt,e.auxiliaries,damageEnabled,speed);
   // Chassis hardware keeps its original torque rating after an engine/clutch
   // upgrade. A stronger clutch can therefore expose the next weak component.
   const ratedInput=({hachi:650,atlas:800,kitsune:480,vector:500}[this.build.vehicle.id]||650)*(this.build.physics.drivetrainStrength??1);
@@ -157,7 +161,7 @@ export class MechanicalSystem{
   t.engine+=engineJ/engineC;t.oil+=oilJ/oilC;m.energy.engineHeatJ+=engineJ;m.energy.oilHeatJ+=oilJ;
   const exchange=(a,b,ca,cb,k)=>{const inverse=1/ca+1/cb,q=(t[a]-t[b])*(-Math.expm1(-k*inverse*dt))/inverse;t[a]-=q/ca;t[b]+=q/cb;};
   const cool=(id,c,k)=>{t[id]=AMBIENT+(t[id]-AMBIENT)*Math.exp(-k*dt/c);};
-  const coolantFill=smooth(m.coolantLitres/m.coolantCapacity),pump=h.waterPump*clamp(rpm/2400,.025,1),thermostat=smooth((t.coolant-80)/16),fan=smooth((t.coolant-91)/12);
+  const coolantFill=smooth(m.coolantLitres/m.coolantCapacity),pump=h.waterPump*e.auxiliaries.beltDrive*clamp(rpm/2400,.025,1),thermostat=smooth((t.coolant-80)/16),fan=e.auxiliaries.fan;
   const scale=this.build.engine.mass/190;
   exchange('engine','coolant',engineC,coolantC,(100+4600*pump)*coolantFill*scale);
   exchange('engine','oil',engineC,oilC,(65+260*rotating)*smooth(m.oilLitres/m.oilCapacity));
@@ -229,6 +233,8 @@ export class MechanicalSystem{
    components.push({id,label,group,health,temperature:temperature??null,status,reason,applicable});
   };
   for(const [id,[label,group,temp]]of Object.entries(PARTS)){const axle=this.build.physics.driveLayout==='FWD'?'Front':'Rear',name=id==='differential'?axle+' differential':id==='driveshaft'?axle+' drive shafts':this.build.engine.rotors?(id==='pistons'?'Rotors and apex seals':id==='headGasket'?'Housing seals':label):label;add(id,name,group,h[id],temp?t[temp]:null,AWD_PARTS.includes(id)?this.build.physics.driveLayout==='AWD':id==='turbo'?!!this.build.engine.turbo:id==='valvetrain'?!this.build.engine.rotors:true);}
+  for(const [id,label] of Object.entries(AUXILIARY_PARTS)){const a=m.auxiliaries,temp={accessoryBelt:'belt',alternator:'alternator',starterMotor:'starter'}[id];add(id,label,id==='radiatorFan'?'cooling':'engine',a.health[id],temp?a.temperatures[temp]:null);if(id==='accessoryBelt'&&a.health[id]<=.025)components.at(-1).reason='No alternator or water-pump drive';if(id==='beltTensioner'&&a.health[id]<.75)components.at(-1).reason='Belt slips under accessory load';}
+  add('batteryCharge','Battery charge','engine',m.auxiliaries.charge,null);Object.assign(components.at(-1),{status:m.auxiliaries.charge<=.002?'empty':m.auxiliaries.charge<.15?'low':'charge',action:'CHARGE',serviceNeeded:m.auxiliaries.charge<.999&&m.auxiliaries.health.battery>.025,reason:Math.round(m.auxiliaries.charge*100)+'% · '+e.auxiliaries.voltage.toFixed(1)+' V · '+e.auxiliaries.netA.toFixed(1)+' A'+(m.auxiliaries.health.battery<=.025?' · Replace failed battery':'')});
   m.gearHealth.forEach((health,i)=>add(i?'gear'+i:'gearR',i?'Gear '+i:'Reverse gear','drivetrain',health,t.gearbox));
   for(let i=0;i<4;i++){add('brake'+CORNERS[i],CORNER_NAMES[i]+' brake','chassis',c.brakeHealth[i],t.brakes[i]);const tyre=c.tyres[i],pressure=tyrePressure(tyre,t.tyres[i]);add('tyre'+CORNERS[i],CORNER_NAMES[i]+' tyre','chassis',tyre.blown?0:Math.min(c.wheelHealth[i],tyre.carcass,1-tyre.flatspot,pressure/2.3),t.tyres[i]);Object.assign(components.at(-1),{pressureBar:pressure,carcass:tyre.carcass,flatspot:tyre.flatspot,reason:tyre.blown?'Blowout: replace tyre':tyre.punctured?'Puncture: leaking air':tyre.flatspot>.05?'Flat spot from locked-wheel sliding':components.at(-1).reason});add('suspension'+CORNERS[i],CORNER_NAMES[i]+' suspension','chassis',c.suspensionHealth[i],null);}
   for(let i=0;i<4;i++){const health=m.brakeHydraulics.lines[i];add('brakeLine'+CORNERS[i],CORNER_NAMES[i]+' brake line','chassis',health,null);if(health<.999)components.at(-1).reason='Hydraulic leak; diagonal circuit loses pressure';}
@@ -251,6 +257,9 @@ export class MechanicalSystem{
   for(let i=0;i<2;i++){const pair=BRAKE_CIRCUITS[i],factor=e.brakeHydraulicFactors[pair[0]];if(factor<.8)warn('brake-hydraulic-'+i,'Brake circuit '+(i?'FR / RL':'FL / RR')+(factor<=.01?' failed':' pressure loss'),factor<.25?'critical':'warning','Inspect lines, fluid, master cylinder and booster; cool boiling fluid and bleed trapped air');}
   if(cd.rack<.75)warn('rack-fault','Steering rack '+(cd.rack<=.025?'seized':'damaged'),cd.rack<=.025?'critical':'warning','Replace the rack');
   for(let i=0;i<4;i++){if(cd.bearings[i].health<.75)warn('bearing-'+i,CORNER_NAMES[i]+' wheel bearing '+(cd.bearings[i].health<=.025?'seized':'damaged'),cd.bearings[i].health<.25?'critical':'warning','Replace this bearing');if(this.build.physics.abs&&bh.absValves[i]<=.25)warn('abs-'+i,CORNER_NAMES[i]+' ABS unavailable','warning','Replace this ABS channel');if(i<2&&cd.tieRods[i].health<.75)warn('tie-rod-'+i,CORNER_NAMES[i]+' tie rod '+(cd.tieRods[i].health<=.025?'broken':'bent'),cd.tieRods[i].health<=.025?'critical':'warning','Replace this tie rod');}
+  for(const [id,label] of Object.entries(AUXILIARY_PARTS))if(m.auxiliaries.health[id]<.75)warn(id+'-fault',label+(m.auxiliaries.health[id]<=.025?' failed':' damaged'),m.auxiliaries.health[id]<=.025?'critical':'warning','Inspect and replace this component');
+  if(m.auxiliaries.charge<.15||!e.auxiliaries.ignition)warn('battery-low','Battery low',!e.auxiliaries.ignition?'critical':'warning','Charge the battery and check the belt and alternator');
+  if(rpm>900&&e.auxiliaries.netA<-.5)warn('charging-fault','Battery discharging','warning','Check belt tension and alternator output');
   if(c.engineFault)warn('engine-failure',c.engineFault,'critical','Repair the failed engine components');
   if(rpm>700&&e.oilPressureBar<.55)warn('oil-pressure','Low oil pressure','critical','Stop the engine to protect the bearings');
   if(m.oilLitres<m.oilCapacity*.45)warn('oil-level','Oil level low',m.oilLitres<m.oilCapacity*.18?'critical':'warning',e.oilLeakLps>.001||h.oilPan<.7?'Oil leak: repair the source and refill':'Refill engine oil');
@@ -279,6 +288,7 @@ export class MechanicalSystem{
   for(const id of selected){
    if(AWD_PARTS.includes(id)&&this.build.physics.driveLayout!=='AWD')continue;
    if(id==='fluids'){m.oilLitres=m.oilCapacity;m.coolantLitres=m.coolantCapacity;m.oilQuality=1;m.brakeHydraulics.fluid.fill(BRAKE_FLUID_CAPACITY);repaired.push(id);continue;}
+   if(repairAuxiliary(m.auxiliaries,id)){repaired.push(id);continue;}
    if(id in m.health){m.health[id]=1;delete m.causes[id];const temp=PARTS[id][2];if(temp&&!['engine','oil','coolant'].includes(temp))m.temperatures[temp]=AMBIENT;this._revisionHealth[id]=1;repaired.push(id);continue;}
    const gear=/^gear(R|[1-9])$/.exec(id);if(gear){const index=gear[1]==='R'?0:Number(gear[1]);if(index<m.gearHealth.length){m.gearHealth[index]=1;delete m.causes[id];repaired.push(id);}continue;}
    if(repairBrakeCircuit(m.brakeHydraulics,id)){repaired.push(id);continue;}

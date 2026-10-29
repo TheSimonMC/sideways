@@ -1,0 +1,27 @@
+SIDEWAYS V22 – ENGINE AUXILIARIES AND ELECTRICS
+
+Open SIDEWAYS.html to play offline. Multiplayer requires internet access.
+Online: https://thesimonmc.github.io/sideways/
+
+New: accessory belt/tensioner, alternator, battery/charge, starter and radiator fan.
+These affect real starting, ignition, cooling, engine load and vehicle lighting.
+Heat, wear, diagnosis, mechanical sound and component saves are connected.
+
+At a mechanic, open Vehicle Condition. CHARGE restores charge only; REPLACE
+repairs the selected part. A damaged battery may need replacement. A new run
+repairs the car; recovery and tuning keep its faults. Both multiplayer players
+should load V22. The RATE_LIMIT snapshot-burst fix remains in this build.
+
+The electrical model is a bounded fictional approximation. Workshop charge time
+is compressed. There is no visible engine bay yet. Phase 2 remains partial;
+next are the remaining separate engine components, then further Phase 3 bodywork.
+
+Details: docs/phase-2c-auxiliaries-report.md
+Full roadmap: docs/goal.txt and docs/goal-progress.md
+Test evidence and limits: qa/release-v22.json
+Asset/music licenses remain in README.md and dist/audio/CC0-LICENSE.txt and existing source files.
+
+BROWSER TEST SETUP
+Install Playwright or use the bundled runtime. Set CODEX_PRIMARY_RUNTIME_NODE_MODULES
+to its node_modules directory and PLAYWRIGHT_CHROMIUM_EXECUTABLE to a Chromium
+executable. Then run node qa/standalone-browser-v22.cjs from the repository root.

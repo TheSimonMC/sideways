@@ -1,6 +1,6 @@
 # SIDEWAYS – verbindliche Fortschrittsliste
 
-Stand: V21, Phase 0, Phase 1 Teile A/B/C/D und Phase 2 Teile A/B (Bremsen, Radlager und Lenkung). Grundlage: unveränderte Kopie in `docs/goal.txt`.
+Stand: V22, Phase 0, Phase 1 Teile A/B/C/D und Phase 2 Teile A/B/C. Grundlage: unveränderte Kopie in `docs/goal.txt`.
 
 Status bezieht sich auf den gesamten Wortlaut eines Punktes. Teilweise bedeutet, dass wesentliche Teile noch fehlen. Nur Phase 0 ist abgeschlossen. V19 ergänzt die gemeinsame Reifen-Grundlage aus Phase 2 und ihre Folgen für Phase 1. Phase 1 bleibt wegen Wetter/Nässe und breiterer Kalibrierung teilweise; Phase 2 wegen weiterer fehlender Baugruppen. Wetter hängt zusätzlich von Phase 7 ab.
 
@@ -34,7 +34,7 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 2: EINZELNE MECHANISCHE SCHÄDEN, TEMPERATUR UND VERSCHLEISS
 
-**teilweise erledigt** — V21 ergänzt vier Radlager mit Reibung, Wärme, Überlastverschleiß und Radspiel, ein beschädigbares Lenkgetriebe und zwei Spurstangen. Bremsleitungen und Scheiben aus V20 erhalten Hauptbremszylinder, Bremskraftverstärker, ABS-Kanäle sowie Flüssigkeitswärme, Sieden, Luft und Entlüften. P02.09 und P02.10 sind mit diesen browsergerechten Modellen erfüllt. Die Baugruppen beeinflussen tatsächliche Radkräfte und Lenkwinkel; Diagnose, Einzelersatz und Speicherzustand sind verbunden. Die früheren Motor-, Antriebs- und Reifensysteme bleiben erhalten. Riemen, Lichtmaschine/Batterie, eigener Kühlerlüfter und weitere Motor-Nebenaggregate fehlen weiterhin; daher ist Phase 2 nicht abgeschlossen. Pro Rad bleiben Belag und Scheibe ein gemeinsamer Zustand, die Aufhängung ein konzentriertes Modell. Keine vollständige Mehrkörpersimulation oder reale Fahrzeugkalibrierung.
+**teilweise erledigt** — V22 ergänzt Riemen/Spanner, Lichtmaschine, Batterie, Starter und elektrischen Kühlerlüfter. Drehzahl, elektrische Verbraucher und Ladestand bestimmen Ladung, Spannung, Starterwirkung, Licht und Lüfterleistung. Schlupf und Überlast erzeugen Wärme/Verschleiß; Riemenbruch stoppt Generator und Wasserpumpenantrieb. Diagnose, Einzelreparatur, Laden und Speichern sind verbunden. V21-Radlager, Lenkung und Bremskreise sowie die früheren Motor-, Antriebs- und Reifensysteme bleiben erhalten. P02.09/P02.10 bleiben in der dokumentierten effizienten Näherung erfüllt. Block/Kopf, Kolben/Pleuel, Ansaug-/Auspuffschäden und weitere relevante Motorbauteile fehlen noch als vollständig getrennte Komponenten. Daher bleibt insbesondere P02.05 teilweise. Sichtbarer Motorraum gehört zu Phase 6 und ist weiterhin offen.
 
 - **P02.01 · teilweise erledigt** — Weg vom einzigen allgemeinen Auto-Health-Wert als Schadensquelle. Jede wesentliche Baugruppe erhält einen eigenen Zustand, Verschleiß und bei Bedarf Temperatur, Belastung und Ausfallart.
 - **P02.02 · erledigt** — Vier unabhängige Reifen: Temperatur, Luftdruck, Reifenmischung, Abrieb, Gripverlust, Flatspots, Platten, Beschädigung und Blowout.
@@ -280,3 +280,7 @@ P02.09/P02.11/P02.12, P07.08 und P16.01–P16.03 werden erweitert, behalten ihre
 ## V21 – Radlager, Lenkung und ergänzende Bremskomponenten
 
 P02.09/P02.10 sind in der beschriebenen effizienten Näherung erfüllt. P02.01/P02.11/P02.12, P16.01–P16.03 und P18.16 werden weitergeführt und bleiben teilweise. Nächster Teil ist Phase 2C mit den fehlenden Motor-Nebenaggregaten. Details und Grenzen: [Phasenbericht](phase-2b-chassis-report.md). Alle 156 Originalanforderungen bleiben unverändert.
+
+## V22 – Motor-Nebenaggregate und Elektrik
+
+P02.01/P02.05/P02.06/P02.07/P02.11/P02.12 wurden erweitert; P16.01–P16.03 und P18.16 erhalten weitere Integrationsnachweise. Die übergeordneten Punkte bleiben teilweise. Alle 156 Anforderungen bleiben unverändert enthalten. Umsetzung, Tests und Grenzen stehen im [Phasenbericht](phase-2c-auxiliaries-report.md). Als Nächstes folgt Phase 2D mit den verbleibenden getrennten Motorbauteilen; danach weitere modulare Karosserieschäden aus Phase 3.

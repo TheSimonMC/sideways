@@ -1,7 +1,7 @@
 {
   "source": "docs/goal.txt",
   "sourceSHA256": "4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc282ea844a1b96dca",
-  "version": 21,
+  "version": 22,
   "requirements": [
     {
       "id": "P00.01",
@@ -942,14 +942,15 @@
   ],
   "currentIncrement": {
     "phase": 2,
-    "part": "B – Radlager, Lenkung und ergänzende Bremskomponenten",
+    "part": "C – Riemen, Generator, Batterie, Starter und Kühlerlüfter",
     "status": "teilweise erledigt",
     "implemented": [
-      "Vier getrennte Radlager mit belastungsabhängiger Reibung, Wärme, Verschleiß, Blockieren, Radspiel und Rumpeln",
-      "Lenkgetriebe mit Spiel/Blockieren und zwei verbiegbare oder abreißende Spurstangen; sichtbare Lenkgestänge für alle Fahrzeuge",
-      "Hauptbremszylinder, Bremskraftverstärker, ausfallende ABS-Kanäle, erhitzte/alternde Bremsflüssigkeit, Dampf, Lufteintritt und Entlüften",
-      "Gezielte Einzelreparatur und Speichern für alle neuen Komponenten; vorhandener RATE_LIMIT-Fix bleibt erhalten"
+      "Riemen und Spanner mit Schlupf, Wärme und Verschleiß; Riemenausfall stoppt Generator und Wasserpumpenantrieb",
+      "Lichtmaschine mit drehzahlabhängiger Leistung und Kurbelwellenlast; Batterie mit Ladestand, Innenwiderstand und getrenntem Zustand",
+      "Native Anlasserwirkung hängt von Spannung und Starterzustand ab; langes Orgeln verursacht Wärme und Verschleiß",
+      "Elektrischer Kühlerlüfter mit Temperatursteuerung und Ausfallfolgen; Spannung beeinflusst echte Fahrzeugleuchten und Lichtkegel",
+      "Einzelersatz, separates Laden, Diagnose, Sounds und persistente Zustände; Neustart behebt Schäden wie bisher"
     ],
-    "next": "Phase 2C: Riemen, Lichtmaschine/Batterie, Kühlerlüfter und weitere fehlende Motor-Nebenaggregate mit echten Fahrfolgen, Diagnose und Reparatur."
+    "next": "Phase 2D: verbleibende Motorbauteile – Block/Kopf und Kolben/Pleuel genauer trennen, Ansaug- und Auspuffschäden sowie Steuertrieb/weitere relevante Nebenaggregate. Danach Phase 3 erweitern; sichtbarer Motorraum folgt in Phase 6."
   }
 }
