@@ -1,3 +1,4 @@
+import {CHASSIS_LABELS} from './chassis-setup.js';
 import {COSMETIC_LABELS} from './cosmetics.js';
 import {VEHICLES,ENGINES,PARTS,PART_LABELS,resolveBuild} from './catalog.js';
 
@@ -54,14 +55,14 @@ export class GaragePanel {
    const owned=this.economy?.owns(group,item.id),price=this.economy?.price(group,item.id)||0;
    const button=document.createElement('button');button.type='button';button.className='part-card'+(active?' active':'');button.dataset.navKey='part-'+key+'-'+item.id;button.setAttribute('aria-pressed',String(active));
    button.innerHTML='<span class="part-tier"></span><strong></strong><p></p><div class="part-bottom"><b></b><span></span></div>';
-   button.querySelector('.part-tier').textContent=key==='cars'?item.model.number:key==='engine'?item.layout.toUpperCase():COSMETIC_LABELS[key]?'VISUAL PART':['STREET','SPORT','RACE'][i]||'PART';
+   button.querySelector('.part-tier').textContent=key==='cars'?item.model.number:key==='engine'?item.layout.toUpperCase():COSMETIC_LABELS[key]?'VISUAL PART':CHASSIS_LABELS[key]?'CHASSIS PART':['STREET','SPORT','RACE'][i]||'PART';
    button.querySelector('strong').textContent=item.name;button.querySelector('p').textContent=item.description;
    button.querySelector('.part-bottom b').textContent=owned?'OWNED':number(price)+' PTS';button.querySelector('.part-bottom span').textContent=installed?'INSTALLED':active?'SELECTED':'PREVIEW';
    button.disabled=key==='turbo'&&!build.engine.turbo;if(button.disabled)button.querySelector('p').textContent='Requires a turbocharged engine.';
    button.addEventListener('click',()=>{this.change(key==='cars'?{carId:item.id,engineId:item.defaultEngine}:key==='engine'?{engineId:item.id}:{[key]:item.id});});
    $('garage-option-cards').append(button);if(focused===button.dataset.navKey){button.focus({preventScroll:true});button.classList.add('pad-focus');}
   }
-  const current=this.active?.stats,changes=[];for(const [field,label,unit]of [['massKg','weight',' kg'],['redlineRpm','redline',' RPM'],['clutchNm','clutch capacity',' Nm'],['boostBar','boost',' bar'],['tyreWidthMm','tyre width',' mm']]){const delta=build.stats[field]-(current?.[field]??build.stats[field]);if(Math.abs(delta)>.001)changes.push((delta>0?'+':'')+Number(delta.toFixed(2)) + unit+' '+label);}
+  const current=this.active?.stats,changes=[];for(const [field,label,unit]of [['massKg','weight',' kg'],['redlineRpm','redline',' RPM'],['clutchNm','clutch capacity',' Nm'],['boostBar','boost',' bar'],['tyreWidthMm','tyre width',' mm'],['steeringLockDeg','steering lock','°'],['steeringRatio','steering ratio',':1'],['frontRollRate','front roll stiffness',' N/m'],['rearRollRate','rear roll stiffness',' N/m']]){const delta=build.stats[field]-(current?.[field]??build.stats[field]);if(Math.abs(delta)>.001)changes.push((delta>0?'+':'')+Number(delta.toFixed(2)) + unit+' '+label);}
   $('garage-comparison').textContent=changes.length?'VS INSTALLED: '+changes.join(' · '):'Compare the part descriptions above. Install to confirm your changes.';
   const cards=$('garage-option-cards'),chosen=cards.querySelector('.active');if(chosen)cards.scrollLeft=chosen.offsetLeft-cards.offsetLeft;
  }

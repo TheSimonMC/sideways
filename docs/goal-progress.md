@@ -1,0 +1,262 @@
+# SIDEWAYS – verbindliche Fortschrittsliste
+
+Stand: V15, Phase 0 und Phase 1 Teil A. Grundlage: unveränderte Kopie in `docs/goal.txt`.
+
+Status bezieht sich auf den gesamten Wortlaut eines Punktes. Teilweise bedeutet, dass wesentliche Teile noch fehlen. Nur Phase 0 ist abgeschlossen. Phase 2 beginnt erst nach den verbleibenden Grundlagen von Phase 1.
+
+Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc282ea844a1b96dca`.
+
+## Phase 0: BESTANDSAUFNAHME UND SICHERE ERWEITERUNG
+
+**erledigt** — Quellcode und V14-Basis untersucht; Systemübersicht in phase-0-bestandsaufnahme.md. Fahrzeugdaten bleiben identisch. Catalog/Condition/MechanicalSystem bleiben die gemeinsame Datenbasis; die neue Fahrwerksdefinition ergänzt sie.
+
+- **P00.01 · erledigt** — Vorhandene Fahrzeugphysik, Renderer, Szenen, Kamera, Eingabesysteme, Garagen, Service, Tuning, Weltgenerierung, Verkehr, Audio, Speicherlogik und Assets untersuchen.
+- **P00.02 · erledigt** — Auflisten, welche Systeme schon existieren und wo die Erweiterungen anschließen.
+- **P00.03 · erledigt** — Vorhandene Fahrzeugspezifikationen und Modelle nicht versehentlich überschreiben.
+- **P00.04 · erledigt** — Eine gemeinsame Datenbasis für Fahrzeugkomponenten, Schäden, Temperaturen, Tuning, Animationen und Persistenz vorsehen.
+- **P00.05 · erledigt** — Falls nötig, kleine aufeinander abgestimmte Daten- und Codeänderungen vornehmen, statt alles umzubauen.
+
+## Phase 1: REALISTISCHERE FAHRPHYSIK
+
+**teilweise erledigt** — V15 Teil A: keine auswählbaren Physikmodi, keine künstliche Gierkraft oder automatische Gegenlenkung. Reifen haben einen kontinuierlichen Haft-/Gleitübergang und Lastempfindlichkeit. Serienabstimmung, Lenkwinkel-Kit, Achsvermessung und getrennte Stabi-Faktoren sind über Garage, Kauf, Darstellung und Speicher integriert. Noch offen: FWD/AWD, spezifischer Wheel Hop, Wetterkopplung, Reifenluftdruck/Flatspots und abstimmbare Aerodynamik. Vorhandene thermische Reifen-/Brems-/Kupplungsmodelle bleiben erhalten. Die neue Abstimmung ist eine geprüfte Näherung für fiktive Fahrzeuge, keine vollständige Ingenieurskalibrierung.
+
+- **P01.01 · teilweise erledigt** — Der Serienzustand eines Fahrzeugs soll ein nachvollziehbares, deutlich weniger arcade-lastiges Fahrverhalten haben. Serienfahrzeuge dürfen nicht ständig von selbst driften.
+- **P01.02 · teilweise erledigt** — Reifenkräfte mit sanftem Übergang zwischen Haftung und Rutschen; realistisches Untersteuern und Übersteuern.
+- **P01.03 · teilweise erledigt** — Gewichtstransfer beim Beschleunigen, Bremsen, Lastwechsel und Kurvenfahren; Federweg, Dämpfung, Body Roll, Wanken und Nicken.
+- **P01.04 · teilweise erledigt** — Fahrverhalten soll von Gewicht, Schwerpunkt, Radstand, Antrieb (FWD/RWD/AWD), Reifen, Fahrwerk, Leistung, Differenzial und Lenkgeometrie abhängen.
+- **P01.05 · teilweise erledigt** — Realistischere Lenkübersetzung, Lenkwinkel, Rückstellverhalten, Reaktion auf hohe Geschwindigkeiten und unterschiedliche Eingabegeräte.
+- **P01.06 · teilweise erledigt** — Motorbremse, realistische Bremswege, Traktionsverhältnisse, Wheelspin, Wheel Hop, Kupplungs-/Getriebeträgheit, Differenzialwirkung, Luftwiderstand und aerodynamischer Abtrieb.
+- **P01.07 · teilweise erledigt** — Bodenwellen, Schlaglöcher, Bordsteine, Unebenheiten, Nässe und verschiedene Oberflächen wirken sich auf die Räder aus.
+- **P01.08 · teilweise erledigt** — Reifenverschleiß und Temperatur wirken sich auf Haftung und Fahrverhalten aus.
+- **P01.09 · erledigt** — Drift-, Street-, Sport- und Track-Setups entstehen aus tatsächlichen Teilen wie Lenkwinkel-Kits, Differenzialen, Stabis, Fahrwerken, Reifen und Achsvermessung. Nicht aus einem Arcade/Balanced/Realistic-Schalter in den Settings.
+- **P01.10 · teilweise erledigt** — ABS, Traktionskontrolle oder Stabilitätskontrolle dürfen als reale fahrzeugspezifische Hilfen existieren, aber keine getrennten Physikmodi ersetzen.
+- **P01.11 · teilweise erledigt** — Physik weiterhin beherrschbar und spaßig halten. Die Fahrzeugtypen sollen sich klar voneinander unterscheiden.
+
+## Phase 2: EINZELNE MECHANISCHE SCHÄDEN, TEMPERATUR UND VERSCHLEISS
+
+**teilweise erledigt** — mechanical.js hat Motor-Unterbaugruppen, Kühler-/Öllecks, Kupplung, Gänge, Differenzial und Wellen sowie vier Brems-/Reifentemperaturen. vehicle-state.js speichert Zustand je Auto, vehicle-panel.js bietet Einzelreparaturen. Reifen nutzen noch wheelHealth gemeinsam für Rad/Reifen: Druck, Flatspots, Blowout und eigene Karkassenschäden fehlen. Riemen, Generator, Lüfterzustand, einzelne Leitungen, Lager und Bremsen-Glow fehlen ebenfalls. Dafür muss das bestehende Zustandsschema erweitert und migriert werden.
+
+- **P02.01 · teilweise erledigt** — Weg vom einzigen allgemeinen Auto-Health-Wert als Schadensquelle. Jede wesentliche Baugruppe erhält einen eigenen Zustand, Verschleiß und bei Bedarf Temperatur, Belastung und Ausfallart.
+- **P02.02 · teilweise erledigt** — Vier unabhängige Reifen: Temperatur, Luftdruck, Reifenmischung, Abrieb, Gripverlust, Flatspots, Platten, Beschädigung und Blowout.
+- **P02.03 · offen** — Längere Burnouts oder dauerhaft hohe Schlupfwerte erhitzen die Reifen. Nach nachvollziehbarer Überlast können sie einzeln platzen. Reaktion: plötzlicher Druckverlust, veränderte Seitenführung, Fahrwerks-/Lenkreaktion, Geräusch und Partikeleffekte.
+- **P02.04 · teilweise erledigt** — Rauchmenge hängt von Radschlupf, Temperatur und Oberfläche ab. Nicht jeder Reifen platzt nach einer festen Zeit unabhängig von den Umständen.
+- **P02.05 · teilweise erledigt** — Motor separat: Block, Kolben/Pleuel, Kurbeltrieb, Zylinderkopf, Dichtung, Ölkreislauf/Öldruck, Kühler/Kühlmittel, Lüfter, Ansaugung, Auspuff, Turbo/Kompressor, Riemen, Lichtmaschine und relevante Nebenaggregate.
+- **P02.06 · teilweise erledigt** — Schaden durch Überdrehen, schlechte Kühlung, Ölverlust, Überlast, Kollisionen und lange Überhitzung. Folgen: Leistungsverlust, ungewöhnliche Geräusche, Fehlzündungen, Rauch, Ruckeln, Klopfen, Lecks und schlimmstenfalls Motorausfall.
+- **P02.07 · teilweise erledigt** — Beschädigter Kühler verursacht Kühlmittelverlust und steigende Motortemperatur; falsches Weiterfahren kann Folgeschäden erzeugen.
+- **P02.08 · teilweise erledigt** — Kupplung: Verschleiß, Hitze, Schlupf, verringerte Kraftübertragung bis zum kompletten Ausfall. Getriebe: Schäden durch Überlast und schlechte Schaltvorgänge, mögliche Gangprobleme. Differenzial und Antriebswellen ebenfalls getrennt.
+- **P02.09 · teilweise erledigt** — Bremsen pro Rad: Verschleiß, Temperatur, Fade, beschädigte Leitungen/Komponenten, ungleichmäßige Bremswirkung, Ausfall; heißer Bremsscheiben-Glow bei passender Temperatur.
+- **P02.10 · teilweise erledigt** — Fahrwerk, Lenkung, Radlager und Aufhängungen können nach Unfällen falsch ausgerichtet, beschädigt oder zerstört sein.
+- **P02.11 · teilweise erledigt** — Warnanzeigen und Diagnose zeigen echte Zustände. Reparatur ersetzt oder repariert die betroffene Komponente, nicht immer das gesamte Auto.
+- **P02.12 · teilweise erledigt** — Teileschäden, Temperaturen und Verschleiß dürfen nach dem Verlassen des Fahrzeugs oder der Garage nicht grundlos verschwinden.
+
+## Phase 3: VERFORMUNG UND ABFALLENDE FAHRZEUGTEILE
+
+**teilweise erledigt** — body-damage.js verformt sieben lokale Zonen; physics.js löst Räder und zwei Stoßstangen als zeitlich begrenzte Trümmer. Türen, Hauben, Spiegel, Spoiler, Scheiben und montierbare Anbauteile besitzen noch keine separaten Befestigungen/Bruchzustände. Trümmer reagieren auf den Boden, nicht auf sämtliche Weltkollisionen. Erfordert eine modulare Modellhierarchie statt eines vollständigen Soft-Body-Neubaus.
+
+- **P03.01 · teilweise erledigt** — BeamNG-inspirierte modulare Kollisionen, soweit in der Browser-Engine sinnvoll.
+- **P03.02 · teilweise erledigt** — Einzelteile: Türen, Motorhaube, Kofferraum, Stoßstangen, Lippe/Splitter, Seitenschweller, Spoiler, Diffusor, Kotflügel, Spiegel, Grill, Scheinwerfer, Rückleuchten, Auspuff, Scheiben, Felgen/Räder und Fahrwerksteile.
+- **P03.03 · teilweise erledigt** — Treffpunkt, Aufprallrichtung, Energie und Bauteilbefestigungen bestimmen Schaden: Kratzer, Risse, Verformung, lockere Befestigung, Funktionsausfall, Abreißen.
+- **P03.04 · teilweise erledigt** — Abfallende Teile werden kurzzeitig physikalische Objekte mit Kollision, Reibung, Rollen und Rutschen. Performancebewusst nach Entfernung/Lebensdauer aufräumen.
+- **P03.05 · offen** — Motorhaube und Türen können geöffnet, beschädigt und gelöst werden; offene Teile sollen sich mechanisch glaubwürdig bewegen.
+- **P03.06 · teilweise erledigt** — Zerbrochene Scheiben, kaputte Leuchten, defekte Kühler und verbogene Fahrwerksteile beeinflussen die restlichen Systeme.
+- **P03.07 · teilweise erledigt** — Sichtbare Schäden müssen an der getroffenen Fahrzeugseite entstehen und nach Möglichkeit erhalten bleiben.
+- **P03.08 · teilweise erledigt** — Keine volle Soft-Body-Simulation erzwingen, wenn eine modulare, lokale Deformation mit passenden Kollisionspunkten besser läuft.
+
+## Phase 4: ECHTE FIRST-PERSON-KAMERA UND INNENRÄUME FÜR JEDES FAHRZEUG
+
+**teilweise erledigt** — Vorhanden sind Top-down-, Verfolger- und Haubenkamera, Blicksteuerung und Browser-Gamepad-/Wheel-Kalibrierung. Es gibt noch keine Cockpitkamera, passenden Innenräume, Fahrer, Echtzeitspiegel oder In-Car-Navigation. Glas ist bisher überwiegend stilisiertes Material. Dafür müssen alle vier Modelle erweitert und die Render-/Kamerapfade ergänzt werden; die Haubenkamera gilt ausdrücklich nicht als Cockpit.
+
+- **P04.01 · teilweise erledigt** — Eine neue, nutzbare Cockpitkamera für jedes spielbare Fahrzeug; passende Augenposition, einstellbare Sitzposition, Blickbewegung und korrektes Sichtfeld.
+- **P04.02 · offen** — JEDES bestehende spielbare Fahrzeug bekommt einen zum Modell passenden sichtbaren Innenraum. Gemeinsame Bauteile dürfen wiederverwendet werden, aber nicht einfach derselbe generische Innenraum für alle.
+- **P04.03 · teilweise erledigt** — Je nach Fahrzeug: Dashboard, analoge oder digitale Instrumente, Lenkrad, Sitze, Rücksitze, Pedale, Ganghebel, Handbremse, Mittelkonsole, Türverkleidungen, Spiegel, Dachhimmel, Innenbeleuchtung, Radio/Infotainment und passende Materialien.
+- **P04.04 · offen** — Kein dauerhaft schwebender HUD-Tacho in der Cockpitansicht. Das tatsächliche Cockpit-Instrument zeigt Geschwindigkeit, Drehzahl, Gang, Tank, Temperaturen und Warnleuchten korrekt an. Nadel und Anzeigen reagieren ohne sinnlose Verzögerung.
+- **P04.05 · teilweise erledigt** — Third-Person darf optional eine kleine, abschaltbare Geschwindigkeitsanzeige behalten, wenn sie für die Spielbarkeit benötigt wird.
+- **P04.06 · offen** — Navigation und Karte in ein tatsächlich sichtbares Display am Radio/Infotainment einbauen, mit Routenanzeige, Position und Musiksteuerung. Für ältere Autos sinnvoller externer Navi-Halter statt unpassendem modernen Touchscreen.
+- **P04.07 · offen** — Scheiben und Seitenscheiben sind durchsichtig. Man muss von außen Fahrer und Innenraum sehen können, abhängig von Spiegelungen, Licht und Tönung.
+- **P04.08 · offen** — Innenspiegel und Seitenspiegel sollen brauchbare Ansichten bieten, ggf. mit performancegerechter Renderinglösung.
+- **P04.09 · offen** — Ein sichtbarer Fahrer sitzt im Wagen, mit Kopf/Körper, Oberarmen, Unterarmen, Händen und Beinen. Hände greifen ans Lenkrad und folgen präzise der Lenkraddrehung, bei starken Winkeln mit sinnvoller Handbewegung.
+- **P04.10 · offen** — Passende Animationen für Schalten, Handbremse und Pedalbedienung sowie subtile Körperreaktionen auf Beschleunigung, Bremsen, Schlaglöcher und Kurven. Keine Clipping-Arme im Dashboard.
+- **P04.11 · teilweise erledigt** — Bei kompatiblen Lenkradcontrollern über verfügbare Browser-APIs nutzbare Achsen, Buttons, Kalibrierung, Deadzones und einstellbaren Lenkwinkel anbieten. Keine Funktionen behaupten, die der jeweilige Browser nicht bereitstellt.
+- **P04.12 · offen** — Virtuelles Cockpit-Lenkrad für Wheel-Nutzer optional ausblenden. Arme/Hände bei Bedarf ebenfalls ausblendbar. Die Lenkung, Anzeigen und der restliche Innenraum funktionieren dabei weiter.
+
+## Phase 5: MEHR EXTERIEUR-, INTERIEUR- UND MECHANISCHES TUNING
+
+**teilweise erledigt** — 25 getrennte Teilekategorien: 16 bisherige mechanische, sechs optische und drei neue Fahrwerkskategorien. Preise, Besitz, Vorschau und Installation existieren. Innenraumteile, Widebody, Tönung, Folierungen, separate Lichtteile und abnehmbare Befestigungen fehlen. Kosmetische Flügel/Stoßstangen verändern bisher weder Aero noch Masse; keine gegenteilige Behauptung. Drift-Achsgeometrie wird jetzt sichtbar an den Rädern dargestellt.
+
+- **P05.01 · teilweise erledigt** — Exterieurteile: unterschiedliche Front-/Heckstoßstangen, Spoiler, Splitter, Lippen, Schweller, Diffusoren, Kotflügel, Widebody-Kits, Hauben, Grills, Auspuffendrohre, Felgen, Reifen, Lichtdesign, Lacke, Folierungen und Decals.
+- **P05.02 · offen** — Interieurteile: Lenkräder, Sportsitze, Schalensitze, Bezüge, Nähte, Farben, Dashboard-Dekore, Schaltknäufe, Handbremsen, Überrollkäfige, Gurte, Instrumente, Zusatzanzeigen und Ambientebeleuchtung.
+- **P05.03 · teilweise erledigt** — Scheibentönung mit einstellbarer Stärke und richtiger Lichtdurchlässigkeit; von außen bei passenden Bedingungen weiterhin hineinschauen können. Keine undurchsichtige schwarze Fläche als Ersatz für Glas.
+- **P05.04 · teilweise erledigt** — Leistungsupgrades: Motor/ECU, Turbo/Kompressor, Ansaugung, Auspuff, Kühler, Kupplung, Getriebe, Übersetzungen, Differentiale, Fahrwerk, Stabis, Achsgeometrie, Bremsen, Reifen und Aerodynamik.
+- **P05.05 · offen** — Optische und mechanische Teile an echte Befestigungspunkte knüpfen, sodass sie bei Schaden abfallen und in der Garage ausgebaut werden können.
+- **P05.06 · teilweise erledigt** — Upgrades haben echte Unterschiede und Nachteile: mehr Leistung bedeutet unter Umständen mehr Wärme/Stress; ein Rennfahrwerk kann auf Schlaglöchern schlechter sein; Drift-Reifen unterscheiden sich von Straßenreifen; Bremsen funktionieren je nach Temperatur anders.
+- **P05.07 · teilweise erledigt** — Kompatibilität mit dem jeweiligen Fahrzeug prüfen, damit Teile nicht falsch positioniert sind.
+
+## Phase 6: INTERAKTIVE GARAGE UND SICHTBARER, BEWEGLICHER MOTOR
+
+**offen** — GaragePanel ist eine Kauf-/Vorschauszene. Kein interaktiver Ausbau, keine öffnenden Türen/Hauben, kein sichtbarer Motorraum. Erfordert erst Komponentenbefestigungen und Montagezustand sowie Modellteile. Vorhandene Kauf- und Reparaturtransaktionen werden weiterverwendet.
+
+- **P06.01 · offen** — In der bestehenden Garage mit dem Fahrzeug interagieren: Haube öffnen, Türen öffnen, Räder, Stoßstangen, Spoiler, Motorraumteile und andere Komponenten gezielt aus- oder wieder einbauen.
+- **P06.02 · offen** — Ausbau verändert das Fahrzeug sofort sichtbar und, sofern relevant, physikalisch. Ohne Räder, Kühler oder andere wichtige Komponenten kann nicht normal gefahren werden.
+- **P06.03 · offen** — Unter der geöffneten Haube muss ein echter, zum jeweiligen Fahrzeug passender Motorraum zu sehen sein, inklusive Motor, Kühler, Schläuchen, Ansaugung, Lüfter, Lichtmaschine, Antriebriemen und Riemenscheiben sowie bei passendem Fahrzeug Turbo/Kompressor.
+- **P06.04 · offen** — Rotoren, Riemen und Riemenscheiben werden durch tatsächliche Motor-RPM angetrieben. Kühlerlüfter schaltet temperaturabhängig. Motorlager erlauben subtile Motorbewegung durch Lastwechsel/Vibration; Animationen skalieren mit Drehzahl.
+- **P06.05 · offen** — Motorraumteile einzeln auswählen, Zustand ablesen, ausbauen, reparieren oder ersetzen. Beschädigungen und fehlende Teile werden sichtbar.
+- **P06.06 · offen** — Garagenoberfläche für Komponenten, Kosten, Kompatibilität, Verschleiß und Montagezustand. Der Wagen muss nach Umbauten weiterhin korrekt geladen und gespeichert werden.
+- **P06.07 · offen** — Interaktion praktikabel halten, keine unnötige Schraube-für-Schraube-Simulation erzwingen, wenn sie dem Spiel keinen Nutzen bringt.
+
+## Phase 7: GRAFIK, LICHT UND NACHTATMOSPHÄRE
+
+**teilweise erledigt** — environment.js besitzt Sonne/Mond/Sterne/Wolken, Tageszeiten, Scheinwerfer-Spots und einen Pool naher Laternen. post.js liefert Comic-Shading/Bloom. Regen, Pfützen, Wetterzustand, getrennte Lichtschäden, Fern-/Nebel-/Rückfahrlicht und Zustands-Glow fehlen. Nacht-/Cockpitlesbarkeit muss nach Innenraumeinbau mit Messungen geprüft werden.
+
+- **P07.01 · teilweise erledigt** — Stilisiertes, kohärentes Cartoon-Bild beibehalten, aber Geometrie, Materialien, Schatten, Texturen und Farbgebung verbessern.
+- **P07.02 · teilweise erledigt** — Nächte sollen deutlich dunkler sein als bisher. Ambient Light nach Tageszeit steuern, sodass Straßenlaternen und Scheinwerfer nachts wirklich wichtig werden.
+- **P07.03 · teilweise erledigt** — Besserer Mond, sichtbares Mondlicht, Sterne, stimmigere Skyboxen, Wolken, Dämmerung, Sonnenaufgang/-untergang und atmosphärischer Dunst.
+- **P07.04 · teilweise erledigt** — Schönere Bloom- und Lens-Flare-Effekte, sichtbare Lichtkegel, Leuchten, Streulicht, Reflexionen, dezente volumetrische Effekte sofern bezahlbar. Nicht alles überstrahlen oder unlesbar machen.
+- **P07.05 · teilweise erledigt** — Straßenbeleuchtung, Fenster, Werbeschilder, Tunnel und Garagenbeleuchtung abwechslungsreicher gestalten.
+- **P07.06 · teilweise erledigt** — Fahrzeuglichter mit echten Emissive-Materialien und passender Beleuchtung der Umgebung. Abblend-/Fernlicht mit sinnvollen Kegeln und Reichweiten, Rück- und Bremslichter mit unterschiedlichen Intensitäten, Blinker, Nebel-/Rückfahrlicht wo passend.
+- **P07.07 · teilweise erledigt** — Keine harte, sofortige Intensitätssprünge für Lichter, bei denen ein natürlicher An-/Abglühverlauf sinnvoll ist. Halogen, LED und andere Lichtarten dürfen unterschiedlich schnell reagieren; Bremslichtreaktion muss trotzdem direkt erkennbar bleiben.
+- **P07.08 · teilweise erledigt** — Defekte Lampen funktionieren nicht mehr. Glühende Bremsen, Motorraumbeleuchtung und Cockpitbeleuchtung müssen auf Zustände reagieren.
+- **P07.09 · teilweise erledigt** — Regen, nasse Oberflächen, Pfützen, Nebel und Wetterwechsel mit passenden Lichtreflexionen und Gripveränderungen, sofern die bestehenden Wettersysteme sinnvoll erweitert werden können.
+- **P07.10 · teilweise erledigt** — Custom Textures und detailliertere 3D-Modelle zulässig, wenn sie zum Cartoon-Stil passen und hochwertig genug sind. Low-poly ist keine Pflicht.
+
+## Phase 8: BESSERE STRASSEN, BERGE UND LANDSCHAFT
+
+**teilweise erledigt** — region.js/county-layout.js erhalten vier Landmassen, fünf Brücken, rund 266 km Straßen und Berge bis 210 m. Road-Mesh und Reifenkontakt stimmen überein. Tunnel/Unterführungen fehlen: derzeit nur eine befahrbare Höhe pro X/Z. Felswände, Hangbauwerke, umfassende Leitplanken und echte Fahrbahnschäden fehlen. Dock 09 bleibt eine getrennte Strecke und ist noch nicht räumlich angefahren.
+
+- **P08.01 · teilweise erledigt** — Bestehende Karte erweitern, nicht ersetzen. Die gut fahrbaren Kurven der Rennstrecke als Qualitätsreferenz für Straßen in der offenen Welt verwenden.
+- **P08.02 · teilweise erledigt** — Mehr kurvige City-Roads, schnelle Verbindungsstraßen, Höhenwechsel, Landstraßen, Tunnel, Brücken, lange Kurvenkombinationen und attraktive Strecken zum Fahren.
+- **P08.03 · teilweise erledigt** — Richtige Bergregionen mit Serpentinen, Pässen, Kehren, Steigungen, Gefällen, Hangstraßen, Felswänden, Leitplanken und Aussichtspunkten.
+- **P08.04 · teilweise erledigt** — Bergstraßen folgen nachvollziehbar dem Gelände und sind baulich in die Hänge integriert, statt wie schwebende flache Bänder auszusehen.
+- **P08.05 · teilweise erledigt** — Stadt, Vororte, Industrie, Berge, Land, Autobahn, Rennstrecke und Aussichtspunkte über eine zusammenhängende sinnvolle Straßenführung verbinden.
+- **P08.06 · teilweise erledigt** — Road-Meshes, Fahrbahnmarkierungen, Leitplanken, Böschungen, Bäume, Felsen und Straßenschäden konsistent aufbauen.
+- **P08.07 · teilweise erledigt** — Mehr abwechslungsreiche, auch zufällig entdeckbare Strecken für Cruisen, sportliches Fahren und Driften. Zufall darf gute Straßenführung nicht ersetzen.
+
+## Phase 9: GRÖSSERE UND WENIGER GITTERFÖRMIGE STADT
+
+**teilweise erledigt** — Sechs V14-Viertel, modulare Fassaden und vier gebaute Landmarken ergänzen den Stadtkern. Quartiere haben jedoch weiterhin stark regelmäßige Raster. Individuelle Blockformen, organischere Übergänge, Parkhäuser, Parkplätze, vielfältige Straßenrequisiten und abgestimmte Bezirks-Audiolandschaften sind noch auszubauen. Die neue Größe allein erfüllt diese Phase nicht.
+
+- **P09.01 · teilweise erledigt** — Die vorhandene City glaubwürdiger, dichter, größer und individueller gestalten. GTA IV ist Referenz für dichte und abwechslungsreiche Stadtbereiche.
+- **P09.02 · teilweise erledigt** — Nicht nur regelmäßig rechteckige Blöcke. Schrägstraßen, Kurven, verwinkelte Gassen, unregelmäßige Blocks, Kreuzungen unterschiedlicher Größe, Einbahnstraßen und organische Übergänge.
+- **P09.03 · teilweise erledigt** — Eigenständige Downtown mit Hochhäusern, Wohnviertel, Gewerbe, Industrie, Außenbezirke, Parkhäuser, Parkanlagen, ggf. Uferpromenade und Autobahnknoten.
+- **P09.04 · teilweise erledigt** — Gebäude unterscheiden sich in Höhe, Grundriss, Dach, Fassaden, Farben, Ladenfronten und Beleuchtung. Nicht dieselben wenigen Modelle offensichtlich wiederholen.
+- **P09.05 · teilweise erledigt** — Kontrollierte prozedurale Variation plus bewusst gestaltete Landmarken, damit die Stadt nicht wie ein zufälliges, gleichförmiges Raster aussieht.
+- **P09.06 · teilweise erledigt** — Beschilderung, Ampeln, Markierungen, parkende Fahrzeuge, Straßenschilder, Laternen, Zäune, Container, Bänke, Baustellen, Vegetation und sonstige Details.
+- **P09.07 · teilweise erledigt** — Bezirke sollen durch Gebäude, Straßen, Dichte, Licht und Audio erkennbar verschieden sein.
+
+## Phase 10: DISTANT SCENERY, LOD UND WELTSTREAMING
+
+**teilweise erledigt** — Instancing, Frustum-Culling, räumliche Kollisionsindizes und Entfernungsausblendung von Fassadendetails existieren. Es fehlen gestufte/überblendete LODs, Schatten-LOD, Distant Scenery, Streaming sowie entfernte vereinfachte KI-Simulation. Weltbau lädt derzeit die ganze Region; zuerst CPU/GPU-Budgets messen, dann gezielt teilen.
+
+- **P10.01 · offen** — Hinter den spielbaren Grenzen entfernte Berge, Hügel, Wälder und andere Landschaftssilhouetten sichtbar machen, damit die Karte nicht abrupt endet.
+- **P10.02 · teilweise erledigt** — LOD für Gebäude, Vegetation, Verkehr, Fahrzeugteile und Terrain. Fernobjekte mit deutlich billigerer Darstellung, saubere Überblendungen statt sichtbarem Popping.
+- **P10.03 · teilweise erledigt** — Frustum-/Distance-Culling, Instancing, Objekt-Pooling, passende Texturauflösungen, Schatten-LOD, ggf. Impostors/Billboards und räumliche Partitionierung.
+- **P10.04 · offen** — Weltabschnitte in Abhängigkeit von der Position laden und entladen, ohne nerviges sichtbares Nachladen.
+- **P10.05 · teilweise erledigt** — KI/Physik entfernter Autos vereinfachen und nur nahe oder relevante Objekte vollständig simulieren.
+- **P10.06 · offen** — Das Prinzip von GTA-Fernsicht und Distant Horizons als Inspiration nutzen, nicht die Technik blind übernehmen.
+
+## Phase 11: BESSERE VERKEHRS-KI
+
+**teilweise erledigt** — traffic.js nutzt Spurkurven, Kreuzungsreservierungen, Signale, Fahrerparameter, Hindernisabstand und kontinuierliche Bewegung. V14 berücksichtigt schmale Straßen. Spurwechsel, Auffahrten, robuste Stauauflösung, bezirks-/zeitabhängige Verteilung und Wettergeschwindigkeiten fehlen. Polizei/Renn-KI sind eigene Systeme und bleiben erhalten.
+
+- **P11.01 · teilweise erledigt** — Fahrzeuge sollen Fahrspuren einhalten, Kurven vorausschauend nehmen und sanfter lenken, beschleunigen und bremsen.
+- **P11.02 · teilweise erledigt** — Kreuzungen, Ampeln, Vorfahrt, Spurwechsel, Überholen, Auffahrten, Blockaden und Hindernisse besser behandeln.
+- **P11.03 · teilweise erledigt** — Verschiedene Fahrpersönlichkeiten: defensiv, normal, ungeduldig, schneller oder aggressiver, aber nachvollziehbar.
+- **P11.04 · teilweise erledigt** — Unterschiedliche Geschwindigkeiten je nach Straße, Wetter, Verkehrsfluss und Kurvenradius.
+- **P11.05 · teilweise erledigt** — Bessere Routenplanung auf neuem Straßennetz und auf Bergstraßen. Keine häufigen Staus durch feststeckende Fahrzeuge oder sinnlose Wendemanöver.
+- **P11.06 · teilweise erledigt** — Verkehrsdichte nach Bezirk und Tageszeit variieren; abgestellte und fahrende Autos sinnvoll verteilen.
+- **P11.07 · teilweise erledigt** — Schäden oder andere unerwartete Hindernisse erkennen, sofern das Performancebudget es erlaubt.
+
+## Phase 12: KAMERA, VIEW BOBBING UND GESCHWINDIGKEITSGEFÜHL
+
+**teilweise erledigt** — main.js enthält gedämpfte Kamera, Blicksteuerung, FOV-/Geschwindigkeitseffekte und Aufprallreaktionen; post.js Bewegungsunschärfe. Zielabhängige Kamerakalibrierung und Komfortregler müssen erweitert werden. Cockpitbewegung setzt Phase 4 voraus; physischer Gerätekomfort ist nicht automatisiert nachgewiesen.
+
+- **P12.01 · teilweise erledigt** — Third-Person-Kamera darf nicht mehr steif und linear am Fahrzeug hängen. Adaptive Kameradistanz, leichtes Camera Lag, Kurven-Offset, Anfahr-/Bremsreaktion, Roll-/Nick-Reaktion und kontrollierte Rotation.
+- **P12.02 · teilweise erledigt** — Geschwindigkeit kann FOV leicht verändern. Dezente Vibration, periphere Bewegung, Bewegungsunschärfe und natürliche Dämpfung der Kamera.
+- **P12.03 · teilweise erledigt** — Beim Lenken, Driften, Lastwechsel oder Fahren über Wellen leichte, zum Fahrzeug passende Bewegungen. Die Kamera muss steuerbar und ruhig genug bleiben.
+- **P12.04 · teilweise erledigt** — Cockpitkamera mit subtiler Kopfbewegung, Sichtverlagerung in Kurven, Road Bobbing und Brems-/Beschleunigungsreaktion; keine übertriebene Motion Sickness.
+- **P12.05 · teilweise erledigt** — Speziell bei hoher Geschwindigkeit deutlich stärkeres Gefühl von Geschwindigkeit durch Kamera, Straße, Audio und Vibration.
+- **P12.06 · teilweise erledigt** — Komfort-Einstellungen dürfen die Intensität solcher Kameraeffekte beeinflussen. Das ist kein Ersatz für die realistische Basis-Fahrphysik.
+
+## Phase 13: WIND, MOTORGERÄUSCHE, MUSIK UND UMGEBUNGSAUDIO
+
+**teilweise erledigt** — MotorLab erzeugt bauart-/lastabhängige Quellen; audio.js nutzt Radarbeit, Schäden, Wind und räumliche Reflexionen. music.js besitzt Fahr-/Verfolgungsmusik mit Lizenznachweisen. Es fehlen Sender/Tracks im In-Car-Radio sowie offene/defekte Fenster und Wetter/Tunnel als durchgehend gekoppelte Klangzustände. Neue Assets werden in dieser Phase nicht hinzugefügt.
+
+- **P13.01 · teilweise erledigt** — Differenzierte Motorsounds nach Motorbauart, Drehzahl, Last, Auspuff, Ansaugung und Tuningzustand.
+- **P13.02 · teilweise erledigt** — Reifenquietschen, Scrubbing, Wheelspin, Untergrund, Fahrwerk, Getriebe, Kupplung, Turbo und Schäden hörbar machen. Auspuffknallen nur bei passendem Motor-/Tuningzustand.
+- **P13.03 · teilweise erledigt** — Windgeräusche skalieren nach Fahrzeuggeschwindigkeit. Third-Person deutlich offener; Cockpit gedämpft, aber wahrnehmbar.
+- **P13.04 · teilweise erledigt** — Offene, fehlende oder zerbrochene Fenster ändern Lautstärke und Charakter des Windes. Tunnel und Gebäude beeinflussen das Klangbild.
+- **P13.05 · teilweise erledigt** — Mehr Musik, sinnvoll unterschiedliche Radiosender, Track- und Stationswechsel und Steuerung über das in-car-Radio.
+- **P13.06 · teilweise erledigt** — Musik nur mit eigener oder rechtmäßig nutzbarer Lizenz. Keine urheberrechtlich geschützten Songs einfach übernehmen.
+- **P13.07 · teilweise erledigt** — Stadtatmosphäre, Verkehr, Garagen, Regen, Wind, Tunnelhall, Tageszeit und Bezirke abwechslungsreicher vertonen.
+- **P13.08 · teilweise erledigt** — Mischung so gestalten, dass bei hohem Tempo Wind, Motor und Fahrbahn zusammen mehr Speed vermitteln.
+
+## Phase 14: GARAGENÜBERGÄNGE UND KURZE CUTSCENES
+
+**offen** — Service-Marker öffnen bisher Dialoge; kein tatsächliches Ein-/Ausfahren durch Garagentore. Notwendig sind Gebäudeeingänge, freie Fahrwege, Innenraumszene und eine abbrech-/überspringbare Übergangszustandsmaschine mit Transaktionsschutz. Bestehende Servicekosten bleiben die Grundlage.
+
+- **P14.01 · offen** — Home-Garage: echtes Tor öffnet sich, der Wagen fährt sichtbar hinaus, Kamera geht flüssig in Spielansicht über. Nicht einfach vor der Garage aufploppen.
+- **P14.02 · offen** — Service/Motor Works (oder tatsächlicher Ingame-Werkstattname): Fahrzeug wird hineingefahren; Übergang blendet aus, Reparatur wird berechnet und durchgeführt; Einblendung zeigt das Fahrzeug beim Ausfahren.
+- **P14.03 · offen** — Tuning-Shop: Auslöser führt durch ein öffnendes Garagentor in eine richtige Innenraumszene mit Fahrzeug, statt in einer leeren Markierung sofort ein Menü zu öffnen.
+- **P14.04 · offen** — Änderungen am Fahrzeug sind beim Ausfahren sichtbar. Tor, Licht, Sounds und Kameras sind auf die Szene abgestimmt.
+- **P14.05 · offen** — Übergänge sollen kurz, flüssig, skippbar und gegen doppelte Eingabe abgesichert sein. Keine kaputten Spawnpositionen oder verschwundenen Fahrzeuge.
+
+## Phase 15: LEBENDIGERE OPEN WORLD
+
+**teilweise erledigt** — Funktionierende Services, Jobs, Ampeln, Tag/Nacht und Verkehr sind vorhanden. Parkende Fahrzeuge und Dichteverteilung, Tore, Waschstraße, Rastplätze und bewohnte Mikro-Szenen fehlen. Fußgänger bleiben offen, bis das Performancebudget belastbar gemessen ist; keine Platzhalterfiguren.
+
+- **P15.01 · teilweise erledigt** — Der Gesamteindruck soll offener, abwechslungsreicher und bewohnter sein, ähnlich den freien Fahrwelten aus The Crew Motorfest, GTA und NFS Heat, bei weiterhin eigener Sideways-Identität.
+- **P15.02 · teilweise erledigt** — Mehr sinnvoll parkende Fahrzeuge und zu Tageszeit/Ort passende Verkehrsdichte.
+- **P15.03 · teilweise erledigt** — Funktionierende Ampeln, zu Tageszeiten schaltende Straßenlaternen, animierte Tore und andere kleine Umgebungsbewegungen.
+- **P15.04 · teilweise erledigt** — Interaktive Waschanlagen, Tankstellen, Werkstätten, Parkplätze, Aussichtspunkte, Rastplätze und entdeckbare Orte, soweit es zum vorhandenen Spiel passt.
+- **P15.05 · teilweise erledigt** — Mehr regionale Eigenheiten, Wetter, Lichter, Ambient-Sounds, verschiedene Straßen und besondere Orte. Nicht alle Blöcke, Gebäude und Umgebungen gleich gestalten.
+- **P15.06 · offen** — Fußgänger nur, falls technisch sinnvoll und sauber performant umsetzbar. Keine leeren Attrappen oder zufällige KI-Popups.
+
+## Phase 16: FAHRZEUGBESITZ, ZUSTAND, INSPEKTION UND ZUSAMMENSPIEL
+
+**teilweise erledigt** — Zustände je Fahrzeug, Teilebesitz, Einzelreparaturen, Temperaturen und Diagnose sind gespeichert. Serien-/Tuningänderungen erhalten bereits Schäden. Montagezustände, Reifendruck, Licht-/Fenster-/Spoilerfolgen und Wetterkopplung fehlen und müssen dieselben Schema-/Reparaturpfade nutzen. Neuer Lauf repariert weiterhin bewusst gemäß früherem Nutzerauftrag; Straßenbergung erhält Schäden.
+
+- **P16.01 · teilweise erledigt** — Bauteilzustände, Reifen, Reparaturen, Tuning, aus- oder eingebaute Teile, Einstellungen und Fahrzeugzustand sollen bei vorhandener Speichermöglichkeit zuverlässig persistieren.
+- **P16.02 · teilweise erledigt** — Werkstatt ersetzt die tatsächlich defekten Baugruppen, statt immer einen unspezifischen Komplettschaden zu reparieren.
+- **P16.03 · teilweise erledigt** — Diagnosebildschirm mit Komponentenzustand, Temperatur, Verschleiß und konkreten Fehlern.
+- **P16.04 · teilweise erledigt** — Fahrzeuge können verschlissen sein, ohne optisch zerstört zu sein; optische Schäden können wiederum mechanische Folgen haben.
+- **P16.05 · teilweise erledigt** — Tuning beeinflusst Sound, Handling, Motorraum, Cockpit, Verschleiß, Gewicht und bei Bedarf Kamerabewegung.
+- **P16.06 · teilweise erledigt** — Schäden an Lichtern ändern Ausleuchtung, zerbrochene Fenster Windgeräusche, fehlende Spoiler gegebenenfalls Aerodynamik, kaputte Reifen Handling und fehlende Teile die Garagenansicht.
+- **P16.07 · teilweise erledigt** — Straßen-, Wetter- und Reifenzustand beeinflussen sich sinnvoll gegenseitig.
+- **P16.08 · teilweise erledigt** — Kurze, verständliche Rückmeldungen für mechanische Probleme, ohne die Fahransicht mit HUD-Anzeigen zu überladen.
+
+## Phase 17: QUALITÄT, OPTIMIERUNG UND KONTROLLEN
+
+**teilweise erledigt** — Grafikstufen, Belegung, Kalibrierung, Deadzones, synthetische Eingabetests und migrationsfähige Speicher sind vorhanden. Vollständige CPU/GPU-Profile auf Zielgeräten, adaptive Qualität, Reflexions-/LOD-Regler und Cockpit-Sichttests fehlen. Headless-Software-Rendering ist kein Hardware-FPS-Nachweis.
+
+- **P17.01 · teilweise erledigt** — Konstante, möglichst hohe Bildrate auf typischen Zielgeräten anstreben; keine willkürliche FPS-Garantie ohne Messungen.
+- **P17.02 · teilweise erledigt** — GPU- und CPU-Kosten von Fahrzeugen, Schatten, Lichtern, Wettersystem, Verkehr, LOD, Partikeln und Physik messen und gezielt senken.
+- **P17.03 · teilweise erledigt** — Adaptive Grafikqualität und sinnvolle Optionen für Schatten, Reflexionen, Partikel, Verkehrsdichte, FOV und Kameraeffekte. Physik nicht durch einen Arcade/Realistic-Settings-Schalter austauschen.
+- **P17.04 · teilweise erledigt** — Eingaben von Tastatur, Controller und kompatiblen Wheels testen. Konfigurierbare Belegung, Deadzones und Sensitivität, wenn die vorhandene Architektur dies ermöglicht.
+- **P17.05 · teilweise erledigt** — Innenraum-Kamera soll nachts und tagsüber spielbar sein. Spiegel, Glas, Sitze, Fahrerarme, Instrumente und Tönung dürfen die Sicht nicht unerwartet blockieren.
+- **P17.06 · teilweise erledigt** — Keine fehlenden Texturen, z-fighting, sichtbaren LOD-Sprünge, nachladenden Schatten, falschen Kollisionskörper oder dauerhaften Partikellecks.
+- **P17.07 · teilweise erledigt** — Vorhandene Spielstände und Fahrzeugdaten nach Möglichkeit migrieren; nicht ohne ausdrücklichen Grund löschen.
+
+## Phase 18: TESTS UND ABSCHLUSSKRITERIEN
+
+**teilweise erledigt** — V15 prüft den bearbeiteten Teil mit tatsächlichem MotorLab-Solver, Kauf-/Speichertests und finaler Offline-HTML im Browser. Frühere V14-Nachweise sind ausdrücklich historisch. Die vollständigen 14 End-to-End-Szenarien bleiben bis zur Umsetzung ihrer Systeme offen; einzelne vorhandene Teilabläufe ersetzen keinen vollständigen Szenarionachweis.
+
+- **P18.01 · teilweise erledigt** — Nach jeder Phase die vorhandenen Funktionen prüfen und sicherstellen, dass das Spiel spielbar bleibt.
+- **P18.02 · teilweise erledigt** — Konkrete End-to-End-Szenarien testen:
+- **P18.03 · teilweise erledigt** — Serienauto fährt griffig und driftet erst bei passender Belastung; Drift-Kit verändert Fahrverhalten nachvollziehbar.
+- **P18.04 · offen** — Langer Burnout erhitzt einen Reifen; Verschleiß, Gripverlust und schließlich Blowout können auftreten; Fahrverhalten reagiert darauf.
+- **P18.05 · teilweise erledigt** — Frontalaufprall beschädigt Kühler; Motortemperatur steigt; Reparatur des Kühlers behebt Ursache, ein bereits beschädigter Motor braucht ggf. gesonderte Reparatur.
+- **P18.06 · teilweise erledigt** — Kupplung verschleißt durch Missbrauch, rutscht und kann ausfallen. Heiße Bremsen verzögern schlechter.
+- **P18.07 · offen** — Tür oder Spoiler fällt durch Unfall ab und fehlt anschließend sichtbar am Fahrzeug.
+- **P18.08 · offen** — Cockpit jedes spielbaren Autos zeigt korrekte RPM/Geschwindigkeit; Radio-Map und Lenkrad-/Fahreranimation sind nutzbar.
+- **P18.09 · offen** — Ausgeblendetes virtuelles Lenkrad beeinträchtigt die Fahrzeugsteuerung nicht.
+- **P18.10 · offen** — Die Garage zeigt den Motor, dessen Riemen mit der Drehzahl laufen; entfernte Komponenten bleiben entfernt und haben gegebenenfalls Folgen.
+- **P18.11 · teilweise erledigt** — Tag/Nacht verändert Licht. Scheinwerfer beleuchten bei Dunkelheit die Straße, Bremslicht reagiert und kaputte Lampen bleiben aus.
+- **P18.12 · teilweise erledigt** — Neue Bergstraßen folgen dem Terrain, Stadtteile sind weniger gleichförmig, Verkehr kann sie befahren.
+- **P18.13 · offen** — Distant Terrain und LOD verhindern sichtbare Weltgrenzen ohne auffällige Pop-ins.
+- **P18.14 · teilweise erledigt** — Kamera und Wind vermitteln mehr Geschwindigkeit in Cockpit und Third Person.
+- **P18.15 · offen** — Garage-, Service- und Tuning-Übergänge öffnen Tore, zeigen das Fahrzeug und enden mit korrektem Spawn.
+- **P18.16 · teilweise erledigt** — Spielstände speichern Schäden, Ausbauteile und Upgrades korrekt.
+- **P18.17 · teilweise erledigt** — Für nicht umgesetzte Punkte konkrete technische Gründe und fehlende Arbeiten auflisten, ohne Fertigstellung vorzutäuschen.
+
+## Nächster abgeschlossener Arbeitsschritt
+
+Phase 1 Teil B: Achslasten/Steigungskräfte und Fahrwerk über definierte Wellen-/Bordsteinprofile prüfen, Antriebslayout-Daten vorbereiten und FWD/AWD ohne Umdeutung der bestehenden RWD-Fahrzeuge ergänzen. Reifenluftdruck, individuelle Karkasse und Blowout werden anschließend mit Phase 2 integriert. Keine Phase wird wegen eines Release-Tags als vollständig betrachtet.

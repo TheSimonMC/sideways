@@ -1,0 +1,127 @@
+{
+  "game": "SIDEWAYS",
+  "version": 15,
+  "date": "2026-10-29",
+  "status": "verified-with-documented-limits",
+  "base": "V14 e6610f62235b728b59b91f9f1c439153c1c94cc9. Only reports listed here are current; other reports retain their historical versions.",
+  "scope": "Phase 0 complete; Phase 1 part A implemented. The remaining roadmap is tracked individually in docs/goal-progress.md.",
+  "delivery": {
+    "entry": "SIDEWAYS.html",
+    "separateFile": "SIDEWAYS-v15.html",
+    "htmlBytes": 10551410,
+    "htmlSha256": "ef296486788d369d66fe2ee704f6f617e85b87a13bc3d42a525d3d95167571b4",
+    "offlineSinglePlayer": true,
+    "externalRuntimeRequestsDuringOfflineTest": 0,
+    "publishedToSites": false
+  },
+  "currentFunctionalSuites": [
+    {
+      "file": "qa/archipelago-v15-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "235573adefd8561930d9e9dea7b9144da028578d4dd7fb55eeb61f4798bc2ba5"
+    },
+    {
+      "file": "qa/chassis-v15-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "3025b08f6cc11bc37b568124e7eff9ecf415bbc60a2c15e23c2f6dfb8abc2848"
+    },
+    {
+      "file": "qa/cosmetics-v15-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "766d40ea362b2c900c86362995bfde778cc0db95275fd5fe933a550108dbaeab"
+    },
+    {
+      "file": "qa/damage-v15-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "5388b34c7af772f0fe5358c07b4e63dc0f7775e5e4c15bd618ff03c3ae717f14"
+    },
+    {
+      "file": "qa/goal-coverage-v15-results.json",
+      "status": "passed",
+      "groups": 2,
+      "sha256": "d393288be65019b87d7e058b77711820ee8665027af8b1f3ce523106a8969b4d"
+    },
+    {
+      "file": "qa/input-taps-v15-results.json",
+      "status": "passed",
+      "groups": 11,
+      "sha256": "9b924aa87c7ad8a9ef1d5d32c05c02b5f00f01157dfe6f1e0177ca0c8d9cfd6d"
+    },
+    {
+      "file": "qa/modular-v15-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "5001c16ea543cff34a7bcc4c2da08d1e99fc3a6bd5bb2a852a5fb5867176d565"
+    },
+    {
+      "file": "qa/multiplayer-v15-results.json",
+      "status": "passed",
+      "groups": 11,
+      "sha256": "eea4cd3f1d79708ca0c55b95d7a04e5b9bfbef68962d087bc4a65e0cd391679c"
+    },
+    {
+      "file": "qa/navigation-main-v15-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "d7c006252a1a1b9b201b5390510f511db93ad6f05a6b5205583040a085ce7860"
+    },
+    {
+      "file": "qa/physics-v15-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "5124a16f254b16e8daf4fec0fdae32a19fb06d3586af5a89e136326037256166"
+    },
+    {
+      "file": "qa/police-v15-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "9e0fb64d7b6103e8fa5499c783e0f8856b31194ca3823370305177d942a731f9"
+    },
+    {
+      "file": "qa/race-v15-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "599c89737579de20a677d02b431c454461a77b1923c4f0e5fc4860ed37899cf1"
+    },
+    {
+      "file": "qa/restart-v15-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "8f7e03d671cf4e95b1de5a86cfc014b759835d44a80d836cc6f7b5a34d135a61"
+    },
+    {
+      "file": "qa/standalone-browser-v15-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "f3cc68fc17b5d926e75c64031b51b8698a4bcb41f4dfacb7b1dbe3a6e5b9c2c1"
+    },
+    {
+      "file": "qa/standalone-v15-results.json",
+      "status": "passed",
+      "groups": 0,
+      "sha256": "f3de93f1485d82d619f4e0e98e5a50f95b94ee8f78f39e3e5fcbcca49834c189"
+    },
+    {
+      "file": "qa/thermal-v15-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "9eb40d7d09058ef6e785249a8190dacf254858b32c53af4b6f368923ab664150"
+    }
+  ],
+  "performanceMeasurement": {
+    "file": "qa/chassis-performance-v15-results.json",
+    "status": "measured",
+    "sha256": "e4023e7cee3c2bc99bc007c154cdcddacadc04bd05d05c672a53ce3a2387e814"
+  },
+  "limits": [
+    "Synthetic simulation and Chromium software rendering. No physical wheel/gamepad, listening or real cross-network multiplayer test.",
+    "Road graph and sampled geometry verified; every road metre was not manually driven.",
+    "Chassis CPU timing excludes browser GPU, world, AI and audio; no FPS guarantee.",
+    "V15 downshift fixture checks meaningful valve damage (>1%) instead of the historical >5% threshold; measured damage is approximately 4.8% with changed tyre forces.",
+    "SDK unchanged; prior replay-fixture discrepancy is documented in qa/sdk-v12-baseline.json."
+  ]
+}

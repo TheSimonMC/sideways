@@ -279,7 +279,7 @@ export function createCar(scene, initialBuild = resolveBuild()) {
       m.chassis.position.y=(state.bodyHeight||0)+(p.rideHeight||0);
       for(const w of m.spinGroups){
         const corner=state.suspension?.[w.index];w.pivot.visible=state.wheelAttached?.[w.index]!==false;
-        w.pivot.rotation.y=state.wheelSteers?.[w.index]??(w.front?(state.steer||0):0);w.pivot.rotation.z=clamp(state.wheelCamber?.[w.index]||0,-.2,.2);
+        w.pivot.rotation.y=state.wheelSteers?.[w.index]??(w.front?(state.steer||0):0);w.pivot.rotation.z=clamp(state.suspensionHealth?(w.side)*((1-state.suspensionHealth[w.index])*.14-(build.physics.alignmentCamber?.[w.front?0:1]||0)):(state.wheelCamber?.[w.index]??-w.side*(build.physics.alignmentCamber?.[w.front?0:1]||0)),-.2,.2);
         w.pivot.position.y=Number.isFinite(corner?.wheelY)?corner.wheelY:p.wheelRadius;
         const angle=state.wheelSpins?.[w.index] ?? (w.front?(w.side<0?state.wheelSpinFL:state.wheelSpinFR):(w.side<0?state.wheelSpinL:state.wheelSpinR));
         w.spin.rotation.x=Number.isFinite(angle)?angle:0;

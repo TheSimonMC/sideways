@@ -1,0 +1,217 @@
+SIDEWAYS: ZIELE UND VERBESSERUNGEN
+Spiel: https://thesimonmc.github.io/sideways/
+
+ZIEL
+Sideways als bestehendes Browser-Spiel schrittweise verbessern. Kein Neubau, keine neue Spielidentität und keine grundlose Umstrukturierung. Die aktuelle Cartoon-Optik und alle funktionierenden Inhalte bleiben erhalten. Fahrgefühl, mechanische Simulation, Schadensmodell, Innenräume, Garage, Tuning, Stadt, Landschaft, KI, Kamera, Licht, Audio und Open-World-Interaktion werden gezielt erweitert.
+
+Referenzen: BeamNG.drive für Schäden und Bauteile, Assetto Corsa für nachvollziehbares Fahrverhalten, GTA IV/V für Stadt, Garagen und Übergänge, The Crew Motorfest für Landschaft und abwechslungsreiche Straßen, NFS Heat für nächtliche Stimmung und Fahrgefühl. Keine fremden Assets kopieren.
+
+GRUNDREGELN
+- Zuerst den echten Quellcode, die Fahrzeugdaten, die vorhandenen Systeme und die Rendering-Technik prüfen. Von der Website allein nicht auf die Architektur schließen.
+- Das Projekt weiterentwickeln, nicht durch einen Prototyp ersetzen. Keine funktionierenden Features, Fahrzeuge, Karten, Speicherstände oder Steuerungsarten verlieren.
+- Jede Phase integriert umsetzen: Simulation, Darstellung, Eingabe, Sound, Benutzeroberfläche, Speichern und Tests, soweit für das jeweilige Feature relevant.
+- Keine reinen Attrappen. Eine Warnlampe ohne wirklichen Schaden, ein drehender Riemen ohne Bezug zur Drehzahl oder ein Tuningteil ohne physikalische Wirkung gelten nicht als abgeschlossen.
+- Komplexe Mechanik bei Bedarf glaubwürdig vereinfachen. Browser-Performance und Spielbarkeit sind wichtiger als unnötig teure Simulationen.
+- Neue Funktionen so bauen, dass sie mit bestehenden Funktionen zusammenspielen. Änderungen an Teilen müssen z. B. Schaden, Gewicht, Optik und Reparatur beeinflussen.
+- Wenn ein Feature technisch nicht vollständig umsetzbar ist, die Einschränkung genau benennen und eine funktionierende Teilumsetzung liefern. Nichts als fertig melden, was nicht getestet wurde.
+- Nach jeder Phase das Spiel starten, testen und Fehler beheben. Bestehende Systeme dabei auf Regressionen prüfen.
+
+PHASE 0: BESTANDSAUFNAHME UND SICHERE ERWEITERUNG
+- Vorhandene Fahrzeugphysik, Renderer, Szenen, Kamera, Eingabesysteme, Garagen, Service, Tuning, Weltgenerierung, Verkehr, Audio, Speicherlogik und Assets untersuchen.
+- Auflisten, welche Systeme schon existieren und wo die Erweiterungen anschließen.
+- Vorhandene Fahrzeugspezifikationen und Modelle nicht versehentlich überschreiben.
+- Eine gemeinsame Datenbasis für Fahrzeugkomponenten, Schäden, Temperaturen, Tuning, Animationen und Persistenz vorsehen.
+- Falls nötig, kleine aufeinander abgestimmte Daten- und Codeänderungen vornehmen, statt alles umzubauen.
+
+PHASE 1: REALISTISCHERE FAHRPHYSIK
+- Der Serienzustand eines Fahrzeugs soll ein nachvollziehbares, deutlich weniger arcade-lastiges Fahrverhalten haben. Serienfahrzeuge dürfen nicht ständig von selbst driften.
+- Reifenkräfte mit sanftem Übergang zwischen Haftung und Rutschen; realistisches Untersteuern und Übersteuern.
+- Gewichtstransfer beim Beschleunigen, Bremsen, Lastwechsel und Kurvenfahren; Federweg, Dämpfung, Body Roll, Wanken und Nicken.
+- Fahrverhalten soll von Gewicht, Schwerpunkt, Radstand, Antrieb (FWD/RWD/AWD), Reifen, Fahrwerk, Leistung, Differenzial und Lenkgeometrie abhängen.
+- Realistischere Lenkübersetzung, Lenkwinkel, Rückstellverhalten, Reaktion auf hohe Geschwindigkeiten und unterschiedliche Eingabegeräte.
+- Motorbremse, realistische Bremswege, Traktionsverhältnisse, Wheelspin, Wheel Hop, Kupplungs-/Getriebeträgheit, Differenzialwirkung, Luftwiderstand und aerodynamischer Abtrieb.
+- Bodenwellen, Schlaglöcher, Bordsteine, Unebenheiten, Nässe und verschiedene Oberflächen wirken sich auf die Räder aus.
+- Reifenverschleiß und Temperatur wirken sich auf Haftung und Fahrverhalten aus.
+- Drift-, Street-, Sport- und Track-Setups entstehen aus tatsächlichen Teilen wie Lenkwinkel-Kits, Differenzialen, Stabis, Fahrwerken, Reifen und Achsvermessung. Nicht aus einem Arcade/Balanced/Realistic-Schalter in den Settings.
+- ABS, Traktionskontrolle oder Stabilitätskontrolle dürfen als reale fahrzeugspezifische Hilfen existieren, aber keine getrennten Physikmodi ersetzen.
+- Physik weiterhin beherrschbar und spaßig halten. Die Fahrzeugtypen sollen sich klar voneinander unterscheiden.
+
+PHASE 2: EINZELNE MECHANISCHE SCHÄDEN, TEMPERATUR UND VERSCHLEISS
+- Weg vom einzigen allgemeinen Auto-Health-Wert als Schadensquelle. Jede wesentliche Baugruppe erhält einen eigenen Zustand, Verschleiß und bei Bedarf Temperatur, Belastung und Ausfallart.
+- Vier unabhängige Reifen: Temperatur, Luftdruck, Reifenmischung, Abrieb, Gripverlust, Flatspots, Platten, Beschädigung und Blowout.
+- Längere Burnouts oder dauerhaft hohe Schlupfwerte erhitzen die Reifen. Nach nachvollziehbarer Überlast können sie einzeln platzen. Reaktion: plötzlicher Druckverlust, veränderte Seitenführung, Fahrwerks-/Lenkreaktion, Geräusch und Partikeleffekte.
+- Rauchmenge hängt von Radschlupf, Temperatur und Oberfläche ab. Nicht jeder Reifen platzt nach einer festen Zeit unabhängig von den Umständen.
+- Motor separat: Block, Kolben/Pleuel, Kurbeltrieb, Zylinderkopf, Dichtung, Ölkreislauf/Öldruck, Kühler/Kühlmittel, Lüfter, Ansaugung, Auspuff, Turbo/Kompressor, Riemen, Lichtmaschine und relevante Nebenaggregate.
+- Schaden durch Überdrehen, schlechte Kühlung, Ölverlust, Überlast, Kollisionen und lange Überhitzung. Folgen: Leistungsverlust, ungewöhnliche Geräusche, Fehlzündungen, Rauch, Ruckeln, Klopfen, Lecks und schlimmstenfalls Motorausfall.
+- Beschädigter Kühler verursacht Kühlmittelverlust und steigende Motortemperatur; falsches Weiterfahren kann Folgeschäden erzeugen.
+- Kupplung: Verschleiß, Hitze, Schlupf, verringerte Kraftübertragung bis zum kompletten Ausfall. Getriebe: Schäden durch Überlast und schlechte Schaltvorgänge, mögliche Gangprobleme. Differenzial und Antriebswellen ebenfalls getrennt.
+- Bremsen pro Rad: Verschleiß, Temperatur, Fade, beschädigte Leitungen/Komponenten, ungleichmäßige Bremswirkung, Ausfall; heißer Bremsscheiben-Glow bei passender Temperatur.
+- Fahrwerk, Lenkung, Radlager und Aufhängungen können nach Unfällen falsch ausgerichtet, beschädigt oder zerstört sein.
+- Warnanzeigen und Diagnose zeigen echte Zustände. Reparatur ersetzt oder repariert die betroffene Komponente, nicht immer das gesamte Auto.
+- Teileschäden, Temperaturen und Verschleiß dürfen nach dem Verlassen des Fahrzeugs oder der Garage nicht grundlos verschwinden.
+
+PHASE 3: VERFORMUNG UND ABFALLENDE FAHRZEUGTEILE
+- BeamNG-inspirierte modulare Kollisionen, soweit in der Browser-Engine sinnvoll.
+- Einzelteile: Türen, Motorhaube, Kofferraum, Stoßstangen, Lippe/Splitter, Seitenschweller, Spoiler, Diffusor, Kotflügel, Spiegel, Grill, Scheinwerfer, Rückleuchten, Auspuff, Scheiben, Felgen/Räder und Fahrwerksteile.
+- Treffpunkt, Aufprallrichtung, Energie und Bauteilbefestigungen bestimmen Schaden: Kratzer, Risse, Verformung, lockere Befestigung, Funktionsausfall, Abreißen.
+- Abfallende Teile werden kurzzeitig physikalische Objekte mit Kollision, Reibung, Rollen und Rutschen. Performancebewusst nach Entfernung/Lebensdauer aufräumen.
+- Motorhaube und Türen können geöffnet, beschädigt und gelöst werden; offene Teile sollen sich mechanisch glaubwürdig bewegen.
+- Zerbrochene Scheiben, kaputte Leuchten, defekte Kühler und verbogene Fahrwerksteile beeinflussen die restlichen Systeme.
+- Sichtbare Schäden müssen an der getroffenen Fahrzeugseite entstehen und nach Möglichkeit erhalten bleiben.
+- Keine volle Soft-Body-Simulation erzwingen, wenn eine modulare, lokale Deformation mit passenden Kollisionspunkten besser läuft.
+
+PHASE 4: ECHTE FIRST-PERSON-KAMERA UND INNENRÄUME FÜR JEDES FAHRZEUG
+- Eine neue, nutzbare Cockpitkamera für jedes spielbare Fahrzeug; passende Augenposition, einstellbare Sitzposition, Blickbewegung und korrektes Sichtfeld.
+- JEDES bestehende spielbare Fahrzeug bekommt einen zum Modell passenden sichtbaren Innenraum. Gemeinsame Bauteile dürfen wiederverwendet werden, aber nicht einfach derselbe generische Innenraum für alle.
+- Je nach Fahrzeug: Dashboard, analoge oder digitale Instrumente, Lenkrad, Sitze, Rücksitze, Pedale, Ganghebel, Handbremse, Mittelkonsole, Türverkleidungen, Spiegel, Dachhimmel, Innenbeleuchtung, Radio/Infotainment und passende Materialien.
+- Kein dauerhaft schwebender HUD-Tacho in der Cockpitansicht. Das tatsächliche Cockpit-Instrument zeigt Geschwindigkeit, Drehzahl, Gang, Tank, Temperaturen und Warnleuchten korrekt an. Nadel und Anzeigen reagieren ohne sinnlose Verzögerung.
+- Third-Person darf optional eine kleine, abschaltbare Geschwindigkeitsanzeige behalten, wenn sie für die Spielbarkeit benötigt wird.
+- Navigation und Karte in ein tatsächlich sichtbares Display am Radio/Infotainment einbauen, mit Routenanzeige, Position und Musiksteuerung. Für ältere Autos sinnvoller externer Navi-Halter statt unpassendem modernen Touchscreen.
+- Scheiben und Seitenscheiben sind durchsichtig. Man muss von außen Fahrer und Innenraum sehen können, abhängig von Spiegelungen, Licht und Tönung.
+- Innenspiegel und Seitenspiegel sollen brauchbare Ansichten bieten, ggf. mit performancegerechter Renderinglösung.
+- Ein sichtbarer Fahrer sitzt im Wagen, mit Kopf/Körper, Oberarmen, Unterarmen, Händen und Beinen. Hände greifen ans Lenkrad und folgen präzise der Lenkraddrehung, bei starken Winkeln mit sinnvoller Handbewegung.
+- Passende Animationen für Schalten, Handbremse und Pedalbedienung sowie subtile Körperreaktionen auf Beschleunigung, Bremsen, Schlaglöcher und Kurven. Keine Clipping-Arme im Dashboard.
+- Bei kompatiblen Lenkradcontrollern über verfügbare Browser-APIs nutzbare Achsen, Buttons, Kalibrierung, Deadzones und einstellbaren Lenkwinkel anbieten. Keine Funktionen behaupten, die der jeweilige Browser nicht bereitstellt.
+- Virtuelles Cockpit-Lenkrad für Wheel-Nutzer optional ausblenden. Arme/Hände bei Bedarf ebenfalls ausblendbar. Die Lenkung, Anzeigen und der restliche Innenraum funktionieren dabei weiter.
+
+PHASE 5: MEHR EXTERIEUR-, INTERIEUR- UND MECHANISCHES TUNING
+- Exterieurteile: unterschiedliche Front-/Heckstoßstangen, Spoiler, Splitter, Lippen, Schweller, Diffusoren, Kotflügel, Widebody-Kits, Hauben, Grills, Auspuffendrohre, Felgen, Reifen, Lichtdesign, Lacke, Folierungen und Decals.
+- Interieurteile: Lenkräder, Sportsitze, Schalensitze, Bezüge, Nähte, Farben, Dashboard-Dekore, Schaltknäufe, Handbremsen, Überrollkäfige, Gurte, Instrumente, Zusatzanzeigen und Ambientebeleuchtung.
+- Scheibentönung mit einstellbarer Stärke und richtiger Lichtdurchlässigkeit; von außen bei passenden Bedingungen weiterhin hineinschauen können. Keine undurchsichtige schwarze Fläche als Ersatz für Glas.
+- Leistungsupgrades: Motor/ECU, Turbo/Kompressor, Ansaugung, Auspuff, Kühler, Kupplung, Getriebe, Übersetzungen, Differentiale, Fahrwerk, Stabis, Achsgeometrie, Bremsen, Reifen und Aerodynamik.
+- Optische und mechanische Teile an echte Befestigungspunkte knüpfen, sodass sie bei Schaden abfallen und in der Garage ausgebaut werden können.
+- Upgrades haben echte Unterschiede und Nachteile: mehr Leistung bedeutet unter Umständen mehr Wärme/Stress; ein Rennfahrwerk kann auf Schlaglöchern schlechter sein; Drift-Reifen unterscheiden sich von Straßenreifen; Bremsen funktionieren je nach Temperatur anders.
+- Kompatibilität mit dem jeweiligen Fahrzeug prüfen, damit Teile nicht falsch positioniert sind.
+
+PHASE 6: INTERAKTIVE GARAGE UND SICHTBARER, BEWEGLICHER MOTOR
+- In der bestehenden Garage mit dem Fahrzeug interagieren: Haube öffnen, Türen öffnen, Räder, Stoßstangen, Spoiler, Motorraumteile und andere Komponenten gezielt aus- oder wieder einbauen.
+- Ausbau verändert das Fahrzeug sofort sichtbar und, sofern relevant, physikalisch. Ohne Räder, Kühler oder andere wichtige Komponenten kann nicht normal gefahren werden.
+- Unter der geöffneten Haube muss ein echter, zum jeweiligen Fahrzeug passender Motorraum zu sehen sein, inklusive Motor, Kühler, Schläuchen, Ansaugung, Lüfter, Lichtmaschine, Antriebriemen und Riemenscheiben sowie bei passendem Fahrzeug Turbo/Kompressor.
+- Rotoren, Riemen und Riemenscheiben werden durch tatsächliche Motor-RPM angetrieben. Kühlerlüfter schaltet temperaturabhängig. Motorlager erlauben subtile Motorbewegung durch Lastwechsel/Vibration; Animationen skalieren mit Drehzahl.
+- Motorraumteile einzeln auswählen, Zustand ablesen, ausbauen, reparieren oder ersetzen. Beschädigungen und fehlende Teile werden sichtbar.
+- Garagenoberfläche für Komponenten, Kosten, Kompatibilität, Verschleiß und Montagezustand. Der Wagen muss nach Umbauten weiterhin korrekt geladen und gespeichert werden.
+- Interaktion praktikabel halten, keine unnötige Schraube-für-Schraube-Simulation erzwingen, wenn sie dem Spiel keinen Nutzen bringt.
+
+PHASE 7: GRAFIK, LICHT UND NACHTATMOSPHÄRE
+- Stilisiertes, kohärentes Cartoon-Bild beibehalten, aber Geometrie, Materialien, Schatten, Texturen und Farbgebung verbessern.
+- Nächte sollen deutlich dunkler sein als bisher. Ambient Light nach Tageszeit steuern, sodass Straßenlaternen und Scheinwerfer nachts wirklich wichtig werden.
+- Besserer Mond, sichtbares Mondlicht, Sterne, stimmigere Skyboxen, Wolken, Dämmerung, Sonnenaufgang/-untergang und atmosphärischer Dunst.
+- Schönere Bloom- und Lens-Flare-Effekte, sichtbare Lichtkegel, Leuchten, Streulicht, Reflexionen, dezente volumetrische Effekte sofern bezahlbar. Nicht alles überstrahlen oder unlesbar machen.
+- Straßenbeleuchtung, Fenster, Werbeschilder, Tunnel und Garagenbeleuchtung abwechslungsreicher gestalten.
+- Fahrzeuglichter mit echten Emissive-Materialien und passender Beleuchtung der Umgebung. Abblend-/Fernlicht mit sinnvollen Kegeln und Reichweiten, Rück- und Bremslichter mit unterschiedlichen Intensitäten, Blinker, Nebel-/Rückfahrlicht wo passend.
+- Keine harte, sofortige Intensitätssprünge für Lichter, bei denen ein natürlicher An-/Abglühverlauf sinnvoll ist. Halogen, LED und andere Lichtarten dürfen unterschiedlich schnell reagieren; Bremslichtreaktion muss trotzdem direkt erkennbar bleiben.
+- Defekte Lampen funktionieren nicht mehr. Glühende Bremsen, Motorraumbeleuchtung und Cockpitbeleuchtung müssen auf Zustände reagieren.
+- Regen, nasse Oberflächen, Pfützen, Nebel und Wetterwechsel mit passenden Lichtreflexionen und Gripveränderungen, sofern die bestehenden Wettersysteme sinnvoll erweitert werden können.
+- Custom Textures und detailliertere 3D-Modelle zulässig, wenn sie zum Cartoon-Stil passen und hochwertig genug sind. Low-poly ist keine Pflicht.
+
+PHASE 8: BESSERE STRASSEN, BERGE UND LANDSCHAFT
+- Bestehende Karte erweitern, nicht ersetzen. Die gut fahrbaren Kurven der Rennstrecke als Qualitätsreferenz für Straßen in der offenen Welt verwenden.
+- Mehr kurvige City-Roads, schnelle Verbindungsstraßen, Höhenwechsel, Landstraßen, Tunnel, Brücken, lange Kurvenkombinationen und attraktive Strecken zum Fahren.
+- Richtige Bergregionen mit Serpentinen, Pässen, Kehren, Steigungen, Gefällen, Hangstraßen, Felswänden, Leitplanken und Aussichtspunkten.
+- Bergstraßen folgen nachvollziehbar dem Gelände und sind baulich in die Hänge integriert, statt wie schwebende flache Bänder auszusehen.
+- Stadt, Vororte, Industrie, Berge, Land, Autobahn, Rennstrecke und Aussichtspunkte über eine zusammenhängende sinnvolle Straßenführung verbinden.
+- Road-Meshes, Fahrbahnmarkierungen, Leitplanken, Böschungen, Bäume, Felsen und Straßenschäden konsistent aufbauen.
+- Mehr abwechslungsreiche, auch zufällig entdeckbare Strecken für Cruisen, sportliches Fahren und Driften. Zufall darf gute Straßenführung nicht ersetzen.
+
+PHASE 9: GRÖSSERE UND WENIGER GITTERFÖRMIGE STADT
+- Die vorhandene City glaubwürdiger, dichter, größer und individueller gestalten. GTA IV ist Referenz für dichte und abwechslungsreiche Stadtbereiche.
+- Nicht nur regelmäßig rechteckige Blöcke. Schrägstraßen, Kurven, verwinkelte Gassen, unregelmäßige Blocks, Kreuzungen unterschiedlicher Größe, Einbahnstraßen und organische Übergänge.
+- Eigenständige Downtown mit Hochhäusern, Wohnviertel, Gewerbe, Industrie, Außenbezirke, Parkhäuser, Parkanlagen, ggf. Uferpromenade und Autobahnknoten.
+- Gebäude unterscheiden sich in Höhe, Grundriss, Dach, Fassaden, Farben, Ladenfronten und Beleuchtung. Nicht dieselben wenigen Modelle offensichtlich wiederholen.
+- Kontrollierte prozedurale Variation plus bewusst gestaltete Landmarken, damit die Stadt nicht wie ein zufälliges, gleichförmiges Raster aussieht.
+- Beschilderung, Ampeln, Markierungen, parkende Fahrzeuge, Straßenschilder, Laternen, Zäune, Container, Bänke, Baustellen, Vegetation und sonstige Details.
+- Bezirke sollen durch Gebäude, Straßen, Dichte, Licht und Audio erkennbar verschieden sein.
+
+PHASE 10: DISTANT SCENERY, LOD UND WELTSTREAMING
+- Hinter den spielbaren Grenzen entfernte Berge, Hügel, Wälder und andere Landschaftssilhouetten sichtbar machen, damit die Karte nicht abrupt endet.
+- LOD für Gebäude, Vegetation, Verkehr, Fahrzeugteile und Terrain. Fernobjekte mit deutlich billigerer Darstellung, saubere Überblendungen statt sichtbarem Popping.
+- Frustum-/Distance-Culling, Instancing, Objekt-Pooling, passende Texturauflösungen, Schatten-LOD, ggf. Impostors/Billboards und räumliche Partitionierung.
+- Weltabschnitte in Abhängigkeit von der Position laden und entladen, ohne nerviges sichtbares Nachladen.
+- KI/Physik entfernter Autos vereinfachen und nur nahe oder relevante Objekte vollständig simulieren.
+- Das Prinzip von GTA-Fernsicht und Distant Horizons als Inspiration nutzen, nicht die Technik blind übernehmen.
+
+PHASE 11: BESSERE VERKEHRS-KI
+- Fahrzeuge sollen Fahrspuren einhalten, Kurven vorausschauend nehmen und sanfter lenken, beschleunigen und bremsen.
+- Kreuzungen, Ampeln, Vorfahrt, Spurwechsel, Überholen, Auffahrten, Blockaden und Hindernisse besser behandeln.
+- Verschiedene Fahrpersönlichkeiten: defensiv, normal, ungeduldig, schneller oder aggressiver, aber nachvollziehbar.
+- Unterschiedliche Geschwindigkeiten je nach Straße, Wetter, Verkehrsfluss und Kurvenradius.
+- Bessere Routenplanung auf neuem Straßennetz und auf Bergstraßen. Keine häufigen Staus durch feststeckende Fahrzeuge oder sinnlose Wendemanöver.
+- Verkehrsdichte nach Bezirk und Tageszeit variieren; abgestellte und fahrende Autos sinnvoll verteilen.
+- Schäden oder andere unerwartete Hindernisse erkennen, sofern das Performancebudget es erlaubt.
+
+PHASE 12: KAMERA, VIEW BOBBING UND GESCHWINDIGKEITSGEFÜHL
+- Third-Person-Kamera darf nicht mehr steif und linear am Fahrzeug hängen. Adaptive Kameradistanz, leichtes Camera Lag, Kurven-Offset, Anfahr-/Bremsreaktion, Roll-/Nick-Reaktion und kontrollierte Rotation.
+- Geschwindigkeit kann FOV leicht verändern. Dezente Vibration, periphere Bewegung, Bewegungsunschärfe und natürliche Dämpfung der Kamera.
+- Beim Lenken, Driften, Lastwechsel oder Fahren über Wellen leichte, zum Fahrzeug passende Bewegungen. Die Kamera muss steuerbar und ruhig genug bleiben.
+- Cockpitkamera mit subtiler Kopfbewegung, Sichtverlagerung in Kurven, Road Bobbing und Brems-/Beschleunigungsreaktion; keine übertriebene Motion Sickness.
+- Speziell bei hoher Geschwindigkeit deutlich stärkeres Gefühl von Geschwindigkeit durch Kamera, Straße, Audio und Vibration.
+- Komfort-Einstellungen dürfen die Intensität solcher Kameraeffekte beeinflussen. Das ist kein Ersatz für die realistische Basis-Fahrphysik.
+
+PHASE 13: WIND, MOTORGERÄUSCHE, MUSIK UND UMGEBUNGSAUDIO
+- Differenzierte Motorsounds nach Motorbauart, Drehzahl, Last, Auspuff, Ansaugung und Tuningzustand.
+- Reifenquietschen, Scrubbing, Wheelspin, Untergrund, Fahrwerk, Getriebe, Kupplung, Turbo und Schäden hörbar machen. Auspuffknallen nur bei passendem Motor-/Tuningzustand.
+- Windgeräusche skalieren nach Fahrzeuggeschwindigkeit. Third-Person deutlich offener; Cockpit gedämpft, aber wahrnehmbar.
+- Offene, fehlende oder zerbrochene Fenster ändern Lautstärke und Charakter des Windes. Tunnel und Gebäude beeinflussen das Klangbild.
+- Mehr Musik, sinnvoll unterschiedliche Radiosender, Track- und Stationswechsel und Steuerung über das in-car-Radio.
+- Musik nur mit eigener oder rechtmäßig nutzbarer Lizenz. Keine urheberrechtlich geschützten Songs einfach übernehmen.
+- Stadtatmosphäre, Verkehr, Garagen, Regen, Wind, Tunnelhall, Tageszeit und Bezirke abwechslungsreicher vertonen.
+- Mischung so gestalten, dass bei hohem Tempo Wind, Motor und Fahrbahn zusammen mehr Speed vermitteln.
+
+PHASE 14: GARAGENÜBERGÄNGE UND KURZE CUTSCENES
+- Home-Garage: echtes Tor öffnet sich, der Wagen fährt sichtbar hinaus, Kamera geht flüssig in Spielansicht über. Nicht einfach vor der Garage aufploppen.
+- Service/Motor Works (oder tatsächlicher Ingame-Werkstattname): Fahrzeug wird hineingefahren; Übergang blendet aus, Reparatur wird berechnet und durchgeführt; Einblendung zeigt das Fahrzeug beim Ausfahren.
+- Tuning-Shop: Auslöser führt durch ein öffnendes Garagentor in eine richtige Innenraumszene mit Fahrzeug, statt in einer leeren Markierung sofort ein Menü zu öffnen.
+- Änderungen am Fahrzeug sind beim Ausfahren sichtbar. Tor, Licht, Sounds und Kameras sind auf die Szene abgestimmt.
+- Übergänge sollen kurz, flüssig, skippbar und gegen doppelte Eingabe abgesichert sein. Keine kaputten Spawnpositionen oder verschwundenen Fahrzeuge.
+
+PHASE 15: LEBENDIGERE OPEN WORLD
+- Der Gesamteindruck soll offener, abwechslungsreicher und bewohnter sein, ähnlich den freien Fahrwelten aus The Crew Motorfest, GTA und NFS Heat, bei weiterhin eigener Sideways-Identität.
+- Mehr sinnvoll parkende Fahrzeuge und zu Tageszeit/Ort passende Verkehrsdichte.
+- Funktionierende Ampeln, zu Tageszeiten schaltende Straßenlaternen, animierte Tore und andere kleine Umgebungsbewegungen.
+- Interaktive Waschanlagen, Tankstellen, Werkstätten, Parkplätze, Aussichtspunkte, Rastplätze und entdeckbare Orte, soweit es zum vorhandenen Spiel passt.
+- Mehr regionale Eigenheiten, Wetter, Lichter, Ambient-Sounds, verschiedene Straßen und besondere Orte. Nicht alle Blöcke, Gebäude und Umgebungen gleich gestalten.
+- Fußgänger nur, falls technisch sinnvoll und sauber performant umsetzbar. Keine leeren Attrappen oder zufällige KI-Popups.
+
+PHASE 16: FAHRZEUGBESITZ, ZUSTAND, INSPEKTION UND ZUSAMMENSPIEL
+- Bauteilzustände, Reifen, Reparaturen, Tuning, aus- oder eingebaute Teile, Einstellungen und Fahrzeugzustand sollen bei vorhandener Speichermöglichkeit zuverlässig persistieren.
+- Werkstatt ersetzt die tatsächlich defekten Baugruppen, statt immer einen unspezifischen Komplettschaden zu reparieren.
+- Diagnosebildschirm mit Komponentenzustand, Temperatur, Verschleiß und konkreten Fehlern.
+- Fahrzeuge können verschlissen sein, ohne optisch zerstört zu sein; optische Schäden können wiederum mechanische Folgen haben.
+- Tuning beeinflusst Sound, Handling, Motorraum, Cockpit, Verschleiß, Gewicht und bei Bedarf Kamerabewegung.
+- Schäden an Lichtern ändern Ausleuchtung, zerbrochene Fenster Windgeräusche, fehlende Spoiler gegebenenfalls Aerodynamik, kaputte Reifen Handling und fehlende Teile die Garagenansicht.
+- Straßen-, Wetter- und Reifenzustand beeinflussen sich sinnvoll gegenseitig.
+- Kurze, verständliche Rückmeldungen für mechanische Probleme, ohne die Fahransicht mit HUD-Anzeigen zu überladen.
+
+PHASE 17: QUALITÄT, OPTIMIERUNG UND KONTROLLEN
+- Konstante, möglichst hohe Bildrate auf typischen Zielgeräten anstreben; keine willkürliche FPS-Garantie ohne Messungen.
+- GPU- und CPU-Kosten von Fahrzeugen, Schatten, Lichtern, Wettersystem, Verkehr, LOD, Partikeln und Physik messen und gezielt senken.
+- Adaptive Grafikqualität und sinnvolle Optionen für Schatten, Reflexionen, Partikel, Verkehrsdichte, FOV und Kameraeffekte. Physik nicht durch einen Arcade/Realistic-Settings-Schalter austauschen.
+- Eingaben von Tastatur, Controller und kompatiblen Wheels testen. Konfigurierbare Belegung, Deadzones und Sensitivität, wenn die vorhandene Architektur dies ermöglicht.
+- Innenraum-Kamera soll nachts und tagsüber spielbar sein. Spiegel, Glas, Sitze, Fahrerarme, Instrumente und Tönung dürfen die Sicht nicht unerwartet blockieren.
+- Keine fehlenden Texturen, z-fighting, sichtbaren LOD-Sprünge, nachladenden Schatten, falschen Kollisionskörper oder dauerhaften Partikellecks.
+- Vorhandene Spielstände und Fahrzeugdaten nach Möglichkeit migrieren; nicht ohne ausdrücklichen Grund löschen.
+
+PHASE 18: TESTS UND ABSCHLUSSKRITERIEN
+- Nach jeder Phase die vorhandenen Funktionen prüfen und sicherstellen, dass das Spiel spielbar bleibt.
+- Konkrete End-to-End-Szenarien testen:
+  1) Serienauto fährt griffig und driftet erst bei passender Belastung; Drift-Kit verändert Fahrverhalten nachvollziehbar.
+  2) Langer Burnout erhitzt einen Reifen; Verschleiß, Gripverlust und schließlich Blowout können auftreten; Fahrverhalten reagiert darauf.
+  3) Frontalaufprall beschädigt Kühler; Motortemperatur steigt; Reparatur des Kühlers behebt Ursache, ein bereits beschädigter Motor braucht ggf. gesonderte Reparatur.
+  4) Kupplung verschleißt durch Missbrauch, rutscht und kann ausfallen. Heiße Bremsen verzögern schlechter.
+  5) Tür oder Spoiler fällt durch Unfall ab und fehlt anschließend sichtbar am Fahrzeug.
+  6) Cockpit jedes spielbaren Autos zeigt korrekte RPM/Geschwindigkeit; Radio-Map und Lenkrad-/Fahreranimation sind nutzbar.
+  7) Ausgeblendetes virtuelles Lenkrad beeinträchtigt die Fahrzeugsteuerung nicht.
+  8) Die Garage zeigt den Motor, dessen Riemen mit der Drehzahl laufen; entfernte Komponenten bleiben entfernt und haben gegebenenfalls Folgen.
+  9) Tag/Nacht verändert Licht. Scheinwerfer beleuchten bei Dunkelheit die Straße, Bremslicht reagiert und kaputte Lampen bleiben aus.
+  10) Neue Bergstraßen folgen dem Terrain, Stadtteile sind weniger gleichförmig, Verkehr kann sie befahren.
+  11) Distant Terrain und LOD verhindern sichtbare Weltgrenzen ohne auffällige Pop-ins.
+  12) Kamera und Wind vermitteln mehr Geschwindigkeit in Cockpit und Third Person.
+  13) Garage-, Service- und Tuning-Übergänge öffnen Tore, zeigen das Fahrzeug und enden mit korrektem Spawn.
+  14) Spielstände speichern Schäden, Ausbauteile und Upgrades korrekt.
+- Für nicht umgesetzte Punkte konkrete technische Gründe und fehlende Arbeiten auflisten, ohne Fertigstellung vorzutäuschen.
+
+PRIORITÄT UND UMSETZUNG
+- Die Phasen beschreiben den gesamten gewünschten Umfang. Innerhalb einer Phase zuerst die gemeinsame technische Basis, dann Verhalten, Darstellung, UI, Audio und Tests integrieren.
+- Falls die Arbeit in mehreren Sitzungen stattfinden muss, Fortschritt in einer Aufgabenliste festhalten und bei der nächsten Sitzung fortsetzen. Keine Phase als vollständig markieren, solange wesentliche Punkte fehlen.
+- Zusätzliche kleine Ideen sind erlaubt, wenn sie zu Sideways passen, den vorhandenen Umfang nicht verdrängen und die Qualität tatsächlich verbessern.
+- Bei Konflikten haben Funktion, vorhandene Spielinhalte, stimmiges Fahrverhalten, konsistenter Cartoon-Stil und messbare Performance Vorrang vor rein dekorativen Effekten.

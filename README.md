@@ -1,20 +1,20 @@
-# SIDEWAYS V14
+# SIDEWAYS V15
 
 [Play in your browser](https://thesimonmc.github.io/sideways/) · [Download ZIP or offline HTML](https://github.com/TheSimonMC/sideways/releases/latest)
 
 GitHub Pages publishes the tested `SIDEWAYS.html` on every push to `main`. To publish source changes, rebuild and rerun the standalone checks described below, then copy `dist/SIDEWAYS.html` to `SIDEWAYS.html` and commit it with the updated browser report. The deployment verifies that their SHA-256 values match.
 
-Start with **READ-ME-V14.txt** for the current UI, controls, audio extension and verification limits.
+Start with **READ-ME-V15.txt** for the current UI, controls, audio extension and verification limits.
 
 ## SIDEWAYS / City Sessions
 
 SIDEWAYS is a 3D driving game with low-poly comic graphics, a top-down camera, a manual drivetrain and a city to explore. Earn points from close passes, drifts and jobs, then buy cars, engine swaps and parts. Up to four friends can share a city through an eight-character lobby code.
 
-The player engine and its sound use the supplied MotorLab SDK 1.6.3, Physics Release 14 and Audio Release 14. The game has four fictional cars and eight engine families, with 22 independently selected part categories, including six visual categories. City Free Roam uses Neon Archipelago; Time Attack and Drift Rush use the separate Dock 09 track. Chase and hood cameras are available alongside the default top-down view.
+The player engine and its sound use the supplied MotorLab SDK 1.6.3, Physics Release 14 and Audio Release 14. The game has four fictional cars and eight engine families, with 25 independently selected part categories, including six visual categories. City Free Roam uses Neon Archipelago; Time Attack and Drift Rush use the separate Dock 09 track. Chase and hood cameras are available alongside the default top-down view.
 
 ## Play the downloaded game
 
-Open `SIDEWAYS-v14.html` from the chat attachment. The complete ZIP includes the same game as `SIDEWAYS.html` at its root, along with the editable project, SDK, credits and instructions. Extract the ZIP before opening its HTML. Single-player, including NPC racing, needs no server or network download. Multiplayer still needs internet access to signaling and peers.
+Open `SIDEWAYS-v15.html` from the chat attachment. The complete ZIP includes the same game as `SIDEWAYS.html` at its root, along with the editable project, SDK, credits and instructions. Extract the ZIP before opening its HTML. Single-player, including NPC racing, needs no server or network download. Multiplayer still needs internet access to signaling and peers.
 
 The HTML includes code, fonts, models and sound. No Sites address is used by the game. Progress stays in the browser and origin where you played. Copying the HTML to another PC copies the game assets; it does not copy browser storage. Click or press a key to enable sound. A browser must expose a controller or wheel through its Gamepad API before the game can bind it.
 
@@ -25,7 +25,17 @@ npm ci
 node build.mjs
 ```
 
-This creates `dist/SIDEWAYS.html`. After running `node qa/standalone-v14-check.mjs` and `node qa/standalone-browser-v14.cjs` on that build, `node qa/package-v14.mjs` creates `release/SIDEWAYS-v14.html` and `release/SIDEWAYS-v14.zip`. The browser check needs Playwright; dependency and browser path options are in READ-ME-V14.txt. Packaging verifies that the tested HTML matches the delivered bytes. These commands do not publish a Site or push a repository.
+This creates `dist/SIDEWAYS.html`. After running `node qa/standalone-v15-check.mjs` and `node qa/standalone-browser-v15.cjs` on that build, `node qa/package-v15.mjs` creates `release/SIDEWAYS-v15.html` and `release/SIDEWAYS-v15.zip`. The browser check needs Playwright; dependency and browser path options are in READ-ME-V15.txt. Packaging verifies that the tested HTML matches the delivered bytes. These commands do not publish a Site or push a repository.
+
+## V15: Phase 0 and Phase 1A
+
+The complete user specification is preserved in [goal.txt](docs/goal.txt). [The inventory](docs/phase-0-bestandsaufnahme.md) maps the existing systems; [the progress checklist](docs/goal-progress.md) tracks all 156 requirements from Phases 0–18. Phase 0 is complete. Phase 1 is partial, and this release does not claim to complete the larger roadmap.
+
+The free Street/Drift/Grip handling selector has been removed. Tyre forces now use a continuous adhesion-to-sliding transition and load sensitivity; yaw comes from wheel and collision forces rather than an artificial steering impulse. Factory steering lock and ratio differ across the four preserved chassis. Calibrated wheel input retains full lock at speed; keyboard and gamepad input use steering filtering. The remaining assist toggle is throttle-based traction control; fitted ABS continues regulating brake pressure.
+
+Three garage categories add quick racks/angle kits, wheel alignment and front/rear anti-roll-bar setups. They change real rack travel, Ackermann, visible camber, toe, mass and roll stiffness through the existing build, purchase and save systems. Together with tyres, springs and differential parts they define the handling. Old saves default the new slots to stock and retain purchased parts, damage, fluids and input profiles. The old free handling setting is ignored without granting or buying upgrades.
+
+Still open in Phase 1: FWD/AWD support, wheel hop, pressure/flatspots, weather coupling, aero-part effects and broader road/suspension calibration. Existing cars remain RWD. No cockpit, driver, engine-bay interaction or garage cutscene is claimed in this release. Multiplayer protocol 11 separates this solver/build schema from V14.
 
 ## V14 changes
 
@@ -246,10 +256,10 @@ node qa/multiplayer-v9-check.mjs
 node qa/police-v11-check.mjs
 node qa/race-v11-check.mjs
 node build.mjs
-node qa/standalone-v14-check.mjs
-node qa/standalone-browser-v14.cjs
+node qa/standalone-v15-check.mjs
+node qa/standalone-browser-v15.cjs
 node qa/county-browser-v13.cjs
-node qa/package-v14.mjs
+node qa/package-v15.mjs
 ```
 
 The county checks cover connectivity, directed roundabouts, lane clearances, grades, service routes, all regional turn guides and 642 raycast wheel positions. The agent checks drive NPCs on hills and verify wheel heights and remote police search coordinates. The standalone browser test starts with a severely damaged save, starts Free Roam, exercises Escape, map, driving and Restart, and records the exact HTML SHA-256. Separate rendered views cover hills, highway, roundabout and overview.

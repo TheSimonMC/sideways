@@ -211,3 +211,7 @@ PeerJS uses the MIT license. Its license is included in `dist/vendor/PEERJS-LICE
 ## V14 map and visual builds
 
 V14 uses protocol 10 and the sideways-v10 room namespace. Every participant must use V14. Player, traffic and police coordinate validation covers the archipelago. Sanitized build profiles include hood, spoiler, sideSkirts, rims, frontBumper and rearBumper; invalid or missing choices resolve to stock. This protocol version does not change wallet ownership or physics authority.
+
+## V15 chassis parts
+
+V15 uses protocol 11 and sideways-v11 rooms. The new steeringRack, alignment and antiRollBars fields pass through the same catalog sanitizer as other parts. Everyone must use V15. Legacy handling modes no longer alter local physics.

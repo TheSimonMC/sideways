@@ -42,7 +42,7 @@ const saved=safeLoad();
 const PLAY_MODES=['free','race','sprint','drift'];
 const mixDefaults={engine:1,mechanical:.8,tyres:.55,environment:.7,drive:.65,sirens:1,radio:.85,reverb:.65,ambience:.65};
 const savedMix=Object.fromEntries(Object.entries(mixDefaults).map(([key,value])=>[key,Number.isFinite(saved.audioMix?.[key])?clamp(saved.audioMix[key],0,1):value]));
-const settings={camera:saved.camera??0,handling:saved.handling??'street',blur:saved.blur??(matchMedia('(prefers-reduced-motion: reduce)').matches?.2:.65),quality:saved.quality??(innerWidth<600?'medium':'high'),volume:saved.volume??.55,assists:saved.assists??true,telemetry:saved.telemetry??false,build:saved.build??{},paints:saved.paints&&typeof saved.paints==='object'?saved.paints:{}};
+const settings={camera:saved.camera??0,blur:saved.blur??(matchMedia('(prefers-reduced-motion: reduce)').matches?.2:.65),quality:saved.quality??(innerWidth<600?'medium':'high'),volume:saved.volume??.55,assists:saved.assists??true,telemetry:saved.telemetry??false,build:saved.build??{},paints:saved.paints&&typeof saved.paints==='object'?saved.paints:{}};
 settings.audioMix=savedMix;
 Object.assign(settings,{bloom:saved.bloom??.45,timeMode:saved.timeMode||'cycle',dayMinutes:saved.dayMinutes??12,headlights:saved.headlights??true,music:saved.music??true,musicVolume:saved.musicVolume??.58,lookSensitivity:saved.lookSensitivity??1,invertLook:!!saved.invertLook,vignette:saved.vignette??.38,shading:saved.shading??.6});
 Object.assign(settings,{backgroundMusic:!!saved.backgroundMusic,displayMode:['auto','wide','curved'].includes(saved.displayMode)?saved.displayMode:'auto',hudInset:clamp(Number(saved.hudInset)||0,0,12),playerName:String(saved.playerName||'DRIVER 09').slice(0,20)});
@@ -52,7 +52,7 @@ const career=new Career(saved.career,activeBuild.selection),navigation=new RoadN
 const remoteContacts=new RemoteContactTracker();
 if(career.quote(activeBuild).total>0)activeBuild=resolveBuild();settings.build=activeBuild.selection;
 const records={sprint:saved.sprint??null,drift:saved.drift??0,free:saved.free??0,raceWins:Math.max(0,Math.floor(Number(saved.raceWins)||0))};
-const persist=()=>{try{localStorage.setItem('sideways-v1',JSON.stringify({...settings,...records,gameVersion:14,career:career.serialize(),worldHour:environment?.hour??17.2,garageState:physics?.exportGarageState?.()}))}catch{}};
+const persist=()=>{try{localStorage.setItem('sideways-v1',JSON.stringify({...settings,...records,gameVersion:15,career:career.serialize(),worldHour:environment?.hour??17.2,garageState:physics?.exportGarageState?.()}))}catch{}};
 const isTouch=matchMedia('(pointer: coarse)').matches;
 let instruments;
 let renderer,post,scene,camera,world,car,fx,physics,audio,sun,checkpointGroup,inputManager,controlsPanel,garagePanel,gameUI,traffic,police,environment,enforcement;
@@ -101,7 +101,7 @@ async function init(){
 
  sun=new THREE.DirectionalLight(0xffdeb9,3.1);sun.position.set(-70,125,-40);sun.castShadow=true;sun.shadow.mapSize.set(2048,2048);sun.shadow.camera.left=-65;sun.shadow.camera.right=65;sun.shadow.camera.top=65;sun.shadow.camera.bottom=-65;sun.shadow.camera.near=1;sun.shadow.camera.far=300;sun.shadow.bias=-.0003;sun.shadow.normalBias=.07;scene.add(sun,sun.target);
  makeSky();world=createShowroom(scene);environment.setWorld(world);car=createCar(scene,activeBuild);fx=createEffects(scene,activeBuild);fx.setGroundSampler((x,z)=>world.getSurfaceAt(x,z));checkpointGroup=makeCheckpoint();
- physics=new CarPhysics(window.MotorLab,activeBuild);if(saved.garageState)physics.restoreGarageState?.(saved.garageState);physics.setGroundSampler((x,z)=>world.getSurfaceAt(x,z));physics.setTune(settings.handling);physics.reset(world.spawn.x,world.spawn.z,world.spawn.heading);state=physics.state;resetPresentation();
+ physics=new CarPhysics(window.MotorLab,activeBuild);if(saved.garageState)physics.restoreGarageState?.(saved.garageState);physics.setGroundSampler((x,z)=>world.getSurfaceAt(x,z));physics.reset(world.spawn.x,world.spawn.z,world.spawn.heading);state=physics.state;resetPresentation();
  lastRoad=world.getRoadInfo(state.x,state.z);car.group.position.set(state.x,0,state.z);car.group.rotation.y=state.heading;
  audio=new GameAudio();audio.setVolume(settings.volume);audio.setMix(settings.audioMix);audio.setBuild(activeBuild);audio.setCamera?.(settings.camera);audio.update(state);physics.setEngineAdvance((engine,dt)=>audio.advanceEngine(engine,dt));
  post=new ComicRenderer(renderer);post.setCarBounds({...activeBuild.vehicle.model,rideHeight:activeBuild.physics.rideHeight});inputManager=new InputManager({storageKey:'sideways-input-v2'});activeInputConfig=inputManager.getConfig();controlsPanel=new ControlsPanel(inputManager,{onChanged:()=>{activeInputConfig=inputManager.getConfig();syncSettings()}});
@@ -123,9 +123,9 @@ function resize(){
  initialCamera=true;
 }
 function syncSettings(){
- $('camera-select').value=settings.camera;$('handling-select').value=settings.handling;$('blur-range').value=settings.blur*100;$('quality-select').value=settings.quality;$('volume-range').value=settings.volume*100;
+ $('camera-select').value=settings.camera;$('blur-range').value=settings.blur*100;$('quality-select').value=settings.quality;$('volume-range').value=settings.volume*100;
  const cfg=inputManager?.getConfig();if(cfg){activeInputConfig=cfg;$('transmission-select').value=cfg.transmission;$('manual-clutch-toggle').checked=cfg.manualClutch&&cfg.transmission!=='auto';$('manual-clutch-toggle').disabled=cfg.transmission==='auto';$('touch-shifts').classList.toggle('hidden',cfg.transmission==='auto');}
- $('camera-label').textContent=['TOP DOWN','CHASE CAM','HOOD CAM'][settings.camera];$('handling-label').textContent={street:'STREET SETUP',drift:'DRIFT SETUP',grip:'GRIP SETUP'}[settings.handling];
+ $('camera-label').textContent=['TOP DOWN','CHASE CAM','HOOD CAM'][settings.camera];$('handling-label').textContent=activeBuild.selection.tyres.toUpperCase()+' TYRES · '+Math.round(activeBuild.stats.steeringLockDeg)+'° LOCK';
  $('assists-toggle').checked=settings.assists;$('telemetry-toggle').checked=settings.telemetry;$('mechanical-hud').classList.toggle('hidden',!settings.telemetry);
  $('hero-car-name').textContent=activeBuild.vehicle.name;$('hero-car-engine').textContent=activeBuild.engine.name+' / RWD';audio?.setCamera?.(settings.camera);
  $('sound-button').classList.toggle('muted',muted);$('sound-button').setAttribute('aria-label',audio?.started&&!muted?'Mute audio':'Enable audio');
@@ -174,7 +174,7 @@ function previewBuild(build){const sameCar=car.bounds?.kind===build.vehicle.mode
 function applyBuild(build){
  const purchase=career.purchase(build);if(!purchase.ok){toast('NEED '+int(purchase.shortfall)+' MORE POINTS');return false;}
  garagePanel.active=build;garagePanel.hide(false);document.body.classList.remove('garage-open');activeBuild=build;settings.build=build.selection;
- physics.setBuild(build);physics.setTune(settings.handling);physics.setDamageEnabled?.(!online()||network.rules.damage);state=physics.state;audio.setBuild(build);previewBuild(build);fx.setBuild(build);persist();
+ physics.setBuild(build);physics.setDamageEnabled?.(!online()||network.rules.damage);state=physics.state;audio.setBuild(build);previewBuild(build);fx.setBuild(build);persist();
  if(phase==='menu'){modalName=null;hideDialog();initialCamera=true;focusDefault();}else{resetPresentation();returnToPause=false;closeModal({resume:true});}
  handleCareerEvents();syncSettings();focusDefault();toast(build.vehicle.name+' · SETUP INSTALLED');return true;
 }
@@ -367,7 +367,6 @@ function setupUI(){
  $('modal-wrap').addEventListener('click',e=>{if(e.target===$('modal-wrap')&&['settings','info','controls','garage'].includes(modalName))closeModal()});
  $('sound-button').addEventListener('click',()=>toggleSound());$('camera-button').addEventListener('click',cycleCamera);
  $('camera-select').addEventListener('change',e=>{settings.camera=Number(e.target.value);initialCamera=true;post.reset();syncSettings();persist()});
- $('handling-select').addEventListener('change',e=>{settings.handling=e.target.value;physics.setTune(settings.handling);syncSettings();persist()});
  $('blur-range').addEventListener('input',e=>{settings.blur=Number(e.target.value)/100;persist()});
  $('quality-select').addEventListener('change',e=>{settings.quality=e.target.value;resize();persist()});
  $('volume-range').addEventListener('input',e=>{settings.volume=Number(e.target.value)/100;audio.setVolume(settings.volume);persist()});
@@ -496,7 +495,7 @@ async function startGame(newMode,options={}){
   if(mode==='free'){traffic.reset();police.reset();enforcement.reset();policeState=police.getState();enforcementState=enforcement.getState();}
   if(mode==='race'){gameUI.loadingStatus('PREPARING THE STARTING GRID');race=createRace(scene,world,{count:5,laps:settings.raceLaps,difficulty:settings.raceDifficulty,playerName:settings.playerName,seed:1109});race.reset();raceState=race.getState();}
   let spawn=race?race.getPlayerSpawn():world.spawn;if(online()){const index=network.getState().players.findIndex(p=>p.id===network.id);if(index>0)spawn=world.getResetPose(spawn.x-Math.sin(spawn.heading)*9*index,spawn.z-Math.cos(spawn.heading)*9*index,spawn.heading);}
-  loadStage='vehicle';physics.setDamageEnabled?.(!online()||network.rules.damage);physics.restart(spawn.x,spawn.z,spawn.heading,{neutral:activeInputConfig.transmission!=='auto'});physics.setTune(settings.handling);state=physics.state;persist();lookYaw=0;lookPitch=0;resetPresentation();audio.update(state);fx.reset();initialCamera=true;post.reset();
+  loadStage='vehicle';physics.setDamageEnabled?.(!online()||network.rules.damage);physics.restart(spawn.x,spawn.z,spawn.heading,{neutral:activeInputConfig.transmission!=='auto'});state=physics.state;persist();lookYaw=0;lookPitch=0;resetPresentation();audio.update(state);fx.reset();initialCamera=true;post.reset();
   car.group.position.set(state.x,0,state.z);car.group.rotation.y=state.heading;car.update(state,0,totalTime);updateCamera(1,true);world.update(0,totalTime,state);
   await nextPaint();if(request!==transitionSerial)return;loadStage='shaders';gameUI.loadingStatus('FINISHING LIGHTING');if(renderer.compileAsync)await renderer.compileAsync(scene,camera);if(request!==transitionSerial)return;
   phase=mode==='free'?'playing':'countdown';paused=false;document.body.classList.add('playing');$('hud').classList.remove('hidden');if(isTouch)$('touch-controls').classList.remove('hidden');
@@ -521,7 +520,7 @@ function updateCheckpoint(){
  $('checkpoint-text').textContent=mode==='race'?(index===0?'START / FINISH':'CHECKPOINT '+index+' / 7'):!lapArmed?'CROSS THE START LINE':nextCheckpoint===0?'FINISH LINE':'CHECKPOINT '+nextCheckpoint+' / 7';
 }
 function inputState(){
- const controls={...frameControls,steer:-(frameControls.steer||0),transmission:activeInputConfig.transmission,manualClutch:!!activeInputConfig.manualClutch,assists:settings.assists,shiftUp:pendingShiftUp,shiftDown:pendingShiftDown};
+ const controls={...frameControls,steer:-(frameControls.steer||0),transmission:activeInputConfig.transmission,manualClutch:!!activeInputConfig.manualClutch,assists:settings.assists,deviceKind:inputManager.getPresentation().kind,shiftUp:pendingShiftUp,shiftDown:pendingShiftDown};
  if(activeInputConfig.transmission!=='hpattern')delete controls.gearRequest;
  if(pendingNeutral)controls.gearRequest=0;
  pendingShiftUp=false;pendingShiftDown=false;pendingNeutral=false;
@@ -822,5 +821,5 @@ function frame(now){
  requestAnimationFrame(frame);
 }
 // Read-only diagnostics for local QA. No player controls or game-state shortcuts.
-window.sidewaysDiagnostics=()=>({phase,paused,mode,camera:settings.camera,speed:state?.speed,rpm:state?.rpm,gear:state?.gear,heading:state?.heading,x:state?.x,z:state?.z,driftAngle:state?.driftAngle,drifting:state?.drifting,score,runTime,checkpoint:nextCheckpoint,fps:renderFps,drawCalls:renderer?.info.render.calls,roadDistance:lastRoad?.distance,engineVersion:window.MotorLab?.version,engineAudioRelease:window.MotorLab?.audioRelease,enginePhysicsRelease:window.MotorLab?.physicsRelease,engineClock:physics?.engine?.getTiming().clock,transmission:state?.transmission,handbrake:state?.handbrake,clutch:state?.clutch,inputMode:activeInputConfig?.mode,build:activeBuild?.selection,engineRunning:state?.engineRunning,engineStalled:state?.engineStalled,burnout:state?.burnout,wheelLoads:state?.wheelLoads,bodyHeight:state?.bodyHeight,bodyPitch:state?.bodyPitch,bodyRoll:state?.bodyRoll,surfaces:state?.wheelAudio?.map(w=>w.surface),audio:audio?.getDiagnostics?.(),world:world?.kind||'dock',traffic:traffic?.diagnostics?.(),input:inputManager?.getPresentation?.(),nitrousIntensity:state?.nitrousIntensity,nitrousTorque:state?.nitrousTorque,version:14,race:race?.diagnostics?.(),raceState,raceRecovery,mechanical:state?.mechanical,career:career.getState(),navigation:navigation.getState(),multiplayer:network?.diagnostics(),police:policeState,enforcement:enforcementState,acoustics:acousticState,terrain:fx?.debug?.().terrain,worldHour:environment?.hour,worldKind:world?.kind,fuel:state?.fuelLitres,engineHealth:state?.engineHealth,bodyHealth:state?.bodyHealth,wheelAttached:state?.wheelAttached,lookYaw,lookPitch,worldGroups:scene?.children.filter(x=>['NEON-CITY','DOCK-09','SHOWROOM'].includes(x.name)).length});
+window.sidewaysDiagnostics=()=>({phase,paused,mode,camera:settings.camera,speed:state?.speed,rpm:state?.rpm,gear:state?.gear,heading:state?.heading,x:state?.x,z:state?.z,driftAngle:state?.driftAngle,drifting:state?.drifting,score,runTime,checkpoint:nextCheckpoint,fps:renderFps,drawCalls:renderer?.info.render.calls,roadDistance:lastRoad?.distance,engineVersion:window.MotorLab?.version,engineAudioRelease:window.MotorLab?.audioRelease,enginePhysicsRelease:window.MotorLab?.physicsRelease,engineClock:physics?.engine?.getTiming().clock,transmission:state?.transmission,handbrake:state?.handbrake,clutch:state?.clutch,inputMode:activeInputConfig?.mode,build:activeBuild?.selection,engineRunning:state?.engineRunning,engineStalled:state?.engineStalled,burnout:state?.burnout,wheelLoads:state?.wheelLoads,bodyHeight:state?.bodyHeight,bodyPitch:state?.bodyPitch,bodyRoll:state?.bodyRoll,surfaces:state?.wheelAudio?.map(w=>w.surface),audio:audio?.getDiagnostics?.(),world:world?.kind||'dock',traffic:traffic?.diagnostics?.(),input:inputManager?.getPresentation?.(),nitrousIntensity:state?.nitrousIntensity,nitrousTorque:state?.nitrousTorque,version:15,race:race?.diagnostics?.(),raceState,raceRecovery,mechanical:state?.mechanical,career:career.getState(),navigation:navigation.getState(),multiplayer:network?.diagnostics(),police:policeState,enforcement:enforcementState,acoustics:acousticState,terrain:fx?.debug?.().terrain,worldHour:environment?.hour,worldKind:world?.kind,fuel:state?.fuelLitres,engineHealth:state?.engineHealth,bodyHealth:state?.bodyHealth,wheelAttached:state?.wheelAttached,lookYaw,lookPitch,worldGroups:scene?.children.filter(x=>['NEON-CITY','DOCK-09','SHOWROOM'].includes(x.name)).length});
 init().catch(showError);

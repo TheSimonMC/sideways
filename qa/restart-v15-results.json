@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "checks": [
+    "Road recovery keeps condition, preventing an accidental change to the recovery mechanic",
+    "Restart repairs engine, body, wheels, brakes and suspension, refills fuel/NOS and restarts engine",
+    "The restored condition survives garage serialization and a new physics instance",
+    "New county coordinates and hill elevation survive network validation; old map sessions use a different protocol"
+  ]
+}

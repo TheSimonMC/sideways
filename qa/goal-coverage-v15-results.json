@@ -1,0 +1,11 @@
+{
+  "version": 15,
+  "status": "passed",
+  "phases": 19,
+  "requirements": 156,
+  "sourceSHA256": "4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc282ea844a1b96dca",
+  "checks": [
+    "Every Phase 0–18 bullet and all fourteen acceptance scenarios appear verbatim with stable IDs and explicit status.",
+    "The local goal copy matches the recorded SHA-256."
+  ]
+}

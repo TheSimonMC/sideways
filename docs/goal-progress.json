@@ -1,0 +1,943 @@
+{
+  "source": "docs/goal.txt",
+  "sourceSHA256": "4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc282ea844a1b96dca",
+  "version": 15,
+  "requirements": [
+    {
+      "id": "P00.01",
+      "phase": 0,
+      "status": "erledigt",
+      "requirement": "Vorhandene Fahrzeugphysik, Renderer, Szenen, Kamera, Eingabesysteme, Garagen, Service, Tuning, Weltgenerierung, Verkehr, Audio, Speicherlogik und Assets untersuchen."
+    },
+    {
+      "id": "P00.02",
+      "phase": 0,
+      "status": "erledigt",
+      "requirement": "Auflisten, welche Systeme schon existieren und wo die Erweiterungen anschließen."
+    },
+    {
+      "id": "P00.03",
+      "phase": 0,
+      "status": "erledigt",
+      "requirement": "Vorhandene Fahrzeugspezifikationen und Modelle nicht versehentlich überschreiben."
+    },
+    {
+      "id": "P00.04",
+      "phase": 0,
+      "status": "erledigt",
+      "requirement": "Eine gemeinsame Datenbasis für Fahrzeugkomponenten, Schäden, Temperaturen, Tuning, Animationen und Persistenz vorsehen."
+    },
+    {
+      "id": "P00.05",
+      "phase": 0,
+      "status": "erledigt",
+      "requirement": "Falls nötig, kleine aufeinander abgestimmte Daten- und Codeänderungen vornehmen, statt alles umzubauen."
+    },
+    {
+      "id": "P01.01",
+      "phase": 1,
+      "status": "teilweise erledigt",
+      "requirement": "Der Serienzustand eines Fahrzeugs soll ein nachvollziehbares, deutlich weniger arcade-lastiges Fahrverhalten haben. Serienfahrzeuge dürfen nicht ständig von selbst driften."
+    },
+    {
+      "id": "P01.02",
+      "phase": 1,
+      "status": "teilweise erledigt",
+      "requirement": "Reifenkräfte mit sanftem Übergang zwischen Haftung und Rutschen; realistisches Untersteuern und Übersteuern."
+    },
+    {
+      "id": "P01.03",
+      "phase": 1,
+      "status": "teilweise erledigt",
+      "requirement": "Gewichtstransfer beim Beschleunigen, Bremsen, Lastwechsel und Kurvenfahren; Federweg, Dämpfung, Body Roll, Wanken und Nicken."
+    },
+    {
+      "id": "P01.04",
+      "phase": 1,
+      "status": "teilweise erledigt",
+      "requirement": "Fahrverhalten soll von Gewicht, Schwerpunkt, Radstand, Antrieb (FWD/RWD/AWD), Reifen, Fahrwerk, Leistung, Differenzial und Lenkgeometrie abhängen."
+    },
+    {
+      "id": "P01.05",
+      "phase": 1,
+      "status": "teilweise erledigt",
+      "requirement": "Realistischere Lenkübersetzung, Lenkwinkel, Rückstellverhalten, Reaktion auf hohe Geschwindigkeiten und unterschiedliche Eingabegeräte."
+    },
+    {
+      "id": "P01.06",
+      "phase": 1,
+      "status": "teilweise erledigt",
+      "requirement": "Motorbremse, realistische Bremswege, Traktionsverhältnisse, Wheelspin, Wheel Hop, Kupplungs-/Getriebeträgheit, Differenzialwirkung, Luftwiderstand und aerodynamischer Abtrieb."
+    },
+    {
+      "id": "P01.07",
+      "phase": 1,
+      "status": "teilweise erledigt",
+      "requirement": "Bodenwellen, Schlaglöcher, Bordsteine, Unebenheiten, Nässe und verschiedene Oberflächen wirken sich auf die Räder aus."
+    },
+    {
+      "id": "P01.08",
+      "phase": 1,
+      "status": "teilweise erledigt",
+      "requirement": "Reifenverschleiß und Temperatur wirken sich auf Haftung und Fahrverhalten aus."
+    },
+    {
+      "id": "P01.09",
+      "phase": 1,
+      "status": "erledigt",
+      "requirement": "Drift-, Street-, Sport- und Track-Setups entstehen aus tatsächlichen Teilen wie Lenkwinkel-Kits, Differenzialen, Stabis, Fahrwerken, Reifen und Achsvermessung. Nicht aus einem Arcade/Balanced/Realistic-Schalter in den Settings."
+    },
+    {
+      "id": "P01.10",
+      "phase": 1,
+      "status": "teilweise erledigt",
+      "requirement": "ABS, Traktionskontrolle oder Stabilitätskontrolle dürfen als reale fahrzeugspezifische Hilfen existieren, aber keine getrennten Physikmodi ersetzen."
+    },
+    {
+      "id": "P01.11",
+      "phase": 1,
+      "status": "teilweise erledigt",
+      "requirement": "Physik weiterhin beherrschbar und spaßig halten. Die Fahrzeugtypen sollen sich klar voneinander unterscheiden."
+    },
+    {
+      "id": "P02.01",
+      "phase": 2,
+      "status": "teilweise erledigt",
+      "requirement": "Weg vom einzigen allgemeinen Auto-Health-Wert als Schadensquelle. Jede wesentliche Baugruppe erhält einen eigenen Zustand, Verschleiß und bei Bedarf Temperatur, Belastung und Ausfallart."
+    },
+    {
+      "id": "P02.02",
+      "phase": 2,
+      "status": "teilweise erledigt",
+      "requirement": "Vier unabhängige Reifen: Temperatur, Luftdruck, Reifenmischung, Abrieb, Gripverlust, Flatspots, Platten, Beschädigung und Blowout."
+    },
+    {
+      "id": "P02.03",
+      "phase": 2,
+      "status": "offen",
+      "requirement": "Längere Burnouts oder dauerhaft hohe Schlupfwerte erhitzen die Reifen. Nach nachvollziehbarer Überlast können sie einzeln platzen. Reaktion: plötzlicher Druckverlust, veränderte Seitenführung, Fahrwerks-/Lenkreaktion, Geräusch und Partikeleffekte."
+    },
+    {
+      "id": "P02.04",
+      "phase": 2,
+      "status": "teilweise erledigt",
+      "requirement": "Rauchmenge hängt von Radschlupf, Temperatur und Oberfläche ab. Nicht jeder Reifen platzt nach einer festen Zeit unabhängig von den Umständen."
+    },
+    {
+      "id": "P02.05",
+      "phase": 2,
+      "status": "teilweise erledigt",
+      "requirement": "Motor separat: Block, Kolben/Pleuel, Kurbeltrieb, Zylinderkopf, Dichtung, Ölkreislauf/Öldruck, Kühler/Kühlmittel, Lüfter, Ansaugung, Auspuff, Turbo/Kompressor, Riemen, Lichtmaschine und relevante Nebenaggregate."
+    },
+    {
+      "id": "P02.06",
+      "phase": 2,
+      "status": "teilweise erledigt",
+      "requirement": "Schaden durch Überdrehen, schlechte Kühlung, Ölverlust, Überlast, Kollisionen und lange Überhitzung. Folgen: Leistungsverlust, ungewöhnliche Geräusche, Fehlzündungen, Rauch, Ruckeln, Klopfen, Lecks und schlimmstenfalls Motorausfall."
+    },
+    {
+      "id": "P02.07",
+      "phase": 2,
+      "status": "teilweise erledigt",
+      "requirement": "Beschädigter Kühler verursacht Kühlmittelverlust und steigende Motortemperatur; falsches Weiterfahren kann Folgeschäden erzeugen."
+    },
+    {
+      "id": "P02.08",
+      "phase": 2,
+      "status": "teilweise erledigt",
+      "requirement": "Kupplung: Verschleiß, Hitze, Schlupf, verringerte Kraftübertragung bis zum kompletten Ausfall. Getriebe: Schäden durch Überlast und schlechte Schaltvorgänge, mögliche Gangprobleme. Differenzial und Antriebswellen ebenfalls getrennt."
+    },
+    {
+      "id": "P02.09",
+      "phase": 2,
+      "status": "teilweise erledigt",
+      "requirement": "Bremsen pro Rad: Verschleiß, Temperatur, Fade, beschädigte Leitungen/Komponenten, ungleichmäßige Bremswirkung, Ausfall; heißer Bremsscheiben-Glow bei passender Temperatur."
+    },
+    {
+      "id": "P02.10",
+      "phase": 2,
+      "status": "teilweise erledigt",
+      "requirement": "Fahrwerk, Lenkung, Radlager und Aufhängungen können nach Unfällen falsch ausgerichtet, beschädigt oder zerstört sein."
+    },
+    {
+      "id": "P02.11",
+      "phase": 2,
+      "status": "teilweise erledigt",
+      "requirement": "Warnanzeigen und Diagnose zeigen echte Zustände. Reparatur ersetzt oder repariert die betroffene Komponente, nicht immer das gesamte Auto."
+    },
+    {
+      "id": "P02.12",
+      "phase": 2,
+      "status": "teilweise erledigt",
+      "requirement": "Teileschäden, Temperaturen und Verschleiß dürfen nach dem Verlassen des Fahrzeugs oder der Garage nicht grundlos verschwinden."
+    },
+    {
+      "id": "P03.01",
+      "phase": 3,
+      "status": "teilweise erledigt",
+      "requirement": "BeamNG-inspirierte modulare Kollisionen, soweit in der Browser-Engine sinnvoll."
+    },
+    {
+      "id": "P03.02",
+      "phase": 3,
+      "status": "teilweise erledigt",
+      "requirement": "Einzelteile: Türen, Motorhaube, Kofferraum, Stoßstangen, Lippe/Splitter, Seitenschweller, Spoiler, Diffusor, Kotflügel, Spiegel, Grill, Scheinwerfer, Rückleuchten, Auspuff, Scheiben, Felgen/Räder und Fahrwerksteile."
+    },
+    {
+      "id": "P03.03",
+      "phase": 3,
+      "status": "teilweise erledigt",
+      "requirement": "Treffpunkt, Aufprallrichtung, Energie und Bauteilbefestigungen bestimmen Schaden: Kratzer, Risse, Verformung, lockere Befestigung, Funktionsausfall, Abreißen."
+    },
+    {
+      "id": "P03.04",
+      "phase": 3,
+      "status": "teilweise erledigt",
+      "requirement": "Abfallende Teile werden kurzzeitig physikalische Objekte mit Kollision, Reibung, Rollen und Rutschen. Performancebewusst nach Entfernung/Lebensdauer aufräumen."
+    },
+    {
+      "id": "P03.05",
+      "phase": 3,
+      "status": "offen",
+      "requirement": "Motorhaube und Türen können geöffnet, beschädigt und gelöst werden; offene Teile sollen sich mechanisch glaubwürdig bewegen."
+    },
+    {
+      "id": "P03.06",
+      "phase": 3,
+      "status": "teilweise erledigt",
+      "requirement": "Zerbrochene Scheiben, kaputte Leuchten, defekte Kühler und verbogene Fahrwerksteile beeinflussen die restlichen Systeme."
+    },
+    {
+      "id": "P03.07",
+      "phase": 3,
+      "status": "teilweise erledigt",
+      "requirement": "Sichtbare Schäden müssen an der getroffenen Fahrzeugseite entstehen und nach Möglichkeit erhalten bleiben."
+    },
+    {
+      "id": "P03.08",
+      "phase": 3,
+      "status": "teilweise erledigt",
+      "requirement": "Keine volle Soft-Body-Simulation erzwingen, wenn eine modulare, lokale Deformation mit passenden Kollisionspunkten besser läuft."
+    },
+    {
+      "id": "P04.01",
+      "phase": 4,
+      "status": "teilweise erledigt",
+      "requirement": "Eine neue, nutzbare Cockpitkamera für jedes spielbare Fahrzeug; passende Augenposition, einstellbare Sitzposition, Blickbewegung und korrektes Sichtfeld."
+    },
+    {
+      "id": "P04.02",
+      "phase": 4,
+      "status": "offen",
+      "requirement": "JEDES bestehende spielbare Fahrzeug bekommt einen zum Modell passenden sichtbaren Innenraum. Gemeinsame Bauteile dürfen wiederverwendet werden, aber nicht einfach derselbe generische Innenraum für alle."
+    },
+    {
+      "id": "P04.03",
+      "phase": 4,
+      "status": "teilweise erledigt",
+      "requirement": "Je nach Fahrzeug: Dashboard, analoge oder digitale Instrumente, Lenkrad, Sitze, Rücksitze, Pedale, Ganghebel, Handbremse, Mittelkonsole, Türverkleidungen, Spiegel, Dachhimmel, Innenbeleuchtung, Radio/Infotainment und passende Materialien."
+    },
+    {
+      "id": "P04.04",
+      "phase": 4,
+      "status": "offen",
+      "requirement": "Kein dauerhaft schwebender HUD-Tacho in der Cockpitansicht. Das tatsächliche Cockpit-Instrument zeigt Geschwindigkeit, Drehzahl, Gang, Tank, Temperaturen und Warnleuchten korrekt an. Nadel und Anzeigen reagieren ohne sinnlose Verzögerung."
+    },
+    {
+      "id": "P04.05",
+      "phase": 4,
+      "status": "teilweise erledigt",
+      "requirement": "Third-Person darf optional eine kleine, abschaltbare Geschwindigkeitsanzeige behalten, wenn sie für die Spielbarkeit benötigt wird."
+    },
+    {
+      "id": "P04.06",
+      "phase": 4,
+      "status": "offen",
+      "requirement": "Navigation und Karte in ein tatsächlich sichtbares Display am Radio/Infotainment einbauen, mit Routenanzeige, Position und Musiksteuerung. Für ältere Autos sinnvoller externer Navi-Halter statt unpassendem modernen Touchscreen."
+    },
+    {
+      "id": "P04.07",
+      "phase": 4,
+      "status": "offen",
+      "requirement": "Scheiben und Seitenscheiben sind durchsichtig. Man muss von außen Fahrer und Innenraum sehen können, abhängig von Spiegelungen, Licht und Tönung."
+    },
+    {
+      "id": "P04.08",
+      "phase": 4,
+      "status": "offen",
+      "requirement": "Innenspiegel und Seitenspiegel sollen brauchbare Ansichten bieten, ggf. mit performancegerechter Renderinglösung."
+    },
+    {
+      "id": "P04.09",
+      "phase": 4,
+      "status": "offen",
+      "requirement": "Ein sichtbarer Fahrer sitzt im Wagen, mit Kopf/Körper, Oberarmen, Unterarmen, Händen und Beinen. Hände greifen ans Lenkrad und folgen präzise der Lenkraddrehung, bei starken Winkeln mit sinnvoller Handbewegung."
+    },
+    {
+      "id": "P04.10",
+      "phase": 4,
+      "status": "offen",
+      "requirement": "Passende Animationen für Schalten, Handbremse und Pedalbedienung sowie subtile Körperreaktionen auf Beschleunigung, Bremsen, Schlaglöcher und Kurven. Keine Clipping-Arme im Dashboard."
+    },
+    {
+      "id": "P04.11",
+      "phase": 4,
+      "status": "teilweise erledigt",
+      "requirement": "Bei kompatiblen Lenkradcontrollern über verfügbare Browser-APIs nutzbare Achsen, Buttons, Kalibrierung, Deadzones und einstellbaren Lenkwinkel anbieten. Keine Funktionen behaupten, die der jeweilige Browser nicht bereitstellt."
+    },
+    {
+      "id": "P04.12",
+      "phase": 4,
+      "status": "offen",
+      "requirement": "Virtuelles Cockpit-Lenkrad für Wheel-Nutzer optional ausblenden. Arme/Hände bei Bedarf ebenfalls ausblendbar. Die Lenkung, Anzeigen und der restliche Innenraum funktionieren dabei weiter."
+    },
+    {
+      "id": "P05.01",
+      "phase": 5,
+      "status": "teilweise erledigt",
+      "requirement": "Exterieurteile: unterschiedliche Front-/Heckstoßstangen, Spoiler, Splitter, Lippen, Schweller, Diffusoren, Kotflügel, Widebody-Kits, Hauben, Grills, Auspuffendrohre, Felgen, Reifen, Lichtdesign, Lacke, Folierungen und Decals."
+    },
+    {
+      "id": "P05.02",
+      "phase": 5,
+      "status": "offen",
+      "requirement": "Interieurteile: Lenkräder, Sportsitze, Schalensitze, Bezüge, Nähte, Farben, Dashboard-Dekore, Schaltknäufe, Handbremsen, Überrollkäfige, Gurte, Instrumente, Zusatzanzeigen und Ambientebeleuchtung."
+    },
+    {
+      "id": "P05.03",
+      "phase": 5,
+      "status": "teilweise erledigt",
+      "requirement": "Scheibentönung mit einstellbarer Stärke und richtiger Lichtdurchlässigkeit; von außen bei passenden Bedingungen weiterhin hineinschauen können. Keine undurchsichtige schwarze Fläche als Ersatz für Glas."
+    },
+    {
+      "id": "P05.04",
+      "phase": 5,
+      "status": "teilweise erledigt",
+      "requirement": "Leistungsupgrades: Motor/ECU, Turbo/Kompressor, Ansaugung, Auspuff, Kühler, Kupplung, Getriebe, Übersetzungen, Differentiale, Fahrwerk, Stabis, Achsgeometrie, Bremsen, Reifen und Aerodynamik."
+    },
+    {
+      "id": "P05.05",
+      "phase": 5,
+      "status": "offen",
+      "requirement": "Optische und mechanische Teile an echte Befestigungspunkte knüpfen, sodass sie bei Schaden abfallen und in der Garage ausgebaut werden können."
+    },
+    {
+      "id": "P05.06",
+      "phase": 5,
+      "status": "teilweise erledigt",
+      "requirement": "Upgrades haben echte Unterschiede und Nachteile: mehr Leistung bedeutet unter Umständen mehr Wärme/Stress; ein Rennfahrwerk kann auf Schlaglöchern schlechter sein; Drift-Reifen unterscheiden sich von Straßenreifen; Bremsen funktionieren je nach Temperatur anders."
+    },
+    {
+      "id": "P05.07",
+      "phase": 5,
+      "status": "teilweise erledigt",
+      "requirement": "Kompatibilität mit dem jeweiligen Fahrzeug prüfen, damit Teile nicht falsch positioniert sind."
+    },
+    {
+      "id": "P06.01",
+      "phase": 6,
+      "status": "offen",
+      "requirement": "In der bestehenden Garage mit dem Fahrzeug interagieren: Haube öffnen, Türen öffnen, Räder, Stoßstangen, Spoiler, Motorraumteile und andere Komponenten gezielt aus- oder wieder einbauen."
+    },
+    {
+      "id": "P06.02",
+      "phase": 6,
+      "status": "offen",
+      "requirement": "Ausbau verändert das Fahrzeug sofort sichtbar und, sofern relevant, physikalisch. Ohne Räder, Kühler oder andere wichtige Komponenten kann nicht normal gefahren werden."
+    },
+    {
+      "id": "P06.03",
+      "phase": 6,
+      "status": "offen",
+      "requirement": "Unter der geöffneten Haube muss ein echter, zum jeweiligen Fahrzeug passender Motorraum zu sehen sein, inklusive Motor, Kühler, Schläuchen, Ansaugung, Lüfter, Lichtmaschine, Antriebriemen und Riemenscheiben sowie bei passendem Fahrzeug Turbo/Kompressor."
+    },
+    {
+      "id": "P06.04",
+      "phase": 6,
+      "status": "offen",
+      "requirement": "Rotoren, Riemen und Riemenscheiben werden durch tatsächliche Motor-RPM angetrieben. Kühlerlüfter schaltet temperaturabhängig. Motorlager erlauben subtile Motorbewegung durch Lastwechsel/Vibration; Animationen skalieren mit Drehzahl."
+    },
+    {
+      "id": "P06.05",
+      "phase": 6,
+      "status": "offen",
+      "requirement": "Motorraumteile einzeln auswählen, Zustand ablesen, ausbauen, reparieren oder ersetzen. Beschädigungen und fehlende Teile werden sichtbar."
+    },
+    {
+      "id": "P06.06",
+      "phase": 6,
+      "status": "offen",
+      "requirement": "Garagenoberfläche für Komponenten, Kosten, Kompatibilität, Verschleiß und Montagezustand. Der Wagen muss nach Umbauten weiterhin korrekt geladen und gespeichert werden."
+    },
+    {
+      "id": "P06.07",
+      "phase": 6,
+      "status": "offen",
+      "requirement": "Interaktion praktikabel halten, keine unnötige Schraube-für-Schraube-Simulation erzwingen, wenn sie dem Spiel keinen Nutzen bringt."
+    },
+    {
+      "id": "P07.01",
+      "phase": 7,
+      "status": "teilweise erledigt",
+      "requirement": "Stilisiertes, kohärentes Cartoon-Bild beibehalten, aber Geometrie, Materialien, Schatten, Texturen und Farbgebung verbessern."
+    },
+    {
+      "id": "P07.02",
+      "phase": 7,
+      "status": "teilweise erledigt",
+      "requirement": "Nächte sollen deutlich dunkler sein als bisher. Ambient Light nach Tageszeit steuern, sodass Straßenlaternen und Scheinwerfer nachts wirklich wichtig werden."
+    },
+    {
+      "id": "P07.03",
+      "phase": 7,
+      "status": "teilweise erledigt",
+      "requirement": "Besserer Mond, sichtbares Mondlicht, Sterne, stimmigere Skyboxen, Wolken, Dämmerung, Sonnenaufgang/-untergang und atmosphärischer Dunst."
+    },
+    {
+      "id": "P07.04",
+      "phase": 7,
+      "status": "teilweise erledigt",
+      "requirement": "Schönere Bloom- und Lens-Flare-Effekte, sichtbare Lichtkegel, Leuchten, Streulicht, Reflexionen, dezente volumetrische Effekte sofern bezahlbar. Nicht alles überstrahlen oder unlesbar machen."
+    },
+    {
+      "id": "P07.05",
+      "phase": 7,
+      "status": "teilweise erledigt",
+      "requirement": "Straßenbeleuchtung, Fenster, Werbeschilder, Tunnel und Garagenbeleuchtung abwechslungsreicher gestalten."
+    },
+    {
+      "id": "P07.06",
+      "phase": 7,
+      "status": "teilweise erledigt",
+      "requirement": "Fahrzeuglichter mit echten Emissive-Materialien und passender Beleuchtung der Umgebung. Abblend-/Fernlicht mit sinnvollen Kegeln und Reichweiten, Rück- und Bremslichter mit unterschiedlichen Intensitäten, Blinker, Nebel-/Rückfahrlicht wo passend."
+    },
+    {
+      "id": "P07.07",
+      "phase": 7,
+      "status": "teilweise erledigt",
+      "requirement": "Keine harte, sofortige Intensitätssprünge für Lichter, bei denen ein natürlicher An-/Abglühverlauf sinnvoll ist. Halogen, LED und andere Lichtarten dürfen unterschiedlich schnell reagieren; Bremslichtreaktion muss trotzdem direkt erkennbar bleiben."
+    },
+    {
+      "id": "P07.08",
+      "phase": 7,
+      "status": "teilweise erledigt",
+      "requirement": "Defekte Lampen funktionieren nicht mehr. Glühende Bremsen, Motorraumbeleuchtung und Cockpitbeleuchtung müssen auf Zustände reagieren."
+    },
+    {
+      "id": "P07.09",
+      "phase": 7,
+      "status": "teilweise erledigt",
+      "requirement": "Regen, nasse Oberflächen, Pfützen, Nebel und Wetterwechsel mit passenden Lichtreflexionen und Gripveränderungen, sofern die bestehenden Wettersysteme sinnvoll erweitert werden können."
+    },
+    {
+      "id": "P07.10",
+      "phase": 7,
+      "status": "teilweise erledigt",
+      "requirement": "Custom Textures und detailliertere 3D-Modelle zulässig, wenn sie zum Cartoon-Stil passen und hochwertig genug sind. Low-poly ist keine Pflicht."
+    },
+    {
+      "id": "P08.01",
+      "phase": 8,
+      "status": "teilweise erledigt",
+      "requirement": "Bestehende Karte erweitern, nicht ersetzen. Die gut fahrbaren Kurven der Rennstrecke als Qualitätsreferenz für Straßen in der offenen Welt verwenden."
+    },
+    {
+      "id": "P08.02",
+      "phase": 8,
+      "status": "teilweise erledigt",
+      "requirement": "Mehr kurvige City-Roads, schnelle Verbindungsstraßen, Höhenwechsel, Landstraßen, Tunnel, Brücken, lange Kurvenkombinationen und attraktive Strecken zum Fahren."
+    },
+    {
+      "id": "P08.03",
+      "phase": 8,
+      "status": "teilweise erledigt",
+      "requirement": "Richtige Bergregionen mit Serpentinen, Pässen, Kehren, Steigungen, Gefällen, Hangstraßen, Felswänden, Leitplanken und Aussichtspunkten."
+    },
+    {
+      "id": "P08.04",
+      "phase": 8,
+      "status": "teilweise erledigt",
+      "requirement": "Bergstraßen folgen nachvollziehbar dem Gelände und sind baulich in die Hänge integriert, statt wie schwebende flache Bänder auszusehen."
+    },
+    {
+      "id": "P08.05",
+      "phase": 8,
+      "status": "teilweise erledigt",
+      "requirement": "Stadt, Vororte, Industrie, Berge, Land, Autobahn, Rennstrecke und Aussichtspunkte über eine zusammenhängende sinnvolle Straßenführung verbinden."
+    },
+    {
+      "id": "P08.06",
+      "phase": 8,
+      "status": "teilweise erledigt",
+      "requirement": "Road-Meshes, Fahrbahnmarkierungen, Leitplanken, Böschungen, Bäume, Felsen und Straßenschäden konsistent aufbauen."
+    },
+    {
+      "id": "P08.07",
+      "phase": 8,
+      "status": "teilweise erledigt",
+      "requirement": "Mehr abwechslungsreiche, auch zufällig entdeckbare Strecken für Cruisen, sportliches Fahren und Driften. Zufall darf gute Straßenführung nicht ersetzen."
+    },
+    {
+      "id": "P09.01",
+      "phase": 9,
+      "status": "teilweise erledigt",
+      "requirement": "Die vorhandene City glaubwürdiger, dichter, größer und individueller gestalten. GTA IV ist Referenz für dichte und abwechslungsreiche Stadtbereiche."
+    },
+    {
+      "id": "P09.02",
+      "phase": 9,
+      "status": "teilweise erledigt",
+      "requirement": "Nicht nur regelmäßig rechteckige Blöcke. Schrägstraßen, Kurven, verwinkelte Gassen, unregelmäßige Blocks, Kreuzungen unterschiedlicher Größe, Einbahnstraßen und organische Übergänge."
+    },
+    {
+      "id": "P09.03",
+      "phase": 9,
+      "status": "teilweise erledigt",
+      "requirement": "Eigenständige Downtown mit Hochhäusern, Wohnviertel, Gewerbe, Industrie, Außenbezirke, Parkhäuser, Parkanlagen, ggf. Uferpromenade und Autobahnknoten."
+    },
+    {
+      "id": "P09.04",
+      "phase": 9,
+      "status": "teilweise erledigt",
+      "requirement": "Gebäude unterscheiden sich in Höhe, Grundriss, Dach, Fassaden, Farben, Ladenfronten und Beleuchtung. Nicht dieselben wenigen Modelle offensichtlich wiederholen."
+    },
+    {
+      "id": "P09.05",
+      "phase": 9,
+      "status": "teilweise erledigt",
+      "requirement": "Kontrollierte prozedurale Variation plus bewusst gestaltete Landmarken, damit die Stadt nicht wie ein zufälliges, gleichförmiges Raster aussieht."
+    },
+    {
+      "id": "P09.06",
+      "phase": 9,
+      "status": "teilweise erledigt",
+      "requirement": "Beschilderung, Ampeln, Markierungen, parkende Fahrzeuge, Straßenschilder, Laternen, Zäune, Container, Bänke, Baustellen, Vegetation und sonstige Details."
+    },
+    {
+      "id": "P09.07",
+      "phase": 9,
+      "status": "teilweise erledigt",
+      "requirement": "Bezirke sollen durch Gebäude, Straßen, Dichte, Licht und Audio erkennbar verschieden sein."
+    },
+    {
+      "id": "P10.01",
+      "phase": 10,
+      "status": "offen",
+      "requirement": "Hinter den spielbaren Grenzen entfernte Berge, Hügel, Wälder und andere Landschaftssilhouetten sichtbar machen, damit die Karte nicht abrupt endet."
+    },
+    {
+      "id": "P10.02",
+      "phase": 10,
+      "status": "teilweise erledigt",
+      "requirement": "LOD für Gebäude, Vegetation, Verkehr, Fahrzeugteile und Terrain. Fernobjekte mit deutlich billigerer Darstellung, saubere Überblendungen statt sichtbarem Popping."
+    },
+    {
+      "id": "P10.03",
+      "phase": 10,
+      "status": "teilweise erledigt",
+      "requirement": "Frustum-/Distance-Culling, Instancing, Objekt-Pooling, passende Texturauflösungen, Schatten-LOD, ggf. Impostors/Billboards und räumliche Partitionierung."
+    },
+    {
+      "id": "P10.04",
+      "phase": 10,
+      "status": "offen",
+      "requirement": "Weltabschnitte in Abhängigkeit von der Position laden und entladen, ohne nerviges sichtbares Nachladen."
+    },
+    {
+      "id": "P10.05",
+      "phase": 10,
+      "status": "teilweise erledigt",
+      "requirement": "KI/Physik entfernter Autos vereinfachen und nur nahe oder relevante Objekte vollständig simulieren."
+    },
+    {
+      "id": "P10.06",
+      "phase": 10,
+      "status": "offen",
+      "requirement": "Das Prinzip von GTA-Fernsicht und Distant Horizons als Inspiration nutzen, nicht die Technik blind übernehmen."
+    },
+    {
+      "id": "P11.01",
+      "phase": 11,
+      "status": "teilweise erledigt",
+      "requirement": "Fahrzeuge sollen Fahrspuren einhalten, Kurven vorausschauend nehmen und sanfter lenken, beschleunigen und bremsen."
+    },
+    {
+      "id": "P11.02",
+      "phase": 11,
+      "status": "teilweise erledigt",
+      "requirement": "Kreuzungen, Ampeln, Vorfahrt, Spurwechsel, Überholen, Auffahrten, Blockaden und Hindernisse besser behandeln."
+    },
+    {
+      "id": "P11.03",
+      "phase": 11,
+      "status": "teilweise erledigt",
+      "requirement": "Verschiedene Fahrpersönlichkeiten: defensiv, normal, ungeduldig, schneller oder aggressiver, aber nachvollziehbar."
+    },
+    {
+      "id": "P11.04",
+      "phase": 11,
+      "status": "teilweise erledigt",
+      "requirement": "Unterschiedliche Geschwindigkeiten je nach Straße, Wetter, Verkehrsfluss und Kurvenradius."
+    },
+    {
+      "id": "P11.05",
+      "phase": 11,
+      "status": "teilweise erledigt",
+      "requirement": "Bessere Routenplanung auf neuem Straßennetz und auf Bergstraßen. Keine häufigen Staus durch feststeckende Fahrzeuge oder sinnlose Wendemanöver."
+    },
+    {
+      "id": "P11.06",
+      "phase": 11,
+      "status": "teilweise erledigt",
+      "requirement": "Verkehrsdichte nach Bezirk und Tageszeit variieren; abgestellte und fahrende Autos sinnvoll verteilen."
+    },
+    {
+      "id": "P11.07",
+      "phase": 11,
+      "status": "teilweise erledigt",
+      "requirement": "Schäden oder andere unerwartete Hindernisse erkennen, sofern das Performancebudget es erlaubt."
+    },
+    {
+      "id": "P12.01",
+      "phase": 12,
+      "status": "teilweise erledigt",
+      "requirement": "Third-Person-Kamera darf nicht mehr steif und linear am Fahrzeug hängen. Adaptive Kameradistanz, leichtes Camera Lag, Kurven-Offset, Anfahr-/Bremsreaktion, Roll-/Nick-Reaktion und kontrollierte Rotation."
+    },
+    {
+      "id": "P12.02",
+      "phase": 12,
+      "status": "teilweise erledigt",
+      "requirement": "Geschwindigkeit kann FOV leicht verändern. Dezente Vibration, periphere Bewegung, Bewegungsunschärfe und natürliche Dämpfung der Kamera."
+    },
+    {
+      "id": "P12.03",
+      "phase": 12,
+      "status": "teilweise erledigt",
+      "requirement": "Beim Lenken, Driften, Lastwechsel oder Fahren über Wellen leichte, zum Fahrzeug passende Bewegungen. Die Kamera muss steuerbar und ruhig genug bleiben."
+    },
+    {
+      "id": "P12.04",
+      "phase": 12,
+      "status": "teilweise erledigt",
+      "requirement": "Cockpitkamera mit subtiler Kopfbewegung, Sichtverlagerung in Kurven, Road Bobbing und Brems-/Beschleunigungsreaktion; keine übertriebene Motion Sickness."
+    },
+    {
+      "id": "P12.05",
+      "phase": 12,
+      "status": "teilweise erledigt",
+      "requirement": "Speziell bei hoher Geschwindigkeit deutlich stärkeres Gefühl von Geschwindigkeit durch Kamera, Straße, Audio und Vibration."
+    },
+    {
+      "id": "P12.06",
+      "phase": 12,
+      "status": "teilweise erledigt",
+      "requirement": "Komfort-Einstellungen dürfen die Intensität solcher Kameraeffekte beeinflussen. Das ist kein Ersatz für die realistische Basis-Fahrphysik."
+    },
+    {
+      "id": "P13.01",
+      "phase": 13,
+      "status": "teilweise erledigt",
+      "requirement": "Differenzierte Motorsounds nach Motorbauart, Drehzahl, Last, Auspuff, Ansaugung und Tuningzustand."
+    },
+    {
+      "id": "P13.02",
+      "phase": 13,
+      "status": "teilweise erledigt",
+      "requirement": "Reifenquietschen, Scrubbing, Wheelspin, Untergrund, Fahrwerk, Getriebe, Kupplung, Turbo und Schäden hörbar machen. Auspuffknallen nur bei passendem Motor-/Tuningzustand."
+    },
+    {
+      "id": "P13.03",
+      "phase": 13,
+      "status": "teilweise erledigt",
+      "requirement": "Windgeräusche skalieren nach Fahrzeuggeschwindigkeit. Third-Person deutlich offener; Cockpit gedämpft, aber wahrnehmbar."
+    },
+    {
+      "id": "P13.04",
+      "phase": 13,
+      "status": "teilweise erledigt",
+      "requirement": "Offene, fehlende oder zerbrochene Fenster ändern Lautstärke und Charakter des Windes. Tunnel und Gebäude beeinflussen das Klangbild."
+    },
+    {
+      "id": "P13.05",
+      "phase": 13,
+      "status": "teilweise erledigt",
+      "requirement": "Mehr Musik, sinnvoll unterschiedliche Radiosender, Track- und Stationswechsel und Steuerung über das in-car-Radio."
+    },
+    {
+      "id": "P13.06",
+      "phase": 13,
+      "status": "teilweise erledigt",
+      "requirement": "Musik nur mit eigener oder rechtmäßig nutzbarer Lizenz. Keine urheberrechtlich geschützten Songs einfach übernehmen."
+    },
+    {
+      "id": "P13.07",
+      "phase": 13,
+      "status": "teilweise erledigt",
+      "requirement": "Stadtatmosphäre, Verkehr, Garagen, Regen, Wind, Tunnelhall, Tageszeit und Bezirke abwechslungsreicher vertonen."
+    },
+    {
+      "id": "P13.08",
+      "phase": 13,
+      "status": "teilweise erledigt",
+      "requirement": "Mischung so gestalten, dass bei hohem Tempo Wind, Motor und Fahrbahn zusammen mehr Speed vermitteln."
+    },
+    {
+      "id": "P14.01",
+      "phase": 14,
+      "status": "offen",
+      "requirement": "Home-Garage: echtes Tor öffnet sich, der Wagen fährt sichtbar hinaus, Kamera geht flüssig in Spielansicht über. Nicht einfach vor der Garage aufploppen."
+    },
+    {
+      "id": "P14.02",
+      "phase": 14,
+      "status": "offen",
+      "requirement": "Service/Motor Works (oder tatsächlicher Ingame-Werkstattname): Fahrzeug wird hineingefahren; Übergang blendet aus, Reparatur wird berechnet und durchgeführt; Einblendung zeigt das Fahrzeug beim Ausfahren."
+    },
+    {
+      "id": "P14.03",
+      "phase": 14,
+      "status": "offen",
+      "requirement": "Tuning-Shop: Auslöser führt durch ein öffnendes Garagentor in eine richtige Innenraumszene mit Fahrzeug, statt in einer leeren Markierung sofort ein Menü zu öffnen."
+    },
+    {
+      "id": "P14.04",
+      "phase": 14,
+      "status": "offen",
+      "requirement": "Änderungen am Fahrzeug sind beim Ausfahren sichtbar. Tor, Licht, Sounds und Kameras sind auf die Szene abgestimmt."
+    },
+    {
+      "id": "P14.05",
+      "phase": 14,
+      "status": "offen",
+      "requirement": "Übergänge sollen kurz, flüssig, skippbar und gegen doppelte Eingabe abgesichert sein. Keine kaputten Spawnpositionen oder verschwundenen Fahrzeuge."
+    },
+    {
+      "id": "P15.01",
+      "phase": 15,
+      "status": "teilweise erledigt",
+      "requirement": "Der Gesamteindruck soll offener, abwechslungsreicher und bewohnter sein, ähnlich den freien Fahrwelten aus The Crew Motorfest, GTA und NFS Heat, bei weiterhin eigener Sideways-Identität."
+    },
+    {
+      "id": "P15.02",
+      "phase": 15,
+      "status": "teilweise erledigt",
+      "requirement": "Mehr sinnvoll parkende Fahrzeuge und zu Tageszeit/Ort passende Verkehrsdichte."
+    },
+    {
+      "id": "P15.03",
+      "phase": 15,
+      "status": "teilweise erledigt",
+      "requirement": "Funktionierende Ampeln, zu Tageszeiten schaltende Straßenlaternen, animierte Tore und andere kleine Umgebungsbewegungen."
+    },
+    {
+      "id": "P15.04",
+      "phase": 15,
+      "status": "teilweise erledigt",
+      "requirement": "Interaktive Waschanlagen, Tankstellen, Werkstätten, Parkplätze, Aussichtspunkte, Rastplätze und entdeckbare Orte, soweit es zum vorhandenen Spiel passt."
+    },
+    {
+      "id": "P15.05",
+      "phase": 15,
+      "status": "teilweise erledigt",
+      "requirement": "Mehr regionale Eigenheiten, Wetter, Lichter, Ambient-Sounds, verschiedene Straßen und besondere Orte. Nicht alle Blöcke, Gebäude und Umgebungen gleich gestalten."
+    },
+    {
+      "id": "P15.06",
+      "phase": 15,
+      "status": "offen",
+      "requirement": "Fußgänger nur, falls technisch sinnvoll und sauber performant umsetzbar. Keine leeren Attrappen oder zufällige KI-Popups."
+    },
+    {
+      "id": "P16.01",
+      "phase": 16,
+      "status": "teilweise erledigt",
+      "requirement": "Bauteilzustände, Reifen, Reparaturen, Tuning, aus- oder eingebaute Teile, Einstellungen und Fahrzeugzustand sollen bei vorhandener Speichermöglichkeit zuverlässig persistieren."
+    },
+    {
+      "id": "P16.02",
+      "phase": 16,
+      "status": "teilweise erledigt",
+      "requirement": "Werkstatt ersetzt die tatsächlich defekten Baugruppen, statt immer einen unspezifischen Komplettschaden zu reparieren."
+    },
+    {
+      "id": "P16.03",
+      "phase": 16,
+      "status": "teilweise erledigt",
+      "requirement": "Diagnosebildschirm mit Komponentenzustand, Temperatur, Verschleiß und konkreten Fehlern."
+    },
+    {
+      "id": "P16.04",
+      "phase": 16,
+      "status": "teilweise erledigt",
+      "requirement": "Fahrzeuge können verschlissen sein, ohne optisch zerstört zu sein; optische Schäden können wiederum mechanische Folgen haben."
+    },
+    {
+      "id": "P16.05",
+      "phase": 16,
+      "status": "teilweise erledigt",
+      "requirement": "Tuning beeinflusst Sound, Handling, Motorraum, Cockpit, Verschleiß, Gewicht und bei Bedarf Kamerabewegung."
+    },
+    {
+      "id": "P16.06",
+      "phase": 16,
+      "status": "teilweise erledigt",
+      "requirement": "Schäden an Lichtern ändern Ausleuchtung, zerbrochene Fenster Windgeräusche, fehlende Spoiler gegebenenfalls Aerodynamik, kaputte Reifen Handling und fehlende Teile die Garagenansicht."
+    },
+    {
+      "id": "P16.07",
+      "phase": 16,
+      "status": "teilweise erledigt",
+      "requirement": "Straßen-, Wetter- und Reifenzustand beeinflussen sich sinnvoll gegenseitig."
+    },
+    {
+      "id": "P16.08",
+      "phase": 16,
+      "status": "teilweise erledigt",
+      "requirement": "Kurze, verständliche Rückmeldungen für mechanische Probleme, ohne die Fahransicht mit HUD-Anzeigen zu überladen."
+    },
+    {
+      "id": "P17.01",
+      "phase": 17,
+      "status": "teilweise erledigt",
+      "requirement": "Konstante, möglichst hohe Bildrate auf typischen Zielgeräten anstreben; keine willkürliche FPS-Garantie ohne Messungen."
+    },
+    {
+      "id": "P17.02",
+      "phase": 17,
+      "status": "teilweise erledigt",
+      "requirement": "GPU- und CPU-Kosten von Fahrzeugen, Schatten, Lichtern, Wettersystem, Verkehr, LOD, Partikeln und Physik messen und gezielt senken."
+    },
+    {
+      "id": "P17.03",
+      "phase": 17,
+      "status": "teilweise erledigt",
+      "requirement": "Adaptive Grafikqualität und sinnvolle Optionen für Schatten, Reflexionen, Partikel, Verkehrsdichte, FOV und Kameraeffekte. Physik nicht durch einen Arcade/Realistic-Settings-Schalter austauschen."
+    },
+    {
+      "id": "P17.04",
+      "phase": 17,
+      "status": "teilweise erledigt",
+      "requirement": "Eingaben von Tastatur, Controller und kompatiblen Wheels testen. Konfigurierbare Belegung, Deadzones und Sensitivität, wenn die vorhandene Architektur dies ermöglicht."
+    },
+    {
+      "id": "P17.05",
+      "phase": 17,
+      "status": "teilweise erledigt",
+      "requirement": "Innenraum-Kamera soll nachts und tagsüber spielbar sein. Spiegel, Glas, Sitze, Fahrerarme, Instrumente und Tönung dürfen die Sicht nicht unerwartet blockieren."
+    },
+    {
+      "id": "P17.06",
+      "phase": 17,
+      "status": "teilweise erledigt",
+      "requirement": "Keine fehlenden Texturen, z-fighting, sichtbaren LOD-Sprünge, nachladenden Schatten, falschen Kollisionskörper oder dauerhaften Partikellecks."
+    },
+    {
+      "id": "P17.07",
+      "phase": 17,
+      "status": "teilweise erledigt",
+      "requirement": "Vorhandene Spielstände und Fahrzeugdaten nach Möglichkeit migrieren; nicht ohne ausdrücklichen Grund löschen."
+    },
+    {
+      "id": "P18.01",
+      "phase": 18,
+      "status": "teilweise erledigt",
+      "requirement": "Nach jeder Phase die vorhandenen Funktionen prüfen und sicherstellen, dass das Spiel spielbar bleibt."
+    },
+    {
+      "id": "P18.02",
+      "phase": 18,
+      "status": "teilweise erledigt",
+      "requirement": "Konkrete End-to-End-Szenarien testen:"
+    },
+    {
+      "id": "P18.03",
+      "phase": 18,
+      "status": "teilweise erledigt",
+      "requirement": "Serienauto fährt griffig und driftet erst bei passender Belastung; Drift-Kit verändert Fahrverhalten nachvollziehbar."
+    },
+    {
+      "id": "P18.04",
+      "phase": 18,
+      "status": "offen",
+      "requirement": "Langer Burnout erhitzt einen Reifen; Verschleiß, Gripverlust und schließlich Blowout können auftreten; Fahrverhalten reagiert darauf."
+    },
+    {
+      "id": "P18.05",
+      "phase": 18,
+      "status": "teilweise erledigt",
+      "requirement": "Frontalaufprall beschädigt Kühler; Motortemperatur steigt; Reparatur des Kühlers behebt Ursache, ein bereits beschädigter Motor braucht ggf. gesonderte Reparatur."
+    },
+    {
+      "id": "P18.06",
+      "phase": 18,
+      "status": "teilweise erledigt",
+      "requirement": "Kupplung verschleißt durch Missbrauch, rutscht und kann ausfallen. Heiße Bremsen verzögern schlechter."
+    },
+    {
+      "id": "P18.07",
+      "phase": 18,
+      "status": "offen",
+      "requirement": "Tür oder Spoiler fällt durch Unfall ab und fehlt anschließend sichtbar am Fahrzeug."
+    },
+    {
+      "id": "P18.08",
+      "phase": 18,
+      "status": "offen",
+      "requirement": "Cockpit jedes spielbaren Autos zeigt korrekte RPM/Geschwindigkeit; Radio-Map und Lenkrad-/Fahreranimation sind nutzbar."
+    },
+    {
+      "id": "P18.09",
+      "phase": 18,
+      "status": "offen",
+      "requirement": "Ausgeblendetes virtuelles Lenkrad beeinträchtigt die Fahrzeugsteuerung nicht."
+    },
+    {
+      "id": "P18.10",
+      "phase": 18,
+      "status": "offen",
+      "requirement": "Die Garage zeigt den Motor, dessen Riemen mit der Drehzahl laufen; entfernte Komponenten bleiben entfernt und haben gegebenenfalls Folgen."
+    },
+    {
+      "id": "P18.11",
+      "phase": 18,
+      "status": "teilweise erledigt",
+      "requirement": "Tag/Nacht verändert Licht. Scheinwerfer beleuchten bei Dunkelheit die Straße, Bremslicht reagiert und kaputte Lampen bleiben aus."
+    },
+    {
+      "id": "P18.12",
+      "phase": 18,
+      "status": "teilweise erledigt",
+      "requirement": "Neue Bergstraßen folgen dem Terrain, Stadtteile sind weniger gleichförmig, Verkehr kann sie befahren."
+    },
+    {
+      "id": "P18.13",
+      "phase": 18,
+      "status": "offen",
+      "requirement": "Distant Terrain und LOD verhindern sichtbare Weltgrenzen ohne auffällige Pop-ins."
+    },
+    {
+      "id": "P18.14",
+      "phase": 18,
+      "status": "teilweise erledigt",
+      "requirement": "Kamera und Wind vermitteln mehr Geschwindigkeit in Cockpit und Third Person."
+    },
+    {
+      "id": "P18.15",
+      "phase": 18,
+      "status": "offen",
+      "requirement": "Garage-, Service- und Tuning-Übergänge öffnen Tore, zeigen das Fahrzeug und enden mit korrektem Spawn."
+    },
+    {
+      "id": "P18.16",
+      "phase": 18,
+      "status": "teilweise erledigt",
+      "requirement": "Spielstände speichern Schäden, Ausbauteile und Upgrades korrekt."
+    },
+    {
+      "id": "P18.17",
+      "phase": 18,
+      "status": "teilweise erledigt",
+      "requirement": "Für nicht umgesetzte Punkte konkrete technische Gründe und fehlende Arbeiten auflisten, ohne Fertigstellung vorzutäuschen."
+    }
+  ]
+}

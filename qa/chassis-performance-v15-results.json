@@ -1,0 +1,19 @@
+{
+  "version": 15,
+  "status": "measured",
+  "current": {
+    "steps": 1200,
+    "meanMs": 2.5471587499999955,
+    "medianMs": 2.4839999999999236,
+    "p95Ms": 3.6304999999997563
+  },
+  "limits": [
+    "Node.js wall-clock timings on this machine for one player chassis and its native engine. Excludes browser GPU, audio device, world, AI and frame scheduling; no FPS guarantee."
+  ],
+  "baselineV14": {
+    "steps": 1200,
+    "meanMs": 3.3281374999999995,
+    "medianMs": 3.078599999999824,
+    "p95Ms": 5.1239000000005035
+  }
+}

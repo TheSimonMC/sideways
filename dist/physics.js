@@ -1,3 +1,4 @@
+import {steeringDemand,tyreGrip} from './chassis-setup.js';
 /* MotorLab owns the crank and combustion. This solver exchanges finite impulses
    with that same shaft, four rolling wheels, brakes and a spring/damper chassis.
    Audio may supply the sole engine stepper; never run two engine clocks. */
@@ -9,15 +10,10 @@ const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
 const smooth=x=>(x=clamp(x,0,1),x*x*(3-2*x));
 const mix=(a,b,t)=>a+(b-a)*t;
 const TAU=Math.PI*2, G=9.81;
-const TUNES={
- street:{front:1.18,rear:1.19,assist:2.7,tc:.50,driftGrip:.86},
- drift:{front:1.19,rear:1.02,assist:2.1,tc:.08,driftGrip:.82},
- grip:{front:1.28,rear:1.34,assist:3.3,tc:.85,driftGrip:.94}
-};
 export class CarPhysics {
  constructor(MotorLab,build=resolveBuild()){
   this.MotorLab=MotorLab;this._advanceEngine=null;this._groundSampler=null;this._conditions=new Map();this.condition=null;this._debrisId=0;this.damageEnabled=true;this._mechanicalEvents=[];
-  this.setTune('street');this.setBuild(build);
+  this.setBuild(build);
  }
  setEngineAdvance(fn){this._advanceEngine=typeof fn==='function'?fn:null;return this;}
  setGroundSampler(fn){this._groundSampler=typeof fn==='function'?fn:null;return this;}
@@ -42,7 +38,8 @@ export class CarPhysics {
   this.reset(old?.x??0,old?.z??0,old?.heading??0);
   return this;
  }
- setTune(name){this.tuneName=TUNES[name]?name:'street';this.tune=TUNES[this.tuneName];return this;}
+ // Legacy integration hook: old handling names have no effect on physics.
+ setTune(){return this;}
  _ground(x,z,defaultGrip=1){
   const sample=this._groundSampler?.(x,z);
   const grip=clamp(typeof sample==='number'?defaultGrip:sample?.grip??defaultGrip,.2,1.5);
@@ -58,7 +55,7 @@ export class CarPhysics {
   this.engine.load(this._warmState);this.engineState=this.engine.getState();
   this._omega=this.engineState.omega;this._wheelOmega=[0,0,0,0];this._fuelMeter=this.engineState.totals?.fuelInjected??0;this._heatMeter={wall:this.engineState.totals?.wallHeat??0,friction:this.engineState.totals?.frictionWork??0,load:this.engineState.totals?.loadWork??0};
   if(this.condition.engineFault||this.condition.fuelLitres<=0){this.engine.stop();this.engine.applyShaftImpulse(-this._omega*this.engineState.config.inertia);this.engineState=this.engine.getState();this._omega=0;}
-  this._shift=this._reverseHold=this._driftTimer=this._shiftMessageTime=0;
+  this._shift=this._reverseHold=this._shiftMessageTime=0;
   this._shiftUpHeld=this._shiftDownHeld=false;this._accelLong=this._accelLat=0;
   this._tc=1;this._autoEngagement=0;this._stallTime=0;this._stalled=!!this.condition.engineFault||this.condition.fuelLitres<=0;this._nitrousBlend=0;this._nitrousBlocked=false;this._nitrousCooldown=0;
   this._heaveVelocity=this._pitchVelocity=this._rollVelocity=0;
@@ -101,7 +98,7 @@ export class CarPhysics {
  _publishCondition(){
   if(!this.state||!this.condition)return;
   const c=this.condition;Object.assign(this.state,{carId:c.carId,engineHealth:c.engineHealth,bodyHealth:c.bodyHealth,bodyDamage:c.bodyDamage,gearboxHealth:c.gearboxHealth,wheelHealth:c.wheelHealth,wheelAttached:c.wheelAttached,
-   suspensionHealth:c.suspensionHealth,brakeHealth:c.brakeHealth,wheelToe:c.wheelToe,wheelCamber:c.suspensionHealth.map((health,i)=>(i%2?1:-1)*(1-health)*.14),damageEnabled:this.damageEnabled,
+   suspensionHealth:c.suspensionHealth,brakeHealth:c.brakeHealth,wheelToe:c.wheelToe,wheelCamber:c.suspensionHealth.map((health,i)=>(i%2?1:-1)*((1-health)*.14-this.build.physics.alignmentCamber[i<2?0:1])),damageEnabled:this.damageEnabled,
    fuelLitres:c.fuelLitres,fuelCapacity:c.fuelCapacity,fuelConsumedLitres:c.fuelConsumedLitres,fuelStarved:c.fuelLitres<=0,engineFault:c.engineFault,damageRevision:c.damageRevision,damageEnergyJ:c.damageEnergyJ,distanceMeters:c.distanceMeters,maxRpm:c.maxRpm,
    mechanical:this._mechanics.diagnostics,clutchTemperature:c.mechanical.temperatures.clutch,brakeTemps:c.mechanical.temperatures.brakes,tyreTemps:c.mechanical.temperatures.tyres});
  }
@@ -211,10 +208,10 @@ export class CarPhysics {
    this._previousGround[i]=p.height;samples[i]=p;
   }
   let total=0,pitchMoment=0,rollMoment=0;
-  const aero=s.speed*s.speed*.55;
+  const aero=s.speed*s.speed*this.build.physics.aeroDownforce;
   for(let i=0;i<4;i++){
    const [x,z]=this._positions[i],load0=this._staticLoads[i],d=deflections[i],opposite=i^1,health=this.condition.suspensionHealth[i],cornerTravel=travel*(.5+.5*health),spring=this.springRate*(.4+.6*health);
-   const antiroll=(d-deflections[opposite])*this.antiRollRate*(.45+.55*health);
+   const antiroll=(d-deflections[opposite])*this.antiRollRate*(i<2?this.build.physics.frontRollFactor:this.build.physics.rearRollFactor)*(.45+.55*health);
    const bump=Math.max(0,d-cornerTravel*.85)*this.springRate*7;
    const raw=load0*(.65+.35*health)+d*spring+velocities[i]*this.damperRate*(.12+.88*health)+antiroll+bump;
    const attached=this.condition.wheelAttached[i],load=!attached||d< -cornerTravel?0:clamp(raw,0,load0*5.5);
@@ -245,7 +242,7 @@ export class CarPhysics {
   dt=clamp(Number.isFinite(dt)?dt:0,0,1/30);if(!dt)return this.state;
   // Substep coarse callers as well as the game's fixed 120 Hz loop.
   if(dt>1/120+1e-9){const n=Math.ceil(dt*120);for(let i=0;i<n;i++)this.update(dt/n,input,surface);return this.state;}
-  const s=this.state,tune=this.tune,sn=Math.sin(s.heading),cs=Math.cos(s.heading),assists=input.assists!==false;
+  const s=this.state,sn=Math.sin(s.heading),cs=Math.cos(s.heading),assists=input.assists!==false;
   let v=s.vx*sn+s.vz*cs,u=s.vx*cs-s.vz*sn,speed=Math.hypot(v,u);
   let pedal=clamp(input.throttle||0,0,1),brake=clamp(input.brake||0,0,1);
   const steerInput=clamp(input.steer||0,-1,1),handbrake=clamp(Number(input.handbrake)||0,0,1);
@@ -255,7 +252,6 @@ export class CarPhysics {
   Object.assign(s,{surface:road,transmission,manualClutch,handbrake});
   this._shift=Math.max(0,this._shift-dt);this._shiftMessageTime=Math.max(0,this._shiftMessageTime-dt);
   if(!this._shiftMessageTime){s.shiftMessage='';s.shiftRejected=false;}
-  this._driftTimer=Math.max(0,this._driftTimer-dt);if(handbrake>.15&&speed>6)this._driftTimer=.85;
   const up=!!input.shiftUp&&!this._shiftUpHeld,down=!!input.shiftDown&&!this._shiftDownHeld;
   this._shiftUpHeld=!!input.shiftUp;this._shiftDownHeld=!!input.shiftDown;
   const context={v,speed,manualClutch,clutchPedal};
@@ -271,16 +267,15 @@ export class CarPhysics {
    }else if(pedal>.1&&v> -.8)this._requestGear(1,{...context,report:false});
    if(s.gear===-1){const p=pedal;pedal=brake;brake=p;}
   }
-  const rpm=Math.max(0,this._omega*60/TAU),beta=Math.atan2(u,Math.max(3,Math.abs(v)));
-  const driftActive=this._driftTimer>0||(Math.abs(beta)>.14&&speed>7&&pedal>.3);
+  const rpm=Math.max(0,this._omega*60/TAU);
   if(transmission==='auto'&&s.gear>0&&this._shift===0){
    const roadRpm=Math.abs(v)/this.wheelRadius*this._ratio(s.gear)*60/TAU;
    if(rpm>this.redlineRpm*.93&&roadRpm>this.redlineRpm*.73&&s.gear<this.gears.length&&Math.abs(v)>9&&!handbrake)this._requestGear(s.gear+1,{...context,report:false});
    else if(rpm<this.redlineRpm*.33&&s.gear>1)this._requestGear(s.gear-1,{...context,report:false});
   }
-  const ratio=this._ratio(s.gear),maxSteer=.57/(1+speed/24),counterGain=this.tuneName==='drift'?.36:this.tuneName==='grip'?.62:.5;
-  const counter=assists&&v>4?clamp(beta*counterGain,-.28,.28)*smooth(speed/12):0;
-  s.steer+=(steerInput*maxSteer+counter-s.steer)*(1-Math.exp(-dt*(speed>15?8:11)));
+  const ratio=this._ratio(s.gear),steering=steeringDemand(steerInput,speed,this.build.physics,input.deviceKind);
+  const steerRate=(Math.abs(steerInput)<.01?steering.returnRate:steering.rate)*15.5/this.build.physics.steeringRatio;
+  s.steer+=(steering.target-s.steer)*(1-Math.exp(-dt*steerRate));
   // NOS is a declared arcade shaft-power adapter, not simulated nitrous
   // chemistry. The valve has no speed, gear, brake, clutch or RPM interlock.
   const requestedBoost=!!input.boost&&s.boost>0;
@@ -295,7 +290,7 @@ export class CarPhysics {
   const tyreSlip=Math.max(Math.abs(s.wheelSlipL),Math.abs(s.wheelSlipR));
   // Simultaneous service brake and throttle is a deliberate left-foot/burnout
   // manoeuvre; traction control yields, but no grip or power is invented.
-  const tcTarget=!assists||(this.tuneName==='drift'&&driftActive)||brake>.1?1:clamp(1-Math.max(0,tyreSlip-.17)*tune.tc*1.5,.4,1);
+  const tcTarget=!assists||brake>.1?1:clamp(1-Math.max(0,tyreSlip-.17)*this.build.physics.tractionControl*1.5,.25,1);
   this._tc+=(tcTarget-this._tc)*Math.min(1,dt*9);
   s.throttle+=(pedal*this._tc-s.throttle)*Math.min(1,dt*15);s.brake=brake;
   const restartRequested=!!input.starter&&!this.condition.engineFault&&(!manualClutch||ratio===0||clutchPedal>.65);
@@ -336,7 +331,7 @@ export class CarPhysics {
   const normalLoad=s.wheelLoads.reduce((sum,load)=>sum+load,0);
   const contactFraction=clamp(normalLoad/(this.mass*G),0,1);
   const rollingLoad=s.suspension.reduce((sum,p)=>sum+p.load*(.014+Math.max(0,1-p.grip)*.08),0);
-  const rolling=Math.tanh(v*8)*rollingLoad*(this.build.physics.rollingResistanceFactor??1),drag=.43*v*Math.abs(v)*(1+(1-this.condition.bodyHealth)*.35);
+  const rolling=Math.tanh(v*8)*rollingLoad*(this.build.physics.rollingResistanceFactor??1),drag=this.build.physics.aeroDrag*v*Math.abs(v)*(1+(1-this.condition.bodyHealth)*.35);
   const scrapeLoad=s.scrapeLoads.reduce((a,b)=>a+b,0),scrapeImpulse=Math.min(Math.hypot(v,u)*this.mass,scrapeLoad*.55*dt),scrapeSpeed=Math.hypot(v,u);
   if(scrapeSpeed>0){const fraction=Math.max(0,1-scrapeImpulse/(this.mass*scrapeSpeed));v*=fraction;u*=fraction;}s.bodyScrape=dt>0?scrapeImpulse*scrapeSpeed/dt:0;
   v-= (rolling+drag)/this.mass*dt;
@@ -344,16 +339,8 @@ export class CarPhysics {
   let yaw=s.yawRate;
   if(scrapeLoad>0){const torque=s.scrapeLoads.reduce((sum,load,i)=>sum+load*.55*Math.hypot(...this._positions[i]),0),beforeYaw=yaw;
    yaw-=Math.sign(yaw)*Math.min(Math.abs(yaw),torque*dt/this.inertia);s.bodyScrape+=(beforeYaw*beforeYaw-yaw*yaw)*this.inertia*.5/dt;}
-  // Assisted yaw is retained for the game's arcade handling. It vanishes at
-  // rest and cannot move a stationary vehicle by steering alone.
-  const target=clamp(v/(this.frontAxle+this.rearAxle)*Math.tan(steerInput*maxSteer),-1.25,1.25);
-  const yawLimit=(driftActive?1.4:1.16)*G/Math.max(8,speed);
-  const stabilizer=(clamp(target,-yawLimit,yawLimit)-yaw)*tune.assist+beta*(driftActive?.55:1.5)*smooth(speed/8)+beta*5*smooth((Math.abs(beta)-.48)/.48);
-  const frontGrip=(s.suspension[0].load*s.suspension[0].grip+s.suspension[1].load*s.suspension[1].grip)/(this._staticLoads[0]+this._staticLoads[1]);
-  // Steering assistance represents available front tyre authority. It cannot
-  // rotate a jumping car, or retain dry-asphalt authority on loose ground.
-  const assistAuthority=contactFraction*clamp(frontGrip,0,1);
-  yaw+=(assists?stabilizer*assistAuthority:0)*dt;
+  // Yaw comes only from wheel/contact forces. Traction control reduces
+  // throttle; it cannot rotate the body or manufacture extra tyre grip.
   const wheels=this._wheelOmega,brakeBounds=[],tireBounds=[],coss=[],sins=[],armsLong=[],armsLat=[],softLong=[],softLat=[];
   s.absActive=false;
   for(let i=0;i<4;i++){
@@ -361,18 +348,18 @@ export class CarPhysics {
    // Inner and outer front wheels follow different radii during manoeuvres.
    // Blend toward parallel steering as tyre slip angles dominate at speed.
    const ackermann=Math.atan(Math.tan(s.steer)/(1-x*Math.tan(s.steer)/wheelbase));
-   const alignment=(i%2?1:-1)*(1-this.condition.wheelHealth[i])*.045+this.condition.wheelToe[i],wobble=Math.sin(s.wheelSpins[i]*1.01)*(1-this.condition.wheelHealth[i])**2*.012;
-   const delta=(front?mix(s.steer,ackermann,.9*(1-.65*smooth(speed/35)))+alignment:alignment*.65)+wobble,c=Math.cos(delta),n=Math.sin(delta);
+   const alignment=((i%2?1:-1)*(1-this.condition.wheelHealth[i])*.045+this.condition.wheelToe[i])*(front?1:.65)-(i%2?1:-1)*this.build.physics.alignmentToe[front?0:1],wobble=Math.sin(s.wheelSpins[i]*1.01)*(1-this.condition.wheelHealth[i])**2*.012;
+   const delta=(front?mix(s.steer,ackermann,this.build.physics.ackermann*(1-.65*smooth(speed/35)))+alignment:alignment)+wobble,c=Math.cos(delta),n=Math.sin(delta);
    s.wheelSteers[i]=delta;
    coss[i]=c;sins[i]=n;armsLong[i]=z*n-x*c;armsLat[i]=z*c+x*n;
    const corner=s.suspension[i];
-   const temperature=1-.18*smooth((this._tyreTemps[i]-130)/100);
-   const friction=(front?tune.front:tune.rear)*this.muMultiplier*corner.grip*temperature*(.30+.70*Math.sqrt(this.condition.wheelHealth[i]));
+   const contactLong=(v-yaw*x)*c+(u+yaw*z)*n,contactLat=(u+yaw*z)*c-(v-yaw*x)*n;
+   const friction=tyreGrip({front,load:corner.load,referenceLoad:this._staticLoads[i],temperature:this._tyreTemps[i],health:this.condition.wheelHealth[i],slipRatio:(wheels[i]*this.wheelRadius-contactLong)/Math.max(3,Math.abs(contactLong)),slipAngle:Math.atan2(contactLat,Math.max(2.5,Math.abs(contactLong))),compound:this.build.selection.tyres,chassis:this.build.physics,roll:s.bodyRoll})*this.muMultiplier*corner.grip;
    tireBounds[i]=Math.max(0,corner.load*friction*dt);
    let requested=brake;
    // ABS controls hydraulic pressure only. Parking brake remains mechanical.
    const contactV=v-yaw*x;
-   if(Math.abs(contactV)>4&&brake>.05&&Math.sign(contactV)*wheels[i]*this.wheelRadius<Math.abs(contactV)*.82){requested=brake*.12;s.absActive=true;}
+   if(this.build.physics.abs&&Math.abs(contactV)>4&&brake>.05&&Math.sign(contactV)*wheels[i]*this.wheelRadius<Math.abs(contactV)*.82){requested=brake*.12;s.absActive=true;}
    const pressureRate=requested<this._brakePressures[i]?22:7;
    this._brakePressures[i]+=(requested-this._brakePressures[i])*Math.min(1,dt*pressureRate);
    const fade=1-.42*smooth((this._brakeTemps[i]-520)/280);
