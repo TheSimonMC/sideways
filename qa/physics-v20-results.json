@@ -1,0 +1,78 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "name": "Stationary neutral NOS accepts no throttle, full brake and handbrake; adds shaft torque, consumes bottle, and cannot propel a disconnected gearbox",
+      "maxRpm": 5637.334266815799,
+      "maxNos": 169.8449800658557,
+      "bottle": 0.8200000000000065
+    },
+    {
+      "name": "Failed engine still allows NOS valve activation and bottle use, but gets no combustion torque"
+    },
+    {
+      "name": "Forced high-speed first gear is accepted and wheel-driven overrev damages engine and gearbox",
+      "maxRpm": 10205.189621825653,
+      "maxNos": 0,
+      "engineHealth": 0.9569018402392893,
+      "gearboxHealth": 0.9758634990371153
+    },
+    {
+      "name": "Selecting a short gear with clutch open does not damage an uncoupled engine"
+    },
+    {
+      "name": "Reverse while moving is accepted and produces drivetrain reaction instead of a protected selection",
+      "speed": 23.338750674731774,
+      "engineHealth": 0.9993966888750607,
+      "gearboxHealth": 0.9803271110841741,
+      "rpm": 0
+    },
+    {
+      "name": "Reverse has no artificial road-speed throttle cutoff"
+    },
+    {
+      "name": "Fuel follows SDK injected mass, starvation cuts combustion, and refuel plus starter restores the engine",
+      "usedLitres": 0.006198599462884147,
+      "sdkLitres": 0.006198599462887915,
+      "restartRpm": 4839.873102491694
+    },
+    {
+      "name": "Localized wheel loss removes real contact forces; respawn and car swaps preserve damage; repair and refuel affect only requested systems",
+      "impact": {
+        "damage": 0.5028735632183908,
+        "detached": [
+          1
+        ],
+        "panels": [],
+        "energyJ": 420000
+      }
+    },
+    {
+      "name": "A wheel-less body settles on chassis support and condition survives serialization",
+      "bodyHeight": -0.21354665016194901
+    },
+    {
+      "name": "Handbrake stall and service-brake burnout still emerge from the coupled drivetrain",
+      "burnout": true,
+      "speed": 0.03023865891492658,
+      "rpm": 5709.136851565802
+    }
+  ],
+  "version": 20,
+  "verifiedInRelease": 20,
+  "suiteSource": "qa/physics-v6-check.mjs",
+  "suiteSHA256": "f10dc1eff70d6e9bbee29a26aa41b58b0b6741996041edd4212d073590f66529",
+  "sourceSHA256": {
+    "dist/drivetrain.js": "9927f12d0ab5de0ad2de6f59b5f5f21cfb1ec0ce6c1efc81ca253ded1efb16d3",
+    "dist/physics.js": "7ea7804d4299a5b1033586cb8abddf5709c3bd55099ec11e734b86cb2a465c5f",
+    "dist/mechanical.js": "a078271147c372dcb601044baaa26781c6578653845cad796c7786b3614a3685",
+    "dist/car.js": "55fcd27760aa7a12e283e4457daabc044c8dcf7d72ccc277f407de47005605b4",
+    "dist/catalog.js": "c5da9ed3102fe56916bf85badb4a9c355de106cbcf29dda37f92f6d551425065",
+    "dist/career.js": "e609ca9085aba7ced8eca015b637bcbfb7b9b6f594d6c04bfbf4dbad80de1e67",
+    "dist/garage.js": "433365d6d28b2f8444982b003cdb5d2d5adc6f89f93e84caa0057585c3691f37",
+    "dist/audio.js": "2979b4e2dbe52ee8c1fc7e14562f2fdd096e796ad873f30340e48c96948c8bcc",
+    "dist/audio-anchors.js": "ed65635fad9d265e2ab6cd964489bcd703b28397999fd16d4e609fd6fb7a15e5",
+    "dist/main.js": "af9e43e398417e62815a9286cbe8f4ca50aab5785a3be4515c21aa1c65c7f327",
+    "dist/multiplayer.js": "034cdee22c9edbaf280c7f6fc3210b454b05d5d512d9cf7b8b9be74e10b6eba2"
+  }
+}

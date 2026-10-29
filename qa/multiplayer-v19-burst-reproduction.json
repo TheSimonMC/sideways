@@ -1,0 +1,51 @@
+{
+  "status": "reproduced",
+  "stallMs": 7500,
+  "states": [
+    {
+      "status": "playing",
+      "issue": {
+        "code": "RATE_LIMIT",
+        "message": "The connection sent too many messages and was closed. Reload the game, then rejoin the lobby.",
+        "detail": "",
+        "stage": "connection",
+        "retryable": true,
+        "at": 1793292220294,
+        "role": "guest"
+      },
+      "stats": {
+        "sent": 162,
+        "received": 7,
+        "dropped": 0,
+        "backpressure": 0,
+        "invalid": 0,
+        "lastPacketBytes": 786,
+        "maxPacketBytes": 1764
+      },
+      "players": 1
+    },
+    {
+      "status": "error",
+      "issue": {
+        "code": "RATE_LIMIT",
+        "message": "The connection sent too many messages and was closed. Reload the game, then rejoin the lobby.",
+        "detail": "",
+        "stage": "connection",
+        "retryable": true,
+        "at": 1793292220294,
+        "role": "guest"
+      },
+      "stats": {
+        "sent": 6,
+        "received": 94,
+        "dropped": 31,
+        "backpressure": 0,
+        "invalid": 0,
+        "lastPacketBytes": 81,
+        "maxPacketBytes": 755
+      },
+      "players": 0
+    }
+  ],
+  "errors": []
+}

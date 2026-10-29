@@ -1,0 +1,130 @@
+{
+  "version": 20,
+  "status": "passed",
+  "checks": [
+    "Old saves gain four independent casings without repairing tread, missing wheels, fluids or engine; malformed tyre values are bounded.",
+    "Sealed pressure follows absolute temperature; a puncture leaks per corner and a rupture remains at ambient pressure after cooling.",
+    "Long native burnout heats and wears driven tyres until a component ruptures; front tyres remain attached and unburst.",
+    "An unloaded tyre does not burst on a timer; damage-off preserves permanent tyre state while thermals still run.",
+    "A moderate wheel impact punctures a casing without detaching the wheel; leakage persists and tyre-only repair leaves suspension damage.",
+    "One deflated front tyre changes real coast-down, steering response, radius, body stance and rolling heat.",
+    "Locked-wheel sliding makes an oriented flat spot; subsequent rolling changes actual contact radius and suspension load.",
+    "Recovery keeps casing damage; restart repairs all tyres and old parts stay installed.",
+    "Every body renders deflated rubber around its retained rim; burst particles use the bounded pool and do not replay after recovery.",
+    "Burst PCM event fires once at the affected wheel; rolling damaged tyres add rotation-linked sound and respect the tyre mixer."
+  ],
+  "fixtures": {
+    "Old saves gain four independent casings without repairing tread, missing wheels, fluids or engine; malformed tyre values are bounded.": {
+      "legacyTread": [
+        0.3,
+        1,
+        0.6,
+        1
+      ]
+    },
+    "Sealed pressure follows absolute temperature; a puncture leaks per corner and a rupture remains at ambient pressure after cooling.": {
+      "cold": 2.3,
+      "hot": 3.2550731953558802,
+      "leakedGas": 1
+    },
+    "Long native burnout heats and wears driven tyres until a component ruptures; front tyres remain attached and unburst.": {
+      "burstAt": 232.45,
+      "corner": 2,
+      "temperature": 206.83707712001157,
+      "tread": 0.37352194852911325,
+      "carcass": 0.07999544127282882,
+      "history": [
+        {
+          "s": 0,
+          "t": 24.000000001007933,
+          "tread": 0.9999999999998936,
+          "carcass": 0.9999999999999601
+        },
+        {
+          "s": 60,
+          "t": 198.57951881695493,
+          "tread": 0.9504194300688252,
+          "carcass": 0.9665059665651998
+        },
+        {
+          "s": 120,
+          "t": 233.63015407788637,
+          "tread": 0.7259738251515231,
+          "carcass": 0.6603824022345093
+        },
+        {
+          "s": 180,
+          "t": 225.1384223898488,
+          "tread": 0.5004693661166865,
+          "carcass": 0.2900052153783432
+        }
+      ]
+    },
+    "An unloaded tyre does not burst on a timer; damage-off preserves permanent tyre state while thermals still run.": {
+      "damageOffTemperature": 245.11637053032774
+    },
+    "A moderate wheel impact punctures a casing without detaching the wheel; leakage persists and tyre-only repair leaves suspension damage.": {
+      "pressureBefore": 0.2743868365625153,
+      "suspensionRetained": 0.73227969348659
+    },
+    "One deflated front tyre changes real coast-down, steering response, radius, body stance and rolling heat.": {
+      "normal": {
+        "speed": 24.29091949795128,
+        "yaw": 1.38896827889723e-7,
+        "x": 0.0000026083817546957583,
+        "temp": 24.000000519467605,
+        "radii": [
+          0.34,
+          0.34,
+          0.34,
+          0.34
+        ],
+        "body": 6.6052872230293675e-9
+      },
+      "flat": {
+        "speed": 23.924679035946134,
+        "yaw": -0.018871525177637467,
+        "x": -0.35565208777003204,
+        "temp": 25.151643453471426,
+        "radii": [
+          0.2584,
+          0.34,
+          0.34,
+          0.34
+        ],
+        "body": 0.022611690771702726
+      }
+    },
+    "Locked-wheel sliding makes an oriented flat spot; subsequent rolling changes actual contact radius and suspension load.": {
+      "flatspot": 0.015004692828033097,
+      "angle": 1.1721386017070945,
+      "rollingRadiusRange": [
+        0.32780221938729454,
+        0.34
+      ]
+    },
+    "Recovery keeps casing damage; restart repairs all tyres and old parts stay installed.": {},
+    "Every body renders deflated rubber around its retained rim; burst particles use the bounded pool and do not replay after recovery.": {
+      "bodies": 4,
+      "particlesPerBurst": 10
+    },
+    "Burst PCM event fires once at the affected wheel; rolling damaged tyres add rotation-linked sound and respect the tyre mixer.": {
+      "events": 1
+    }
+  },
+  "sourceSHA256": {
+    "dist/tyres.js": "b222bd0f4f2be0e519505c653dc9b96f76abffc527d2ca9b82838bb6c55a5f14",
+    "dist/vehicle-state.js": "888f606612f2a452c8fe4693a77fba4020a1b7aa3538f9ae8e848129bef4af3e",
+    "dist/mechanical.js": "a078271147c372dcb601044baaa26781c6578653845cad796c7786b3614a3685",
+    "dist/physics.js": "7ea7804d4299a5b1033586cb8abddf5709c3bd55099ec11e734b86cb2a465c5f",
+    "dist/car.js": "55fcd27760aa7a12e283e4457daabc044c8dcf7d72ccc277f407de47005605b4",
+    "dist/audio.js": "2979b4e2dbe52ee8c1fc7e14562f2fdd096e796ad873f30340e48c96948c8bcc",
+    "dist/vehicle-panel.js": "03b62e418b44ed18ee575a910819a7898c562eefd30425571ed33dae01e1d2f9",
+    "dist/main.js": "af9e43e398417e62815a9286cbe8f4ca50aab5785a3be4515c21aa1c65c7f327"
+  },
+  "limits": [
+    "Lumped pressure, casing and one dominant oriented flat spot; no belt FEM, detailed tread tear mesh, puncture debris objects or adjustable inflation service.",
+    "Native burnout uses installed cooling/clutch/internal upgrades. Timing is an output of load, slip work, heat and condition, not a fixed countdown.",
+    "Geometry/PCM signal checks and software browser; no physical wheel or subjective listening test."
+  ]
+}

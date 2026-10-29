@@ -1,0 +1,34 @@
+{
+  "status": "reviewed",
+  "result": "No findings.",
+  "method": "Read-only review of the full runtime diff and relevant call sites after implementation, following review-agent instructions. Performed by the implementation agent, not an independent reviewer. Implementation fixes were made outside that review.",
+  "baseCommit": "1e6cb8419d3e958cc3e292cf8455c699dc6282ad",
+  "sourceSHA256": {
+    "dist/brake-hydraulics.js": "3c18dfee08b58d27cc3a54880786a0656bf2f1ce5b718f60c6814a4155f8d544",
+    "dist/mechanical.js": "a078271147c372dcb601044baaa26781c6578653845cad796c7786b3614a3685",
+    "dist/physics.js": "7ea7804d4299a5b1033586cb8abddf5709c3bd55099ec11e734b86cb2a465c5f",
+    "dist/car.js": "55fcd27760aa7a12e283e4457daabc044c8dcf7d72ccc277f407de47005605b4",
+    "dist/vehicle-panel.js": "03b62e418b44ed18ee575a910819a7898c562eefd30425571ed33dae01e1d2f9",
+    "dist/main.js": "af9e43e398417e62815a9286cbe8f4ca50aab5785a3be4515c21aa1c65c7f327",
+    "dist/index.html": "bd46f0169beb9f709f1c12b0a9c0b59a44d225258c6077f40900f0b75a4daf4a",
+    "dist/multiplayer.js": "034cdee22c9edbaf280c7f6fc3210b454b05d5d512d9cf7b8b9be74e10b6eba2",
+    ".github/workflows/pages.yml": "04c993cf4e2989b57e3e3e8450e267b1e0f6ffc6e49d03e24be5ab52f85d07fe"
+  },
+  "resolvedFindings": [
+    "Reproduce V19 RATE_LIMIT on legitimate delayed WebRTC state packets, coalesce excess snapshots while retaining the latest world and bounded packet validation.",
+    "Reset control flood strikes each window; clear pending snapshot timers on departure.",
+    "Separate channel negotiation from the lobby handshake deadline after two repeatable full-game rejoin timeouts; keep finite negotiation, handshake and overall limits.",
+    "Open the tyre sidewalls and rim barrel so actual disc glow is visible between spokes; raycast every stock vehicle wheel.",
+    "Preserve hoses and fluid through tyre repair, upgrades and save/load; refill does not seal leaks and hose replacement does not refill."
+  ],
+  "limits": [
+    "Fictional diagonal hydraulic layout on all four cars; lumped pressure and separated fluid supplies. No pedal-travel, fluid-boiling, master-cylinder, booster or ABS-valve faults. Existing shared pad/disc condition retained.",
+    "Disc glow is temperature-driven emission, without additional lights. Closed dish rims occlude discs; remote cars do not receive detailed component temperatures.",
+    "Actual public signaling/WebRTC tested between local browser processes/contexts. No separate physical-PC, mobile network, restrictive NAT or TURN traversal test.",
+    "Software renderer, no subjective listening or physical controller test. CPU measurement excludes world/GPU/AI/audio and does not establish an FPS guarantee."
+  ],
+  "visualCheck": [
+    "Final garage, brake condition and driving screenshots inspected after the final build. Existing cartoon style retained.",
+    "Full-game multiplayer renders the remote vehicle; the original map-label density remains outside this change."
+  ]
+}

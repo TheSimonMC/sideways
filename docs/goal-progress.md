@@ -1,6 +1,6 @@
 # SIDEWAYS – verbindliche Fortschrittsliste
 
-Stand: V19, Phase 0, Phase 1 Teile A/B/C/D und Phase 2 Teil A. Grundlage: unveränderte Kopie in `docs/goal.txt`.
+Stand: V20, Phase 0, Phase 1 Teile A/B/C/D und Phase 2 Teile A/B (Bremsen). Grundlage: unveränderte Kopie in `docs/goal.txt`.
 
 Status bezieht sich auf den gesamten Wortlaut eines Punktes. Teilweise bedeutet, dass wesentliche Teile noch fehlen. Nur Phase 0 ist abgeschlossen. V19 ergänzt die gemeinsame Reifen-Grundlage aus Phase 2 und ihre Folgen für Phase 1. Phase 1 bleibt wegen Wetter/Nässe und breiterer Kalibrierung teilweise; Phase 2 wegen weiterer fehlender Baugruppen. Wetter hängt zusätzlich von Phase 7 ab.
 
@@ -34,7 +34,7 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 2: EINZELNE MECHANISCHE SCHÄDEN, TEMPERATUR UND VERSCHLEISS
 
-**teilweise erledigt** — Motor-Unterbaugruppen, Flüssigkeiten, Kupplung, Gänge, Differenziale und Wellen bestehen weiter. V19 ergänzt vier unabhängige Reifen mit gespeichertem Gasinhalt, Temperatur, Karkasse, Mischung, Abrieb, gerichtetem Flatspot, Leck und Blowout. Aufprall oder Überlast verändern reale Kontaktkräfte; Platzen verliert sofort Druck, verkleinert das Gummi um die montierte Felge und erzeugt ein Geräusch sowie begrenzte Partikel. Diagnose und Einzelreparatur benutzen denselben Zustand. Riemen, Generator, Lüfterzustand, einzelne Leitungen, Radlager und Bremsen-Glow fehlen weiterhin. Reifen nutzen eine zusammengefasste Temperatur und einen dominanten Flatspot; keine vollständige Karkassen-/Risssimulation. Einzelreparatur übernimmt den bisherigen Radmontagepfad; separate Felgenfestigkeit und Reifen-Aufpumpen sind noch nicht vorhanden.
+**teilweise erledigt** — Die bisherigen Motor-, Antriebs- und Reifensysteme bleiben. V20 ergänzt vier beschädigbare Bremsleitungen, zwei diagonal getrennte Flüssigkeitskammern, Druckverlust/Leckage, ungleichmäßige Bremswirkung und temperaturabhängig glühende Scheiben. Leitungstausch und Nachfüllen sind getrennt; Reifen-/Tuningwechsel heilen keine Leitung. P02.09 bleibt teilweise, weil Hauptbremszylinder, Ventile und Flüssigkeitssieden nicht separat simuliert sind. Radlager, eigene Lenkungsteile, Riemen, Generator und Lüfter fehlen weiterhin. Die Teilmodelle verwenden fiktive browsergerechte Koeffizienten. Die Reifen-Näherung aus V19 einschließlich ihrer Grenzen bleibt unverändert.
 
 - **P02.01 · teilweise erledigt** — Weg vom einzigen allgemeinen Auto-Health-Wert als Schadensquelle. Jede wesentliche Baugruppe erhält einen eigenen Zustand, Verschleiß und bei Bedarf Temperatur, Belastung und Ausfallart.
 - **P02.02 · erledigt** — Vier unabhängige Reifen: Temperatur, Luftdruck, Reifenmischung, Abrieb, Gripverlust, Flatspots, Platten, Beschädigung und Blowout.
@@ -212,7 +212,7 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 16: FAHRZEUGBESITZ, ZUSTAND, INSPEKTION UND ZUSAMMENSPIEL
 
-**teilweise erledigt** — Zustände je Fahrzeug, Teilebesitz, Einzelreparaturen, Temperaturen und Diagnose sind gespeichert. V19 ergänzt Gasinhalt, Karkasse, Flatspot samt Winkel, Leck und Blowout ohne Altstände oder Schäden zu löschen. Wechsel der Reifenmischung repariert den vorhandenen Satz nicht; gezielter Ersatz repariert nur dieses Rad/Reifen, nicht dessen Aufhängung. Freier Aus-/Einbau weiterer Teile, Licht-/Fensterfolgen und Wetterkopplung fehlen. Neuer Lauf repariert weiterhin bewusst gemäß früherem Nutzerauftrag; Straßenbergung erhält Schäden.
+**teilweise erledigt** — Bauteilzustände, Teilebesitz, Temperaturen und Diagnose bleiben je Fahrzeug gespeichert. V20 ergänzt Leitungsschäden und zwei Bremsflüssigkeitsstände. Leitung ersetzen stoppt das jeweilige Leck, füllt aber keinen Vorrat; Nachfüllen dichtet keine defekte Leitung ab. Tuning erhält beides. Neuer Lauf/Restart repariert weiterhin bewusst gemäß Nutzerauftrag; R behält Schäden. Freier Aus-/Einbau weiterer Teile, Licht-/Fensterfolgen und Wetterkopplung bleiben offen.
 
 - **P16.01 · teilweise erledigt** — Bauteilzustände, Reifen, Reparaturen, Tuning, aus- oder eingebaute Teile, Einstellungen und Fahrzeugzustand sollen bei vorhandener Speichermöglichkeit zuverlässig persistieren.
 - **P16.02 · teilweise erledigt** — Werkstatt ersetzt die tatsächlich defekten Baugruppen, statt immer einen unspezifischen Komplettschaden zu reparieren.
@@ -237,7 +237,7 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 18: TESTS UND ABSCHLUSSKRITERIEN
 
-**teilweise erledigt** — V19 prüft den Reifenbaustein mit dem echten MotorLab-/Chassis-Pfad, Geometrie-/PCM-Modulen und vier Browserabläufen auf denselben Offline-HTML-Bytes. Der native Burnout erreicht nach etwa 232,45 simulierten Sekunden den ersten Hinterreifenplatzer. Einseitiger Platten, Flatspot-Radbewegung, gezielter Ersatz, Save-Migration und Neuladen sind separat geprüft. P18.04 ist damit für das bestehende Spiel nachgewiesen; keine Aussage über reale Fahrzeugkalibrierung. Nur qa/release-v19.json benennt die aktuellen Nachweise. Cockpits, weitere Bauteile und Garagenübergänge bleiben offen oder teilweise.
+**teilweise erledigt** — V20 reproduziert den gemeldeten RATE_LIMIT auf echter PeerJS/WebRTC-Verbindung: 7,5 Sekunden Empfängerblockade bündeln normale 20-Hz-Updates; V19 trennt danach den Gast. Mit V20 bestehen Blockade auf Gast und Host, erneuter Beitritt sowie ein vollständiger Zwei-Browser-Spielablauf. Bremsentests prüfen Migration, getrennte Kreise, reale Verzögerung, Handbremse, Aufprall, Einzelersatz, Wärme und vier Fahrzeugmodelle. qa/release-v20.json bindet nur die aktuellen Nachweise. Weitere End-to-End-Szenarien bleiben bis zu den entsprechenden Systemen offen oder teilweise; keine Hardware-Wheel-/Mehr-PC-/TURN-Aussage.
 
 - **P18.01 · teilweise erledigt** — Nach jeder Phase die vorhandenen Funktionen prüfen und sicherstellen, dass das Spiel spielbar bleibt.
 - **P18.02 · teilweise erledigt** — Konkrete End-to-End-Szenarien testen:
@@ -259,7 +259,7 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Nächster abgeschlossener Arbeitsschritt
 
-Phase 2B: Radlager sowie Lenkungs- und Bremskomponenten mit echten Auswirkungen, Diagnose, Reparatur und Persistenz ergänzen. Danach verbleibende Motor-Nebenaggregate innerhalb Phase 2; deren sichtbare Animation benötigt später Phase 6. Breitere Fahrwerkskalibrierung bleibt offen, Wetter/Nässe benötigt Phase 7. Die übrigen Anforderungen bleiben vollständig in dieser Liste erhalten.
+Phase 2B fortsetzen: Radlager und eigene Lenkungskomponenten mit Belastung, Fahrfolgen, Diagnose, gezieltem Ersatz und Persistenz. Danach die noch fehlenden Motor-Nebenaggregate. Phase 1 benötigt weiter breitere Kalibrierung und später Wetter/Nässe aus Phase 7. Der Multiplayer-Fix ist eine notwendige Regressionkorrektur vor dieser Fortsetzung.
 
 ## V16 – bearbeitete Teilziele
 
@@ -272,3 +272,7 @@ Phase 1D vertieft P01.03/P01.04/P01.06–P01.08. Die dafür notwendige Spoilerbe
 ## V19 – bearbeitete Teilziele
 
 Phase 2A erfüllt P02.02–P02.04 mit einer browsergerechten Reifen-Näherung und weist P18.04 im nativen Spielpfad nach. Sie vertieft P01.04/P01.08, P02.11/P02.12, P16.01–P16.03/P16.06/P16.08. Phase 1 und Phase 2 bleiben insgesamt teilweise. Grenzen und Nachweise: [Phasenbericht](phase-2a-report.md). Alle 156 Originalformulierungen bleiben unverändert; V18 und ältere Abschnitte beschreiben historische Inkremente.
+
+## V20 – Multiplayer-Korrektur und Bremsen aus Phase 2B
+
+P02.09/P02.11/P02.12, P07.08 und P16.01–P16.03 werden erweitert, behalten ihren Teilstatus. Der bestätigte RATE_LIMIT entsteht durch die Behandlung aufgestauter Zustandsupdates als Flood; V20 fasst überzählige Zustände begrenzt zusammen und behält die Prüfung von Steuerpaketen. Details und Grenzen: [Phasenbericht](phase-2b-brakes-report.md). Alle 156 Originalanforderungen bleiben unverändert.

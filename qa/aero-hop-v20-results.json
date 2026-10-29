@@ -1,0 +1,183 @@
+{
+  "version": 20,
+  "status": "passed",
+  "checks": [
+    "Aero scales with speed squared, drag opposes motion, and reverse/sideways appendage lift is reduced.",
+    "Real coast-down and wheel loads respond to wing angle, front splitter and diffuser balance.",
+    "Rear collision removes the spoiler force, persists the missing part, and targeted repair restores only that attachment.",
+    "All four bodies render distinct wing angles; saved attachments hide and repair, real impact shows the fitted loose wing, and cloned geometry is disposed.",
+    "The reduced hop oscillator is bounded by actual slip-work input, decays passively and can unload a contact.",
+    "Native low-grip to asphalt wheelspin excites the driven axle; braced links reduce real travel and load fluctuation.",
+    "Damaged suspension damps hop less; unloaded/detached wheels receive no new excitation, and recovery clears motion without repairing damage.",
+    "Thirty priced slots, wing compatibility, old saves, one-time purchase and component damage remain consistent."
+  ],
+  "fixtures": {
+    "Aero scales with speed squared, drag opposes motion, and reverse/sideways appendage lift is reduced.": {
+      "at72kmh": {
+        "front": 238,
+        "rear": 465.99999999999994,
+        "downforce": 704,
+        "pitchMoment": -296.3999999999999,
+        "drag": 262,
+        "dragCoefficient": 0.655,
+        "wingEfficiency": 1
+      },
+      "at144kmh": {
+        "front": 952,
+        "rear": 1863.9999999999998,
+        "downforce": 2816,
+        "pitchMoment": -1185.5999999999997,
+        "drag": 1048,
+        "dragCoefficient": 0.655,
+        "wingEfficiency": 1
+      }
+    },
+    "Real coast-down and wheel loads respond to wing angle, front splitter and diffuser balance.": {
+      "stock": {
+        "speed": 48.00108061229552,
+        "loads": [
+          3267.585963910682,
+          3267.5844090751166,
+          3055.983177853692,
+          3055.981623018126
+        ],
+        "aero": {
+          "front": 633.8408473948226,
+          "rear": 633.8408473948226,
+          "downforce": 1267.6816947896452,
+          "pitchMoment": 0,
+          "drag": 991.0965977446297,
+          "dragCoefficient": 0.43000000000000005,
+          "wingEfficiency": 1
+        },
+        "pitch": 0.002915208764928614
+      },
+      "high": {
+        "speed": 47.39058005489007,
+        "loads": [
+          3308.15055620015,
+          3308.14896784731,
+          3898.7023082067913,
+          3898.7007198539513
+        ],
+        "aero": {
+          "front": 617.8836356834987,
+          "rear": 2347.957815597288,
+          "downforce": 2965.8414512807867,
+          "pitchMoment": -2249.0964338879267,
+          "drag": 1314.4070068176215,
+          "dragCoefficient": 0.585,
+          "wingEfficiency": 1
+        },
+        "pitch": -0.008149991359765428
+      },
+      "low": {
+        "speed": 47.92860368184483,
+        "loads": [
+          3288.125285644565,
+          3288.1237244715444,
+          3205.7317020082987,
+          3205.730140835276
+        ],
+        "aero": {
+          "front": 631.9358951603473,
+          "rear": 907.6897403212251,
+          "downforce": 1539.6256354815723,
+          "pitchMoment": -358.4799987091412,
+          "drag": 1034.076919353294,
+          "dragCoefficient": 0.45,
+          "wingEfficiency": 1
+        },
+        "pitch": 0.0011343791961662749
+      },
+      "balanced": {
+        "speed": 47.12312708120513,
+        "loads": [
+          3688.916295570008,
+          3688.914691864279,
+          4019.4176700941534,
+          4019.416066388424
+        ],
+        "aero": {
+          "front": 1321.8878037473012,
+          "rear": 2588.23410313547,
+          "downforce": 3910.1219068827713,
+          "pitchMoment": -1646.2501892046196,
+          "drag": 1455.1874142092142,
+          "dragCoefficient": 0.655,
+          "wingEfficiency": 1
+        },
+        "pitch": -0.0045641771016789725
+      }
+    },
+    "Rear collision removes the spoiler force, persists the missing part, and targeted repair restores only that attachment.": {
+      "before": {
+        "front": 440.00000000000006,
+        "rear": 1672,
+        "downforce": 2112,
+        "pitchMoment": -1601.6,
+        "drag": 936,
+        "dragCoefficient": 0.585,
+        "wingEfficiency": 1
+      },
+      "after": {
+        "front": 440.00000000000006,
+        "rear": 88.00000000000006,
+        "downforce": 528.0000000000001,
+        "pitchMoment": 457.6,
+        "drag": 799.9542987717793,
+        "dragCoefficient": 0.4,
+        "wingEfficiency": 0
+      },
+      "unrepairedRearHealth": 0
+    },
+    "All four bodies render distinct wing angles; saved attachments hide and repair, real impact shows the fitted loose wing, and cloned geometry is disposed.": {
+      "variants": 12
+    },
+    "The reduced hop oscillator is bounded by actual slip-work input, decays passively and can unload a contact.": {
+      "inputJ": 160,
+      "peak": 0.03928982903841826,
+      "lift": true,
+      "signChanges": 94
+    },
+    "Native low-grip to asphalt wheelspin excites the driven axle; braced links reduce real travel and load fluctuation.": [
+      {
+        "tractionLinks": "stock",
+        "peak": 0.011039734059725,
+        "loadMin": 1299.3378703292667,
+        "maxAudioVelocity": 1.1451426404774
+      },
+      {
+        "tractionLinks": "braced",
+        "peak": 0.0035193748032382984,
+        "loadMin": 2268.716675768893,
+        "maxAudioVelocity": 0.24671658272898495
+      }
+    ],
+    "Damaged suspension damps hop less; unloaded/detached wheels receive no new excitation, and recovery clears motion without repairing damage.": {
+      "healthyAfter250ms": 3.2861281355496668,
+      "damagedAfter250ms": 35.84944422765612
+    },
+    "Thirty priced slots, wing compatibility, old saves, one-time purchase and component damage remain consistent.": {
+      "price": 10300,
+      "massIncrease": 16
+    }
+  },
+  "sourceSHA256": {
+    "dist/aerodynamics.js": "dcfe58d8f4e9515fbc07c1e6fceb6a7d8907a71c7518171b5cad9272041a0abf",
+    "dist/wheel-hop.js": "cf5f23aef7a49a1cee3dd0abba6614fc83db16fc31f4c62cc58e6b529d7b2a4c",
+    "dist/physics.js": "7ea7804d4299a5b1033586cb8abddf5709c3bd55099ec11e734b86cb2a465c5f",
+    "dist/catalog.js": "c5da9ed3102fe56916bf85badb4a9c355de106cbcf29dda37f92f6d551425065",
+    "dist/career.js": "e609ca9085aba7ced8eca015b637bcbfb7b9b6f594d6c04bfbf4dbad80de1e67",
+    "dist/garage.js": "433365d6d28b2f8444982b003cdb5d2d5adc6f89f93e84caa0057585c3691f37",
+    "dist/car.js": "55fcd27760aa7a12e283e4457daabc044c8dcf7d72ccc277f407de47005605b4",
+    "dist/car-cosmetics.js": "b4777e409ac5665cbd1b5614fb62f39ed5476ae5d4c4e945cca44b0fa39d8cb4",
+    "dist/body-damage.js": "5d13a713ba8fafeb8ce4bc3e679a682b0eae735e589e9d07f3197c7b9d980cbc",
+    "dist/mechanical.js": "a078271147c372dcb601044baaa26781c6578653845cad796c7786b3614a3685"
+  },
+  "limits": [
+    "Wheel hop is a slip-work-limited modal approximation, not a complete unsprung-mass or suspension-linkage model. Native patch test measures wheel-load variation; full contact release is verified separately with synthetic modal loading.",
+    "Aero coefficients are fictional lumped calibration; no CFD, wind-tunnel or real-car validation. Installed part masses affect the build; debris mass is not dynamically subtracted from the chassis.",
+    "Geometry/physics/audio-signal checks, not a listening or hardware-controller test."
+  ]
+}

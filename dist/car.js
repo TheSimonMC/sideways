@@ -1,4 +1,5 @@
 import {addCosmetics,addRim} from './car-cosmetics.js';
+import {brakeGlow} from './brake-hydraulics.js';
 import * as THREE from './vendor/three.module.js';
 import { resolveBuild } from './catalog.js';
 import {bodyDisplacement} from './body-damage.js';
@@ -231,17 +232,19 @@ export function createCar(scene, initialBuild = resolveBuild()) {
       const front=index<2,side=index%2===0?-1:1;
       const pivot=new THREE.Group();pivot.position.set(side*p.halfTrack,R,front?p.frontAxle:-p.rearAxle);content.add(pivot);
       const spin=new THREE.Group();pivot.add(spin);
-      const tyre=new THREE.Mesh(new THREE.CylinderGeometry(R,R,tyreWidth,12,1),rubber);tyre.rotation.z=Math.PI/2;tyre.castShadow=true;tyre.name='tyre-'+index;spin.add(tyre);
-      const rim=new THREE.Mesh(new THREE.CylinderGeometry(R*.72,R*.72,tyreWidth+.005,12),graphite);rim.rotation.z=Math.PI/2;spin.add(rim);
+      // Hollow sidewalls and an open barrel let the actual disc show between spokes.
+      const tyreProfile=[[.72,-.5],[.95,-.5],[1,-.3],[1,.3],[.95,.5],[.72,.5],[.72,-.5]].map(([r,y])=>new THREE.Vector2(R*r,tyreWidth*y));
+      const tyre=new THREE.Mesh(new THREE.LatheGeometry(tyreProfile,12),rubber);tyre.rotation.z=Math.PI/2;tyre.castShadow=true;tyre.name='tyre-'+index;spin.add(tyre);
+      const rim=new THREE.Mesh(new THREE.CylinderGeometry(R*.72,R*.72,tyreWidth+.005,12,1,true),graphite);rim.rotation.z=Math.PI/2;spin.add(rim);
       if(build.selection.rims==='stock'){
       const ring=new THREE.Mesh(new THREE.TorusGeometry(R*.73,.017,3,12),kind==='muscle'?chrome:white);ring.rotation.y=Math.PI/2;ring.position.x=side*(tyreWidth*.5+.009);spin.add(ring);
       const spokes=kind==='wedge'?3:kind==='tourer'?6:5;
       for(let n=0;n<spokes;n++){const spoke=box(spin,side*(tyreWidth*.5+.010),0,0,.024,kind==='wedge'?.08:.05,R*1.23,kind==='muscle'?chrome:white);spoke.rotation.x=n*Math.PI*2/spokes;}
       }else addRim({spin,style:build.selection.rims,R,side,width:tyreWidth,chrome,graphite,box});
       const hub=new THREE.Mesh(new THREE.CylinderGeometry(.064,.064,tyreWidth+.03,8),dark);hub.rotation.z=Math.PI/2;spin.add(hub);
-      const rotor=new THREE.Mesh(new THREE.CylinderGeometry(R*.57,R*.57,.012,12),chrome);rotor.rotation.z=Math.PI/2;rotor.position.x=side*(tyreWidth*.5-.015);pivot.add(rotor);
+      const rotor=new THREE.Mesh(new THREE.CylinderGeometry(R*.57,R*.57,.012,12),chrome.clone());rotor.name='brake-rotor-'+index;rotor.material.emissive.set(0xff3b08);rotor.material.emissiveIntensity=0;rotor.rotation.z=Math.PI/2;rotor.position.x=side*(tyreWidth*.5-.015);pivot.add(rotor);
       box(pivot,side*(tyreWidth*.5-.005),.09,.11,.045,.16,.08,accent);
-      wheels.push(pivot);spinGroups.push({spin,pivot,front,side,index,tyre,tyreBase:tyre.geometry.attributes.position.array.slice(),tyreShape:null});
+      wheels.push(pivot);spinGroups.push({spin,pivot,front,side,index,tyre,rotor,tyreBase:tyre.geometry.attributes.position.array.slice(),tyreShape:null});
     }
     const number=decalTexture(spec.number,256,128,'#f5f0da');
     for(const side of [-1,1])decal(chassis,number,side*W*1.01,.68,-.02,.62,.29,side*Math.PI/2);
@@ -281,6 +284,7 @@ export function createCar(scene, initialBuild = resolveBuild()) {
       m.chassis.rotation.z=clamp(state.bodyRoll||0,-.42,.42);
       m.chassis.position.y=(state.bodyHeight||0)+(p.rideHeight||0);
       for(const w of m.spinGroups){
+        w.rotor.material.emissiveIntensity=brakeGlow(state.brakeTemps?.[w.index])*2.5;
         const corner=state.suspension?.[w.index];w.pivot.visible=state.wheelAttached?.[w.index]!==false;
         w.pivot.rotation.y=state.wheelSteers?.[w.index]??(w.front?(state.steer||0):0);w.pivot.rotation.z=clamp(state.suspensionHealth?(w.side)*((1-state.suspensionHealth[w.index])*.14-(build.physics.alignmentCamber?.[w.front?0:1]||0)):(state.wheelCamber?.[w.index]??-w.side*(build.physics.alignmentCamber?.[w.front?0:1]||0)),-.2,.2);
         w.pivot.position.y=Number.isFinite(corner?.wheelY)?corner.wheelY:p.wheelRadius;

@@ -1,7 +1,7 @@
 {
   "source": "docs/goal.txt",
   "sourceSHA256": "4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc282ea844a1b96dca",
-  "version": 19,
+  "version": 20,
   "requirements": [
     {
       "id": "P00.01",
@@ -942,13 +942,13 @@
   ],
   "currentIncrement": {
     "phase": 2,
-    "part": "A",
+    "part": "B – Bremsen",
     "status": "teilweise erledigt",
     "implemented": [
-      "Vier unabhängige gespeicherte Reifen mit Druck, Karkasse, Flatspot, Leck und überlastabhängigem Blowout",
-      "Kontaktkräfte, Rollwiderstand, Radius, Gummigeometrie, begrenzte Partikel und radgebundene Geräusche folgen demselben Zustand",
-      "Altstand-Migration, Diagnose, gezielter Ersatz und Tuning ohne unbeabsichtigte Reparatur"
+      "RATE_LIMIT nach Ladeblockade auf echter WebRTC-Verbindung reproduziert und durch begrenztes Zusammenfassen alter Zustände korrigiert",
+      "Vier Bremsleitungen, zwei diagonale Flüssigkeitskammern, Druckverlust, getrennte Reparatur/Nachfüllen und Speicherung",
+      "Bremsscheiben glühen pro Rad aus der vorhandenen Temperatur; gesundes Bremsen, ABS und Handbremse bleiben erhalten"
     ],
-    "next": "Phase 2B: Radlager, Lenkungs-/Bremskomponenten und ihre Diagnose-/Reparaturpfade; anschließend übrige Nebenaggregate."
+    "next": "Phase 2B: Radlager und Lenkungskomponenten; danach fehlende Motor-Nebenaggregate."
   }
 }
