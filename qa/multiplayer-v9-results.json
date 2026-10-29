@@ -19,7 +19,7 @@
       "trafficCars": 36,
       "policeCars": 6,
       "players": 4,
-      "jsonMeasureBytes": 24926,
+      "jsonMeasureBytes": 21694,
       "transport": "binary"
     },
     "startFailure": {
@@ -32,7 +32,7 @@
   },
   "verificationLimit": "Protocol and lifecycle tests use an in-memory PeerJS-compatible transport that records serialization and enforces the shipped JSON byte cap. Actual vendor encoding/chunking is tested in peerjs-codec-v9-check.mjs. These checks do not establish signaling availability or internet ICE connectivity.",
   "modules": {
-    "dist/multiplayer.js": "057d396d5f8fae62417255e2099d6dd269f92105b40e09d8b53fa8f979a75651",
+    "dist/multiplayer.js": "f38070b56a3accc680fbb771fa60542365dd1dd56a817aab94cca636fcb9e111",
     "dist/lobby-panel.js": "040d8dcef7beb4b391cbc7b9ee19c30964b5f344757b365c3ed2c53085b9ba49",
     "qa/network-v9-harness.mjs": "0352e72577d59fbaaeb3ae4851e9604737428a154f7ce9179cb1cc79ff41332b"
   }

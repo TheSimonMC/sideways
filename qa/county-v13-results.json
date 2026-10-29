@@ -1,0 +1,23 @@
+{
+  "version": 13,
+  "checks": [
+    "County is connected, contains three directed roundabouts and distinct road classes",
+    "Every authored road has moderate grades, continuous elevations and clear driving lanes",
+    "Rendered road surface is above terrain at wheel positions, including switchbacks",
+    "Service destinations and hill lookouts are reachable through the road graph",
+    "Civilian/police lane guides build for every new directed edge and turn",
+    "Every region reset returns to asphalt and world disposal is complete"
+  ],
+  "renderedRoadSamples": 642,
+  "maximumVisualHeightError": 0.000008645466920143008,
+  "status": "passed",
+  "areaKm2": 24.576,
+  "roadKm": 64.1490136061599,
+  "maxGrade": 0.14402386499612224,
+  "minHeight": 0.011999999999999999,
+  "maxHeight": 157.512,
+  "elapsedMs": 450.1096,
+  "limits": [
+    "Geometry, routing and sampled wheel positions; no claim of driving every metre with physical hardware."
+  ]
+}

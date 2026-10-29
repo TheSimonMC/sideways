@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "version": 13,
+  "checks": [
+    "A new Free Roam run restores the severely damaged saved car",
+    "Escape opens Pause and a second Escape resumes without returning to Main Menu",
+    "County map contains remote service destinations and returns to drive",
+    "Driving and Pause → Restart work in the final standalone",
+    "No JavaScript errors and no external or secondary local-file loads"
+  ],
+  "htmlSha256": "04a0d07ecef6417035e7ecab9cc3e02929fe3c70a417742e8723dcb7171cb82c",
+  "errors": [],
+  "external": [],
+  "limits": [
+    "Chromium software rendering and keyboard automation; physical controller, listening and live multiplayer not tested."
+  ]
+}

@@ -98,6 +98,6 @@ export class MapView{
  constructor(){this.zoom=1;this.x=null;this.z=null;this.heading=0;this.cursor=null;}
  reset(world,player){this.zoom=1;this.x=(world.bounds.minX+world.bounds.maxX)/2;this.z=(world.bounds.minZ+world.bounds.maxZ)/2;this.cursor={x:player.x,z:player.z};this.heading=player.heading;}
  updateHeading(heading,dt){this.heading+=wrap(heading-this.heading)*(1-Math.exp(-10*dt));}
- moveCursor(dx,dz,world){const step=18/this.zoom;this.cursor=this.cursor||{x:this.x||0,z:this.z||0};this.cursor.x=clamp(this.cursor.x+dx*step,world.bounds.minX+8,world.bounds.maxX-8);this.cursor.z=clamp(this.cursor.z+dz*step,world.bounds.minZ+8,world.bounds.maxZ-8);}
+ moveCursor(dx,dz,world){const step=18/this.zoom*Math.max(1,(world.bounds.maxX-world.bounds.minX)/1000);this.cursor=this.cursor||{x:this.x||0,z:this.z||0};this.cursor.x=clamp(this.cursor.x+dx*step,world.bounds.minX+8,world.bounds.maxX-8);this.cursor.z=clamp(this.cursor.z+dz*step,world.bounds.minZ+8,world.bounds.maxZ-8);}
  changeZoom(amount){this.zoom=clamp(this.zoom*amount,.75,4);}
 }

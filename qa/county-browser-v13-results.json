@@ -1,0 +1,26 @@
+{
+  "version": 13,
+  "status": "passed",
+  "views": {
+    "overview": {
+      "drawCalls": 746,
+      "triangles": 1347614
+    },
+    "hills": {
+      "drawCalls": 497,
+      "triangles": 1301166
+    },
+    "roundabout": {
+      "drawCalls": 78,
+      "triangles": 1183030
+    },
+    "highway": {
+      "drawCalls": 326,
+      "triangles": 1246736
+    }
+  },
+  "errors": [],
+  "limits": [
+    "Static regional views in Chromium software rendering; visual assessment is separate from geometric road checks."
+  ]
+}

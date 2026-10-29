@@ -1,7 +1,7 @@
 import {keyLabel} from './input-prompts.js';
 const byId = id => document.getElementById(id);
 const clamp = (n,a,b) => Math.max(a,Math.min(b,Number(n)||0));
-const names = {steer:'Steering',steerLeft:'Steer left',steerRight:'Steer right',throttle:'Throttle',brake:'Brake',clutch:'Clutch',handbrake:'Handbrake',boost:'NOS',starter:'Starter',garage:'Garage',shiftDown:'Downshift',shiftUp:'Upshift',camera:'Camera',home:'Main menu',pause:'Pause',reset:'Reset car',transmission:'Transmission',settings:'Settings',confirm:'Confirm',back:'Back',menuPrev:'Menu up',menuNext:'Menu down',menuLeft:'Menu left',menuRight:'Menu right',mute:'Mute',neutral:'Neutral',lookBack:'Look back',lookX:'Look sideways',lookY:'Look up/down',lookLeft:'Look left',lookRight:'Look right',lookUp:'Look up',lookDown:'Look down',horn:'Horn',lights:'Headlights',interact:'Interact',map:'Map'};
+const names = {steer:'Steering',steerLeft:'Steer left',steerRight:'Steer right',throttle:'Throttle',brake:'Brake',clutch:'Clutch',handbrake:'Handbrake',boost:'NOS',starter:'Starter',garage:'Garage',shiftDown:'Downshift',shiftUp:'Upshift',camera:'Camera',home:'Pause menu',pause:'Pause',reset:'Reset car',transmission:'Transmission',settings:'Settings',confirm:'Confirm',back:'Back',menuPrev:'Menu up',menuNext:'Menu down',menuLeft:'Menu left',menuRight:'Menu right',mute:'Mute',neutral:'Neutral',lookBack:'Look back',lookX:'Look sideways',lookY:'Look up/down',lookLeft:'Look left',lookRight:'Look right',lookUp:'Look up',lookDown:'Look down',horn:'Horn',lights:'Headlights',interact:'Interact',map:'Map'};
 const gearNames = {gear1:'1',gear2:'2',gear3:'3',gear4:'4',gear5:'5',gear6:'6',gearReverse:'R'};
 const stageText = {
  center:['Center the wheel','Center the wheel, then choose CAPTURE POSITION.'],

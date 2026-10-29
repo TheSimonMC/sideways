@@ -1,9 +1,9 @@
 import {resolveBuild} from './catalog.js';
 
-export const MULTIPLAYER_VERSION=8;
+export const MULTIPLAYER_VERSION=9;
 export const DEFAULT_LOBBY_RULES=Object.freeze({maxPlayers:4,traffic:'normal',police:true,damage:true,time:'cycle',collisions:'ghost'});
 const CODE_ALPHABET='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-const PREFIX='sideways-v8-';
+const PREFIX='sideways-v9-';
 const LIMITS={packet:96000,buffer:256000,events:64,links:7,rate:90,worldNodes:10000};
 const utf8=new TextEncoder();
 const ISSUE_MESSAGES={
@@ -48,15 +48,15 @@ export function normalizeLobbyRules(value={}){
  return {maxPlayers:Math.round(clamp(value.maxPlayers??4,2,4)),traffic:['off','light','normal'].includes(value.traffic)?value.traffic:'normal',police:value.police!==false,damage:value.damage!==false,time:['cycle','day','sunset','night'].includes(value.time)?value.time:'cycle',collisions:value.collisions==='solid'?'solid':'ghost'};
 }
 export function sanitizeNetworkPose(value){
- if(!object(value)||![value.x,value.z,value.heading].every(Number.isFinite)||!bounded(value.x,-2400,2400)||!bounded(value.z,-2400,2400))return null;
+ if(!object(value)||![value.x,value.z,value.heading].every(Number.isFinite)||!bounded(value.x,-4096,4096)||!bounded(value.z,-4096,4096))return null;
  const out={x:value.x,z:value.z,heading:wrap(value.heading)};
- const ranges={vx:[-170,170],vz:[-170,170],yawRate:[-12,12],speed:[0,180],forwardSpeed:[-180,180],bodyHeight:[-4,30],groundHeight:[-4,30],bodyPitch:[-.8,.8],bodyRoll:[-.8,.8],steer:[-1.5,1.5],brake:[0,1],throttle:[0,1],rpm:[0,16000],bodyHealth:[0,1],engineHealth:[0,1],nitrousIntensity:[0,1],driftAngle:[-Math.PI,Math.PI],gear:[-1,8]};
+ const ranges={vx:[-170,170],vz:[-170,170],yawRate:[-12,12],speed:[0,180],forwardSpeed:[-180,180],bodyHeight:[-32,512],groundHeight:[-32,512],bodyPitch:[-.8,.8],bodyRoll:[-.8,.8],steer:[-1.5,1.5],brake:[0,1],throttle:[0,1],rpm:[0,16000],bodyHealth:[0,1],engineHealth:[0,1],nitrousIntensity:[0,1],driftAngle:[-Math.PI,Math.PI],gear:[-1,8]};
  for(const [key,[a,b]]of Object.entries(ranges))out[key]=clamp(value[key]??(key.endsWith('Health')?1:0),a,b);
  for(const key of ['headlights','boosting','horn','drifting'])out[key]=!!value[key];out.engineRunning=value.engineRunning!==false;
  out.wheelAttached=Array.from({length:4},(_,i)=>value.wheelAttached?.[i]!==false);
  out.wheelSpins=Array.from({length:4},(_,i)=>wrap(value.wheelSpins?.[i]));
  out.wheelSteers=Array.from({length:4},(_,i)=>clamp(value.wheelSteers?.[i]??(i<2?out.steer:0),-1.5,1.5));
- out.suspension=Array.from({length:4},(_,i)=>({wheelY:clamp(value.suspension?.[i]?.wheelY??out.groundHeight+.34,-4,31),groundHeight:clamp(value.suspension?.[i]?.groundHeight??out.groundHeight,-4,30),contact:value.suspension?.[i]?.contact!==false}));
+ out.suspension=Array.from({length:4},(_,i)=>({wheelY:clamp(value.suspension?.[i]?.wheelY??out.groundHeight+.34,-32,513),groundHeight:clamp(value.suspension?.[i]?.groundHeight??out.groundHeight,-32,512),contact:value.suspension?.[i]?.contact!==false}));
  if(object(value.lastImpactLocal))out.lastImpactLocal={x:clamp(value.lastImpactLocal.x,-3,3),z:clamp(value.lastImpactLocal.z,-5,5)};
  return out;
 }
@@ -144,7 +144,7 @@ export class MultiplayerSession{
    if(this.isHost){this.members.set(id,{id,...this.profile,ready:true,active:false,state:null,updatedAt:this._now()});this._status('lobby','Lobby ready. Share the code with your friends.');this._emitRoom();this._finishPending();}
    // PeerJS JSON cannot carry a city frame: it rejects messages at 16,300 bytes.
    // BinaryPack includes fragmentation and reassembly for larger world updates.
-   else{try{const connection=peer.connect(this.hostId,{label:'sideways-v8',serialization:'binary',reliable:true,metadata:{version:MULTIPLAYER_VERSION,transport:'binary-v1'}});this._bindConnection(connection,false);}catch(error){this._fail(this._issue(errorCode(error),{detail:this._errorDetail(error),stage:'joining'}));}}
+   else{try{const connection=peer.connect(this.hostId,{label:'sideways-v9',serialization:'binary',reliable:true,metadata:{version:MULTIPLAYER_VERSION,transport:'binary-v1'}});this._bindConnection(connection,false);}catch(error){this._fail(this._issue(errorCode(error),{detail:this._errorDetail(error),stage:'joining'}));}}
   });
   peer.on('connection',connection=>{if(!live()||!this.isHost||this.links.size>=LIMITS.links){connection.close?.();return;}const reject=connection.metadata?.version!==MULTIPLAYER_VERSION?'PROTOCOL_MISMATCH':connection.serialization&&connection.serialization!=='binary'?'TRANSPORT_OUTDATED':null;this._bindConnection(connection,true,reject);});
   peer.on('call',call=>call.close?.());

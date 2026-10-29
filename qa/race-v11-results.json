@@ -89,7 +89,7 @@
   ],
   "sourceSHA256": {
     "dist/race.js": "296660409dab7098824b3b372e49e6d26d01b0be51fa16f816a3286c839a51cd",
-    "dist/traffic.js": "0a2c5166b0126099ce827d9363de241d4ca4390efbacca7193c745eb714c23e0",
+    "dist/traffic.js": "b811cca6c4fe0ebd913382eea5394b012ed95ecd24959726c666821b5fc4f73a",
     "dist/contact.js": "a4c2ab97626d8b6e7a7a54951251d4369e2ef2660f163e035573e829436d568a"
   }
 }

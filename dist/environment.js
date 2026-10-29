@@ -36,16 +36,16 @@ export class DayNight {
   if(settings.timeMode==='day')this.hour=13.5;else if(settings.timeMode==='night')this.hour=23;else if(settings.timeMode==='sunset')this.hour=17.6;else this.hour=(this.hour+dt*24/Math.max(180,(settings.dayMinutes??12)*60))%24;
   const angle=(this.hour-6)/24*Math.PI*2,elevation=Math.sin(angle);const day=clamp((elevation+.12)/.38),sunset=clamp(1-Math.abs(elevation)/.33)*day;
   this.night=1-day;this._sunDir.set(Math.cos(angle)*.90,elevation,Math.cos(angle)*.43).normalize();
-  const x=state.x||0,z=state.z||0;this.root.position.set(x,0,z);
+  const x=state.x||0,z=state.z||0,y=state.groundHeight||0;this.root.position.set(x,y,z);
   this.uniforms.sunDirection.value.copy(this._sunDir);this.uniforms.day.value=day;this.uniforms.night.value=this.night;this.uniforms.sunset.value=sunset;this.uniforms.time.value=time;
   this.sunDisc.position.copy(this._sunDir).multiplyScalar(780);this.sunDisc.visible=elevation>-.12;this.sunDisc.lookAt(camera.position);
   this.moon.position.copy(this._sunDir).multiplyScalar(-780);this.moon.visible=this.night>.1;this.moon.lookAt(camera.position);
   this.stars.material.opacity=this.night*.85;this.cloudMat.color.setHex(0xe7e3dc).lerp(this._cloudNight,this.night);this.clouds.rotation.y=time*.0007;
-  this.sun.position.set(x+this._sunDir.x*140,Math.max(8,this._sunDir.y*140),z+this._sunDir.z*140);this.sun.target.position.set(x,0,z);this.sun.target.updateMatrixWorld();this.sun.intensity=(1.9+elevation*.8)*day;
+  this.sun.position.set(x+this._sunDir.x*140,y+Math.max(8,this._sunDir.y*140),z+this._sunDir.z*140);this.sun.target.position.set(x,y,z);this.sun.target.updateMatrixWorld();this.sun.intensity=(1.9+elevation*.8)*day;
   this.sun.color.setHex(0xfff2d6).lerp(this._sunWarm,sunset*.6);
-  this.moonLight.position.set(x-this._sunDir.x*100,60,z-this._sunDir.z*100);this.moonLight.target.position.set(x,0,z);this.moonLight.intensity=.30*this.night;
+  this.moonLight.position.set(x-this._sunDir.x*100,y+60,z-this._sunDir.z*100);this.moonLight.target.position.set(x,y,z);this.moonLight.intensity=.30*this.night;
   this.ambient.intensity=mix(1.65,.38,this.night);this.ambient.color.setHex(0xbcd7ed).lerp(this._ambientNight,this.night);this.ambient.groundColor.setHex(0x64747c).lerp(this._groundNight,this.night);this.fill.intensity=.08+.06*this.night;
-  this.scene.fog.color.copy(this._fogDay).lerp(this._fogNight,this.night);this.scene.fog.near=mix(220,130,this.night);this.scene.fog.far=mix(980,610,this.night);
+  this.scene.fog.color.copy(this._fogDay).lerp(this._fogNight,this.night);this.scene.fog.near=mix(220,130,this.night);this.scene.fog.far=mix(this.world?.region?2400:980,this.world?.region?1200:610,this.night);
   this.renderer.toneMappingExposure=mix(1.03,.91,this.night);
   const heading=state.heading||0,sn=Math.sin(heading),cs=Math.cos(heading),on=!!settings.headlights;
   for(const {light,side}of this.headlights){light.position.set(x+sn*1.9+cs*side*.65,(state.bodyHeight||0)+.68,z+cs*1.9-sn*side*.65);light.target.position.set(x+sn*32+cs*side*.7,(state.groundHeight||0)+.03,z+cs*32-sn*side*.7);light.intensity=on?mix(12,45,this.night):0;light.castShadow=on&&side<0&&settings.quality==='high';light.target.updateMatrixWorld();}

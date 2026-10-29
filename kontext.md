@@ -1,17 +1,17 @@
-# SIDEWAYS V12 – aktueller Stand
+# SIDEWAYS V13 – aktueller Stand
 
-Stand: 28. Oktober 2026. Grundlage ist das unveränderte V11-Gesamtpaket des Nutzers. Die Umsetzung wurde anschließend ausdrücklich beauftragt.
+Stand: 29. Oktober 2026. Grundlage ist der veröffentlichte V12-Stand in TheSimonMC/sideways. Der Nutzer hat Neustart- und Escape-Fixes, eine deutlich größere und abwechslungsreichere Free-Roam-Karte sowie direkten Upload auf GitHub Pages beauftragt.
 
-Die Garage hat eine Fahrzeugbühne, Kategorien und Teilekarten mit Preisen, Besitz, Einbauzustand und Vergleich zum aktuellen Aufbau. Vorschau und Kauf bleiben getrennt. Einstellungen, große Karte und Rundinstrument sind überarbeitet. Die vollständige GIF-Referenz (305 Frames, 6,1 Sekunden) wurde berücksichtigt: kurzer Schadensübergang, anschließend stabile rote Warnung; reduzierte Bewegung unterdrückt die Verzerrung.
+Ein neuer Lauf und Pause > Restart reparieren das Auto vollständig und füllen Kraftstoff/NOS. R bleibt die Straßenbergung mit erhaltenem Schaden. Escape öffnet Pause und führt beim zweiten Druck zurück ins Spiel. Hauptmenü ist eine bewusste Auswahl im Pausemenü.
 
-Die Controller-Navigation verwendet Bildschirmhistorie, Fokuswiederherstellung, Gruppen, modale Tab-Grenzen und eine virtuelle Tastatur für Textfelder. Maus und Tastatur bleiben nutzbar. View/Select wechselt in der Karte zwischen Cursor und Orten; B/Kreis führt zurück.
+Neon County hat 24,576 km², etwa 64 km Straßen und 120 Graphknoten: Innenstadt, vierspuriger Expressway, Landstraßen, Küste, Hafenbereich, drei gerichtete Kreisverkehre und Skyline Hills mit Serpentinen und Villen. Höchste Fahrbahn etwa 158 m. Neun Services sind über das Straßennetz erreichbar. Die Karte ist eine eigene Low-Poly-Welt, keine GTA-Kopie. Expressway-Knoten sind derzeit ebenerdig.
 
-Native Audiopunkte folgen den sichtbaren Endrohren einschließlich Verformung sowie Motor, Ansaugung, Getriebe, Differenzial und Rädern. Position und Orientierung der Kamera bestimmen den Hörer. Top-down verwendet bewusst eine nahe Hörperspektive. Die SDK-Erweiterung erzeugt alle Quellen in einem gemeinsamen Renderdurchlauf. Sie ist in sdk/SIDEWAYS-EXTENSION.md dokumentiert. MotorLab bleibt Version 1.6.3; diese Erweiterung ist kein offizielles SDK-Update.
+Terrain wird unter den Straßen abgesenkt und angeglichen. Fahrbahn-Rendering und Reifenabtastung verwenden dieselben Dreiecke. Kurven teilen sich Randpunkte. Separate Seitenstreifen vermeiden Flackern. Häuser besitzen Hangfundamente; NPC-Räder folgen der Bodenhöhe. Polizei startet ohne Überschneidung mit zivilem Verkehr.
 
-Die vorherige Mechanik, Karriere, Polizei, Rennen, Schaden und Multiplayer bleiben Grundlage. Es wurde keine vollständige BeamNG-Softbody-Simulation oder Lenkrad-Drehmomentsteuerung ergänzt. NPCs behalten ihre leichteren Klangmodelle. Reflexionen verwenden angenäherte Fassadenebenen und generische Ohrfilter.
+Multiplayer-Protokoll 9 trennt den neuen Kartenstand von V12. Positions- und Höhenvalidierung sowie Polizeisuchdaten unterstützen die ganze Region. Alle Teilnehmer müssen V13 verwenden. Steuerung, Garage, Audio-Erweiterung, SDK, Karriere und Rennstrecke bleiben auf V12 aufgebaut.
 
-Spielstart: SIDEWAYS.html im ZIP-Hauptordner. Die separat gelieferte SIDEWAYS-v12.html hat identische Bytes. Singleplayer funktioniert offline; Multiplayer braucht weiterhin Netzverbindungen. Keine Sites-Veröffentlichung.
+Build: npm ci; node build.mjs. READ-ME-V13.txt erklärt Bedienung und Grenzen. qa/release-v13.json nennt ausschließlich die für V13 ausgeführten Prüfungen. Alte QA-Dateien sind historische Nachweise. Physische Hardware, echtes Mehr-PC-Netzwerk und Hörtests wurden nicht geprüft. Der bekannte SDK-Replay-Hashfehler ist in qa/sdk-v12-baseline.json dokumentiert; das SDK wurde für V13 nicht verändert.
 
-READ-ME-V12.txt erklärt Bedienung, Build und Grenzen. qa/release-v12.json nennt die aktuellen Prüfergebnisse; ältere QA-Dateien sind historische Nachweise. Ein SDK-Replay-Hashfehler tritt auch im unveränderten Original unter derselben Laufzeit auf und steht in qa/sdk-v12-baseline.json. Physische Controller/Lenkräder, echte Mehr-PC-Verbindungen und Hörtests auf Lautsprechern waren hier nicht verfügbar.
+GitHub Pages veröffentlicht die getestete SIDEWAYS.html aus dem Repository-Hauptordner. Der Workflow vergleicht ihren SHA-256 mit qa/standalone-browser-v13-results.json. Das Release-ZIP enthält dieselbe HTML sowie Quellen, SDK, Dokumentation und Prüfungen. Keine Sites-Veröffentlichung.
 
-Die ursprüngliche kontext.md liegt unverändert in docs/kontext-v11-historisch.md. Ihre alte Grenze „noch nichts ändern“ beschreibt nur den früheren Übergabeschritt.
+Historie: docs/kontext-v11-historisch.md und docs/kontext-v12-historisch.md. Frühere Grenzen wie „noch nichts ändern“ betreffen nur den damaligen Übergabeschritt. Die späteren Änderungs- und Veröffentlichungsaufträge sind ausdrücklich erteilt.

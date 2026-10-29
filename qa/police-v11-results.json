@@ -9,12 +9,12 @@
     "Arrest requires three stopped seconds beside a slow officer and is interrupted by movement.",
     "Night patrols physically deploy from the station and expose varied, rate-limited dispatch and engine metadata.",
     "Police impacts keep reciprocal body velocity and spatial sirens without a second contact impulse.",
-    "Civilian traffic and patrols keep finite physical motion and render matrices through a full minute on curved roads.",
+    "Civilian traffic and patrols keep finite physical motion and render matrices through a full minute on downtown roads.",
     "Snapshot replicas and repeated reset/disposal preserve bounded police state."
   ],
   "fixtures": {
     "Observed normal driving stays legal; sustained speeding triggers pursuit after actual sighting time on the current road geometry.": {
-      "pathLength": 88.3803446031667,
+      "pathLength": 140,
       "detectionSeconds": 1.1
     },
     "A moving sighting assigns a stable lead officer and distinct road junctions to intercept and containment units.": {
@@ -25,24 +25,23 @@
         "pursuit"
       ],
       "interceptNodes": [
-        2,
-        12
+        11,
+        1
       ]
     },
     "Separated search units cover distinct nodes and take identical routes for different hidden player locations.": {
       "assignedNodes": [
-        13,
-        4,
-        12
+        0,
+        1,
+        10
       ],
-      "plannedNodes": 10,
+      "plannedNodes": 4,
       "maxHiddenLocationTrajectoryDifference": 0,
-      "sectorsChecked": 3,
+      "sectorsChecked": 2,
       "radioCodes": [
         "pursuit",
         "search",
-        "collision",
-        "blocked",
+        "clear",
         "sector",
         "escaped"
       ]
@@ -59,19 +58,19 @@
     "Night patrols physically deploy from the station and expose varied, rate-limited dispatch and engine metadata.": {
       "active": 6,
       "deployments": 3,
-      "maxStepM": 0.10416663260057031,
+      "maxStepM": 0.10416666666666785,
       "dispatches": 1
     },
     "Police impacts keep reciprocal body velocity and spatial sirens without a second contact impulse.": {
       "reciprocalImpulse": true,
       "siren": true
     },
-    "Civilian traffic and patrols keep finite physical motion and render matrices through a full minute on curved roads.": {
+    "Civilian traffic and patrols keep finite physical motion and render matrices through a full minute on downtown roads.": {
       "seconds": 60,
       "civilians": 16,
       "police": 3,
-      "minTravelM": 131.8678245541587,
-      "maxStepM": 0.10416663260057031,
+      "minTravelM": 208.69940233902295,
+      "maxStepM": 0.1041666666666714,
       "roadMissFraction": 0
     },
     "Snapshot replicas and repeated reset/disposal preserve bounded police state.": {
@@ -80,11 +79,11 @@
     }
   },
   "limits": [
-    "Current curved-city road geometry, planar vehicles, line of sight and recorded event descriptors in Node. No browser GPU image or audible radio/siren test.",
+    "Current downtown road geometry, planar vehicles, line of sight and recorded event descriptors in Node. No browser GPU image or audible radio/siren test.",
     "Search knowledge comes from sightings and camera reports; the UI still knows the player position to draw nearby police."
   ],
   "sourceSHA256": {
-    "dist/police.js": "dc9f4f71bf2de82bfc9409ba6c3ef92221f8cfa92e1a4726fc2308affc9f3061",
-    "dist/traffic.js": "0a2c5166b0126099ce827d9363de241d4ca4390efbacca7193c745eb714c23e0"
+    "dist/police.js": "2ee60eb5e4e1a33e83eee555df4fbabffd15ca0d97965cfe20a8d21851d7da87",
+    "dist/traffic.js": "b811cca6c4fe0ebd913382eea5394b012ed95ecd24959726c666821b5fc4f73a"
   }
 }

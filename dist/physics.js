@@ -81,6 +81,11 @@ export class CarPhysics {
   for(let i=0;i<4;i++)if(!this.condition.wheelAttached[i]){this.state.suspension[i].load=0;this.state.suspension[i].contact=false;this.state.wheelLoads[i]=0;this.state.wheelAudio[i].contact=false;this.state.wheelAudio[i].load=0;}
   return this.state;
  }
+ /** A new run starts serviced; ordinary road recovery intentionally retains damage. */
+ restart(x=0,z=0,heading=0,options={}){
+  this.service({repair:true,refuel:true,refillNitrous:true});this.consumeMechanicalEvents();
+  return this.reset(x,z,heading,options);
+ }
  get _omegaL(){return this._wheelOmega[2];} set _omegaL(v){this._wheelOmega[2]=v;}
  get _omegaR(){return this._wheelOmega[3];} set _omegaR(v){this._wheelOmega[3]=v;}
  _ratio(gear){return(gear<0?-3.35:gear===0?0:this.gears[gear-1])*this.finalDrive;}

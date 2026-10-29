@@ -1,0 +1,10 @@
+{
+  "version": 13,
+  "status": "passed",
+  "checks": [
+    "Eight civilian drivers advance continuously on hill routes for 20 simulated seconds",
+    "NPC wheel rendering follows the road height at every wheel",
+    "Police snapshots accept hill search/player coordinates and reject out-of-world values"
+  ],
+  "maxStepM": 0.11708317783540595
+}

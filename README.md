@@ -1,20 +1,20 @@
-# SIDEWAYS V12
+# SIDEWAYS V13
 
 [Play in your browser](https://thesimonmc.github.io/sideways/) · [Download ZIP or offline HTML](https://github.com/TheSimonMC/sideways/releases/latest)
 
 GitHub Pages publishes the tested `SIDEWAYS.html` on every push to `main`. To publish source changes, rebuild and rerun the standalone checks described below, then copy `dist/SIDEWAYS.html` to `SIDEWAYS.html` and commit it with the updated browser report. The deployment verifies that their SHA-256 values match.
 
-Start with **READ-ME-V12.txt** for the current UI, controls, audio extension and verification limits.
+Start with **READ-ME-V13.txt** for the current UI, controls, audio extension and verification limits.
 
 ## SIDEWAYS / City Sessions
 
 SIDEWAYS is a 3D driving game with low-poly comic graphics, a top-down camera, a manual drivetrain and a city to explore. Earn points from close passes, drifts and jobs, then buy cars, engine swaps and parts. Up to four friends can share a city through an eight-character lobby code.
 
-The player engine and its sound use the supplied MotorLab SDK 1.6.3, Physics Release 14 and Audio Release 14. The game has four fictional cars and eight engine families, with 16 independently selected part categories. City Free Roam uses Neon District; Time Attack and Drift Rush use the separate Dock 09 track. Chase and hood cameras are available alongside the default top-down view.
+The player engine and its sound use the supplied MotorLab SDK 1.6.3, Physics Release 14 and Audio Release 14. The game has four fictional cars and eight engine families, with 16 independently selected part categories. City Free Roam uses Neon County; Time Attack and Drift Rush use the separate Dock 09 track. Chase and hood cameras are available alongside the default top-down view.
 
 ## Play the downloaded game
 
-Open `SIDEWAYS-v12.html` from the chat attachment. The complete ZIP includes the same game as `SIDEWAYS.html` at its root, along with the editable project, SDK, credits and instructions. Extract the ZIP before opening its HTML. Single-player, including NPC racing, needs no server or network download. Multiplayer still needs internet access to signaling and peers.
+Open `SIDEWAYS-v13.html` from the chat attachment. The complete ZIP includes the same game as `SIDEWAYS.html` at its root, along with the editable project, SDK, credits and instructions. Extract the ZIP before opening its HTML. Single-player, including NPC racing, needs no server or network download. Multiplayer still needs internet access to signaling and peers.
 
 The HTML includes code, fonts, models and sound. No Sites address is used by the game. Progress stays in the browser and origin where you played. Copying the HTML to another PC copies the game assets; it does not copy browser storage. Click or press a key to enable sound. A browser must expose a controller or wheel through its Gamepad API before the game can bind it.
 
@@ -25,7 +25,15 @@ npm ci
 node build.mjs
 ```
 
-This creates `dist/SIDEWAYS.html`. After running `node qa/standalone-v12-check.mjs` and `node qa/standalone-browser-v12.cjs` on that build, `node qa/package-v12.mjs` creates `release/SIDEWAYS-v12.html` and `release/SIDEWAYS-v12.zip`. The browser check needs Playwright; dependency and browser path options are in READ-ME-V12.txt. Packaging verifies that the tested HTML matches the delivered bytes. These commands do not publish a Site or push a repository.
+This creates `dist/SIDEWAYS.html`. After running `node qa/standalone-v13-check.mjs` and `node qa/standalone-browser-v13.cjs` on that build, `node qa/package-v13.mjs` creates `release/SIDEWAYS-v13.html` and `release/SIDEWAYS-v13.zip`. The browser check needs Playwright; dependency and browser path options are in READ-ME-V13.txt. Packaging verifies that the tested HTML matches the delivered bytes. These commands do not publish a Site or push a repository.
+
+## V13 changes
+
+Starting a new run or choosing Pause > Restart now repairs the car, restores its wheels, clears mechanical faults and refills fuel and NOS. Road recovery (R) still keeps damage. Escape opens Pause during driving; pressing it again resumes. Main Menu remains an explicit pause-menu button.
+
+Neon County covers 24.6 km². Its roughly 64 km of roads include the downtown street grid, a four-lane expressway, country and coastal roads, Harbor District, three connected roundabouts and Skyline Hills. The hill roads rise to about 158 m, with switchbacks, villas and two additional fuel/mechanic destinations in the hills. Nine service locations share the road-routing graph.
+
+Roads shape the surrounding terrain. Rendering and tyre contact use the same road triangles, and bends share edge vertices to avoid gaps. NPC wheels follow slopes; the multiplayer coordinate limits include the whole county. Everyone in a room needs V13 (protocol 9). The expressway currently uses surface junctions, without elevated interchanges.
 
 ## V12 changes
 
@@ -57,7 +65,7 @@ Vehicle Condition is available in the pause menu and from the temperature strip.
 
 ## City Sessions features
 
-The city has bending streets, smaller blocks, alleys and five named districts. Civilian traffic keeps left. Street lamps sit outside the carriageway. The 2D map follows the street geometry, supports waypoints and draws routes along the road graph. The round minimap turns with the car while its north marker stays tied to world north. Nearby services, officers, cameras, friends and the current destination appear on it.
+The county combines a straight downtown grid and alleys with curved regional roads and hills. Civilian traffic keeps left. Street lamps sit outside the carriageway. The 2D map follows the street geometry, supports waypoints and draws routes along the road graph. The round minimap turns with the car while its north marker stays tied to world north. Nearby services, officers, cameras, friends and the current destination appear on it.
 
 A phone shows dispatch messages and jobs. Completed close passes earn points and can build a short chain. Drift banks, deliveries and escaped pursuits also pay. The garage shows the cost before a purchase, keeps owned parts available for later builds and retains the installed setup when migrating from earlier editions.
 
@@ -120,7 +128,7 @@ Parts affect the solver: engine mass and configuration, boost targets, redline, 
 
 Select Club Race on the main menu, choose the difficulty and distance, then Join the Grid. Race settings also work through the controller's menu controls. The field has six drivers including you. The HUD shows position, lap, estimated gaps and a wrong-way warning. Standings classify finished drivers by crossing time; gaps for drivers still racing are estimates from track distance and pace.
 
-Pass all eight gates in order. Driving backwards over a line, cutting across the infield or jumping to a later sector cannot complete a lap. Reset returns you just after the last valid gate, keeps car condition, and applies a five-second hold. Pause or losing window focus freezes the race. Garage changes and service are unavailable during an active race. Use Pause > Retire from Race to end a damaged or abandoned run; retirement pays no finish award. Repair the car in Free Roam before starting another race.
+Pass all eight gates in order. Driving backwards over a line, cutting across the infield or jumping to a later sector cannot complete a lap. Reset returns you just after the last valid gate, keeps car condition, and applies a five-second hold. Pause or losing window focus freezes the race. Garage changes and service are unavailable during an active race. Use Pause > Retire from Race to end a damaged or abandoned run; retirement pays no finish award. Starting the next race restores the car.
 
 For a three-lap Club event, first through sixth pay 8,000, 6,200, 4,700, 3,500, 2,400 and 1,600 points. Rookie pays 75% and Pro 130%; one- and five-lap events scale with their distance. A completion pays once. Drift points remain separate. The result screen shows standings at your finish, including opponents still on track.
 
@@ -144,7 +152,7 @@ The simulation uses a planar driving body with four spring contacts. Full suspen
 
 ## The city and police
 
-Neon District has 81 junctions and 144 two-way street segments, plus alleys. The districts are Old Town, Garden Heights, Midtown, Downtown and Ironworks. Thirty-six civilian cars in normal traffic use left-hand lanes, signals, braking and turn indicators. They react to approaching cars, horns and emergency vehicles. Traffic and rendered signal lamps use the same clock.
+Neon County has 120 graph nodes. Downtown retains Old Town, Garden Heights, Midtown, Downtown and Ironworks; regional roads connect the coast, harbor, country and hills. Thirty-six civilian cars in normal traffic use left-hand lanes, signals, braking and turn indicators. They react to approaching cars, horns and emergency vehicles. Traffic and rendered signal lamps use the same clock.
 
 Only the selected map is constructed. Changing worlds disposes the previous map, traffic and police. The title screen uses a separate showroom.
 
@@ -177,7 +185,8 @@ Fuel, oil, coolant, temperatures, component damage and NOS are retained per car.
 | Service / accept phone job | F | X / Square |
 | Map | Tab | View / Share |
 | Pause | P | Start / Options |
-| Main menu from driving | Escape | Pause, then Main Menu |
+| Pause / resume | Escape or P | Menu / Start |
+| Main menu from driving | Pause, then Main Menu | Pause, then Main Menu |
 | Reset to road | R | Recovery menu or custom binding |
 | Transmission mode | T | Settings |
 | Settings / garage | O / G | Menus |
@@ -215,27 +224,27 @@ The host owns shared AI, pursuit events and time; each player owns their local d
 
 ## Validation
 
-`qa/release-v12.json` identifies the current verification evidence and its limits. Use Node.js 24 for the JavaScript suites. Examples for this edition:
+`qa/release-v13.json` lists the checks run for this build and their limits. Node.js 24 commands:
 
 ```sh
-node qa/navigation-v12-check.mjs
-node qa/navigation-main-v12-check.mjs
-node qa/map-v12-check.mjs
-node qa/instruments-v12-check.mjs
-node qa/audio-v12-check.mjs
-node qa/modular-v11-check.mjs
-node qa/race-v11-check.mjs
+node qa/county-v13-check.mjs
+node qa/county-agents-v13-check.mjs
+node qa/restart-v13-check.mjs
+node qa/navigation-main-v13-check.mjs
+node qa/input-taps-v12-check.mjs
+node qa/multiplayer-v9-check.mjs
 node qa/police-v11-check.mjs
-node qa/mechanical-regression-v11-check.mjs
+node qa/race-v11-check.mjs
 node build.mjs
-node qa/standalone-v12-check.mjs
-node qa/standalone-browser-v12.cjs
-node qa/package-v12.mjs
+node qa/standalone-v13-check.mjs
+node qa/standalone-browser-v13.cjs
+node qa/county-browser-v13.cjs
+node qa/package-v13.mjs
 ```
 
-The SDK tests run all eight native engine families, old-session migration, layer meters, stereo perspective and PCM/manual clock parity. Modular tests exercise real tuning effects, impact locations, damage persistence and Three.js geometry. Circuit tests run actual rivals through complete races and test ordered gates, recovery and contact. Main integration runs actual event handlers and frame logic in a functional DOM. The mechanical regression keeps the established overrev, heat and repair scenarios. Audio checks include real PCM, recordings, sound focus and reflection geometry.
+The county checks cover connectivity, directed roundabouts, lane clearances, grades, service routes, all regional turn guides and 642 raycast wheel positions. The agent checks drive NPCs on hills and verify wheel heights and remote police search coordinates. The standalone browser test starts with a severely damaged save, starts Free Roam, exercises Escape, map, driving and Restart, and records the exact HTML SHA-256. Separate rendered views cover hills, highway, roundabout and overview.
 
-The final standalone browser run loads the file with external HTTP(S) blocked, checks a purchase and ownership, and starts and drives Club Race. Browser tests use Chromium software rendering; they do not establish GPU quality on other hardware, listening quality, physical controller behavior or live cross-network WebRTC. The package checks verify exact built files and ZIP integrity. Earlier reports are retained, and some older suites were rerun: consult `qa/release-v12.json` rather than inferring currency from a filename. The SDK's V7 replay hash differs on this runtime in both the original and modified SDK; `qa/sdk-v12-baseline.json` records the comparison.
+Browser checks use Chromium software rendering. Physical controllers/wheels, speaker listening and live cross-network multiplayer were not tested for V13. Earlier QA files remain as history; only reports listed in `qa/release-v13.json` were run for this build. The existing SDK V7 replay-fixture mismatch is documented in `qa/sdk-v12-baseline.json`; the SDK was unchanged in V13.
 
 ## Credits and licenses
 
