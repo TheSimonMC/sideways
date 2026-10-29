@@ -1,10 +1,12 @@
-# SIDEWAYS V24
+# SIDEWAYS V25
 
 [Play in your browser](https://thesimonmc.github.io/sideways/) · [Download ZIP or offline HTML](https://github.com/TheSimonMC/sideways/releases/latest)
 
 GitHub Pages publishes the tested `SIDEWAYS.html` on every push to `main`. To publish source changes, rebuild and rerun the standalone checks described below, then copy `dist/SIDEWAYS.html` to `SIDEWAYS.html` and commit it with the updated browser report. The deployment verifies that their SHA-256 values match.
 
-Start with **READ-ME-V24.txt** for this update, offline setup and verification limits.
+Start with **READ-ME-V25.txt** for this update, offline setup and verification limits.
+
+V25 adds separate opening doors, hood and trunk, attachment damage, visible detached meshes, mass/drag effects, garage controls and saved/networked panel states. Phase 3 remains in progress: glass, individual lamps and smaller appendages follow next. Full interiors and animated engine bays are still pending.
 
 ## SIDEWAYS / City Sessions
 
@@ -14,7 +16,7 @@ The player engine and its sound use the supplied MotorLab SDK 1.6.3, Physics Rel
 
 ## Play the downloaded game
 
-Open `SIDEWAYS-v24.html` from the chat attachment. The complete ZIP includes the same game as `SIDEWAYS.html` at its root, along with the editable project, SDK, credits and instructions. Extract the ZIP before opening its HTML. Single-player, including NPC racing, needs no server or network download. Multiplayer still needs internet access to signaling and peers.
+Open `SIDEWAYS-v25.html` from the chat attachment. The complete ZIP includes the same game as `SIDEWAYS.html` at its root, along with the editable project, SDK, credits and instructions. Extract the ZIP before opening its HTML. Single-player, including NPC racing, needs no server or network download. Multiplayer still needs internet access to signaling and peers.
 
 The HTML includes code, fonts, models and sound. No Sites address is used by the game. Progress stays in the browser and origin where you played. Copying the HTML to another PC copies the game assets; it does not copy browser storage. Click or press a key to enable sound. A browser must expose a controller or wheel through its Gamepad API before the game can bind it.
 
@@ -25,7 +27,15 @@ npm ci
 node build.mjs
 ```
 
-This creates `dist/SIDEWAYS.html`. After running `node qa/standalone-v24-check.mjs` and `node qa/standalone-browser-v24.cjs` on that build, `node qa/package-v24.mjs` creates `release/SIDEWAYS-v24.html` and `release/SIDEWAYS-v24.zip`. The browser check needs Playwright; dependency and browser path options are in READ-ME-V24.txt. Packaging verifies that the tested HTML matches the delivered bytes. These commands do not publish a Site or push a repository.
+This creates `dist/SIDEWAYS.html`. After running `node qa/standalone-v25-check.mjs` and `node qa/standalone-browser-v25.cjs` on that build, `node qa/package-v25.mjs` creates `release/SIDEWAYS-v25.html` and `release/SIDEWAYS-v25.zip`. The browser check needs Playwright; dependency and browser path options are in READ-ME-V25.txt. Packaging verifies that the tested HTML matches the delivered bytes. These commands do not publish a Site or push a repository.
+
+## V25: Opening panels and detachable bodywork
+
+Use the four panel buttons in the Garage on your installed car. Doors, hood and trunk use separate geometry, hinges, latches and mounts. Impacts can tear them away; loose parts keep their mesh and collide through bounded proxies. Missing parts change vehicle mass, axle loads and inertia, while openings affect drag and wind. Recovery preserves the condition; individual replacement repairs it, and a new run starts serviced.
+
+Network protocol 17 carries the bounded panel states inside the existing pose messages. The RATE_LIMIT queue/coalescing fix remains. All players must reload V25. Loose debris stays local; missing, open and deformed parts are shared.
+
+See [the V25 report](docs/phase-3a-body-panels-report.md), [all 156 requirements](docs/goal-progress.md) and `qa/release-v25.json`. Next is Phase 3B: individual glass, lamps and smaller appendages. Interiors, detailed animated engine bays and later phases remain open. The following release notes describe their historical versions.
 
 ## V24: Rain and wet roads
 
@@ -316,9 +326,9 @@ The game uses vendored PeerJS 1.5.5 and WebRTC data channels. The default PeerJS
 
 The host owns shared AI, pursuit events and time; each player owns their local driving simulation. Wallets and jobs remain local. Opening a host menu keeps AI and the clock running for guests. If the host switches away or hides the tab, the host sends a pause notice and guests wait until it returns. Host departure ends the room, with no host migration. Inactive or stale cars stop supplying sound and collisions. The protocol has bounded packets and queues, sender checks and timeouts, but does not provide server-side anti-cheat or rollback. No microphone or camera access is requested. [Multiplayer details](docs/multiplayer.md) cover configuration and the integration API.
 
-## Validation
+## Historical V13 validation
 
-`qa/release-v13.json` lists the checks run for this build and their limits. Node.js 24 commands:
+`qa/release-v13.json` lists the checks run for V13 and their limits. Node.js 24 commands:
 
 ```sh
 node qa/county-v13-check.mjs

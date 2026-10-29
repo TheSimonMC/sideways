@@ -1,0 +1,49 @@
+{
+  "version": 25,
+  "checks": [
+    "County is connected, contains three directed roundabouts and distinct road classes",
+    "Every authored road has moderate grades, continuous elevations and clear driving lanes",
+    "Rendered road surface is above terrain at wheel positions, including switchbacks",
+    "Service destinations and hill lookouts are reachable through the road graph",
+    "Civilian/police lane guides build for every new directed edge and turn",
+    "Every region reset returns to asphalt and world disposal is complete"
+  ],
+  "renderedRoadSamples": 5956,
+  "maximumVisualHeightError": 0.000011654845366138034,
+  "status": "passed",
+  "areaKm2": 103.071744,
+  "landKm2": 52.458048,
+  "architecture": {
+    "buildings": 2244,
+    "palms": 1934,
+    "streetProps": 1451,
+    "landmarks": 4,
+    "bridges": 5,
+    "modules": 79973
+  },
+  "nodes": 1625,
+  "roadKm": 266.3175366166799,
+  "maxGrade": 0.1900819390312218,
+  "minHeight": 0.012000000000000455,
+  "maxHeight": 210.01195558538114,
+  "elapsedMs": 43534.292,
+  "limits": [
+    "Geometry, routing and sampled wheel positions; no claim of driving every metre with physical hardware."
+  ],
+  "verifiedInRelease": 25,
+  "suiteSource": "qa/archipelago-v14-check.mjs",
+  "suiteSHA256": "075e03c245f76f8b01ac48c87ef230e6e0639caac558d7001e47ac527ef0c7e1",
+  "sourceSHA256": {
+    "dist/drivetrain.js": "9927f12d0ab5de0ad2de6f59b5f5f21cfb1ec0ce6c1efc81ca253ded1efb16d3",
+    "dist/physics.js": "c190548c011447318315e938d69538f89403b26584346892bc1c0965168336c4",
+    "dist/mechanical.js": "63e97ee147599139ff6d20ea31d6432ff519ba450c25bbc5936209f20e4aad60",
+    "dist/car.js": "df16a8873477af3708de5ecbbbbc6429f17f86311d3663e9ed13cad52ad7f2fc",
+    "dist/catalog.js": "c5da9ed3102fe56916bf85badb4a9c355de106cbcf29dda37f92f6d551425065",
+    "dist/career.js": "e609ca9085aba7ced8eca015b637bcbfb7b9b6f594d6c04bfbf4dbad80de1e67",
+    "dist/garage.js": "433365d6d28b2f8444982b003cdb5d2d5adc6f89f93e84caa0057585c3691f37",
+    "dist/audio.js": "233bd0e344e49bf967b57bdab0f317c35575dabed61d80b0fe91a755c2b4d6c2",
+    "dist/audio-anchors.js": "ed65635fad9d265e2ab6cd964489bcd703b28397999fd16d4e609fd6fb7a15e5",
+    "dist/main.js": "502d99c815b8385e3da598c60063d4cb6aa95f926c554d713140585267037171",
+    "dist/multiplayer.js": "0a10d7e2e3a8b42e03eb9d47562487ff27f10d38107537ec2ca8ed708b5cdf64"
+  }
+}

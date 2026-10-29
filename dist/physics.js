@@ -1,3 +1,6 @@
+import {bodyLayout,panelCenter} from './body-layout.js';
+import {toggleBodyPanel,stepBodyHinges,bodyMassProperties,openDoorContacts} from './body-hinges.js';
+import {advanceDebris} from './panel-debris.js';
 import {wetTyreResponse} from './weather.js';
 import {damageBrakeLine} from './brake-hydraulics.js';
 import {tyreResponse,impactTyre} from './tyres.js';
@@ -25,6 +28,7 @@ export class CarPhysics {
  }
  setEngineAdvance(fn){this._advanceEngine=typeof fn==='function'?fn:null;return this;}
  setGroundSampler(fn){this._groundSampler=typeof fn==='function'?fn:null;return this;}
+ setDebrisColliders(fn){this._debrisColliders=typeof fn==='function'?fn:null;return this;}
  setDamageEnabled(enabled=true){this.damageEnabled=enabled!==false;return this;}
  setBuild(build){
   if(!build?.physics)build=resolveBuild(build);
@@ -56,7 +60,15 @@ export class CarPhysics {
    material:typeof sample?.material==='string'?sample.material:grip<.8?'gravel':'asphalt',
    roughness:clamp(Number.isFinite(sample?.roughness)?sample.roughness:grip<.8?.025:.001,0,.2)};
  }
+ _refreshBodyMass(){
+  const m=bodyMassProperties(this.build,this.condition.bodyDamage);this.mass=m.mass;this.inertia=m.inertia;this.cgHeight=m.cgHeight;this._staticLoads=m.loads;
+  this._pitchInertia=this.mass*(this.frontAxle+this.rearAxle)**2*.20;this._rollInertia=this.mass*(this.halfTrack*2)**2*.24;
+  this._bodyMass=m;this.contactBuild={...this.build,physics:{...this.build.physics,mass:m.mass,inertia:m.inertia}};if(this.state)this.state.bodyMass=m;return m;
+ }
+ togglePanel(id){const ok=toggleBodyPanel(this.condition.bodyDamage,id,this.state.speed);if(ok){this._mechanics.publish(true);this._publishCondition();}return ok;}
+ updateParkedPanels(dt){stepBodyHinges(this.condition.bodyDamage,Math.min(.05,dt),{speed:0,forwardSpeed:0},false);}
  reset(x=0,z=0,heading=0,{neutral=false}={}){
+  this._refreshBodyMass();
   if(this.state?.carId===this.condition.carId&&Number.isFinite(this.state.boost))this.condition.boost=this.state.boost;
   // PCM transport has no async device teardown; the SDK releases its clock
   // synchronously before returning the cleanup promise.
@@ -110,7 +122,7 @@ export class CarPhysics {
  }
  _publishCondition(){
   if(!this.state||!this.condition)return;
-  const c=this.condition;this.state.tyres=c.tyres.map((t,i)=>tyreResponse(t,c.mechanical.temperatures.tyres[i],this.state.wheelSpins?.[i]||0));this.state.wheelRadii=this.state.tyres.map(t=>this.wheelRadius*t.radiusScale);Object.assign(this.state,{carId:c.carId,engineHealth:c.engineHealth,bodyHealth:c.bodyHealth,bodyDamage:c.bodyDamage,gearboxHealth:c.gearboxHealth,wheelHealth:c.wheelHealth,wheelAttached:c.wheelAttached,
+  const c=this.condition;this.state.tyres=c.tyres.map((t,i)=>tyreResponse(t,c.mechanical.temperatures.tyres[i],this.state.wheelSpins?.[i]||0));this.state.wheelRadii=this.state.tyres.map(t=>this.wheelRadius*t.radiusScale);Object.assign(this.state,{bodyMass:this._bodyMass,carId:c.carId,engineHealth:c.engineHealth,bodyHealth:c.bodyHealth,bodyDamage:c.bodyDamage,gearboxHealth:c.gearboxHealth,wheelHealth:c.wheelHealth,wheelAttached:c.wheelAttached,
    suspensionHealth:c.suspensionHealth,brakeHealth:c.brakeHealth,wheelToe:c.wheelToe,wheelCamber:c.suspensionHealth.map((health,i)=>(i%2?1:-1)*((1-health)*.14-this.build.physics.alignmentCamber[i<2?0:1])+bearingResponse(c.mechanical.chassisDamage.bearings[i],0,this.state.wheelSpins?.[i]||0,c.wheelAttached[i]).wobble),damageEnabled:this.damageEnabled,
    fuelLitres:c.fuelLitres,fuelCapacity:c.fuelCapacity,fuelConsumedLitres:c.fuelConsumedLitres,fuelStarved:c.fuelLitres<=0,engineFault:c.engineFault,damageRevision:c.damageRevision,damageEnergyJ:c.damageEnergyJ,distanceMeters:c.distanceMeters,maxRpm:c.maxRpm,
    mechanical:this._mechanics.diagnostics,clutchTemperature:c.mechanical.temperatures.clutch,brakeTemps:c.mechanical.temperatures.brakes,tyreTemps:c.mechanical.temperatures.tyres});
@@ -121,10 +133,11 @@ export class CarPhysics {
  restoreCondition(saved){
   this.condition=createVehicleCondition(this.build,saved);this._conditions.set(this.build.vehicle.id,this.condition);
   this._mechanics=new MechanicalSystem(this.build,this.condition,event=>{this._mechanicalEvents.push(event);if(this._mechanicalEvents.length>64)this._mechanicalEvents.shift();});
-  this._brakeTemps=this.condition.mechanical.temperatures.brakes;this._tyreTemps=this.condition.mechanical.temperatures.tyres;this._clutchTemp=this.condition.mechanical.temperatures.clutch;this._publishCondition();
+  this._brakeTemps=this.condition.mechanical.temperatures.brakes;this._tyreTemps=this.condition.mechanical.temperatures.tyres;this._clutchTemp=this.condition.mechanical.temperatures.clutch;this._refreshBodyMass();this._publishCondition();
   this._mechanics._lastSample={...this._mechanics._lastSample,starterRequested:false,starterTorque:this.engineState.config.starterTorque,starterNoLoadRpm:this.engineState.config.starterNoLoadRpm};this.state.boost=this.condition.boost;const supplyFailure=!this._canWarmStart();if(this.condition.engineFault||this.condition.fuelLitres<=0||supplyFailure){this.engine.stop();this._stalled=true;this.state.engineRunning=false;this.state.engineStalled=true;if(this.condition.engineFault||supplyFailure){const crank=this.engine.getState();this.engine.applyShaftImpulse(-crank.omega*crank.config.inertia);this._omega=0;this.engineState=this.engine.getState();this.state.rpm=0;}}
   this._mechanics.observe(this.state.gear,this._omega,this.state.speed);this._publishCondition();return this.getCondition();
  }
+ getPreviewCondition(build){return this._conditions.get(build.vehicle.id)||createVehicleCondition(build);}
  exportGarageState(){this.getCondition();return Object.fromEntries([...this._conditions].map(([id,c])=>[id,snapshotVehicleCondition(c)]));}
  restoreGarageState(saved={}){
   for(const [id,c] of Object.entries(saved||{}))if(c&&typeof c==='object'&&['hachi','atlas','kitsune','vector'].includes(id))this._conditions.set(id,createVehicleCondition(resolveBuild({carId:id}),c));
@@ -143,7 +156,7 @@ export class CarPhysics {
    this._brakeTemps=this.condition.mechanical.temperatures.brakes;this._tyreTemps=this.condition.mechanical.temperatures.tyres;this._clutchTemp=this.condition.mechanical.temperatures.clutch;
    if(wasFailed&&!this.condition.engineFault&&this._canWarmStart()){if(this.engine.getTiming().clock!=='manual')void this.engine.disconnectAudio();this.engine.load(this._warmState);this.engineState=this.engine.getState();this._mechanics._lastSample={...this._mechanics._lastSample,starterRequested:false,starterTorque:this.engineState.config.starterTorque,starterNoLoadRpm:this.engineState.config.starterNoLoadRpm};this._omega=this.engineState.omega;this._stalled=false;this._stallTime=0;this._fuelMeter=this.engineState.totals?.fuelInjected??0;this._heatMeter={wall:this.engineState.totals?.wallHeat??0,friction:this.engineState.totals?.frictionWork??0,load:this.engineState.totals?.loadWork??0};this.state.engineRunning=this.condition.fuelLitres>0;this.state.engineStalled=false;this.state.rpm=this.engineState.rpm;}
    for(let i=0;i<4;i++)if(repaired.includes('tyre'+['FL','FR','RL','RR'][i])){this._previousTyreRadii[i]=this.wheelRadius;this.state.suspension[i].wheelY=this.state.suspension[i].groundHeight+this.wheelRadius;}
-   this.state.detachedWheels=this.state.detachedWheels.filter(w=>!this.condition.wheelAttached[w.index]);this.state.detachedPanels=this.state.detachedPanels.filter(p=>this.condition.bodyDamage.zones[p.panel]?.detached);this.state.damageMessage='Repairs complete';this._mechanics.observe(this.state.gear,this._omega,this.state.speed);this._publishCondition();
+   this.state.detachedWheels=this.state.detachedWheels.filter(w=>!this.condition.wheelAttached[w.index]);this.state.detachedPanels=this.state.detachedPanels.filter(p=>this.condition.bodyDamage.zones[p.panel]?.detached);this._refreshBodyMass();this.state.damageMessage='Repairs complete';this._mechanics.observe(this.state.gear,this._omega,this.state.speed);this._publishCondition();
   }
   return {repaired:repaired.length>0,components:repaired,condition:this.getCondition()};
  }
@@ -181,13 +194,18 @@ export class CarPhysics {
    vx:s.vx+lateral*cs+longitudinal*sn+normal.x*Math.min(5,contact.closingSpeed*.12),vz:s.vz-lateral*sn+longitudinal*cs+normal.z*Math.min(5,contact.closingSpeed*.12),vy:Math.min(4,1+contact.closingSpeed*.05),heading:s.heading,omega:this._wheelOmega[index],spin:s.wheelSpins[index],age:0,radius:this.wheelRadius});
   s.suspension[index].contact=false;s.suspension[index].load=0;s.wheelLoads[index]=0;s.wheelAudio[index].contact=false;s.wheelAudio[index].load=0;
  }
- _detachPanel(panel,contact){
-  const s=this.state,front=panel==='front',z=(front?1:-1)*this.build.vehicle.model.length*.48,sn=Math.sin(s.heading),cs=Math.cos(s.heading),normal=contact.normal||{x:0,z:0};
-  s.detachedPanels.push({id:++this._debrisId,panel,x:s.x+z*sn,z:s.z+z*cs,y:(s.bodyHeight||0)+(panel==='spoiler'?1.1:.35),floorOffset:panel==='spoiler'?.4:.1,vx:s.vx+normal.x*2,vz:s.vz+normal.z*2,vy:1.2,heading:s.heading,rotation:0,spin:(front?1:-1)*(1+contact.closingSpeed*.1),age:0,width:this.build.vehicle.model.width*.96});
+ _detachPanel(panel,contact={}){
+  const s=this.state,part=bodyLayout(this.build).parts[panel];if(!part)return;
+  const [x,y,z]=panelCenter(part,this.condition.bodyDamage.zones[panel]?.angle),sn=Math.sin(s.heading),cs=Math.cos(s.heading),normal=contact.normal||{x:0,z:0};
+  const kick=Math.min(3,(contact.closingSpeed||s.speed)*.09),rot=this.condition.bodyDamage.zones[panel]?.angle||0;
+  s.detachedPanels.push({id:++this._debrisId,panel,x:s.x+x*cs+z*sn,z:s.z-x*sn+z*cs,y:(s.bodyHeight||0)+this.rideHeight+y,
+   vx:s.vx+s.yawRate*z*cs+normal.x*kick,vz:s.vz-s.yawRate*x*cs+normal.z*kick,vy:.7+kick*.2,heading:s.heading,rotation:0,spin:(x<0?-1:1)*(1+kick),age:0,radius:part.radius,floorOffset:.10,mass:part.mass,opening:rot,contacts:0});
+  if(s.detachedPanels.length>8)s.detachedPanels.shift();this._refreshBodyMass();
  }
  _updateDebris(dt){
-  for(const panel of this.state.detachedPanels){panel.age+=dt;panel.vy-=G*dt;panel.x+=panel.vx*dt;panel.z+=panel.vz*dt;panel.y+=panel.vy*dt;panel.rotation+=panel.spin*dt;const floor=this._ground(panel.x,panel.z).height+(panel.floorOffset??.10);if(panel.y<floor){panel.y=floor;panel.vy=Math.abs(panel.vy)>1?-panel.vy*.18:0;panel.vx*=Math.exp(-dt*3);panel.vz*=Math.exp(-dt*3);panel.spin*=Math.exp(-dt*4);}}
-  this.state.detachedPanels=this.state.detachedPanels.filter(p=>p.age<24);
+  const s=this.state;
+  for(const panel of s.detachedPanels)advanceDebris(panel,dt,(x,z)=>this._ground(x,z),this._debrisColliders);
+  s.detachedPanels=s.detachedPanels.filter(p=>p.age<24&&Math.hypot(p.x-s.x,p.z-s.z)<180);
   for(const wheel of this.state.detachedWheels){wheel.age+=dt;wheel.vy-=G*dt;wheel.x+=wheel.vx*dt;wheel.z+=wheel.vz*dt;wheel.y+=wheel.vy*dt;wheel.spin+=wheel.omega*dt;const floor=this._ground(wheel.x,wheel.z).height+wheel.radius;
    if(wheel.y<floor){wheel.y=floor;wheel.vy=Math.abs(wheel.vy)>1?-wheel.vy*.28:0;const drag=Math.exp(-dt*1.2);wheel.vx*=drag;wheel.vz*=drag;wheel.omega*=Math.exp(-dt*.7);}else{wheel.vx*=Math.exp(-dt*.05);wheel.vz*=Math.exp(-dt*.05);}}
   this.state.detachedWheels=this.state.detachedWheels.filter(w=>w.age<24);
@@ -508,7 +526,7 @@ export class CarPhysics {
   const drivenSlipSpeed=Math.max(...this._drive.driven.map(i=>Math.abs(s.wheelAudio[i].slipSpeed)));
   s.burnoutIntensity=clamp((drivenSlipSpeed-2)/15,0,1)*clamp(1-s.speed/12,0,1);s.burnout=s.burnoutIntensity>.12;
   s.shiftProgress=clamp(this._shift/.19,0,1);s.engineClock=this.engine.getTiming().clock;
-  this._updateCondition(dt,omega,{...drive,fuelLitres:this.condition.fuelLitres,headlights:!!input.headlights,starterRequested:restartRequested,starterTorque:this.engineState.config.starterTorque,starterNoLoadRpm:this.engineState.config.starterNoLoadRpm,brakePedal:brake,clutchWorkJ,bearingWorkJ,referenceLoads:this._staticLoads,wheelOmegas:wheels,attached:this.condition.wheelAttached,brakeWorkJ,tyreWorkJ,tyreLockedWorkJ,tyreRollingWorkJ,tyreSpeeds:s.wheelAudio.map(w=>w.longitudinalSpeed),tyreLoads:s.wheelLoads,tyreAngles:s.wheelSpins,tyreWetness:s.suspension.map(w=>w.contact?w.wetness:0)});this._updateDebris(dt);this._publishCondition();
+  this._updateCondition(dt,omega,{...drive,fuelLitres:this.condition.fuelLitres,headlights:!!input.headlights,starterRequested:restartRequested,starterTorque:this.engineState.config.starterTorque,starterNoLoadRpm:this.engineState.config.starterNoLoadRpm,brakePedal:brake,clutchWorkJ,bearingWorkJ,referenceLoads:this._staticLoads,wheelOmegas:wheels,attached:this.condition.wheelAttached,brakeWorkJ,tyreWorkJ,tyreLockedWorkJ,tyreRollingWorkJ,tyreSpeeds:s.wheelAudio.map(w=>w.longitudinalSpeed),tyreLoads:s.wheelLoads,tyreAngles:s.wheelSpins,tyreWetness:s.suspension.map(w=>w.contact?w.wetness:0)});for(const hit of openDoorContacts(this.build,this.condition.bodyDamage,s,this._debrisColliders,this.damageEnabled)){if(hit.detached)this._detachPanel(hit.id,hit);this.condition.damageRevision++;this._mechanics.publish(true);this._mechanicalEvents.push({type:'panelImpact',severity:'info',message:hit.detached?'Door torn off':'Door struck an obstacle',intensity:Math.min(1,hit.closingSpeed/15)});if(this._mechanicalEvents.length>64)this._mechanicalEvents.shift();s.speed=Math.hypot(s.vx,s.vz);s.forwardSpeed=s.vx*Math.sin(s.heading)+s.vz*Math.cos(s.heading);s.lateralSpeed=s.vx*Math.cos(s.heading)-s.vz*Math.sin(s.heading);}for(const panel of stepBodyHinges(this.condition.bodyDamage,dt,s,this.damageEnabled)){this._detachPanel(panel);this.condition.damageRevision++;this._mechanics.publish(true);}this._updateDebris(dt);this._publishCondition();
   return s;
  }
 }

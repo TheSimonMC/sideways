@@ -24,6 +24,7 @@ export function aerodynamicForces(build,condition,speed,forward=speed,lateral=0)
  // A stalled sideways/reversed appendage cannot keep its forward-flow downforce.
  const forwardFlow=Math.max(0,forward)**2/(1+(lateral/Math.max(1,Math.abs(forward)))**2);
  const bodyQ=speed*speed,front=(a.bodyFront+.10)*bodyQ+(a.front*frontHealth-.10)*forwardFlow,rear=(a.bodyRear+.22)*bodyQ+(a.rear*rearHealth+a.wing*wingHealth-.22)*forwardFlow;
- const dragCoefficient=a.bodyDrag+a.frontDrag*frontHealth+a.rearDrag*rearHealth+a.wingDrag*wingHealth;
+ const openingDrag=['hood','boot','left','right'].reduce((sum,id)=>{const p=condition?.bodyDamage?.zones?.[id];return sum+(p?.detached?.055:.18*Math.sin(p?.angle||0)**2);},0);
+ const dragCoefficient=openingDrag+a.bodyDrag+a.frontDrag*frontHealth+a.rearDrag*rearHealth+a.wingDrag*wingHealth;
  return {front,rear,downforce:front+rear,pitchMoment:front*build.physics.frontAxle-rear*build.physics.rearAxle,drag:dragCoefficient*forward*Math.abs(forward)*(1+(1-(condition?.bodyHealth??1))*.35),dragCoefficient,wingEfficiency:wingHealth};
 }

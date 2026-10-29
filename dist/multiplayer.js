@@ -1,10 +1,11 @@
+import {BODY_PANELS} from './body-damage.js';
 import {normalizeWeather,WEATHER_MODES} from './weather.js';
 import {resolveBuild} from './catalog.js';
 
-export const MULTIPLAYER_VERSION=16;
+export const MULTIPLAYER_VERSION=17;
 export const DEFAULT_LOBBY_RULES=Object.freeze({maxPlayers:4,traffic:'normal',police:true,damage:true,time:'cycle',weather:'cycle',collisions:'ghost'});
 const CODE_ALPHABET='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-const PREFIX='sideways-v16-';
+const PREFIX='sideways-v17-';
 const LIMITS={packet:96000,buffer:256000,events:64,links:7,rate:90,worldNodes:10000};
 const JOIN_TIMEOUT={overall:45000,channel:30000,handshake:15000};
 const utf8=new TextEncoder();
@@ -59,6 +60,14 @@ export function sanitizeNetworkPose(value){
  out.wheelSpins=Array.from({length:4},(_,i)=>wrap(value.wheelSpins?.[i]));
  out.wheelSteers=Array.from({length:4},(_,i)=>clamp(value.wheelSteers?.[i]??(i<2?out.steer:0),-1.5,1.5));
  out.suspension=Array.from({length:4},(_,i)=>({wheelY:clamp(value.suspension?.[i]?.wheelY??out.groundHeight+.34,-32,513),groundHeight:clamp(value.suspension?.[i]?.groundHeight??out.groundHeight,-32,512),contact:value.suspension?.[i]?.contact!==false}));
+ // Fixed keys and finite bounds prevent remote geometry/hinge data from
+ // expanding the packet or reaching Three.js with NaN coordinates.
+ if(object(value.bodyDamage)){
+  const zones={};for(const [id,def]of Object.entries(BODY_PANELS)){
+   const p=value.bodyDamage.zones?.[id]||{};zones[id]={health:clamp(p.health??1,0,1),crush:clamp(p.crush??0,0,.7),x:clamp(p.x??0,-3,3),z:clamp(p.z??0,-5,5),pushX:clamp(p.pushX??0,-1,1),pushZ:clamp(p.pushZ??0,-1,1),mounts:clamp(p.mounts??1,0,1),latch:clamp(p.latch??1,0,1),detached:!!def.detach&&p.detached===true,open:!!def.hinged&&p.open===true,angle:def.hinged?clamp(p.angle??0,0,1.16):0,velocity:0};
+  }
+  out.bodyDamage={version:2,revision:Math.round(clamp(value.bodyDamage.revision??0,0,1e9)),zones};
+ }
  if(object(value.lastImpactLocal))out.lastImpactLocal={x:clamp(value.lastImpactLocal.x,-3,3),z:clamp(value.lastImpactLocal.z,-5,5)};
  return out;
 }
@@ -146,7 +155,7 @@ export class MultiplayerSession{
    if(this.isHost){this.members.set(id,{id,...this.profile,ready:true,active:false,state:null,updatedAt:this._now()});this._status('lobby','Lobby ready. Share the code with your friends.');this._emitRoom();this._finishPending();}
    // PeerJS JSON cannot carry a city frame: it rejects messages at 16,300 bytes.
    // BinaryPack includes fragmentation and reassembly for larger world updates.
-   else{try{const connection=peer.connect(this.hostId,{label:'sideways-v15',serialization:'binary',reliable:true,metadata:{version:MULTIPLAYER_VERSION,transport:'binary-v1'}});this._bindConnection(connection,false);}catch(error){this._fail(this._issue(errorCode(error),{detail:this._errorDetail(error),stage:'joining'}));}}
+   else{try{const connection=peer.connect(this.hostId,{label:'sideways-v17',serialization:'binary',reliable:true,metadata:{version:MULTIPLAYER_VERSION,transport:'binary-v1'}});this._bindConnection(connection,false);}catch(error){this._fail(this._issue(errorCode(error),{detail:this._errorDetail(error),stage:'joining'}));}}
   });
   peer.on('connection',connection=>{if(!live()||!this.isHost||this.links.size>=LIMITS.links){connection.close?.();return;}const reject=connection.metadata?.version!==MULTIPLAYER_VERSION?'PROTOCOL_MISMATCH':connection.serialization&&connection.serialization!=='binary'?'TRANSPORT_OUTDATED':null;this._bindConnection(connection,true,reject);});
   peer.on('call',call=>call.close?.());

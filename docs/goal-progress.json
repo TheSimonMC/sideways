@@ -1,7 +1,7 @@
 {
   "source": "docs/goal.txt",
   "sourceSHA256": "4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc282ea844a1b96dca",
-  "version": 24,
+  "version": 25,
   "requirements": [
     {
       "id": "P00.01",
@@ -198,7 +198,7 @@
     {
       "id": "P03.05",
       "phase": 3,
-      "status": "offen",
+      "status": "erledigt",
       "requirement": "Motorhaube und Türen können geöffnet, beschädigt und gelöst werden; offene Teile sollen sich mechanisch glaubwürdig bewegen."
     },
     {
@@ -210,7 +210,7 @@
     {
       "id": "P03.07",
       "phase": 3,
-      "status": "teilweise erledigt",
+      "status": "erledigt",
       "requirement": "Sichtbare Schäden müssen an der getroffenen Fahrzeugseite entstehen und nach Möglichkeit erhalten bleiben."
     },
     {
@@ -336,7 +336,7 @@
     {
       "id": "P06.01",
       "phase": 6,
-      "status": "offen",
+      "status": "teilweise erledigt",
       "requirement": "In der bestehenden Garage mit dem Fahrzeug interagieren: Haube öffnen, Türen öffnen, Räder, Stoßstangen, Spoiler, Motorraumteile und andere Komponenten gezielt aus- oder wieder einbauen."
     },
     {
@@ -941,21 +941,23 @@
     }
   ],
   "currentIncrement": {
-    "phase": 1,
-    "part": "E – Wetter, Straßennässe und Fahrvergleich",
+    "phase": 3,
+    "part": "A – Türen, Hauben, Befestigungen und Karosserietrümmer",
     "status": "erledigt",
     "implemented": [
-      "Persistenter Wetterzustand mit Regen, verzögerter Benetzung und Trocknung",
-      "Vier radweise Nässe-/Pfützenkontakte mit Tempo-, Profil-, Druck- und Mischungsabhängigkeit",
-      "Wasserwiderstand, Aquaplaning-Näherung, Reifenkühlung, Sprühwasser und PCM-Regengeräusch",
-      "Begrenzter Regenpuffer, nasse Straßenmaterialien, veränderte Sicht und Beleuchtung",
-      "Wetterregeln und autoritative Feuchtigkeit im Multiplayer einschließlich Wiedereinstieg"
+      "Vier vorhandene Karosserien in reale Tür-, Hauben- und Kofferraummeshes getrennt; keine geschlossene Hülle unter den Öffnungen",
+      "Scharnierbewegung, separate Schloss-/Befestigungszustände, Aufprall- und Luftlast, Türkontakt außerhalb der geschlossenen Karosserie",
+      "Abreißende Teile behalten ihre sichtbare Geometrie; begrenzte Kollisionsproxies, Reibung und Bereinigung",
+      "Fehlende Teile verändern Masse, Achslasten, Schwerpunkt, Gierträgheit und Luftwiderstand",
+      "Garagenknöpfe, gezielte Reparatur, Version-1-Migration, Speicherung sowie begrenzte Multiplayer-Übertragung"
     ],
     "remaining": [
-      "Phase 1: breitere Grenzbereichs- und Eingabegeräte-Kalibrierung; keine reale Fahrzeugmessung oder physische Wheel-Abnahme.",
-      "Phase 2: Kompressortuning sowie Montage-/Ausbauintegration fehlen.",
-      "Phase 7: umfassende Reflexionen, Wetterschutz unter neuer Tunnel-/Garagengeometrie und Cockpit-Nässefolgen fehlen."
+      "Phase 3: einzelne Glas-/Leuchtenschäden, unabhängige kleinere Anbauteile, Kratzer-/Rissdarstellung und genauere Trümmerkonturen fehlen.",
+      "Trümmer kollidieren über vereinfachte Quader-/Bodenproxies; keine gegenseitigen Trümmerkollisionen, keine vollständige räumliche Starrkörpersimulation. Fremde Spieler sehen die fehlenden/geöffneten Teile, nicht die losen Trümmer.",
+      "Phase 4: komplette Innenräume, Cockpit und Fahrer. Die neuen einfachen Türkarten sind nur eine Grundlage.",
+      "Phase 6: vollständiger, zum eingebauten Motor passender Motorraum, RPM-Animationen und gezielter Ausbau. Die Geometrie unter der Haube ist bisher nur ein einfaches Abteil mit Blockgrundform.",
+      "Frühere Restpunkte aus Phase 1/2 und alle späteren Phasen bleiben verbindlich."
     ],
-    "next": "Phase 3: Türen, Hauben, Glas, Leuchten, Befestigungen und weitere Trümmer. Danach Phase 4 mit Innenräumen, Cockpit und Fahrer; Phase 1-Grenzbereichsprüfung in der gemeinsamen Abnahme fortführen."
+    "next": "Phase 3B: Glas, einzelne Leuchten und kleinere Anbauteile mit ihren mechanischen, optischen und akustischen Folgen. Danach Phase 4."
   }
 }

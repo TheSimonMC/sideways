@@ -1,0 +1,174 @@
+{
+  "game": "SIDEWAYS",
+  "version": 25,
+  "date": "2026-10-30",
+  "status": "verified-with-documented-limits",
+  "base": "Published V24 0b10810536986bf729d62abb60ab0a1f140bd387",
+  "scope": "Phase 3A real opening and detachable doors/hood/trunk with mounts, latches, local bodywork debris, mass/drag, garage controls, repair, saves and bounded network state. Whole goal remains active; all 156 requirements retained.",
+  "delivery": {
+    "entry": "SIDEWAYS.html",
+    "separateFile": "SIDEWAYS-v25.html",
+    "htmlBytes": 10625933,
+    "htmlSha256": "7364cd1baf6b64ac9bee2fef098b2e97920d860d8eb207f6d2a541751b48d100",
+    "offlineSinglePlayer": true,
+    "externalRuntimeRequestsDuringOfflineTest": 0,
+    "publishedToSites": false
+  },
+  "currentFunctionalSuites": [
+    {
+      "file": "qa/archipelago-v25-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "59da8064b73f81f28c8b96c4d5c90b128e1d6b3ccd477d4740bc3989574e7492"
+    },
+    {
+      "file": "qa/audio-v25-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "edc8de99faa26b18b4dd37ffd38035813e6b834c6fced5cefc17a8ffe313334f"
+    },
+    {
+      "file": "qa/body-panels-browser-v25-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "4e0d6b2f43dab7ab9628fb36d7408c760135babaa7fde1f340f01f82da58ac95"
+    },
+    {
+      "file": "qa/body-panels-v25-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "f9b35108121b3cb25d0903fa49b45a0529ba33f6c51292d095985b58682c4f15"
+    },
+    {
+      "file": "qa/chassis-v25-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "3aa17eb7e4ec6b4489f8809770b7dd056c117d12ebc684ff473722658fa17c81"
+    },
+    {
+      "file": "qa/cosmetics-v25-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "7a600b37f3d87c819e41579bbdd09f4acf2498cfa8baab577ce9cd525f94da48"
+    },
+    {
+      "file": "qa/damage-v25-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "70d9d12a0df35250eff09b600756175ed05445e26a1505946cdad5eb9b57f566"
+    },
+    {
+      "file": "qa/goal-coverage-v25-results.json",
+      "status": "passed",
+      "groups": 2,
+      "sha256": "09d1a90ad5892b07dc108682c68c4aca6b7e8ad8d40f933cafdf55bf34ca1a62"
+    },
+    {
+      "file": "qa/input-taps-v25-results.json",
+      "status": "passed",
+      "groups": 11,
+      "sha256": "f5d0f6d4ec25dc86b2e24004815f8e51693871648c635a0d585d74e78332a562"
+    },
+    {
+      "file": "qa/modular-v25-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "1fdaefd476557362960152aa760aed05a2d7a4becd83872531418e7e6af1c61a"
+    },
+    {
+      "file": "qa/multiplayer-browser-v25-results.json",
+      "status": "passed",
+      "groups": 5,
+      "sha256": "f5ac25dcb221b0a8fdfb3d5c8790ab4a9154a261a645e095fc141243338cb40b"
+    },
+    {
+      "file": "qa/multiplayer-burst-browser-v25-results.json",
+      "status": "passed",
+      "groups": 3,
+      "sha256": "7d7b58d17d92573bb2c4f72d56c44f83dc5434fa25f936519d9dca1baf1cea94"
+    },
+    {
+      "file": "qa/multiplayer-burst-v25-results.json",
+      "status": "passed",
+      "groups": 5,
+      "sha256": "0a01711ba16d5a5672e91ff5efbe862f5aaa9813b8768dff1499e897cf4704ff"
+    },
+    {
+      "file": "qa/multiplayer-v25-results.json",
+      "status": "passed",
+      "groups": 11,
+      "sha256": "bf9a4a9f952f32e71acaa50034161648e5e259dce521921430160ef0aa3088c5"
+    },
+    {
+      "file": "qa/navigation-main-v25-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "cb259dfedfcb49100b19652a07c03e36ac2799d011dd13e1b2bdf3c9fc4693a7"
+    },
+    {
+      "file": "qa/physics-v25-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "f164c7137e42995d1b594b1292c8f90c97942c1527da9db47e07eca5db4dfe9d"
+    },
+    {
+      "file": "qa/police-v25-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "fa2e05c9a1bc49adb13bdf7b63a0a0d22fc7c5713c6d7746668fc8c660f46f2a"
+    },
+    {
+      "file": "qa/race-v25-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "55ffae58902117be5c3b043e9e66e06e038c0beb6cec05247a216a755cc398cf"
+    },
+    {
+      "file": "qa/responsive-panels-browser-v25-results.json",
+      "status": "passed",
+      "groups": 2,
+      "sha256": "cbbd7de264f02421f0998d7a79ae3d0a7dda9973afe0dad1a3f77bbcf78427e5"
+    },
+    {
+      "file": "qa/restart-v25-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "531ff2deab0440e38912a16cd7112921f19b6ecee45f61d8ef3fbc48ff166c41"
+    },
+    {
+      "file": "qa/standalone-browser-v25-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "909ee09e060610ff5a14b1ef1b4f2d6aa77b34f8fd10fee032dd3f4a23c2c2b2"
+    },
+    {
+      "file": "qa/standalone-v25-results.json",
+      "status": "passed",
+      "groups": 0,
+      "sha256": "3bda4aebbd5141279bd031ba96edad2907c220898fbf7c462841eaec6c3c60c5"
+    },
+    {
+      "file": "qa/thermal-v25-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "6a62d559cfd02a327ae8d3cff597bba424953e0cc0726c5e6ba9baec3fa7362f"
+    }
+  ],
+  "performanceMeasurement": {
+    "file": "qa/chassis-performance-v25-results.json",
+    "status": "measured",
+    "sha256": "25c77e7fcf5159b8da090333b197ea0b7a3022ea3ae734596fde5a8479aea4eb"
+  },
+  "review": {
+    "file": "qa/review-v25.json",
+    "sha256": "fe74311c6402260b2d0d8c3e02f9ccc1ddd913f2b7c3bf6bfc19faebadddbf6e"
+  },
+  "limits": [
+    "Phase 3 is partial: separate glass/lamps/small appendages and scratches/cracks remain open.",
+    "Local rigid proxies with simplified rotation and collision dimensions; no full soft body, no mutual debris collisions, existing loose wheel model retained.",
+    "Open doors have an extra obstacle contact; hood/trunk do not have complete 3D collision bodies. Loose debris is local only.",
+    "Simple door cards and engine-compartment/block foundation do not complete Phase 4 interiors or Phase 6 animated engine bays.",
+    "Local Chromium software rendering and public PeerJS/WebRTC; no physical controller, separate-PC, mobile-network or TURN traversal validation.",
+    "CPU sample excludes world, debris queries, GPU, AI and audio; no FPS guarantee."
+  ]
+}

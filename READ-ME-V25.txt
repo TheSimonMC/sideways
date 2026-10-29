@@ -1,0 +1,26 @@
+SIDEWAYS V25 – DOORS, HOODS AND BODY PARTS
+
+Open SIDEWAYS.html to play offline. Multiplayer requires internet.
+Online: https://thesimonmc.github.io/sideways/
+
+Open the Garage and use OPEN HOOD / LEFT DOOR / RIGHT DOOR / TRUNK.
+Controls operate the installed car. Panel positions save; closing the parts
+preview does not undo an opened door. A broken latch needs panel replacement.
+Impacts and failed mounts can detach parts. Missing parts change mass and drag.
+Inspect and replace individual panels at a mechanic. Restart begins serviced;
+ordinary recovery keeps damage. All multiplayer clients need V25.
+The RATE_LIMIT queue/coalescing fix remains in place.
+
+Report: docs/phase-3a-body-panels-report.md
+Full goal/checklist: docs/goal.txt and docs/goal-progress.md
+Evidence: qa/release-v25.json
+New geometry and behavior are authored in code; SDK and licensed assets retained.
+
+Still pending: separate glass/lamp/small-part damage, full interiors/cockpit,
+animated detailed engine bays and the other unfinished phases in goal.txt.
+
+Build: npm ci, then node build.mjs (Node.js 24).
+Native checks: node qa/regressions-v25.mjs and the *-v25-check.mjs files.
+Browser checks require Playwright and Chromium. Set CODEX_PRIMARY_RUNTIME_NODE_MODULES
+to node_modules containing playwright and PLAYWRIGHT_CHROMIUM_EXECUTABLE to Chromium.
+Run the *-browser-v25.cjs files. Package: node qa/package-v25.mjs <output-directory>.

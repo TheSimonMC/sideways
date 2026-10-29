@@ -1,6 +1,6 @@
 # SIDEWAYS – verbindliche Fortschrittsliste
 
-Stand: V24, Phase 0, Phase 1 Teile A/B/C/D/E und Phase 2 Teile A/B/C/D. Grundlage: unveränderte Kopie in `docs/goal.txt`.
+Stand: V25, Phase 0, Phase 1 Teile A/B/C/D/E, Phase 2 Teile A/B/C/D und Phase 3 Teil A. Grundlage: unveränderte Kopie in `docs/goal.txt`.
 
 Status bezieht sich auf den gesamten Wortlaut eines Punktes. Teilweise bedeutet, dass wesentliche Teile noch fehlen. Nur Phase 0 ist abgeschlossen. V19 ergänzt die gemeinsame Reifen-Grundlage aus Phase 2 und ihre Folgen für Phase 1. V24 schließt die Nässe-Anbindung. Phase 1 bleibt für breitere Grenzbereichs- und Eingabegeräte-Kalibrierung teilweise; Phase 2 wegen noch fehlendem Kompressortuning und der späteren Montage-/Ausbauintegration. Die umfassende Wetterdarstellung wird in Phase 7 weitergeführt.
 
@@ -51,15 +51,15 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 3: VERFORMUNG UND ABFALLENDE FAHRZEUGTEILE
 
-**teilweise erledigt** — body-damage.js enthält acht lokale Zonen einschließlich Spoilerbefestigung. Räder, beide Stoßstangen und der montierte Spoiler können sich lösen. Splitter-/Diffusormeshes folgen ihren Stoßstangen; der lose Spoiler verwendet die Form des eingebauten Teils, bleibt bis zu 24 Sekunden als Trümmer sichtbar und fehlt anschließend weiter am Auto. Fehlende Aero-Teile verlieren ihre Kräfte; Schaden und gezielte Reparatur sind gespeichert. Türen, Hauben, Spiegel, Scheiben und weitere Module benötigen noch eigene Befestigungen/Bruchzustände. Trümmer reagieren nur auf den Boden; ihre Masse wird beim Abreißen nicht dynamisch vom Chassis abgezogen. Keine vollständige Soft-Body-Simulation.
+**teilweise erledigt** — V25 trennt Türen, Haube und Kofferraum aus den vier vorhandenen Hüllen. Scharniere, Schlösser und Befestigungen bestimmen Bewegung und Ablösen. Eine offene Tür kann außerhalb des normalen Fahrzeugumrisses an einem Hindernis hängen bleiben. Garagenknöpfe bedienen die montierten Teile, Position und Schaden werden gespeichert; gezielte Reparatur stellt das gewählte Teil wieder her. Abgefallene Teile zeigen ihre tatsächlichen Meshes, verändern Masse/Achslasten/Schwerpunkt/Trägheit und laufen in einem auf acht Teile und 24 Sekunden/180 Meter begrenzten Trümmermodell mit Boden-/Wandkontakt. Offene/fehlende Türen verändern Wind und Luftwiderstand. Multiplayer zeigt geöffnete/fehlende/verformte Teile. Offen: separate Glas-/Leuchtenschäden und weitere Anbauteile, Kratzer/Risse, präzisere Kontaktkörper und synchronisierte lose Trümmer. Keine volle Soft-Body- oder räumliche Starrkörpersimulation.
 
 - **P03.01 · teilweise erledigt** — BeamNG-inspirierte modulare Kollisionen, soweit in der Browser-Engine sinnvoll.
 - **P03.02 · teilweise erledigt** — Einzelteile: Türen, Motorhaube, Kofferraum, Stoßstangen, Lippe/Splitter, Seitenschweller, Spoiler, Diffusor, Kotflügel, Spiegel, Grill, Scheinwerfer, Rückleuchten, Auspuff, Scheiben, Felgen/Räder und Fahrwerksteile.
 - **P03.03 · teilweise erledigt** — Treffpunkt, Aufprallrichtung, Energie und Bauteilbefestigungen bestimmen Schaden: Kratzer, Risse, Verformung, lockere Befestigung, Funktionsausfall, Abreißen.
 - **P03.04 · teilweise erledigt** — Abfallende Teile werden kurzzeitig physikalische Objekte mit Kollision, Reibung, Rollen und Rutschen. Performancebewusst nach Entfernung/Lebensdauer aufräumen.
-- **P03.05 · offen** — Motorhaube und Türen können geöffnet, beschädigt und gelöst werden; offene Teile sollen sich mechanisch glaubwürdig bewegen.
+- **P03.05 · erledigt** — Motorhaube und Türen können geöffnet, beschädigt und gelöst werden; offene Teile sollen sich mechanisch glaubwürdig bewegen.
 - **P03.06 · teilweise erledigt** — Zerbrochene Scheiben, kaputte Leuchten, defekte Kühler und verbogene Fahrwerksteile beeinflussen die restlichen Systeme.
-- **P03.07 · teilweise erledigt** — Sichtbare Schäden müssen an der getroffenen Fahrzeugseite entstehen und nach Möglichkeit erhalten bleiben.
+- **P03.07 · erledigt** — Sichtbare Schäden müssen an der getroffenen Fahrzeugseite entstehen und nach Möglichkeit erhalten bleiben.
 - **P03.08 · teilweise erledigt** — Keine volle Soft-Body-Simulation erzwingen, wenn eine modulare, lokale Deformation mit passenden Kollisionspunkten besser läuft.
 
 ## Phase 4: ECHTE FIRST-PERSON-KAMERA UND INNENRÄUME FÜR JEDES FAHRZEUG
@@ -93,9 +93,9 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 6: INTERAKTIVE GARAGE UND SICHTBARER, BEWEGLICHER MOTOR
 
-**offen** — GaragePanel ist eine Kauf-/Vorschauszene. Kein interaktiver Ausbau, keine öffnenden Türen/Hauben, kein sichtbarer Motorraum. Erfordert erst Komponentenbefestigungen und Montagezustand sowie Modellteile. Vorhandene Kauf- und Reparaturtransaktionen werden weiterverwendet.
+**teilweise erledigt** — V25 ermöglicht das Öffnen und Schließen von Türen, Haube und Kofferraum in der bestehenden Garage. Der einfache Motorraum-Boden mit Blockgrundform und die Türkarten verhindern leere Öffnungen zum Boden, ersetzen jedoch weder ein detailliertes Interieur noch den geforderten eingebauten Motor mit Nebenaggregaten. Gezielt ausbaubare Komponenten, Motorraumdetails, RPM-gekoppelte Animationen und räumliche Werkstattübergänge sind weiterhin offen.
 
-- **P06.01 · offen** — In der bestehenden Garage mit dem Fahrzeug interagieren: Haube öffnen, Türen öffnen, Räder, Stoßstangen, Spoiler, Motorraumteile und andere Komponenten gezielt aus- oder wieder einbauen.
+- **P06.01 · teilweise erledigt** — In der bestehenden Garage mit dem Fahrzeug interagieren: Haube öffnen, Türen öffnen, Räder, Stoßstangen, Spoiler, Motorraumteile und andere Komponenten gezielt aus- oder wieder einbauen.
 - **P06.02 · offen** — Ausbau verändert das Fahrzeug sofort sichtbar und, sofern relevant, physikalisch. Ohne Räder, Kühler oder andere wichtige Komponenten kann nicht normal gefahren werden.
 - **P06.03 · offen** — Unter der geöffneten Haube muss ein echter, zum jeweiligen Fahrzeug passender Motorraum zu sehen sein, inklusive Motor, Kühler, Schläuchen, Ansaugung, Lüfter, Lichtmaschine, Antriebriemen und Riemenscheiben sowie bei passendem Fahrzeug Turbo/Kompressor.
 - **P06.04 · offen** — Rotoren, Riemen und Riemenscheiben werden durch tatsächliche Motor-RPM angetrieben. Kühlerlüfter schaltet temperaturabhängig. Motorlager erlauben subtile Motorbewegung durch Lastwechsel/Vibration; Animationen skalieren mit Drehzahl.
@@ -292,3 +292,7 @@ Phase 2D ist umgesetzt. P02.07/P02.08/P02.11/P02.12 sind jetzt erledigt, mit Nac
 ## V24: Phase 1E
 
 Nässe-Anbindung umgesetzt; P01.07/P01.08/P16.07 sind erledigt. Nachweise, Messwerte und Grenzen stehen im [Phasenbericht](phase-1e-weather-report.md). Alle 156 Anforderungen bleiben erhalten. Frühere Versionsabschnitte dokumentieren ihren damaligen Stand. Als Nächstes folgt Phase 3 mit weiteren Karosseriemodulen und ihren mechanischen Folgen.
+
+## V25: Phase 3A
+
+T�ren, Haube und Kofferraum sind getrennt, bedienbar, besch�digbar und l�sbar. P03.05/P03.07 sind erledigt; P06.01 ist teilweise erledigt. Die Phase bleibt offen f�r Glas, Leuchten, kleinere Anbauteile und weitere Schadensdetails. Nachweise und technische Grenzen stehen im [Phasenbericht](phase-3a-body-panels-report.md). N�chster Teil ist Phase 3B; anschlie�end Phase 4. Alle 156 Anforderungen bleiben verbindlich.

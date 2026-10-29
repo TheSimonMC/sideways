@@ -4,7 +4,7 @@ import * as THREE from './vendor/three.module.js';
 /** Body-specific mount points and shared authored components, all under the
  * deforming chassis. Cosmetic choices deliberately leave the drivetrain alone. */
 export function addCosmetics({chassis,selection:s,q,L,W,paint,dark,graphite,chrome,accent,box,panel,beam}){
- const part=key=>{const g=new THREE.Group();g.name='cosmetic-'+key+'-'+s[key];g.userData.cosmetic=key;g.userData.panel=key==='spoiler'?'spoiler':key==='frontBumper'?'front':key==='rearBumper'?'rear':undefined;chassis.add(g);return g;};
+ const part=key=>{const g=new THREE.Group();g.name='cosmetic-'+key+'-'+s[key];g.userData.cosmetic=key;g.userData.panel=key==='hood'?'hood':key==='spoiler'?'spoiler':key==='frontBumper'?'front':key==='rearBumper'?'rear':undefined;chassis.add(g);return g;};
  const top=z=>{const r=q.rings;let i=0;while(i<r.length-2&&r[i+1][0]*L<z)i++;const a=r[i],b=r[i+1],t=Math.max(0,Math.min(1,(z-a[0]*L)/((b[0]-a[0])*L)));return a[2]+(b[2]-a[2])*t+.018;};
  if(s.hood!=='stock'){
   const g=part('hood'),rear=q.screenFront+.04,front=L*.88,mid=(rear+front)/2,mat=s.hood==='carbon'?graphite:paint;

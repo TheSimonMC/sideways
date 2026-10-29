@@ -1,0 +1,237 @@
+{
+  "status": "passed",
+  "version": 25,
+  "htmlSha256": "7364cd1baf6b64ac9bee2fef098b2e97920d860d8eb207f6d2a541751b48d100",
+  "checks": [
+    "Portrait mobile and short landscape retain working, reachable panel controls",
+    "Saved missing door is absent in the garage, disables its opener and reduces mass; a new run restores the serviced car",
+    "hachi: all four visible hinges respond to real garage controls, persist through reload, close and update accessible button states",
+    "atlas: all four visible hinges respond to real garage controls, persist through reload, close and update accessible button states",
+    "kitsune: all four visible hinges respond to real garage controls, persist through reload, close and update accessible button states",
+    "vector: all four visible hinges respond to real garage controls, persist through reload, close and update accessible button states"
+  ],
+  "views": [
+    {
+      "carId": "hachi",
+      "parts": {
+        "front": {
+          "visible": true,
+          "rotation": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        "rear": {
+          "visible": true,
+          "rotation": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        "spoiler": {
+          "visible": true,
+          "rotation": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        "left": {
+          "visible": true,
+          "rotation": {
+            "x": 0,
+            "y": 0.900783053466434
+          }
+        },
+        "right": {
+          "visible": true,
+          "rotation": {
+            "x": 0,
+            "y": -0.8908176897617022
+          }
+        },
+        "hood": {
+          "visible": true,
+          "rotation": {
+            "x": -1.050177611405868,
+            "y": 0
+          }
+        },
+        "boot": {
+          "visible": true,
+          "rotation": {
+            "x": 0.8332182426517946,
+            "y": 0
+          }
+        }
+      }
+    },
+    {
+      "carId": "atlas",
+      "parts": {
+        "front": {
+          "visible": true,
+          "rotation": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        "rear": {
+          "visible": true,
+          "rotation": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        "spoiler": {
+          "visible": true,
+          "rotation": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        "left": {
+          "visible": true,
+          "rotation": {
+            "x": 0,
+            "y": 0.900783053466434
+          }
+        },
+        "right": {
+          "visible": true,
+          "rotation": {
+            "x": 0,
+            "y": -0.8908176897617022
+          }
+        },
+        "hood": {
+          "visible": true,
+          "rotation": {
+            "x": -1.050177611405868,
+            "y": 0
+          }
+        },
+        "boot": {
+          "visible": true,
+          "rotation": {
+            "x": 0.8332182426517946,
+            "y": 0
+          }
+        }
+      }
+    },
+    {
+      "carId": "kitsune",
+      "parts": {
+        "front": {
+          "visible": true,
+          "rotation": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        "rear": {
+          "visible": true,
+          "rotation": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        "spoiler": {
+          "visible": true,
+          "rotation": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        "left": {
+          "visible": true,
+          "rotation": {
+            "x": 0,
+            "y": 0.900783053466434
+          }
+        },
+        "right": {
+          "visible": true,
+          "rotation": {
+            "x": 0,
+            "y": -0.8908176897617022
+          }
+        },
+        "hood": {
+          "visible": true,
+          "rotation": {
+            "x": -1.050177611405868,
+            "y": 0
+          }
+        },
+        "boot": {
+          "visible": true,
+          "rotation": {
+            "x": 0.8332182426517946,
+            "y": 0
+          }
+        }
+      }
+    },
+    {
+      "carId": "vector",
+      "parts": {
+        "front": {
+          "visible": true,
+          "rotation": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        "rear": {
+          "visible": true,
+          "rotation": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        "spoiler": {
+          "visible": true,
+          "rotation": {
+            "x": 0,
+            "y": 0
+          }
+        },
+        "left": {
+          "visible": true,
+          "rotation": {
+            "x": 0,
+            "y": 0.900783053466434
+          }
+        },
+        "right": {
+          "visible": true,
+          "rotation": {
+            "x": 0,
+            "y": -0.8908176897617022
+          }
+        },
+        "hood": {
+          "visible": true,
+          "rotation": {
+            "x": -1.050177611405868,
+            "y": 0
+          }
+        },
+        "boot": {
+          "visible": true,
+          "rotation": {
+            "x": 0.8332182426517946,
+            "y": 0
+          }
+        }
+      }
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "limits": [
+    "Chromium software renderer, fixtures seeded through the existing save format, real UI thereafter.",
+    "No physical controller or calibrated GPU performance claim."
+  ]
+}

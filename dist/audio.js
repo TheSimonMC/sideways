@@ -151,8 +151,8 @@ export class GameAudio {
  update(state){if(state){this._state=state;this._updateWorldContext();}}
 
  _updateTargets(s,dt,engine){
-  this._foleyTime+=dt;const speed=clamp(s?.speed??0,0,110),hood=this.cameraMode===2;
-  this._windTarget=(.0018*speed+speed*speed*.000026)*this.mix.environment*(hood?1:.78);this._windTarget=clamp(this._windTarget,0,.24);
+  this._foleyTime+=dt;const speed=clamp(s?.speed??0,0,110),hood=this.cameraMode===2,doorAir=Math.max(0,...['left','right'].map(id=>{const p=s?.bodyDamage?.zones?.[id];return p?.detached?1:Math.sin(p?.angle||0);}));
+  this._windTarget=(.0018*speed+speed*speed*.000026)*this.mix.environment*(hood?1:.78)*(1+doorAir*.35);this._windTarget=clamp(this._windTarget,0,.32);
   const nos=!!s?.boosting;this._nosTarget=nos?clamp(s?.nitrousIntensity??1,0,1)*.19*this.mix.engine:0;
   if(nos!==this._lastNOS){this._event('nitro',nos?.12:.065,0,nos?.16:.12,nos?2700:1900,180);this._lastNOS=nos;}
   const shaft=Math.abs(s?.inputShaftRpm??0),gear=s?.gear??0,torque=clamp(Math.abs(s?.clutchTorque??0)/500,0,1.5);

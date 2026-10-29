@@ -5,10 +5,10 @@ export const BODY_PANELS={
  front:{label:'Front bumper',x:0,z:.48,radius:.29,detach:true},
  spoiler:{label:'Rear spoiler and mounts',x:0,z:-.42,radius:.23,detach:true},
  rear:{label:'Rear bumper',x:0,z:-.48,radius:.29,detach:true},
- left:{label:'Left door and sill',x:-.48,z:0,radius:.38},
- right:{label:'Right door and sill',x:.48,z:0,radius:.38},
- hood:{label:'Hood and front rails',x:0,z:.30,radius:.35},
- boot:{label:'Trunk and rear rails',x:0,z:-.30,radius:.35},
+ left:{detach:true,hinged:true,label:'Left door',x:-.48,z:0,radius:.38},
+ right:{detach:true,hinged:true,label:'Right door',x:.48,z:0,radius:.38},
+ hood:{detach:true,hinged:true,label:'Hood',x:0,z:.30,radius:.35},
+ boot:{detach:true,hinged:true,label:'Trunk lid',x:0,z:-.30,radius:.35},
  roof:{label:'Roof and pillars',x:0,z:0,radius:.36}
 };
 const BODY_KEYS=Object.keys(BODY_PANELS);
@@ -16,11 +16,11 @@ export function createBodyDamage(build,saved={},legacyHealth=1){
  const zones={},width=build.vehicle.model.width,length=build.vehicle.model.length;
  for(const [id,definition]of Object.entries(BODY_PANELS)){
   const prior=saved?.zones?.[id]||{},legacy=Object.keys(saved?.zones||{}).length?0:(1-clamp(legacyHealth,0,1))*.25;
-  zones[id]={health:clamp(prior.health??1-legacy,0,1),crush:clamp(prior.crush??legacy*.25,0,.7),x:clamp(prior.x??definition.x*width,-width,width),z:clamp(prior.z??definition.z*length,-length,length),pushX:clamp(prior.pushX??0,-1,1),pushZ:clamp(prior.pushZ??(definition.z>0?-1:1),-1,1),detached:!!definition.detach&&prior.detached===true};
+  zones[id]={health:clamp(prior.health??1-legacy,0,1),crush:clamp(prior.crush??legacy*.25,0,.7),x:clamp(prior.x??definition.x*width,-width,width),z:clamp(prior.z??definition.z*length,-length,length),pushX:clamp(prior.pushX??0,-1,1),pushZ:clamp(prior.pushZ??(definition.z>0?-1:1),-1,1),detached:!!definition.detach&&prior.detached===true,mounts:clamp(prior.mounts??prior.health??1,0,1),latch:clamp(prior.latch??prior.health??1,0,1),open:!!definition.hinged&&prior.open===true,angle:definition.hinged?clamp(prior.angle??0,0,1.16):0,velocity:definition.hinged?clamp(prior.velocity??0,-5,5):0};
  }
- return {version:1,revision:Math.round(clamp(saved?.revision??0,0,1e9)),zones};
+ return {version:2,revision:Math.round(clamp(saved?.revision??0,0,1e9)),zones};
 }
-export const snapshotBodyDamage=body=>({version:1,revision:body.revision,zones:Object.fromEntries(Object.entries(body.zones).map(([id,zone])=>[id,{...zone}]))});
+export const snapshotBodyDamage=body=>({version:2,revision:body.revision,zones:Object.fromEntries(Object.entries(body.zones).map(([id,zone])=>[id,{...zone}]))});
 
 export function deformBody(body,build,{local,energyJ,closingSpeed}){
  const width=build.vehicle.model.width,length=build.vehicle.model.length,scale=build.physics.bodyStrength??1;
@@ -30,7 +30,7 @@ export function deformBody(body,build,{local,energyJ,closingSpeed}){
  let changed=false;
  for(const [id,definition]of Object.entries(BODY_PANELS)){
   if(id==='spoiler'&&build.selection.spoiler==='none')continue;
-  const zone=body.zones[id],cx=definition.x*width,cz=definition.z*length;
+  const zone=body.zones[id];if(!zone||zone.detached)continue;const cx=definition.x*width,cz=definition.z*length;
   let weight=Math.max(0,1-Math.hypot((local.x-cx)*1.15,local.z-cz)/(definition.radius*length));
   if(id==='roof')weight*=specific>.9?.16:0;
   if(id==='left'&&local.x>0||id==='right'&&local.x<0)weight*=.05;
@@ -39,8 +39,12 @@ export function deformBody(body,build,{local,energyJ,closingSpeed}){
   const loss=specific*weight*.33*strength;if(loss<.0001)continue;
   const previous=zone.crush,increment=Math.min(.20,specific*weight*.16*strength),next=Math.min(.7,previous+increment);
   zone.health=clamp(zone.health-loss,0,1);zone.crush=next;
+  // Mounts absorb impact energy independently of the cosmetic skin. A released
+  // panel gives the next impact more leverage against its remaining hinges.
+  zone.mounts=clamp(zone.mounts-loss*(definition.hinged?(1+zone.angle*1.6):1.18),0,1);
+  if(definition.hinged){zone.latch=clamp(zone.latch-loss*1.5,0,1);if(zone.latch<.08)zone.open=true;}
   const blend=increment/Math.max(.0001,previous+increment);zone.x+=(local.x-zone.x)*blend;zone.z+=(local.z-zone.z)*blend;zone.pushX+=(direction.x-zone.pushX)*blend;zone.pushZ+=(direction.z-zone.pushZ)*blend;
-  if(definition.detach&&!zone.detached&&zone.health<.14&&closingSpeed>9){zone.detached=true;detached.push(id);}
+  if(definition.detach&&!zone.detached&&zone.mounts<.10&&closingSpeed>9){zone.detached=true;detached.push(id);}
   changed=true;
  }
  if(changed)body.revision++;
@@ -49,7 +53,7 @@ export function deformBody(body,build,{local,energyJ,closingSpeed}){
 
 export function repairBody(body,id='body'){
  const keys=id==='body'?Object.keys(BODY_PANELS):id.startsWith('panel:')?[id.slice(6)]:[];
- let repaired=false;for(const key of keys){const zone=body.zones[key];if(!zone)continue;Object.assign(zone,{health:1,crush:0,detached:false,pushX:0,pushZ:0});repaired=true;}
+ let repaired=false;for(const key of keys){const zone=body.zones[key];if(!zone)continue;Object.assign(zone,{health:1,crush:0,detached:false,mounts:1,latch:1,open:false,angle:0,velocity:0,pushX:0,pushZ:0});repaired=true;}
  if(repaired)body.revision++;return repaired;
 }
 
