@@ -1,0 +1,36 @@
+{
+  "version": 16,
+  "checks": [
+    "County is connected, contains three directed roundabouts and distinct road classes",
+    "Every authored road has moderate grades, continuous elevations and clear driving lanes",
+    "Rendered road surface is above terrain at wheel positions, including switchbacks",
+    "Service destinations and hill lookouts are reachable through the road graph",
+    "Civilian/police lane guides build for every new directed edge and turn",
+    "Every region reset returns to asphalt and world disposal is complete"
+  ],
+  "renderedRoadSamples": 5956,
+  "maximumVisualHeightError": 0.000011654845366138034,
+  "status": "passed",
+  "areaKm2": 103.071744,
+  "landKm2": 52.458048,
+  "architecture": {
+    "buildings": 2244,
+    "palms": 1934,
+    "streetProps": 1451,
+    "landmarks": 4,
+    "bridges": 5,
+    "modules": 79973
+  },
+  "nodes": 1625,
+  "roadKm": 266.3175366166799,
+  "maxGrade": 0.1900819390312218,
+  "minHeight": 0.012000000000000455,
+  "maxHeight": 210.01195558538114,
+  "elapsedMs": 13879.9267,
+  "limits": [
+    "Geometry, routing and sampled wheel positions; no claim of driving every metre with physical hardware."
+  ],
+  "verifiedInRelease": 16,
+  "suiteSource": "qa/archipelago-v14-check.mjs",
+  "suiteSHA256": "075e03c245f76f8b01ac48c87ef230e6e0639caac558d7001e47ac527ef0c7e1"
+}

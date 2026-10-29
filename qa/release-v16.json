@@ -1,0 +1,137 @@
+{
+  "game": "SIDEWAYS",
+  "version": 16,
+  "date": "2026-10-29",
+  "status": "verified-with-documented-limits",
+  "base": "Published V15, commit 8cd8fe12571a0693a544916ed425988a818b85c5. Only listed reports are current. Established assertions are rerun with separate V16 output paths; historical reports remain intact.",
+  "scope": "Phase 1B road contact and slopes. Phase 0 complete; Phase 1 remains partial; next Phase 1C drivetrain layouts.",
+  "delivery": {
+    "entry": "SIDEWAYS.html",
+    "separateFile": "SIDEWAYS-v16.html",
+    "htmlBytes": 10552935,
+    "htmlSha256": "0d751def121c0aa1033bf5383084055efa0747da72187e265ebe707fea8be41c",
+    "offlineSinglePlayer": true,
+    "externalRuntimeRequestsDuringOfflineTest": 0,
+    "publishedToSites": false
+  },
+  "currentFunctionalSuites": [
+    {
+      "file": "qa/archipelago-v16-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "103c9798695da102bdaaf3d2550ed551eb9320f60577fe47965bba5f90665897"
+    },
+    {
+      "file": "qa/chassis-v16-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "ffab9269de01ea3639a39a0ec5dec582f2fa072ef6436c03a66b66a5e13ea7b5"
+    },
+    {
+      "file": "qa/cosmetics-v16-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "40c31dfd6f843e9e586e5cbd847fdf8425a979aa25702ddce3706c12362771b9"
+    },
+    {
+      "file": "qa/damage-v16-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "e3308dd28072fcf38bba18b418ff819b2c8304a876b801af2886f3eb435a1937"
+    },
+    {
+      "file": "qa/goal-coverage-v16-results.json",
+      "status": "passed",
+      "groups": 2,
+      "sha256": "d81009632c71f13e320405bb3a570224f2b2d815ef40373f25147aad6d304be6"
+    },
+    {
+      "file": "qa/input-taps-v16-results.json",
+      "status": "passed",
+      "groups": 11,
+      "sha256": "cf70d5c45ad28693990a1e301b86dafa3927f12fcaf55c7f7c3b3029f5761ec7"
+    },
+    {
+      "file": "qa/modular-v16-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "3f0410096a65ed3b9b09fb5730ddb50acafca72368bc17238a304d4615a3b478"
+    },
+    {
+      "file": "qa/multiplayer-v16-results.json",
+      "status": "passed",
+      "groups": 11,
+      "sha256": "5240bff6f485f7419bec3d3c02769d374e2c572fe406065028b9eb86afa41649"
+    },
+    {
+      "file": "qa/navigation-main-v16-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "a06626f108577b9257cceeb880d672637fe3d8af624ccb68fbb5a6f3a899b363"
+    },
+    {
+      "file": "qa/physics-v16-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "71c1edbde2e797e4a5dd24040aa889a42741e5979f4065ee863e7734fbdb4770"
+    },
+    {
+      "file": "qa/police-v16-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "bd4c7df7dd56aa156c79de4aa2e0d8c012a39b44dc27f7d273865d26f56aab80"
+    },
+    {
+      "file": "qa/race-v16-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "c0daf701e35c62ed9b14cdbc9863e2907d016f3abc4f61a3edfa8c45ecaea4bd"
+    },
+    {
+      "file": "qa/restart-v16-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "59d567e0ecd0d3753afbc25e4753d0e2bcd6d95fc9b9dde71c81b66ea6e79192"
+    },
+    {
+      "file": "qa/road-contact-v16-results.json",
+      "status": "passed",
+      "groups": 7,
+      "sha256": "5cecf03cccc96671014adeb5ffa370b045ae46464b930a9af5533a6ae3d20b49"
+    },
+    {
+      "file": "qa/standalone-browser-v16-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "6ecf59d93be8cf733ca8b732c762da5cf9028f7085cb8b6698d0f655e3159d85"
+    },
+    {
+      "file": "qa/standalone-v16-results.json",
+      "status": "passed",
+      "groups": 0,
+      "sha256": "8729f99fa99b36155b942747e8d6f99cff85c4f1697756fc916c22ee1cf2659b"
+    },
+    {
+      "file": "qa/thermal-v16-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "283d5c1558f775d29570ae3cdbbac6c2145233ea8dc05909c89fed5cb4a73143"
+    }
+  ],
+  "performanceMeasurement": {
+    "file": "qa/chassis-performance-v16-results.json",
+    "status": "measured",
+    "sha256": "c204cde60874498d48c523b2e4cd49d40a7621166725447bfdf49d3e10dc1890"
+  },
+  "review": {
+    "file": "qa/review-v16.json",
+    "sha256": "7b09108f851a95f8c9f595f1c710235422348d5355f6f61a632c05bedd81322c"
+  },
+  "limits": [
+    "Synthetic simulation and software-rendered Chromium; no physical wheel/gamepad, listening or live cross-network multiplayer test.",
+    "One existing hill segment driven in simulation plus road geometry/routing samples; not every road metre manually driven.",
+    "CPU timing excludes full world, GPU, AI, audio and frame scheduling; no FPS guarantee.",
+    "Height-field approximation with a footprint road plane; no unconstrained 6-DOF vehicle, rollover or multi-level road support.",
+    "SDK unchanged; prior replay-fixture discrepancy remains documented in qa/sdk-v12-baseline.json."
+  ]
+}

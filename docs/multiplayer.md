@@ -215,3 +215,7 @@ V14 uses protocol 10 and the sideways-v10 room namespace. Every participant must
 ## V15 chassis parts
 
 V15 uses protocol 11 and sideways-v11 rooms. The new steeringRack, alignment and antiRollBars fields pass through the same catalog sanitizer as other parts. Everyone must use V15. Legacy handling modes no longer alter local physics.
+
+## V16 compatibility
+
+Protocol 12 separates the slope/contact solver from V15. All peers need V16. Existing build and condition fields are retained; no new user-selected physics mode or incompatible save format is introduced.

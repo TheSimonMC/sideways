@@ -1,6 +1,6 @@
 # SIDEWAYS – verbindliche Fortschrittsliste
 
-Stand: V15, Phase 0 und Phase 1 Teil A. Grundlage: unveränderte Kopie in `docs/goal.txt`.
+Stand: V16, Phase 0 und Phase 1 Teile A/B. Grundlage: unveränderte Kopie in `docs/goal.txt`.
 
 Status bezieht sich auf den gesamten Wortlaut eines Punktes. Teilweise bedeutet, dass wesentliche Teile noch fehlen. Nur Phase 0 ist abgeschlossen. Phase 2 beginnt erst nach den verbleibenden Grundlagen von Phase 1.
 
@@ -18,7 +18,7 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 1: REALISTISCHERE FAHRPHYSIK
 
-**teilweise erledigt** — V15 Teil A: keine auswählbaren Physikmodi, keine künstliche Gierkraft oder automatische Gegenlenkung. Reifen haben einen kontinuierlichen Haft-/Gleitübergang und Lastempfindlichkeit. Serienabstimmung, Lenkwinkel-Kit, Achsvermessung und getrennte Stabi-Faktoren sind über Garage, Kauf, Darstellung und Speicher integriert. Noch offen: FWD/AWD, spezifischer Wheel Hop, Wetterkopplung, Reifenluftdruck/Flatspots und abstimmbare Aerodynamik. Vorhandene thermische Reifen-/Brems-/Kupplungsmodelle bleiben erhalten. Die neue Abstimmung ist eine geprüfte Näherung für fiktive Fahrzeuge, keine vollständige Ingenieurskalibrierung.
+**teilweise erledigt** — V15 Teil A: Teileabhängige Lenkung, Reifen und Stabilisatoren statt freier Physikmodi/künstlicher Gierhilfe. V16 Teil B: Fahrbahnneigung beeinflusst Rollen, Beschleunigung und Bremsen über zusammenhängende horizontale/vertikale Kontaktkräfte. Hangstart und Rücksetzen richten den Wagen an den vier Radproben aus; Wellen und Bordsteine wirken einzeln auf Federung, Räder und Fahrwerksakustik. Luftfahrt erzeugt keine horizontale Kraft vom Terrain. Energie-, Brems-, Migrations- und Regressionstests liegen vor. Noch offen: FWD/AWD, spezifischer Wheel Hop, Wetterkopplung, Reifenluftdruck/Flatspots und abstimmbare Aerodynamik. Die Heightfield-Näherung ersetzt keinen vollständigen 6-DOF-Solver und keine umfassende Fahrzeugkalibrierung. Nächster Teil: Phase 1C, Antriebslayouts; die vorhandenen vier RWD-Autos bleiben erhalten.
 
 - **P01.01 · teilweise erledigt** — Der Serienzustand eines Fahrzeugs soll ein nachvollziehbares, deutlich weniger arcade-lastiges Fahrverhalten haben. Serienfahrzeuge dürfen nicht ständig von selbst driften.
 - **P01.02 · teilweise erledigt** — Reifenkräfte mit sanftem Übergang zwischen Haftung und Rutschen; realistisches Untersteuern und Übersteuern.
@@ -260,3 +260,7 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 ## Nächster abgeschlossener Arbeitsschritt
 
 Phase 1 Teil B: Achslasten/Steigungskräfte und Fahrwerk über definierte Wellen-/Bordsteinprofile prüfen, Antriebslayout-Daten vorbereiten und FWD/AWD ohne Umdeutung der bestehenden RWD-Fahrzeuge ergänzen. Reifenluftdruck, individuelle Karkasse und Blowout werden anschließend mit Phase 2 integriert. Keine Phase wird wegen eines Release-Tags als vollständig betrachtet.
+
+## V16 – bearbeitete Teilziele
+
+Phase 1B vertieft P01.01–P01.03, P01.06–P01.07 und P01.11. Prüfungen betreffen zusätzlich P17.02/P17.07 und P18.01/P18.17. Deren vollständiger Umfang bleibt teilweise erledigt. Neue Details und technische Grenzen: [Phasenbericht](phase-1b-report.md). Die 156 ursprünglichen Anforderungsformulierungen bleiben erhalten.

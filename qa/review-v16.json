@@ -1,0 +1,18 @@
+{
+  "status": "reviewed",
+  "result": "No findings.",
+  "method": "Read-only review of the final source diff, call sites and regression evidence; performed by the implementation agent, not an independent reviewer.",
+  "baseCommit": "8cd8fe12571a0693a544916ed425988a818b85c5",
+  "sourceSHA256": {
+    "dist/road-contact.js": "0b3d66e3ea2b4fb50618c84a39a1e73e44d1fd9af4896f9e33d9f95d24bacf89",
+    "dist/physics.js": "904f48b786305eeced76b5559628cb665591b4370fb807cd6a17cd3777521d49",
+    "dist/main.js": "5d10953259e1f17bd42aeff31efbbec39408622776b4ff47e9be933d7c805004",
+    "dist/index.html": "d3da6bd5b159ce4a2b4f9caea4fc11c74f931c9f806760441227208872ec4381",
+    "dist/multiplayer.js": "7e87d7ff8644943c6c913c836494b70a12d2d190235da9a71a3cb75fe6dc928d"
+  },
+  "resolvedFinding": "Road-relative suspension end stops must not align an airborne chassis to terrain below. Now gated on actual support and covered by the steep-slope airborne regression.",
+  "limits": [
+    "Height-field footprint approximation, no full 6-DOF or multi-level road solver.",
+    "No physical wheel/gamepad, speaker listening or real multi-PC network test."
+  ]
+}

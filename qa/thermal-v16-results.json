@@ -1,0 +1,81 @@
+{
+  "status": "passed",
+  "scope": "Lumped physical heat and damage with specified power inputs; fictional calibration, not a vehicle-engineering model.",
+  "checks": [
+    "Healthy cooling reaches a stable working range; loss of radiator area/flow causes heat, leaks and gasket damage.",
+    "Oil starvation removes pressure, increases physical drag and seizes bearings without a blanket heat kill.",
+    "Clutch friction work produces heat, torque fade and wear; disengagement cools without repairing the plate.",
+    "A fuel cut cannot prevent wheel-driven overrev; component failures follow actual crank speed.",
+    "A stronger clutch can overload the original shaft and selected gear, while the other gears stay intact.",
+    "Brakes and tyres receive work per corner; unloaded corners stay cool and sustained abuse wears only loaded parts.",
+    "Damage-off preserves all irreversible condition and fluids even during overrev, heat and leaks.",
+    "Thermal results stay stable at120Hz and60Hz, including energy, fluids and component wear.",
+    "Selective repairs and fluid service preserve unrelated failures, fuel and NOS; warnings do not repeat each frame.",
+    "Old saves migrate, nested states deep-copy and individual gear/gasket damage survive repeated round trips."
+  ],
+  "fixtures": {
+    "Healthy cooling reaches a stable working range; loss of radiator area/flow causes heat, leaks and gasket damage.": {
+      "healthy": 109.58025227353065,
+      "radiator": 166.60727802733493,
+      "pump": 181.3883121091338,
+      "gasketHealth": 0.49797468605255546
+    },
+    "Oil starvation removes pressure, increases physical drag and seizes bearings without a blanket heat kill.": {
+      "failure": "Crank bearings seized",
+      "pressure": 0,
+      "temperature": 95.91287838438906,
+      "drag": 1016.4115008234622
+    },
+    "Clutch friction work produces heat, torque fade and wear; disengagement cools without repairing the plate.": {
+      "hotC": 599.941511049023,
+      "coolC": 450.66796543214446,
+      "health": 0.37776083315149833
+    },
+    "A fuel cut cannot prevent wheel-driven overrev; component failures follow actual crank speed.": {
+      "forced": {
+        "pistons": 0.682228447342033,
+        "bearings": 0.8517066087596086,
+        "valvetrain": 0.02550057184888224,
+        "headGasket": 1,
+        "radiator": 1,
+        "waterPump": 0.9745782757873673,
+        "oilPump": 0.9661043677164849,
+        "oilPan": 1,
+        "clutch": 1,
+        "gearbox": 1,
+        "differential": 1,
+        "driveshaft": 1,
+        "turbo": 1
+      },
+      "safeEngineHealth": 1
+    },
+    "A stronger clutch can overload the original shaft and selected gear, while the other gears stay intact.": {
+      "shaft": 0.7663875739645079,
+      "gear3": 0.8317990532544286
+    },
+    "Brakes and tyres receive work per corner; unloaded corners stay cool and sustained abuse wears only loaded parts.": {
+      "brakes": [
+        857.3493792276693,
+        24,
+        24,
+        24
+      ],
+      "tyres": [
+        24,
+        24,
+        447.1483324652772,
+        24
+      ],
+      "health": [
+        1,
+        1,
+        0.2566268607532188,
+        1
+      ]
+    }
+  },
+  "version": 16,
+  "verifiedInRelease": 16,
+  "suiteSource": "qa/thermal-v15-check.mjs",
+  "suiteSHA256": "a3093d33334f95a4af978146d1331e9c7423d1a4de1e1e0f70011082bacd12cd"
+}

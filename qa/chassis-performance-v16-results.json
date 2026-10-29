@@ -1,0 +1,40 @@
+{
+  "version": 16,
+  "status": "measured",
+  "current": {
+    "flat": {
+      "steps": 1200,
+      "meanMs": 2.555220583333335,
+      "medianMs": 2.512899999999945,
+      "p95Ms": 3.6071999999999207,
+      "groundQueriesPerStep": 4
+    },
+    "hills": {
+      "steps": 1200,
+      "meanMs": 2.6757886666666626,
+      "medianMs": 2.443099999999504,
+      "p95Ms": 4.272399999999834,
+      "groundQueriesPerStep": 4
+    }
+  },
+  "limits": [
+    "Node.js wall-clock on this machine for one native engine/chassis. Browser GPU, world query cost, AI, audio and frame scheduling are excluded; no FPS guarantee.",
+    "Same inputs and sampler for V15 and V16; evolving engine load and JIT timing can differ. A single run is not a universal performance comparison."
+  ],
+  "baselineV15": {
+    "flat": {
+      "steps": 1200,
+      "meanMs": 2.7926140833333517,
+      "medianMs": 2.8949999999986176,
+      "p95Ms": 4.204400000000533,
+      "groundQueriesPerStep": 4
+    },
+    "hills": {
+      "steps": 1200,
+      "meanMs": 2.7944954166666367,
+      "medianMs": 2.8004000000000815,
+      "p95Ms": 4.385999999998603,
+      "groundQueriesPerStep": 4
+    }
+  }
+}

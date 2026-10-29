@@ -1,7 +1,7 @@
 {
   "source": "docs/goal.txt",
   "sourceSHA256": "4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc282ea844a1b96dca",
-  "version": 15,
+  "version": 16,
   "requirements": [
     {
       "id": "P00.01",
@@ -939,5 +939,16 @@
       "status": "teilweise erledigt",
       "requirement": "Für nicht umgesetzte Punkte konkrete technische Gründe und fehlende Arbeiten auflisten, ohne Fertigstellung vorzutäuschen."
     }
-  ]
+  ],
+  "currentIncrement": {
+    "phase": 1,
+    "part": "B",
+    "status": "teilweise erledigt",
+    "implemented": [
+      "Hangkräfte und vertikale Reifenimpulse",
+      "Hangstart ohne falsche Dämpferstöße",
+      "Kontakt- und Energieprüfung für Bremsen, Querneigung, Wellen und Luftfahrt"
+    ],
+    "next": "Phase 1C: Antriebslayouts und verbleibende Fahrwerksgrundlagen"
+  }
 }

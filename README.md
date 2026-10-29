@@ -1,10 +1,10 @@
-# SIDEWAYS V15
+# SIDEWAYS V16
 
 [Play in your browser](https://thesimonmc.github.io/sideways/) · [Download ZIP or offline HTML](https://github.com/TheSimonMC/sideways/releases/latest)
 
 GitHub Pages publishes the tested `SIDEWAYS.html` on every push to `main`. To publish source changes, rebuild and rerun the standalone checks described below, then copy `dist/SIDEWAYS.html` to `SIDEWAYS.html` and commit it with the updated browser report. The deployment verifies that their SHA-256 values match.
 
-Start with **READ-ME-V15.txt** for the current UI, controls, audio extension and verification limits.
+Start with **READ-ME-V16.txt** for the current UI, controls, audio extension and verification limits.
 
 ## SIDEWAYS / City Sessions
 
@@ -14,7 +14,7 @@ The player engine and its sound use the supplied MotorLab SDK 1.6.3, Physics Rel
 
 ## Play the downloaded game
 
-Open `SIDEWAYS-v15.html` from the chat attachment. The complete ZIP includes the same game as `SIDEWAYS.html` at its root, along with the editable project, SDK, credits and instructions. Extract the ZIP before opening its HTML. Single-player, including NPC racing, needs no server or network download. Multiplayer still needs internet access to signaling and peers.
+Open `SIDEWAYS-v16.html` from the chat attachment. The complete ZIP includes the same game as `SIDEWAYS.html` at its root, along with the editable project, SDK, credits and instructions. Extract the ZIP before opening its HTML. Single-player, including NPC racing, needs no server or network download. Multiplayer still needs internet access to signaling and peers.
 
 The HTML includes code, fonts, models and sound. No Sites address is used by the game. Progress stays in the browser and origin where you played. Copying the HTML to another PC copies the game assets; it does not copy browser storage. Click or press a key to enable sound. A browser must expose a controller or wheel through its Gamepad API before the game can bind it.
 
@@ -25,7 +25,17 @@ npm ci
 node build.mjs
 ```
 
-This creates `dist/SIDEWAYS.html`. After running `node qa/standalone-v15-check.mjs` and `node qa/standalone-browser-v15.cjs` on that build, `node qa/package-v15.mjs` creates `release/SIDEWAYS-v15.html` and `release/SIDEWAYS-v15.zip`. The browser check needs Playwright; dependency and browser path options are in READ-ME-V15.txt. Packaging verifies that the tested HTML matches the delivered bytes. These commands do not publish a Site or push a repository.
+This creates `dist/SIDEWAYS.html`. After running `node qa/standalone-v16-check.mjs` and `node qa/standalone-browser-v16.cjs` on that build, `node qa/package-v16.mjs` creates `release/SIDEWAYS-v16.html` and `release/SIDEWAYS-v16.zip`. The browser check needs Playwright; dependency and browser path options are in READ-ME-V16.txt. Packaging verifies that the tested HTML matches the delivered bytes. These commands do not publish a Site or push a repository.
+
+## V16: Phase 1B – road contact and hills
+
+Existing hill roads now exert real support forces on the car. Releasing the brakes in neutral allows rollback; uphill acceleration and braking differ from downhill. Tangent tyre forces include their vertical component, preventing incorrect wheel loading under hill braking. Four existing wheel samples define the local road plane without additional world lookups per simulation step.
+
+Recovery and reset align the body and wheels to the road and initialize suspension history without a false impact. Suspension limits are relative to the road, low-speed lateral grip holds on a crossfall, and brake settling requires spare tyre/brake force. Individual bumps still reach each spring and the existing wheel animation and damper/impact audio. Airborne wheels receive no horizontal force from terrain below.
+
+The cars, engines, maps, tuning parts and persistent condition are retained. This is a height-field chassis approximation, not a full 6-DOF rigid body. FWD/AWD, wheel hop, weather, tyre pressure and aero parts remain open in Phase 1. Next is Phase 1C; no later phase is marked complete. All peers need V16 (protocol 12). See the [phase report](docs/phase-1b-report.md) and [complete checklist](docs/goal-progress.md).
+
+Run `node qa/regressions-v16.mjs` for current regressions and `node qa/road-contact-v16-check.mjs` for slope/uneven-road scenarios. They write V16 reports while retaining historical evidence. `qa/release-v16.json` lists the current verified reports and test limitations.
 
 ## V15: Phase 0 and Phase 1A
 
