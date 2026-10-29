@@ -1,3 +1,4 @@
+import {DRIVE_LABELS,driveCompatibility} from './drivetrain.js';
 import {CHASSIS_LABELS} from './chassis-setup.js';
 import {COSMETIC_LABELS} from './cosmetics.js';
 import {VEHICLES,ENGINES,PARTS,PART_LABELS,resolveBuild} from './catalog.js';
@@ -46,7 +47,7 @@ export class GaragePanel {
   if(!this.workbench||!this.draft)return;
   const key=this.category,build=this.draft,selected=key==='cars'?build.vehicle.id:key==='engine'?build.engine.id:build.selection[key];
   const items=key==='cars'?VEHICLES:key==='engine'?ENGINES:PARTS[key],group=key==='cars'?'car':key;
-  $('garage-category-title').textContent=this.categories.find(x=>x[0]===key)?.[1]||key;
+  $('garage-category-title').textContent=key==='differential'?(build.physics.driveLayout==='FWD'?'FRONT':'REAR')+' DIFFERENTIAL':this.categories.find(x=>x[0]===key)?.[1]||key;
   for(const el of $('garage-categories').children){const active=el.dataset.navKey===key;el.classList.toggle('active',active);el.setAttribute('aria-selected',String(active));}
   const signature=key+':'+build.signature+':'+(this.economy?.wallet||0);if(this.cardSignature===signature)return;this.cardSignature=signature;
   const focused=document.activeElement?.dataset?.navKey;$('garage-option-cards').replaceChildren();
@@ -55,21 +56,24 @@ export class GaragePanel {
    const owned=this.economy?.owns(group,item.id),price=this.economy?.price(group,item.id)||0;
    const button=document.createElement('button');button.type='button';button.className='part-card'+(active?' active':'');button.dataset.navKey='part-'+key+'-'+item.id;button.setAttribute('aria-pressed',String(active));
    button.innerHTML='<span class="part-tier"></span><strong></strong><p></p><div class="part-bottom"><b></b><span></span></div>';
-   button.querySelector('.part-tier').textContent=key==='cars'?item.model.number:key==='engine'?item.layout.toUpperCase():COSMETIC_LABELS[key]?'VISUAL PART':CHASSIS_LABELS[key]?'CHASSIS PART':['STREET','SPORT','RACE'][i]||'PART';
+   button.querySelector('.part-tier').textContent=key==='cars'?item.model.number:key==='engine'?item.layout.toUpperCase():COSMETIC_LABELS[key]?'VISUAL PART':DRIVE_LABELS[key]?'DRIVETRAIN PART':CHASSIS_LABELS[key]?'CHASSIS PART':['STREET','SPORT','RACE'][i]||'PART';
    button.querySelector('strong').textContent=item.name;button.querySelector('p').textContent=item.description;
    button.querySelector('.part-bottom b').textContent=owned?'OWNED':number(price)+' PTS';button.querySelector('.part-bottom span').textContent=installed?'INSTALLED':active?'SELECTED':'PREVIEW';
-   button.disabled=key==='turbo'&&!build.engine.turbo;if(button.disabled)button.querySelector('p').textContent='Requires a turbocharged engine.';
+   const incompatible=driveCompatibility(build.selection,key,item.id);button.disabled=!!incompatible||key==='turbo'&&!build.engine.turbo;if(button.disabled)button.querySelector('p').textContent=incompatible||'Requires a turbocharged engine.';
    button.addEventListener('click',()=>{this.change(key==='cars'?{carId:item.id,engineId:item.defaultEngine}:key==='engine'?{engineId:item.id}:{[key]:item.id});});
    $('garage-option-cards').append(button);if(focused===button.dataset.navKey){button.focus({preventScroll:true});button.classList.add('pad-focus');}
   }
   const current=this.active?.stats,changes=[];for(const [field,label,unit]of [['massKg','weight',' kg'],['redlineRpm','redline',' RPM'],['clutchNm','clutch capacity',' Nm'],['boostBar','boost',' bar'],['tyreWidthMm','tyre width',' mm'],['steeringLockDeg','steering lock','°'],['steeringRatio','steering ratio',':1'],['frontRollRate','front roll stiffness',' N/m'],['rearRollRate','rear roll stiffness',' N/m']]){const delta=build.stats[field]-(current?.[field]??build.stats[field]);if(Math.abs(delta)>.001)changes.push((delta>0?'+':'')+Number(delta.toFixed(2)) + unit+' '+label);}
+  if(build.physics.driveLayout!==this.active?.physics.driveLayout)changes.unshift(build.physics.driveLayout+' drivetrain');
+  if(build.physics.driveLayout==='AWD')changes.push('40:60 nominal front/rear torque');
   $('garage-comparison').textContent=changes.length?'VS INSTALLED: '+changes.join(' · '):'Compare the part descriptions above. Install to confirm your changes.';
   const cards=$('garage-option-cards'),chosen=cards.querySelector('.active');if(chosen)cards.scrollLeft=chosen.offsetLeft-cards.offsetLeft;
  }
- show(build){this.setupWorkbench();this.active=build;this.draft=resolveBuild(build.selection);this.open=true;this.render();this.onPreview?.(this.draft);}
+ show(build){this.compatibilityMessage='';this.setupWorkbench();this.active=build;this.draft=resolveBuild(build.selection);this.open=true;this.render();this.onPreview?.(this.draft);}
  hide(restore=true){this.open=false;if(restore&&this.active)this.onCancel?.(this.active);}
  change(patch,replace=false){
-  this.draft=resolveBuild(replace?patch:{...this.draft.selection,...patch});this.render();this.onPreview?.(this.draft);
+  const request=replace?patch:{...this.draft.selection,...patch};this.compatibilityMessage=driveCompatibility(request,'driveKit',request.driveKit);
+  this.draft=resolveBuild(request);this.render();this.onPreview?.(this.draft);
  }
  render(){
   const build=this.draft,{vehicle,engine,selection,stats}=build;
@@ -81,7 +85,7 @@ export class GaragePanel {
    for(const option of $('garage-engine').options){const e=ENGINES.find(v=>v.id===option.value),included=e.id===vehicle.defaultEngine&&!this.economy.owns('car',vehicle.id);option.textContent=e.name+' · '+(this.economy.owns('engine',e.id)?'OWNED':included?'INCLUDED':number(this.economy.price('engine',e.id))+' PTS');}
   }
   $('garage-preview-name').textContent=vehicle.name;
-  $('garage-preview-type').textContent=vehicle.subtitle+' / RWD';
+  $('garage-preview-type').textContent=vehicle.subtitle+' / '+build.physics.driveLayout;
   $('garage-preview-engine').textContent=engine.name;
   $('garage-car-description').textContent=vehicle.description;
   $('garage-mass').textContent=number(stats.massKg)+' kg';
@@ -98,6 +102,7 @@ export class GaragePanel {
    const part=parts.find(item=>item.id===selection[key]);
    if(this.economy)for(const option of select.options){const item=parts.find(v=>v.id===option.value);option.textContent=item.name+' · '+(this.economy.owns(key,item.id)?'OWNED':number(this.economy.price(key,item.id))+' PTS');}
    $('garage-note-'+key).textContent=key==='turbo'&&!engine.turbo?'This engine is naturally aspirated.':part.description;
+   for(const option of select.options)option.disabled=!!driveCompatibility(selection,key,option.value);
    select.disabled=key==='turbo'&&!engine.turbo;
   }
   const changed=build.signature!==this.active?.signature;
@@ -108,5 +113,6 @@ export class GaragePanel {
   if($('garage-wallet'))$('garage-wallet').textContent=number(this.economy?.wallet??0)+' PTS';
   this.renderCards();
   if($('garage-cost'))$('garage-cost').textContent=quote?.shortfall?'Need '+number(quote.shortfall)+' more points.':quote?.total?'Purchased parts stay in your garage.':'You own this setup.';
+  if(this.compatibilityMessage&&$('garage-cost'))$('garage-cost').textContent+=' '+this.compatibilityMessage+' Factory RWD restored in this preview.';
  }
 }

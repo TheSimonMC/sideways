@@ -1,3 +1,4 @@
+import {DRIVE_PRICES} from './drivetrain.js';
 import {CHASSIS_PRICES} from './chassis-setup.js';
 import {COSMETIC_PRICES} from './cosmetics.js';
 import {VEHICLES,ENGINES,PARTS,DEFAULT_SELECTION,resolveBuild} from './catalog.js';
@@ -7,7 +8,7 @@ const copy=value=>JSON.parse(JSON.stringify(value));
 const integer=value=>Math.floor(clamp(value,0,1e9));
 export const CAR_PRICES={hachi:0,vector:32000,kitsune:46000,atlas:58000};
 export const ENGINE_PRICES={i4:12000,i6t:24000,v8:29000,rotary:22000,boxer6:33000,v6:26000,v10:48000,v12:62000};
-export const PART_PRICES={...COSMETIC_PRICES,...CHASSIS_PRICES,ecu:{stock:0,sport:3600,track:6800},turbo:{stock:0,street:6200,race:11500},exhaust:{street:0,sport:2900,race:5400},tyres:{street:0,sport:4800,drift:3400},suspension:{street:0,sport:5600,race:9200},brakes:{street:0,sport:4200,race:7800},differential:{open:0,lsd:4500,locked:6500},clutch:{street:0,sport:3200,race:6100},intake:{stock:0,sport:2600,race:5300},radiator:{stock:0,sport:3400,race:6200},oilCooler:{stock:0,sport:2900,race:5700},internals:{stock:0,sport:8500,race:16500},transmission:{stock:0,sport:7200,race:13800},finalDrive:{stock:0,short:2400,long:2400},chassis:{stock:0,light:5800,reinforced:6800},tyreWidth:{stock:0,wide:3900,race:7100}};
+export const PART_PRICES={...COSMETIC_PRICES,...CHASSIS_PRICES,...DRIVE_PRICES,ecu:{stock:0,sport:3600,track:6800},turbo:{stock:0,street:6200,race:11500},exhaust:{street:0,sport:2900,race:5400},tyres:{street:0,sport:4800,drift:3400},suspension:{street:0,sport:5600,race:9200},brakes:{street:0,sport:4200,race:7800},differential:{open:0,lsd:4500,locked:6500},clutch:{street:0,sport:3200,race:6100},intake:{stock:0,sport:2600,race:5300},radiator:{stock:0,sport:3400,race:6200},oilCooler:{stock:0,sport:2900,race:5700},internals:{stock:0,sport:8500,race:16500},transmission:{stock:0,sport:7200,race:13800},finalDrive:{stock:0,short:2400,long:2400},chassis:{stock:0,light:5800,reinforced:6800},tyreWidth:{stock:0,wide:3900,race:7100}};
 const validItem=(kind,id)=>kind==='car'?VEHICLES.some(v=>v.id===id):kind==='engine'?ENGINES.some(v=>v.id===id):!!PARTS[kind]?.some(v=>v.id===id);
 const buildFrom=value=>resolveBuild(value?.selection||value||DEFAULT_SELECTION);
 function restoreObjective(value){

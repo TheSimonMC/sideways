@@ -1,6 +1,6 @@
 # SIDEWAYS – verbindliche Fortschrittsliste
 
-Stand: V16, Phase 0 und Phase 1 Teile A/B. Grundlage: unveränderte Kopie in `docs/goal.txt`.
+Stand: V17, Phase 0 und Phase 1 Teile A/B/C. Grundlage: unveränderte Kopie in `docs/goal.txt`.
 
 Status bezieht sich auf den gesamten Wortlaut eines Punktes. Teilweise bedeutet, dass wesentliche Teile noch fehlen. Nur Phase 0 ist abgeschlossen. Phase 2 beginnt erst nach den verbleibenden Grundlagen von Phase 1.
 
@@ -18,7 +18,7 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 1: REALISTISCHERE FAHRPHYSIK
 
-**teilweise erledigt** — V15 Teil A: Teileabhängige Lenkung, Reifen und Stabilisatoren statt freier Physikmodi/künstlicher Gierhilfe. V16 Teil B: Fahrbahnneigung beeinflusst Rollen, Beschleunigung und Bremsen über zusammenhängende horizontale/vertikale Kontaktkräfte. Hangstart und Rücksetzen richten den Wagen an den vier Radproben aus; Wellen und Bordsteine wirken einzeln auf Federung, Räder und Fahrwerksakustik. Luftfahrt erzeugt keine horizontale Kraft vom Terrain. Energie-, Brems-, Migrations- und Regressionstests liegen vor. Noch offen: FWD/AWD, spezifischer Wheel Hop, Wetterkopplung, Reifenluftdruck/Flatspots und abstimmbare Aerodynamik. Die Heightfield-Näherung ersetzt keinen vollständigen 6-DOF-Solver und keine umfassende Fahrzeugkalibrierung. Nächster Teil: Phase 1C, Antriebslayouts; die vorhandenen vier RWD-Autos bleiben erhalten.
+**teilweise erledigt** — V15 Teil A: Teileabhängige Lenkung, Reifen und Stabilisatoren statt freier Physikmodi/künstlicher Gierhilfe. V16 Teil B: gekoppelte Hang-/Kontaktkräfte, vier einzelne Federwege und Hangstart ohne falsche Aufschläge. V17 Teil C: echte FWD/RWD/AWD-Kraftpfade, gekaufte kompatible Umbauten, offene und gesperrte Achs-/Mitteldifferenziale, eigene AWD-Baugruppen mit Schlupfwärme, Schaden und Einzelreparatur. Traktionskontrolle, Rauch, räumlicher Differenzialsound, Kauf und Speichern folgen dem eingebauten Antrieb. Alle vier Serienautos bleiben RWD; eine gespeicherte V16-Vergleichsfahrt bleibt numerisch identisch. Noch offen: spezifischer Wheel Hop, Wetterkopplung, Reifenluftdruck/Flatspots, abstimmbare Aerodynamik und umfassendere Kalibrierung. Die Heightfield-Näherung und endliche Wellen-/Kupplungsbedingungen ersetzen kein vollständiges 6-DOF-/Gelenkwellenmodell. Nächster Teil: Phase 1D, Wheel Hop und Aero-Grundlagen; eigenes Reifendruck-/Karkassenschema in Phase 2 und Wetter in Phase 7 bleiben ausdrücklich offen.
 
 - **P01.01 · teilweise erledigt** — Der Serienzustand eines Fahrzeugs soll ein nachvollziehbares, deutlich weniger arcade-lastiges Fahrverhalten haben. Serienfahrzeuge dürfen nicht ständig von selbst driften.
 - **P01.02 · teilweise erledigt** — Reifenkräfte mit sanftem Übergang zwischen Haftung und Rutschen; realistisches Untersteuern und Übersteuern.

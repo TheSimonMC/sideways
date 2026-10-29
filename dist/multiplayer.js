@@ -1,9 +1,9 @@
 import {resolveBuild} from './catalog.js';
 
-export const MULTIPLAYER_VERSION=12;
+export const MULTIPLAYER_VERSION=13;
 export const DEFAULT_LOBBY_RULES=Object.freeze({maxPlayers:4,traffic:'normal',police:true,damage:true,time:'cycle',collisions:'ghost'});
 const CODE_ALPHABET='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-const PREFIX='sideways-v12-';
+const PREFIX='sideways-v13-';
 const LIMITS={packet:96000,buffer:256000,events:64,links:7,rate:90,worldNodes:10000};
 const utf8=new TextEncoder();
 const ISSUE_MESSAGES={
@@ -144,7 +144,7 @@ export class MultiplayerSession{
    if(this.isHost){this.members.set(id,{id,...this.profile,ready:true,active:false,state:null,updatedAt:this._now()});this._status('lobby','Lobby ready. Share the code with your friends.');this._emitRoom();this._finishPending();}
    // PeerJS JSON cannot carry a city frame: it rejects messages at 16,300 bytes.
    // BinaryPack includes fragmentation and reassembly for larger world updates.
-   else{try{const connection=peer.connect(this.hostId,{label:'sideways-v12',serialization:'binary',reliable:true,metadata:{version:MULTIPLAYER_VERSION,transport:'binary-v1'}});this._bindConnection(connection,false);}catch(error){this._fail(this._issue(errorCode(error),{detail:this._errorDetail(error),stage:'joining'}));}}
+   else{try{const connection=peer.connect(this.hostId,{label:'sideways-v13',serialization:'binary',reliable:true,metadata:{version:MULTIPLAYER_VERSION,transport:'binary-v1'}});this._bindConnection(connection,false);}catch(error){this._fail(this._issue(errorCode(error),{detail:this._errorDetail(error),stage:'joining'}));}}
   });
   peer.on('connection',connection=>{if(!live()||!this.isHost||this.links.size>=LIMITS.links){connection.close?.();return;}const reject=connection.metadata?.version!==MULTIPLAYER_VERSION?'PROTOCOL_MISMATCH':connection.serialization&&connection.serialization!=='binary'?'TRANSPORT_OUTDATED':null;this._bindConnection(connection,true,reject);});
   peer.on('call',call=>call.close?.());

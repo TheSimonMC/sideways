@@ -1,0 +1,16 @@
+{
+  "version": 17,
+  "status": "passed",
+  "checks": [
+    "AWD purchase costs 26,500 once, preview is free, existing front shaft damage remains; incompatible front LSD is disabled before conversion",
+    "Installed conversion, damage and ownership persist through a real browser reload",
+    "Incompatible V12 preview returns to RWD with a visible reason; supported FWD installs for 9,000",
+    "Installed FWD drives the front axle in the final standalone and starts without retained damage"
+  ],
+  "errors": [],
+  "external": [],
+  "htmlSha256": "357a7b412d193c15f276e57db809cd19ff46c95a84d73af0737c70bf69b77bf9",
+  "limits": [
+    "Chromium software renderer; no physical controller or listening test."
+  ]
+}

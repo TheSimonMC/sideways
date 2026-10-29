@@ -265,7 +265,7 @@ export function createCar(scene, initialBuild = resolveBuild()) {
       return {
         // Circle vertex 0 is its centre, including the visible body deformation.
         exhaust:model.exhaustMouths.map(mesh=>mesh.localToWorld(new THREE.Vector3().fromBufferAttribute(mesh.geometry.attributes.position,0))),
-        intake:point(-.20,.75,L*.52),engine:point(0,.65,L*.43),gearbox:point(0,.28,.20),differential:point(0,.25,-p.rearAxle),
+        intake:point(-.20,.75,L*.52),engine:point(0,.65,L*.43),gearbox:point(0,.28,.20),differential:point(0,.25,p.driveLayout==='AWD'?0:p.driveLayout==='FWD'?p.frontAxle:-p.rearAxle),
         wheels:model.wheels.map(wheel=>wheel.getWorldPosition(new THREE.Vector3())),
         exhaustDirection:new THREE.Vector3(0,0,-1).transformDirection(model.chassis.matrixWorld),frontDirection:new THREE.Vector3(0,0,1).transformDirection(model.chassis.matrixWorld)
       };
@@ -339,7 +339,7 @@ export function createEffects(scene, initialBuild = resolveBuild()) {
   trails.instanceMatrix.setUsage(THREE.DynamicDrawUsage);trails.frustumCulled=false;trails.renderOrder=2;scene.add(trails);
   const trailData=Array.from({length:TRAIL_COUNT},()=>({life:0,x:0,z:0,heading:0,length:0,side:0}));
   let pIndex=0,sIndex=0,tIndex=0,trailClock=0,damageClock=0;
-  const wheelClocks=[0,0],lastContacts=[null,null],burnoutStamps=[null,null];
+  const wheelClocks=[0,0,0,0],lastContacts=[null,null,null,null],burnoutStamps=[null,null,null,null],wheelParticles=[0,0,0,0];
   const zero=()=>{dummy.position.set(0,-1000,0);dummy.scale.setScalar(0);dummy.rotation.set(0,0,0);dummy.updateMatrix();};
   zero();
   for(let i=0;i<FX_COUNT;i++)particles.setMatrixAt(i,dummy.matrix);
@@ -359,10 +359,10 @@ export function createEffects(scene, initialBuild = resolveBuild()) {
     if(len>5)return true;
     dummy.position.set((a.x+b.x)/2,.037+((a.y||0)+(b.y||0))*.5,(a.z+b.z)/2);dummy.rotation.set(0,Math.atan2(dx,dz),0);dummy.scale.set(.28,1,len+.07);dummy.updateMatrix();skids.setMatrixAt(sIndex,dummy.matrix);sIndex=(sIndex+1)%SKID_COUNT;return true;
   }
-  function contact(s,side){
+  function contact(s,index){
     const fX=Math.sin(s.heading),fZ=Math.cos(s.heading),rX=fZ,rZ=-fX,p=build.physics;
-    const corner=s.suspension?.[side<0?2:3];
-    return {x:s.x-fX*p.rearAxle+rX*side*p.halfTrack,z:s.z-fZ*p.rearAxle+rZ*side*p.halfTrack,y:corner?.groundHeight||0,contact:corner?.contact!==false};
+    const side=index%2?1:-1,axle=index<2?p.frontAxle:-p.rearAxle,corner=s.suspension?.[index];
+    return {x:s.x+fX*axle+rX*side*p.halfTrack,z:s.z+fZ*axle+rZ*side*p.halfTrack,y:corner?.groundHeight||0,contact:corner?.contact!==false};
   }
   function stamp(p,heading){
     dummy.position.set(p.x,p.y+.039,p.z);dummy.rotation.set(0,heading,0);dummy.scale.set(.29,1,.68);dummy.updateMatrix();skids.setMatrixAt(sIndex,dummy.matrix);sIndex=(sIndex+1)%SKID_COUNT;
@@ -370,17 +370,17 @@ export function createEffects(scene, initialBuild = resolveBuild()) {
   return {
     setBuild(nextBuild){if(nextBuild?.physics){build=nextBuild;terrain.setBuild(nextBuild);}this.reset();return this;},
     setGroundSampler(fn){terrain.setGroundSampler(fn);return this;},
-    debug(){return {activeParticles:particlesData.filter(p=>p.life>0).length,activeSmoke:particlesData.filter(p=>p.life>0&&p.kind===0).length,activeSteam:particlesData.filter(p=>p.life>0&&p.kind===5).length,activeEngineSmoke:particlesData.filter(p=>p.life>0&&p.kind===4).length,activeDust:particlesData.filter(p=>p.life>0&&(p.kind===2||p.kind===3)).length,terrain:terrain.diagnostics(),skidCursor:sIndex,carId:build.vehicle.id};},
+    debug(){return {wheelParticles:[...wheelParticles],activeParticles:particlesData.filter(p=>p.life>0).length,activeSmoke:particlesData.filter(p=>p.life>0&&p.kind===0).length,activeSteam:particlesData.filter(p=>p.life>0&&p.kind===5).length,activeEngineSmoke:particlesData.filter(p=>p.life>0&&p.kind===4).length,activeDust:particlesData.filter(p=>p.life>0&&(p.kind===2||p.kind===3)).length,terrain:terrain.diagnostics(),skidCursor:sIndex,carId:build.vehicle.id};},
     update(s,dt,time){
       terrain.update(s,dt);
       const speed=s.speed||0;
       const fX=Math.sin(s.heading),fZ=Math.cos(s.heading);trailClock+=dt;damageClock+=dt;
       if(damageClock>.10){damageClock=0;const steam=clamp(s.mechanical?.steam??0,0,1),smoke=clamp(s.mechanical?.smoke??((s.engineHealth??1)<.55?1-(s.engineHealth??1):0),0,1);if(steam>.025)spawn(s.x+fX*1.2,(s.bodyHeight||0)+.9,s.z+fZ*1.2,-fX*speed*.04,-fZ*speed*.04,steam,5);if(smoke>.025&&s.engineRunning)spawn(s.x-fX*build.vehicle.model.length*.48,(s.bodyHeight||0)+.36,s.z-fZ*build.vehicle.model.length*.48,-fX*(speed*.04+.4),-fZ*(speed*.04+.4),smoke,4);if((s.bodyScrape||0)>250&&speed>1)spawn(s.x,(s.groundHeight||0)+.09,s.z,-fX*speed*.14,-fZ*speed*.14,.7,1);}
 
-      for(let i=0;i<2;i++){
-        const wheel=s.wheelAudio?.[i+2],point=contact(s,i?1:-1),corner=s.suspension?.[i+2];
+      for(let i=0;i<4;i++){
+        const wheel=s.wheelAudio?.[i],point=contact(s,i),corner=s.suspension?.[i];
         const surface=wheel?.surface||corner?.material||'asphalt',loose=['gravel','grass','dirt'].includes(surface);
-        const fallbackSlip=s.wheelOmegas?Math.abs(s.wheelOmegas[i+2]*build.physics.wheelRadius-(s.forwardSpeed||0)):Math.abs(i?s.wheelSlipR||0:s.wheelSlipL||0)*Math.max(5,speed);
+        const fallbackSlip=s.wheelOmegas?Math.abs(s.wheelOmegas[i]*build.physics.wheelRadius-(s.forwardSpeed||0)):Math.abs(s.wheelSlip?.[i]??(i<2?0:i%2?s.wheelSlipR||0:s.wheelSlipL||0))*Math.max(5,speed);
         const slip=Math.abs(wheel?.slipSpeed??fallbackSlip),lateral=Math.abs(wheel?.lateralSpeed??Math.sin(s.driftAngle||0)*speed),rolling=Math.abs(wheel?.longitudinalSpeed??speed);
         const grounded=point.contact&&wheel?.contact!==false&&(wheel?.load===undefined||wheel.load>1);
         const sliding=grounded&&speed>3&&(slip>2.4||lateral>1),burnout=grounded&&speed<8&&slip>3;
@@ -392,7 +392,7 @@ export function createEffects(scene, initialBuild = resolveBuild()) {
         const intensity=loose?clamp(rolling*.008+slip*.027+lateral*.06,.08,.8)*(surface==='grass'?.6:1):clamp(lateral*.15+slip*.027,0,1);
         wheelClocks[i]+=dt;
         if(wheelClocks[i]>(loose?.10-intensity*.045:.025)){
-          wheelClocks[i]=0;
+          wheelClocks[i]=0;wheelParticles[i]++;
           spawn(point.x,point.y+(loose?.08:.19),point.z,-fX*(speed*.08+slip*.025),-fZ*(speed*.08+slip*.025),intensity,loose?(surface==='grass'?3:2):0);
         }
       }
@@ -426,7 +426,7 @@ export function createEffects(scene, initialBuild = resolveBuild()) {
       zero();for(let i=0;i<SKID_COUNT;i++)skids.setMatrixAt(i,dummy.matrix);skids.instanceMatrix.needsUpdate=true;
       for(let i=0;i<FX_COUNT;i++)particles.setMatrixAt(i,dummy.matrix);particles.instanceMatrix.needsUpdate=true;
       for(let i=0;i<TRAIL_COUNT;i++)trails.setMatrixAt(i,dummy.matrix);trails.instanceMatrix.needsUpdate=true;
-      lastContacts.fill(null);burnoutStamps.fill(null);wheelClocks.fill(0);trailClock=0;damageClock=0;
+      lastContacts.fill(null);burnoutStamps.fill(null);wheelClocks.fill(0);wheelParticles.fill(0);trailClock=0;damageClock=0;
     }
   };
 }

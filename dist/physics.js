@@ -1,4 +1,5 @@
 import {steeringDemand,tyreGrip} from './chassis-setup.js';
+import {Drivetrain} from './drivetrain.js';
 import {roadPlane,contactFrame} from './road-contact.js';
 /* MotorLab owns the crank and combustion. This solver exchanges finite impulses
    with that same shaft, four rolling wheels, brakes and a spring/damper chassis.
@@ -24,7 +25,7 @@ export class CarPhysics {
   const old=this.state,options=build.physics;if(this.condition&&old)this.condition.boost=old.boost;
   this.condition=this._conditions.get(build.vehicle.id)||createVehicleCondition(build);this._conditions.set(build.vehicle.id,this.condition);
   if(this.engine)void this.engine.dispose();
-  this.build=build;
+  this.build=build;this._drive=new Drivetrain(options);
   this._mechanics=new MechanicalSystem(build,this.condition,event=>{this._mechanicalEvents.push(event);if(this._mechanicalEvents.length>64)this._mechanicalEvents.shift();});
   for(const key of ['mass','inertia','wheelRadius','wheelInertia','halfTrack','frontAxle','rearAxle','cgHeight','finalDrive','clutchCapacity','brakeTorque','brakeBias','muMultiplier','springRate','damperRate','antiRollRate','rideHeight','powerLock','coastLock','boostTarget','redlineRpm'])this[key]=options[key];
   this.suspensionTravel=options.suspensionTravel??.145;this.gears=[...options.gears];
@@ -54,7 +55,7 @@ export class CarPhysics {
   // synchronously before returning the cleanup promise.
   if(this.engine.getTiming().clock!=='manual')void this.engine.disconnectAudio();
   this.engine.load(this._warmState);this.engineState=this.engine.getState();
-  this._omega=this.engineState.omega;this._wheelOmega=[0,0,0,0];this._fuelMeter=this.engineState.totals?.fuelInjected??0;this._heatMeter={wall:this.engineState.totals?.wallHeat??0,friction:this.engineState.totals?.frictionWork??0,load:this.engineState.totals?.loadWork??0};
+  this._omega=this.engineState.omega;this._wheelOmega=[0,0,0,0];this._drive.reset(this._wheelOmega);this._fuelMeter=this.engineState.totals?.fuelInjected??0;this._heatMeter={wall:this.engineState.totals?.wallHeat??0,friction:this.engineState.totals?.frictionWork??0,load:this.engineState.totals?.loadWork??0};
   if(this.condition.engineFault||this.condition.fuelLitres<=0){this.engine.stop();this.engine.applyShaftImpulse(-this._omega*this.engineState.config.inertia);this.engineState=this.engine.getState();this._omega=0;}
   this._shift=this._reverseHold=this._shiftMessageTime=0;
   this._shiftUpHeld=this._shiftDownHeld=false;this._accelLong=this._accelLat=0;
@@ -73,7 +74,7 @@ export class CarPhysics {
    engineRunning:!this._stalled,engineStalled:this._stalled,starterActive:false,clutchSlipRPM:0,inputShaftRpm:0,clutchTemperature:this._clutchTemp,
    wheelOmegas:[0,0,0,0],wheelOmega:[0,0,0,0],wheelSpins:[0,0,0,0],wheelSteers:[0,0,0,0],wheelSlip:[0,0,0,0],wheelLoads:[...this._staticLoads],brakeTemps:this._brakeTemps,tyreTemps:this._tyreTemps,
    brakePressure:[0,0,0,0],absActive:false,burnout:false,burnoutIntensity:0,halfTrack:this.halfTrack,rearAxle:this.rearAxle,frontAxle:this.frontAxle,wheelRadius:this.wheelRadius,
-   accelerationLong:0,accelerationLat:0,diffSlipRPM:0,diffTorque:0,diffPower:0,
+   driveLayout:this.build.physics.driveLayout,drivenWheels:this._drive.driven,axleTorques:[0,0],centerSlipRPM:0,frontDifferentialLock:0,centerDifferentialLock:0,accelerationLong:0,accelerationLat:0,diffSlipRPM:0,diffTorque:0,diffPower:0,
    fuelFlowLph:0,fuelStarved:this.condition.fuelLitres<=0,overrev:0,damageMessage:'',bodyScrape:0,scrapeLoads:[0,0,0,0],detachedWheels:[],detachedPanels:[],
    suspension:this._staticLoads.map((load,i)=>({compression:load/this.springRate,travel:0,load,normalLoad:load*plane.normalScale,groundHeight:samples[i].height,contact:true,wheelY:samples[i].height+this.wheelRadius,velocity:0,impactSpeed:0,impactCount:0})),
    wheelAudio:this._staticLoads.map(load=>({surface:'asphalt',roughness:.001,contact:true,load,longitudinalSpeed:0,lateralSpeed:0,slipSpeed:0,slipRatio:0,wheelSpeed:0,tyrePower:0,brakePower:0,suspensionVelocity:0,suspensionTravel:0,impactSpeed:0,impactCount:0}))});
@@ -93,7 +94,7 @@ export class CarPhysics {
   const s=this.state;if(!Number.isInteger(gear)||gear< -1||gear>this.gears.length)return false;if(gear===s.gear)return true;
   // The selector follows the player's request. A limiter cannot protect an
   // engine that the driven wheels mechanically turn beyond its safe speed.
-  const before=this._ratio(s.gear),after=this._ratio(gear),wheel=(this._omegaL+this._omegaR)*.5;
+  const before=this._ratio(s.gear),after=this._ratio(gear),wheel=this._drive.meanOmega(this._wheelOmega);
   const engaged=manualClutch?1-clutchPedal:0;
   this._mechanics.shift(before,after,wheel,engaged,gear,this.damageEnabled);
   s.gear=gear;s.requestedGear=gear;s.shiftMessage='';s.shiftRejected=false;this._shiftMessageTime=0;this._shift=gear===0?.08:.19;return true;
@@ -295,7 +296,7 @@ export class CarPhysics {
   if(requestedBoost){s.boost=Math.max(0,s.boost-dt*.18);this._nitrousCooldown=1.1;}
   else{this._nitrousCooldown=Math.max(0,this._nitrousCooldown-dt);if(!input.boost&&this._nitrousCooldown===0&&speed>4)s.boost=clamp(s.boost+dt*(s.drifting?.10:.035),0,1);}
   this.condition.boost=s.boost;
-  const tyreSlip=Math.max(Math.abs(s.wheelSlipL),Math.abs(s.wheelSlipR));
+  const tyreSlip=Math.max(...this._drive.driven.map(i=>Math.abs(s.wheelSlip[i])));
   // Simultaneous service brake and throttle is a deliberate left-foot/burnout
   // manoeuvre; traction control yields, but no grip or power is invented.
   const tcTarget=!assists||brake>.1?1:clamp(1-Math.max(0,tyreSlip-.17)*this.build.physics.tractionControl*1.5,.25,1);
@@ -389,16 +390,12 @@ export class CarPhysics {
    softLat[i]=Math.max(2.5,Math.abs(v))*smooth((speed-.35)/2.1)/(32000*dt);
   }
   const Jlong=[0,0,0,0],Jlat=[0,0,0,0],Jbrake=[0,0,0,0];
-  let Jclutch=0,Jdiff=0,omega=this._omega,roadVerticalImpulse=0;
+  let omega=this._omega,roadVerticalImpulse=0;
   const invMass=1/this.mass,invYaw=1/this.inertia,invWheel=this.condition.wheelAttached.map(attached=>1/(this.wheelInertia*(attached?1:.18))),invEngine=1/engineInertia;
   // Small mesh/bearing losses are removed from actual wheel kinetic energy;
   // their work becomes oil/casing heat instead of free, decorative heating.
-  const mh=this.condition.mechanical.health,priorTorque=Math.abs(s.clutchTorque||0);
-  const meshTorque=ratio?(1+priorTorque*.012)*(1+3*(1-mh.gearbox))*Math.abs(ratio):0;
-  const finalDriveDrag=(2+priorTorque*Math.abs(ratio)*.006)*(1+3*(1-mh.differential));
-  const dissipate=torque=>{let work=0;for(const i of [2,3]){const before=wheels[i],j=Math.min(Math.abs(before)/invWheel[i],torque*.5*dt);wheels[i]-=Math.sign(before)*j*invWheel[i];work+=(before*before-wheels[i]*wheels[i])/(2*invWheel[i]);}return Math.max(0,work);};
-  const gearboxWorkJ=dissipate(meshTorque),differentialDragJ=dissipate(finalDriveDrag);
-  const initialClutchSlip=Math.abs(omega-ratio*(wheels[2]+wheels[3])*.5),initialDiffSlip=Math.abs(wheels[3]-wheels[2]);
+  this._drive.begin({wheels,invWheel,invEngine,ratio,dt,capacity,pedal,mechanical,health:this.condition.mechanical.health,priorTorque:s.clutchTorque||0});
+  const initialClutchSlip=Math.abs(omega-ratio*this._drive.meanOmega(wheels));
   const applyTire=(i,dLong,dLat)=>{
    const frame=frames[i];
    v+=(dLong*frame.forceLongV+dLat*frame.forceLatV)*invMass;
@@ -410,14 +407,7 @@ export class CarPhysics {
   // Sequential impulses solve the same gear, brake and contact constraints
   // together. Brake torque can hold a wheel against its road/clutch reaction.
   for(let iteration=0;iteration<36;iteration++){
-   if(capacity>0){
-    const slip=omega-ratio*(wheels[2]+wheels[3])*.5;
-    const next=clamp(Jclutch+slip/(invEngine+ratio*ratio*(invWheel[2]+invWheel[3])*.25),-capacity*dt,capacity*dt),d=next-Jclutch;
-    Jclutch=next;omega-=d*invEngine;wheels[2]+=d*ratio*.5*invWheel[2];wheels[3]+=d*ratio*.5*invWheel[3];
-   }
-   const lock=mix(this.coastLock,this.powerLock,pedal)*mechanical.differentialLockFactor,diffBound=(Math.abs(Jclutch*ratio)*.5*lock+lock*45*dt);
-   const nextDiff=clamp(Jdiff+(wheels[3]-wheels[2])/(invWheel[2]+invWheel[3]),-diffBound,diffBound),dd=nextDiff-Jdiff;
-   Jdiff=nextDiff;wheels[2]+=dd*invWheel[2];wheels[3]-=dd*invWheel[3];
+   omega=this._drive.solve(omega);
    for(let i=0;i<4;i++){
     const nextBrake=clamp(Jbrake[i]-wheels[i]/invWheel[i],-brakeBounds[i],brakeBounds[i]),db=nextBrake-Jbrake[i];Jbrake[i]=nextBrake;wheels[i]+=db*invWheel[i];
     const [x,z]=this._positions[i],cv=v-yaw*x,cu=u+yaw*z;
@@ -434,6 +424,7 @@ export class CarPhysics {
   // prevents uphill braking from falsely unloading (or downhill from loading)
   // the entire suspension as though tyre forces were purely horizontal.
   this._heaveVelocity+=roadVerticalImpulse*invMass;
+  const Jclutch=this._drive.Jclutch;
   this.engine.applyShaftImpulse(-Jclutch);
   // Catastrophic shaft speeds consume their excess kinetic energy as failure,
   // keeping the SDK within its documented numeric working range. Gear choice
@@ -442,11 +433,11 @@ export class CarPhysics {
   this._omega=omega;
   // These are dissipated energies, not timer-based wear. Units: joules into
   // a lumped heat capacity, with speed-dependent cooling toward ambient.
-  const shaft=ratio*(wheels[2]+wheels[3])*.5,clutchSlip=Math.abs(omega-shaft);
+  const drive=this._drive.finish(omega),{shaft,clutchSlip}=drive;
   // A locked constraint does no slip work. The small free-crank mismatch of
   // each staggered solver step must not become fictitious clutch heating.
   const clutchWorkJ=clutchSlip>3||initialClutchSlip>15?Math.abs(Jclutch)*.5*(initialClutchSlip+clutchSlip):0;
-  const diffSlip=Math.abs(wheels[3]-wheels[2]),diffSlipJ=diffSlip>1||initialDiffSlip>10?Math.abs(Jdiff)*.5*(initialDiffSlip+diffSlip):0;
+
   const brakeWorkJ=[],tyreWorkJ=[];
   for(let i=0;i<4;i++){
    const [x,z]=this._positions[i],cv=v-yaw*x,cu=u+yaw*z;
@@ -479,13 +470,13 @@ export class CarPhysics {
   if(this._stallTime>.12)this._stalled=true;
   s.engineStalled=this._stalled;s.engineRunning=!this._stalled&&!this.condition.engineFault&&this.condition.fuelLitres>0&&s.rpm>250;
   s.combustionTorque=this.engineState.meanTorque;s.engineTorque=s.combustionTorque+s.nitrousTorque;s.clutchTorque=Jclutch/dt;s.clutchSlipRPM=clutchSlip*60/TAU;s.inputShaftRpm=Math.abs(shaft)*60/TAU;s.clutchTemperature=this._clutchTemp;
-  s.tyreForceL=Jlong[2]/dt;s.tyreForceR=Jlong[3]/dt;s.differentialLock=mix(this.coastLock,this.powerLock,pedal)*mechanical.differentialLockFactor;
-  s.diffSlipRPM=(wheels[3]-wheels[2])*60/TAU;s.diffTorque=Jdiff/dt;s.diffPower=Math.abs(Jdiff*(wheels[3]-wheels[2]))/dt;
+  s.tyreForceL=Jlong[this._drive.main]/dt;s.tyreForceR=Jlong[this._drive.main+1]/dt;
+  Object.assign(s,{driveLayout:this.build.physics.driveLayout,drivenWheels:this._drive.driven,axleTorques:drive.axleTorques,centerSlipRPM:drive.centerSlipRPM,differentialLock:drive.differentialLock,frontDifferentialLock:drive.frontDifferentialLock,centerDifferentialLock:drive.centerDifferentialLock,diffSlipRPM:drive.diffSlipRPM,diffTorque:drive.diffTorque,diffPower:drive.diffPower});
   s.wheelSpinFL=s.wheelSpins[0];s.wheelSpinFR=s.wheelSpins[1];s.wheelSpinL=s.wheelSpins[2];s.wheelSpinR=s.wheelSpins[3];s.wheelSlipL=s.wheelSlip[2];s.wheelSlipR=s.wheelSlip[3];
-  const rearSlipSpeed=Math.max(Math.abs(s.wheelAudio[2].slipSpeed),Math.abs(s.wheelAudio[3].slipSpeed));
-  s.burnoutIntensity=clamp((rearSlipSpeed-2)/15,0,1)*clamp(1-s.speed/12,0,1);s.burnout=s.burnoutIntensity>.12;
+  const drivenSlipSpeed=Math.max(...this._drive.driven.map(i=>Math.abs(s.wheelAudio[i].slipSpeed)));
+  s.burnoutIntensity=clamp((drivenSlipSpeed-2)/15,0,1)*clamp(1-s.speed/12,0,1);s.burnout=s.burnoutIntensity>.12;
   s.shiftProgress=clamp(this._shift/.19,0,1);s.engineClock=this.engine.getTiming().clock;
-  this._updateCondition(dt,omega,{clutchWorkJ,gearboxWorkJ,differentialWorkJ:differentialDragJ+diffSlipJ,brakeWorkJ,tyreWorkJ});this._updateDebris(dt);this._publishCondition();
+  this._updateCondition(dt,omega,{...drive,clutchWorkJ,brakeWorkJ,tyreWorkJ});this._updateDebris(dt);this._publishCondition();
   return s;
  }
 }

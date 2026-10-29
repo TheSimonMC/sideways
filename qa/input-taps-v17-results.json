@@ -1,0 +1,34 @@
+{
+  "status": "passed",
+  "checks": [
+    "Complete range-arrow taps between frames are delivered once and subsequent taps still work",
+    "Several discrete taps between the same two frames retain their count and order",
+    "Held navigation emits one initial edge, ignores OS repeat, and retains bounded repeat timing",
+    "Held confirm never doubles; release and press between sampled frames generates a fresh action",
+    "Text editing, prevented events and native menu Tab do not become game actions",
+    "Game context buffers discrete camera, shift and Escape actions without latching continuous driving inputs",
+    "Clear, blur, visibility loss, disable and context changes discard queued actions",
+    "Consumed key metadata lasts one sample and is cleared with clear or context transition",
+    "Starting binding capture discards pending input; captured keys do not activate their old or new action",
+    "Calibration accepts only fresh confirm/back and cannot leak pending taps after cancellation",
+    "Legacy custom key bindings also produce short discrete action taps"
+  ],
+  "limit": "Actual InputManager with event-level keyboard ordering and deterministic Gamepad host; no physical hardware claim.",
+  "version": 17,
+  "verifiedInRelease": 17,
+  "suiteSource": "qa/input-taps-v12-check.mjs",
+  "suiteSHA256": "64673354db1015c4f59276df9220232c52f6ded99ef82941fa37e46afb9e98d8",
+  "sourceSHA256": {
+    "dist/drivetrain.js": "9927f12d0ab5de0ad2de6f59b5f5f21cfb1ec0ce6c1efc81ca253ded1efb16d3",
+    "dist/physics.js": "74524408ce7dd491d82b3d2a5e8d03dc830c3d7c4fb60d9c7af225b8bc96a108",
+    "dist/mechanical.js": "cbc7dca7e3b9e3f1bb1e12e5b6884eb7202cddedd20f3b0165357d0a01d7f0d5",
+    "dist/car.js": "2448604acbe1461d929014d937873ca5cfd603b8f467f009202171178140bb6f",
+    "dist/catalog.js": "d270f44cec44fba7b7c22645d4ec023d608bfc1dbb622f17410e7e104ebccb99",
+    "dist/career.js": "4bcebb239256187575c36dae27302c0d7aa9120852c8e021ea466f632f583c67",
+    "dist/garage.js": "e7518e70d039e24d8a3e7fe7545a44774800ce6b0f50e1d7e039a4a7ad47349a",
+    "dist/audio.js": "6ad87c53a39ba0394b9c59350afdca001c236729460a291c1bcd952df4a0dab6",
+    "dist/audio-anchors.js": "ed65635fad9d265e2ab6cd964489bcd703b28397999fd16d4e609fd6fb7a15e5",
+    "dist/main.js": "da0bff533a4f6df35f12bc3bceadf181bb0963c9d557a3781fcb4ec3e247fcc0",
+    "dist/multiplayer.js": "56791714ed6f4a83c3ceb2e7bf264a5585e86084948d7cec8afed49413cdf128"
+  }
+}

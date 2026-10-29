@@ -8,7 +8,7 @@ export function vehicleAudioAnchors(build={},state={}){
  function rotate(x,y,z){const xr=x*Math.cos(roll)-y*Math.sin(roll),yr=x*Math.sin(roll)+y*Math.cos(roll),yp=yr*Math.cos(pitch)-z*Math.sin(pitch),zp=yr*Math.sin(pitch)+z*Math.cos(pitch);return point(xr*Math.cos(h)+zp*Math.sin(h),yp,-xr*Math.sin(h)+zp*Math.cos(h));}
  function body(x,y,z){const r=rotate(x,y,z);return point(r.x+(state.x||0),r.y+(state.bodyHeight||0)+(p.rideHeight||0),r.z+(state.z||0));}
  const pipes=kind==='muscle'?[-.70,.70]:kind==='wedge'?[.60]:[.61,.77];
- return {exhaust:pipes.map(x=>body(x,.32,-length*.976-.119)),engine:body(0,.65,length*.43),intake:body(-.20,.75,length*.52),gearbox:body(0,.28,.20),differential:body(0,.25,-(p.rearAxle||1.3)),exhaustDirection:rotate(0,0,-1),frontDirection:rotate(0,0,1),
+ return {exhaust:pipes.map(x=>body(x,.32,-length*.976-.119)),engine:body(0,.65,length*.43),intake:body(-.20,.75,length*.52),gearbox:body(0,.28,.20),differential:body(0,.25,p.driveLayout==='AWD'?0:p.driveLayout==='FWD'?(p.frontAxle||1.3):-(p.rearAxle||1.3)),exhaustDirection:rotate(0,0,-1),frontDirection:rotate(0,0,1),
   wheels:[0,1,2,3].map(i=>{const x=(i%2?1:-1)*(p.halfTrack||.87),z=i<2?(p.frontAxle||1.3):-(p.rearAxle||1.3);return point((state.x||0)+x*Math.cos(h)+z*Math.sin(h),state.suspension?.[i]?.wheelY??p.wheelRadius??.34,(state.z||0)-x*Math.sin(h)+z*Math.cos(h));})};
 }
 const xyz=p=>[p.x||0,p.y||0,p.z||0];

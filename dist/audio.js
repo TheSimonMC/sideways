@@ -63,7 +63,7 @@ export class GameAudio {
   this._buildSpec=build;
   this.voice={...DEFAULT_VOICE,...build.audio};for(const key of ['exhaust','intake','combustion','valve','bearing','boost','manifold','mechanical','chain'])this.voice[key]=clamp(this.voice[key],0,1);
   this.voice.brightness=clamp(this.voice.brightness,4000,15000);this.voice.outputGain=clamp(this.voice.outputGain,1,12);this.voice.hoodGain=clamp(this.voice.hoodGain,.5,3);this.gearboxGain=clamp(this.voice.gearboxGain,.2,2);this.wheelRadius=clamp(build.physics?.wheelRadius??.34,.2,.6);
-  this.engineSize=clamp((build.engine?.displacementCc??3000)/1000,.6,9);this.exhaustKind=build.selection?.exhaust??'street';this.diffLock=clamp(build.physics?.powerLock??.32,0,1);
+  this.engineSize=clamp((build.engine?.displacementCc??3000)/1000,.6,9);this.exhaustKind=build.selection?.exhaust??'street';this.diffLock=clamp(Math.max(build.physics?.powerLock??.32,...(build.physics?.driveLayout==='AWD'?[build.physics.frontPowerLock,build.physics.centerPowerLock]:[])),0,1);
   this._sourceRevision++;this._engine=null;this._lastEngineTime=-1;this._resetAcoustics();this._flush();this._applyCameraMix();return this;
  }
  setMix(values={}){const priorDrive=this.mix.drive,priorMechanical=this.mix.mechanical;for(const key of Object.keys(DEFAULT_MIX))if(Number.isFinite(values?.[key]))this.mix[key]=clamp(values[key],0,1);if(priorDrive!==this.mix.drive||priorMechanical!==this.mix.mechanical)this._sourceRevision++;return this;}
@@ -157,7 +157,7 @@ export class GameAudio {
   const shaft=Math.abs(s?.inputShaftRpm??0),gear=s?.gear??0,torque=clamp(Math.abs(s?.clutchTorque??0)/500,0,1.5);
   const gearHz=clamp(shaft/60*(gear<0?19:24),120,7600);
   this._gearMesh.tune(gearHz,gear<0?5.6:3.5);this._gearCase.tune(Math.min(11000,gearHz*1.97),1.1);
-  const gearWear=1-clamp(s?.gearboxHealth??1,0,1),diffWear=1-clamp(s?.mechanical?.components?.find(part=>part.id==='differential')?.health??1,0,1);
+  const gearWear=1-clamp(s?.gearboxHealth??1,0,1),diffWear=1-clamp(Math.min(1,...(s?.mechanical?.components||[]).filter(part=>part.applicable!==false&&['differential','frontDifferential','centerDifferential'].includes(part.id)).map(part=>part.health)),0,1);
   this._gearTarget=gear===0?0:clamp(shaft/750,0,1)*(.008+torque*.014+clamp(speed/20,0,1)*.004)*this.gearboxGain*this.mix.mechanical*(1+gearWear*1.5)*(gear<0?2.4:1)*(hood?1.2:.85);
   const starter=!!(s?.starterActive??engine.controls?.starter)&&!(s?.engineRunning&&engine.rpm>1000);
   this._starterTarget=starter?.065*this.mix.mechanical:0;this._starterCase.tune(260+clamp(engine.rpm,0,700)*.45,1.2);

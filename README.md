@@ -1,20 +1,20 @@
-# SIDEWAYS V16
+# SIDEWAYS V17
 
 [Play in your browser](https://thesimonmc.github.io/sideways/) · [Download ZIP or offline HTML](https://github.com/TheSimonMC/sideways/releases/latest)
 
 GitHub Pages publishes the tested `SIDEWAYS.html` on every push to `main`. To publish source changes, rebuild and rerun the standalone checks described below, then copy `dist/SIDEWAYS.html` to `SIDEWAYS.html` and commit it with the updated browser report. The deployment verifies that their SHA-256 values match.
 
-Start with **READ-ME-V16.txt** for the current UI, controls, audio extension and verification limits.
+Start with **READ-ME-V17.txt** for the current UI, controls, audio extension and verification limits.
 
 ## SIDEWAYS / City Sessions
 
 SIDEWAYS is a 3D driving game with low-poly comic graphics, a top-down camera, a manual drivetrain and a city to explore. Earn points from close passes, drifts and jobs, then buy cars, engine swaps and parts. Up to four friends can share a city through an eight-character lobby code.
 
-The player engine and its sound use the supplied MotorLab SDK 1.6.3, Physics Release 14 and Audio Release 14. The game has four fictional cars and eight engine families, with 25 independently selected part categories, including six visual categories. City Free Roam uses Neon Archipelago; Time Attack and Drift Rush use the separate Dock 09 track. Chase and hood cameras are available alongside the default top-down view.
+The player engine and its sound use the supplied MotorLab SDK 1.6.3, Physics Release 14 and Audio Release 14. The game has four fictional cars and eight engine families, with 28 independently selected part categories, including six visual categories. City Free Roam uses Neon Archipelago; Time Attack and Drift Rush use the separate Dock 09 track. Chase and hood cameras are available alongside the default top-down view.
 
 ## Play the downloaded game
 
-Open `SIDEWAYS-v16.html` from the chat attachment. The complete ZIP includes the same game as `SIDEWAYS.html` at its root, along with the editable project, SDK, credits and instructions. Extract the ZIP before opening its HTML. Single-player, including NPC racing, needs no server or network download. Multiplayer still needs internet access to signaling and peers.
+Open `SIDEWAYS-v17.html` from the chat attachment. The complete ZIP includes the same game as `SIDEWAYS.html` at its root, along with the editable project, SDK, credits and instructions. Extract the ZIP before opening its HTML. Single-player, including NPC racing, needs no server or network download. Multiplayer still needs internet access to signaling and peers.
 
 The HTML includes code, fonts, models and sound. No Sites address is used by the game. Progress stays in the browser and origin where you played. Copying the HTML to another PC copies the game assets; it does not copy browser storage. Click or press a key to enable sound. A browser must expose a controller or wheel through its Gamepad API before the game can bind it.
 
@@ -25,7 +25,15 @@ npm ci
 node build.mjs
 ```
 
-This creates `dist/SIDEWAYS.html`. After running `node qa/standalone-v16-check.mjs` and `node qa/standalone-browser-v16.cjs` on that build, `node qa/package-v16.mjs` creates `release/SIDEWAYS-v16.html` and `release/SIDEWAYS-v16.zip`. The browser check needs Playwright; dependency and browser path options are in READ-ME-V16.txt. Packaging verifies that the tested HTML matches the delivered bytes. These commands do not publish a Site or push a repository.
+This creates `dist/SIDEWAYS.html`. After running `node qa/standalone-v17-check.mjs` and `node qa/standalone-browser-v17.cjs` on that build, `node qa/package-v17.mjs` creates `release/SIDEWAYS-v17.html` and `release/SIDEWAYS-v17.zip`. The browser check needs Playwright; dependency and browser path options are in READ-ME-V17.txt. Packaging verifies that the tested HTML matches the delivered bytes. These commands do not publish a Site or push a repository.
+
+## V17: Phase 1C – drivetrains and differentials
+
+The original four cars remain RWD. Paid compatible garage conversions add FWD for Vector with I4/V6 and AWD for Hachi/Kitsune/Vector without V10/V12. Open AWD uses nominal 40:60 torque split. Front and center differential upgrades act through finite shaft impulses; broken axles, clutch slip, heat, wear and selective repairs affect the actual power path. TC, wheel smoke, spatial differential sound, ownership and saved condition follow the fitted drivetrain. No free handling mode is added.
+
+See [the Phase 1C report](docs/phase-1c-report.md) and [all 156 requirements](docs/goal-progress.md). Phase 1 remains partial: wheel hop, aero tuning, tyre pressure/flatspots, weather and broader calibration are unfinished. Next is Phase 1D. All peers need V17 (protocol 13).
+
+Current checks: `node qa/regressions-v17.mjs`, `node qa/drivetrain-v17-check.mjs`, `node qa/road-contact-v17-check.mjs`, `node qa/goal-coverage-v17-check.mjs`, both `*browser-v17.cjs` tests and the standalone check. `qa/release-v17.json` records verified evidence and limits. Earlier release notes below describe their historical scope.
 
 ## V16: Phase 1B – road contact and hills
 

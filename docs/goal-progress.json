@@ -1,7 +1,7 @@
 {
   "source": "docs/goal.txt",
   "sourceSHA256": "4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc282ea844a1b96dca",
-  "version": 16,
+  "version": 17,
   "requirements": [
     {
       "id": "P00.01",
@@ -942,13 +942,13 @@
   ],
   "currentIncrement": {
     "phase": 1,
-    "part": "B",
+    "part": "C",
     "status": "teilweise erledigt",
     "implemented": [
-      "Hangkräfte und vertikale Reifenimpulse",
-      "Hangstart ohne falsche Dämpferstöße",
-      "Kontakt- und Energieprüfung für Bremsen, Querneigung, Wellen und Luftfahrt"
+      "FWD/RWD/AWD mit endlichen Wellen-, Kupplungs- und Differenzialimpulsen",
+      "Kompatible bezahlte Umbauten, eigene AWD-Baugruppen, Wärme, Schaden und Einzelreparatur",
+      "Antriebsabhängige Traktionskontrolle, Vierrad-Effekte, Audio-Anker und Save-Migration"
     ],
-    "next": "Phase 1C: Antriebslayouts und verbleibende Fahrwerksgrundlagen"
+    "next": "Phase 1D: Wheel Hop und abstimmbare Aero-Grundlagen; Reifendruck/Karkasse in Phase 2, Wetterkopplung in Phase 7 bleiben offen"
   }
 }
