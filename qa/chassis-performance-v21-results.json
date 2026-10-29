@@ -1,0 +1,86 @@
+{
+  "version": 21,
+  "status": "measured",
+  "current": {
+    "stock": {
+      "flat": {
+        "steps": 1200,
+        "meanMs": 2.1698682500000093,
+        "medianMs": 2.0295999999998457,
+        "p95Ms": 3.1802000000000135,
+        "groundQueriesPerStep": 4
+      },
+      "hills": {
+        "steps": 1200,
+        "meanMs": 2.2220710833333284,
+        "medianMs": 2.016200000000026,
+        "p95Ms": 3.369499999999789,
+        "groundQueriesPerStep": 4
+      }
+    },
+    "fwd": {
+      "flat": {
+        "steps": 1200,
+        "meanMs": 2.180250500000002,
+        "medianMs": 2.0176000000001295,
+        "p95Ms": 3.2364999999990687,
+        "groundQueriesPerStep": 4
+      },
+      "hills": {
+        "steps": 1200,
+        "meanMs": 2.0936730833333757,
+        "medianMs": 1.9065999999984342,
+        "p95Ms": 3.1340999999993073,
+        "groundQueriesPerStep": 4
+      }
+    },
+    "awd": {
+      "flat": {
+        "steps": 1200,
+        "meanMs": 2.0775315833333146,
+        "medianMs": 1.9169000000001688,
+        "p95Ms": 3.053699999998571,
+        "groundQueriesPerStep": 4
+      },
+      "hills": {
+        "steps": 1200,
+        "meanMs": 2.0489017499999984,
+        "medianMs": 1.8735999999989872,
+        "p95Ms": 2.9553999999989173,
+        "groundQueriesPerStep": 4
+      }
+    }
+  },
+  "limits": [
+    "Node.js wall-clock on this machine for one native engine/chassis and a synthetic sampler. Browser GPU, world query cost, AI, audio and frame scheduling excluded; no FPS guarantee.",
+    "Same Vector V6 inputs and samplers; native engine load and JIT timing may differ. Single local run, not a universal comparison."
+  ],
+  "baselineV20": {
+    "flat": {
+      "steps": 1200,
+      "meanMs": 2.1657410833333386,
+      "medianMs": 2.014999999999418,
+      "p95Ms": 3.1695999999974447,
+      "groundQueriesPerStep": 4
+    },
+    "hills": {
+      "steps": 1200,
+      "meanMs": 2.3295862500001023,
+      "medianMs": 2.179100000001199,
+      "p95Ms": 3.452000000001135,
+      "groundQueriesPerStep": 4
+    }
+  },
+  "sourceSHA256": {
+    "dist/drivetrain.js": "9927f12d0ab5de0ad2de6f59b5f5f21cfb1ec0ce6c1efc81ca253ded1efb16d3",
+    "dist/physics.js": "2e6a1ad98a003590ce08480bf1d44eb6aa81d1ddb50f8beff7a7c9032cc6b10f",
+    "dist/mechanical.js": "517bc2437293684c569470026b1ce141d480cc4f2a53dff8d23d1d307bba49e7",
+    "dist/wheel-hop.js": "cf5f23aef7a49a1cee3dd0abba6614fc83db16fc31f4c62cc58e6b529d7b2a4c",
+    "dist/aerodynamics.js": "dcfe58d8f4e9515fbc07c1e6fceb6a7d8907a71c7518171b5cad9272041a0abf",
+    "dist/catalog.js": "c5da9ed3102fe56916bf85badb4a9c355de106cbcf29dda37f92f6d551425065",
+    "dist/tyres.js": "b222bd0f4f2be0e519505c653dc9b96f76abffc527d2ca9b82838bb6c55a5f14",
+    "dist/vehicle-state.js": "888f606612f2a452c8fe4693a77fba4020a1b7aa3538f9ae8e848129bef4af3e",
+    "dist/brake-hydraulics.js": "e39673b289e3ef7eb2c8ad322889c120918566ca6d17144a7607ecc0758b7636",
+    "dist/chassis-damage.js": "621bd5933b6dcb7ce23c5f8125cbdc70c0ee3fe7d479886840108d255e39ecfe"
+  }
+}

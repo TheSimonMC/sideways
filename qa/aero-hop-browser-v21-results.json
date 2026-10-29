@@ -1,0 +1,15 @@
+{
+  "version": 21,
+  "status": "passed",
+  "checks": [
+    "GT wing-angle compatibility, nominal aero comparison and five-part purchase for 10,300; damage stays damaged after installation",
+    "Actual reload preserves new slots, purchased parts and detached spoiler; owned setup installs without a second charge",
+    "New run repairs the saved attachment, fitted aero generates rear-biased downforce while driving, four hop states are finite and Escape resumes"
+  ],
+  "errors": [],
+  "external": [],
+  "htmlSha256": "2a38470c05d5f452b5219fa88fba7d7838aca57c65b5bc99a82844f8431db519",
+  "limits": [
+    "Software-rendered Chromium and keyboard automation; no listening, wheel hardware or FPS guarantee."
+  ]
+}

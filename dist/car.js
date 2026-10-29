@@ -91,6 +91,7 @@ export function createCar(scene, initialBuild = resolveBuild()) {
   const debrisTyre=new THREE.CylinderGeometry(1,1,.72,12),debrisRim=new THREE.CylinderGeometry(.58,.58,.75,10),debrisRubber=material(0x171820),debrisMetal=material(0x8f9ba5,{metalness:.6,roughness:.35});
   const panelGeometry=new THREE.BoxGeometry(1,.13,.17),panelMaterial=material(0x242938);
   const loosePanels=Array.from({length:4},()=>{const mesh=new THREE.Mesh(panelGeometry,panelMaterial);mesh.castShadow=true;mesh.visible=false;debris.add(mesh);return mesh;});
+  const rodStart=new THREE.Vector3(),rodEnd=new THREE.Vector3(),rodMid=new THREE.Vector3(),rodDirection=new THREE.Vector3(),rodAxis=new THREE.Vector3(0,1,0);
   const damagePoint=new THREE.Vector3(),damageOffset={x:0,y:0,z:0},damageColour=new THREE.Color(0x52555a);
   const looseWheels=Array.from({length:8},()=>{const pivot=new THREE.Group(),spin=new THREE.Group();pivot.add(spin);for(const [geo,mat]of [[debrisTyre,debrisRubber],[debrisRim,debrisMetal]]){const mesh=new THREE.Mesh(geo,mat);mesh.rotation.z=Math.PI/2;mesh.castShadow=true;spin.add(mesh);}pivot.visible=false;debris.add(pivot);return {pivot,spin};});
   let model=null, build=initialBuild, paintHex=initialBuild.vehicle.color || '#d8fa50';
@@ -226,7 +227,7 @@ export function createCar(scene, initialBuild = resolveBuild()) {
     }
     if(build.selection.chassis==='reinforced'){for(const side of [-1,1]){beam(chassis,[side*W*.68,.40,-.80],[side*q.roofW*.88,q.roof-.08,-.46],.045,graphite);beam(chassis,[side*q.roofW*.88,q.roof-.08,-.46],[-side*W*.68,.40,-.80],.035,graphite);}}
     if(build.selection.radiator!=='stock'||build.selection.oilCooler!=='stock'){for(let n=0;n<5;n++)box(chassis,0,.38+n*.035,L*.965,W*.93,.012,.025,chrome);}
-    const wheels=[],spinGroups=[],tyreWidth=p.tyreWidth??.27;
+    const wheels=[],spinGroups=[],steeringRods=[],tyreWidth=p.tyreWidth??.27;
 
     for(let index=0;index<4;index++){
       const front=index<2,side=index%2===0?-1:1;
@@ -244,6 +245,7 @@ export function createCar(scene, initialBuild = resolveBuild()) {
       const hub=new THREE.Mesh(new THREE.CylinderGeometry(.064,.064,tyreWidth+.03,8),dark);hub.rotation.z=Math.PI/2;spin.add(hub);
       const rotor=new THREE.Mesh(new THREE.CylinderGeometry(R*.57,R*.57,.012,12),chrome.clone());rotor.name='brake-rotor-'+index;rotor.material.emissive.set(0xff3b08);rotor.material.emissiveIntensity=0;rotor.rotation.z=Math.PI/2;rotor.position.x=side*(tyreWidth*.5-.015);pivot.add(rotor);
       box(pivot,side*(tyreWidth*.5-.005),.09,.11,.045,.16,.08,accent);
+      if(front){const halves=[0,1].map(n=>{const part=beam(content,[0,0,0],[0,1,0],.018,graphite);part.name='tie-rod-'+index+'-'+n;return part;});steeringRods.push({index,side,pivot,halves});}
       wheels.push(pivot);spinGroups.push({spin,pivot,front,side,index,tyre,rotor,tyreBase:tyre.geometry.attributes.position.array.slice(),tyreShape:null});
     }
     const number=decalTexture(spec.number,256,128,'#f5f0da');
@@ -257,7 +259,7 @@ export function createCar(scene, initialBuild = resolveBuild()) {
     for(const side of [-1,1])panel(ribbon,[[side*W,.53,-L*.86],[side*W*1.3,.80,-L-1.4],[side*W,.55,-L-2.8],[side*W*.8,.48,-L]],ribbonMat,false);
     chassis.updateMatrixWorld(true);const bodyInverse=chassis.matrixWorld.clone().invert(),deformables=[];
     chassis.traverse(node=>{if(node.isMesh){let ancestor=node;while(ancestor&&!node.userData.panel){if(ancestor.userData.panel)node.userData.panel=ancestor.userData.panel;ancestor=ancestor.parent;}}if(!node.isMesh||!node.geometry?.attributes.position||node.material?.blending===THREE.AdditiveBlending)return;const toBody=bodyInverse.clone().multiply(node.matrixWorld);deformables.push({mesh:node,base:node.geometry.attributes.position.array.slice(),toBody,toLocal:toBody.clone().invert()});});
-    model={content,chassis,spoilerDebris,paint,headlamp,tail,glow,shadow,flames,exhaustMouths,ribbon,wheels,spinGroups,shell,shellBase,deformables,bodyRevision:-1,bodyState:null,health:1};
+    model={content,chassis,spoilerDebris,paint,headlamp,tail,glow,shadow,flames,exhaustMouths,ribbon,wheels,spinGroups,steeringRods,shell,shellBase,deformables,bodyRevision:-1,bodyState:null,health:1};
   }
   assemble(initialBuild);
   return {
@@ -286,12 +288,19 @@ export function createCar(scene, initialBuild = resolveBuild()) {
       for(const w of m.spinGroups){
         w.rotor.material.emissiveIntensity=brakeGlow(state.brakeTemps?.[w.index])*2.5;
         const corner=state.suspension?.[w.index];w.pivot.visible=state.wheelAttached?.[w.index]!==false;
-        w.pivot.rotation.y=state.wheelSteers?.[w.index]??(w.front?(state.steer||0):0);w.pivot.rotation.z=clamp(state.suspensionHealth?(w.side)*((1-state.suspensionHealth[w.index])*.14-(build.physics.alignmentCamber?.[w.front?0:1]||0)):(state.wheelCamber?.[w.index]??-w.side*(build.physics.alignmentCamber?.[w.front?0:1]||0)),-.2,.2);
+        w.pivot.rotation.y=state.wheelSteers?.[w.index]??(w.front?(state.steer||0):0);w.pivot.rotation.z=clamp(state.wheelCamber?.[w.index]??(state.suspensionHealth?(w.side)*((1-state.suspensionHealth[w.index])*.14-(build.physics.alignmentCamber?.[w.front?0:1]||0)):(-w.side*(build.physics.alignmentCamber?.[w.front?0:1]||0))),-.2,.2);
         w.pivot.position.y=Number.isFinite(corner?.wheelY)?corner.wheelY:p.wheelRadius;
         const angle=state.wheelSpins?.[w.index] ?? (w.front?(w.side<0?state.wheelSpinFL:state.wheelSpinFR):(w.side<0?state.wheelSpinL:state.wheelSpinR));
         w.spin.rotation.x=Number.isFinite(angle)?angle:0;
         const t=state.tyres?.[w.index],scale=t?.casingScale??1,spot=t?.flatspot??0,shape=Math.round(scale*1000)+':'+Math.round(spot*1000)+':'+(t?.flatspotAngle??0);
         if(shape!==w.tyreShape){w.tyreShape=shape;const pos=w.tyre.geometry.attributes.position;for(let j=0;j<pos.count;j++){const x=w.tyreBase[j*3],y=w.tyreBase[j*3+1],z=w.tyreBase[j*3+2],r=Math.hypot(x,z),f=scale*(1-.045*spot*Math.max(0,(-x*Math.cos(t?.flatspotAngle??0)+z*Math.sin(t?.flatspotAngle??0))/Math.max(r,.001))**8);pos.setXYZ(j,x*f,y*(1+(1-scale)*.5),z*f);}pos.needsUpdate=true;w.tyre.geometry.computeVertexNormals();w.tyre.geometry.computeBoundingSphere();}
+      }
+      for(const r of m.steeringRods){
+        const damage=state.mechanical?.chassisDamage?.tieRods?.[r.index],broken=damage?.health<=.025||state.wheelAttached?.[r.index]===false;
+        rodStart.set(r.side*.35,.36,p.frontAxle-.17).applyEuler(m.chassis.rotation).add(m.chassis.position);
+        rodEnd.set(-r.side*.10,0,-.15).applyEuler(r.pivot.rotation).add(r.pivot.position);
+        rodMid.copy(rodStart).lerp(rodEnd,.55);rodMid.z+=(damage?.bend||0)*.35;
+        for(let n=0;n<2;n++){const a=n?(broken?rodEnd:rodMid):rodStart,b=n?(broken?rodMid:rodEnd):rodMid,mesh=r.halves[n];rodDirection.copy(b).sub(a);if(broken){rodDirection.multiplyScalar(.42);rodDirection.y-=.14;}mesh.position.copy(a).addScaledVector(rodDirection,.5);mesh.scale.y=rodDirection.length();mesh.quaternion.setFromUnitVectors(rodAxis,rodDirection.normalize());mesh.visible=n===0||r.pivot.visible;}
       }
       m.tail.emissiveIntensity=state.brake>.1?3:state.headlights?.9:.15;
       m.headlamp.emissiveIntensity=state.headlights?Math.max(.2,2.8*(state.bodyHealth??1)):.015;

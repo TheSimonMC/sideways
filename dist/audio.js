@@ -33,8 +33,8 @@ class Band {
  sample(x){const y=this.b0*x+this.b2*this.x2-this.a1*this.y1-this.a2*this.y2;this.x2=this.x1;this.x1=x;this.y2=this.y1;this.y1=y;return y;}
  reset(){this.x1=this.x2=this.y1=this.y2=0;}
 }
-const makeWheel=i=>({seed:(54721+i*71993)>>>0,low:0,texture:0,grain:0,roll:0,scrub:0,brake:0,grit:0,damper:0,pan:i%2? .48:-.48,
- targetRoll:0,targetScrub:0,targetBrake:0,targetGrit:0,targetDamper:0,grainRate:0,bodyPole:pole(135),texturePole:pole(1550),
+const makeWheel=i=>({seed:(54721+i*71993)>>>0,low:0,texture:0,grain:0,roll:0,scrub:0,brake:0,grit:0,damper:0,bearing:0,pan:i%2? .48:-.48,
+ targetRoll:0,targetScrub:0,targetBrake:0,targetGrit:0,targetDamper:0,targetBearing:0,grainRate:0,bodyPole:pole(135),texturePole:pole(1550),
  rubberA:new Band(1850,2.1),rubberB:new Band(3600,1.65),pad:new Band(4400,1.25),stone:new Band(2750,.9),damperCase:new Band(800,.65),
  samplePosition:i*TYRE_SAMPLE.length*.217,sampleRate:1,targetSampleRate:1,sampleLow:0,material:'asphalt',contact:false,groundSpeed:0,slipSpeed:0,load:0,lastImpact:0,lastImpactCount:0,travel:0});
 const sampleLoop=(data,position)=>{const i=Math.floor(position),t=position-i;return data[i]+(data[(i+1)%data.length]-data[i])*t;};
@@ -204,6 +204,7 @@ export class GameAudio {
    w.targetGrit=contact?profile.grit*Math.sqrt(Math.max(0,groundSpeed+slipSpeed*.65)/22)*.13*Math.sqrt(load)*this.mix.tyres:0;
    const brakePower=a?.brakePower??Math.abs((s?.brakePressure?.[i]??0)*wheelSpeed)*450;
    w.targetBrake=clamp(Math.sqrt(brakePower/65000),0,1)*.018*this.mix.mechanical*clamp(Math.abs(wheelSpeed)/2,0,1);
+   w.targetBearing=s?.wheelAttached?.[i]!==false?clamp(a?.bearingWear??0,0,1)*clamp(Math.sqrt(Math.abs(wheelSpeed)/20),0,1.4)*(.025+.045*Math.sqrt(load))*this.mix.mechanical:0;
    w.grainRate=contact?clamp((groundSpeed+slipSpeed*.5)*(profile.grain*15+roughness*120),0,1600)/RATE:0;
    w.bodyPole=pole(profile.body+groundSpeed*2.0);w.texturePole=pole(profile.texture+groundSpeed*9);
    w.rubberA.tune(1450+Math.min(1.5,work)*420+groundSpeed*3,2.3);w.rubberB.tune(2850+Math.min(1.5,work)*750,1.8);
@@ -256,7 +257,7 @@ export class GameAudio {
    }
    const reflectedEngine=this.acoustics.sample(l,r);l=reflectedEngine[0];r=reflectedEngine[1];
    for(const w of this._wheels){
-    w.roll+=(w.targetRoll-w.roll)*controlPole;w.scrub+=(w.targetScrub-w.scrub)*(w.targetScrub>w.scrub?tyreAttack:tyreRelease);w.brake+=(w.targetBrake-w.brake)*controlPole;w.grit+=(w.targetGrit-w.grit)*controlPole;w.damper+=(w.targetDamper-w.damper)*controlPole;
+    w.roll+=(w.targetRoll-w.roll)*controlPole;w.scrub+=(w.targetScrub-w.scrub)*(w.targetScrub>w.scrub?tyreAttack:tyreRelease);w.brake+=(w.targetBrake-w.brake)*controlPole;w.grit+=(w.targetGrit-w.grit)*controlPole;w.damper+=(w.targetDamper-w.damper)*controlPole;w.bearing+=(w.targetBearing-w.bearing)*controlPole;
     const noise=random(w);w.low+=(noise-w.low)*w.bodyPole;w.texture+=(noise-w.texture)*w.texturePole;
     if((noise+1)*.5<w.grainRate)w.grain=Math.max(w.grain,.25+(random(w)+1)*.375);w.grain*=.9955;
     w.flapPhase=(w.flapPhase??0)+(w.flapRate??0);const rolling=(w.low*2.6+(w.texture-w.low)*.72)*w.roll*(1+(w.flap??0)*Math.max(0,Math.cos(w.flapPhase))**8*5);
@@ -265,9 +266,10 @@ export class GameAudio {
     w.sampleLow+=(recorded-w.sampleLow)*pRubber;const rubber=(w.sampleLow*.93+(w.rubberA.sample(noise)*.06+w.rubberB.sample(noise)*.03))*w.scrub;
     const stones=(w.texture*.65+w.stone.sample(noise)*w.grain*3.2)*w.grit;
     const brake=w.pad.sample(noise)*w.brake,damper=w.damperCase.sample(noise)*w.damper;
-    const value=rolling+rubber+stones+brake+damper,pan=w.pan*(this.cameraMode===0?.92:1);
+    const bearing=(w.low*2.8+(w.texture-w.low)*.5)*w.bearing*(.75+.25*Math.cos(w.flapPhase));
+    const value=rolling+rubber+stones+brake+damper+bearing,pan=w.pan*(this.cameraMode===0?.92:1);
     l+=value*(1-pan)*.5;r+=value*(1+pan)*.5;
-    sums.rolling+=rolling*rolling+stones*stones;sums.tyres+=rubber*rubber;sums.brakes+=brake*brake;sums.mechanical+=damper*damper;
+    sums.rolling+=rolling*rolling+stones*stones;sums.tyres+=rubber*rubber;sums.brakes+=brake*brake;sums.mechanical+=damper*damper+bearing*bearing;
    }
    const n=random(this._noise),stereoNoise=random(this._stereoNoise);this._windLow+=(n-this._windLow)*pWind;this._windBody+=(n-this._windBody)*pWindBody;this._windSide+=(stereoNoise-this._windSide)*pWind;
    this._wind+=(this._windTarget-this._wind)*controlPole;const wind=(this._windLow*.7+this._windBody)*this._wind;

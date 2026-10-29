@@ -1,10 +1,10 @@
-# SIDEWAYS V20
+# SIDEWAYS V21
 
 [Play in your browser](https://thesimonmc.github.io/sideways/) · [Download ZIP or offline HTML](https://github.com/TheSimonMC/sideways/releases/latest)
 
 GitHub Pages publishes the tested `SIDEWAYS.html` on every push to `main`. To publish source changes, rebuild and rerun the standalone checks described below, then copy `dist/SIDEWAYS.html` to `SIDEWAYS.html` and commit it with the updated browser report. The deployment verifies that their SHA-256 values match.
 
-Start with **READ-ME-V20.txt** for the current UI, controls, audio extension and verification limits.
+Start with **READ-ME-V21.txt** for the current UI, controls, audio extension and verification limits.
 
 ## SIDEWAYS / City Sessions
 
@@ -14,7 +14,7 @@ The player engine and its sound use the supplied MotorLab SDK 1.6.3, Physics Rel
 
 ## Play the downloaded game
 
-Open `SIDEWAYS-v20.html` from the chat attachment. The complete ZIP includes the same game as `SIDEWAYS.html` at its root, along with the editable project, SDK, credits and instructions. Extract the ZIP before opening its HTML. Single-player, including NPC racing, needs no server or network download. Multiplayer still needs internet access to signaling and peers.
+Open `SIDEWAYS-v21.html` from the chat attachment. The complete ZIP includes the same game as `SIDEWAYS.html` at its root, along with the editable project, SDK, credits and instructions. Extract the ZIP before opening its HTML. Single-player, including NPC racing, needs no server or network download. Multiplayer still needs internet access to signaling and peers.
 
 The HTML includes code, fonts, models and sound. No Sites address is used by the game. Progress stays in the browser and origin where you played. Copying the HTML to another PC copies the game assets; it does not copy browser storage. Click or press a key to enable sound. A browser must expose a controller or wheel through its Gamepad API before the game can bind it.
 
@@ -25,7 +25,15 @@ npm ci
 node build.mjs
 ```
 
-This creates `dist/SIDEWAYS.html`. After running `node qa/standalone-v20-check.mjs` and `node qa/standalone-browser-v20.cjs` on that build, `node qa/package-v20.mjs` creates `release/SIDEWAYS-v20.html` and `release/SIDEWAYS-v20.zip`. The browser check needs Playwright; dependency and browser path options are in READ-ME-V20.txt. Packaging verifies that the tested HTML matches the delivered bytes. These commands do not publish a Site or push a repository.
+This creates `dist/SIDEWAYS.html`. After running `node qa/standalone-v21-check.mjs` and `node qa/standalone-browser-v21.cjs` on that build, `node qa/package-v21.mjs` creates `release/SIDEWAYS-v21.html` and `release/SIDEWAYS-v21.zip`. The browser check needs Playwright; dependency and browser path options are in READ-ME-V21.txt. Packaging verifies that the tested HTML matches the delivered bytes. These commands do not publish a Site or push a repository.
+
+## V21: Wheel bearings, steering and brake internals
+
+Four wheel bearings now develop friction, heat, play and a wheel-specific rumble; a seized bearing can lock its wheel. Bent or broken tie rods and a damaged steering rack change actual steering. Every existing car has moving steering links, and the measured wheel alignment drives its model.
+
+The dual brake circuits now include master-cylinder seals, booster assistance, fail-passive ABS faults, fluid heat/ageing, boiling and trapped air. Replace individual parts, refill, change fluid or bleed a circuit in Vehicle Condition at a mechanic. Refilling alone cannot remove trapped air. Upgrades and recovery preserve damage; a new run/restart restores the car. The V20 RATE_LIMIT fix remains in place; both players should load the latest build.
+
+See [the current report](docs/phase-2b-chassis-report.md), [all 156 requirements](docs/goal-progress.md) and `qa/release-v21.json`. Phase 2 remains partial: engine auxiliaries are next. These are bounded game models, with shared pad/disc condition and no real-car calibration. Earlier sections below describe historical increments.
 
 ## V20: Multiplayer recovery and Phase 2B brakes
 

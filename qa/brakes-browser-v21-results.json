@@ -1,0 +1,15 @@
+{
+  "version": 21,
+  "status": "passed",
+  "checks": [
+    "Race-brake purchase and real reload preserve the torn hose and low fluid; hot saved discs render in the garage",
+    "New run repairs both hydraulic circuits; the actual condition UI shows four brake lines and both fluid reservoirs"
+  ],
+  "errors": [],
+  "external": [],
+  "htmlSha256": "2a38470c05d5f452b5219fa88fba7d7838aca57c65b5bc99a82844f8431db519",
+  "limits": [
+    "Saved-condition browser fixture. Collision, stopping force, targeted repair and native heat generation are covered separately.",
+    "Software renderer, no subjective listening or physical wheel test."
+  ]
+}

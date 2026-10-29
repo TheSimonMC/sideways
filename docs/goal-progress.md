@@ -1,6 +1,6 @@
 # SIDEWAYS – verbindliche Fortschrittsliste
 
-Stand: V20, Phase 0, Phase 1 Teile A/B/C/D und Phase 2 Teile A/B (Bremsen). Grundlage: unveränderte Kopie in `docs/goal.txt`.
+Stand: V21, Phase 0, Phase 1 Teile A/B/C/D und Phase 2 Teile A/B (Bremsen, Radlager und Lenkung). Grundlage: unveränderte Kopie in `docs/goal.txt`.
 
 Status bezieht sich auf den gesamten Wortlaut eines Punktes. Teilweise bedeutet, dass wesentliche Teile noch fehlen. Nur Phase 0 ist abgeschlossen. V19 ergänzt die gemeinsame Reifen-Grundlage aus Phase 2 und ihre Folgen für Phase 1. Phase 1 bleibt wegen Wetter/Nässe und breiterer Kalibrierung teilweise; Phase 2 wegen weiterer fehlender Baugruppen. Wetter hängt zusätzlich von Phase 7 ab.
 
@@ -34,7 +34,7 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 2: EINZELNE MECHANISCHE SCHÄDEN, TEMPERATUR UND VERSCHLEISS
 
-**teilweise erledigt** — Die bisherigen Motor-, Antriebs- und Reifensysteme bleiben. V20 ergänzt vier beschädigbare Bremsleitungen, zwei diagonal getrennte Flüssigkeitskammern, Druckverlust/Leckage, ungleichmäßige Bremswirkung und temperaturabhängig glühende Scheiben. Leitungstausch und Nachfüllen sind getrennt; Reifen-/Tuningwechsel heilen keine Leitung. P02.09 bleibt teilweise, weil Hauptbremszylinder, Ventile und Flüssigkeitssieden nicht separat simuliert sind. Radlager, eigene Lenkungsteile, Riemen, Generator und Lüfter fehlen weiterhin. Die Teilmodelle verwenden fiktive browsergerechte Koeffizienten. Die Reifen-Näherung aus V19 einschließlich ihrer Grenzen bleibt unverändert.
+**teilweise erledigt** — V21 ergänzt vier Radlager mit Reibung, Wärme, Überlastverschleiß und Radspiel, ein beschädigbares Lenkgetriebe und zwei Spurstangen. Bremsleitungen und Scheiben aus V20 erhalten Hauptbremszylinder, Bremskraftverstärker, ABS-Kanäle sowie Flüssigkeitswärme, Sieden, Luft und Entlüften. P02.09 und P02.10 sind mit diesen browsergerechten Modellen erfüllt. Die Baugruppen beeinflussen tatsächliche Radkräfte und Lenkwinkel; Diagnose, Einzelersatz und Speicherzustand sind verbunden. Die früheren Motor-, Antriebs- und Reifensysteme bleiben erhalten. Riemen, Lichtmaschine/Batterie, eigener Kühlerlüfter und weitere Motor-Nebenaggregate fehlen weiterhin; daher ist Phase 2 nicht abgeschlossen. Pro Rad bleiben Belag und Scheibe ein gemeinsamer Zustand, die Aufhängung ein konzentriertes Modell. Keine vollständige Mehrkörpersimulation oder reale Fahrzeugkalibrierung.
 
 - **P02.01 · teilweise erledigt** — Weg vom einzigen allgemeinen Auto-Health-Wert als Schadensquelle. Jede wesentliche Baugruppe erhält einen eigenen Zustand, Verschleiß und bei Bedarf Temperatur, Belastung und Ausfallart.
 - **P02.02 · erledigt** — Vier unabhängige Reifen: Temperatur, Luftdruck, Reifenmischung, Abrieb, Gripverlust, Flatspots, Platten, Beschädigung und Blowout.
@@ -44,8 +44,8 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 - **P02.06 · teilweise erledigt** — Schaden durch Überdrehen, schlechte Kühlung, Ölverlust, Überlast, Kollisionen und lange Überhitzung. Folgen: Leistungsverlust, ungewöhnliche Geräusche, Fehlzündungen, Rauch, Ruckeln, Klopfen, Lecks und schlimmstenfalls Motorausfall.
 - **P02.07 · teilweise erledigt** — Beschädigter Kühler verursacht Kühlmittelverlust und steigende Motortemperatur; falsches Weiterfahren kann Folgeschäden erzeugen.
 - **P02.08 · teilweise erledigt** — Kupplung: Verschleiß, Hitze, Schlupf, verringerte Kraftübertragung bis zum kompletten Ausfall. Getriebe: Schäden durch Überlast und schlechte Schaltvorgänge, mögliche Gangprobleme. Differenzial und Antriebswellen ebenfalls getrennt.
-- **P02.09 · teilweise erledigt** — Bremsen pro Rad: Verschleiß, Temperatur, Fade, beschädigte Leitungen/Komponenten, ungleichmäßige Bremswirkung, Ausfall; heißer Bremsscheiben-Glow bei passender Temperatur.
-- **P02.10 · teilweise erledigt** — Fahrwerk, Lenkung, Radlager und Aufhängungen können nach Unfällen falsch ausgerichtet, beschädigt oder zerstört sein.
+- **P02.09 · erledigt** — Bremsen pro Rad: Verschleiß, Temperatur, Fade, beschädigte Leitungen/Komponenten, ungleichmäßige Bremswirkung, Ausfall; heißer Bremsscheiben-Glow bei passender Temperatur.
+- **P02.10 · erledigt** — Fahrwerk, Lenkung, Radlager und Aufhängungen können nach Unfällen falsch ausgerichtet, beschädigt oder zerstört sein.
 - **P02.11 · teilweise erledigt** — Warnanzeigen und Diagnose zeigen echte Zustände. Reparatur ersetzt oder repariert die betroffene Komponente, nicht immer das gesamte Auto.
 - **P02.12 · teilweise erledigt** — Teileschäden, Temperaturen und Verschleiß dürfen nach dem Verlassen des Fahrzeugs oder der Garage nicht grundlos verschwinden.
 
@@ -276,3 +276,7 @@ Phase 2A erfüllt P02.02–P02.04 mit einer browsergerechten Reifen-Näherung un
 ## V20 – Multiplayer-Korrektur und Bremsen aus Phase 2B
 
 P02.09/P02.11/P02.12, P07.08 und P16.01–P16.03 werden erweitert, behalten ihren Teilstatus. Der bestätigte RATE_LIMIT entsteht durch die Behandlung aufgestauter Zustandsupdates als Flood; V20 fasst überzählige Zustände begrenzt zusammen und behält die Prüfung von Steuerpaketen. Details und Grenzen: [Phasenbericht](phase-2b-brakes-report.md). Alle 156 Originalanforderungen bleiben unverändert.
+
+## V21 – Radlager, Lenkung und ergänzende Bremskomponenten
+
+P02.09/P02.10 sind in der beschriebenen effizienten Näherung erfüllt. P02.01/P02.11/P02.12, P16.01–P16.03 und P18.16 werden weitergeführt und bleiben teilweise. Nächster Teil ist Phase 2C mit den fehlenden Motor-Nebenaggregaten. Details und Grenzen: [Phasenbericht](phase-2b-chassis-report.md). Alle 156 Originalanforderungen bleiben unverändert.

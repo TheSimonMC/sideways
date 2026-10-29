@@ -52,7 +52,7 @@ export class VehiclePanel{
    row.value.textContent=status({...part,health})+' · '+Math.round(health*100)+'%';
    row.row.classList.toggle('tyre-row',Number.isFinite(part.pressureBar));
    row.temperature.textContent=(Number.isFinite(part.temperature)?degrees(part.temperature):'')+(Number.isFinite(part.pressureBar)?' · '+part.pressureBar.toFixed(1)+' BAR\nCASING '+Math.round(part.carcass*100)+'%\nFLAT SPOT '+Math.round(part.flatspot*100)+'%':'');
-   row.fill.style.transform='scaleX('+health+')';row.button.classList.toggle('hidden',!options.service);row.button.textContent=part.id.startsWith('brakeFluid')?'REFILL':'REPLACE';row.button.setAttribute('aria-label',(part.id.startsWith('brakeFluid')?'Refill ':'Replace ')+part.label);row.button.disabled=!!options.busy||health>=.999;
+   row.fill.style.transform='scaleX('+health+')';row.button.classList.toggle('hidden',!options.service);const action=part.action||(/^brakeFluid[01]$/.test(part.id)?'REFILL':'REPLACE');row.button.textContent=action;row.button.setAttribute('aria-label',action+' '+part.label);row.button.disabled=!!options.busy||!(part.serviceNeeded??health<.999);
   }
   for(const filter of ['all','engine','cooling','drivetrain','chassis']){const selected=this.filter===filter;$('vehicle-tab-'+filter).classList.toggle('active',selected);$('vehicle-tab-'+filter).setAttribute('aria-pressed',String(selected));}
   const lowFluids=!!m&&(m.oilLitres<m.oilCapacity-.04||m.coolantLitres<m.coolantCapacity-.04||m.brakeHydraulics?.fluid.some(v=>v<.299));

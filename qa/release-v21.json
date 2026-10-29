@@ -1,0 +1,223 @@
+{
+  "game": "SIDEWAYS",
+  "version": 21,
+  "date": "2026-10-29",
+  "status": "verified-with-documented-limits",
+  "base": "Published V20, commit 62eea42d54109c41bb9777b5a72ac9a045b97ef3. Only the suites listed here are current; older reports remain historical.",
+  "scope": "Phase 2B wheel bearings, steering rack/tie rods and remaining brake internals. P02.09/P02.10 fulfilled with documented efficient approximations; Phase 2 remains partial. V20 RATE_LIMIT fix retained and rechecked.",
+  "delivery": {
+    "entry": "SIDEWAYS.html",
+    "separateFile": "SIDEWAYS-v21.html",
+    "htmlBytes": 10592187,
+    "htmlSha256": "2a38470c05d5f452b5219fa88fba7d7838aca57c65b5bc99a82844f8431db519",
+    "offlineSinglePlayer": true,
+    "externalRuntimeRequestsDuringOfflineTest": 0,
+    "publishedToSites": false
+  },
+  "currentFunctionalSuites": [
+    {
+      "file": "qa/aero-hop-browser-v21-results.json",
+      "status": "passed",
+      "groups": 3,
+      "sha256": "27e4b74cbc6f0310d89af87010f0997b197164768f346d051e5e7522a99a4441"
+    },
+    {
+      "file": "qa/aero-hop-v21-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "68d2ba2d84503aa436b832138c9f030a341c278d6cffe415c8640d91b80e13cd"
+    },
+    {
+      "file": "qa/archipelago-v21-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "542eaa876bac46553b04d2cba1a6f92e90a6831712b367ebf172baad956f070c"
+    },
+    {
+      "file": "qa/audio-v21-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "e5b0ff135b99f217012dbd03df5eb562e03f8b5db9e3869de7e4098a5c689611"
+    },
+    {
+      "file": "qa/brakes-browser-v21-results.json",
+      "status": "passed",
+      "groups": 2,
+      "sha256": "f8a406fc246b2eab25fe87219d7bce4f09b481ec455fdb5fa6dcb5ef0b055d3d"
+    },
+    {
+      "file": "qa/brakes-v21-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "e9d8d6d1aba9585cbae390ec950caefb268a52c02a14bbee8caeac82d98c33d6"
+    },
+    {
+      "file": "qa/chassis-damage-browser-v21-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "f557996cbdf91e787dc9ce9fc90e02250acea2c4a4fc7e49cd2aee003901be19"
+    },
+    {
+      "file": "qa/chassis-damage-v21-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "4317d073e79c83e94e373725e10fef67cd0e7a9b7663092635d5476eb1c00d81"
+    },
+    {
+      "file": "qa/chassis-v21-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "47cf37e9a4af005044c9ab04f3ef8fe9e59c592442558079c12f9246af9cf1ea"
+    },
+    {
+      "file": "qa/cosmetics-v21-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "0b299bf048d26399d55aed818b25f7662743df86eabc2c9aadc0fc2082224f7c"
+    },
+    {
+      "file": "qa/damage-v21-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "943b8f1125d464ea2b91307785195e64a236e445ea11c9a416b3bade07e9e377"
+    },
+    {
+      "file": "qa/drivetrain-browser-v21-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "1789a381af61ad629708a859c1eb3938cab47b854f15fea7177112e6cc7c6d00"
+    },
+    {
+      "file": "qa/drivetrain-v21-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "4bc033fd86c20deaaadb05dd8781fd1e5838419008a3cc87c4b195031060fa39"
+    },
+    {
+      "file": "qa/goal-coverage-v21-results.json",
+      "status": "passed",
+      "groups": 2,
+      "sha256": "d915371b92c1f3f6ac8e077ac2b37875a8dd6430ac937a31cc87afb109fe9e93"
+    },
+    {
+      "file": "qa/input-taps-v21-results.json",
+      "status": "passed",
+      "groups": 11,
+      "sha256": "7f69d581f7e6e33fa570a50e522a895fa09d91194baa461080d98d17cfbcfa36"
+    },
+    {
+      "file": "qa/modular-v21-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "056c040be8d2cb70b7812b2068e7df5102df4ef14f0fe454d748b4c66cc39b50"
+    },
+    {
+      "file": "qa/multiplayer-browser-v21-results.json",
+      "status": "passed",
+      "groups": 3,
+      "sha256": "a630d52df3613d77a13783b353e5dc2e2c8d68860424aa9b2fe42754d34d3bfe"
+    },
+    {
+      "file": "qa/multiplayer-burst-browser-v21-results.json",
+      "status": "passed",
+      "groups": 3,
+      "sha256": "a9a8fe58d68a9cff1f5f77af48f7af5cabb82cb3bd6a4506ca6ddcf7a2e163bf"
+    },
+    {
+      "file": "qa/multiplayer-burst-v21-results.json",
+      "status": "passed",
+      "groups": 5,
+      "sha256": "90bf84afe1ba07bb1eeac251abdf33f319f34893e3cdf104b96a2ca021daf673"
+    },
+    {
+      "file": "qa/multiplayer-v21-results.json",
+      "status": "passed",
+      "groups": 11,
+      "sha256": "7ddab394ecde8f3e6a4c2c4aaddf173b1e53ea206e9e0e4e53f428d21eba0320"
+    },
+    {
+      "file": "qa/navigation-main-v21-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "44df3394c74791ddc968911564a0e967a2a128ae7824500b845379ec93a2d38f"
+    },
+    {
+      "file": "qa/physics-v21-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "6e8f41783bd2f17707fe00f977295cd84d0566430a9f6334384007d489f6d329"
+    },
+    {
+      "file": "qa/police-v21-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "33cf30897191337f08c88511b4cc3875273d69df8d968ba35a4a254ee2d27d74"
+    },
+    {
+      "file": "qa/race-v21-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "0dfd50a0903fd3cb4e5853494571e68e200371e340af1c136131af71b0ea9219"
+    },
+    {
+      "file": "qa/restart-v21-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "4a15e1293890c26d84b1bf0abfadc5b23f55e549a374115408430a13cd02b74c"
+    },
+    {
+      "file": "qa/road-contact-v21-results.json",
+      "status": "passed",
+      "groups": 7,
+      "sha256": "a7e6d1ef4d1370468bc804f42427abf9c5e36539a8335bceb1cdcda07828aa42"
+    },
+    {
+      "file": "qa/standalone-browser-v21-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "acfda951718af48aeea0498edfa10e82959737a50bcf99bce8aac355a830e8b9"
+    },
+    {
+      "file": "qa/standalone-v21-results.json",
+      "status": "passed",
+      "groups": 0,
+      "sha256": "c54c853064268cb26e1bb3bf65237a4a05154e135322dc98832329dba7afce34"
+    },
+    {
+      "file": "qa/thermal-v21-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "1f7593980a5464f03a7b46e92dfa88fec54892b73759e11d5ab6105119c99594"
+    },
+    {
+      "file": "qa/tyres-browser-v21-results.json",
+      "status": "passed",
+      "groups": 3,
+      "sha256": "7668232196cdc252d13d7fa81d4de38aca9011d3250df10b4c5701de274bfa86"
+    },
+    {
+      "file": "qa/tyres-v21-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "9539e39349a607c151948f024484f8bb8ba4d9b41754dc1ae2fd11f8c927c58f"
+    }
+  ],
+  "performanceMeasurement": {
+    "file": "qa/chassis-performance-v21-results.json",
+    "status": "measured",
+    "sha256": "fe89f79786cb73dd586f3df879c0842b529a0ebf872a264e48cc30b33ad47ce7"
+  },
+  "review": {
+    "file": "qa/review-v21.json",
+    "sha256": "2bbadbb251179cde37ab9d3e6b1e828d5d6c26bafa7f4c7bbb753c5629da12d0"
+  },
+  "limits": [
+    "Bounded fictional bearing, steering and diagonal brake models. Shared pad/disc health; no multibody suspension, pipe CFD, vacuum reservoir or real-car calibration. Bearing heat uses final angular speed times friction impulse.",
+    "Pedal travel is normalized diagnostic telemetry; cockpit/pedal animation remains open. Detailed component state is not transmitted to remote car models.",
+    "Final-HTML persistence/new-run/diagnostics tested; damaged-part service additionally uses original VehiclePanel/CarPhysics in a module harness, without main service timing or driving to a garage.",
+    "Real public PeerJS/WebRTC between local processes/contexts. Separate physical PCs, mobile networks, restrictive NAT and TURN fallback not tested.",
+    "No physical controller or subjective listening test. CPU sample excludes world/GPU/AI/audio and is not an FPS guarantee.",
+    "Remaining engine auxiliaries are next (Phase 2C); interiors/cockpit/driver, engine bay, further body parts, weather/night lighting, world/LOD/AI and spatial garage transitions remain open/partial in the full checklist.",
+    "SDK unchanged; historical replay-fixture discrepancy remains in qa/sdk-v12-baseline.json."
+  ]
+}

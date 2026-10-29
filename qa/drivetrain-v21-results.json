@@ -1,0 +1,126 @@
+{
+  "version": 21,
+  "status": "passed",
+  "checks": [
+    "All four stock cars remain close to the V16 moderate-input trajectory; aero/hop may alter the transient response.",
+    "FWD/RWD/AWD transmit real torque to their fitted axles in forward and reverse; open clutch removes propulsion.",
+    "An open center loses traction through a broken branch; finite center locks transfer it, with slip heat and targeted repair.",
+    "Differential constraints dissipate rotational energy and front LSD reduces split-wheel speed, including coast lock.",
+    "Actual hot center slip wears its component; damage-off stops wear while heat and energy continue.",
+    "Only compatible conversions fit; paid ownership, all 30 slots, old saves and stored damage survive build changes.",
+    "FWD burnout emits from the real front contacts; spatial differential anchors follow the fitted drive layout.",
+    "Traction control reads the driven axle, and a loaded FWD downshift damages the real front-driven gear path."
+  ],
+  "fixtures": {
+    "All four stock cars remain close to the V16 moderate-input trajectory; aero/hop may alter the transient response.": {
+      "commit": "052e166d131db928e2a72735ef4d58735121d7d5",
+      "maxError": 0.6069081821315194
+    },
+    "FWD/RWD/AWD transmit real torque to their fitted axles in forward and reverse; open clutch removes propulsion.": [
+      {
+        "kit": "stock",
+        "torques": [
+          0,
+          2797.421002194136
+        ],
+        "reverse": -8.041174896709421
+      },
+      {
+        "kit": "fwd",
+        "torques": [
+          1897.5459364727594,
+          0
+        ],
+        "reverse": -10.777131578357379
+      },
+      {
+        "kit": "awd",
+        "torques": [
+          887.8812944031495,
+          1342.5695026824053
+        ],
+        "reverse": -12.157662312561296
+      }
+    ],
+    "An open center loses traction through a broken branch; finite center locks transfer it, with slip heat and targeted repair.": [
+      {
+        "center": "open",
+        "speed": 0.012103774961729399,
+        "work": 0
+      },
+      {
+        "center": "lsd",
+        "speed": 3.338991742897859,
+        "work": 63132.742841640626
+      },
+      {
+        "center": "locked",
+        "speed": 11.481958842051453,
+        "work": 0
+      }
+    ],
+    "Differential constraints dissipate rotational energy and front LSD reduces split-wheel speed, including coast lock.": [
+      {
+        "center": "open",
+        "before": 5400,
+        "after": 5384.796133489797,
+        "work": 14.903872683042044
+      },
+      {
+        "center": "lsd",
+        "before": 5400,
+        "after": 5367.7235040316355,
+        "work": 23.83529843750025
+      },
+      {
+        "center": "locked",
+        "before": 5400,
+        "after": 5111.918213305288,
+        "work": 197.76512542928143
+      }
+    ],
+    "Actual hot center slip wears its component; damage-off stops wear while heat and energy continue.": [
+      {
+        "enabled": true,
+        "health": 0.9992502276337706,
+        "work": 18568.710825852468
+      },
+      {
+        "enabled": false,
+        "health": 1,
+        "work": 18579.197761114352
+      }
+    ],
+    "Only compatible conversions fit; paid ownership, all 30 slots, old saves and stored damage survive build changes.": {
+      "price": 26500,
+      "wallet": 73500
+    },
+    "FWD burnout emits from the real front contacts; spatial differential anchors follow the fitted drive layout.": {
+      "frontSmokeParticles": [
+        56,
+        56,
+        0,
+        0
+      ]
+    },
+    "Traction control reads the driven axle, and a loaded FWD downshift damages the real front-driven gear path.": {
+      "front": 0.94375,
+      "rear": 1
+    }
+  },
+  "sourceSHA256": {
+    "dist/drivetrain.js": "9927f12d0ab5de0ad2de6f59b5f5f21cfb1ec0ce6c1efc81ca253ded1efb16d3",
+    "dist/physics.js": "2e6a1ad98a003590ce08480bf1d44eb6aa81d1ddb50f8beff7a7c9032cc6b10f",
+    "dist/mechanical.js": "517bc2437293684c569470026b1ce141d480cc4f2a53dff8d23d1d307bba49e7",
+    "dist/catalog.js": "c5da9ed3102fe56916bf85badb4a9c355de106cbcf29dda37f92f6d551425065",
+    "dist/career.js": "e609ca9085aba7ced8eca015b637bcbfb7b9b6f594d6c04bfbf4dbad80de1e67",
+    "dist/garage.js": "433365d6d28b2f8444982b003cdb5d2d5adc6f89f93e84caa0057585c3691f37",
+    "dist/car.js": "9726a1c5b5936339bf0c7409b1125b7d68a12067492c4c67991ea71a6cd3a1a9",
+    "dist/audio.js": "198e50be24402be5e4fca6cc1d7649d2651a7a7f818200c460bb9acaa1f4060a",
+    "dist/audio-anchors.js": "ed65635fad9d265e2ab6cd964489bcd703b28397999fd16d4e609fd6fb7a15e5"
+  },
+  "limits": [
+    "Finite shaft and differential constraints, not a calibrated full driveline or individual CV-joint model. Fictional compatibility and calibration; existing stock cars remain RWD.",
+    "Native engine simulation and renderer geometry/effect tests; no physical wheel, listening or FPS guarantee."
+  ]
+}

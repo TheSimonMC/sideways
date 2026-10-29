@@ -1,0 +1,31 @@
+{
+  "version": 21,
+  "scope": "Native PCM and emitted-path checks. No physical listening claim.",
+  "checks": [
+    "Camera-right reverses both interaural delays and ear levels without moving source or simulation",
+    "Two outlets share the source budget and equal the sum of separately propagated half-level outlets",
+    "Invalid coordinates, zero head axis, duplicate IDs and amplified outlet sums are rejected",
+    "Every body has matching outlet count and coordinates, pitch/roll alter anchors, and detached-wheel positions are not used as body points",
+    "Chase and hood retain actual camera height and position; overhead microphone remains at most 5.5 metres away",
+    "Separate outlet image sources yield source-dependent facade delays; disabling reverb removes reflection energy",
+    "Scene rendering changes audible PCM while preserving exact engine time and physical state",
+    "GameAudio uses one renderAudio call per frame block, preserves world anchors and emits finite limited PCM"
+  ],
+  "status": "passed",
+  "verifiedInRelease": 21,
+  "suiteSource": "qa/audio-v12-check.mjs",
+  "suiteSHA256": "e55147bf378add94bd9bfd1c30aebdd64c7b1c90caf84f5e44ce544c06c99e34",
+  "sourceSHA256": {
+    "dist/drivetrain.js": "9927f12d0ab5de0ad2de6f59b5f5f21cfb1ec0ce6c1efc81ca253ded1efb16d3",
+    "dist/physics.js": "2e6a1ad98a003590ce08480bf1d44eb6aa81d1ddb50f8beff7a7c9032cc6b10f",
+    "dist/mechanical.js": "517bc2437293684c569470026b1ce141d480cc4f2a53dff8d23d1d307bba49e7",
+    "dist/car.js": "9726a1c5b5936339bf0c7409b1125b7d68a12067492c4c67991ea71a6cd3a1a9",
+    "dist/catalog.js": "c5da9ed3102fe56916bf85badb4a9c355de106cbcf29dda37f92f6d551425065",
+    "dist/career.js": "e609ca9085aba7ced8eca015b637bcbfb7b9b6f594d6c04bfbf4dbad80de1e67",
+    "dist/garage.js": "433365d6d28b2f8444982b003cdb5d2d5adc6f89f93e84caa0057585c3691f37",
+    "dist/audio.js": "198e50be24402be5e4fca6cc1d7649d2651a7a7f818200c460bb9acaa1f4060a",
+    "dist/audio-anchors.js": "ed65635fad9d265e2ab6cd964489bcd703b28397999fd16d4e609fd6fb7a15e5",
+    "dist/main.js": "c87130288fff437be750e5bec3c8b34dd4691513aa0d52958375cff5b22bd939",
+    "dist/multiplayer.js": "034cdee22c9edbaf280c7f6fc3210b454b05d5d512d9cf7b8b9be74e10b6eba2"
+  }
+}

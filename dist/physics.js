@@ -1,5 +1,6 @@
 import {damageBrakeLine} from './brake-hydraulics.js';
 import {tyreResponse,impactTyre} from './tyres.js';
+import {bearingResponse,rackTarget,tieRodAngle,damageChassisCorner} from './chassis-damage.js';
 import {steeringDemand,tyreGrip} from './chassis-setup.js';
 import {aerodynamicForces} from './aerodynamics.js';
 import {WheelHop} from './wheel-hop.js';
@@ -78,7 +79,7 @@ export class CarPhysics {
    engineTorque:this.engineState.meanTorque,clutchTorque:0,tyreForceL:0,tyreForceR:0,surface:1,
    shiftProgress:0,engineClock:'manual',transmission:'auto',handbrake:0,clutch:1,manualClutch:false,requestedGear:neutral?0:1,shiftMessage:'',shiftRejected:false,
    engineRunning:!this._stalled,engineStalled:this._stalled,starterActive:false,clutchSlipRPM:0,inputShaftRpm:0,clutchTemperature:this._clutchTemp,
-   wheelOmegas:[0,0,0,0],wheelOmega:[0,0,0,0],wheelSpins:[0,0,0,0],wheelSteers:[0,0,0,0],wheelSlip:[0,0,0,0],wheelLoads:[...this._staticLoads],brakeTemps:this._brakeTemps,tyreTemps:this._tyreTemps,
+   wheelOmegas:[0,0,0,0],wheelOmega:[0,0,0,0],wheelSpins:[0,0,0,0],wheelSteers:[0,0,0,0],tieRodAngles:[0,0],wheelSlip:[0,0,0,0],wheelLoads:[...this._staticLoads],brakeTemps:this._brakeTemps,tyreTemps:this._tyreTemps,
    brakePressure:[0,0,0,0],absActive:false,burnout:false,burnoutIntensity:0,halfTrack:this.halfTrack,rearAxle:this.rearAxle,frontAxle:this.frontAxle,wheelRadius:this.wheelRadius,
    aero:{front:0,rear:0,downforce:0,drag:0,pitchMoment:0},wheelHop:this._hop.wheels,driveLayout:this.build.physics.driveLayout,drivenWheels:this._drive.driven,axleTorques:[0,0],centerSlipRPM:0,frontDifferentialLock:0,centerDifferentialLock:0,accelerationLong:0,accelerationLat:0,diffSlipRPM:0,diffTorque:0,diffPower:0,
    fuelFlowLph:0,fuelStarved:this.condition.fuelLitres<=0,overrev:0,damageMessage:'',bodyScrape:0,scrapeLoads:[0,0,0,0],detachedWheels:[],detachedPanels:[],
@@ -108,7 +109,7 @@ export class CarPhysics {
  _publishCondition(){
   if(!this.state||!this.condition)return;
   const c=this.condition;this.state.tyres=c.tyres.map((t,i)=>tyreResponse(t,c.mechanical.temperatures.tyres[i],this.state.wheelSpins?.[i]||0));this.state.wheelRadii=this.state.tyres.map(t=>this.wheelRadius*t.radiusScale);Object.assign(this.state,{carId:c.carId,engineHealth:c.engineHealth,bodyHealth:c.bodyHealth,bodyDamage:c.bodyDamage,gearboxHealth:c.gearboxHealth,wheelHealth:c.wheelHealth,wheelAttached:c.wheelAttached,
-   suspensionHealth:c.suspensionHealth,brakeHealth:c.brakeHealth,wheelToe:c.wheelToe,wheelCamber:c.suspensionHealth.map((health,i)=>(i%2?1:-1)*((1-health)*.14-this.build.physics.alignmentCamber[i<2?0:1])),damageEnabled:this.damageEnabled,
+   suspensionHealth:c.suspensionHealth,brakeHealth:c.brakeHealth,wheelToe:c.wheelToe,wheelCamber:c.suspensionHealth.map((health,i)=>(i%2?1:-1)*((1-health)*.14-this.build.physics.alignmentCamber[i<2?0:1])+bearingResponse(c.mechanical.chassisDamage.bearings[i],0,this.state.wheelSpins?.[i]||0,c.wheelAttached[i]).wobble),damageEnabled:this.damageEnabled,
    fuelLitres:c.fuelLitres,fuelCapacity:c.fuelCapacity,fuelConsumedLitres:c.fuelConsumedLitres,fuelStarved:c.fuelLitres<=0,engineFault:c.engineFault,damageRevision:c.damageRevision,damageEnergyJ:c.damageEnergyJ,distanceMeters:c.distanceMeters,maxRpm:c.maxRpm,
    mechanical:this._mechanics.diagnostics,clutchTemperature:c.mechanical.temperatures.clutch,brakeTemps:c.mechanical.temperatures.brakes,tyreTemps:c.mechanical.temperatures.tyres});
  }
@@ -163,6 +164,7 @@ export class CarPhysics {
    const i=nearest.index,wheelDamage=clamp(severity*.65/(this.build.physics.bodyStrength??1)*(1-nearest.distance/2.1),0,1);c.wheelHealth[i]=Math.max(0,c.wheelHealth[i]-wheelDamage);impactTyre(c.tyres[i],wheelDamage);damageBrakeLine(c.mechanical.brakeHydraulics,i,wheelDamage);
    const bend=Math.sign((contact.normal?.x||0)*cs-(contact.normal?.z||0)*sn)||Math.sign(local.x)||1;
    c.suspensionHealth[i]=Math.max(0,c.suspensionHealth[i]-wheelDamage*.86);c.brakeHealth[i]=Math.max(0,c.brakeHealth[i]-wheelDamage*.52);
+   damageChassisCorner(c.mechanical.chassisDamage,i,wheelDamage,bend);c.mechanical.brakeHydraulics.absValves[i]=clamp(c.mechanical.brakeHydraulics.absValves[i]-Math.max(0,wheelDamage-.2)*1.5,0,1);
    c.wheelToe[i]=clamp(c.wheelToe[i]+bend*wheelDamage*.13,-.16,.16);if(wheelDamage>.08)s.damageMessage='Wheel alignment damaged';
    if(c.wheelAttached[i]&&closing>13&&(wheelDamage>.48||c.wheelHealth[i]<.22)){this._detachWheel(i,contact);detached.push(i);s.damageMessage='Wheel detached';}
   }
@@ -171,7 +173,7 @@ export class CarPhysics {
  }
  _detachWheel(index,contact){
   const s=this.state,c=this.condition,[x,z]=this._positions[index],sn=Math.sin(s.heading),cs=Math.cos(s.heading),normal=contact.normal||{x:0,z:0};
-  c.wheelAttached[index]=false;damageBrakeLine(c.mechanical.brakeHydraulics,index,0,true);c.wheelHealth[index]=0;
+  c.wheelAttached[index]=false;damageChassisCorner(c.mechanical.chassisDamage,index,0,1,true);c.mechanical.brakeHydraulics.absValves[index]=0;damageBrakeLine(c.mechanical.brakeHydraulics,index,0,true);c.wheelHealth[index]=0;
   const lateral=s.yawRate*z,longitudinal=-s.yawRate*x;
   s.detachedWheels.push({id:++this._debrisId,index,x:s.x+x*cs+z*sn,z:s.z-x*sn+z*cs,y:s.suspension[index].wheelY,
    vx:s.vx+lateral*cs+longitudinal*sn+normal.x*Math.min(5,contact.closingSpeed*.12),vz:s.vz-lateral*sn+longitudinal*cs+normal.z*Math.min(5,contact.closingSpeed*.12),vy:Math.min(4,1+contact.closingSpeed*.05),heading:s.heading,omega:this._wheelOmega[index],spin:s.wheelSpins[index],age:0,radius:this.wheelRadius});
@@ -293,7 +295,8 @@ export class CarPhysics {
   }
   const ratio=this._ratio(s.gear),steering=steeringDemand(steerInput,speed,this.build.physics,input.deviceKind);
   const steerRate=(Math.abs(steerInput)<.01?steering.returnRate:steering.rate)*15.5/this.build.physics.steeringRatio;
-  s.steer+=(steering.target-s.steer)*(1-Math.exp(-dt*steerRate));
+  const chassisDamage=this.condition.mechanical.chassisDamage;
+  s.steer+=(rackTarget(steering.target,s.steer,chassisDamage.rack)-s.steer)*(1-Math.exp(-dt*steerRate*(.18+.82*chassisDamage.rack)));
   // NOS is a declared arcade shaft-power adapter, not simulated nitrous
   // chemistry. The valve has no speed, gear, brake, clutch or RPM interlock.
   const requestedBoost=!!input.boost&&s.boost>0;
@@ -368,7 +371,7 @@ export class CarPhysics {
    yaw-=Math.sign(yaw)*Math.min(Math.abs(yaw),torque*dt/this.inertia);s.bodyScrape+=(beforeYaw*beforeYaw-yaw*yaw)*this.inertia*.5/dt;}
   // Yaw comes only from wheel/contact forces. Traction control reduces
   // throttle; it cannot rotate the body or manufacture extra tyre grip.
-  const wheels=this._wheelOmega,brakeBounds=[],tireBounds=[],frames=[],armsLong=[],armsLat=[],softLong=[],softLat=[];
+  const wheels=this._wheelOmega,bearingBounds=[],brakeBounds=[],tireBounds=[],frames=[],armsLong=[],armsLat=[],softLong=[],softLat=[];
   s.absActive=false;
   for(let i=0;i<4;i++){
    const [x,z]=this._positions[i],front=i<2,wheelbase=this.frontAxle+this.rearAxle;
@@ -376,7 +379,11 @@ export class CarPhysics {
    // Blend toward parallel steering as tyre slip angles dominate at speed.
    const ackermann=Math.atan(Math.tan(s.steer)/(1-x*Math.tan(s.steer)/wheelbase));
    const alignment=((i%2?1:-1)*(1-this.condition.wheelHealth[i])*.045+this.condition.wheelToe[i])*(front?1:.65)-(i%2?1:-1)*this.build.physics.alignmentToe[front?0:1],wobble=Math.sin(s.wheelSpins[i]*1.01)*(1-this.condition.wheelHealth[i])**2*.012;
-   const delta=(front?mix(s.steer,ackermann,this.build.physics.ackermann*(1-.65*smooth(speed/35)))+alignment:alignment)+wobble;
+   const bearing=bearingResponse(chassisDamage.bearings[i],s.suspension[i].normalLoad,s.wheelSpins[i],this.condition.wheelAttached[i]);bearingBounds[i]=bearing.torque*dt;
+   const command=mix(s.steer,ackermann,this.build.physics.ackermann*(1-.65*smooth(speed/35)))+alignment;
+   const freeAngle=Math.atan2((u+yaw*z)*Math.sign(v-yaw*x||1),Math.abs(v-yaw*x)+3);
+   s.tieRodAngles??=[0,0];const rodAngle=front?tieRodAngle(chassisDamage.tieRods[i],command,freeAngle,s.tieRodAngles[i],dt):alignment;if(front)s.tieRodAngles[i]=rodAngle;
+   const delta=rodAngle+wobble+bearing.wobble;
    s.wheelSteers[i]=delta;
    const frame=frames[i]=contactFrame(delta,gradeLong,gradeLat);
    armsLong[i]=z*frame.longU-x*frame.longV;armsLat[i]=z*frame.latU-x*frame.latV;
@@ -387,7 +394,7 @@ export class CarPhysics {
    let requested=brake;
    // ABS controls hydraulic pressure only. Parking brake remains mechanical.
    const contactV=contactLong;
-   if(this.build.physics.abs&&Math.abs(contactV)>4&&brake>.05&&Math.sign(contactV)*wheels[i]*this._tyreRadii[i]<Math.abs(contactV)*.82){requested=brake*.12;s.absActive=true;}
+   if(this.build.physics.abs&&this.condition.mechanical.brakeHydraulics.absValves[i]>.25&&Math.abs(contactV)>4&&brake>.05&&Math.sign(contactV)*wheels[i]*this._tyreRadii[i]<Math.abs(contactV)*.82){requested=brake*.12;s.absActive=true;}
    const pressureRate=requested<this._brakePressures[i]?22:7;
    this._brakePressures[i]+=(requested-this._brakePressures[i])*Math.min(1,dt*pressureRate);
    const fade=1-.42*smooth((this._brakeTemps[i]-520)/280);
@@ -399,7 +406,7 @@ export class CarPhysics {
    softLong[i]=smooth((speed-.35)/2.1)*this._tyreContact[i].compliance/(10000*dt);
    softLat[i]=Math.max(2.5,Math.abs(v))*smooth((speed-.35)/2.1)*this._tyreContact[i].compliance/(32000*dt);
   }
-  const Jlong=[0,0,0,0],Jlat=[0,0,0,0],Jbrake=[0,0,0,0];
+  const Jlong=[0,0,0,0],Jlat=[0,0,0,0],Jbrake=[0,0,0,0],Jbearing=[0,0,0,0];
   let omega=this._omega,roadVerticalImpulse=0;
   const invMass=1/this.mass,invYaw=1/this.inertia,invWheel=this.condition.wheelAttached.map(attached=>1/(this.wheelInertia*(attached?1:.18))),invEngine=1/engineInertia;
   // Small mesh/bearing losses are removed from actual wheel kinetic energy;
@@ -420,6 +427,7 @@ export class CarPhysics {
    omega=this._drive.solve(omega);
    for(let i=0;i<4;i++){
     const nextBrake=clamp(Jbrake[i]-wheels[i]/invWheel[i],-brakeBounds[i],brakeBounds[i]),db=nextBrake-Jbrake[i];Jbrake[i]=nextBrake;wheels[i]+=db*invWheel[i];
+    const nextBearing=clamp(Jbearing[i]-wheels[i]/invWheel[i],-bearingBounds[i],bearingBounds[i]),dBearing=nextBearing-Jbearing[i];Jbearing[i]=nextBearing;wheels[i]+=dBearing*invWheel[i];
     const [x,z]=this._positions[i],cv=v-yaw*x,cu=u+yaw*z;
     const frame=frames[i],long=cv*frame.longV+cu*frame.longU-wheels[i]*this._tyreRadii[i],lat=cv*frame.latV+cu*frame.latU;
     const kLong=invMass+armsLong[i]**2*invYaw+this._tyreRadii[i]**2*invWheel[i]+softLong[i];
@@ -448,18 +456,18 @@ export class CarPhysics {
   // each staggered solver step must not become fictitious clutch heating.
   const clutchWorkJ=clutchSlip>3||initialClutchSlip>15?Math.abs(Jclutch)*.5*(initialClutchSlip+clutchSlip):0;
 
-  const brakeWorkJ=[],tyreWorkJ=[],tyreLockedWorkJ=[];
+  const bearingWorkJ=[],brakeWorkJ=[],tyreWorkJ=[],tyreLockedWorkJ=[];
   for(let i=0;i<4;i++){
    const [x,z]=this._positions[i],cv=v-yaw*x,cu=u+yaw*z;
    const frame=frames[i],long=cv*frame.longV+cu*frame.longU,lat=cv*frame.latV+cu*frame.latU,slip=wheels[i]*this._tyreRadii[i]-long;
    const tyreWork=Math.abs(Jlong[i]*slip)+Math.abs(Jlat[i]*lat),brakeWork=Math.abs(Jbrake[i]*wheels[i]);
    const hopWork=this._hop.excite(i,dt,{force:Jlong[i]/dt,slipWork:Math.abs(Jlong[i]*slip),slipSpeed:slip,driven:this._drive.driven.includes(i),contact:s.suspension[i].contact,load:this._staticLoads[i]});
-   brakeWorkJ[i]=brakeWork;tyreWorkJ[i]=Math.max(0,tyreWork-hopWork);tyreLockedWorkJ[i]=Math.abs(long)>4&&Math.abs(wheels[i]*this._tyreRadii[i])<Math.abs(long)*.12&&brakeBounds[i]>0?Math.abs(Jlong[i]*slip):0;
+   bearingWorkJ[i]=Math.abs(Jbearing[i]*wheels[i]);brakeWorkJ[i]=brakeWork;tyreWorkJ[i]=Math.max(0,tyreWork-hopWork);tyreLockedWorkJ[i]=Math.abs(long)>4&&Math.abs(wheels[i]*this._tyreRadii[i])<Math.abs(long)*.12&&(brakeBounds[i]>0||bearingBounds[i]>0)?Math.abs(Jlong[i]*slip):0;
    s.wheelSlip[i]=slip/Math.max(3,Math.abs(long));s.wheelSpins[i]+=wheels[i]*dt;s.wheelOmegas[i]=s.wheelOmega[i]=wheels[i];
    s.brakeTemps[i]=this._brakeTemps[i];s.tyreTemps[i]=this._tyreTemps[i];s.brakePressure[i]=this._brakePressures[i]*mechanical.brakeHydraulicFactors[i];
    const corner=s.suspension[i];
    Object.assign(s.wheelAudio[i],{surface:corner.material,roughness:corner.roughness,contact:corner.contact,load:corner.load,longitudinalSpeed:long,lateralSpeed:lat,slipSpeed:slip,slipRatio:s.wheelSlip[i],wheelSpeed:wheels[i]*this._tyreRadii[i],
-    tyrePower:tyreWork/dt,brakePower:brakeWork/dt,suspensionVelocity:corner.velocity,suspensionTravel:corner.travel,impactSpeed:corner.impactSpeed,impactCount:corner.impactCount});
+    bearingWear:(1-chassisDamage.bearings[i].health)**2,bearingPower:bearingWorkJ[i]/dt,tyrePower:tyreWork/dt,brakePower:brakeWork/dt,suspensionVelocity:corner.velocity,suspensionTravel:corner.travel,impactSpeed:corner.impactSpeed,impactCount:corner.impactCount});
   }
   // Resting brake constraints may sleep only with spare tyre AND brake force.
   // A released brake never pins the car to a hill; saturated brakes cannot sleep.
@@ -487,7 +495,7 @@ export class CarPhysics {
   const drivenSlipSpeed=Math.max(...this._drive.driven.map(i=>Math.abs(s.wheelAudio[i].slipSpeed)));
   s.burnoutIntensity=clamp((drivenSlipSpeed-2)/15,0,1)*clamp(1-s.speed/12,0,1);s.burnout=s.burnoutIntensity>.12;
   s.shiftProgress=clamp(this._shift/.19,0,1);s.engineClock=this.engine.getTiming().clock;
-  this._updateCondition(dt,omega,{...drive,brakePedal:brake,clutchWorkJ,brakeWorkJ,tyreWorkJ,tyreLockedWorkJ,tyreRollingWorkJ,tyreSpeeds:s.wheelAudio.map(w=>w.longitudinalSpeed),tyreLoads:s.wheelLoads,tyreAngles:s.wheelSpins});this._updateDebris(dt);this._publishCondition();
+  this._updateCondition(dt,omega,{...drive,brakePedal:brake,clutchWorkJ,bearingWorkJ,referenceLoads:this._staticLoads,wheelOmegas:wheels,attached:this.condition.wheelAttached,brakeWorkJ,tyreWorkJ,tyreLockedWorkJ,tyreRollingWorkJ,tyreSpeeds:s.wheelAudio.map(w=>w.longitudinalSpeed),tyreLoads:s.wheelLoads,tyreAngles:s.wheelSpins});this._updateDebris(dt);this._publishCondition();
   return s;
  }
 }
