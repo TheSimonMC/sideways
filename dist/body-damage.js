@@ -3,6 +3,7 @@
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,Number.isFinite(v)?v:a));
 export const BODY_PANELS={
  front:{label:'Front bumper',x:0,z:.48,radius:.29,detach:true},
+ spoiler:{label:'Rear spoiler and mounts',x:0,z:-.42,radius:.23,detach:true},
  rear:{label:'Rear bumper',x:0,z:-.48,radius:.29,detach:true},
  left:{label:'Left door and sill',x:-.48,z:0,radius:.38},
  right:{label:'Right door and sill',x:.48,z:0,radius:.38},
@@ -28,11 +29,12 @@ export function deformBody(body,build,{local,energyJ,closingSpeed}){
  const direction={x:-local.x,z:-local.z},magnitude=Math.hypot(direction.x,direction.z)||1;direction.x/=magnitude;direction.z/=magnitude;
  let changed=false;
  for(const [id,definition]of Object.entries(BODY_PANELS)){
+  if(id==='spoiler'&&build.selection.spoiler==='none')continue;
   const zone=body.zones[id],cx=definition.x*width,cz=definition.z*length;
   let weight=Math.max(0,1-Math.hypot((local.x-cx)*1.15,local.z-cz)/(definition.radius*length));
   if(id==='roof')weight*=specific>.9?.16:0;
   if(id==='left'&&local.x>0||id==='right'&&local.x<0)weight*=.05;
-  if(id==='front'&&!front||id==='rear'&&!rear)weight*=.10;
+  if(id==='front'&&!front||(id==='rear'||id==='spoiler')&&!rear)weight*=.10;
   if((id==='hood'&&!front||id==='boot'&&!rear)&&side)weight*=.32;
   const loss=specific*weight*.33*strength;if(loss<.0001)continue;
   const previous=zone.crush,increment=Math.min(.20,specific*weight*.16*strength),next=Math.min(.7,previous+increment);
@@ -52,10 +54,10 @@ export function repairBody(body,id='body'){
 }
 
 // Writes into the caller-owned vector to keep rendering allocation-free.
-export function bodyDisplacement(body,x,y,z,out={x:0,y:0,z:0}){
+export function bodyDisplacement(body,x,y,z,out={x:0,y:0,z:0},component=null){
  out.x=out.y=out.z=0;if(!body?.zones)return out;
- for(const id of BODY_KEYS){const zone=body.zones[id];
-  if(zone.crush<=0)continue;
+ for(const id of BODY_KEYS){if(id==='spoiler'&&component!=='spoiler')continue;const zone=body.zones[id];
+  if(!zone||zone.crush<=0)continue;
   const radius=id==='roof'?1.2:id==='left'||id==='right'?1.35:1.65;
   const distance=Math.hypot(x-zone.x,z-zone.z),t=Math.max(0,1-distance/radius),weight=t*t*(3-2*t),heightWeight=id==='roof'?clamp((y-.65)/.55,0,1):1;
   const dent=zone.crush*weight*heightWeight;out.x+=zone.pushX*dent;out.z+=zone.pushZ*dent;out.y-=dent*(id==='roof'?.60:.17);

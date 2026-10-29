@@ -1,0 +1,82 @@
+{
+  "version": 18,
+  "status": "measured",
+  "current": {
+    "stock": {
+      "flat": {
+        "steps": 1200,
+        "meanMs": 1.809712250000005,
+        "medianMs": 1.7076000000000704,
+        "p95Ms": 2.513600000000224,
+        "groundQueriesPerStep": 4
+      },
+      "hills": {
+        "steps": 1200,
+        "meanMs": 1.9694122499999787,
+        "medianMs": 1.8661000000001877,
+        "p95Ms": 2.6460000000006403,
+        "groundQueriesPerStep": 4
+      }
+    },
+    "fwd": {
+      "flat": {
+        "steps": 1200,
+        "meanMs": 1.973149166666661,
+        "medianMs": 1.8874000000005253,
+        "p95Ms": 2.6228000000000975,
+        "groundQueriesPerStep": 4
+      },
+      "hills": {
+        "steps": 1200,
+        "meanMs": 1.9828921666666701,
+        "medianMs": 1.8716999999996915,
+        "p95Ms": 2.6683000000011816,
+        "groundQueriesPerStep": 4
+      }
+    },
+    "awd": {
+      "flat": {
+        "steps": 1200,
+        "meanMs": 1.9815959999999526,
+        "medianMs": 1.8901999999998225,
+        "p95Ms": 2.6247999999995955,
+        "groundQueriesPerStep": 4
+      },
+      "hills": {
+        "steps": 1200,
+        "meanMs": 1.923007583333265,
+        "medianMs": 1.8386999999984255,
+        "p95Ms": 2.5437000000001717,
+        "groundQueriesPerStep": 4
+      }
+    }
+  },
+  "limits": [
+    "Node.js wall-clock on this machine for one native engine/chassis and a synthetic sampler. Browser GPU, world query cost, AI, audio and frame scheduling excluded; no FPS guarantee.",
+    "Same Vector V6 inputs and samplers; native engine load and JIT timing may differ. Single local run, not a universal comparison."
+  ],
+  "baselineV17": {
+    "flat": {
+      "steps": 1200,
+      "meanMs": 1.9513995833333502,
+      "medianMs": 1.883400000002439,
+      "p95Ms": 2.606900000002497,
+      "groundQueriesPerStep": 4
+    },
+    "hills": {
+      "steps": 1200,
+      "meanMs": 1.935468750000003,
+      "medianMs": 1.8542000000015832,
+      "p95Ms": 2.6000999999996566,
+      "groundQueriesPerStep": 4
+    }
+  },
+  "sourceSHA256": {
+    "dist/drivetrain.js": "9927f12d0ab5de0ad2de6f59b5f5f21cfb1ec0ce6c1efc81ca253ded1efb16d3",
+    "dist/physics.js": "1a2264ee66e80873d48fe90bfecf9481f449a237bedf6f34335bffdfaecde0ca",
+    "dist/mechanical.js": "0de7bff4f8ae0f7c30a94c6bbbc3b85d3a2103a0f1b9d9aea92894f18c380bfa",
+    "dist/wheel-hop.js": "cf5f23aef7a49a1cee3dd0abba6614fc83db16fc31f4c62cc58e6b529d7b2a4c",
+    "dist/aerodynamics.js": "dcfe58d8f4e9515fbc07c1e6fceb6a7d8907a71c7518171b5cad9272041a0abf",
+    "dist/catalog.js": "c5da9ed3102fe56916bf85badb4a9c355de106cbcf29dda37f92f6d551425065"
+  }
+}

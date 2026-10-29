@@ -1,0 +1,86 @@
+SIDEWAYS / CITY SESSIONS V18
+
+PLAY
+Open https://thesimonmc.github.io/sideways/ or extract the ZIP and open SIDEWAYS.html.
+The separate SIDEWAYS-v18.html contains identical game bytes. Single-player works
+offline. Multiplayer needs signaling/peer connectivity; every driver needs V18.
+Progress stays in the browser and origin where you played.
+
+PHASE 0 / PHASE 1A + 1B + 1C + 1D
+The full requested roadmap is in docs/goal.txt. See docs/goal-progress.md for all
+156 phase requirements and their explicit status. Phase 0 is complete; Phase 1
+is partial. There is no free handling-mode selector. Steering, alignment and
+anti-roll bars are garage parts that affect the existing four-wheel solver.
+Traction control only reduces throttle; ABS remains fitted. Input profiles and
+saves are retained, and old handling values are ignored.
+
+HILLS AND ROAD CONTACT
+Existing hills now affect rollback, acceleration and braking through contact
+forces. Reset aligns the car to the road without a false suspension impact.
+Individual bumps feed the existing wheels and suspension sounds. Airborne
+wheels receive no horizontal force from terrain below. Vehicle condition,
+parts and maps remain intact. Phase 1 is still partial: weather, tyre pressure/carcass/flatspots and broader
+calibration remain unfinished. Next is Phase 2A as the required tyre foundation.
+See docs/phase-1d-report.md for evidence and technical limits.
+
+DRIVETRAIN CONVERSIONS
+Vector with I4/V6 supports paid FWD. Hachi/Kitsune/Vector without V10/V12
+support AWD with nominal open 40:60 torque split, front and center LSD options.
+These parts alter the actual torque paths, mass, heat, wear and repair state.
+Incompatible previews explain the fallback to factory RWD. Ownership and
+damage persist; changing the fitted drive kit does not repair stored components.
+All original factory cars remain RWD. Multiplayer protocol is 14.
+
+AERO AND AXLE LINKS
+GT wings support 2/6/14-degree mounts. Spoilers, front splitters and rear diffusers
+alter real downforce, drag, axle loading and fitted mass. The garage compares
+healthy-part forces at 100 km/h. Damage reduces aero; a detached spoiler loses
+its effect and stays missing until repaired. Changing mounts does not repair it.
+Braced axle links reduce traction-induced wheel hop for 3,200 points and 3 kg.
+This is a bounded modal approximation, not a full suspension linkage model.
+Installed masses count; detached debris mass is not subtracted from the chassis.
+
+RESTART AND PAUSE
+Starting a new run or choosing Pause > Restart restores the car, including wheels,
+mechanical condition, fuel and NOS. Road recovery (R) keeps existing damage.
+Escape opens Pause while driving. Escape again resumes; Main Menu is an explicit
+button in Pause. Nested screens still return to their previous screen.
+
+NEON ARCHIPELAGO
+Four landmasses joined by five bridges. 103.1 square kilometres including water,
+approximately 52.5 km² of land and 266 km of roads including alleys. Seventeen
+service stops. Six additional districts connect to downtown, expressway and hills.
+Palm Beach, Westhaven, Sunset Keys, suburbs and industry use separate architectural
+styles, with 2,244 additional buildings assembled from façade and roof modules.
+Roads climb to 210 m. The separate Dock 09 track still hosts racing and drift modes.
+This is an original low-poly world, not a GTA replica or equivalent simulation.
+
+VISIBLE TUNING
+Choose hood, spoiler, side skirts, rims and front/rear bumpers in the garage.
+Previewing costs nothing. Buy & Install shows the total and keeps the parts owned.
+All four cars support the six visual categories. Old saves default to factory parts.
+Hoods, skirts and rims remain visual. Spoilers and bumpers also affect aero and
+mass. Direct engine, gearbox and audio-source parameters remain unchanged.
+Water recovery returns you to a road and retains damage, like R.
+
+BUILD AND VERIFY
+With Node.js 24: npm ci; node build.mjs.
+The build produces dist/SIDEWAYS.html. Run qa/standalone-v18-check.mjs and
+all three *browser-v18.cjs checks plus the native regression suites before
+qa/package-v18.mjs. See README.md for the current commands.
+Browser scripts need Playwright. CODEX_PRIMARY_RUNTIME_NODE_MODULES points to its
+node_modules directory; PLAYWRIGHT_CHROMIUM_EXECUTABLE selects a compatible browser.
+qa/release-v18.json lists current test reports. The package script checks the exact
+HTML hash against browser evidence. Copy dist/SIDEWAYS.html to SIDEWAYS.html before
+committing for GitHub Pages; the workflow checks the same hash before deploying.
+
+LIMITS
+QA uses software-rendered Chromium and automated keyboard input. Physical gamepads,
+wheels, speaker listening and live cross-network multiplayer were not checked.
+Road geometry tests cover routing, grades, clearances and sampled wheel positions;
+they do not mean every metre was manually driven. The SDK remains MotorLab 1.6.3
+with the existing SIDEWAYS spatial extension. Its prior replay-fixture hash mismatch
+is documented in qa/sdk-v12-baseline.json. Damage is not full soft-body physics.
+
+LICENSES
+Existing engine, model, font and audio notices are included in the project.

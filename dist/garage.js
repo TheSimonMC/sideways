@@ -1,3 +1,5 @@
+import {AERO_LABELS,aeroCompatibility} from './aerodynamics.js';
+import {HOP_LABELS} from './wheel-hop.js';
 import {DRIVE_LABELS,driveCompatibility} from './drivetrain.js';
 import {CHASSIS_LABELS} from './chassis-setup.js';
 import {COSMETIC_LABELS} from './cosmetics.js';
@@ -56,14 +58,14 @@ export class GaragePanel {
    const owned=this.economy?.owns(group,item.id),price=this.economy?.price(group,item.id)||0;
    const button=document.createElement('button');button.type='button';button.className='part-card'+(active?' active':'');button.dataset.navKey='part-'+key+'-'+item.id;button.setAttribute('aria-pressed',String(active));
    button.innerHTML='<span class="part-tier"></span><strong></strong><p></p><div class="part-bottom"><b></b><span></span></div>';
-   button.querySelector('.part-tier').textContent=key==='cars'?item.model.number:key==='engine'?item.layout.toUpperCase():COSMETIC_LABELS[key]?'VISUAL PART':DRIVE_LABELS[key]?'DRIVETRAIN PART':CHASSIS_LABELS[key]?'CHASSIS PART':['STREET','SPORT','RACE'][i]||'PART';
+   button.querySelector('.part-tier').textContent=key==='cars'?item.model.number:key==='engine'?item.layout.toUpperCase():COSMETIC_LABELS[key]?'VISUAL PART':AERO_LABELS[key]?'AERO PART':HOP_LABELS[key]?'CHASSIS PART':DRIVE_LABELS[key]?'DRIVETRAIN PART':CHASSIS_LABELS[key]?'CHASSIS PART':['STREET','SPORT','RACE'][i]||'PART';
    button.querySelector('strong').textContent=item.name;button.querySelector('p').textContent=item.description;
    button.querySelector('.part-bottom b').textContent=owned?'OWNED':number(price)+' PTS';button.querySelector('.part-bottom span').textContent=installed?'INSTALLED':active?'SELECTED':'PREVIEW';
-   const incompatible=driveCompatibility(build.selection,key,item.id);button.disabled=!!incompatible||key==='turbo'&&!build.engine.turbo;if(button.disabled)button.querySelector('p').textContent=incompatible||'Requires a turbocharged engine.';
+   const incompatible=driveCompatibility(build.selection,key,item.id)||aeroCompatibility(build.selection,key,item.id);button.disabled=!!incompatible||key==='turbo'&&!build.engine.turbo;if(button.disabled)button.querySelector('p').textContent=incompatible||'Requires a turbocharged engine.';
    button.addEventListener('click',()=>{this.change(key==='cars'?{carId:item.id,engineId:item.defaultEngine}:key==='engine'?{engineId:item.id}:{[key]:item.id});});
    $('garage-option-cards').append(button);if(focused===button.dataset.navKey){button.focus({preventScroll:true});button.classList.add('pad-focus');}
   }
-  const current=this.active?.stats,changes=[];for(const [field,label,unit]of [['massKg','weight',' kg'],['redlineRpm','redline',' RPM'],['clutchNm','clutch capacity',' Nm'],['boostBar','boost',' bar'],['tyreWidthMm','tyre width',' mm'],['steeringLockDeg','steering lock','°'],['steeringRatio','steering ratio',':1'],['frontRollRate','front roll stiffness',' N/m'],['rearRollRate','rear roll stiffness',' N/m']]){const delta=build.stats[field]-(current?.[field]??build.stats[field]);if(Math.abs(delta)>.001)changes.push((delta>0?'+':'')+Number(delta.toFixed(2)) + unit+' '+label);}
+  const current=this.active?.stats,changes=[];for(const [field,label,unit]of [['aeroDownforce100','downforce at 100 km/h',' N'],['aeroDrag100','drag at 100 km/h',' N'],['massKg','weight',' kg'],['redlineRpm','redline',' RPM'],['clutchNm','clutch capacity',' Nm'],['boostBar','boost',' bar'],['tyreWidthMm','tyre width',' mm'],['steeringLockDeg','steering lock','°'],['steeringRatio','steering ratio',':1'],['frontRollRate','front roll stiffness',' N/m'],['rearRollRate','rear roll stiffness',' N/m']]){const delta=build.stats[field]-(current?.[field]??build.stats[field]);if(Math.abs(delta)>.001)changes.push((delta>0?'+':'')+Number(delta.toFixed(2)) + unit+' '+label);}
   if(build.physics.driveLayout!==this.active?.physics.driveLayout)changes.unshift(build.physics.driveLayout+' drivetrain');
   if(build.physics.driveLayout==='AWD')changes.push('40:60 nominal front/rear torque');
   $('garage-comparison').textContent=changes.length?'VS INSTALLED: '+changes.join(' · '):'Compare the part descriptions above. Install to confirm your changes.';
@@ -102,7 +104,7 @@ export class GaragePanel {
    const part=parts.find(item=>item.id===selection[key]);
    if(this.economy)for(const option of select.options){const item=parts.find(v=>v.id===option.value);option.textContent=item.name+' · '+(this.economy.owns(key,item.id)?'OWNED':number(this.economy.price(key,item.id))+' PTS');}
    $('garage-note-'+key).textContent=key==='turbo'&&!engine.turbo?'This engine is naturally aspirated.':part.description;
-   for(const option of select.options)option.disabled=!!driveCompatibility(selection,key,option.value);
+   for(const option of select.options)option.disabled=!!(driveCompatibility(selection,key,option.value)||aeroCompatibility(selection,key,option.value));
    select.disabled=key==='turbo'&&!engine.turbo;
   }
   const changed=build.signature!==this.active?.signature;

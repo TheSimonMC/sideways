@@ -225,7 +225,7 @@ export class MechanicalSystem{
   m.gearHealth.forEach((health,i)=>add(i?'gear'+i:'gearR',i?'Gear '+i:'Reverse gear','drivetrain',health,t.gearbox));
   for(let i=0;i<4;i++){add('brake'+CORNERS[i],CORNER_NAMES[i]+' brake','chassis',c.brakeHealth[i],t.brakes[i]);add('tyre'+CORNERS[i],CORNER_NAMES[i]+' tyre','chassis',c.wheelHealth[i],t.tyres[i]);add('suspension'+CORNERS[i],CORNER_NAMES[i]+' suspension','chassis',c.suspensionHealth[i],null);}
   add('body','Body structure','chassis',c.bodyHealth,null);
-  for(const [id,panel]of Object.entries(BODY_PANELS)){const zone=c.bodyDamage?.zones[id];if(zone){add('panel:'+id,panel.label,'chassis',zone.health,null);const row=components.at(-1);if(zone.detached){row.status='failed';row.reason='Panel detached';}else if(zone.crush>.01)row.reason=Math.round(zone.crush*100)+' cm local crush';}}
+  for(const [id,panel]of Object.entries(BODY_PANELS)){const zone=c.bodyDamage?.zones[id];if(zone&&(id!=='spoiler'||this.build.selection.spoiler!=='none')){add('panel:'+id,panel.label,'chassis',zone.health,null);const row=components.at(-1);if(zone.detached){row.status='failed';row.reason='Panel detached';}else if(zone.crush>.01)row.reason=Math.round(zone.crush*100)+' cm local crush';}}
   const warn=(id,label,severity,reason)=>warnings.push({id,label,severity,reason});
   if(c.engineFault)warn('engine-failure',c.engineFault,'critical','Repair the failed engine components');
   if(rpm>700&&e.oilPressureBar<.55)warn('oil-pressure','Low oil pressure','critical','Stop the engine to protect the bearings');

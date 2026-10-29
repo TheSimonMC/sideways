@@ -1,0 +1,40 @@
+{
+  "status": "reviewed",
+  "result": "No remaining actionable findings in the reviewed increment.",
+  "method": "Read-only review of the full runtime source diff, call sites and regression evidence after implementation; performed by the implementation agent, not an independent reviewer.",
+  "baseCommit": "f57665cb17f8e84387bb05a5ba6b8cef8793b64c",
+  "sourceSHA256": {
+    "dist/aerodynamics.js": "dcfe58d8f4e9515fbc07c1e6fceb6a7d8907a71c7518171b5cad9272041a0abf",
+    "dist/wheel-hop.js": "cf5f23aef7a49a1cee3dd0abba6614fc83db16fc31f4c62cc58e6b529d7b2a4c",
+    "dist/physics.js": "1a2264ee66e80873d48fe90bfecf9481f449a237bedf6f34335bffdfaecde0ca",
+    "dist/body-damage.js": "5d13a713ba8fafeb8ce4bc3e679a682b0eae735e589e9d07f3197c7b9d980cbc",
+    "dist/mechanical.js": "0de7bff4f8ae0f7c30a94c6bbbc3b85d3a2103a0f1b9d9aea92894f18c380bfa",
+    "dist/catalog.js": "c5da9ed3102fe56916bf85badb4a9c355de106cbcf29dda37f92f6d551425065",
+    "dist/career.js": "e609ca9085aba7ced8eca015b637bcbfb7b9b6f594d6c04bfbf4dbad80de1e67",
+    "dist/garage.js": "433365d6d28b2f8444982b003cdb5d2d5adc6f89f93e84caa0057585c3691f37",
+    "dist/cosmetics.js": "3a18330de12a01989acb88519da012b564e934860c7ee0d64438817b5c42b9e9",
+    "dist/car.js": "6029f68b4284f7a5bdd4947c6a37d80380f5e5fd7a2ecd176a38f49f4ab52e05",
+    "dist/car-cosmetics.js": "b4777e409ac5665cbd1b5614fb62f39ed5476ae5d4c4e945cca44b0fa39d8cb4",
+    "dist/main.js": "ed5336708a26858d9ebba3818915f99de4972d75984a63db46b6c7a1f05e502a",
+    "dist/index.html": "a658b3ab729dff39bc1a94808407ed6ac2f08159faf48548c4629ff838f1b898",
+    "dist/multiplayer.js": "049670c76ef89fe228d2bf99f45116a018849b88d8ec4f27dfb02a3bfed42302",
+    ".github/workflows/pages.yml": "cbd59cac554a5d6b2738d20c3ac091b22c5e9f677dd619b1b3d5d324dc4d87ab"
+  },
+  "resolvedFindings": [
+    "Scoped spoiler crush to spoiler meshes instead of spreading its extra damage zone through the full body.",
+    "Tagged factory and optional splitter/diffuser/spoiler meshes so stored detachment agrees with their aero state.",
+    "Accounted for dissipated modal energy when a wheel is detached and guarded old partial body-state objects.",
+    "Replaced generic loose spoiler bar with an independently cloned fitted wing shape; 12 body/angle variants verify collision detachment and disposal."
+  ],
+  "limits": [
+    "Reduced modal wheel hop; native patch case demonstrates wheel-load variation, full unloading is separately synthetic.",
+    "Fictional aero coefficients, no CFD or real-car validation; detached mass is not subtracted.",
+    "No physical wheel/gamepad, listening or live multi-PC network test.",
+    "The first standalone browser attempt closed during a screenshot; a full repeat passed. The initial termination cause was not established."
+  ],
+  "visualCheck": [
+    "Garage: new GT wing and axle-link categories, part price and aero/mass comparison visible; saved missing spoiler remains absent.",
+    "Driving: repaired GT wing, existing HUD/map and front-wheel-drive effects render.",
+    "Map: existing archipelago and service UI render; dense district labels still overlap at the widest scale (pre-existing map-layout limitation, outside this physics increment)."
+  ]
+}

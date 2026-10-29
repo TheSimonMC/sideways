@@ -96,9 +96,9 @@ export function createCar(scene, initialBuild = resolveBuild()) {
   const disposeModel=()=>{
     if(!model)return;
     const geometries=new Set(),materials=new Set(),textures=new Set();
-    model.content.traverse(node=>{if(node.geometry)geometries.add(node.geometry);for(const mat of node.material?(Array.isArray(node.material)?node.material:[node.material]):[]){materials.add(mat);for(const key of ['map','emissiveMap','normalMap'])if(mat[key])textures.add(mat[key]);}});
+    for(const root of [model.content,model.spoilerDebris].filter(Boolean))root.traverse(node=>{if(node.geometry)geometries.add(node.geometry);for(const mat of node.material?(Array.isArray(node.material)?node.material:[node.material]):[]){materials.add(mat);for(const key of ['map','emissiveMap','normalMap'])if(mat[key])textures.add(mat[key]);}});
     for(const g of geometries)g.dispose();for(const m of materials)m.dispose();for(const t of textures)t.dispose();
-    group.remove(model.content);model=null;
+    group.remove(model.content);if(model.spoilerDebris)debris.remove(model.spoilerDebris);model=null;
   };
   function assemble(nextBuild) {
     disposeModel();build=nextBuild;
@@ -122,7 +122,7 @@ export function createCar(scene, initialBuild = resolveBuild()) {
     const frontBumper=box(chassis,0,.34,L*.976,W*2.02,.12,.17,kind==='muscle'?chrome:graphite,true);frontBumper.userData.panel='front';
     const rearBumper=box(chassis,0,.35,-L*.976,W*2.02,.15,.17,kind==='muscle'?chrome:graphite,true);rearBumper.userData.panel='rear';
     // Splitter, separate grille and sculpted lamps give each body its own face.
-    panel(chassis,[[-W*1.04,.31,L*1.015],[W*1.04,.31,L*1.015],[W*1.10,.28,L*.78],[-W*1.10,.28,L*.78]],graphite);
+    panel(chassis,[[-W*1.04,.31,L*1.015],[W*1.04,.31,L*1.015],[W*1.10,.28,L*.78],[-W*1.10,.28,L*.78]],graphite).userData.panel='front';
     box(chassis,0,kind==='wedge'?.435:kind==='muscle'?.68:.51,L*.974,W*1.12,kind==='muscle'?.24:.15,.035,dark);
     if(kind==='muscle'){
       for(const side of [-1,1])for(const off of [-.125,.125]){
@@ -196,22 +196,25 @@ export function createCar(scene, initialBuild = resolveBuild()) {
       }
     }
     box(chassis,0,.60,-L*.992,.29,.13,.022,white);
-    for(const x of [-.47,0,.47])box(chassis,x,.23,-L*.94,.04,.14,.32,dark);
+    for(const x of [-.47,0,.47])box(chassis,x,.23,-L*.94,.04,.14,.32,dark).userData.panel='rear';
     if(build.selection.spoiler==='stock'){
+    const wingRoot=new THREE.Group();wingRoot.name='factory-spoiler';wingRoot.userData.panel='spoiler';chassis.add(wingRoot);
     if(kind==='coupe'){
-      for(const side of [-1,1]){box(chassis,side*.59,.98,-L*.81,.055,.34,.10,dark);box(chassis,side*.97,1.15,-L*.86,.047,.20,.42,paint,true);}
-      const wing=box(chassis,0,1.14,-L*.86,1.98,.075,.36,graphite,true);wing.rotation.x=-.08;
-      box(chassis,0,1.18,-L*.93,1.9,.018,.04,accent);
+      for(const side of [-1,1]){box(wingRoot,side*.59,.98,-L*.81,.055,.34,.10,dark);box(wingRoot,side*.97,1.15,-L*.86,.047,.20,.42,paint,true);}
+      const wing=box(wingRoot,0,1.14,-L*.86,1.98,.075,.36,graphite,true);wing.rotation.x=-.08;
+      box(wingRoot,0,1.18,-L*.93,1.9,.018,.04,accent);
     }else if(kind==='muscle'){
-      box(chassis,0,.96,-L*.91,W*1.92,.12,.22,graphite,true);
+      box(wingRoot,0,.96,-L*.91,W*1.92,.12,.22,graphite,true);
     }else if(kind==='wedge'){
-      box(chassis,0,.82,-L*.87,W*1.90,.065,.21,paint,true);
+      box(wingRoot,0,.82,-L*.87,W*1.90,.065,.21,paint,true);
     }else{
-      box(chassis,0,1.40,-1.17,1.48,.07,.24,graphite,true);
-      for(const side of [-1,1])box(chassis,side*.60,1.14,-1.48,.035,.17,.045,graphite);
+      box(wingRoot,0,1.40,-1.17,1.48,.07,.24,graphite,true);
+      for(const side of [-1,1])box(wingRoot,side*.60,1.14,-1.48,.035,.17,.045,graphite);
     }
     }
     addCosmetics({chassis,selection:build.selection,q,L,W,paint,dark,graphite,chrome,accent,box,panel,beam});
+    const wingSource=chassis.children.find(node=>node.userData.panel==='spoiler'),spoilerDebris=wingSource?.clone(true);
+    if(spoilerDebris){spoilerDebris.name='DETACHED-SPOILER';spoilerDebris.traverse(node=>{if(node.geometry)node.geometry=node.geometry.clone();});const center=new THREE.Box3().setFromObject(spoilerDebris).getCenter(new THREE.Vector3());for(const child of spoilerDebris.children)child.position.sub(center);spoilerDebris.visible=false;debris.add(spoilerDebris);}
     const flames=[],exhaustMouths=[];
     const pipes=kind==='muscle'?[-.70,.70]:kind==='wedge'?[.60]:[.61,.77];
     for(const x of pipes){
@@ -250,8 +253,8 @@ export function createCar(scene, initialBuild = resolveBuild()) {
     const ribbonMat=new THREE.MeshBasicMaterial({color:NOS_BLUE,side:THREE.DoubleSide,transparent:true,opacity:.65,depthWrite:false});
     for(const side of [-1,1])panel(ribbon,[[side*W,.53,-L*.86],[side*W*1.3,.80,-L-1.4],[side*W,.55,-L-2.8],[side*W*.8,.48,-L]],ribbonMat,false);
     chassis.updateMatrixWorld(true);const bodyInverse=chassis.matrixWorld.clone().invert(),deformables=[];
-    chassis.traverse(node=>{if(!node.isMesh||!node.geometry?.attributes.position||node.material?.blending===THREE.AdditiveBlending)return;const toBody=bodyInverse.clone().multiply(node.matrixWorld);deformables.push({mesh:node,base:node.geometry.attributes.position.array.slice(),toBody,toLocal:toBody.clone().invert()});});
-    model={content,chassis,paint,headlamp,tail,glow,shadow,flames,exhaustMouths,ribbon,wheels,spinGroups,shell,shellBase,deformables,bodyRevision:-1,bodyState:null,health:1};
+    chassis.traverse(node=>{if(node.isMesh){let ancestor=node;while(ancestor&&!node.userData.panel){if(ancestor.userData.panel)node.userData.panel=ancestor.userData.panel;ancestor=ancestor.parent;}}if(!node.isMesh||!node.geometry?.attributes.position||node.material?.blending===THREE.AdditiveBlending)return;const toBody=bodyInverse.clone().multiply(node.matrixWorld);deformables.push({mesh:node,base:node.geometry.attributes.position.array.slice(),toBody,toLocal:toBody.clone().invert()});});
+    model={content,chassis,spoilerDebris,paint,headlamp,tail,glow,shadow,flames,exhaustMouths,ribbon,wheels,spinGroups,shell,shellBase,deformables,bodyRevision:-1,bodyState:null,health:1};
   }
   assemble(initialBuild);
   return {
@@ -295,14 +298,15 @@ export function createCar(scene, initialBuild = resolveBuild()) {
           mesh.visible=!detached;
           for(let i=0;i<a.count;i++){
             damagePoint.set(part.base[i*3],part.base[i*3+1],part.base[i*3+2]).applyMatrix4(part.toBody);
-            bodyDisplacement(body,damagePoint.x,damagePoint.y,damagePoint.z,damageOffset);
+            bodyDisplacement(body,damagePoint.x,damagePoint.y,damagePoint.z,damageOffset,mesh.userData.panel);
             damagePoint.x+=damageOffset.x;damagePoint.y+=damageOffset.y;damagePoint.z+=damageOffset.z;damagePoint.applyMatrix4(part.toLocal);a.setXYZ(i,damagePoint.x,damagePoint.y,damagePoint.z);
           }
           a.needsUpdate=true;mesh.geometry.computeVertexNormals();mesh.geometry.computeBoundingSphere();
           const edge=mesh.children.find(n=>n.isLineSegments);if(edge){edge.geometry.dispose();edge.geometry=new THREE.EdgesGeometry(mesh.geometry,24);}
         }
       }
-      for(let i=0;i<loosePanels.length;i++){const body=state.detachedPanels?.[i],view=loosePanels[i];view.visible=!!body;if(body){view.position.set(body.x,body.y,body.z);view.rotation.set(body.rotation||0,body.heading||0,(body.rotation||0)*.35);view.scale.set(body.width||2,1,1);}}
+      if(m.spoilerDebris)m.spoilerDebris.visible=false;
+      for(let i=0;i<loosePanels.length;i++){const body=state.detachedPanels?.[i],view=loosePanels[i];view.visible=!!body&&body.panel!=='spoiler';if(body?.panel==='spoiler'&&m.spoilerDebris){m.spoilerDebris.visible=true;m.spoilerDebris.position.set(body.x,body.y,body.z);m.spoilerDebris.rotation.set(body.rotation||0,body.heading||0,(body.rotation||0)*.35);}if(body){view.position.set(body.x,body.y,body.z);view.rotation.set(body.rotation||0,body.heading||0,(body.rotation||0)*.35);view.scale.set(body.width||2,1,1);}}
       for(let i=0;i<looseWheels.length;i++){const body=state.detachedWheels?.[i],view=looseWheels[i];view.pivot.visible=!!body;if(body){view.pivot.position.set(body.x,body.y,body.z);view.pivot.rotation.set(0,body.heading||0,Math.min(.8,(body.age||0)*.03));view.pivot.scale.setScalar(body.radius||p.wheelRadius);view.spin.rotation.x=body.spin||0;}}
 
       m.glow.material.opacity=state.boosting?.26:.065;m.glow.material.color.set(state.boosting?NOS_BLUE:CYAN);

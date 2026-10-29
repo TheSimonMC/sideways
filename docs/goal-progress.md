@@ -1,8 +1,8 @@
 # SIDEWAYS – verbindliche Fortschrittsliste
 
-Stand: V17, Phase 0 und Phase 1 Teile A/B/C. Grundlage: unveränderte Kopie in `docs/goal.txt`.
+Stand: V18, Phase 0 und Phase 1 Teile A/B/C/D. Grundlage: unveränderte Kopie in `docs/goal.txt`.
 
-Status bezieht sich auf den gesamten Wortlaut eines Punktes. Teilweise bedeutet, dass wesentliche Teile noch fehlen. Nur Phase 0 ist abgeschlossen. Phase 2 beginnt erst nach den verbleibenden Grundlagen von Phase 1.
+Status bezieht sich auf den gesamten Wortlaut eines Punktes. Teilweise bedeutet, dass wesentliche Teile noch fehlen. Nur Phase 0 ist abgeschlossen. Die nächste Reifen-Grundlage aus Phase 2 wird benötigt, um die offenen Reifeneffekte von Phase 1 konsistent zu ergänzen. Phase 1 bleibt bis dahin ausdrücklich teilweise; Wetter hängt zusätzlich von Phase 7 ab.
 
 Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc282ea844a1b96dca`.
 
@@ -18,7 +18,7 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 1: REALISTISCHERE FAHRPHYSIK
 
-**teilweise erledigt** — V15 Teil A: Teileabhängige Lenkung, Reifen und Stabilisatoren statt freier Physikmodi/künstlicher Gierhilfe. V16 Teil B: gekoppelte Hang-/Kontaktkräfte, vier einzelne Federwege und Hangstart ohne falsche Aufschläge. V17 Teil C: echte FWD/RWD/AWD-Kraftpfade, gekaufte kompatible Umbauten, offene und gesperrte Achs-/Mitteldifferenziale, eigene AWD-Baugruppen mit Schlupfwärme, Schaden und Einzelreparatur. Traktionskontrolle, Rauch, räumlicher Differenzialsound, Kauf und Speichern folgen dem eingebauten Antrieb. Alle vier Serienautos bleiben RWD; eine gespeicherte V16-Vergleichsfahrt bleibt numerisch identisch. Noch offen: spezifischer Wheel Hop, Wetterkopplung, Reifenluftdruck/Flatspots, abstimmbare Aerodynamik und umfassendere Kalibrierung. Die Heightfield-Näherung und endliche Wellen-/Kupplungsbedingungen ersetzen kein vollständiges 6-DOF-/Gelenkwellenmodell. Nächster Teil: Phase 1D, Wheel Hop und Aero-Grundlagen; eigenes Reifendruck-/Karkassenschema in Phase 2 und Wetter in Phase 7 bleiben ausdrücklich offen.
+**teilweise erledigt** — V15: teileabhängige Lenkung, Reifen und Stabilisatoren statt freier Physikmodi/künstlicher Gierhilfe. V16: Hang-/Kontaktkräfte und einzelne Federwege. V17: FWD/RWD/AWD, Differenziale, thermische Arbeit, Schaden, Einzelreparatur und Persistenz. V18 Teil D: geschwindigkeitsabhängige Kräfte von Spoiler, Splitter und Diffusor, drei GT-Flügelstellungen sowie beschädigungsabhängiger Abtrieb. Ein aus tatsächlicher Reifenschlupfarbeit gespeistes Wheel-Hop-Modell verändert Radlasten und Kontakt; verstärkte Achsführungen reduzieren die Schwingung. Die vier Serienautos bleiben RWD. Vergleichsfahrten bleiben innerhalb dokumentierter kleiner Toleranzen; wegen der neuen Transienten wird keine numerische Identität behauptet. Noch offen: Reifendruck, Karkasse/Flatspots, Nässe/Wetter und breitere Kalibrierung. Heightfield-Chassis, endliche Antriebsbedingungen und der reduzierte Hop-Modus ersetzen keine vollständige 6-DOF-/Fahrwerkssimulation. Nächster Baustein ist die dafür erforderliche Reifen-Grundlage aus Phase 2A.
 
 - **P01.01 · teilweise erledigt** — Der Serienzustand eines Fahrzeugs soll ein nachvollziehbares, deutlich weniger arcade-lastiges Fahrverhalten haben. Serienfahrzeuge dürfen nicht ständig von selbst driften.
 - **P01.02 · teilweise erledigt** — Reifenkräfte mit sanftem Übergang zwischen Haftung und Rutschen; realistisches Untersteuern und Übersteuern.
@@ -51,7 +51,7 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 3: VERFORMUNG UND ABFALLENDE FAHRZEUGTEILE
 
-**teilweise erledigt** — body-damage.js verformt sieben lokale Zonen; physics.js löst Räder und zwei Stoßstangen als zeitlich begrenzte Trümmer. Türen, Hauben, Spiegel, Spoiler, Scheiben und montierbare Anbauteile besitzen noch keine separaten Befestigungen/Bruchzustände. Trümmer reagieren auf den Boden, nicht auf sämtliche Weltkollisionen. Erfordert eine modulare Modellhierarchie statt eines vollständigen Soft-Body-Neubaus.
+**teilweise erledigt** — body-damage.js enthält acht lokale Zonen einschließlich Spoilerbefestigung. Räder, beide Stoßstangen und der montierte Spoiler können sich lösen. Splitter-/Diffusormeshes folgen ihren Stoßstangen; der lose Spoiler verwendet die Form des eingebauten Teils, bleibt bis zu 24 Sekunden als Trümmer sichtbar und fehlt anschließend weiter am Auto. Fehlende Aero-Teile verlieren ihre Kräfte; Schaden und gezielte Reparatur sind gespeichert. Türen, Hauben, Spiegel, Scheiben und weitere Module benötigen noch eigene Befestigungen/Bruchzustände. Trümmer reagieren nur auf den Boden; ihre Masse wird beim Abreißen nicht dynamisch vom Chassis abgezogen. Keine vollständige Soft-Body-Simulation.
 
 - **P03.01 · teilweise erledigt** — BeamNG-inspirierte modulare Kollisionen, soweit in der Browser-Engine sinnvoll.
 - **P03.02 · teilweise erledigt** — Einzelteile: Türen, Motorhaube, Kofferraum, Stoßstangen, Lippe/Splitter, Seitenschweller, Spoiler, Diffusor, Kotflügel, Spiegel, Grill, Scheinwerfer, Rückleuchten, Auspuff, Scheiben, Felgen/Räder und Fahrwerksteile.
@@ -87,7 +87,7 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 - **P05.02 · offen** — Interieurteile: Lenkräder, Sportsitze, Schalensitze, Bezüge, Nähte, Farben, Dashboard-Dekore, Schaltknäufe, Handbremsen, Überrollkäfige, Gurte, Instrumente, Zusatzanzeigen und Ambientebeleuchtung.
 - **P05.03 · teilweise erledigt** — Scheibentönung mit einstellbarer Stärke und richtiger Lichtdurchlässigkeit; von außen bei passenden Bedingungen weiterhin hineinschauen können. Keine undurchsichtige schwarze Fläche als Ersatz für Glas.
 - **P05.04 · teilweise erledigt** — Leistungsupgrades: Motor/ECU, Turbo/Kompressor, Ansaugung, Auspuff, Kühler, Kupplung, Getriebe, Übersetzungen, Differentiale, Fahrwerk, Stabis, Achsgeometrie, Bremsen, Reifen und Aerodynamik.
-- **P05.05 · offen** — Optische und mechanische Teile an echte Befestigungspunkte knüpfen, sodass sie bei Schaden abfallen und in der Garage ausgebaut werden können.
+- **P05.05 · teilweise erledigt** — Optische und mechanische Teile an echte Befestigungspunkte knüpfen, sodass sie bei Schaden abfallen und in der Garage ausgebaut werden können.
 - **P05.06 · teilweise erledigt** — Upgrades haben echte Unterschiede und Nachteile: mehr Leistung bedeutet unter Umständen mehr Wärme/Stress; ein Rennfahrwerk kann auf Schlaglöchern schlechter sein; Drift-Reifen unterscheiden sich von Straßenreifen; Bremsen funktionieren je nach Temperatur anders.
 - **P05.07 · teilweise erledigt** — Kompatibilität mit dem jeweiligen Fahrzeug prüfen, damit Teile nicht falsch positioniert sind.
 
@@ -212,7 +212,7 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 16: FAHRZEUGBESITZ, ZUSTAND, INSPEKTION UND ZUSAMMENSPIEL
 
-**teilweise erledigt** — Zustände je Fahrzeug, Teilebesitz, Einzelreparaturen, Temperaturen und Diagnose sind gespeichert. Serien-/Tuningänderungen erhalten bereits Schäden. Montagezustände, Reifendruck, Licht-/Fenster-/Spoilerfolgen und Wetterkopplung fehlen und müssen dieselben Schema-/Reparaturpfade nutzen. Neuer Lauf repariert weiterhin bewusst gemäß früherem Nutzerauftrag; Straßenbergung erhält Schäden.
+**teilweise erledigt** — Zustände je Fahrzeug, Teilebesitz, Einzelreparaturen, Temperaturen und Diagnose sind gespeichert. Serien-/Tuningänderungen erhalten Schäden. V18 ergänzt die gespeicherte Spoilerbefestigung und ihre Aero-Folgen; die Garage zeigt den fehlenden Spoiler auch nach Neuladen. Reifendruck, frei bedienbarer Aus-/Einbau weiterer Teile, Licht-/Fensterfolgen und Wetterkopplung fehlen. Neuer Lauf repariert weiterhin bewusst gemäß früherem Nutzerauftrag; Straßenbergung erhält Schäden.
 
 - **P16.01 · teilweise erledigt** — Bauteilzustände, Reifen, Reparaturen, Tuning, aus- oder eingebaute Teile, Einstellungen und Fahrzeugzustand sollen bei vorhandener Speichermöglichkeit zuverlässig persistieren.
 - **P16.02 · teilweise erledigt** — Werkstatt ersetzt die tatsächlich defekten Baugruppen, statt immer einen unspezifischen Komplettschaden zu reparieren.
@@ -237,7 +237,7 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 18: TESTS UND ABSCHLUSSKRITERIEN
 
-**teilweise erledigt** — V15 prüft den bearbeiteten Teil mit tatsächlichem MotorLab-Solver, Kauf-/Speichertests und finaler Offline-HTML im Browser. Frühere V14-Nachweise sind ausdrücklich historisch. Die vollständigen 14 End-to-End-Szenarien bleiben bis zur Umsetzung ihrer Systeme offen; einzelne vorhandene Teilabläufe ersetzen keinen vollständigen Szenarionachweis.
+**teilweise erledigt** — V18 prüft den bearbeiteten Teil mit MotorLab, realen Geometriemodulen und drei Browserabläufen auf denselben Offline-HTML-Bytes. Spoilerverlust wird über Aufprall, fehlendes Modell, passende Trümmergeometrie, Aero-Verlust, Speichern und Einzelreparatur geprüft (P18.07). Das ersetzt keine Prüfung der noch fehlenden Türen, Cockpits oder Garagenübergänge. Frühere Release-Berichte sind historisch; nur qa/release-v18.json benennt die aktuellen Nachweise. Die vollständigen End-to-End-Szenarien bleiben bis zur Umsetzung ihrer Systeme offen oder teilweise.
 
 - **P18.01 · teilweise erledigt** — Nach jeder Phase die vorhandenen Funktionen prüfen und sicherstellen, dass das Spiel spielbar bleibt.
 - **P18.02 · teilweise erledigt** — Konkrete End-to-End-Szenarien testen:
@@ -245,7 +245,7 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 - **P18.04 · offen** — Langer Burnout erhitzt einen Reifen; Verschleiß, Gripverlust und schließlich Blowout können auftreten; Fahrverhalten reagiert darauf.
 - **P18.05 · teilweise erledigt** — Frontalaufprall beschädigt Kühler; Motortemperatur steigt; Reparatur des Kühlers behebt Ursache, ein bereits beschädigter Motor braucht ggf. gesonderte Reparatur.
 - **P18.06 · teilweise erledigt** — Kupplung verschleißt durch Missbrauch, rutscht und kann ausfallen. Heiße Bremsen verzögern schlechter.
-- **P18.07 · offen** — Tür oder Spoiler fällt durch Unfall ab und fehlt anschließend sichtbar am Fahrzeug.
+- **P18.07 · erledigt** — Tür oder Spoiler fällt durch Unfall ab und fehlt anschließend sichtbar am Fahrzeug.
 - **P18.08 · offen** — Cockpit jedes spielbaren Autos zeigt korrekte RPM/Geschwindigkeit; Radio-Map und Lenkrad-/Fahreranimation sind nutzbar.
 - **P18.09 · offen** — Ausgeblendetes virtuelles Lenkrad beeinträchtigt die Fahrzeugsteuerung nicht.
 - **P18.10 · offen** — Die Garage zeigt den Motor, dessen Riemen mit der Drehzahl laufen; entfernte Komponenten bleiben entfernt und haben gegebenenfalls Folgen.
@@ -259,8 +259,12 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Nächster abgeschlossener Arbeitsschritt
 
-Phase 1 Teil B: Achslasten/Steigungskräfte und Fahrwerk über definierte Wellen-/Bordsteinprofile prüfen, Antriebslayout-Daten vorbereiten und FWD/AWD ohne Umdeutung der bestehenden RWD-Fahrzeuge ergänzen. Reifenluftdruck, individuelle Karkasse und Blowout werden anschließend mit Phase 2 integriert. Keine Phase wird wegen eines Release-Tags als vollständig betrachtet.
+Phase 2A: vier unabhängige Reifen mit Druck, Karkassenzustand, Flatspots und überlastabhängigem Blowout, verbunden mit Kontaktkräften, sichtbarem Zustand, Geräusch, Reparatur und Save-Migration. Diese gemeinsame Datenbasis ist Voraussetzung für die offenen Reifeneffekte von Phase 1. Anschließend deren Fahrverhalten erneut kalibrieren. Wetter/Nässe benötigt zusätzlich Phase 7. Phase 1 und spätere Phasen werden durch V18 nicht als vollständig betrachtet.
 
 ## V16 – bearbeitete Teilziele
 
 Phase 1B vertieft P01.01–P01.03, P01.06–P01.07 und P01.11. Prüfungen betreffen zusätzlich P17.02/P17.07 und P18.01/P18.17. Deren vollständiger Umfang bleibt teilweise erledigt. Neue Details und technische Grenzen: [Phasenbericht](phase-1b-report.md). Die 156 ursprünglichen Anforderungsformulierungen bleiben erhalten.
+
+## V18 – bearbeitete Teilziele
+
+Phase 1D vertieft P01.03/P01.04/P01.06–P01.08. Die dafür notwendige Spoilerbefestigung ergänzt P03.02–P03.04/P03.07, Teileauswahl P05.04–P05.07 und gespeicherte Aero-Schäden P16.01/P16.02/P16.06. P18.07 ist für den ausdrücklich alternativ geforderten Spoiler nachgewiesen; Türen bleiben offen. Alle übrigen Vollumfänge behalten ihren Status. Details: [Phasenbericht](phase-1d-report.md). Alle 156 Originalformulierungen bleiben unverändert.

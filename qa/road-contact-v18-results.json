@@ -1,0 +1,160 @@
+{
+  "version": 18,
+  "status": "passed",
+  "checks": [
+    "Slope contact preserves work reciprocity and static load geometry for combined grades and steering.",
+    "Every original car resets onto a hill without false wheel impact; brakes hold, release allows rollback.",
+    "Hills change acceleration and stopping distance; a crossfall loads the downhill side without sideways creep.",
+    "Neutral downhill motion cannot generate more kinetic energy than the gravitational potential it loses.",
+    "Terrain below airborne wheels causes no horizontal force or suspension alignment torque.",
+    "One-sided bumps reach front and rear wheels in order and feed actual suspension motion into audio.",
+    "Existing Skyline Hills road geometry drives the same slope forces and remains stable through recovery."
+  ],
+  "fixtures": {
+    "Slope contact preserves work reciprocity and static load geometry for combined grades and steering.": {
+      "combinations": 27
+    },
+    "Every original car resets onto a hill without false wheel impact; brakes hold, release allows rollback.": [
+      {
+        "car": "hachi",
+        "holdDistance": -0.000039938435888654194,
+        "rollbackDistance": -1.6772750684971913,
+        "rollbackSpeed": -1.801301120265072
+      },
+      {
+        "car": "atlas",
+        "holdDistance": -0.00005585616699179418,
+        "rollbackDistance": -1.7020420835994658,
+        "rollbackSpeed": -1.8215864350049356
+      },
+      {
+        "car": "kitsune",
+        "holdDistance": -0.000019748187676518215,
+        "rollbackDistance": -1.6655590607917943,
+        "rollbackSpeed": -1.7922866691140686
+      },
+      {
+        "car": "vector",
+        "holdDistance": -0.0000449515602315401,
+        "rollbackDistance": -1.6869854031559497,
+        "rollbackSpeed": -1.8096006181968918
+      }
+    ],
+    "Hills change acceleration and stopping distance; a crossfall loads the downhill side without sideways creep.": {
+      "acceleration": [
+        {
+          "grade": -0.12,
+          "speed": 24.926883373114403
+        },
+        {
+          "grade": 0,
+          "speed": 22.30476940224689
+        },
+        {
+          "grade": 0.12,
+          "speed": 17.772294074792267
+        }
+      ],
+      "stopping": [
+        {
+          "grade": -0.12,
+          "distance": 33.30464535469055,
+          "time": 2.64166666666666
+        },
+        {
+          "grade": 0,
+          "distance": 29.415459417207693,
+          "time": 2.3333333333333277
+        },
+        {
+          "grade": 0.12,
+          "distance": 27.038404609749772,
+          "time": 2.1416666666666617
+        }
+      ],
+      "crossfall": {
+        "displacement": 0.000003091987939096244,
+        "leftLoad": 3043.6441069481757,
+        "rightLoad": 2427.3691465648235
+      },
+      "slidingSpeed": -2.800457215969057
+    },
+    "Neutral downhill motion cannot generate more kinetic energy than the gravitational potential it loses.": {
+      "kineticJ": 9353.641878846915,
+      "releasedPotentialJ": 10632.155316133129,
+      "limit": "Height-field chassis approximation; body spring energy and road losses excluded from the upper bound."
+    },
+    "Terrain below airborne wheels causes no horizontal force or suspension alignment torque.": {
+      "flat": [
+        -0.0005667852230931691,
+        19.970409110525697,
+        0.2,
+        0.0005140644399928155,
+        0
+      ],
+      "overSlope": [
+        -0.0005667852230931691,
+        19.970409110525697,
+        0.2,
+        0.0005140644399928155,
+        0
+      ]
+    },
+    "One-sided bumps reach front and rear wheels in order and feed actual suspension motion into audio.": {
+      "smoothBumps": [
+        {
+          "suspension": "street",
+          "firstBumpContacts": [
+            0.5083333333333333,
+            null,
+            0.725,
+            null
+          ],
+          "maxTravel": 0.06995174206142807,
+          "maxRoll": 0.02218258243891689,
+          "maxVelocity": 2.2505653996270407
+        },
+        {
+          "suspension": "race",
+          "firstBumpContacts": [
+            0.5083333333333333,
+            null,
+            0.725,
+            null
+          ],
+          "maxTravel": 0.06440409077782061,
+          "maxRoll": 0.02701061016161577,
+          "maxVelocity": 2.312786105942865
+        }
+      ],
+      "curbImpacts": [
+        1,
+        0,
+        1,
+        0
+      ]
+    },
+    "Existing Skyline Hills road geometry drives the same slope forces and remains stable through recovery.": {
+      "road": "SUNSET SWITCHBACKS",
+      "start": {
+        "x": -1771.1038431835632,
+        "z": -1270.822737931172,
+        "grade": 0.07017262895054717
+      },
+      "reset": {
+        "x": -1767.3783387987303,
+        "z": -1271.2726527522432,
+        "heading": -2.7352727058978825
+      }
+    }
+  },
+  "sourceSHA256": {
+    "dist/physics.js": "1a2264ee66e80873d48fe90bfecf9481f449a237bedf6f34335bffdfaecde0ca",
+    "dist/road-contact.js": "0b3d66e3ea2b4fb50618c84a39a1e73e44d1fd9af4896f9e33d9f95d24bacf89",
+    "dist/region.js": "6d6bdfebd00a2692a4cd375ba30fbe6625b03377c8767481ebf537730c75bd64"
+  },
+  "limits": [
+    "Synthetic keyboard-like inputs and one sampled existing hill segment; no claim of driving every road or a full 6-DOF body solver.",
+    "Rain and tyre pressure remain unfinished; aero and wheel-hop approximation are covered by the separate V18 tests."
+  ]
+}

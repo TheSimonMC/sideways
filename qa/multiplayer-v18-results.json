@@ -1,0 +1,55 @@
+{
+  "version": 18,
+  "status": "passed",
+  "checks": [
+    "A real 36-car, six-police world reaches every member of a four-player binary room without the legacy JSON kick",
+    "A host startup failure reaches guests with the original stage and persists through menu teardown without leaking relay credentials",
+    "A guest startup failure removes only that driver and gives the host a specific player-left reason",
+    "An intentional host exit and an unexpected channel close produce different retained reasons",
+    "A heartbeat timeout is reported as a timeout on both ends instead of an intentional host exit",
+    "A synchronous data-channel send failure includes packet size and reaches the affected guest without ending other drivers",
+    "A synchronous PeerJS error event during send is counted as failure and retains its concrete size reason",
+    "Old JSON clients and incompatible metadata receive an update reason before a bounded rejection cleanup",
+    "Fresh connection attempts clear old errors, while an obsolete startup catch cannot replace a completed departure reason",
+    "Packet limits count UTF-8 bytes, and oversized nonessential frames drop without disconnecting a healthy room",
+    "A peer that cannot receive the departure reason is forcibly released after the one-second grace period"
+  ],
+  "fixtures": {
+    "city": {
+      "trafficCars": 36,
+      "policeCars": 6,
+      "players": 4,
+      "jsonMeasureBytes": 21607,
+      "transport": "binary"
+    },
+    "startFailure": {
+      "code": "HOST_START_FAILED",
+      "stage": "shaders",
+      "detail": "Error: Shader compile failed; username=[redacted] password=[redacted] token=[redacted] [address]",
+      "persistent": true
+    },
+    "sendFailure": "frame packet: 1017 UTF-8 bytes; transport: binary. Error: Data channel write failed"
+  },
+  "verificationLimit": "Protocol and lifecycle tests use an in-memory PeerJS-compatible transport that records serialization and enforces the shipped JSON byte cap. Actual vendor encoding/chunking is tested in peerjs-codec-v9-check.mjs. These checks do not establish signaling availability or internet ICE connectivity.",
+  "modules": {
+    "dist/multiplayer.js": "049670c76ef89fe228d2bf99f45116a018849b88d8ec4f27dfb02a3bfed42302",
+    "dist/lobby-panel.js": "040d8dcef7beb4b391cbc7b9ee19c30964b5f344757b365c3ed2c53085b9ba49",
+    "qa/network-v9-harness.mjs": "0352e72577d59fbaaeb3ae4851e9604737428a154f7ce9179cb1cc79ff41332b"
+  },
+  "verifiedInRelease": 18,
+  "suiteSource": "qa/multiplayer-v9-check.mjs",
+  "suiteSHA256": "edb84e9ff870f30d52e911b95f246d985ae2094c98e03b7d1fad7de3b45847dd",
+  "sourceSHA256": {
+    "dist/drivetrain.js": "9927f12d0ab5de0ad2de6f59b5f5f21cfb1ec0ce6c1efc81ca253ded1efb16d3",
+    "dist/physics.js": "1a2264ee66e80873d48fe90bfecf9481f449a237bedf6f34335bffdfaecde0ca",
+    "dist/mechanical.js": "0de7bff4f8ae0f7c30a94c6bbbc3b85d3a2103a0f1b9d9aea92894f18c380bfa",
+    "dist/car.js": "6029f68b4284f7a5bdd4947c6a37d80380f5e5fd7a2ecd176a38f49f4ab52e05",
+    "dist/catalog.js": "c5da9ed3102fe56916bf85badb4a9c355de106cbcf29dda37f92f6d551425065",
+    "dist/career.js": "e609ca9085aba7ced8eca015b637bcbfb7b9b6f594d6c04bfbf4dbad80de1e67",
+    "dist/garage.js": "433365d6d28b2f8444982b003cdb5d2d5adc6f89f93e84caa0057585c3691f37",
+    "dist/audio.js": "6ad87c53a39ba0394b9c59350afdca001c236729460a291c1bcd952df4a0dab6",
+    "dist/audio-anchors.js": "ed65635fad9d265e2ab6cd964489bcd703b28397999fd16d4e609fd6fb7a15e5",
+    "dist/main.js": "ed5336708a26858d9ebba3818915f99de4972d75984a63db46b6c7a1f05e502a",
+    "dist/multiplayer.js": "049670c76ef89fe228d2bf99f45116a018849b88d8ec4f27dfb02a3bfed42302"
+  }
+}

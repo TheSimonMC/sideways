@@ -1,9 +1,10 @@
+import {wingAngleDegrees} from './aerodynamics.js';
 import * as THREE from './vendor/three.module.js';
 
 /** Body-specific mount points and shared authored components, all under the
  * deforming chassis. Cosmetic choices deliberately leave the drivetrain alone. */
 export function addCosmetics({chassis,selection:s,q,L,W,paint,dark,graphite,chrome,accent,box,panel,beam}){
- const part=key=>{const g=new THREE.Group();g.name='cosmetic-'+key+'-'+s[key];g.userData.cosmetic=key;chassis.add(g);return g;};
+ const part=key=>{const g=new THREE.Group();g.name='cosmetic-'+key+'-'+s[key];g.userData.cosmetic=key;g.userData.panel=key==='spoiler'?'spoiler':key==='frontBumper'?'front':key==='rearBumper'?'rear':undefined;chassis.add(g);return g;};
  const top=z=>{const r=q.rings;let i=0;while(i<r.length-2&&r[i+1][0]*L<z)i++;const a=r[i],b=r[i+1],t=Math.max(0,Math.min(1,(z-a[0]*L)/((b[0]-a[0])*L)));return a[2]+(b[2]-a[2])*t+.018;};
  if(s.hood!=='stock'){
   const g=part('hood'),rear=q.screenFront+.04,front=L*.88,mid=(rear+front)/2,mat=s.hood==='carbon'?graphite:paint;
@@ -23,7 +24,7 @@ export function addCosmetics({chassis,selection:s,q,L,W,paint,dark,graphite,chro
  if(s.spoiler!=='stock'&&s.spoiler!=='none'){
   const g=part('spoiler'),z=-L*.87,y=q.rings[0][2]+.05;
   if(s.spoiler==='ducktail'){panel(g,[[-W*.94,y,z+.17],[W*.94,y,z+.17],[W*.98,y+.23,z-.12],[-W*.98,y+.23,z-.12]],paint);panel(g,[[-W*.98,y+.23,z-.12],[W*.98,y+.23,z-.12],[W*.94,y-.02,z-.12],[-W*.94,y-.02,z-.12]],paint);}
-  else{for(const side of[-1,1]){panel(g,[[side*W*.60,y,z+.12],[side*W*.60,y+.64,z-.04],[side*W*.60,y+.64,z-.20],[side*W*.60,y,z-.08]],graphite);panel(g,[[side*W*1.10,y+.50,z-.38],[side*W*1.10,y+.84,z-.32],[side*W*1.10,y+.80,z+.20],[side*W*1.10,y+.57,z+.16]],paint);}panel(g,[[-W*1.10,y+.70,z-.35],[W*1.10,y+.70,z-.35],[W*1.10,y+.64,z+.18],[-W*1.10,y+.64,z+.18]],graphite);box(g,0,y+.72,z-.31,W*2.08,.025,.045,accent);}
+  else{for(const side of[-1,1]){panel(g,[[side*W*.60,y,z+.12],[side*W*.60,y+.64,z-.04],[side*W*.60,y+.64,z-.20],[side*W*.60,y,z-.08]],graphite);panel(g,[[side*W*1.10,y+.50,z-.38],[side*W*1.10,y+.84,z-.32],[side*W*1.10,y+.80,z+.20],[side*W*1.10,y+.57,z+.16]],paint);}const foil=new THREE.Group();foil.name='adjustable-wing-foil';foil.position.set(0,y+.67,z-.085);foil.rotation.x=(wingAngleDegrees(s.wingAngle)-6)*Math.PI/180;g.add(foil);panel(foil,[[-W*1.10,.03,-.265],[W*1.10,.03,-.265],[W*1.10,-.03,.265],[-W*1.10,-.03,.265]],graphite);box(foil,0,.05,-.225,W*2.08,.025,.045,accent);}
  }
  if(s.sideSkirts!=='stock'){const g=part('sideSkirts');for(const side of[-1,1]){const x=side*W*1.06;panel(g,[[x,.41,-.96],[x,.39,.99],[side*W*1.14,.19,.90],[side*W*1.16,.19,-.98]],s.sideSkirts==='street'?paint:graphite);box(g,side*W*1.14,.20,-.02,.035,.025,1.8,s.sideSkirts==='race'?accent:dark);if(s.sideSkirts==='race')panel(g,[[x,.23,-1.02],[side*W*1.17,.23,-1.02],[side*W*1.17,.48,-.87],[x,.35,-.87]],graphite);}}
  if(s.frontBumper!=='stock'){const g=part('frontBumper'),z=L*.99;for(const side of[-1,1]){box(g,side*W*.84,.44,z,.31,.27,.21,paint,true);box(g,side*W*.84,.44,z+.114,.19,.12,.018,dark);}

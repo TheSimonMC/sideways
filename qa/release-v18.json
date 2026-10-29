@@ -1,0 +1,170 @@
+{
+  "game": "SIDEWAYS",
+  "version": 18,
+  "date": "2026-10-29",
+  "status": "verified-with-documented-limits",
+  "base": "Published V17, commit f57665cb17f8e84387bb05a5ba6b8cef8793b64c. Only listed reports are current; historical reports remain intact. Regression wrapper adapts the 30-category count, protocol 14 and intentionally functional aero/mass effects of the three formerly visual categories.",
+  "scope": "Phase 1D aero tuning, damage-aware attachment forces and bounded wheel hop. Phase 0 complete; Phase 1 partial. Next Phase 2A tyre foundations required for remaining Phase-1 tyre behavior.",
+  "delivery": {
+    "entry": "SIDEWAYS.html",
+    "separateFile": "SIDEWAYS-v18.html",
+    "htmlBytes": 10571291,
+    "htmlSha256": "a30f80181cf5e610e509c2a71f2c8590b0bbdbba5d3e8f1dc69e8beeacc5573b",
+    "offlineSinglePlayer": true,
+    "externalRuntimeRequestsDuringOfflineTest": 0,
+    "publishedToSites": false
+  },
+  "currentFunctionalSuites": [
+    {
+      "file": "qa/aero-hop-browser-v18-results.json",
+      "status": "passed",
+      "groups": 3,
+      "sha256": "c1a4f3c2b667bc04e51033c38279d0c4d37415256684470284e05b213e613a9f"
+    },
+    {
+      "file": "qa/aero-hop-v18-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "c15273e5cca99d913cd99c58e9bdf6beeb59c2370a2ea6a0d8c7fd343f982422"
+    },
+    {
+      "file": "qa/archipelago-v18-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "9f98dc25383a14a0903ae3e1e410986ccacc5038012dba095cf9ee2ae79515bc"
+    },
+    {
+      "file": "qa/audio-v18-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "ee110dc03a6b722763c2737bdfb2b93c9d815316ac93749c28d18ef9eb187184"
+    },
+    {
+      "file": "qa/chassis-v18-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "42e07c441874ac7591f84557166c399cd85d3ac82d03d345471d4669ba3b647c"
+    },
+    {
+      "file": "qa/cosmetics-v18-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "460f08c57840ecf1e8d7d2a25bcb9fc9411eb13558788cb823f02514c667df2e"
+    },
+    {
+      "file": "qa/damage-v18-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "c8ef9e86c138d4c65b69156e14585f3850621d60d4fcc55edc0ca2d4a6585c9b"
+    },
+    {
+      "file": "qa/drivetrain-browser-v18-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "21df80bba3e2e7e41611c5c9318cce6dbc601e9b18bc5e9ec940c19720714439"
+    },
+    {
+      "file": "qa/drivetrain-v18-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "f3639af13d4d24c10ba110970f62f317832eabbb0ed038586cb9e5f96227e0f6"
+    },
+    {
+      "file": "qa/goal-coverage-v18-results.json",
+      "status": "passed",
+      "groups": 2,
+      "sha256": "80d8251276c5d8ba96e3ea02c2cf18c6523827a5723d28571552679b7096dae9"
+    },
+    {
+      "file": "qa/input-taps-v18-results.json",
+      "status": "passed",
+      "groups": 11,
+      "sha256": "740d3d944ab2439b793027e98c6c3b8808abdc54b3ba9e446c08c9eeb51f9a23"
+    },
+    {
+      "file": "qa/modular-v18-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "88df9e9aab367ea1f13027fadf4913f235e807b85b6e71a39adb764f2237376c"
+    },
+    {
+      "file": "qa/multiplayer-v18-results.json",
+      "status": "passed",
+      "groups": 11,
+      "sha256": "2eb9bdad709227af82f860272f99940aab5e44456763c45492cf6616ec06b305"
+    },
+    {
+      "file": "qa/navigation-main-v18-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "b4c1f76bc7734d831f2f2a92eb1f4aea4827ba5de0e584f4c2d04b1160d3cd23"
+    },
+    {
+      "file": "qa/physics-v18-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "5382b09bb96118f78aac5d5482becaec71185c9a463c74fac1735cb3300e0d1e"
+    },
+    {
+      "file": "qa/police-v18-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "cc2643280f33d3a47ac334989942825ff7bec535a0365cd2a1b050a08e02e287"
+    },
+    {
+      "file": "qa/race-v18-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "29fd8275e95a640ff67a12f99f077962d6ce110c83c7a5be55d1db27e25d426f"
+    },
+    {
+      "file": "qa/restart-v18-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "6e7a06dc456f7de279f41784cb56fbab03a1693d3740b8d3e7cd4bbc4b9a4e90"
+    },
+    {
+      "file": "qa/road-contact-v18-results.json",
+      "status": "passed",
+      "groups": 7,
+      "sha256": "f525fa97cd3705358e706d9cf94a50ad9f7c6df51417fa028ab69e5605ea1494"
+    },
+    {
+      "file": "qa/standalone-browser-v18-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "70472d14e0abd038ecc9022a1cc5b945425d312983e4960a8793f659d88fcd29"
+    },
+    {
+      "file": "qa/standalone-v18-results.json",
+      "status": "passed",
+      "groups": 0,
+      "sha256": "686f5656b0dea48fc55268ed5efd9f6764ad2372359b890d22a95d52dea2de82"
+    },
+    {
+      "file": "qa/thermal-v18-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "72635db6960d0048a95cca2e3a190b68e320390042abcee74c5fa987bf12fc1c"
+    }
+  ],
+  "performanceMeasurement": {
+    "file": "qa/chassis-performance-v18-results.json",
+    "status": "measured",
+    "sha256": "c0e3af5e1902a710c102cb7d3ff05fecd8ba08727ffaa79d76e411af37b3ba78"
+  },
+  "review": {
+    "file": "qa/review-v18.json",
+    "sha256": "8a78c4c62943e0247966f07c1dc4504b7b04713f6d4a9c34efd21855051df174"
+  },
+  "limits": [
+    "Synthetic native simulation and software-rendered Chromium; no physical wheel/gamepad, listening or live cross-network multiplayer test.",
+    "Wheel hop is a reduced slip-work-limited mode, not a full unsprung-mass/linkage simulation or globally energy-conserving 6-DOF model.",
+    "Aero calibration is fictional. Installed mass affects the build, but mass of detached pieces is not dynamically removed. Debris collides only with terrain.",
+    "CPU timing excludes full world, GPU, AI, audio and frame scheduling; no FPS guarantee.",
+    "Heightfield chassis; no free rollover/multi-level road support. Not every road metre manually driven.",
+    "Pressure, carcass damage, flatspots/blowout, weather and broader calibration remain open. Full 156-item checklist preserved.",
+    "SDK unchanged; prior replay-fixture discrepancy remains documented in qa/sdk-v12-baseline.json.",
+    "First standard browser screenshot attempt terminated; complete rerun passed on identical HTML bytes."
+  ]
+}

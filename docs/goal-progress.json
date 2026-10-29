@@ -1,7 +1,7 @@
 {
   "source": "docs/goal.txt",
   "sourceSHA256": "4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc282ea844a1b96dca",
-  "version": 17,
+  "version": 18,
   "requirements": [
     {
       "id": "P00.01",
@@ -318,7 +318,7 @@
     {
       "id": "P05.05",
       "phase": 5,
-      "status": "offen",
+      "status": "teilweise erledigt",
       "requirement": "Optische und mechanische Teile an echte Befestigungspunkte knüpfen, sodass sie bei Schaden abfallen und in der Garage ausgebaut werden können."
     },
     {
@@ -876,7 +876,7 @@
     {
       "id": "P18.07",
       "phase": 18,
-      "status": "offen",
+      "status": "erledigt",
       "requirement": "Tür oder Spoiler fällt durch Unfall ab und fehlt anschließend sichtbar am Fahrzeug."
     },
     {
@@ -942,13 +942,13 @@
   ],
   "currentIncrement": {
     "phase": 1,
-    "part": "C",
+    "part": "D",
     "status": "teilweise erledigt",
     "implemented": [
-      "FWD/RWD/AWD mit endlichen Wellen-, Kupplungs- und Differenzialimpulsen",
-      "Kompatible bezahlte Umbauten, eigene AWD-Baugruppen, Wärme, Schaden und Einzelreparatur",
-      "Antriebsabhängige Traktionskontrolle, Vierrad-Effekte, Audio-Anker und Save-Migration"
+      "Teileabhängiger Abtrieb/Luftwiderstand, drei GT-Flügelwinkel und gespeicherte Spoilerbefestigung mit sichtbarem Abreißen/Einzelreparatur",
+      "Durch reale Schlupfarbeit begrenzter Wheel-Hop-Modus mit Radlaständerungen; verstärkte Achsführungen dämpfen ihn",
+      "30 kompatible Garagenslots, Kauf, Masse, Migration und bestehende Schäden bleiben konsistent"
     ],
-    "next": "Phase 1D: Wheel Hop und abstimmbare Aero-Grundlagen; Reifendruck/Karkasse in Phase 2, Wetterkopplung in Phase 7 bleiben offen"
+    "next": "Phase 2A: Druck/Karkasse/Flatspots/Blowout als Voraussetzung für offene Phase-1-Reifeneffekte. Phase 1 bleibt teilweise; Wetterkopplung benötigt Phase 7."
   }
 }

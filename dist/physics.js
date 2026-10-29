@@ -1,4 +1,6 @@
 import {steeringDemand,tyreGrip} from './chassis-setup.js';
+import {aerodynamicForces} from './aerodynamics.js';
+import {WheelHop} from './wheel-hop.js';
 import {Drivetrain} from './drivetrain.js';
 import {roadPlane,contactFrame} from './road-contact.js';
 /* MotorLab owns the crank and combustion. This solver exchanges finite impulses
@@ -25,7 +27,7 @@ export class CarPhysics {
   const old=this.state,options=build.physics;if(this.condition&&old)this.condition.boost=old.boost;
   this.condition=this._conditions.get(build.vehicle.id)||createVehicleCondition(build);this._conditions.set(build.vehicle.id,this.condition);
   if(this.engine)void this.engine.dispose();
-  this.build=build;this._drive=new Drivetrain(options);
+  this.build=build;this._drive=new Drivetrain(options);this._hop=new WheelHop(build);
   this._mechanics=new MechanicalSystem(build,this.condition,event=>{this._mechanicalEvents.push(event);if(this._mechanicalEvents.length>64)this._mechanicalEvents.shift();});
   for(const key of ['mass','inertia','wheelRadius','wheelInertia','halfTrack','frontAxle','rearAxle','cgHeight','finalDrive','clutchCapacity','brakeTorque','brakeBias','muMultiplier','springRate','damperRate','antiRollRate','rideHeight','powerLock','coastLock','boostTarget','redlineRpm'])this[key]=options[key];
   this.suspensionTravel=options.suspensionTravel??.145;this.gears=[...options.gears];
@@ -55,7 +57,7 @@ export class CarPhysics {
   // synchronously before returning the cleanup promise.
   if(this.engine.getTiming().clock!=='manual')void this.engine.disconnectAudio();
   this.engine.load(this._warmState);this.engineState=this.engine.getState();
-  this._omega=this.engineState.omega;this._wheelOmega=[0,0,0,0];this._drive.reset(this._wheelOmega);this._fuelMeter=this.engineState.totals?.fuelInjected??0;this._heatMeter={wall:this.engineState.totals?.wallHeat??0,friction:this.engineState.totals?.frictionWork??0,load:this.engineState.totals?.loadWork??0};
+  this._omega=this.engineState.omega;this._wheelOmega=[0,0,0,0];this._drive.reset(this._wheelOmega);this._hop.reset();this._fuelMeter=this.engineState.totals?.fuelInjected??0;this._heatMeter={wall:this.engineState.totals?.wallHeat??0,friction:this.engineState.totals?.frictionWork??0,load:this.engineState.totals?.loadWork??0};
   if(this.condition.engineFault||this.condition.fuelLitres<=0){this.engine.stop();this.engine.applyShaftImpulse(-this._omega*this.engineState.config.inertia);this.engineState=this.engine.getState();this._omega=0;}
   this._shift=this._reverseHold=this._shiftMessageTime=0;
   this._shiftUpHeld=this._shiftDownHeld=false;this._accelLong=this._accelLat=0;
@@ -74,7 +76,7 @@ export class CarPhysics {
    engineRunning:!this._stalled,engineStalled:this._stalled,starterActive:false,clutchSlipRPM:0,inputShaftRpm:0,clutchTemperature:this._clutchTemp,
    wheelOmegas:[0,0,0,0],wheelOmega:[0,0,0,0],wheelSpins:[0,0,0,0],wheelSteers:[0,0,0,0],wheelSlip:[0,0,0,0],wheelLoads:[...this._staticLoads],brakeTemps:this._brakeTemps,tyreTemps:this._tyreTemps,
    brakePressure:[0,0,0,0],absActive:false,burnout:false,burnoutIntensity:0,halfTrack:this.halfTrack,rearAxle:this.rearAxle,frontAxle:this.frontAxle,wheelRadius:this.wheelRadius,
-   driveLayout:this.build.physics.driveLayout,drivenWheels:this._drive.driven,axleTorques:[0,0],centerSlipRPM:0,frontDifferentialLock:0,centerDifferentialLock:0,accelerationLong:0,accelerationLat:0,diffSlipRPM:0,diffTorque:0,diffPower:0,
+   aero:{front:0,rear:0,downforce:0,drag:0,pitchMoment:0},wheelHop:this._hop.wheels,driveLayout:this.build.physics.driveLayout,drivenWheels:this._drive.driven,axleTorques:[0,0],centerSlipRPM:0,frontDifferentialLock:0,centerDifferentialLock:0,accelerationLong:0,accelerationLat:0,diffSlipRPM:0,diffTorque:0,diffPower:0,
    fuelFlowLph:0,fuelStarved:this.condition.fuelLitres<=0,overrev:0,damageMessage:'',bodyScrape:0,scrapeLoads:[0,0,0,0],detachedWheels:[],detachedPanels:[],
    suspension:this._staticLoads.map((load,i)=>({compression:load/this.springRate,travel:0,load,normalLoad:load*plane.normalScale,groundHeight:samples[i].height,contact:true,wheelY:samples[i].height+this.wheelRadius,velocity:0,impactSpeed:0,impactCount:0})),
    wheelAudio:this._staticLoads.map(load=>({surface:'asphalt',roughness:.001,contact:true,load,longitudinalSpeed:0,lateralSpeed:0,slipSpeed:0,slipRatio:0,wheelSpeed:0,tyrePower:0,brakePower:0,suspensionVelocity:0,suspensionTravel:0,impactSpeed:0,impactCount:0}))});
@@ -172,10 +174,10 @@ export class CarPhysics {
  }
  _detachPanel(panel,contact){
   const s=this.state,front=panel==='front',z=(front?1:-1)*this.build.vehicle.model.length*.48,sn=Math.sin(s.heading),cs=Math.cos(s.heading),normal=contact.normal||{x:0,z:0};
-  s.detachedPanels.push({id:++this._debrisId,panel,x:s.x+z*sn,z:s.z+z*cs,y:(s.bodyHeight||0)+.35,vx:s.vx+normal.x*2,vz:s.vz+normal.z*2,vy:1.2,heading:s.heading,rotation:0,spin:(front?1:-1)*(1+contact.closingSpeed*.1),age:0,width:this.build.vehicle.model.width*.96});
+  s.detachedPanels.push({id:++this._debrisId,panel,x:s.x+z*sn,z:s.z+z*cs,y:(s.bodyHeight||0)+(panel==='spoiler'?1.1:.35),floorOffset:panel==='spoiler'?.4:.1,vx:s.vx+normal.x*2,vz:s.vz+normal.z*2,vy:1.2,heading:s.heading,rotation:0,spin:(front?1:-1)*(1+contact.closingSpeed*.1),age:0,width:this.build.vehicle.model.width*.96});
  }
  _updateDebris(dt){
-  for(const panel of this.state.detachedPanels){panel.age+=dt;panel.vy-=G*dt;panel.x+=panel.vx*dt;panel.z+=panel.vz*dt;panel.y+=panel.vy*dt;panel.rotation+=panel.spin*dt;const floor=this._ground(panel.x,panel.z).height+.10;if(panel.y<floor){panel.y=floor;panel.vy=Math.abs(panel.vy)>1?-panel.vy*.18:0;panel.vx*=Math.exp(-dt*3);panel.vz*=Math.exp(-dt*3);panel.spin*=Math.exp(-dt*4);}}
+  for(const panel of this.state.detachedPanels){panel.age+=dt;panel.vy-=G*dt;panel.x+=panel.vx*dt;panel.z+=panel.vz*dt;panel.y+=panel.vy*dt;panel.rotation+=panel.spin*dt;const floor=this._ground(panel.x,panel.z).height+(panel.floorOffset??.10);if(panel.y<floor){panel.y=floor;panel.vy=Math.abs(panel.vy)>1?-panel.vy*.18:0;panel.vx*=Math.exp(-dt*3);panel.vz*=Math.exp(-dt*3);panel.spin*=Math.exp(-dt*4);}}
   this.state.detachedPanels=this.state.detachedPanels.filter(p=>p.age<24);
   for(const wheel of this.state.detachedWheels){wheel.age+=dt;wheel.vy-=G*dt;wheel.x+=wheel.vx*dt;wheel.z+=wheel.vz*dt;wheel.y+=wheel.vy*dt;wheel.spin+=wheel.omega*dt;const floor=this._ground(wheel.x,wheel.z).height+wheel.radius;
    if(wheel.y<floor){wheel.y=floor;wheel.vy=Math.abs(wheel.vy)>1?-wheel.vy*.28:0;const drag=Math.exp(-dt*1.2);wheel.vx*=drag;wheel.vz*=drag;wheel.omega*=Math.exp(-dt*.7);}else{wheel.vx*=Math.exp(-dt*.05);wheel.vz*=Math.exp(-dt*.05);}}
@@ -214,13 +216,14 @@ export class CarPhysics {
   const plane=this._roadPlane=roadPlane(samples,this.frontAxle,this.rearAxle,this.halfTrack);
   s.roadGradeLong=plane.longitudinal;s.roadGradeLat=plane.lateral;
   let total=0,pitchMoment=0,rollMoment=0;
-  const aero=s.speed*s.speed*this.build.physics.aeroDownforce;
+  const aero=s.aero=aerodynamicForces(this.build,this.condition,s.speed,s.forwardSpeed,s.lateralSpeed);
+  this._hop.advance(dt,this.condition.suspensionHealth,this.condition.wheelAttached);
   for(let i=0;i<4;i++){
    const [x,z]=this._positions[i],load0=this._staticLoads[i],d=deflections[i],opposite=i^1,health=this.condition.suspensionHealth[i],cornerTravel=travel*(.5+.5*health),spring=this.springRate*(.4+.6*health);
    const antiroll=(d-deflections[opposite])*this.antiRollRate*(i<2?this.build.physics.frontRollFactor:this.build.physics.rearRollFactor)*(.45+.55*health);
    const bump=Math.max(0,d-cornerTravel*.85)*this.springRate*7;
    const raw=load0*(.65+.35*health)+d*spring+velocities[i]*this.damperRate*(.12+.88*health)+antiroll+bump;
-   const attached=this.condition.wheelAttached[i],load=!attached||d< -cornerTravel?0:clamp(raw,0,load0*5.5);
+   const attached=this.condition.wheelAttached[i],supported=attached&&d>=-cornerTravel,hop=this._hop.contact(i,clamp(raw,0,load0*5.5)),load=supported?hop.load:0;
    const corner=s.bodyHeight-s.bodyPitch*z+s.bodyRoll*x;
    const skidDepth=!attached?Math.max(0,samples[i].height-corner-.19):0;
    const skid=skidDepth>0?clamp(skidDepth*this.springRate*4+Math.max(0,velocities[i])*this.damperRate*.8,0,load0*7):0;
@@ -228,14 +231,15 @@ export class CarPhysics {
    const suspension=s.suspension[i],contact=load>1&&d>= -cornerTravel;
    // A brief acoustic envelope records actual recontact or a compression
    // shock; static vehicle weight never creates a perpetual impact sound.
-   const shock=contact&&velocities[i]>.45&&(!suspension.contact||velocities[i]>(suspension.velocity??0)+.8)?velocities[i]:0;
+   const contactVelocity=velocities[i]-(supported?hop.velocity:0);
+   const shock=contact&&contactVelocity>.45&&(!suspension.contact||contactVelocity>(suspension.velocity??0)+.8)?contactVelocity:0;
    Object.assign(suspension,{compression:Math.max(0,load0/spring+d),travel:clamp(d,-cornerTravel,cornerTravel),load,normalLoad:load*plane.normalScale,groundHeight:samples[i].height,grip:samples[i].grip,health,travelLimit:cornerTravel,
-    material:samples[i].material,roughness:samples[i].roughness,velocity:velocities[i],impactSpeed:Math.max(shock,(suspension.impactSpeed??0)*Math.exp(-dt*18)),impactCount:(suspension.impactCount??0)+(shock>.45?1:0),
-    contact,wheelY:Math.max(samples[i].height+this.wheelRadius,corner+this.wheelRadius-cornerTravel)});
+    material:samples[i].material,roughness:samples[i].roughness,velocity:contactVelocity,hopTravel:hop.travel,impactSpeed:Math.max(shock,(suspension.impactSpeed??0)*Math.exp(-dt*18)),impactCount:(suspension.impactCount??0)+(shock>.45?1:0),
+    contact,wheelY:Math.max(samples[i].height+this.wheelRadius+(supported?hop.gap:0),corner+this.wheelRadius-cornerTravel)});
    s.wheelLoads[i]=load;
   }
-  this._heaveVelocity+=(total-this.mass*G-aero)/this.mass*dt;
-  this._pitchVelocity+=(pitchMoment-this._accelLong*this.mass*this.cgHeight)/this._pitchInertia*dt;
+  this._heaveVelocity+=(total-this.mass*G-aero.downforce)/this.mass*dt;
+  this._pitchVelocity+=(pitchMoment+aero.pitchMoment-this._accelLong*this.mass*this.cgHeight)/this._pitchInertia*dt;
   this._rollVelocity+=(rollMoment+this._accelLat*this.mass*this.cgHeight)/this._rollInertia*dt;
   // End stops limit suspension attitude relative to the road, not the horizon.
   const relativePitch=s.bodyPitch+plane.longitudinal,relativeRoll=s.bodyRoll-plane.lateral;
@@ -348,7 +352,7 @@ export class CarPhysics {
   const gravityLong=-gradeLong*supportLoad/this.mass,gravityLat=-gradeLat*supportLoad/this.mass;
   v+=gravityLong*dt;u+=gravityLat*dt;
   const rollingLoad=s.suspension.reduce((sum,p)=>sum+p.load*(.014+Math.max(0,1-p.grip)*.08),0);
-  const rolling=Math.tanh(v*8)*rollingLoad*(this.build.physics.rollingResistanceFactor??1),drag=this.build.physics.aeroDrag*v*Math.abs(v)*(1+(1-this.condition.bodyHealth)*.35);
+  const rolling=Math.tanh(v*8)*rollingLoad*(this.build.physics.rollingResistanceFactor??1),drag=s.aero.drag;
   const scrapeLoad=s.scrapeLoads.reduce((a,b)=>a+b,0),scrapeImpulse=Math.min(Math.hypot(v,u)*this.mass,scrapeLoad*.55*dt),scrapeSpeed=Math.hypot(v,u);
   if(scrapeSpeed>0){const fraction=Math.max(0,1-scrapeImpulse/(this.mass*scrapeSpeed));v*=fraction;u*=fraction;}s.bodyScrape=dt>0?scrapeImpulse*scrapeSpeed/dt:0;
   v-= (rolling+drag)/this.mass*dt;
@@ -443,7 +447,8 @@ export class CarPhysics {
    const [x,z]=this._positions[i],cv=v-yaw*x,cu=u+yaw*z;
    const frame=frames[i],long=cv*frame.longV+cu*frame.longU,lat=cv*frame.latV+cu*frame.latU,slip=wheels[i]*this.wheelRadius-long;
    const tyreWork=Math.abs(Jlong[i]*slip)+Math.abs(Jlat[i]*lat),brakeWork=Math.abs(Jbrake[i]*wheels[i]);
-   brakeWorkJ[i]=brakeWork;tyreWorkJ[i]=tyreWork;
+   const hopWork=this._hop.excite(i,dt,{force:Jlong[i]/dt,slipWork:Math.abs(Jlong[i]*slip),slipSpeed:slip,driven:this._drive.driven.includes(i),contact:s.suspension[i].contact,load:this._staticLoads[i]});
+   brakeWorkJ[i]=brakeWork;tyreWorkJ[i]=Math.max(0,tyreWork-hopWork);
    s.wheelSlip[i]=slip/Math.max(3,Math.abs(long));s.wheelSpins[i]+=wheels[i]*dt;s.wheelOmegas[i]=s.wheelOmega[i]=wheels[i];
    s.brakeTemps[i]=this._brakeTemps[i];s.tyreTemps[i]=this._tyreTemps[i];s.brakePressure[i]=this._brakePressures[i];
    const corner=s.suspension[i];
