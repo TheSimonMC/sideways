@@ -1,0 +1,27 @@
+SIDEWAYS V23 – ENGINE COMPONENTS
+
+Open SIDEWAYS.html to play offline. Multiplayer requires internet.
+Online: https://thesimonmc.github.io/sideways/
+
+Block, head, rods, crankshaft, timing chain, intake, exhaust, thermostat,
+fuel pump and ignition now have independent faults and repair actions.
+Cooling and timing failures can cause lasting damage to other components.
+Vehicle Condition exposes the parts; replace the source of a fault and
+any resulting damage separately. Fluid top-up does not fix a leak.
+Recovery/tuning/save reload retain damage; a new run repairs the car.
+
+The model uses fictional, efficient component approximations. No visible
+engine bay yet; see the report for thermal, timing and exhaust limits.
+Both multiplayer players should load V23. RATE_LIMIT fix is retained.
+Report: docs/phase-2d-engine-report.md
+Full goal/checklist: docs/goal.txt and docs/goal-progress.md
+Evidence: qa/release-v23.json
+Asset/music licenses: dist/audio/CREDITS.md and existing sources.
+
+Build with Node.js: npm ci, then node build.mjs.
+Native checks: node qa/regressions-v23.mjs and the *-v23-check.mjs files.
+Browser checks require Playwright and Chromium. Set
+CODEX_PRIMARY_RUNTIME_NODE_MODULES to a node_modules directory containing
+playwright, and PLAYWRIGHT_CHROMIUM_EXECUTABLE to the Chromium executable.
+Run node qa/standalone-browser-v23.cjs (and the other *-browser-v23.cjs files).
+Package after testing: node qa/package-v23.mjs <output-directory>.

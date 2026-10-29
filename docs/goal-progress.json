@@ -1,7 +1,7 @@
 {
   "source": "docs/goal.txt",
   "sourceSHA256": "4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc282ea844a1b96dca",
-  "version": 22,
+  "version": 23,
   "requirements": [
     {
       "id": "P00.01",
@@ -138,13 +138,13 @@
     {
       "id": "P02.07",
       "phase": 2,
-      "status": "teilweise erledigt",
+      "status": "erledigt",
       "requirement": "Beschädigter Kühler verursacht Kühlmittelverlust und steigende Motortemperatur; falsches Weiterfahren kann Folgeschäden erzeugen."
     },
     {
       "id": "P02.08",
       "phase": 2,
-      "status": "teilweise erledigt",
+      "status": "erledigt",
       "requirement": "Kupplung: Verschleiß, Hitze, Schlupf, verringerte Kraftübertragung bis zum kompletten Ausfall. Getriebe: Schäden durch Überlast und schlechte Schaltvorgänge, mögliche Gangprobleme. Differenzial und Antriebswellen ebenfalls getrennt."
     },
     {
@@ -162,13 +162,13 @@
     {
       "id": "P02.11",
       "phase": 2,
-      "status": "teilweise erledigt",
+      "status": "erledigt",
       "requirement": "Warnanzeigen und Diagnose zeigen echte Zustände. Reparatur ersetzt oder repariert die betroffene Komponente, nicht immer das gesamte Auto."
     },
     {
       "id": "P02.12",
       "phase": 2,
-      "status": "teilweise erledigt",
+      "status": "erledigt",
       "requirement": "Teileschäden, Temperaturen und Verschleiß dürfen nach dem Verlassen des Fahrzeugs oder der Garage nicht grundlos verschwinden."
     },
     {
@@ -942,15 +942,18 @@
   ],
   "currentIncrement": {
     "phase": 2,
-    "part": "C – Riemen, Generator, Batterie, Starter und Kühlerlüfter",
-    "status": "teilweise erledigt",
+    "part": "D – getrennte Motorinnenteile, Ansaugung, Auspuff und Versorgung",
+    "status": "erledigt",
     "implemented": [
-      "Riemen und Spanner mit Schlupf, Wärme und Verschleiß; Riemenausfall stoppt Generator und Wasserpumpenantrieb",
-      "Lichtmaschine mit drehzahlabhängiger Leistung und Kurbelwellenlast; Batterie mit Ladestand, Innenwiderstand und getrenntem Zustand",
-      "Native Anlasserwirkung hängt von Spannung und Starterzustand ab; langes Orgeln verursacht Wärme und Verschleiß",
-      "Elektrischer Kühlerlüfter mit Temperatursteuerung und Ausfallfolgen; Spannung beeinflusst echte Fahrzeugleuchten und Lichtkegel",
-      "Einzelersatz, separates Laden, Diagnose, Sounds und persistente Zustände; Neustart behebt Schäden wie bisher"
+      "Zehn zusätzliche Komponenten mit nativen Motorfolgen, Verschleiß, gezieltem Ersatz und Speicherung",
+      "Thermostatüberhitzung, Block-/Kopflecks, Steuerketten- und Pleuelfolgeschäden",
+      "Wankel ohne imaginäre Pleuel oder Steuerkette; Fehler bleiben beim Umbau gespeichert",
+      "Ansaug-/Auspuffgeräusch, Diagnose und Schutz gegen Warmstart trotz Pumpen-/Zündungsausfall"
     ],
-    "next": "Phase 2D: verbleibende Motorbauteile – Block/Kopf und Kolben/Pleuel genauer trennen, Ansaug- und Auspuffschäden sowie Steuertrieb/weitere relevante Nebenaggregate. Danach Phase 3 erweitern; sichtbarer Motorraum folgt in Phase 6."
+    "remaining": [
+      "Phase 2 insgesamt bleibt teilweise: Kompressortuning ist noch nicht im Teilekatalog; sichtbare Befestigungen und Ausbau folgen in Phase 3/5/6.",
+      "Phase 1: Nässe/Wetter und breitere Fahrkalibrierung bleiben offen."
+    ],
+    "next": "Zuerst die offene Nässe-Anbindung aus Phase 1 und Fahrvergleich nachholen; dann Phase 3 mit Türen, Hauben, Glas, Leuchten und weiteren abfallenden Teilen. Sichtbarer Motorraum und Garage folgen in Phase 6."
   }
 }

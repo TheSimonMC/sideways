@@ -1,0 +1,98 @@
+{
+  "version": 23,
+  "status": "passed",
+  "checks": [
+    "Countdown freezes the grid, race clock and lap credit until racing is enabled.",
+    "Five physical opponents complete all three laps, with ordered gates, unique finish times and bounded continuous movement.",
+    "Rookie and Pro use different physical pace settings and both finish complete NPC races.",
+    "A continuously driven player lap finishes once, has a real position and returns ordered gaps and audio descriptors.",
+    "Backwards driving and teleports cannot award a lap; recovery returns to the last legitimate gate.",
+    "Player contacts exchange one reciprocal impulse, retain collision velocity and reduce opponent condition.",
+    "A blocked opponent physically reverses, then finishes after the obstruction is removed without a teleport.",
+    "Opponent render matrices, reset, retirement and repeated disposal stay finite and release the race root."
+  ],
+  "fixtures": {
+    "Countdown freezes the grid, race clock and lap credit until racing is enabled.": {
+      "seconds": 3,
+      "cars": 6
+    },
+    "Five physical opponents complete all three laps, with ordered gates, unique finish times and bounded continuous movement.": {
+      "seconds": 160.76666666666665,
+      "maxStepM": 0.3024147389022705,
+      "maxRoadDistanceM": 13.076085539263914,
+      "finishTimes": [
+        {
+          "name": "JUNO",
+          "seconds": 149.33451149184762
+        },
+        {
+          "name": "ROWAN",
+          "seconds": 153.39584588311297
+        },
+        {
+          "name": "DEX",
+          "seconds": 156.68851994577824
+        },
+        {
+          "name": "MARA",
+          "seconds": 157.71329322724586
+        },
+        {
+          "name": "KAI",
+          "seconds": 160.76605413522856
+        }
+      ],
+      "contacts": 4
+    },
+    "Rookie and Pro use different physical pace settings and both finish complete NPC races.": [
+      {
+        "difficulty": "rookie",
+        "leaderSeconds": 57.374825154804434,
+        "lastSeconds": 62.056506738891706
+      },
+      {
+        "difficulty": "pro",
+        "leaderSeconds": 48.34160846529493,
+        "lastSeconds": 104.80669931946456
+      }
+    ],
+    "A continuously driven player lap finishes once, has a real position and returns ordered gaps and audio descriptors.": {
+      "position": 1,
+      "finishTime": 44.52747562630684,
+      "audioFamilies": [
+        "i4",
+        "i6t"
+      ]
+    },
+    "Backwards driving and teleports cannot award a lap; recovery returns to the last legitimate gate.": {
+      "gateAfterRecovery": 4,
+      "recoveryProgress": 0.37745291673168185,
+      "invalidMoves": 16
+    },
+    "Player contacts exchange one reciprocal impulse, retain collision velocity and reduce opponent condition.": {
+      "opponentSpeedAfterImpulse": 7.2,
+      "health": 0.9298802285714286
+    },
+    "A blocked opponent physically reverses, then finishes after the obstruction is removed without a teleport.": {
+      "recoveries": 1,
+      "maxStepM": 0.05914082629145747,
+      "finishTime": 63.77225854400926
+    },
+    "Opponent render matrices, reset, retirement and repeated disposal stay finite and release the race root.": {
+      "matrices": 70,
+      "retirementOnce": true
+    }
+  },
+  "limits": [
+    "Real Dock09 geometry, physical NPC bodies, lap gates and collision solver in Node. No GPU screenshot, browser input or speaker audition.",
+    "Opponent engines use lightweight sound descriptors; player drivetrain remains separate."
+  ],
+  "sourceSHA256": {
+    "dist/race.js": "296660409dab7098824b3b372e49e6d26d01b0be51fa16f816a3286c839a51cd",
+    "dist/traffic.js": "75ea00a208580ea0bf044869f5c38ffafb7ff5d53739c4bc5f3e97f00dc4915d",
+    "dist/contact.js": "a4c2ab97626d8b6e7a7a54951251d4369e2ef2660f163e035573e829436d568a"
+  },
+  "verifiedInRelease": 23,
+  "suiteSource": "qa/race-v11-check.mjs",
+  "suiteSHA256": "8ff672e6b8a07641068801d26fecc7828f861da50524192414904d2d29308791"
+}

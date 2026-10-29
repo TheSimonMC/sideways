@@ -1,0 +1,246 @@
+{
+  "game": "SIDEWAYS",
+  "version": 23,
+  "date": "2026-10-29",
+  "status": "verified-with-documented-limits",
+  "base": "Published V22 4fb30a6d51584eae37853e30336061acfc5366a8",
+  "scope": "Phase 2D separate engine internals, intake/exhaust, thermostat, fuel pump and ignition with mechanical consequences, sound, diagnosis, isolated service and persistence. Whole goal remains active; all 156 requirements retained.",
+  "delivery": {
+    "entry": "SIDEWAYS.html",
+    "separateFile": "SIDEWAYS-v23.html",
+    "htmlBytes": 10604209,
+    "htmlSha256": "54ccc6c967f2013fac3d47253a2b19152c421f1cf20cab0fe366c8e4077a2dd8",
+    "offlineSinglePlayer": true,
+    "externalRuntimeRequestsDuringOfflineTest": 0,
+    "publishedToSites": false
+  },
+  "currentFunctionalSuites": [
+    {
+      "file": "qa/aero-hop-browser-v23-results.json",
+      "status": "passed",
+      "groups": 3,
+      "sha256": "c1c1d1af4febd39095f8d93f50a2a8d78418b41ee805183a2bc2e5a1e5bd0c56"
+    },
+    {
+      "file": "qa/aero-hop-v23-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "d62188a3e07ce2c18fc1fd0a7540d0666d648721e19c2dc04f232e27aafc9df9"
+    },
+    {
+      "file": "qa/archipelago-v23-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "3fa32a56e302e081ec93a52239d43e21010e693e56d9ad808a015dcd068b76df"
+    },
+    {
+      "file": "qa/audio-v23-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "6c545ddababb70613c00eb566bc5273a4daeafd2eb78e76766f9a30d56577061"
+    },
+    {
+      "file": "qa/auxiliaries-browser-v23-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "35961d87d31572a6f945fee1de7264c6f9293c480eb6e0458057eaba01734253"
+    },
+    {
+      "file": "qa/auxiliaries-v23-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "1a49fdf16ca887a9c70afe8ea961e0334c12a25b88883a599a9bf9af92f7512a"
+    },
+    {
+      "file": "qa/brakes-browser-v23-results.json",
+      "status": "passed",
+      "groups": 2,
+      "sha256": "0abbc23c71a7fdb17d94199598b470cfa8df754d383c00c27434a463d3d4ed6c"
+    },
+    {
+      "file": "qa/brakes-v23-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "1c12be3560131a07bdf4e1cba5a15846ca86fda5dd29a86217452b7cb1106255"
+    },
+    {
+      "file": "qa/chassis-damage-browser-v23-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "81d8ff864293bd6297d02ef36653df85421bfcb7be055a83774df0e406a035e9"
+    },
+    {
+      "file": "qa/chassis-damage-v23-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "7fd75410ad511e066441b64bc45adc9d6fb64e165014ed49420dcabdf5b0106d"
+    },
+    {
+      "file": "qa/chassis-v23-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "395827545bef96b2049d7d2ee8a285aa164b080564960e26698c7924031bf80e"
+    },
+    {
+      "file": "qa/cosmetics-v23-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "69dcae5a85ddecf3911aabfa104c8e78acfae17e7a558f05e539381a5a1ca0b8"
+    },
+    {
+      "file": "qa/damage-v23-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "9dab4234cf52b9d364e7b1e227b9dcc72a448013f31d7bf9d6fad5999656f87b"
+    },
+    {
+      "file": "qa/drivetrain-browser-v23-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "91d6f126dd98893fd2f8fe3b97c8378ee0952da5ba5a4b36edbecfbeffb5b025"
+    },
+    {
+      "file": "qa/drivetrain-v23-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "976d191d1751170b6d8d45e64416a0866223521a1e1039cf1fd4ba59309f1b6b"
+    },
+    {
+      "file": "qa/engine-components-browser-v23-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "4732c9d40f76c33c244125f02fbed620c28f0fa916dfc5b4b197f187c8824294"
+    },
+    {
+      "file": "qa/engine-components-v23-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "ca1590618112df10c6b04a3c97edad800349048009bb476a6e00ff8c8aa521fb"
+    },
+    {
+      "file": "qa/goal-coverage-v23-results.json",
+      "status": "passed",
+      "groups": 2,
+      "sha256": "dc7aee290283a9a5627dcba45c22177c2a0dcd7a0f6ff311690bc66b94ef1da3"
+    },
+    {
+      "file": "qa/input-taps-v23-results.json",
+      "status": "passed",
+      "groups": 11,
+      "sha256": "8aa543ee9e05f81d6537d12f3aec05b82ea2a4c781881d8ee3c4b0f08af6e984"
+    },
+    {
+      "file": "qa/modular-v23-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "015f29d60fd32b68049b7b83a0a2ac45f384de8497e05bafff63be37ff4e2c62"
+    },
+    {
+      "file": "qa/multiplayer-browser-v23-results.json",
+      "status": "passed",
+      "groups": 3,
+      "sha256": "af92104172a6c7d7c2d347a670126e7fa2b89b8ccc9f001b4ad9065d27c6d005"
+    },
+    {
+      "file": "qa/multiplayer-burst-browser-v23-results.json",
+      "status": "passed",
+      "groups": 3,
+      "sha256": "b83d77d35507944473ad217e3d961c333a8d10a232a115c78cd031f5c9309246"
+    },
+    {
+      "file": "qa/multiplayer-burst-v23-results.json",
+      "status": "passed",
+      "groups": 5,
+      "sha256": "2aa58ca08c102cb6e604891fb6503b5f21093efab410a0fee6f191000d802706"
+    },
+    {
+      "file": "qa/multiplayer-v23-results.json",
+      "status": "passed",
+      "groups": 11,
+      "sha256": "57506dab83bfdea8f82f3c737286a172583accafab457c932a2e4fba26fa4b27"
+    },
+    {
+      "file": "qa/navigation-main-v23-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "2297a2835eb0deea40b548014c4c98bd8e249d1bb1df71ffc3500716676295b7"
+    },
+    {
+      "file": "qa/physics-v23-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "4b25a47ef80a9f1d5e7dfc13d97ff056fb2bcaebea0ef73473911a7e160c7ac1"
+    },
+    {
+      "file": "qa/police-v23-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "9d76dc807a9dd587147b987593b97eb354b6e3b03ebfd7aaf31af0d67276a060"
+    },
+    {
+      "file": "qa/race-v23-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "f619dbc808c0a64b153f2a568d1491849f1600d54ccf0b0fb6ce140825f804c8"
+    },
+    {
+      "file": "qa/restart-v23-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "4efb0d8f3ac02781e5205e0d23e35880fa53233effe9509df873407dbffddd52"
+    },
+    {
+      "file": "qa/road-contact-v23-results.json",
+      "status": "passed",
+      "groups": 7,
+      "sha256": "e8905d8e43f6bb995cc416f76d7e1faf655c4d93fdcac35d7951e5a20a6211f0"
+    },
+    {
+      "file": "qa/standalone-browser-v23-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "e8decd1844932484ec58f6d92b57713588f432d3d4ed7d143904f29ca5f4cc01"
+    },
+    {
+      "file": "qa/standalone-v23-results.json",
+      "status": "passed",
+      "groups": 0,
+      "sha256": "024dfebc8d15f51c8378b178ed59c1db21c0bcd6e9d0def0dae4fab613ae1ba1"
+    },
+    {
+      "file": "qa/thermal-v23-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "11a6ce6d946358c0962103d49f8cbf3cd44372586fe947759b25df740ceabdb3"
+    },
+    {
+      "file": "qa/tyres-browser-v23-results.json",
+      "status": "passed",
+      "groups": 3,
+      "sha256": "3a4f4cee3153e5c4494746d214dbca81f20c40c64111f094df047069da543b8b"
+    },
+    {
+      "file": "qa/tyres-v23-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "140948e69ac3dea9d0d4e3566fda8ae209c84ef5d5cc798fb0d8b009dca3bc83"
+    }
+  ],
+  "performanceMeasurement": {
+    "file": "qa/chassis-performance-v23-results.json",
+    "status": "measured",
+    "sha256": "511ffbb7691815161839a4bca968454f4d0066f836acbfc0e45f4378e061785d"
+  },
+  "review": {
+    "file": "qa/review-v23.json",
+    "sha256": "d3f218ed7cf637f4977deebd82b03591e6cf44ffa0622a89117a21a733e12948"
+  },
+  "limits": [
+    "Fictional lumped component calibration, shared thermal nodes and proportional wear; no certified real-car or finite-element model.",
+    "Timing loss uses misfires, valve-contact damage and combustion cut, not a new tooth-by-tooth chain solver. Exhaust restriction uses dissipative native shaft load, not modified pipe geometry.",
+    "No supercharger in the tuning catalogue yet; visible engine bay, mounting and removal remain later phases.",
+    "Final HTML covers tuning, saves, new runs and diagnosis. Component service buttons additionally use original VehiclePanel/CarPhysics in a local module fixture, not a full workshop-drive/main-service-timer scenario.",
+    "Multiplayer uses local independent browser processes with public PeerJS/WebRTC; no separate-PC, mobile or restrictive NAT/TURN validation.",
+    "No physical controller or subjective listening test. CPU sample excludes world/GPU/AI/audio."
+  ]
+}

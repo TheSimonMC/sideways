@@ -1,0 +1,35 @@
+{
+  "status": "reviewed",
+  "result": "No findings.",
+  "method": "Read-only review of the complete runtime diff, added tests, persistence/repair callers, copied QA version changes and release workflow according to review-agent. Self-review by the implementation agent, not independent.",
+  "baseCommit": "4fb30a6d51584eae37853e30336061acfc5366a8",
+  "sourceSHA256": {
+    "dist/mechanical.js": "5b9005c743e6afbb9dfb6b361277109cecd0f144aefb2728f9bb37577dbc2261",
+    "dist/physics.js": "37c16071803517699ba418ae69704bc5a8f56142b5b5ad2497fa4f32fe8d4cb8",
+    "dist/audio.js": "9524c08c58fd79b3d1ee73b86b611da74a98f47327c34384745a006fa5b0dc4e",
+    "dist/vehicle-state.js": "888f606612f2a452c8fe4693a77fba4020a1b7aa3538f9ae8e848129bef4af3e",
+    "dist/vehicle-panel.js": "8b93816403142d3ab9b2ad0a96a54d3ec1128a653c1369bd47bcb2ffc4ae52b8",
+    "dist/main.js": "27902c4a7a0a60255780dfad081a5642e186b13a6a203234b20730b1b3245376",
+    "dist/index.html": "d61a0d37ea4f81382aa8b67569c1390664babdcfdfef4003f3739a544bd1da07",
+    "dist/multiplayer.js": "034cdee22c9edbaf280c7f6fc3210b454b05d5d512d9cf7b8b9be74e10b6eba2",
+    ".github/workflows/pages.yml": "45ca94f50001e3265ed319841f0bf0c31ed08dfb9931dc4a1015a440386e2397"
+  },
+  "resolvedFindings": [
+    "Preserve healthy pistons when loading a saved failure in a newly separated component.",
+    "Keep inactive piston-only faults through rotary swaps without affecting the rotary engine.",
+    "Respect pump and ignition failure in recovery, tuning and restoration warm starts and in NOS output.",
+    "Exclude exhaust pumping work from extra motor/oil friction heat.",
+    "Update both saved and diagnostic release versions and copied browser expectations."
+  ],
+  "visualCheck": [
+    "Desktop and 390-pixel service screenshots inspected: labels, fault summary and isolated replacement controls are readable."
+  ],
+  "limits": [
+    "Fictional lumped component calibration, shared thermal nodes and proportional wear; no certified real-car or finite-element model.",
+    "Timing loss uses misfires, valve-contact damage and combustion cut, not a new tooth-by-tooth chain solver. Exhaust restriction uses dissipative native shaft load, not modified pipe geometry.",
+    "No supercharger in the tuning catalogue yet; visible engine bay, mounting and removal remain later phases.",
+    "Final HTML covers tuning, saves, new runs and diagnosis. Component service buttons additionally use original VehiclePanel/CarPhysics in a local module fixture, not a full workshop-drive/main-service-timer scenario.",
+    "Multiplayer uses local independent browser processes with public PeerJS/WebRTC; no separate-PC, mobile or restrictive NAT/TURN validation.",
+    "No physical controller or subjective listening test. CPU sample excludes world/GPU/AI/audio."
+  ]
+}

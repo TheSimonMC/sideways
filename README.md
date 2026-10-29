@@ -1,10 +1,10 @@
-# SIDEWAYS V22
+# SIDEWAYS V23
 
 [Play in your browser](https://thesimonmc.github.io/sideways/) · [Download ZIP or offline HTML](https://github.com/TheSimonMC/sideways/releases/latest)
 
 GitHub Pages publishes the tested `SIDEWAYS.html` on every push to `main`. To publish source changes, rebuild and rerun the standalone checks described below, then copy `dist/SIDEWAYS.html` to `SIDEWAYS.html` and commit it with the updated browser report. The deployment verifies that their SHA-256 values match.
 
-Start with **READ-ME-V22.txt** for this update, offline setup and verification limits.
+Start with **READ-ME-V23.txt** for this update, offline setup and verification limits.
 
 ## SIDEWAYS / City Sessions
 
@@ -14,7 +14,7 @@ The player engine and its sound use the supplied MotorLab SDK 1.6.3, Physics Rel
 
 ## Play the downloaded game
 
-Open `SIDEWAYS-v22.html` from the chat attachment. The complete ZIP includes the same game as `SIDEWAYS.html` at its root, along with the editable project, SDK, credits and instructions. Extract the ZIP before opening its HTML. Single-player, including NPC racing, needs no server or network download. Multiplayer still needs internet access to signaling and peers.
+Open `SIDEWAYS-v23.html` from the chat attachment. The complete ZIP includes the same game as `SIDEWAYS.html` at its root, along with the editable project, SDK, credits and instructions. Extract the ZIP before opening its HTML. Single-player, including NPC racing, needs no server or network download. Multiplayer still needs internet access to signaling and peers.
 
 The HTML includes code, fonts, models and sound. No Sites address is used by the game. Progress stays in the browser and origin where you played. Copying the HTML to another PC copies the game assets; it does not copy browser storage. Click or press a key to enable sound. A browser must expose a controller or wheel through its Gamepad API before the game can bind it.
 
@@ -25,7 +25,15 @@ npm ci
 node build.mjs
 ```
 
-This creates `dist/SIDEWAYS.html`. After running `node qa/standalone-v22-check.mjs` and `node qa/standalone-browser-v22.cjs` on that build, `node qa/package-v22.mjs` creates `release/SIDEWAYS-v22.html` and `release/SIDEWAYS-v22.zip`. The browser check needs Playwright; dependency and browser path options are in READ-ME-V22.txt. Packaging verifies that the tested HTML matches the delivered bytes. These commands do not publish a Site or push a repository.
+This creates `dist/SIDEWAYS.html`. After running `node qa/standalone-v23-check.mjs` and `node qa/standalone-browser-v23.cjs` on that build, `node qa/package-v23.mjs` creates `release/SIDEWAYS-v23.html` and `release/SIDEWAYS-v23.zip`. The browser check needs Playwright; dependency and browser path options are in READ-ME-V23.txt. Packaging verifies that the tested HTML matches the delivered bytes. These commands do not publish a Site or push a repository.
+
+## V23: Engine components and consequential damage
+
+Ten additional components now affect the running engine: block, head, rods, crankshaft, timing chain, intake, exhaust, thermostat, fuel pump and ignition. Leaks, lost cooling, restricted airflow, lean mixture, misfires and failed timing have separate causes and repair actions. Replacing a chain or thermostat preserves damage already caused to valves or the head. Rotary engines use housing/shaft labels and do not acquire fictional rods or valve chains.
+
+Save restoration, recovery and tuning preserve these faults. A failed pump or ignition cannot inherit a warm running engine. Intake/exhaust leaks have mechanical sound. Existing cars, maps, saves and the multiplayer RATE_LIMIT fix remain.
+
+See [the V23 report](docs/phase-2d-engine-report.md), [all 156 requirements](docs/goal-progress.md) and `qa/release-v23.json`. Next: close the wet-road gap in Phase 1, then extend Phase 3 body parts. Interiors, engine-bay visuals and garage transitions remain later work. Older release notes below are historical.
 
 ## V22: Engine auxiliaries and electrical faults
 

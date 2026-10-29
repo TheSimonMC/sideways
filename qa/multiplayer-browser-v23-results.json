@@ -1,0 +1,67 @@
+{
+  "version": 23,
+  "status": "passed",
+  "checks": [
+    "Two independent Chromium processes create and join a real public lobby, ready up and load Neon Archipelago from the shipped HTML",
+    "Both full games exchange poses/world updates and construct the remote car without a kick while driving",
+    "Guest leaves through the real UI and rejoins the running host, without ending the host session"
+  ],
+  "states": [
+    {
+      "version": 23,
+      "phase": "playing",
+      "status": "playing",
+      "players": 2,
+      "issue": null,
+      "stats": {
+        "sent": 157,
+        "received": 148,
+        "dropped": 0,
+        "backpressure": 0,
+        "coalesced": 0,
+        "invalid": 0,
+        "lastPacketBytes": 21948,
+        "maxPacketBytes": 21948
+      },
+      "remotes": {
+        "count": 1,
+        "visible": 1,
+        "buffers": [
+          2
+        ],
+        "teleports": 0
+      }
+    },
+    {
+      "version": 23,
+      "phase": "playing",
+      "status": "playing",
+      "players": 2,
+      "issue": null,
+      "stats": {
+        "sent": 148,
+        "received": 154,
+        "dropped": 0,
+        "backpressure": 0,
+        "coalesced": 0,
+        "invalid": 0,
+        "lastPacketBytes": 84,
+        "maxPacketBytes": 1271
+      },
+      "remotes": {
+        "count": 1,
+        "visible": 1,
+        "buffers": [
+          2
+        ],
+        "teleports": 0
+      }
+    }
+  ],
+  "errors": [],
+  "htmlSha256": "54ccc6c967f2013fac3d47253a2b19152c421f1cf20cab0fe366c8e4077a2dd8",
+  "limits": [
+    "Two local independent Chromium processes over real public PeerJS signaling/WebRTC. Separate PCs, mobile networks and TURN fallback were not tested.",
+    "Software rendering, no FPS guarantee or physical-controller test."
+  ]
+}

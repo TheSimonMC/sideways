@@ -1,8 +1,8 @@
 # SIDEWAYS – verbindliche Fortschrittsliste
 
-Stand: V22, Phase 0, Phase 1 Teile A/B/C/D und Phase 2 Teile A/B/C. Grundlage: unveränderte Kopie in `docs/goal.txt`.
+Stand: V23, Phase 0, Phase 1 Teile A/B/C/D und Phase 2 Teile A/B/C/D. Grundlage: unveränderte Kopie in `docs/goal.txt`.
 
-Status bezieht sich auf den gesamten Wortlaut eines Punktes. Teilweise bedeutet, dass wesentliche Teile noch fehlen. Nur Phase 0 ist abgeschlossen. V19 ergänzt die gemeinsame Reifen-Grundlage aus Phase 2 und ihre Folgen für Phase 1. Phase 1 bleibt wegen Wetter/Nässe und breiterer Kalibrierung teilweise; Phase 2 wegen weiterer fehlender Baugruppen. Wetter hängt zusätzlich von Phase 7 ab.
+Status bezieht sich auf den gesamten Wortlaut eines Punktes. Teilweise bedeutet, dass wesentliche Teile noch fehlen. Nur Phase 0 ist abgeschlossen. V19 ergänzt die gemeinsame Reifen-Grundlage aus Phase 2 und ihre Folgen für Phase 1. Phase 1 bleibt wegen Wetter/Nässe und breiterer Kalibrierung teilweise; Phase 2 wegen noch fehlendem Kompressortuning und der späteren Montage-/Ausbauintegration. Wetter hängt zusätzlich von Phase 7 ab.
 
 Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc282ea844a1b96dca`.
 
@@ -34,7 +34,7 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 2: EINZELNE MECHANISCHE SCHÄDEN, TEMPERATUR UND VERSCHLEISS
 
-**teilweise erledigt** — V22 ergänzt Riemen/Spanner, Lichtmaschine, Batterie, Starter und elektrischen Kühlerlüfter. Drehzahl, elektrische Verbraucher und Ladestand bestimmen Ladung, Spannung, Starterwirkung, Licht und Lüfterleistung. Schlupf und Überlast erzeugen Wärme/Verschleiß; Riemenbruch stoppt Generator und Wasserpumpenantrieb. Diagnose, Einzelreparatur, Laden und Speichern sind verbunden. V21-Radlager, Lenkung und Bremskreise sowie die früheren Motor-, Antriebs- und Reifensysteme bleiben erhalten. P02.09/P02.10 bleiben in der dokumentierten effizienten Näherung erfüllt. Block/Kopf, Kolben/Pleuel, Ansaug-/Auspuffschäden und weitere relevante Motorbauteile fehlen noch als vollständig getrennte Komponenten. Daher bleibt insbesondere P02.05 teilweise. Sichtbarer Motorraum gehört zu Phase 6 und ist weiterhin offen.
+**teilweise erledigt** — V23 ergänzt Block/Kopf, Pleuel, Kurbelwelle, Steuerkette, Ansaugung, Auspuff, Thermostat, Kraftstoffpumpe und Zündung. Luftzufuhr, Gemisch, Verbrennung, Kurbelwellenlast, Wärme, Lecks, Fehlzündungen und Geräusche folgen getrennten Zuständen. Ölverlust/Überdrehen schädigen Kurbeltrieb und Kette; eine ausgefallene Kette kann Ventile beschädigen. Beim Wankel gelten Gehäuse und Exzenterwelle; Pleuel und Ventilsteuertrieb sind nicht verbaut. V21/V22-Systeme bleiben erhalten. P02.07/P02.08/P02.11/P02.12 sind durch thermische, Antriebs-, Diagnose-, Reparatur- und Speicherprüfungen nachgewiesen; P02.02–P02.04/P02.09/P02.10 bleiben erfüllt. P02.01/P02.05/P02.06 bleiben teilweise für Kompressortuning sowie die noch fehlenden Verbindungen zu sichtbaren Befestigungen und ausgebauten Teilen in Phase 3/5/6. Alle verbauten Motorarten sind in der mechanischen Näherung abgedeckt.
 
 - **P02.01 · teilweise erledigt** — Weg vom einzigen allgemeinen Auto-Health-Wert als Schadensquelle. Jede wesentliche Baugruppe erhält einen eigenen Zustand, Verschleiß und bei Bedarf Temperatur, Belastung und Ausfallart.
 - **P02.02 · erledigt** — Vier unabhängige Reifen: Temperatur, Luftdruck, Reifenmischung, Abrieb, Gripverlust, Flatspots, Platten, Beschädigung und Blowout.
@@ -42,12 +42,12 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 - **P02.04 · erledigt** — Rauchmenge hängt von Radschlupf, Temperatur und Oberfläche ab. Nicht jeder Reifen platzt nach einer festen Zeit unabhängig von den Umständen.
 - **P02.05 · teilweise erledigt** — Motor separat: Block, Kolben/Pleuel, Kurbeltrieb, Zylinderkopf, Dichtung, Ölkreislauf/Öldruck, Kühler/Kühlmittel, Lüfter, Ansaugung, Auspuff, Turbo/Kompressor, Riemen, Lichtmaschine und relevante Nebenaggregate.
 - **P02.06 · teilweise erledigt** — Schaden durch Überdrehen, schlechte Kühlung, Ölverlust, Überlast, Kollisionen und lange Überhitzung. Folgen: Leistungsverlust, ungewöhnliche Geräusche, Fehlzündungen, Rauch, Ruckeln, Klopfen, Lecks und schlimmstenfalls Motorausfall.
-- **P02.07 · teilweise erledigt** — Beschädigter Kühler verursacht Kühlmittelverlust und steigende Motortemperatur; falsches Weiterfahren kann Folgeschäden erzeugen.
-- **P02.08 · teilweise erledigt** — Kupplung: Verschleiß, Hitze, Schlupf, verringerte Kraftübertragung bis zum kompletten Ausfall. Getriebe: Schäden durch Überlast und schlechte Schaltvorgänge, mögliche Gangprobleme. Differenzial und Antriebswellen ebenfalls getrennt.
+- **P02.07 · erledigt** — Beschädigter Kühler verursacht Kühlmittelverlust und steigende Motortemperatur; falsches Weiterfahren kann Folgeschäden erzeugen.
+- **P02.08 · erledigt** — Kupplung: Verschleiß, Hitze, Schlupf, verringerte Kraftübertragung bis zum kompletten Ausfall. Getriebe: Schäden durch Überlast und schlechte Schaltvorgänge, mögliche Gangprobleme. Differenzial und Antriebswellen ebenfalls getrennt.
 - **P02.09 · erledigt** — Bremsen pro Rad: Verschleiß, Temperatur, Fade, beschädigte Leitungen/Komponenten, ungleichmäßige Bremswirkung, Ausfall; heißer Bremsscheiben-Glow bei passender Temperatur.
 - **P02.10 · erledigt** — Fahrwerk, Lenkung, Radlager und Aufhängungen können nach Unfällen falsch ausgerichtet, beschädigt oder zerstört sein.
-- **P02.11 · teilweise erledigt** — Warnanzeigen und Diagnose zeigen echte Zustände. Reparatur ersetzt oder repariert die betroffene Komponente, nicht immer das gesamte Auto.
-- **P02.12 · teilweise erledigt** — Teileschäden, Temperaturen und Verschleiß dürfen nach dem Verlassen des Fahrzeugs oder der Garage nicht grundlos verschwinden.
+- **P02.11 · erledigt** — Warnanzeigen und Diagnose zeigen echte Zustände. Reparatur ersetzt oder repariert die betroffene Komponente, nicht immer das gesamte Auto.
+- **P02.12 · erledigt** — Teileschäden, Temperaturen und Verschleiß dürfen nach dem Verlassen des Fahrzeugs oder der Garage nicht grundlos verschwinden.
 
 ## Phase 3: VERFORMUNG UND ABFALLENDE FAHRZEUGTEILE
 
@@ -284,3 +284,7 @@ P02.09/P02.10 sind in der beschriebenen effizienten Näherung erfüllt. P02.01/P
 ## V22 – Motor-Nebenaggregate und Elektrik
 
 P02.01/P02.05/P02.06/P02.07/P02.11/P02.12 wurden erweitert; P16.01–P16.03 und P18.16 erhalten weitere Integrationsnachweise. Die übergeordneten Punkte bleiben teilweise. Alle 156 Anforderungen bleiben unverändert enthalten. Umsetzung, Tests und Grenzen stehen im [Phasenbericht](phase-2c-auxiliaries-report.md). Als Nächstes folgt Phase 2D mit den verbleibenden getrennten Motorbauteilen; danach weitere modulare Karosserieschäden aus Phase 3.
+
+## V23 – getrennte Motorbauteile
+
+Phase 2D ist umgesetzt. P02.07/P02.08/P02.11/P02.12 sind jetzt erledigt, mit Nachweisen und Grenzen im [Phasenbericht](phase-2d-engine-report.md). Die übrigen Punkte behalten ihren expliziten Status; alle 156 Anforderungen sind wortgleich enthalten. Nächste Arbeit: offene Nässe-Anbindung und Fahrkalibrierung aus Phase 1 nachholen, anschließend Phase 3 erweitern.

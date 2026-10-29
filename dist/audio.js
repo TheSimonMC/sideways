@@ -53,7 +53,7 @@ export class GameAudio {
   this._noise={seed:709123};this._stereoNoise={seed:950639};this._windSide=0;this._nosSide=0;this._windLow=0;this._windBody=0;this._wind=0;this._windTarget=0;this._nos=0;this._nosTarget=0;this._nosAir=0;this._nosBody=0;this._lastNOS=false;
   this.world=new SpatialWorldAudio();this.acoustics=new StreetAcoustics();this._acousticSpace=null;this._reverbMix=-1;this._engineDuck=1;this.music=new GameMusic();this._worldContext={};this._musicPreferences={enabled:true,volume:.42,mode:'menu',intensity:0,paused:null};this._traffic=this.world.traffic;this._trafficVoices=this.world.voices;
   this._worldIndependent=false;this._worldScheduled=new Set();this._worldNextTime=0;this._worldFrames=0;this.focus={hidden:false,reading:false,paused:false,backgroundMusic:false};
-  this._fanCase=new Band(350,.7);this._beltCase=new Band(3200,2);this._fanGain=0;this._beltGain=0;this._fanTarget=0;this._beltTarget=0;
+  this._intakeLeakCase=new Band(1800,.6);this._exhaustLeakCase=new Band(180,1.1);this._intakeLeakGain=this._exhaustLeakGain=this._intakeLeakTarget=this._exhaustLeakTarget=0;this._fanCase=new Band(350,.7);this._beltCase=new Band(3200,2);this._fanGain=0;this._beltGain=0;this._fanTarget=0;this._beltTarget=0;
   this._gearMesh=new Band(420,3.6);this._gearCase=new Band(920,.8);this._starterCase=new Band(470,1.7);this._clutchCase=new Band(290,.75);this._diffCase=new Band(780,1.1);
   this._gearGain=0;this._gearTarget=0;this._starterGain=0;this._starterTarget=0;this._clutchGain=0;this._clutchTarget=0;this._diffGain=0;this._diffTarget=0;
   this._events=[];this._eventCount={shift:0,handbrake:0,suspension:0,impact:0,starter:0,clutch:0,selector:0,ui:0,nitro:0};this._foleyTime=0;this._lastSuspension=[-10,-10,-10,-10];
@@ -160,6 +160,7 @@ export class GameAudio {
   this._gearMesh.tune(gearHz,gear<0?5.6:3.5);this._gearCase.tune(Math.min(11000,gearHz*1.97),1.1);
   const gearWear=1-clamp(s?.gearboxHealth??1,0,1),diffWear=1-clamp(Math.min(1,...(s?.mechanical?.components||[]).filter(part=>part.applicable!==false&&['differential','frontDifferential','centerDifferential'].includes(part.id)).map(part=>part.health)),0,1);
   this._gearTarget=gear===0?0:clamp(shaft/750,0,1)*(.008+torque*.014+clamp(speed/20,0,1)*.004)*this.gearboxGain*this.mix.mechanical*(1+gearWear*1.5)*(gear<0?2.4:1)*(hood?1.2:.85);
+  const firing=s?.engineRunning&&engine.rpm>250?1:0;this._intakeLeakTarget=(s?.mechanical?.intakeLeak??0)*.05*firing*this.mix.mechanical;this._exhaustLeakTarget=(s?.mechanical?.exhaustLeak??0)*.08*firing*this.mix.mechanical;this._exhaustLeakCase.tune(100+Math.abs(engine.rpm)*.045,1.1);
   const aux=s?.mechanical?.auxiliaries;this._fanTarget=(aux?.fan??0)*.045*this.mix.mechanical;this._beltTarget=(aux?.beltSlip??0)*(aux?.beltDrive??0)*.055*this.mix.mechanical;this._beltCase.tune(1500+clamp(engine.rpm,0,8000)*.45,2);
   const starter=!!(s?.starterActive??engine.controls?.starter)&&!(s?.engineRunning&&engine.rpm>1000);
   this._starterTarget=starter?.065*this.mix.mechanical:0;this._starterCase.tune(260+clamp(engine.rpm,0,700)*.45,1.2);
@@ -278,7 +279,7 @@ export class GameAudio {
    this._gearGain+=(this._gearTarget-this._gearGain)*controlPole;this._starterGain+=(this._starterTarget-this._starterGain)*controlPole;this._clutchGain+=(this._clutchTarget-this._clutchGain)*controlPole;this._diffGain+=(this._diffTarget-this._diffGain)*controlPole;
    // Broadband excitation through shaft-speed resonances gives mesh/brush
    // texture. No clean sine, triangle, or sawtooth is layered over the engine.
-   this._fanGain+=(this._fanTarget-this._fanGain)*controlPole;this._beltGain+=(this._beltTarget-this._beltGain)*controlPole;const auxiliaries=this._fanCase.sample(n)*this._fanGain+this._beltCase.sample(n)*this._beltGain;
+   this._fanGain+=(this._fanTarget-this._fanGain)*controlPole;this._beltGain+=(this._beltTarget-this._beltGain)*controlPole;this._intakeLeakGain+=(this._intakeLeakTarget-this._intakeLeakGain)*controlPole;this._exhaustLeakGain+=(this._exhaustLeakTarget-this._exhaustLeakGain)*controlPole;const auxiliaries=this._fanCase.sample(n)*this._fanGain+this._beltCase.sample(n)*this._beltGain+this._intakeLeakCase.sample(n)*this._intakeLeakGain+this._exhaustLeakCase.sample(n)*this._exhaustLeakGain;
    const gears=(this._gearMesh.sample(n)*1.8+this._gearCase.sample(n)*.35)*this._gearGain+this._clutchCase.sample(n)*this._clutchGain,starter=this._starterCase.sample(n)*this._starterGain+auxiliaries,differential=this._diffCase.sample(n)*this._diffGain;
    const windSide=this._windSide*this._wind*.35;l+=(wind+windSide)*.65+(gears*gearPan[0]+starter*enginePan[0]+differential*diffPan[0])*.78;r+=(wind-windSide)*.65+(gears*gearPan[1]+starter*enginePan[1]+differential*diffPan[1])*.78;sums.wind+=wind*wind;sums.mechanical+=gears*gears+starter*starter+differential*differential;
    this._nos+=(this._nosTarget-this._nos)*(this._nosTarget>this._nos?.0012:.00065);this._nosAir+=(n-this._nosAir)*.29;this._nosBody+=(n-this._nosBody)*.018;
@@ -302,8 +303,8 @@ export class GameAudio {
   this._audibility=0;this._gear=null;this._state=null;this._lastStarter=false;this._lastHandbrake=0;this._lastClutch=1;this._lastShiftRejected=false;this._events.length=0;this.acoustics.reset();this._engineDuck=1;
   this._wind=this._windTarget=this._windLow=this._windBody=this._windSide=0;this._nos=this._nosTarget=this._nosAir=this._nosBody=this._nosSide=0;this._lastNOS=false;this.world.reset();this._trafficVoices=this.world.voices;this._flushWorld();this._gearGain=this._gearTarget=this._starterGain=this._starterTarget=this._clutchGain=this._clutchTarget=this._diffGain=this._diffTarget=0;
   this._wheels=[0,1,2,3].map(makeWheel);this._lastSuspension=[-10,-10,-10,-10];for(const f of this._engineFilters)for(const k of Object.keys(f))f[k]=0;
-  this._fanGain=this._beltGain=this._fanTarget=this._beltTarget=0;
-  for(const band of [this._fanCase,this._beltCase,this._gearMesh,this._gearCase,this._starterCase,this._clutchCase,this._diffCase])band.reset();
+  this._intakeLeakGain=this._exhaustLeakGain=this._intakeLeakTarget=this._exhaustLeakTarget=0;this._fanGain=this._beltGain=this._fanTarget=this._beltTarget=0;
+  for(const band of [this._intakeLeakCase,this._exhaustLeakCase,this._fanCase,this._beltCase,this._gearMesh,this._gearCase,this._starterCase,this._clutchCase,this._diffCase])band.reset();
  }
  _queue(left,right){let offset=0;while(offset<left.length){const count=Math.min(BLOCK-this._stagingCount,left.length-offset);this._stagingL.set(left.subarray(offset,offset+count),this._stagingCount);this._stagingR.set(right.subarray(offset,offset+count),this._stagingCount);this._stagingCount+=count;offset+=count;if(this._stagingCount===BLOCK){this._scheduleBlock();this._stagingCount=0;}}}
  _scheduleBlock(){

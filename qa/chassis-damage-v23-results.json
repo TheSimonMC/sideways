@@ -1,0 +1,95 @@
+{
+  "version": 23,
+  "status": "passed",
+  "checks": [
+    "Old saves retain pre-existing damage and gain healthy chassis/brake internals; every nested new field snapshots independently.",
+    "Actual wheel-bearing drag dissipates motion into its own heat and causes a local steering pull; stationary and missing bearings add no work.",
+    "Seized bearing locks the actual wheel without adding kinetic energy; force goes through the tyre and never into brake heat.",
+    "Bent tie rod changes trajectory; a broken rod ignores the rack; a seized rack holds its current steering position until replaced.",
+    "Collision and detachment damage local bearings, rods and ABS; targeted replacement, tuning, recovery and garage saves preserve unrelated faults.",
+    "Master-cylinder and booster failures reduce actual braking independently; failed ABS stops releasing pressure while leaving ordinary brakes working.",
+    "Disc heat boils degraded fluid and lengthens the pedal; cooling condenses vapour but leaves trapped air, which refill cannot fix.",
+    "Damage-off freezes permanent chassis/fluid wear; substeps conserve supplied bearing energy and overload affects only the loaded rotating corner.",
+    "All four bodies expose moving steering links and measured wheel camber; broken links separate and disposal removes the model.",
+    "Bearing rumble follows the damaged rotating wheel, stops with rotation or missing wheel, respects mechanical mix and emits finite PCM."
+  ],
+  "fixtures": {
+    "Old saves retain pre-existing damage and gain healthy chassis/brake internals; every nested new field snapshots independently.": {},
+    "Actual wheel-bearing drag dissipates motion into its own heat and causes a local steering pull; stationary and missing bearings add no work.": {
+      "healthySpeed": 23.60621208497539,
+      "damagedSpeed": 23.236569124486447,
+      "pull": -1.1414347305600328,
+      "temperature": 32.90284600934838,
+      "workJ": 9356.987180133012
+    },
+    "Seized bearing locks the actual wheel without adding kinetic energy; force goes through the tyre and never into brake heat.": {
+      "initial": 136923.01038062284,
+      "final": 92273.2776448407
+    },
+    "Bent tie rod changes trajectory; a broken rod ignores the rack; a seized rack holds its current steering position until replaced.": {
+      "bendPull": 4.476528611746416
+    },
+    "Collision and detachment damage local bearings, rods and ABS; targeted replacement, tuning, recovery and garage saves preserve unrelated faults.": {},
+    "Master-cylinder and booster failures reduce actual braking independently; failed ABS stops releasing pressure while leaving ordinary brakes working.": {
+      "healthy": {
+        "speed": 3.5055778900785928,
+        "pressure": [
+          0.6227814923197753,
+          0.6227814923197753,
+          0.7765383431145013,
+          0.7765383431145013
+        ],
+        "activations": 88
+      },
+      "master": {
+        "speed": 13.956566992290698,
+        "pressure": [
+          0,
+          0.3516581568344573,
+          0.9572585268765488,
+          0
+        ],
+        "activations": 94
+      },
+      "booster": {
+        "speed": 16.18465185685811,
+        "pressure": [
+          0.21999988039479895,
+          0.21999988039479895,
+          0.21999988039479895,
+          0.21999988039479895
+        ],
+        "activations": 0
+      },
+      "abs": {
+        "speed": 5.3524550314758335,
+        "pressure": [
+          0.9999994563399952,
+          0.9999994563399952,
+          0.9999994563399952,
+          0.9999994563399952
+        ],
+        "activations": 0
+      }
+    },
+    "Disc heat boils degraded fluid and lengthens the pedal; cooling condenses vapour but leaves trapped air, which refill cannot fix.": {
+      "hot": 321.6752693511953
+    },
+    "Damage-off freezes permanent chassis/fluid wear; substeps conserve supplied bearing energy and overload affects only the loaded rotating corner.": {},
+    "All four bodies expose moving steering links and measured wheel camber; broken links separate and disposal removes the model.": {},
+    "Bearing rumble follows the damaged rotating wheel, stops with rotation or missing wheel, respects mechanical mix and emits finite PCM.": {}
+  },
+  "sourceSHA256": {
+    "dist/chassis-damage.js": "621bd5933b6dcb7ce23c5f8125cbdc70c0ee3fe7d479886840108d255e39ecfe",
+    "dist/brake-hydraulics.js": "e39673b289e3ef7eb2c8ad322889c120918566ca6d17144a7607ecc0758b7636",
+    "dist/mechanical.js": "5b9005c743e6afbb9dfb6b361277109cecd0f144aefb2728f9bb37577dbc2261",
+    "dist/physics.js": "37c16071803517699ba418ae69704bc5a8f56142b5b5ad2497fa4f32fe8d4cb8",
+    "dist/car.js": "26493b81c4fd177889abaedb2c40f7289d19e85eee54a9f6b816e3ddaa99e3f9",
+    "dist/vehicle-panel.js": "8b93816403142d3ab9b2ad0a96a54d3ec1128a653c1369bd47bcb2ffc4ae52b8",
+    "dist/audio.js": "9524c08c58fd79b3d1ee73b86b611da74a98f47327c34384745a006fa5b0dc4e"
+  },
+  "limits": [
+    "Bounded fictional wheel-end, steering and dual-circuit approximations, no real-car calibration or vacuum/pipe/fluid CFD.",
+    "PCM checked numerically, not subjective listening; steering-link geometry checked, not physical hardware."
+  ]
+}
