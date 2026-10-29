@@ -194,7 +194,7 @@ export class MechanicalSystem{
   for(let i=0;i<4;i++){
    const brakeJ=Math.max(0,finite(sample.brakeWorkJ?.[i])),tyreJ=Math.max(0,finite(sample.tyreWorkJ?.[i])),rollingJ=Math.max(0,finite(sample.tyreRollingWorkJ?.[i]));
    t.brakes[i]=AMBIENT+(t.brakes[i]+brakeJ/4300-AMBIENT)*Math.exp(-dt*(.012+speed*.0017));
-   t.tyres[i]=AMBIENT+(t.tyres[i]+(tyreJ+rollingJ)/9500-AMBIENT)*Math.exp(-dt*(.016+speed*.0008));
+   t.tyres[i]=AMBIENT+(t.tyres[i]+(tyreJ+rollingJ)/9500-AMBIENT)*Math.exp(-dt*(.016+speed*.0008+clamp(finite(sample.tyreWetness?.[i]),0,1)*(.025+speed*.0015)));
    t.brakes[i]=clamp(t.brakes[i],AMBIENT,1600);t.tyres[i]=clamp(t.tyres[i],AMBIENT,900);
    m.energy.brakeJ[i]+=brakeJ;m.energy.tyreJ[i]+=tyreJ+rollingJ;
    if(damageEnabled){

@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "version": 24,
+  "bytes": 10612207,
+  "scripts": 2,
+  "scriptSyntax": "valid",
+  "domIds": 394,
+  "language": "en",
+  "embeddedAudioCredits": true,
+  "externalRuntimeDependencies": 0
+}

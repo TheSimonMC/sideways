@@ -1,7 +1,7 @@
 {
   "source": "docs/goal.txt",
   "sourceSHA256": "4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc282ea844a1b96dca",
-  "version": 23,
+  "version": 24,
   "requirements": [
     {
       "id": "P00.01",
@@ -72,13 +72,13 @@
     {
       "id": "P01.07",
       "phase": 1,
-      "status": "teilweise erledigt",
+      "status": "erledigt",
       "requirement": "Bodenwellen, Schlaglöcher, Bordsteine, Unebenheiten, Nässe und verschiedene Oberflächen wirken sich auf die Räder aus."
     },
     {
       "id": "P01.08",
       "phase": 1,
-      "status": "teilweise erledigt",
+      "status": "erledigt",
       "requirement": "Reifenverschleiß und Temperatur wirken sich auf Haftung und Fahrverhalten aus."
     },
     {
@@ -786,7 +786,7 @@
     {
       "id": "P16.07",
       "phase": 16,
-      "status": "teilweise erledigt",
+      "status": "erledigt",
       "requirement": "Straßen-, Wetter- und Reifenzustand beeinflussen sich sinnvoll gegenseitig."
     },
     {
@@ -941,19 +941,21 @@
     }
   ],
   "currentIncrement": {
-    "phase": 2,
-    "part": "D – getrennte Motorinnenteile, Ansaugung, Auspuff und Versorgung",
+    "phase": 1,
+    "part": "E – Wetter, Straßennässe und Fahrvergleich",
     "status": "erledigt",
     "implemented": [
-      "Zehn zusätzliche Komponenten mit nativen Motorfolgen, Verschleiß, gezieltem Ersatz und Speicherung",
-      "Thermostatüberhitzung, Block-/Kopflecks, Steuerketten- und Pleuelfolgeschäden",
-      "Wankel ohne imaginäre Pleuel oder Steuerkette; Fehler bleiben beim Umbau gespeichert",
-      "Ansaug-/Auspuffgeräusch, Diagnose und Schutz gegen Warmstart trotz Pumpen-/Zündungsausfall"
+      "Persistenter Wetterzustand mit Regen, verzögerter Benetzung und Trocknung",
+      "Vier radweise Nässe-/Pfützenkontakte mit Tempo-, Profil-, Druck- und Mischungsabhängigkeit",
+      "Wasserwiderstand, Aquaplaning-Näherung, Reifenkühlung, Sprühwasser und PCM-Regengeräusch",
+      "Begrenzter Regenpuffer, nasse Straßenmaterialien, veränderte Sicht und Beleuchtung",
+      "Wetterregeln und autoritative Feuchtigkeit im Multiplayer einschließlich Wiedereinstieg"
     ],
     "remaining": [
-      "Phase 2 insgesamt bleibt teilweise: Kompressortuning ist noch nicht im Teilekatalog; sichtbare Befestigungen und Ausbau folgen in Phase 3/5/6.",
-      "Phase 1: Nässe/Wetter und breitere Fahrkalibrierung bleiben offen."
+      "Phase 1: breitere Grenzbereichs- und Eingabegeräte-Kalibrierung; keine reale Fahrzeugmessung oder physische Wheel-Abnahme.",
+      "Phase 2: Kompressortuning sowie Montage-/Ausbauintegration fehlen.",
+      "Phase 7: umfassende Reflexionen, Wetterschutz unter neuer Tunnel-/Garagengeometrie und Cockpit-Nässefolgen fehlen."
     ],
-    "next": "Zuerst die offene Nässe-Anbindung aus Phase 1 und Fahrvergleich nachholen; dann Phase 3 mit Türen, Hauben, Glas, Leuchten und weiteren abfallenden Teilen. Sichtbarer Motorraum und Garage folgen in Phase 6."
+    "next": "Phase 3: Türen, Hauben, Glas, Leuchten, Befestigungen und weitere Trümmer. Danach Phase 4 mit Innenräumen, Cockpit und Fahrer; Phase 1-Grenzbereichsprüfung in der gemeinsamen Abnahme fortführen."
   }
 }

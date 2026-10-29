@@ -1,0 +1,23 @@
+{
+  "version": 24,
+  "status": "passed",
+  "checks": [
+    "Final offline HTML retains electrical faults and empty battery through a real tuning purchase and reload; no warm-engine bypass",
+    "New run restores auxiliaries; Escape opens the pause menu and both condition tabs expose all new components",
+    "Real condition-panel service buttons charge the battery and replace belt, starter and fan separately without healing the tensioner or alternator",
+    "Component labels, charge/current/voltage and service actions fit at desktop and 390-pixel width"
+  ],
+  "errors": [],
+  "external": [],
+  "htmlSha256": "f39dbc03d8aacd7fcb2e3152a2669e8f638370edf67b045ea9b75c989521f766",
+  "sourceSHA256": {
+    "dist/vehicle-panel.js": "8b93816403142d3ab9b2ad0a96a54d3ec1128a653c1369bd47bcb2ffc4ae52b8",
+    "dist/physics.js": "3b80c865e7296b61fb3e176a6d6b5c2b129937b263c139ad2f3c5eaec1cd65bb",
+    "dist/mechanical.js": "7194e34b43811dd5a4e1d5173743820323adecbdb4cbc29936f1994b54d41d6e",
+    "dist/engine-auxiliaries.js": "76e968fdc9cb4041cdcd0a2c754843bda5ddcfe2f21d248d95013f8748aa68ca"
+  },
+  "limits": [
+    "Save/reload/new-run/pause diagnostics tested in final HTML. Damaged service buttons use original VehiclePanel/CarPhysics in a module harness; main repair timer and travel to the mechanic are not tested here.",
+    "Software rendering; no physical-controller or subjective listening test."
+  ]
+}

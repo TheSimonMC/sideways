@@ -1,0 +1,107 @@
+{
+  "version": 24,
+  "status": "measured",
+  "current": {
+    "stock": {
+      "flat": {
+        "steps": 1200,
+        "meanMs": 1.7891644166666683,
+        "medianMs": 1.6743000000000166,
+        "p95Ms": 2.5804000000002816,
+        "groundQueriesPerStep": 4
+      },
+      "hills": {
+        "steps": 1200,
+        "meanMs": 1.7894000833333408,
+        "medianMs": 1.663600000000315,
+        "p95Ms": 2.5108000000000175,
+        "groundQueriesPerStep": 4
+      },
+      "wet": {
+        "steps": 1200,
+        "meanMs": 1.7956481666666801,
+        "medianMs": 1.652100000000246,
+        "p95Ms": 2.5913000000000466,
+        "groundQueriesPerStep": 4
+      }
+    },
+    "fwd": {
+      "flat": {
+        "steps": 1200,
+        "meanMs": 1.7564687499999976,
+        "medianMs": 1.625,
+        "p95Ms": 2.5619000000006054,
+        "groundQueriesPerStep": 4
+      },
+      "hills": {
+        "steps": 1200,
+        "meanMs": 1.754668750000025,
+        "medianMs": 1.6177999999999884,
+        "p95Ms": 2.4993000000013126,
+        "groundQueriesPerStep": 4
+      },
+      "wet": {
+        "steps": 1200,
+        "meanMs": 1.7205810000000066,
+        "medianMs": 1.596400000000358,
+        "p95Ms": 2.4799000000002707,
+        "groundQueriesPerStep": 4
+      }
+    },
+    "awd": {
+      "flat": {
+        "steps": 1200,
+        "meanMs": 1.751148083333281,
+        "medianMs": 1.6270000000004075,
+        "p95Ms": 2.4976000000006024,
+        "groundQueriesPerStep": 4
+      },
+      "hills": {
+        "steps": 1200,
+        "meanMs": 1.7162963333333119,
+        "medianMs": 1.6137000000016997,
+        "p95Ms": 2.3958999999995285,
+        "groundQueriesPerStep": 4
+      },
+      "wet": {
+        "steps": 1200,
+        "meanMs": 1.7287044166667267,
+        "medianMs": 1.6186999999990803,
+        "p95Ms": 2.438399999999092,
+        "groundQueriesPerStep": 4
+      }
+    }
+  },
+  "limits": [
+    "Node.js wall-clock on this machine for one native engine/chassis and a synthetic sampler. Browser GPU, world query cost, AI, audio and frame scheduling excluded; no FPS guarantee.",
+    "Same Vector V6 inputs and samplers; native engine load and JIT timing may differ. Single local run, not a universal comparison."
+  ],
+  "baselineV23": {
+    "flat": {
+      "steps": 1200,
+      "meanMs": 1.8503845833332313,
+      "medianMs": 1.6908999999977823,
+      "p95Ms": 2.6529000000009546,
+      "groundQueriesPerStep": 4
+    },
+    "hills": {
+      "steps": 1200,
+      "meanMs": 1.7494287499999852,
+      "medianMs": 1.6349000000009255,
+      "p95Ms": 2.502200000002631,
+      "groundQueriesPerStep": 4
+    }
+  },
+  "sourceSHA256": {
+    "dist/drivetrain.js": "9927f12d0ab5de0ad2de6f59b5f5f21cfb1ec0ce6c1efc81ca253ded1efb16d3",
+    "dist/physics.js": "3b80c865e7296b61fb3e176a6d6b5c2b129937b263c139ad2f3c5eaec1cd65bb",
+    "dist/mechanical.js": "7194e34b43811dd5a4e1d5173743820323adecbdb4cbc29936f1994b54d41d6e",
+    "dist/wheel-hop.js": "cf5f23aef7a49a1cee3dd0abba6614fc83db16fc31f4c62cc58e6b529d7b2a4c",
+    "dist/aerodynamics.js": "dcfe58d8f4e9515fbc07c1e6fceb6a7d8907a71c7518171b5cad9272041a0abf",
+    "dist/catalog.js": "c5da9ed3102fe56916bf85badb4a9c355de106cbcf29dda37f92f6d551425065",
+    "dist/tyres.js": "b222bd0f4f2be0e519505c653dc9b96f76abffc527d2ca9b82838bb6c55a5f14",
+    "dist/vehicle-state.js": "888f606612f2a452c8fe4693a77fba4020a1b7aa3538f9ae8e848129bef4af3e",
+    "dist/brake-hydraulics.js": "e39673b289e3ef7eb2c8ad322889c120918566ca6d17144a7607ecc0758b7636",
+    "dist/chassis-damage.js": "621bd5933b6dcb7ce23c5f8125cbdc70c0ee3fe7d479886840108d255e39ecfe"
+  }
+}

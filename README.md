@@ -1,10 +1,10 @@
-# SIDEWAYS V23
+# SIDEWAYS V24
 
 [Play in your browser](https://thesimonmc.github.io/sideways/) · [Download ZIP or offline HTML](https://github.com/TheSimonMC/sideways/releases/latest)
 
 GitHub Pages publishes the tested `SIDEWAYS.html` on every push to `main`. To publish source changes, rebuild and rerun the standalone checks described below, then copy `dist/SIDEWAYS.html` to `SIDEWAYS.html` and commit it with the updated browser report. The deployment verifies that their SHA-256 values match.
 
-Start with **READ-ME-V23.txt** for this update, offline setup and verification limits.
+Start with **READ-ME-V24.txt** for this update, offline setup and verification limits.
 
 ## SIDEWAYS / City Sessions
 
@@ -14,7 +14,7 @@ The player engine and its sound use the supplied MotorLab SDK 1.6.3, Physics Rel
 
 ## Play the downloaded game
 
-Open `SIDEWAYS-v23.html` from the chat attachment. The complete ZIP includes the same game as `SIDEWAYS.html` at its root, along with the editable project, SDK, credits and instructions. Extract the ZIP before opening its HTML. Single-player, including NPC racing, needs no server or network download. Multiplayer still needs internet access to signaling and peers.
+Open `SIDEWAYS-v24.html` from the chat attachment. The complete ZIP includes the same game as `SIDEWAYS.html` at its root, along with the editable project, SDK, credits and instructions. Extract the ZIP before opening its HTML. Single-player, including NPC racing, needs no server or network download. Multiplayer still needs internet access to signaling and peers.
 
 The HTML includes code, fonts, models and sound. No Sites address is used by the game. Progress stays in the browser and origin where you played. Copying the HTML to another PC copies the game assets; it does not copy browser storage. Click or press a key to enable sound. A browser must expose a controller or wheel through its Gamepad API before the game can bind it.
 
@@ -25,7 +25,15 @@ npm ci
 node build.mjs
 ```
 
-This creates `dist/SIDEWAYS.html`. After running `node qa/standalone-v23-check.mjs` and `node qa/standalone-browser-v23.cjs` on that build, `node qa/package-v23.mjs` creates `release/SIDEWAYS-v23.html` and `release/SIDEWAYS-v23.zip`. The browser check needs Playwright; dependency and browser path options are in READ-ME-V23.txt. Packaging verifies that the tested HTML matches the delivered bytes. These commands do not publish a Site or push a repository.
+This creates `dist/SIDEWAYS.html`. After running `node qa/standalone-v24-check.mjs` and `node qa/standalone-browser-v24.cjs` on that build, `node qa/package-v24.mjs` creates `release/SIDEWAYS-v24.html` and `release/SIDEWAYS-v24.zip`. The browser check needs Playwright; dependency and browser path options are in READ-ME-V24.txt. Packaging verifies that the tested HTML matches the delivered bytes. These commands do not publish a Site or push a repository.
+
+## V24: Rain and wet roads
+
+Rain now wets the road and leaves moisture that dries gradually. Each wheel responds to wet material and puddles using speed, tread, compound and pressure. One-sided puddles can pull the car; wet contact cools tyres. Spray, road sheen, fog and rain sound follow the same weather state. Traffic and race opponents adjust to wet grip.
+
+Choose changing weather, clear skies or rain in Settings. The host sets weather in a multiplayer lobby; joining drivers receive current moisture. All players need V24 (network protocol 16). The RATE_LIMIT fix remains in place.
+
+See [the V24 report](docs/phase-1e-weather-report.md), [all 156 requirements](docs/goal-progress.md) and `qa/release-v24.json`. Next: Phase 3 doors, hoods, glass, lights and detachable modules. Broader driving calibration and later interior/garage/world phases remain open. Older release notes below are historical.
 
 ## V23: Engine components and consequential damage
 

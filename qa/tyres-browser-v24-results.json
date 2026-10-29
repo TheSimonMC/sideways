@@ -1,0 +1,16 @@
+{
+  "version": 24,
+  "status": "passed",
+  "checks": [
+    "Sport compound preview is free, purchase costs 4,800 and preserves blown casing, flat spot and suspension damage",
+    "A real browser reload preserves each tyre, its flat-spot orientation, old suspension damage and part ownership",
+    "New run repairs tyres while retaining the compound; keyboard driving, Escape pause and all four diagnostic readouts work at desktop and narrow width"
+  ],
+  "errors": [],
+  "external": [],
+  "htmlSha256": "f39dbc03d8aacd7fcb2e3152a2669e8f638370edf67b045ea9b75c989521f766",
+  "limits": [
+    "Saved-damage browser fixture; sustained burnout and targeted replacement are separately tested in the native tyre suite.",
+    "Software renderer, no physical wheel or subjective listening test."
+  ]
+}

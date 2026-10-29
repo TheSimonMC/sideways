@@ -1,0 +1,24 @@
+{
+  "version": 24,
+  "status": "passed",
+  "checks": [
+    "The shipped HTML preserves bearing, rack, rod, air, master-cylinder, booster and ABS faults through steering-kit purchase and real reload",
+    "A new run repairs the new components, keeps the steering kit, and Escape opens diagnostics with every new part",
+    "Actual VehiclePanel buttons call the native component repair system: isolated bearing/rod replacement, refill retains air, bleeding is gated on fluid and preserves master-cylinder damage",
+    "The real condition panel keeps long component descriptions within the row at desktop and 390-pixel width"
+  ],
+  "errors": [],
+  "external": [],
+  "htmlSha256": "f39dbc03d8aacd7fcb2e3152a2669e8f638370edf67b045ea9b75c989521f766",
+  "sourceSHA256": {
+    "dist/vehicle-panel.js": "8b93816403142d3ab9b2ad0a96a54d3ec1128a653c1369bd47bcb2ffc4ae52b8",
+    "dist/physics.js": "3b80c865e7296b61fb3e176a6d6b5c2b129937b263c139ad2f3c5eaec1cd65bb",
+    "dist/mechanical.js": "7194e34b43811dd5a4e1d5173743820323adecbdb4cbc29936f1994b54d41d6e",
+    "dist/chassis-damage.js": "621bd5933b6dcb7ce23c5f8125cbdc70c0ee3fe7d479886840108d255e39ecfe",
+    "dist/brake-hydraulics.js": "e39673b289e3ef7eb2c8ad322889c120918566ca6d17144a7607ecc0758b7636"
+  },
+  "limits": [
+    "Persistence/new-run/diagnostics use final standalone bytes. Damaged-part service uses the shipped VehiclePanel and native physics in a local module harness; it does not test travelling to a garage or the main controller repair timer.",
+    "Software rendering; physical controls and subjective listening not tested."
+  ]
+}

@@ -1,9 +1,10 @@
+import {normalizeWeather,WEATHER_MODES} from './weather.js';
 import {resolveBuild} from './catalog.js';
 
-export const MULTIPLAYER_VERSION=15;
-export const DEFAULT_LOBBY_RULES=Object.freeze({maxPlayers:4,traffic:'normal',police:true,damage:true,time:'cycle',collisions:'ghost'});
+export const MULTIPLAYER_VERSION=16;
+export const DEFAULT_LOBBY_RULES=Object.freeze({maxPlayers:4,traffic:'normal',police:true,damage:true,time:'cycle',weather:'cycle',collisions:'ghost'});
 const CODE_ALPHABET='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-const PREFIX='sideways-v15-';
+const PREFIX='sideways-v16-';
 const LIMITS={packet:96000,buffer:256000,events:64,links:7,rate:90,worldNodes:10000};
 const JOIN_TIMEOUT={overall:45000,channel:30000,handshake:15000};
 const utf8=new TextEncoder();
@@ -46,7 +47,7 @@ export function makeLobbyCode(random=globalThis.crypto){
  const bytes=new Uint8Array(8);random.getRandomValues(bytes);return Array.from(bytes,n=>CODE_ALPHABET[n&31]).join('');
 }
 export function normalizeLobbyRules(value={}){
- return {maxPlayers:Math.round(clamp(value.maxPlayers??4,2,4)),traffic:['off','light','normal'].includes(value.traffic)?value.traffic:'normal',police:value.police!==false,damage:value.damage!==false,time:['cycle','day','sunset','night'].includes(value.time)?value.time:'cycle',collisions:value.collisions==='solid'?'solid':'ghost'};
+ return {maxPlayers:Math.round(clamp(value.maxPlayers??4,2,4)),traffic:['off','light','normal'].includes(value.traffic)?value.traffic:'normal',police:value.police!==false,damage:value.damage!==false,time:['cycle','day','sunset','night'].includes(value.time)?value.time:'cycle',weather:WEATHER_MODES.includes(value.weather)?value.weather:'cycle',collisions:value.collisions==='solid'?'solid':'ghost'};
 }
 export function sanitizeNetworkPose(value){
  if(!object(value)||![value.x,value.z,value.heading].every(Number.isFinite)||!bounded(value.x,-8192,8192)||!bounded(value.z,-8192,8192))return null;
@@ -72,7 +73,7 @@ function safeTree(value,budget={count:0},depth=0){
 }
 export function sanitizeWorldSnapshot(value){
  if(!object(value))return null;
- try{return {traffic:value.traffic==null?null:safeTree(value.traffic),police:value.police==null?null:safeTree(value.police),hour:clamp(value.hour??17.2,0,24),trafficTime:clamp(value.trafficTime??0,0,1e10),hostPaused:!!value.hostPaused};}catch{return null;}
+ try{return {traffic:value.traffic==null?null:safeTree(value.traffic),police:value.police==null?null:safeTree(value.police),hour:clamp(value.hour??17.2,0,24),weather:normalizeWeather(value.weather),trafficTime:clamp(value.trafficTime??0,0,1e10),hostPaused:!!value.hostPaused};}catch{return null;}
 }
 function sanitizeProfile(value={}){return {name:name(value.name),build:resolveBuild(object(value.build)?value.build:{}).selection,color:color(value.color)};}
 export function peerOptions(config={}){

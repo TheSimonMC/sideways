@@ -1,0 +1,5192 @@
+{
+  "version": 24,
+  "status": "passed",
+  "checks": [
+    "Showroom suppresses rain while loading the saved global wet-road state",
+    "Final HTML compiles wet road shaders in the real city, renders bounded rain and produces wheel spray while driving at night",
+    "Pause freezes weather, weather selection persists, reload and new run preserve moisture",
+    "Selecting clear weather fades rain while the road remains wet instead of instantly restoring dry grip"
+  ],
+  "htmlSha256": "f39dbc03d8aacd7fcb2e3152a2669e8f638370edf67b045ea9b75c989521f766",
+  "errors": [],
+  "external": [],
+  "wet": {
+    "phase": "playing",
+    "paused": false,
+    "mode": "free",
+    "camera": 0,
+    "speed": 0,
+    "rpm": 1507.0780579456139,
+    "gear": 1,
+    "heading": 0,
+    "x": -4.5,
+    "z": -75,
+    "driftAngle": 0,
+    "drifting": false,
+    "score": 0,
+    "runTime": 0.09999999999999999,
+    "checkpoint": 0,
+    "fps": 60,
+    "drawCalls": 383,
+    "roadDistance": 4.5,
+    "engineVersion": "1.6.3",
+    "engineAudioRelease": 14,
+    "enginePhysicsRelease": 14,
+    "engineClock": "pcm",
+    "transmission": "auto",
+    "handbrake": 0,
+    "clutch": 1,
+    "inputMode": "auto",
+    "build": {
+      "hood": "stock",
+      "spoiler": "stock",
+      "sideSkirts": "stock",
+      "rims": "stock",
+      "frontBumper": "stock",
+      "rearBumper": "stock",
+      "steeringRack": "stock",
+      "alignment": "stock",
+      "antiRollBars": "stock",
+      "driveKit": "stock",
+      "frontDifferential": "open",
+      "centerDifferential": "open",
+      "wingAngle": "stock",
+      "tractionLinks": "stock",
+      "carId": "hachi",
+      "engineId": "i6t",
+      "ecu": "stock",
+      "turbo": "stock",
+      "exhaust": "street",
+      "tyres": "street",
+      "suspension": "street",
+      "brakes": "street",
+      "differential": "lsd",
+      "clutch": "street",
+      "intake": "stock",
+      "radiator": "stock",
+      "oilCooler": "stock",
+      "internals": "stock",
+      "transmission": "stock",
+      "finalDrive": "stock",
+      "chassis": "stock",
+      "tyreWidth": "stock"
+    },
+    "driveLayout": "RWD",
+    "axleTorques": [
+      0,
+      0
+    ],
+    "drivenWheels": [
+      2,
+      3
+    ],
+    "tyres": [
+      {
+        "pressureBar": 2.3,
+        "casingScale": 1,
+        "radiusScale": 1,
+        "grip": 1,
+        "compliance": 1,
+        "rollingExtra": 0,
+        "carcass": 1,
+        "flatspot": 0,
+        "flatspotAngle": 0,
+        "punctured": false,
+        "blown": false,
+        "burstCount": 0
+      },
+      {
+        "pressureBar": 2.3,
+        "casingScale": 1,
+        "radiusScale": 1,
+        "grip": 1,
+        "compliance": 1,
+        "rollingExtra": 0,
+        "carcass": 1,
+        "flatspot": 0,
+        "flatspotAngle": 0,
+        "punctured": false,
+        "blown": false,
+        "burstCount": 0
+      },
+      {
+        "pressureBar": 2.3,
+        "casingScale": 1,
+        "radiusScale": 1,
+        "grip": 1,
+        "compliance": 1,
+        "rollingExtra": 0,
+        "carcass": 1,
+        "flatspot": 0,
+        "flatspotAngle": 0,
+        "punctured": false,
+        "blown": false,
+        "burstCount": 0
+      },
+      {
+        "pressureBar": 2.3,
+        "casingScale": 1,
+        "radiusScale": 1,
+        "grip": 1,
+        "compliance": 1,
+        "rollingExtra": 0,
+        "carcass": 1,
+        "flatspot": 0,
+        "flatspotAngle": 0,
+        "punctured": false,
+        "blown": false,
+        "burstCount": 0
+      }
+    ],
+    "wheelRadii": [
+      0.34,
+      0.34,
+      0.34,
+      0.34
+    ],
+    "aero": {
+      "front": 0,
+      "rear": 0,
+      "downforce": 0,
+      "pitchMoment": 0,
+      "drag": 0,
+      "dragCoefficient": 0.43000000000000005,
+      "wingEfficiency": 1
+    },
+    "wheelHop": [
+      {
+        "x": 0,
+        "v": 0,
+        "force": 0,
+        "energy": 0,
+        "inputJ": 0,
+        "dissipatedJ": 0
+      },
+      {
+        "x": 0,
+        "v": 0,
+        "force": 0,
+        "energy": 0,
+        "inputJ": 0,
+        "dissipatedJ": 0
+      },
+      {
+        "x": 0,
+        "v": 0,
+        "force": 0,
+        "energy": 0,
+        "inputJ": 0,
+        "dissipatedJ": 0
+      },
+      {
+        "x": 0,
+        "v": 0,
+        "force": 0,
+        "energy": 0,
+        "inputJ": 0,
+        "dissipatedJ": 0
+      }
+    ],
+    "engineRunning": true,
+    "engineStalled": false,
+    "burnout": false,
+    "wheelLoads": [
+      2844.9,
+      2844.9,
+      2844.9,
+      2844.9
+    ],
+    "bodyHeight": 0.01200000000000001,
+    "bodyPitch": 0,
+    "bodyRoll": 0,
+    "roadGradeLong": 0,
+    "roadGradeLat": 0,
+    "surfaces": [
+      "asphalt",
+      "asphalt",
+      "asphalt",
+      "asphalt"
+    ],
+    "audio": {
+      "source": "MotorLab.renderAudio",
+      "processing": "MotorLab 1.6.3 + SIDEWAYS emitter extension; one native render, model-mounted outlets, camera ears and source-specific facade paths",
+      "microphone": "near-car-overhead",
+      "audioAnchors": {
+        "exhaust": [
+          {
+            "x": -3.89,
+            "y": 0.332,
+            "z": -77.27596
+          },
+          {
+            "x": -3.73,
+            "y": 0.332,
+            "z": -77.27596
+          }
+        ],
+        "intake": {
+          "x": -4.7,
+          "y": 0.762,
+          "z": -73.8508
+        },
+        "engine": {
+          "x": -4.5,
+          "y": 0.662,
+          "z": -74.0497
+        },
+        "gearbox": {
+          "x": -4.5,
+          "y": 0.29200000000000004,
+          "z": -74.8
+        },
+        "differential": {
+          "x": -4.5,
+          "y": 0.262,
+          "z": -76.3
+        },
+        "wheels": [
+          {
+            "x": -5.37,
+            "y": 0.35200000000000004,
+            "z": -73.7
+          },
+          {
+            "x": -3.63,
+            "y": 0.35200000000000004,
+            "z": -73.7
+          },
+          {
+            "x": -5.37,
+            "y": 0.35200000000000004,
+            "z": -76.3
+          },
+          {
+            "x": -3.63,
+            "y": 0.35200000000000004,
+            "z": -76.3
+          }
+        ],
+        "exhaustDirection": {
+          "x": 0,
+          "y": 0,
+          "z": -1
+        },
+        "frontDirection": {
+          "x": 0,
+          "y": 0,
+          "z": 1
+        }
+      },
+      "nativeListener": {
+        "mode": "outside",
+        "distance": 2.4,
+        "azimuth": 0,
+        "reflections": 0,
+        "scene": {
+          "position": [
+            -4.5,
+            5.634908633913633,
+            -72.356223854234
+          ],
+          "right": [
+            1,
+            0,
+            0
+          ],
+          "emitters": [
+            {
+              "id": "exhaust-0",
+              "source": "exhaust",
+              "position": [
+                -3.89,
+                0.332,
+                -77.27596
+              ],
+              "direction": [
+                0,
+                0,
+                -1
+              ],
+              "gain": 0.5,
+              "reflections": [
+                {
+                  "position": [
+                    -85.9898717619383,
+                    0.332,
+                    -77.27596
+                  ],
+                  "gain": 0.009601722209224705
+                },
+                {
+                  "position": [
+                    59.59389740955065,
+                    0.332,
+                    -77.27596
+                  ],
+                  "gain": 0.009601722209224705
+                },
+                {
+                  "position": [
+                    -3.8900000000000157,
+                    0.332,
+                    -204.8278305444992
+                  ],
+                  "gain": 0.009601722209224705
+                }
+              ]
+            },
+            {
+              "id": "exhaust-1",
+              "source": "exhaust",
+              "position": [
+                -3.73,
+                0.332,
+                -77.27596
+              ],
+              "direction": [
+                0,
+                0,
+                -1
+              ],
+              "gain": 0.5,
+              "reflections": [
+                {
+                  "position": [
+                    -86.14987176193831,
+                    0.332,
+                    -77.27596
+                  ],
+                  "gain": 0.009601722209224705
+                },
+                {
+                  "position": [
+                    59.43389740955065,
+                    0.332,
+                    -77.27596
+                  ],
+                  "gain": 0.009601722209224705
+                },
+                {
+                  "position": [
+                    -3.7300000000000155,
+                    0.332,
+                    -204.8278305444992
+                  ],
+                  "gain": 0.009601722209224705
+                }
+              ]
+            },
+            {
+              "id": "intake",
+              "source": "intake",
+              "position": [
+                -4.7,
+                0.762,
+                -73.8508
+              ],
+              "direction": [
+                0,
+                0,
+                1
+              ],
+              "gain": 1,
+              "reflections": [
+                {
+                  "position": [
+                    -85.1798717619383,
+                    0.762,
+                    -73.8508
+                  ],
+                  "gain": 0.009601722209224705
+                },
+                {
+                  "position": [
+                    60.40389740955065,
+                    0.762,
+                    -73.8508
+                  ],
+                  "gain": 0.009601722209224705
+                },
+                {
+                  "position": [
+                    -4.700000000000017,
+                    0.762,
+                    -208.2529905444992
+                  ],
+                  "gain": 0.009601722209224705
+                }
+              ]
+            },
+            {
+              "id": "combustion",
+              "source": "combustion",
+              "position": [
+                -4.5,
+                0.662,
+                -74.0497
+              ],
+              "direction": [
+                0,
+                0,
+                1
+              ],
+              "gain": 1,
+              "reflections": [
+                {
+                  "position": [
+                    -85.3798717619383,
+                    0.662,
+                    -74.0497
+                  ],
+                  "gain": 0.009601722209224705
+                },
+                {
+                  "position": [
+                    60.20389740955065,
+                    0.662,
+                    -74.0497
+                  ],
+                  "gain": 0.009601722209224705
+                },
+                {
+                  "position": [
+                    -4.500000000000016,
+                    0.662,
+                    -208.0540905444992
+                  ],
+                  "gain": 0.009601722209224705
+                }
+              ]
+            },
+            {
+              "id": "valve",
+              "source": "valve",
+              "position": [
+                -4.5,
+                0.662,
+                -74.0497
+              ],
+              "direction": [
+                0,
+                0,
+                1
+              ],
+              "gain": 1,
+              "reflections": []
+            },
+            {
+              "id": "bearing",
+              "source": "bearing",
+              "position": [
+                -4.5,
+                0.662,
+                -74.0497
+              ],
+              "direction": [
+                0,
+                0,
+                1
+              ],
+              "gain": 1,
+              "reflections": []
+            },
+            {
+              "id": "boost",
+              "source": "boost",
+              "position": [
+                -4.7,
+                0.762,
+                -73.8508
+              ],
+              "direction": [
+                0,
+                0,
+                1
+              ],
+              "gain": 1,
+              "reflections": []
+            },
+            {
+              "id": "manifold",
+              "source": "manifold",
+              "position": [
+                -4.5,
+                0.662,
+                -74.0497
+              ],
+              "direction": [
+                0,
+                0,
+                1
+              ],
+              "gain": 1,
+              "reflections": []
+            },
+            {
+              "id": "mechanical",
+              "source": "mechanical",
+              "position": [
+                -4.5,
+                0.662,
+                -74.0497
+              ],
+              "direction": [
+                0,
+                0,
+                1
+              ],
+              "gain": 1,
+              "reflections": []
+            },
+            {
+              "id": "chain",
+              "source": "chain",
+              "position": [
+                -4.5,
+                0.662,
+                -74.0497
+              ],
+              "direction": [
+                0,
+                0,
+                1
+              ],
+              "gain": 1,
+              "reflections": []
+            },
+            {
+              "id": "gearbox",
+              "source": "gearbox",
+              "position": [
+                -4.5,
+                0.29200000000000004,
+                -74.8
+              ],
+              "direction": [
+                0,
+                0,
+                0
+              ],
+              "gain": 1,
+              "reflections": []
+            }
+          ]
+        }
+      },
+      "nativeStereoFlip": false,
+      "nativeAudio": {
+        "connected": false,
+        "backend": "pcm",
+        "contextState": null,
+        "sampleRate": 48000,
+        "bufferSize": null,
+        "volume": 0.65,
+        "muted": false,
+        "meter": {
+          "rms": 0.0007903586596035927,
+          "peak": 0.004276478197425604,
+          "frames": 400
+        },
+        "sourceWindowSeconds": 0.008333333333333333,
+        "sources": {
+          "exhaust": {
+            "rms": 0.009754662820698824,
+            "peak": 0.018564099297279552,
+            "dbRms": -40.21575475632872,
+            "dbPeak": -34.62652234508898
+          },
+          "intake": {
+            "rms": 0.012466814407813906,
+            "peak": 0.0506070588830436,
+            "dbRms": -38.08489011543476,
+            "dbPeak": -25.915778034689943
+          },
+          "combustion": {
+            "rms": 0.0006303144546805643,
+            "peak": 0.0011606552418162862,
+            "dbRms": -64.0088546661177,
+            "dbPeak": -58.705935257455636
+          },
+          "valve": {
+            "rms": 0.000019046160298016018,
+            "peak": 0.0002572347069331155,
+            "dbRms": -94.40385129684074,
+            "dbPeak": -71.79340870775263
+          },
+          "bearing": {
+            "rms": 0.00006147882901020565,
+            "peak": 0.00018358282745252572,
+            "dbRms": -84.22548826236883,
+            "dbPeak": -74.72335891274015
+          },
+          "boost": {
+            "rms": 0.016532543441281078,
+            "peak": 0.05683458494704756,
+            "dbRms": -35.633206549211664,
+            "dbPeak": -24.90774614467537
+          },
+          "manifold": {
+            "rms": 0.00128561511606437,
+            "peak": 0.0023673919408159837,
+            "dbRms": -57.81778059694231,
+            "dbPeak": -52.51459670333319
+          },
+          "mechanical": {
+            "rms": 0.0007362591966541823,
+            "peak": 0.0042470169447781465,
+            "dbRms": -62.659385347493284,
+            "dbPeak": -47.43832012509357
+          },
+          "gearbox": {
+            "rms": 0,
+            "peak": 0,
+            "dbRms": -120,
+            "dbPeak": -120
+          },
+          "chain": {
+            "rms": 0.0007819162673945099,
+            "peak": 0.0018328306366527873,
+            "dbRms": -62.13679502973726,
+            "dbPeak": -54.737553286302834
+          }
+        },
+        "layers": {
+          "exhaust": {
+            "rms": 0.0018657237215241743,
+            "peak": 0.011012021143646874,
+            "dbRms": -54.583053332915014,
+            "dbPeak": -39.16265926820337
+          },
+          "intake": {
+            "rms": 0.002127774205615254,
+            "peak": 0.009764776632076177,
+            "dbRms": -53.441489204778236,
+            "dbPeak": -40.20675373378215
+          },
+          "combustion": {
+            "rms": 0.000025472216837399967,
+            "peak": 0.00004994100139549067,
+            "dbRms": -91.8786651381407,
+            "dbPeak": -86.03085507222224
+          },
+          "valve": {
+            "rms": 0.000005494949121700383,
+            "peak": 0.00006100317766262832,
+            "dbRms": -105.20072648798384,
+            "dbPeak": -84.29295083899746
+          },
+          "bearing": {
+            "rms": 0.000060971371848915926,
+            "peak": 0.0001793780220293747,
+            "dbRms": -84.29748066583629,
+            "dbPeak": -74.92461538370684
+          },
+          "boost": {
+            "rms": 0.0015983521215237654,
+            "peak": 0.005380541557955211,
+            "dbRms": -55.92655076341114,
+            "dbPeak": -45.38348019747214
+          },
+          "manifold": {
+            "rms": 0.00021194259426010915,
+            "peak": 0.0008047550923272999,
+            "dbRms": -73.47563508068002,
+            "dbPeak": -61.88672533012193
+          },
+          "mechanical": {
+            "rms": 0.00005645113883077,
+            "peak": 0.0002957035670141782,
+            "dbRms": -84.96654584610697,
+            "dbPeak": -70.58286873266121
+          },
+          "gearbox": {
+            "rms": 0,
+            "peak": 0,
+            "dbRms": -120,
+            "dbPeak": -120
+          },
+          "chain": {
+            "rms": 0.0001220149757435022,
+            "peak": 0.0002933895159886439,
+            "dbRms": -78.27173724164999,
+            "dbPeak": -70.65110818678932
+          }
+        },
+        "mix": {
+          "guaranteedPeak": 0.8996152500000002,
+          "ceiling": 0.9,
+          "limiterGain": 1,
+          "reserveGain": 0.94,
+          "exhaustBaseBudget": 0.23,
+          "exhaustPresenceBudget": 0.0725,
+          "headroomDb": 47.378274755460595
+        },
+        "error": null
+      },
+      "sampleRate": 48000,
+      "started": true,
+      "available": true,
+      "clock": "pcm",
+      "pcmFrames": 4800,
+      "worldFrames": 8640,
+      "queuedMs": 0,
+      "activeBuffers": 3,
+      "activeUIBuffers": 0,
+      "activeWorldBuffers": 3,
+      "underruns": 1,
+      "rawPeak": 0.004259558513197337,
+      "outputPeak": 0.0198289155960083,
+      "mix": {
+        "engine": 1,
+        "mechanical": 0.8,
+        "tyres": 0.55,
+        "environment": 0.7,
+        "drive": 0.65,
+        "sirens": 1,
+        "radio": 0.85,
+        "reverb": 0.65,
+        "ambience": 0.65
+      },
+      "layers": {
+        "engine": 0.003522900525538222,
+        "rolling": 0,
+        "tyres": 0,
+        "brakes": 0,
+        "mechanical": 0,
+        "wind": 0,
+        "nitrous": 0,
+        "traffic": 0.001572928083275689,
+        "transients": 0,
+        "horns": 0,
+        "sirens": 0,
+        "service": 0,
+        "damage": 0,
+        "worldEvents": 0,
+        "radio": 0,
+        "ambience": 0.0010235656125274358,
+        "reflections": 4.184716830117845e-8
+      },
+      "events": {
+        "shift": 0,
+        "handbrake": 0,
+        "suspension": 0,
+        "impact": 0,
+        "starter": 0,
+        "clutch": 0,
+        "selector": 0,
+        "ui": 1,
+        "nitro": 0
+      },
+      "activeEvents": 0,
+      "tyreSample": "audible-edge / qubodup, CC BY 3.0",
+      "nitrousLevel": 0,
+      "trafficVoices": 2,
+      "surfaces": [
+        "asphalt",
+        "asphalt",
+        "asphalt",
+        "asphalt"
+      ],
+      "acoustics": {
+        "model": "directional early reflections with distance absorption and stereo diffuse tail",
+        "zone": "street-canyon",
+        "enclosure": 0.44027472859022776,
+        "wet": 0.08766023915867402,
+        "targetWet": 0.17078642973516994,
+        "feedback": 0.15649735727263767,
+        "tail": 0,
+        "delaysMs": [
+          110.12164468551498,
+          113.52453742171481,
+          187.9535982198893,
+          252.1101879778382
+        ]
+      },
+      "engineDuck": 0.8674,
+      "world": {
+        "time": 0.18,
+        "voices": 2,
+        "activeVoices": 2,
+        "engineProfiles": [
+          "i6t",
+          "i4"
+        ],
+        "sirenVoices": 0,
+        "events": 0,
+        "eventCounts": {
+          "radio": 1
+        },
+        "listenerHeading": -3.141592653589793,
+        "playerHorn": 0,
+        "servicing": null,
+        "levels": {
+          "traffic": 0.001572928083275689,
+          "horns": 0,
+          "sirens": 0,
+          "service": 0,
+          "damage": 0,
+          "worldEvents": 0,
+          "radio": 0,
+          "ambience": 0.0010235656125274358,
+          "reflections": 4.184716830117845e-8
+        },
+        "spatial": true,
+        "radio": {
+          "active": "nightShift",
+          "sample": "radioCall",
+          "variantCount": 8,
+          "recentSamples": [
+            "radioCall"
+          ],
+          "expired": 0,
+          "summary": "Night shift reporting. Additional units are on patrol.",
+          "queued": 0,
+          "played": 1,
+          "dropped": 0,
+          "duck": 0.6990457066975629,
+          "kind": "recorded contextual chatter; captions carry tactical summaries"
+        },
+        "ambience": {
+          "rain": 0.010799669263460895,
+          "birds": 0,
+          "crickets": 0.0011867768421385595,
+          "wind": 0.0016420426913795077,
+          "water": 0,
+          "industrial": 0
+        },
+        "acoustics": {
+          "model": "directional early reflections with distance absorption and stereo diffuse tail",
+          "zone": "street-canyon",
+          "enclosure": 0.44027472859022776,
+          "wet": 0.0988092572075535,
+          "targetWet": 0.17078642973516994,
+          "feedback": 0.17165227495871507,
+          "tail": 7.192644697515495e-9,
+          "delaysMs": [
+            140.6885955206742,
+            132.57389765067163,
+            236.1774117530124,
+            318.5267739553762
+          ]
+        },
+        "ducking": {
+          "engine": 0.8322290303925849,
+          "music": 0.566591661847511,
+          "radio": 0.6990457066975629,
+          "sirenThreat": 0
+        }
+      },
+      "music": {
+        "ready": true,
+        "enabled": true,
+        "mode": "drive",
+        "intensity": 0,
+        "energy": 0,
+        "chaseLevel": 0,
+        "bandLevel": 0.8660045195785573,
+        "paused": false,
+        "focus": {
+          "managed": true,
+          "hidden": false,
+          "reading": false,
+          "paused": false,
+          "backgroundMusic": false,
+          "gain": 1,
+          "cutoff": 18000
+        },
+        "masterLevel": 0.16778124000000005,
+        "volume": 0.58,
+        "bpm": 100,
+        "bars": 56,
+        "playing": true,
+        "chaseLoops": 0,
+        "activeVoices": 2,
+        "maxVoices": 2,
+        "scheduledHits": 5,
+        "hits": {
+          "snare": 1,
+          "hat": 3,
+          "kick": 1
+        },
+        "error": null,
+        "source": "Umplix driving rock, bertsz pursuit cue and VCSL acoustic percussion"
+      }
+    },
+    "world": "city",
+    "traffic": {
+      "cars": 36,
+      "time": 0.09999999999999999,
+      "entries": 0,
+      "turns": 0,
+      "redStops": 0,
+      "playerStops": 0,
+      "contacts": 0,
+      "horns": 0,
+      "recycled": 0,
+      "emergencyYields": 0,
+      "nearMisses": 0,
+      "courtesyYields": 0,
+      "stopped": 0,
+      "intersectionsOccupied": 0,
+      "yielding": 0,
+      "temperaments": [
+        "cautious",
+        "steady",
+        "assertive"
+      ],
+      "dynamic": true,
+      "replica": false
+    },
+    "input": {
+      "kind": "keyboard",
+      "deviceKey": null,
+      "name": "KEYBOARD",
+      "revision": 0,
+      "deviceName": "KEYBOARD",
+      "needsCalibration": false
+    },
+    "nitrousIntensity": 0,
+    "nitrousTorque": 0,
+    "version": 24,
+    "raceState": null,
+    "raceRecovery": 0,
+    "mechanical": {
+      "components": [
+        {
+          "id": "engineBlock",
+          "label": "Engine block",
+          "group": "engine",
+          "health": 1,
+          "temperature": 89.98270959561096,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "cylinderHead",
+          "label": "Cylinder head",
+          "group": "engine",
+          "health": 1,
+          "temperature": 89.98270959561096,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "connectingRods",
+          "label": "Connecting rods",
+          "group": "engine",
+          "health": 1,
+          "temperature": 82.00947054788777,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "crankshaft",
+          "label": "Crankshaft",
+          "group": "engine",
+          "health": 1,
+          "temperature": 82.00947054788777,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "timingDrive",
+          "label": "Timing chain",
+          "group": "engine",
+          "health": 1,
+          "temperature": 82.00947054788777,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "intake",
+          "label": "Intake tract",
+          "group": "engine",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "exhaust",
+          "label": "Exhaust manifold and pipe",
+          "group": "engine",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "thermostat",
+          "label": "Thermostat",
+          "group": "cooling",
+          "health": 1,
+          "temperature": 84.03347027821832,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "fuelPump",
+          "label": "Fuel pump",
+          "group": "engine",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "ignition",
+          "label": "Ignition coils and plugs",
+          "group": "engine",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "pistons",
+          "label": "Pistons and rings",
+          "group": "engine",
+          "health": 1,
+          "temperature": 89.98270959561096,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "bearings",
+          "label": "Crank bearings",
+          "group": "engine",
+          "health": 1,
+          "temperature": 82.00947054788777,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "valvetrain",
+          "label": "Valvetrain",
+          "group": "engine",
+          "health": 1,
+          "temperature": 89.98270959561096,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "headGasket",
+          "label": "Head gasket",
+          "group": "engine",
+          "health": 1,
+          "temperature": 89.98270959561096,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "radiator",
+          "label": "Radiator",
+          "group": "cooling",
+          "health": 1,
+          "temperature": 84.03347027821832,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "waterPump",
+          "label": "Water pump",
+          "group": "cooling",
+          "health": 1,
+          "temperature": 84.03347027821832,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "oilPump",
+          "label": "Oil pump",
+          "group": "lubrication",
+          "health": 1,
+          "temperature": 82.00947054788777,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "oilPan",
+          "label": "Oil pan",
+          "group": "lubrication",
+          "health": 1,
+          "temperature": 82.00947054788777,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "clutch",
+          "label": "Clutch plate",
+          "group": "drivetrain",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "gearbox",
+          "label": "Gearbox bearings",
+          "group": "drivetrain",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "differential",
+          "label": "Rear differential",
+          "group": "drivetrain",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "driveshaft",
+          "label": "Rear drive shafts",
+          "group": "drivetrain",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "frontDifferential",
+          "label": "AWD front differential",
+          "group": "drivetrain",
+          "health": 1,
+          "temperature": 24,
+          "status": "unavailable",
+          "reason": "Not fitted",
+          "applicable": false
+        },
+        {
+          "id": "frontDriveshaft",
+          "label": "AWD front drive shafts",
+          "group": "drivetrain",
+          "health": 1,
+          "temperature": null,
+          "status": "unavailable",
+          "reason": "Not fitted",
+          "applicable": false
+        },
+        {
+          "id": "centerDifferential",
+          "label": "Center differential / transfer case",
+          "group": "drivetrain",
+          "health": 1,
+          "temperature": 24,
+          "status": "unavailable",
+          "reason": "Not fitted",
+          "applicable": false
+        },
+        {
+          "id": "turbo",
+          "label": "Turbocharger",
+          "group": "engine",
+          "health": 1,
+          "temperature": 99.99797100075297,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "accessoryBelt",
+          "label": "Accessory belt",
+          "group": "engine",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "beltTensioner",
+          "label": "Belt tensioner",
+          "group": "engine",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "alternator",
+          "label": "Alternator",
+          "group": "engine",
+          "health": 1,
+          "temperature": 24.000965597313254,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "battery",
+          "label": "Battery",
+          "group": "engine",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "starterMotor",
+          "label": "Starter motor",
+          "group": "engine",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "radiatorFan",
+          "label": "Radiator fan",
+          "group": "cooling",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "batteryCharge",
+          "label": "Battery charge",
+          "group": "engine",
+          "health": 0.8500012051463133,
+          "temperature": null,
+          "status": "charge",
+          "reason": "85% · 14.2 V · 5.2 A",
+          "applicable": true,
+          "action": "CHARGE",
+          "serviceNeeded": true
+        },
+        {
+          "id": "gearR",
+          "label": "Reverse gear",
+          "group": "drivetrain",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "gear1",
+          "label": "Gear 1",
+          "group": "drivetrain",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "gear2",
+          "label": "Gear 2",
+          "group": "drivetrain",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "gear3",
+          "label": "Gear 3",
+          "group": "drivetrain",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "gear4",
+          "label": "Gear 4",
+          "group": "drivetrain",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "gear5",
+          "label": "Gear 5",
+          "group": "drivetrain",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "gear6",
+          "label": "Gear 6",
+          "group": "drivetrain",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "brakeFL",
+          "label": "Front left brake",
+          "group": "chassis",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "tyreFL",
+          "label": "Front left tyre",
+          "group": "chassis",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true,
+          "pressureBar": 2.3,
+          "carcass": 1,
+          "flatspot": 0
+        },
+        {
+          "id": "suspensionFL",
+          "label": "Front left suspension",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "brakeFR",
+          "label": "Front right brake",
+          "group": "chassis",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "tyreFR",
+          "label": "Front right tyre",
+          "group": "chassis",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true,
+          "pressureBar": 2.3,
+          "carcass": 1,
+          "flatspot": 0
+        },
+        {
+          "id": "suspensionFR",
+          "label": "Front right suspension",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "brakeRL",
+          "label": "Rear left brake",
+          "group": "chassis",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "tyreRL",
+          "label": "Rear left tyre",
+          "group": "chassis",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true,
+          "pressureBar": 2.3,
+          "carcass": 1,
+          "flatspot": 0
+        },
+        {
+          "id": "suspensionRL",
+          "label": "Rear left suspension",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "brakeRR",
+          "label": "Rear right brake",
+          "group": "chassis",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "tyreRR",
+          "label": "Rear right tyre",
+          "group": "chassis",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true,
+          "pressureBar": 2.3,
+          "carcass": 1,
+          "flatspot": 0
+        },
+        {
+          "id": "suspensionRR",
+          "label": "Rear right suspension",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "brakeLineFL",
+          "label": "Front left brake line",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "brakeLineFR",
+          "label": "Front right brake line",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "brakeLineRL",
+          "label": "Rear left brake line",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "brakeLineRR",
+          "label": "Rear right brake line",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "brakeFluid0",
+          "label": "Brake fluid FL / RR",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "0.30 / 0.30 L",
+          "applicable": true
+        },
+        {
+          "id": "brakeFluid1",
+          "label": "Brake fluid FR / RL",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "0.30 / 0.30 L",
+          "applicable": true
+        },
+        {
+          "id": "wheelBearingFL",
+          "label": "Front left wheel bearing",
+          "group": "chassis",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "absValveFL",
+          "label": "Front left ABS channel",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "wheelBearingFR",
+          "label": "Front right wheel bearing",
+          "group": "chassis",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "absValveFR",
+          "label": "Front right ABS channel",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "wheelBearingRL",
+          "label": "Rear left wheel bearing",
+          "group": "chassis",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "absValveRL",
+          "label": "Rear left ABS channel",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "wheelBearingRR",
+          "label": "Rear right wheel bearing",
+          "group": "chassis",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "absValveRR",
+          "label": "Rear right ABS channel",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "steeringRack",
+          "label": "Steering rack",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "tieRodFL",
+          "label": "Front left tie rod",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "tieRodFR",
+          "label": "Front right tie rod",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "brakeBooster",
+          "label": "Brake booster",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "masterCylinder0",
+          "label": "Master cylinder FL / RR",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "brakeFluidCondition0",
+          "label": "Fluid condition FL / RR",
+          "group": "chassis",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "Boils at 240°C · vapour 0%",
+          "applicable": true,
+          "action": "CHANGE",
+          "serviceNeeded": false
+        },
+        {
+          "id": "brakeBleed0",
+          "label": "Bleed circuit FL / RR",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "No trapped air",
+          "applicable": true,
+          "action": "BLEED",
+          "serviceNeeded": false
+        },
+        {
+          "id": "masterCylinder1",
+          "label": "Master cylinder FR / RL",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "brakeFluidCondition1",
+          "label": "Fluid condition FR / RL",
+          "group": "chassis",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "Boils at 240°C · vapour 0%",
+          "applicable": true,
+          "action": "CHANGE",
+          "serviceNeeded": false
+        },
+        {
+          "id": "brakeBleed1",
+          "label": "Bleed circuit FR / RL",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "No trapped air",
+          "applicable": true,
+          "action": "BLEED",
+          "serviceNeeded": false
+        },
+        {
+          "id": "body",
+          "label": "Body structure",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "panel:front",
+          "label": "Front bumper",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "panel:spoiler",
+          "label": "Rear spoiler and mounts",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "panel:rear",
+          "label": "Rear bumper",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "panel:left",
+          "label": "Left door and sill",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "panel:right",
+          "label": "Right door and sill",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "panel:hood",
+          "label": "Hood and front rails",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "panel:boot",
+          "label": "Trunk and rear rails",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "panel:roof",
+          "label": "Roof and pillars",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        }
+      ],
+      "warnings": [],
+      "temperatures": {
+        "engine": 89.97074937419968,
+        "coolant": 84.05650122636516,
+        "oil": 82.01612600883247,
+        "clutch": 24,
+        "gearbox": 24,
+        "differential": 24,
+        "frontDifferential": 24,
+        "centerDifferential": 24,
+        "turbo": 99.9959141597835,
+        "brakes": [
+          24,
+          24,
+          24,
+          24
+        ],
+        "tyres": [
+          24,
+          24,
+          24,
+          24
+        ]
+      },
+      "chassisDamage": {
+        "bearings": [
+          {
+            "health": 1,
+            "temperature": 24,
+            "workJ": 0
+          },
+          {
+            "health": 1,
+            "temperature": 24,
+            "workJ": 0
+          },
+          {
+            "health": 1,
+            "temperature": 24,
+            "workJ": 0
+          },
+          {
+            "health": 1,
+            "temperature": 24,
+            "workJ": 0
+          }
+        ],
+        "rack": 1,
+        "tieRods": [
+          {
+            "health": 1,
+            "bend": 0
+          },
+          {
+            "health": 1,
+            "bend": 0
+          }
+        ]
+      },
+      "brakeHydraulics": {
+        "lines": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "fluid": [
+          0.3,
+          0.3
+        ],
+        "master": [
+          1,
+          1
+        ],
+        "booster": 1,
+        "absValves": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "temperature": [
+          24,
+          24
+        ],
+        "quality": [
+          1,
+          1
+        ],
+        "air": [
+          0,
+          0
+        ],
+        "vapour": [
+          0,
+          0
+        ]
+      },
+      "oilLitres": 5.75,
+      "oilCapacity": 5.75,
+      "coolantLitres": 7.75,
+      "coolantCapacity": 7.75,
+      "oilQuality": 1,
+      "clutchCapacityFactor": 1,
+      "driveCapacityFactor": 1,
+      "differentialLockFactor": 1,
+      "loadTorqueNm": 0,
+      "misfire": 0,
+      "boostFactor": 1,
+      "oilPressureBar": 2.2787971230341184,
+      "coolantPressureBar": 0.6187903686948785,
+      "oilLeakLps": 0,
+      "coolantLeakLps": 0,
+      "steam": 0,
+      "smoke": 0,
+      "knock": 0,
+      "clutchSlipPowerW": 0,
+      "auxiliaries": {
+        "voltage": 14.2,
+        "attemptVoltage": 10.393344129850956,
+        "charge": 0.8500012051463133,
+        "netA": 5.249957819879036,
+        "generatorA": 27.249957819879036,
+        "starterA": 0,
+        "starterActive": false,
+        "canCrank": true,
+        "starterBlocked": false,
+        "starterFactor": 0,
+        "starterDrag": 0,
+        "ignition": true,
+        "lampFactor": 1,
+        "fan": 0,
+        "beltDrive": 1,
+        "beltSlip": 0,
+        "loadTorque": 3.5117698767711905,
+        "generatorW": 386.9494010422823,
+        "capacityAh": 60
+      },
+      "brakeHydraulicFactors": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "brakePedalTravel": 0,
+      "frontDifferentialLockFactor": 1,
+      "centerDifferentialLockFactor": 1,
+      "frontDriveCapacityFactor": 1,
+      "rearDriveCapacityFactor": 1,
+      "exhaustLoadNm": 0,
+      "intakeFactor": 1,
+      "fuelAvailable": true,
+      "ignitionAvailable": true,
+      "lambdaOffset": 0,
+      "intakeLeak": 0,
+      "exhaustLeak": 0,
+      "lastEventId": 0
+    },
+    "career": {
+      "wallet": 3500,
+      "earned": 0,
+      "spent": 0,
+      "owned": [
+        "car:hachi",
+        "engine:i6t",
+        "hood:stock",
+        "spoiler:stock",
+        "sideSkirts:stock",
+        "rims:stock",
+        "frontBumper:stock",
+        "rearBumper:stock",
+        "steeringRack:stock",
+        "alignment:stock",
+        "antiRollBars:stock",
+        "driveKit:stock",
+        "frontDifferential:open",
+        "centerDifferential:open",
+        "wingAngle:stock",
+        "tractionLinks:stock",
+        "ecu:stock",
+        "turbo:stock",
+        "exhaust:street",
+        "tyres:street",
+        "suspension:street",
+        "brakes:street",
+        "differential:lsd",
+        "intake:stock",
+        "radiator:stock",
+        "oilCooler:stock",
+        "internals:stock",
+        "transmission:stock",
+        "finalDrive:stock",
+        "chassis:stock",
+        "tyreWidth:stock",
+        "clutch:street",
+        "spoiler:none",
+        "differential:open"
+      ],
+      "stats": {
+        "closeCalls": 0,
+        "drift": 0,
+        "escapes": 0,
+        "deliveries": 0,
+        "distance": 0
+      },
+      "active": null,
+      "offer": {
+        "id": "job-0",
+        "kind": "delivery",
+        "title": "Parts run",
+        "text": "Collect a crate at Motor Works. Deliver it to CORAL LIGHT.",
+        "reward": 13308,
+        "goal": 1,
+        "pickup": {
+          "id": "garage-1",
+          "name": "Motor Works",
+          "x": 90,
+          "z": -42,
+          "heading": 0,
+          "radius": 8
+        },
+        "destination": {
+          "id": "place-24",
+          "name": "CORAL LIGHT",
+          "x": 4412.3332531161295,
+          "z": 2166.3136352075503,
+          "heading": -0.6348251905114147,
+          "radius": 7
+        },
+        "pickupId": "garage-1",
+        "destinationId": "place-24",
+        "duration": 240
+      },
+      "message": {
+        "id": 1,
+        "sender": "MOTOR WORKS",
+        "text": "Your current setup is yours. Earn points on the road to buy your next parts.",
+        "time": 0
+      },
+      "messages": [
+        {
+          "id": 1,
+          "sender": "MOTOR WORKS",
+          "text": "Your current setup is yours. Earn points on the road to buy your next parts.",
+          "time": 0
+        }
+      ],
+      "completed": 0,
+      "revision": 2,
+      "closeChain": 0
+    },
+    "navigation": {
+      "target": null,
+      "points": [],
+      "distance": 0,
+      "arrived": false,
+      "revision": 2
+    },
+    "multiplayer": {
+      "status": "offline",
+      "id": null,
+      "code": "",
+      "isHost": false,
+      "hostId": null,
+      "rules": {
+        "maxPlayers": 4,
+        "traffic": "normal",
+        "police": true,
+        "damage": true,
+        "time": "cycle",
+        "weather": "cycle",
+        "collisions": "ghost"
+      },
+      "players": [],
+      "ping": 0,
+      "error": "",
+      "lastIssue": null,
+      "runId": 0,
+      "worldAgeMs": 0,
+      "transport": "binary",
+      "links": 0,
+      "queuedEvents": 0,
+      "stats": {
+        "sent": 0,
+        "received": 0,
+        "dropped": 0,
+        "backpressure": 0,
+        "coalesced": 0,
+        "invalid": 0,
+        "lastPacketBytes": 0,
+        "maxPacketBytes": 0
+      }
+    },
+    "remoteCars": {
+      "count": 0,
+      "visible": 0,
+      "buffers": [],
+      "teleports": 0
+    },
+    "police": {
+      "phase": "patrol",
+      "heat": 0,
+      "targetId": null,
+      "heatNormalized": 0,
+      "searchCenter": {
+        "x": -4.5,
+        "z": -75
+      },
+      "searchRadius": 0,
+      "lostTime": 0,
+      "searchProgress": 0,
+      "searchRemaining": 0,
+      "nearestOfficerDistance": 54.18971916666669,
+      "arrestProgress": 0,
+      "suspicion": 0,
+      "night": 1,
+      "nightShift": true,
+      "activeCount": 3,
+      "targetCount": 6,
+      "reserveCount": 3,
+      "investigation": null,
+      "lastDispatch": {
+        "code": "nightShift",
+        "message": "Night shift reporting. Additional units are on patrol.",
+        "text": "Night shift reporting. Additional units are on patrol.",
+        "time": 0.008333333333333333,
+        "priority": 0
+      },
+      "searchSectors": [],
+      "officers": [
+        {
+          "id": "police-0",
+          "x": -4.5,
+          "z": -129.1897191666667,
+          "heading": 0,
+          "speed": 8.189799999999991,
+          "siren": false,
+          "active": true,
+          "duty": "patrol",
+          "role": "patrol",
+          "searchTarget": null,
+          "interceptTarget": null
+        },
+        {
+          "id": "police-1",
+          "x": -450.1897191666668,
+          "z": 4.5,
+          "heading": 1.5707963267948966,
+          "speed": 8.189799999999991,
+          "siren": false,
+          "active": true,
+          "duty": "patrol",
+          "role": "patrol",
+          "searchTarget": null,
+          "interceptTarget": null
+        },
+        {
+          "id": "police-2",
+          "x": 448.8102808333332,
+          "z": -355.5,
+          "heading": 1.5707963267948966,
+          "speed": 8.189799999999991,
+          "siren": false,
+          "active": true,
+          "duty": "patrol",
+          "role": "patrol",
+          "searchTarget": null,
+          "interceptTarget": null
+        },
+        {
+          "id": "police-3",
+          "x": -114,
+          "z": -59,
+          "heading": 0,
+          "speed": 0,
+          "siren": false,
+          "active": false,
+          "duty": "reserve",
+          "role": "reserve",
+          "searchTarget": null,
+          "interceptTarget": null
+        },
+        {
+          "id": "police-4",
+          "x": -105,
+          "z": -59,
+          "heading": 0,
+          "speed": 0,
+          "siren": false,
+          "active": false,
+          "duty": "reserve",
+          "role": "reserve",
+          "searchTarget": null,
+          "interceptTarget": null
+        },
+        {
+          "id": "police-5",
+          "x": -96,
+          "z": -59,
+          "heading": 0,
+          "speed": 0,
+          "siren": false,
+          "active": false,
+          "duty": "reserve",
+          "role": "reserve",
+          "searchTarget": null,
+          "interceptTarget": null
+        }
+      ],
+      "pursuits": 0,
+      "escapes": 0,
+      "arrests": 0,
+      "contacts": 0,
+      "detectedSpeeding": 0,
+      "detectedCrashes": 0,
+      "deployments": 0,
+      "returns": 0,
+      "radioCalls": 1,
+      "cameraReports": 0,
+      "recoveries": 0,
+      "sectorsChecked": 0,
+      "interceptsAssigned": 0,
+      "blockedRoutes": 0
+    },
+    "enforcement": {
+      "tickets": 0,
+      "totalTickets": 0,
+      "lastCapture": null,
+      "nearbyCamera": null,
+      "cameras": [
+        {
+          "id": "speed-camera-0",
+          "name": "MIDTOWN SPEED CHECK",
+          "district": "MIDTOWN",
+          "x": -14.9,
+          "z": -434,
+          "heading": 0,
+          "direction": {
+            "x": 0,
+            "z": 1
+          },
+          "trigger": {
+            "x": -4.5,
+            "z": -450
+          },
+          "laneWidth": 4.8,
+          "limitKph": 50,
+          "range": 45,
+          "cooldown": 12,
+          "y": 4.352,
+          "flash": 0
+        },
+        {
+          "id": "speed-camera-1",
+          "name": "MIDTOWN SPEED CHECK",
+          "district": "MIDTOWN",
+          "x": -14.9,
+          "z": 286,
+          "heading": 0,
+          "direction": {
+            "x": 0,
+            "z": 1
+          },
+          "trigger": {
+            "x": -4.5,
+            "z": 270
+          },
+          "laneWidth": 4.8,
+          "limitKph": 50,
+          "range": 45,
+          "cooldown": 12,
+          "y": 4.352,
+          "flash": 0
+        },
+        {
+          "id": "speed-camera-2",
+          "name": "DOWNTOWN SPEED CHECK",
+          "district": "DOWNTOWN",
+          "x": 345.1,
+          "z": 286,
+          "heading": 0,
+          "direction": {
+            "x": 0,
+            "z": 1
+          },
+          "trigger": {
+            "x": 355.5,
+            "z": 270
+          },
+          "laneWidth": 4.8,
+          "limitKph": 70,
+          "range": 45,
+          "cooldown": 12,
+          "y": 4.3519999999999985,
+          "flash": 0
+        },
+        {
+          "id": "speed-camera-3",
+          "name": "DOWNTOWN SPEED CHECK",
+          "district": "DOWNTOWN",
+          "x": 554.9,
+          "z": 434,
+          "heading": 3.141592653589793,
+          "direction": {
+            "x": 0,
+            "z": -1
+          },
+          "trigger": {
+            "x": 544.5,
+            "z": 450
+          },
+          "laneWidth": 4.8,
+          "limitKph": 70,
+          "range": 45,
+          "cooldown": 12,
+          "y": 4.3519999999999985,
+          "flash": 0
+        },
+        {
+          "id": "speed-camera-4",
+          "name": "GARDEN HEIGHTS SPEED CHECK",
+          "district": "GARDEN HEIGHTS",
+          "x": -374.9,
+          "z": 286,
+          "heading": 0,
+          "direction": {
+            "x": 0,
+            "z": 1
+          },
+          "trigger": {
+            "x": -364.5,
+            "z": 270
+          },
+          "laneWidth": 4.8,
+          "limitKph": 50,
+          "range": 45,
+          "cooldown": 12,
+          "y": 4.3519999999999985,
+          "flash": 0
+        },
+        {
+          "id": "speed-camera-5",
+          "name": "GARDEN HEIGHTS SPEED CHECK",
+          "district": "GARDEN HEIGHTS",
+          "x": -434,
+          "z": 554.9,
+          "heading": 1.5707963267948966,
+          "direction": {
+            "x": 1,
+            "z": 0
+          },
+          "trigger": {
+            "x": -450,
+            "z": 544.5
+          },
+          "laneWidth": 4.8,
+          "limitKph": 50,
+          "range": 45,
+          "cooldown": 12,
+          "y": 4.3519999999999985,
+          "flash": 0
+        },
+        {
+          "id": "speed-camera-6",
+          "name": "OLD TOWN SPEED CHECK",
+          "district": "OLD TOWN",
+          "x": -434,
+          "z": -345.1,
+          "heading": 1.5707963267948966,
+          "direction": {
+            "x": 1,
+            "z": 0
+          },
+          "trigger": {
+            "x": -450,
+            "z": -355.5
+          },
+          "laneWidth": 4.8,
+          "limitKph": 50,
+          "range": 45,
+          "cooldown": 12,
+          "y": 4.3519999999999985,
+          "flash": 0
+        },
+        {
+          "id": "speed-camera-7",
+          "name": "IRONWORKS SPEED CHECK",
+          "district": "IRONWORKS",
+          "x": 286,
+          "z": -525.1,
+          "heading": 1.5707963267948966,
+          "direction": {
+            "x": 1,
+            "z": 0
+          },
+          "trigger": {
+            "x": 270,
+            "z": -535.5
+          },
+          "laneWidth": 4.8,
+          "limitKph": 70,
+          "range": 45,
+          "cooldown": 12,
+          "y": 4.3519999999999985,
+          "flash": 0
+        },
+        {
+          "id": "speed-camera-8",
+          "name": "MIDTOWN SPEED CHECK",
+          "district": "MIDTOWN",
+          "x": 466,
+          "z": -165.1,
+          "heading": 1.5707963267948966,
+          "direction": {
+            "x": 1,
+            "z": 0
+          },
+          "trigger": {
+            "x": 450,
+            "z": -175.5
+          },
+          "laneWidth": 4.8,
+          "limitKph": 70,
+          "range": 45,
+          "cooldown": 12,
+          "y": 4.352,
+          "flash": 0
+        },
+        {
+          "id": "speed-camera-9",
+          "name": "MIDTOWN SPEED CHECK",
+          "district": "MIDTOWN",
+          "x": -286,
+          "z": -14.9,
+          "heading": -1.5707963267948966,
+          "direction": {
+            "x": -1,
+            "z": 0
+          },
+          "trigger": {
+            "x": -270,
+            "z": -4.5
+          },
+          "laneWidth": 4.8,
+          "limitKph": 50,
+          "range": 45,
+          "cooldown": 12,
+          "y": 4.352,
+          "flash": 0
+        },
+        {
+          "id": "speed-camera-10",
+          "name": "MIDTOWN SPEED CHECK",
+          "district": "MIDTOWN",
+          "x": 106,
+          "z": 554.9,
+          "heading": 1.5707963267948966,
+          "direction": {
+            "x": 1,
+            "z": 0
+          },
+          "trigger": {
+            "x": 90,
+            "z": 544.5
+          },
+          "laneWidth": 4.8,
+          "limitKph": 70,
+          "range": 45,
+          "cooldown": 12,
+          "y": 4.3519999999999985,
+          "flash": 0
+        },
+        {
+          "id": "speed-camera-11",
+          "name": "MIDTOWN SPEED CHECK",
+          "district": "MIDTOWN",
+          "x": -74,
+          "z": -705.1,
+          "heading": 1.5707963267948966,
+          "direction": {
+            "x": 1,
+            "z": 0
+          },
+          "trigger": {
+            "x": -90,
+            "z": -715.5
+          },
+          "laneWidth": 4.8,
+          "limitKph": 70,
+          "range": 45,
+          "cooldown": 12,
+          "y": 4.3519999999999985,
+          "flash": 0
+        }
+      ],
+      "time": 0.09999999999999999
+    },
+    "acoustics": {
+      "zone": "street-canyon",
+      "enclosure": 0.44027472859022776,
+      "reflectivity": 0.3939168085835777,
+      "openness": 0.5597252714097722,
+      "leftDistance": 40.43993588096915,
+      "rightDistance": 32.351948704775324,
+      "frontDistance": 66.0518952722496,
+      "backDistance": 90,
+      "surface": "asphalt",
+      "district": "MIDTOWN",
+      "ambient": {
+        "park": 0,
+        "water": 0,
+        "industrial": 0,
+        "traffic": 0.9307692307692308,
+        "wind": 0.6918076899868406,
+        "insects": 0
+      }
+    },
+    "terrain": {
+      "activeClods": 0,
+      "activeGrass": 0,
+      "activeTracks": 0,
+      "counts": {
+        "clods": 0,
+        "grass": 0,
+        "tracks": 0
+      },
+      "capacity": 680
+    },
+    "weather": {
+      "elapsed": 333.60450000002396,
+      "rain": 1,
+      "wetness": 1,
+      "drops": 240,
+      "capacity": 360,
+      "wetMaterials": 2,
+      "wheels": [
+        {
+          "wetness": 1,
+          "depth": 0,
+          "grip": 0.73,
+          "aquaplaning": 0
+        },
+        {
+          "wetness": 1,
+          "depth": 0,
+          "grip": 0.73,
+          "aquaplaning": 0
+        },
+        {
+          "wetness": 1,
+          "depth": 0,
+          "grip": 0.73,
+          "aquaplaning": 0
+        },
+        {
+          "wetness": 1,
+          "depth": 0,
+          "grip": 0.73,
+          "aquaplaning": 0
+        }
+      ],
+      "spray": 0
+    },
+    "worldHour": 23,
+    "worldKind": "city",
+    "fuel": 49.99998790846404,
+    "engineHealth": 1,
+    "bodyHealth": 1,
+    "wheelAttached": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "lookYaw": 0,
+    "lookPitch": 0,
+    "worldGroups": 1
+  },
+  "clearing": {
+    "phase": "playing",
+    "paused": false,
+    "mode": "free",
+    "camera": 1,
+    "speed": 0,
+    "rpm": 1507.0780579456139,
+    "gear": 1,
+    "heading": 0,
+    "x": -4.5,
+    "z": -75,
+    "driftAngle": 0,
+    "drifting": false,
+    "score": 0,
+    "runTime": 0.09999999999999999,
+    "checkpoint": 0,
+    "fps": 60,
+    "drawCalls": 639,
+    "roadDistance": 4.5,
+    "engineVersion": "1.6.3",
+    "engineAudioRelease": 14,
+    "enginePhysicsRelease": 14,
+    "engineClock": "pcm",
+    "transmission": "auto",
+    "handbrake": 0,
+    "clutch": 1,
+    "inputMode": "auto",
+    "build": {
+      "hood": "stock",
+      "spoiler": "stock",
+      "sideSkirts": "stock",
+      "rims": "stock",
+      "frontBumper": "stock",
+      "rearBumper": "stock",
+      "steeringRack": "stock",
+      "alignment": "stock",
+      "antiRollBars": "stock",
+      "driveKit": "stock",
+      "frontDifferential": "open",
+      "centerDifferential": "open",
+      "wingAngle": "stock",
+      "tractionLinks": "stock",
+      "carId": "hachi",
+      "engineId": "i6t",
+      "ecu": "stock",
+      "turbo": "stock",
+      "exhaust": "street",
+      "tyres": "street",
+      "suspension": "street",
+      "brakes": "street",
+      "differential": "lsd",
+      "clutch": "street",
+      "intake": "stock",
+      "radiator": "stock",
+      "oilCooler": "stock",
+      "internals": "stock",
+      "transmission": "stock",
+      "finalDrive": "stock",
+      "chassis": "stock",
+      "tyreWidth": "stock"
+    },
+    "driveLayout": "RWD",
+    "axleTorques": [
+      0,
+      0
+    ],
+    "drivenWheels": [
+      2,
+      3
+    ],
+    "tyres": [
+      {
+        "pressureBar": 2.3,
+        "casingScale": 1,
+        "radiusScale": 1,
+        "grip": 1,
+        "compliance": 1,
+        "rollingExtra": 0,
+        "carcass": 1,
+        "flatspot": 0,
+        "flatspotAngle": 0,
+        "punctured": false,
+        "blown": false,
+        "burstCount": 0
+      },
+      {
+        "pressureBar": 2.3,
+        "casingScale": 1,
+        "radiusScale": 1,
+        "grip": 1,
+        "compliance": 1,
+        "rollingExtra": 0,
+        "carcass": 1,
+        "flatspot": 0,
+        "flatspotAngle": 0,
+        "punctured": false,
+        "blown": false,
+        "burstCount": 0
+      },
+      {
+        "pressureBar": 2.3,
+        "casingScale": 1,
+        "radiusScale": 1,
+        "grip": 1,
+        "compliance": 1,
+        "rollingExtra": 0,
+        "carcass": 1,
+        "flatspot": 0,
+        "flatspotAngle": 0,
+        "punctured": false,
+        "blown": false,
+        "burstCount": 0
+      },
+      {
+        "pressureBar": 2.3,
+        "casingScale": 1,
+        "radiusScale": 1,
+        "grip": 1,
+        "compliance": 1,
+        "rollingExtra": 0,
+        "carcass": 1,
+        "flatspot": 0,
+        "flatspotAngle": 0,
+        "punctured": false,
+        "blown": false,
+        "burstCount": 0
+      }
+    ],
+    "wheelRadii": [
+      0.34,
+      0.34,
+      0.34,
+      0.34
+    ],
+    "aero": {
+      "front": 0,
+      "rear": 0,
+      "downforce": 0,
+      "pitchMoment": 0,
+      "drag": 0,
+      "dragCoefficient": 0.43000000000000005,
+      "wingEfficiency": 1
+    },
+    "wheelHop": [
+      {
+        "x": 0,
+        "v": 0,
+        "force": 0,
+        "energy": 0,
+        "inputJ": 0,
+        "dissipatedJ": 0
+      },
+      {
+        "x": 0,
+        "v": 0,
+        "force": 0,
+        "energy": 0,
+        "inputJ": 0,
+        "dissipatedJ": 0
+      },
+      {
+        "x": 0,
+        "v": 0,
+        "force": 0,
+        "energy": 0,
+        "inputJ": 0,
+        "dissipatedJ": 0
+      },
+      {
+        "x": 0,
+        "v": 0,
+        "force": 0,
+        "energy": 0,
+        "inputJ": 0,
+        "dissipatedJ": 0
+      }
+    ],
+    "engineRunning": true,
+    "engineStalled": false,
+    "burnout": false,
+    "wheelLoads": [
+      2844.9,
+      2844.9,
+      2844.9,
+      2844.9
+    ],
+    "bodyHeight": 0.01200000000000001,
+    "bodyPitch": 0,
+    "bodyRoll": 0,
+    "roadGradeLong": 0,
+    "roadGradeLat": 0,
+    "surfaces": [
+      "asphalt",
+      "asphalt",
+      "asphalt",
+      "asphalt"
+    ],
+    "audio": {
+      "source": "MotorLab.renderAudio",
+      "processing": "MotorLab 1.6.3 + SIDEWAYS emitter extension; one native render, model-mounted outlets, camera ears and source-specific facade paths",
+      "microphone": "camera",
+      "audioAnchors": {
+        "exhaust": [
+          {
+            "x": -3.89,
+            "y": 0.332,
+            "z": -77.27596
+          },
+          {
+            "x": -3.73,
+            "y": 0.332,
+            "z": -77.27596
+          }
+        ],
+        "intake": {
+          "x": -4.7,
+          "y": 0.762,
+          "z": -73.8508
+        },
+        "engine": {
+          "x": -4.5,
+          "y": 0.662,
+          "z": -74.0497
+        },
+        "gearbox": {
+          "x": -4.5,
+          "y": 0.29200000000000004,
+          "z": -74.8
+        },
+        "differential": {
+          "x": -4.5,
+          "y": 0.262,
+          "z": -76.3
+        },
+        "wheels": [
+          {
+            "x": -5.37,
+            "y": 0.35200000000000004,
+            "z": -73.7
+          },
+          {
+            "x": -3.63,
+            "y": 0.35200000000000004,
+            "z": -73.7
+          },
+          {
+            "x": -5.37,
+            "y": 0.35200000000000004,
+            "z": -76.3
+          },
+          {
+            "x": -3.63,
+            "y": 0.35200000000000004,
+            "z": -76.3
+          }
+        ],
+        "exhaustDirection": {
+          "x": 0,
+          "y": 0,
+          "z": -1
+        },
+        "frontDirection": {
+          "x": 0,
+          "y": 0,
+          "z": 1
+        }
+      },
+      "nativeListener": {
+        "mode": "outside",
+        "distance": 1.8,
+        "azimuth": 0,
+        "reflections": 0,
+        "scene": {
+          "position": [
+            -4.5,
+            2.612,
+            -81.6
+          ],
+          "right": [
+            -1,
+            0,
+            0
+          ],
+          "emitters": [
+            {
+              "id": "exhaust-0",
+              "source": "exhaust",
+              "position": [
+                -3.89,
+                0.332,
+                -77.27596
+              ],
+              "direction": [
+                0,
+                0,
+                -1
+              ],
+              "gain": 0.5,
+              "reflections": [
+                {
+                  "position": [
+                    59.59389740955065,
+                    0.332,
+                    -77.27596
+                  ],
+                  "gain": 0.009601722209224705
+                },
+                {
+                  "position": [
+                    -85.9898717619383,
+                    0.332,
+                    -77.27596
+                  ],
+                  "gain": 0.009601722209224705
+                },
+                {
+                  "position": [
+                    -3.89,
+                    0.332,
+                    -204.82783054449925
+                  ],
+                  "gain": 0.009601722209224705
+                }
+              ]
+            },
+            {
+              "id": "exhaust-1",
+              "source": "exhaust",
+              "position": [
+                -3.73,
+                0.332,
+                -77.27596
+              ],
+              "direction": [
+                0,
+                0,
+                -1
+              ],
+              "gain": 0.5,
+              "reflections": [
+                {
+                  "position": [
+                    59.43389740955065,
+                    0.332,
+                    -77.27596
+                  ],
+                  "gain": 0.009601722209224705
+                },
+                {
+                  "position": [
+                    -86.14987176193831,
+                    0.332,
+                    -77.27596
+                  ],
+                  "gain": 0.009601722209224705
+                },
+                {
+                  "position": [
+                    -3.73,
+                    0.332,
+                    -204.82783054449925
+                  ],
+                  "gain": 0.009601722209224705
+                }
+              ]
+            },
+            {
+              "id": "intake",
+              "source": "intake",
+              "position": [
+                -4.7,
+                0.762,
+                -73.8508
+              ],
+              "direction": [
+                0,
+                0,
+                1
+              ],
+              "gain": 1,
+              "reflections": [
+                {
+                  "position": [
+                    60.40389740955065,
+                    0.762,
+                    -73.8508
+                  ],
+                  "gain": 0.009601722209224705
+                },
+                {
+                  "position": [
+                    -85.1798717619383,
+                    0.762,
+                    -73.8508
+                  ],
+                  "gain": 0.009601722209224705
+                },
+                {
+                  "position": [
+                    -4.7,
+                    0.762,
+                    -208.25299054449926
+                  ],
+                  "gain": 0.009601722209224705
+                }
+              ]
+            },
+            {
+              "id": "combustion",
+              "source": "combustion",
+              "position": [
+                -4.5,
+                0.662,
+                -74.0497
+              ],
+              "direction": [
+                0,
+                0,
+                1
+              ],
+              "gain": 1,
+              "reflections": [
+                {
+                  "position": [
+                    60.20389740955065,
+                    0.662,
+                    -74.0497
+                  ],
+                  "gain": 0.009601722209224705
+                },
+                {
+                  "position": [
+                    -85.3798717619383,
+                    0.662,
+                    -74.0497
+                  ],
+                  "gain": 0.009601722209224705
+                },
+                {
+                  "position": [
+                    -4.5,
+                    0.662,
+                    -208.05409054449925
+                  ],
+                  "gain": 0.009601722209224705
+                }
+              ]
+            },
+            {
+              "id": "valve",
+              "source": "valve",
+              "position": [
+                -4.5,
+                0.662,
+                -74.0497
+              ],
+              "direction": [
+                0,
+                0,
+                1
+              ],
+              "gain": 1,
+              "reflections": []
+            },
+            {
+              "id": "bearing",
+              "source": "bearing",
+              "position": [
+                -4.5,
+                0.662,
+                -74.0497
+              ],
+              "direction": [
+                0,
+                0,
+                1
+              ],
+              "gain": 1,
+              "reflections": []
+            },
+            {
+              "id": "boost",
+              "source": "boost",
+              "position": [
+                -4.7,
+                0.762,
+                -73.8508
+              ],
+              "direction": [
+                0,
+                0,
+                1
+              ],
+              "gain": 1,
+              "reflections": []
+            },
+            {
+              "id": "manifold",
+              "source": "manifold",
+              "position": [
+                -4.5,
+                0.662,
+                -74.0497
+              ],
+              "direction": [
+                0,
+                0,
+                1
+              ],
+              "gain": 1,
+              "reflections": []
+            },
+            {
+              "id": "mechanical",
+              "source": "mechanical",
+              "position": [
+                -4.5,
+                0.662,
+                -74.0497
+              ],
+              "direction": [
+                0,
+                0,
+                1
+              ],
+              "gain": 1,
+              "reflections": []
+            },
+            {
+              "id": "chain",
+              "source": "chain",
+              "position": [
+                -4.5,
+                0.662,
+                -74.0497
+              ],
+              "direction": [
+                0,
+                0,
+                1
+              ],
+              "gain": 1,
+              "reflections": []
+            },
+            {
+              "id": "gearbox",
+              "source": "gearbox",
+              "position": [
+                -4.5,
+                0.29200000000000004,
+                -74.8
+              ],
+              "direction": [
+                0,
+                0,
+                0
+              ],
+              "gain": 1,
+              "reflections": []
+            }
+          ]
+        }
+      },
+      "nativeStereoFlip": false,
+      "nativeAudio": {
+        "connected": false,
+        "backend": "pcm",
+        "contextState": null,
+        "sampleRate": 48000,
+        "bufferSize": null,
+        "volume": 0.65,
+        "muted": false,
+        "meter": {
+          "rms": 0.0015203572087386815,
+          "peak": 0.009986468590795994,
+          "frames": 400
+        },
+        "sourceWindowSeconds": 0.008333333333333333,
+        "sources": {
+          "exhaust": {
+            "rms": 0.009754662820698824,
+            "peak": 0.018564099297279552,
+            "dbRms": -40.21575475632872,
+            "dbPeak": -34.62652234508898
+          },
+          "intake": {
+            "rms": 0.012466814407813906,
+            "peak": 0.0506070588830436,
+            "dbRms": -38.08489011543476,
+            "dbPeak": -25.915778034689943
+          },
+          "combustion": {
+            "rms": 0.0006303144546805643,
+            "peak": 0.0011606552418162862,
+            "dbRms": -64.0088546661177,
+            "dbPeak": -58.705935257455636
+          },
+          "valve": {
+            "rms": 0.000019046160298016018,
+            "peak": 0.0002572347069331155,
+            "dbRms": -94.40385129684074,
+            "dbPeak": -71.79340870775263
+          },
+          "bearing": {
+            "rms": 0.00006147882901020565,
+            "peak": 0.00018358282745252572,
+            "dbRms": -84.22548826236883,
+            "dbPeak": -74.72335891274015
+          },
+          "boost": {
+            "rms": 0.016532543441281078,
+            "peak": 0.05683458494704756,
+            "dbRms": -35.633206549211664,
+            "dbPeak": -24.90774614467537
+          },
+          "manifold": {
+            "rms": 0.00128561511606437,
+            "peak": 0.0023673919408159837,
+            "dbRms": -57.81778059694231,
+            "dbPeak": -52.51459670333319
+          },
+          "mechanical": {
+            "rms": 0.0007362591966541823,
+            "peak": 0.0042470169447781465,
+            "dbRms": -62.659385347493284,
+            "dbPeak": -47.43832012509357
+          },
+          "gearbox": {
+            "rms": 0,
+            "peak": 0,
+            "dbRms": -120,
+            "dbPeak": -120
+          },
+          "chain": {
+            "rms": 0.0007819162673945099,
+            "peak": 0.0018328306366527873,
+            "dbRms": -62.13679502973726,
+            "dbPeak": -54.737553286302834
+          }
+        },
+        "layers": {
+          "exhaust": {
+            "rms": 0.0018657237215241743,
+            "peak": 0.011012021143646874,
+            "dbRms": -54.583053332915014,
+            "dbPeak": -39.16265926820337
+          },
+          "intake": {
+            "rms": 0.002127774205615254,
+            "peak": 0.009764776632076177,
+            "dbRms": -53.441489204778236,
+            "dbPeak": -40.20675373378215
+          },
+          "combustion": {
+            "rms": 0.000025472216837399967,
+            "peak": 0.00004994100139549067,
+            "dbRms": -91.8786651381407,
+            "dbPeak": -86.03085507222224
+          },
+          "valve": {
+            "rms": 0.000005494949121700383,
+            "peak": 0.00006100317766262832,
+            "dbRms": -105.20072648798384,
+            "dbPeak": -84.29295083899746
+          },
+          "bearing": {
+            "rms": 0.000060971371848915926,
+            "peak": 0.0001793780220293747,
+            "dbRms": -84.29748066583629,
+            "dbPeak": -74.92461538370684
+          },
+          "boost": {
+            "rms": 0.0015983521215237654,
+            "peak": 0.005380541557955211,
+            "dbRms": -55.92655076341114,
+            "dbPeak": -45.38348019747214
+          },
+          "manifold": {
+            "rms": 0.00021194259426010915,
+            "peak": 0.0008047550923272999,
+            "dbRms": -73.47563508068002,
+            "dbPeak": -61.88672533012193
+          },
+          "mechanical": {
+            "rms": 0.00005645113883077,
+            "peak": 0.0002957035670141782,
+            "dbRms": -84.96654584610697,
+            "dbPeak": -70.58286873266121
+          },
+          "gearbox": {
+            "rms": 0,
+            "peak": 0,
+            "dbRms": -120,
+            "dbPeak": -120
+          },
+          "chain": {
+            "rms": 0.0001220149757435022,
+            "peak": 0.0002933895159886439,
+            "dbRms": -78.27173724164999,
+            "dbPeak": -70.65110818678932
+          }
+        },
+        "mix": {
+          "guaranteedPeak": 0.8996152500000002,
+          "ceiling": 0.9,
+          "limiterGain": 1,
+          "reserveGain": 0.94,
+          "exhaustBaseBudget": 0.23,
+          "exhaustPresenceBudget": 0.0725,
+          "headroomDb": 40.01176119177004
+        },
+        "error": null
+      },
+      "sampleRate": 48000,
+      "started": true,
+      "available": true,
+      "clock": "pcm",
+      "pcmFrames": 4800,
+      "worldFrames": 8640,
+      "queuedMs": 0,
+      "activeBuffers": 3,
+      "activeUIBuffers": 0,
+      "activeWorldBuffers": 3,
+      "underruns": 1,
+      "rawPeak": 0.009928646786334264,
+      "outputPeak": 0.04402203857898712,
+      "mix": {
+        "engine": 1,
+        "mechanical": 0.8,
+        "tyres": 0.55,
+        "environment": 0.7,
+        "drive": 0.65,
+        "sirens": 1,
+        "radio": 0.85,
+        "reverb": 0.65,
+        "ambience": 0.65
+      },
+      "layers": {
+        "engine": 0.006818210176537409,
+        "rolling": 0,
+        "tyres": 0,
+        "brakes": 0,
+        "mechanical": 0,
+        "wind": 0,
+        "nitrous": 0,
+        "traffic": 0.0021693251260123877,
+        "transients": 0,
+        "horns": 0,
+        "sirens": 0,
+        "service": 0,
+        "damage": 0,
+        "worldEvents": 0,
+        "radio": 0,
+        "ambience": 0.0009856996224200546,
+        "reflections": 3.768137498748258e-8
+      },
+      "events": {
+        "shift": 0,
+        "handbrake": 0,
+        "suspension": 0,
+        "impact": 0,
+        "starter": 0,
+        "clutch": 0,
+        "selector": 0,
+        "ui": 1,
+        "nitro": 0
+      },
+      "activeEvents": 0,
+      "tyreSample": "audible-edge / qubodup, CC BY 3.0",
+      "nitrousLevel": 0,
+      "trafficVoices": 3,
+      "surfaces": [
+        "asphalt",
+        "asphalt",
+        "asphalt",
+        "asphalt"
+      ],
+      "acoustics": {
+        "model": "directional early reflections with distance absorption and stereo diffuse tail",
+        "zone": "street-canyon",
+        "enclosure": 0.4402747285902276,
+        "wet": 0.08766023915867402,
+        "targetWet": 0.17078642973516991,
+        "feedback": 0.1564973572726376,
+        "tail": 0,
+        "delaysMs": [
+          96.66279550477265,
+          126.98338660245767,
+          227.80454292021284,
+          212.2592432775155
+        ]
+      },
+      "engineDuck": 1,
+      "world": {
+        "time": 0.18,
+        "voices": 3,
+        "activeVoices": 3,
+        "engineProfiles": [
+          "i6t",
+          "i4"
+        ],
+        "sirenVoices": 0,
+        "events": 0,
+        "eventCounts": {},
+        "listenerHeading": 0,
+        "playerHorn": 0,
+        "servicing": null,
+        "levels": {
+          "traffic": 0.0021693251260123877,
+          "horns": 0,
+          "sirens": 0,
+          "service": 0,
+          "damage": 0,
+          "worldEvents": 0,
+          "radio": 0,
+          "ambience": 0.0009856996224200546,
+          "reflections": 3.768137498748258e-8
+        },
+        "spatial": true,
+        "radio": {
+          "active": null,
+          "sample": null,
+          "variantCount": 8,
+          "recentSamples": [],
+          "expired": 0,
+          "summary": null,
+          "queued": 0,
+          "played": 0,
+          "dropped": 0,
+          "duck": 0,
+          "kind": "recorded contextual chatter; captions carry tactical summaries"
+        },
+        "ambience": {
+          "rain": 0.01041533696847848,
+          "birds": 0.0014241322105662665,
+          "crickets": 0,
+          "wind": 0.0016420426913795084,
+          "water": 0,
+          "industrial": 0
+        },
+        "acoustics": {
+          "model": "directional early reflections with distance absorption and stereo diffuse tail",
+          "zone": "street-canyon",
+          "enclosure": 0.4402747285902276,
+          "wet": 0.0988092572075535,
+          "targetWet": 0.17078642973516991,
+          "feedback": 0.17165227495871502,
+          "tail": 6.498899948673895e-9,
+          "delaysMs": [
+            119.2859464657102,
+            153.97654670563557,
+            299.5495301619315,
+            255.1546555464594
+          ]
+        },
+        "ducking": {
+          "engine": 1,
+          "music": 1,
+          "radio": 0,
+          "sirenThreat": 0
+        }
+      },
+      "music": {
+        "ready": true,
+        "enabled": true,
+        "mode": "drive",
+        "intensity": 0,
+        "energy": 0,
+        "chaseLevel": 0,
+        "bandLevel": 0.8655802165108468,
+        "paused": false,
+        "focus": {
+          "managed": true,
+          "hidden": false,
+          "reading": false,
+          "paused": false,
+          "backgroundMusic": false,
+          "gain": 1,
+          "cutoff": 18000
+        },
+        "masterLevel": 0.25520000000000004,
+        "volume": 0.58,
+        "bpm": 100,
+        "bars": 56,
+        "playing": true,
+        "chaseLoops": 0,
+        "activeVoices": 2,
+        "maxVoices": 2,
+        "scheduledHits": 3,
+        "hits": {
+          "hat": 2,
+          "kick": 1
+        },
+        "error": null,
+        "source": "Umplix driving rock, bertsz pursuit cue and VCSL acoustic percussion"
+      }
+    },
+    "world": "city",
+    "traffic": {
+      "cars": 36,
+      "time": 0.09999999999999999,
+      "entries": 0,
+      "turns": 0,
+      "redStops": 0,
+      "playerStops": 0,
+      "contacts": 0,
+      "horns": 0,
+      "recycled": 0,
+      "emergencyYields": 0,
+      "nearMisses": 0,
+      "courtesyYields": 0,
+      "stopped": 0,
+      "intersectionsOccupied": 0,
+      "yielding": 0,
+      "temperaments": [
+        "cautious",
+        "steady",
+        "assertive"
+      ],
+      "dynamic": true,
+      "replica": false
+    },
+    "input": {
+      "kind": "keyboard",
+      "deviceKey": null,
+      "name": "KEYBOARD",
+      "revision": 0,
+      "deviceName": "KEYBOARD",
+      "needsCalibration": false
+    },
+    "nitrousIntensity": 0,
+    "nitrousTorque": 0,
+    "version": 24,
+    "raceState": null,
+    "raceRecovery": 0,
+    "mechanical": {
+      "components": [
+        {
+          "id": "engineBlock",
+          "label": "Engine block",
+          "group": "engine",
+          "health": 1,
+          "temperature": 89.98270959561096,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "cylinderHead",
+          "label": "Cylinder head",
+          "group": "engine",
+          "health": 1,
+          "temperature": 89.98270959561096,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "connectingRods",
+          "label": "Connecting rods",
+          "group": "engine",
+          "health": 1,
+          "temperature": 82.00947054788777,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "crankshaft",
+          "label": "Crankshaft",
+          "group": "engine",
+          "health": 1,
+          "temperature": 82.00947054788777,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "timingDrive",
+          "label": "Timing chain",
+          "group": "engine",
+          "health": 1,
+          "temperature": 82.00947054788777,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "intake",
+          "label": "Intake tract",
+          "group": "engine",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "exhaust",
+          "label": "Exhaust manifold and pipe",
+          "group": "engine",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "thermostat",
+          "label": "Thermostat",
+          "group": "cooling",
+          "health": 1,
+          "temperature": 84.03347027821832,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "fuelPump",
+          "label": "Fuel pump",
+          "group": "engine",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "ignition",
+          "label": "Ignition coils and plugs",
+          "group": "engine",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "pistons",
+          "label": "Pistons and rings",
+          "group": "engine",
+          "health": 1,
+          "temperature": 89.98270959561096,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "bearings",
+          "label": "Crank bearings",
+          "group": "engine",
+          "health": 1,
+          "temperature": 82.00947054788777,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "valvetrain",
+          "label": "Valvetrain",
+          "group": "engine",
+          "health": 1,
+          "temperature": 89.98270959561096,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "headGasket",
+          "label": "Head gasket",
+          "group": "engine",
+          "health": 1,
+          "temperature": 89.98270959561096,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "radiator",
+          "label": "Radiator",
+          "group": "cooling",
+          "health": 1,
+          "temperature": 84.03347027821832,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "waterPump",
+          "label": "Water pump",
+          "group": "cooling",
+          "health": 1,
+          "temperature": 84.03347027821832,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "oilPump",
+          "label": "Oil pump",
+          "group": "lubrication",
+          "health": 1,
+          "temperature": 82.00947054788777,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "oilPan",
+          "label": "Oil pan",
+          "group": "lubrication",
+          "health": 1,
+          "temperature": 82.00947054788777,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "clutch",
+          "label": "Clutch plate",
+          "group": "drivetrain",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "gearbox",
+          "label": "Gearbox bearings",
+          "group": "drivetrain",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "differential",
+          "label": "Rear differential",
+          "group": "drivetrain",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "driveshaft",
+          "label": "Rear drive shafts",
+          "group": "drivetrain",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "frontDifferential",
+          "label": "AWD front differential",
+          "group": "drivetrain",
+          "health": 1,
+          "temperature": 24,
+          "status": "unavailable",
+          "reason": "Not fitted",
+          "applicable": false
+        },
+        {
+          "id": "frontDriveshaft",
+          "label": "AWD front drive shafts",
+          "group": "drivetrain",
+          "health": 1,
+          "temperature": null,
+          "status": "unavailable",
+          "reason": "Not fitted",
+          "applicable": false
+        },
+        {
+          "id": "centerDifferential",
+          "label": "Center differential / transfer case",
+          "group": "drivetrain",
+          "health": 1,
+          "temperature": 24,
+          "status": "unavailable",
+          "reason": "Not fitted",
+          "applicable": false
+        },
+        {
+          "id": "turbo",
+          "label": "Turbocharger",
+          "group": "engine",
+          "health": 1,
+          "temperature": 99.99797100075297,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "accessoryBelt",
+          "label": "Accessory belt",
+          "group": "engine",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "beltTensioner",
+          "label": "Belt tensioner",
+          "group": "engine",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "alternator",
+          "label": "Alternator",
+          "group": "engine",
+          "health": 1,
+          "temperature": 24.000965597313254,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "battery",
+          "label": "Battery",
+          "group": "engine",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "starterMotor",
+          "label": "Starter motor",
+          "group": "engine",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "radiatorFan",
+          "label": "Radiator fan",
+          "group": "cooling",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "batteryCharge",
+          "label": "Battery charge",
+          "group": "engine",
+          "health": 0.8500012051463133,
+          "temperature": null,
+          "status": "charge",
+          "reason": "85% · 14.2 V · 5.2 A",
+          "applicable": true,
+          "action": "CHARGE",
+          "serviceNeeded": true
+        },
+        {
+          "id": "gearR",
+          "label": "Reverse gear",
+          "group": "drivetrain",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "gear1",
+          "label": "Gear 1",
+          "group": "drivetrain",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "gear2",
+          "label": "Gear 2",
+          "group": "drivetrain",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "gear3",
+          "label": "Gear 3",
+          "group": "drivetrain",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "gear4",
+          "label": "Gear 4",
+          "group": "drivetrain",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "gear5",
+          "label": "Gear 5",
+          "group": "drivetrain",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "gear6",
+          "label": "Gear 6",
+          "group": "drivetrain",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "brakeFL",
+          "label": "Front left brake",
+          "group": "chassis",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "tyreFL",
+          "label": "Front left tyre",
+          "group": "chassis",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true,
+          "pressureBar": 2.3,
+          "carcass": 1,
+          "flatspot": 0
+        },
+        {
+          "id": "suspensionFL",
+          "label": "Front left suspension",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "brakeFR",
+          "label": "Front right brake",
+          "group": "chassis",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "tyreFR",
+          "label": "Front right tyre",
+          "group": "chassis",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true,
+          "pressureBar": 2.3,
+          "carcass": 1,
+          "flatspot": 0
+        },
+        {
+          "id": "suspensionFR",
+          "label": "Front right suspension",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "brakeRL",
+          "label": "Rear left brake",
+          "group": "chassis",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "tyreRL",
+          "label": "Rear left tyre",
+          "group": "chassis",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true,
+          "pressureBar": 2.3,
+          "carcass": 1,
+          "flatspot": 0
+        },
+        {
+          "id": "suspensionRL",
+          "label": "Rear left suspension",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "brakeRR",
+          "label": "Rear right brake",
+          "group": "chassis",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "tyreRR",
+          "label": "Rear right tyre",
+          "group": "chassis",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true,
+          "pressureBar": 2.3,
+          "carcass": 1,
+          "flatspot": 0
+        },
+        {
+          "id": "suspensionRR",
+          "label": "Rear right suspension",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "brakeLineFL",
+          "label": "Front left brake line",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "brakeLineFR",
+          "label": "Front right brake line",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "brakeLineRL",
+          "label": "Rear left brake line",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "brakeLineRR",
+          "label": "Rear right brake line",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "brakeFluid0",
+          "label": "Brake fluid FL / RR",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "0.30 / 0.30 L",
+          "applicable": true
+        },
+        {
+          "id": "brakeFluid1",
+          "label": "Brake fluid FR / RL",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "0.30 / 0.30 L",
+          "applicable": true
+        },
+        {
+          "id": "wheelBearingFL",
+          "label": "Front left wheel bearing",
+          "group": "chassis",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "absValveFL",
+          "label": "Front left ABS channel",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "wheelBearingFR",
+          "label": "Front right wheel bearing",
+          "group": "chassis",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "absValveFR",
+          "label": "Front right ABS channel",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "wheelBearingRL",
+          "label": "Rear left wheel bearing",
+          "group": "chassis",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "absValveRL",
+          "label": "Rear left ABS channel",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "wheelBearingRR",
+          "label": "Rear right wheel bearing",
+          "group": "chassis",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "absValveRR",
+          "label": "Rear right ABS channel",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "steeringRack",
+          "label": "Steering rack",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "tieRodFL",
+          "label": "Front left tie rod",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "tieRodFR",
+          "label": "Front right tie rod",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "brakeBooster",
+          "label": "Brake booster",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "masterCylinder0",
+          "label": "Master cylinder FL / RR",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "brakeFluidCondition0",
+          "label": "Fluid condition FL / RR",
+          "group": "chassis",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "Boils at 240°C · vapour 0%",
+          "applicable": true,
+          "action": "CHANGE",
+          "serviceNeeded": false
+        },
+        {
+          "id": "brakeBleed0",
+          "label": "Bleed circuit FL / RR",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "No trapped air",
+          "applicable": true,
+          "action": "BLEED",
+          "serviceNeeded": false
+        },
+        {
+          "id": "masterCylinder1",
+          "label": "Master cylinder FR / RL",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "brakeFluidCondition1",
+          "label": "Fluid condition FR / RL",
+          "group": "chassis",
+          "health": 1,
+          "temperature": 24,
+          "status": "ok",
+          "reason": "Boils at 240°C · vapour 0%",
+          "applicable": true,
+          "action": "CHANGE",
+          "serviceNeeded": false
+        },
+        {
+          "id": "brakeBleed1",
+          "label": "Bleed circuit FR / RL",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "No trapped air",
+          "applicable": true,
+          "action": "BLEED",
+          "serviceNeeded": false
+        },
+        {
+          "id": "body",
+          "label": "Body structure",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "panel:front",
+          "label": "Front bumper",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "panel:spoiler",
+          "label": "Rear spoiler and mounts",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "panel:rear",
+          "label": "Rear bumper",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "panel:left",
+          "label": "Left door and sill",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "panel:right",
+          "label": "Right door and sill",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "panel:hood",
+          "label": "Hood and front rails",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "panel:boot",
+          "label": "Trunk and rear rails",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        },
+        {
+          "id": "panel:roof",
+          "label": "Roof and pillars",
+          "group": "chassis",
+          "health": 1,
+          "temperature": null,
+          "status": "ok",
+          "reason": "",
+          "applicable": true
+        }
+      ],
+      "warnings": [],
+      "temperatures": {
+        "engine": 89.97074937419968,
+        "coolant": 84.05650122636516,
+        "oil": 82.01612600883247,
+        "clutch": 24,
+        "gearbox": 24,
+        "differential": 24,
+        "frontDifferential": 24,
+        "centerDifferential": 24,
+        "turbo": 99.9959141597835,
+        "brakes": [
+          24,
+          24,
+          24,
+          24
+        ],
+        "tyres": [
+          24,
+          24,
+          24,
+          24
+        ]
+      },
+      "chassisDamage": {
+        "bearings": [
+          {
+            "health": 1,
+            "temperature": 24,
+            "workJ": 0
+          },
+          {
+            "health": 1,
+            "temperature": 24,
+            "workJ": 0
+          },
+          {
+            "health": 1,
+            "temperature": 24,
+            "workJ": 0
+          },
+          {
+            "health": 1,
+            "temperature": 24,
+            "workJ": 0
+          }
+        ],
+        "rack": 1,
+        "tieRods": [
+          {
+            "health": 1,
+            "bend": 0
+          },
+          {
+            "health": 1,
+            "bend": 0
+          }
+        ]
+      },
+      "brakeHydraulics": {
+        "lines": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "fluid": [
+          0.3,
+          0.3
+        ],
+        "master": [
+          1,
+          1
+        ],
+        "booster": 1,
+        "absValves": [
+          1,
+          1,
+          1,
+          1
+        ],
+        "temperature": [
+          24,
+          24
+        ],
+        "quality": [
+          1,
+          1
+        ],
+        "air": [
+          0,
+          0
+        ],
+        "vapour": [
+          0,
+          0
+        ]
+      },
+      "oilLitres": 5.75,
+      "oilCapacity": 5.75,
+      "coolantLitres": 7.75,
+      "coolantCapacity": 7.75,
+      "oilQuality": 1,
+      "clutchCapacityFactor": 1,
+      "driveCapacityFactor": 1,
+      "differentialLockFactor": 1,
+      "loadTorqueNm": 0,
+      "misfire": 0,
+      "boostFactor": 1,
+      "oilPressureBar": 2.2787971230341184,
+      "coolantPressureBar": 0.6187903686948785,
+      "oilLeakLps": 0,
+      "coolantLeakLps": 0,
+      "steam": 0,
+      "smoke": 0,
+      "knock": 0,
+      "clutchSlipPowerW": 0,
+      "auxiliaries": {
+        "voltage": 14.2,
+        "attemptVoltage": 10.393344129850956,
+        "charge": 0.8500012051463133,
+        "netA": 5.249957819879036,
+        "generatorA": 27.249957819879036,
+        "starterA": 0,
+        "starterActive": false,
+        "canCrank": true,
+        "starterBlocked": false,
+        "starterFactor": 0,
+        "starterDrag": 0,
+        "ignition": true,
+        "lampFactor": 1,
+        "fan": 0,
+        "beltDrive": 1,
+        "beltSlip": 0,
+        "loadTorque": 3.5117698767711905,
+        "generatorW": 386.9494010422823,
+        "capacityAh": 60
+      },
+      "brakeHydraulicFactors": [
+        1,
+        1,
+        1,
+        1
+      ],
+      "brakePedalTravel": 0,
+      "frontDifferentialLockFactor": 1,
+      "centerDifferentialLockFactor": 1,
+      "frontDriveCapacityFactor": 1,
+      "rearDriveCapacityFactor": 1,
+      "exhaustLoadNm": 0,
+      "intakeFactor": 1,
+      "fuelAvailable": true,
+      "ignitionAvailable": true,
+      "lambdaOffset": 0,
+      "intakeLeak": 0,
+      "exhaustLeak": 0,
+      "lastEventId": 0
+    },
+    "career": {
+      "wallet": 3500,
+      "earned": 0,
+      "spent": 0,
+      "owned": [
+        "car:hachi",
+        "engine:i6t",
+        "hood:stock",
+        "spoiler:stock",
+        "sideSkirts:stock",
+        "rims:stock",
+        "frontBumper:stock",
+        "rearBumper:stock",
+        "steeringRack:stock",
+        "alignment:stock",
+        "antiRollBars:stock",
+        "driveKit:stock",
+        "frontDifferential:open",
+        "centerDifferential:open",
+        "wingAngle:stock",
+        "tractionLinks:stock",
+        "ecu:stock",
+        "turbo:stock",
+        "exhaust:street",
+        "tyres:street",
+        "suspension:street",
+        "brakes:street",
+        "differential:lsd",
+        "intake:stock",
+        "radiator:stock",
+        "oilCooler:stock",
+        "internals:stock",
+        "transmission:stock",
+        "finalDrive:stock",
+        "chassis:stock",
+        "tyreWidth:stock",
+        "clutch:street",
+        "spoiler:none",
+        "differential:open"
+      ],
+      "stats": {
+        "closeCalls": 0,
+        "drift": 0,
+        "escapes": 0,
+        "deliveries": 0,
+        "distance": 6.840409865038597
+      },
+      "active": null,
+      "offer": {
+        "id": "job-0",
+        "kind": "delivery",
+        "title": "Parts run",
+        "text": "Collect a crate at Motor Works. Deliver it to CORAL LIGHT.",
+        "reward": 13308,
+        "goal": 1,
+        "pickup": {
+          "id": "garage-1",
+          "name": "Motor Works",
+          "x": 90,
+          "z": -42,
+          "heading": 0,
+          "radius": 8
+        },
+        "destination": {
+          "id": "place-24",
+          "name": "CORAL LIGHT",
+          "x": 4412.3332531161295,
+          "z": 2166.3136352075503,
+          "heading": -0.6348251905114147,
+          "radius": 7
+        },
+        "pickupId": "garage-1",
+        "destinationId": "place-24",
+        "duration": 240
+      },
+      "message": {
+        "id": 1,
+        "sender": "MOTOR WORKS",
+        "text": "Your current setup is yours. Earn points on the road to buy your next parts.",
+        "time": 0
+      },
+      "messages": [
+        {
+          "id": 1,
+          "sender": "MOTOR WORKS",
+          "text": "Your current setup is yours. Earn points on the road to buy your next parts.",
+          "time": 0
+        }
+      ],
+      "completed": 0,
+      "revision": 1,
+      "closeChain": 0
+    },
+    "navigation": {
+      "target": null,
+      "points": [],
+      "distance": 0,
+      "arrived": false,
+      "revision": 2
+    },
+    "multiplayer": {
+      "status": "offline",
+      "id": null,
+      "code": "",
+      "isHost": false,
+      "hostId": null,
+      "rules": {
+        "maxPlayers": 4,
+        "traffic": "normal",
+        "police": true,
+        "damage": true,
+        "time": "cycle",
+        "weather": "cycle",
+        "collisions": "ghost"
+      },
+      "players": [],
+      "ping": 0,
+      "error": "",
+      "lastIssue": null,
+      "runId": 0,
+      "worldAgeMs": 0,
+      "transport": "binary",
+      "links": 0,
+      "queuedEvents": 0,
+      "stats": {
+        "sent": 0,
+        "received": 0,
+        "dropped": 0,
+        "backpressure": 0,
+        "coalesced": 0,
+        "invalid": 0,
+        "lastPacketBytes": 0,
+        "maxPacketBytes": 0
+      }
+    },
+    "remoteCars": {
+      "count": 0,
+      "visible": 0,
+      "buffers": [],
+      "teleports": 0
+    },
+    "police": {
+      "phase": "patrol",
+      "heat": 0,
+      "targetId": null,
+      "heatNormalized": 0,
+      "searchCenter": {
+        "x": -4.5,
+        "z": -75
+      },
+      "searchRadius": 0,
+      "lostTime": 0,
+      "searchProgress": 0,
+      "searchRemaining": 0,
+      "nearestOfficerDistance": 54.18971916666669,
+      "arrestProgress": 0,
+      "suspicion": 0,
+      "night": 0,
+      "nightShift": false,
+      "activeCount": 3,
+      "targetCount": 3,
+      "reserveCount": 3,
+      "investigation": null,
+      "lastDispatch": null,
+      "searchSectors": [],
+      "officers": [
+        {
+          "id": "police-0",
+          "x": -4.5,
+          "z": -129.1897191666667,
+          "heading": 0,
+          "speed": 8.189799999999991,
+          "siren": false,
+          "active": true,
+          "duty": "patrol",
+          "role": "patrol",
+          "searchTarget": null,
+          "interceptTarget": null
+        },
+        {
+          "id": "police-1",
+          "x": -450.1897191666668,
+          "z": 4.5,
+          "heading": 1.5707963267948966,
+          "speed": 8.189799999999991,
+          "siren": false,
+          "active": true,
+          "duty": "patrol",
+          "role": "patrol",
+          "searchTarget": null,
+          "interceptTarget": null
+        },
+        {
+          "id": "police-2",
+          "x": 448.8102808333332,
+          "z": -355.5,
+          "heading": 1.5707963267948966,
+          "speed": 8.189799999999991,
+          "siren": false,
+          "active": true,
+          "duty": "patrol",
+          "role": "patrol",
+          "searchTarget": null,
+          "interceptTarget": null
+        },
+        {
+          "id": "police-3",
+          "x": -114,
+          "z": -59,
+          "heading": 0,
+          "speed": 0,
+          "siren": false,
+          "active": false,
+          "duty": "reserve",
+          "role": "reserve",
+          "searchTarget": null,
+          "interceptTarget": null
+        },
+        {
+          "id": "police-4",
+          "x": -105,
+          "z": -59,
+          "heading": 0,
+          "speed": 0,
+          "siren": false,
+          "active": false,
+          "duty": "reserve",
+          "role": "reserve",
+          "searchTarget": null,
+          "interceptTarget": null
+        },
+        {
+          "id": "police-5",
+          "x": -96,
+          "z": -59,
+          "heading": 0,
+          "speed": 0,
+          "siren": false,
+          "active": false,
+          "duty": "reserve",
+          "role": "reserve",
+          "searchTarget": null,
+          "interceptTarget": null
+        }
+      ],
+      "pursuits": 0,
+      "escapes": 0,
+      "arrests": 0,
+      "contacts": 0,
+      "detectedSpeeding": 0,
+      "detectedCrashes": 0,
+      "deployments": 0,
+      "returns": 0,
+      "radioCalls": 0,
+      "cameraReports": 0,
+      "recoveries": 0,
+      "sectorsChecked": 0,
+      "interceptsAssigned": 0,
+      "blockedRoutes": 0
+    },
+    "enforcement": {
+      "tickets": 0,
+      "totalTickets": 0,
+      "lastCapture": null,
+      "nearbyCamera": null,
+      "cameras": [
+        {
+          "id": "speed-camera-0",
+          "name": "MIDTOWN SPEED CHECK",
+          "district": "MIDTOWN",
+          "x": -14.9,
+          "z": -434,
+          "heading": 0,
+          "direction": {
+            "x": 0,
+            "z": 1
+          },
+          "trigger": {
+            "x": -4.5,
+            "z": -450
+          },
+          "laneWidth": 4.8,
+          "limitKph": 50,
+          "range": 45,
+          "cooldown": 12,
+          "y": 4.352,
+          "flash": 0
+        },
+        {
+          "id": "speed-camera-1",
+          "name": "MIDTOWN SPEED CHECK",
+          "district": "MIDTOWN",
+          "x": -14.9,
+          "z": 286,
+          "heading": 0,
+          "direction": {
+            "x": 0,
+            "z": 1
+          },
+          "trigger": {
+            "x": -4.5,
+            "z": 270
+          },
+          "laneWidth": 4.8,
+          "limitKph": 50,
+          "range": 45,
+          "cooldown": 12,
+          "y": 4.352,
+          "flash": 0
+        },
+        {
+          "id": "speed-camera-2",
+          "name": "DOWNTOWN SPEED CHECK",
+          "district": "DOWNTOWN",
+          "x": 345.1,
+          "z": 286,
+          "heading": 0,
+          "direction": {
+            "x": 0,
+            "z": 1
+          },
+          "trigger": {
+            "x": 355.5,
+            "z": 270
+          },
+          "laneWidth": 4.8,
+          "limitKph": 70,
+          "range": 45,
+          "cooldown": 12,
+          "y": 4.3519999999999985,
+          "flash": 0
+        },
+        {
+          "id": "speed-camera-3",
+          "name": "DOWNTOWN SPEED CHECK",
+          "district": "DOWNTOWN",
+          "x": 554.9,
+          "z": 434,
+          "heading": 3.141592653589793,
+          "direction": {
+            "x": 0,
+            "z": -1
+          },
+          "trigger": {
+            "x": 544.5,
+            "z": 450
+          },
+          "laneWidth": 4.8,
+          "limitKph": 70,
+          "range": 45,
+          "cooldown": 12,
+          "y": 4.3519999999999985,
+          "flash": 0
+        },
+        {
+          "id": "speed-camera-4",
+          "name": "GARDEN HEIGHTS SPEED CHECK",
+          "district": "GARDEN HEIGHTS",
+          "x": -374.9,
+          "z": 286,
+          "heading": 0,
+          "direction": {
+            "x": 0,
+            "z": 1
+          },
+          "trigger": {
+            "x": -364.5,
+            "z": 270
+          },
+          "laneWidth": 4.8,
+          "limitKph": 50,
+          "range": 45,
+          "cooldown": 12,
+          "y": 4.3519999999999985,
+          "flash": 0
+        },
+        {
+          "id": "speed-camera-5",
+          "name": "GARDEN HEIGHTS SPEED CHECK",
+          "district": "GARDEN HEIGHTS",
+          "x": -434,
+          "z": 554.9,
+          "heading": 1.5707963267948966,
+          "direction": {
+            "x": 1,
+            "z": 0
+          },
+          "trigger": {
+            "x": -450,
+            "z": 544.5
+          },
+          "laneWidth": 4.8,
+          "limitKph": 50,
+          "range": 45,
+          "cooldown": 12,
+          "y": 4.3519999999999985,
+          "flash": 0
+        },
+        {
+          "id": "speed-camera-6",
+          "name": "OLD TOWN SPEED CHECK",
+          "district": "OLD TOWN",
+          "x": -434,
+          "z": -345.1,
+          "heading": 1.5707963267948966,
+          "direction": {
+            "x": 1,
+            "z": 0
+          },
+          "trigger": {
+            "x": -450,
+            "z": -355.5
+          },
+          "laneWidth": 4.8,
+          "limitKph": 50,
+          "range": 45,
+          "cooldown": 12,
+          "y": 4.3519999999999985,
+          "flash": 0
+        },
+        {
+          "id": "speed-camera-7",
+          "name": "IRONWORKS SPEED CHECK",
+          "district": "IRONWORKS",
+          "x": 286,
+          "z": -525.1,
+          "heading": 1.5707963267948966,
+          "direction": {
+            "x": 1,
+            "z": 0
+          },
+          "trigger": {
+            "x": 270,
+            "z": -535.5
+          },
+          "laneWidth": 4.8,
+          "limitKph": 70,
+          "range": 45,
+          "cooldown": 12,
+          "y": 4.3519999999999985,
+          "flash": 0
+        },
+        {
+          "id": "speed-camera-8",
+          "name": "MIDTOWN SPEED CHECK",
+          "district": "MIDTOWN",
+          "x": 466,
+          "z": -165.1,
+          "heading": 1.5707963267948966,
+          "direction": {
+            "x": 1,
+            "z": 0
+          },
+          "trigger": {
+            "x": 450,
+            "z": -175.5
+          },
+          "laneWidth": 4.8,
+          "limitKph": 70,
+          "range": 45,
+          "cooldown": 12,
+          "y": 4.352,
+          "flash": 0
+        },
+        {
+          "id": "speed-camera-9",
+          "name": "MIDTOWN SPEED CHECK",
+          "district": "MIDTOWN",
+          "x": -286,
+          "z": -14.9,
+          "heading": -1.5707963267948966,
+          "direction": {
+            "x": -1,
+            "z": 0
+          },
+          "trigger": {
+            "x": -270,
+            "z": -4.5
+          },
+          "laneWidth": 4.8,
+          "limitKph": 50,
+          "range": 45,
+          "cooldown": 12,
+          "y": 4.352,
+          "flash": 0
+        },
+        {
+          "id": "speed-camera-10",
+          "name": "MIDTOWN SPEED CHECK",
+          "district": "MIDTOWN",
+          "x": 106,
+          "z": 554.9,
+          "heading": 1.5707963267948966,
+          "direction": {
+            "x": 1,
+            "z": 0
+          },
+          "trigger": {
+            "x": 90,
+            "z": 544.5
+          },
+          "laneWidth": 4.8,
+          "limitKph": 70,
+          "range": 45,
+          "cooldown": 12,
+          "y": 4.3519999999999985,
+          "flash": 0
+        },
+        {
+          "id": "speed-camera-11",
+          "name": "MIDTOWN SPEED CHECK",
+          "district": "MIDTOWN",
+          "x": -74,
+          "z": -705.1,
+          "heading": 1.5707963267948966,
+          "direction": {
+            "x": 1,
+            "z": 0
+          },
+          "trigger": {
+            "x": -90,
+            "z": -715.5
+          },
+          "laneWidth": 4.8,
+          "limitKph": 70,
+          "range": 45,
+          "cooldown": 12,
+          "y": 4.3519999999999985,
+          "flash": 0
+        }
+      ],
+      "time": 0.09999999999999999
+    },
+    "acoustics": {
+      "zone": "street-canyon",
+      "enclosure": 0.4402747285902276,
+      "reflectivity": 0.39391680858357764,
+      "openness": 0.5597252714097725,
+      "leftDistance": 32.351948704775324,
+      "rightDistance": 40.43993588096915,
+      "frontDistance": 90,
+      "backDistance": 66.05189527224962,
+      "surface": "asphalt",
+      "district": "MIDTOWN",
+      "ambient": {
+        "park": 0,
+        "water": 0,
+        "industrial": 0,
+        "traffic": 0.9307692307692308,
+        "wind": 0.6918076899868407,
+        "insects": 0
+      }
+    },
+    "terrain": {
+      "activeClods": 0,
+      "activeGrass": 0,
+      "activeTracks": 0,
+      "counts": {
+        "clods": 0,
+        "grass": 0,
+        "tracks": 0
+      },
+      "capacity": 680
+    },
+    "weather": {
+      "elapsed": 336.0131000000483,
+      "rain": 0.9625043756808075,
+      "wetness": 1,
+      "drops": 231,
+      "capacity": 360,
+      "wetMaterials": 2,
+      "wheels": [
+        {
+          "wetness": 1,
+          "depth": 0,
+          "grip": 0.73,
+          "aquaplaning": 0
+        },
+        {
+          "wetness": 1,
+          "depth": 0,
+          "grip": 0.73,
+          "aquaplaning": 0
+        },
+        {
+          "wetness": 1,
+          "depth": 0,
+          "grip": 0.73,
+          "aquaplaning": 0
+        },
+        {
+          "wetness": 1,
+          "depth": 0,
+          "grip": 0.73,
+          "aquaplaning": 0
+        }
+      ],
+      "spray": 0
+    },
+    "worldHour": 13.5,
+    "worldKind": "city",
+    "fuel": 49.99998790846404,
+    "engineHealth": 1,
+    "bodyHealth": 1,
+    "wheelAttached": [
+      true,
+      true,
+      true,
+      true
+    ],
+    "lookYaw": 0,
+    "lookPitch": 0,
+    "worldGroups": 1
+  },
+  "limits": [
+    "Software renderer and keyboard; night/day screenshots require visual inspection.",
+    "No mirror reflection or volumetric cloud claim; wet material uses existing scene lights."
+  ]
+}

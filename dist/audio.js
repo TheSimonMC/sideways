@@ -197,8 +197,8 @@ export class GameAudio {
    const work=clamp(Math.sqrt(Math.max(0,power-3500)/36000),0,1.2)*slipGate;
    const motion=clamp(groundSpeed/3,0,1),roughness=clamp(a?.roughness??c?.roughness??.0015,0,.05),rollSpeed=clamp(Math.sqrt(groundSpeed/28),0,1.7);
    const perspective=hood?(i<2?1.08:.75):1;
-   w.targetRoll=contact?(.026+.040*rollSpeed)*rollSpeed*profile.roll*Math.sqrt(load)*motion*this.mix.tyres*perspective:0;
-   w.targetScrub=contact?work*.17*profile.squeal*Math.sqrt(load)*this.mix.tyres*perspective:0;
+   w.targetRoll=contact?(.026+.040*rollSpeed)*rollSpeed*profile.roll*(1+(a?.wetness??0)*.8)*Math.sqrt(load)*motion*this.mix.tyres*perspective:0;
+   w.targetScrub=contact?work*.17*profile.squeal*(1-(a?.wetness??0)*.65)*Math.sqrt(load)*this.mix.tyres*perspective:0;
    w.pan=this.world.wheelPan(i,i%2?.48:-.48);
    const tyre=s?.tyres?.[i];if(tyre&&w.burstCount!=null&&tyre.burstCount>w.burstCount&&s?.wheelAttached?.[i]!==false)this._event('tyreBlowout',.32,w.pan,.22,1450,110);w.burstCount=tyre?.burstCount??0;
    w.flap=contact?(tyre?.blown?.8:(tyre?.flatspot??0)*.5)*motion:0;w.flapRate=(s?.wheelOmegas?.[i]??0)/RATE;w.flapPhase=(s?.wheelSpins?.[i]??0)-(tyre?.blown?0:tyre?.flatspotAngle??0);

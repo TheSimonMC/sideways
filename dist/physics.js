@@ -1,3 +1,4 @@
+import {wetTyreResponse} from './weather.js';
 import {damageBrakeLine} from './brake-hydraulics.js';
 import {tyreResponse,impactTyre} from './tyres.js';
 import {bearingResponse,rackTarget,tieRodAngle,damageChassisCorner} from './chassis-damage.js';
@@ -51,7 +52,7 @@ export class CarPhysics {
  _ground(x,z,defaultGrip=1){
   const sample=this._groundSampler?.(x,z);
   const grip=clamp(typeof sample==='number'?defaultGrip:sample?.grip??defaultGrip,.2,1.5);
-  return {height:typeof sample==='number'?sample:Number.isFinite(sample?.height)?sample.height:0,grip,
+  return {wetness:clamp(Number.isFinite(sample?.wetness)?sample.wetness:0,0,1),waterDepth:clamp(Number.isFinite(sample?.waterDepth)?sample.waterDepth:0,0,8),height:typeof sample==='number'?sample:Number.isFinite(sample?.height)?sample.height:0,grip,
    material:typeof sample?.material==='string'?sample.material:grip<.8?'gravel':'asphalt',
    roughness:clamp(Number.isFinite(sample?.roughness)?sample.roughness:grip<.8?.025:.001,0,.2)};
  }
@@ -243,7 +244,7 @@ export class CarPhysics {
    const contactVelocity=velocities[i]-(supported?hop.velocity:0);
    const shock=contact&&contactVelocity>.45&&(!suspension.contact||contactVelocity>(suspension.velocity??0)+.8)?contactVelocity:0;
    Object.assign(suspension,{compression:Math.max(0,load0/spring+d),travel:clamp(d,-cornerTravel,cornerTravel),load,normalLoad:load*plane.normalScale,groundHeight:samples[i].height,grip:samples[i].grip,health,travelLimit:cornerTravel,
-    material:samples[i].material,roughness:samples[i].roughness,velocity:contactVelocity,hopTravel:hop.travel,impactSpeed:Math.max(shock,(suspension.impactSpeed??0)*Math.exp(-dt*18)),impactCount:(suspension.impactCount??0)+(shock>.45?1:0),
+    material:samples[i].material,wetness:samples[i].wetness,waterDepth:samples[i].waterDepth,roughness:samples[i].roughness,velocity:contactVelocity,hopTravel:hop.travel,impactSpeed:Math.max(shock,(suspension.impactSpeed??0)*Math.exp(-dt*18)),impactCount:(suspension.impactCount??0)+(shock>.45?1:0),
     contact,wheelY:Math.max(samples[i].height+this._tyreRadii[i]+(supported?hop.gap:0),corner+this.wheelRadius-cornerTravel)});
    s.wheelLoads[i]=load;
   }
@@ -371,7 +372,13 @@ export class CarPhysics {
   v-= (rolling+drag)/this.mass*dt;
   u-=u*(road<.8?160:35)*contactFraction/this.mass*dt;
   let yaw=s.yawRate;const tyreRollingWorkJ=[0,0,0,0];
-  for(let i=0;i<4;i++){const x=this._positions[i][0],along=v-yaw*x,inverse=1/this.mass+x*x/this.inertia,j=Math.sign(along)*Math.min(Math.abs(along)/inverse,s.wheelLoads[i]*this._tyreContact[i].rollingExtra*dt);v-=j/this.mass;yaw+=j*x/this.inertia;tyreRollingWorkJ[i]=Math.max(0,j*along-.5*j*j*inverse);}
+  for(let i=0;i<4;i++){
+   const x=this._positions[i][0],along=v-yaw*x,inverse=1/this.mass+x*x/this.inertia,corner=s.suspension[i];
+   const rolling=s.wheelLoads[i]*this._tyreContact[i].rollingExtra,water=corner.contact?.5*1000*this.build.physics.tyreWidth*(corner.waterDepth*.001)*along*along:0;
+   const force=rolling+water,j=Math.sign(along)*Math.min(Math.abs(along)/inverse,force*dt);v-=j/this.mass;yaw+=j*x/this.inertia;
+   // Pushing water aside consumes kinetic energy, but does not heat the tyre.
+   tyreRollingWorkJ[i]=Math.max(0,j*along-.5*j*j*inverse)*(force>0?rolling/force:0);
+  }
   if(scrapeLoad>0){const torque=s.scrapeLoads.reduce((sum,load,i)=>sum+load*.55*Math.hypot(...this._positions[i]),0),beforeYaw=yaw;
    yaw-=Math.sign(yaw)*Math.min(Math.abs(yaw),torque*dt/this.inertia);s.bodyScrape+=(beforeYaw*beforeYaw-yaw*yaw)*this.inertia*.5/dt;}
   // Yaw comes only from wheel/contact forces. Traction control reduces
@@ -394,7 +401,8 @@ export class CarPhysics {
    armsLong[i]=z*frame.longU-x*frame.longV;armsLat[i]=z*frame.latU-x*frame.latV;
    const corner=s.suspension[i];
    const contactLong=(v-yaw*x)*frame.longV+(u+yaw*z)*frame.longU,contactLat=(v-yaw*x)*frame.latV+(u+yaw*z)*frame.latU;
-   const friction=tyreGrip({front,load:corner.normalLoad,referenceLoad:this._staticLoads[i]/plane.normalScale,temperature:this._tyreTemps[i],health:this.condition.wheelHealth[i],slipRatio:(wheels[i]*this._tyreRadii[i]-contactLong)/Math.max(3,Math.abs(contactLong)),slipAngle:Math.atan2(contactLat,Math.max(2.5,Math.abs(contactLong))),compound:this.build.selection.tyres,chassis:this.build.physics,roll:s.bodyRoll})*this.muMultiplier*corner.grip*this._tyreContact[i].grip;
+   const wet=wetTyreResponse({wetness:corner.wetness,waterDepth:corner.waterDepth,speed:contactLong,material:corner.material,compound:this.build.selection.tyres,tread:this.condition.wheelHealth[i],pressureBar:this._tyreContact[i].pressureBar});corner.wetGrip=wet.grip;corner.aquaplaning=wet.aquaplaning;
+   const friction=tyreGrip({front,load:corner.normalLoad,referenceLoad:this._staticLoads[i]/plane.normalScale,temperature:this._tyreTemps[i],health:this.condition.wheelHealth[i],slipRatio:(wheels[i]*this._tyreRadii[i]-contactLong)/Math.max(3,Math.abs(contactLong)),slipAngle:Math.atan2(contactLat,Math.max(2.5,Math.abs(contactLong))),compound:this.build.selection.tyres,chassis:this.build.physics,roll:s.bodyRoll})*this.muMultiplier*corner.grip*this._tyreContact[i].grip*wet.grip;
    tireBounds[i]=Math.max(0,corner.normalLoad*friction*dt);
    let requested=brake;
    // ABS controls hydraulic pressure only. Parking brake remains mechanical.
@@ -471,7 +479,7 @@ export class CarPhysics {
    s.wheelSlip[i]=slip/Math.max(3,Math.abs(long));s.wheelSpins[i]+=wheels[i]*dt;s.wheelOmegas[i]=s.wheelOmega[i]=wheels[i];
    s.brakeTemps[i]=this._brakeTemps[i];s.tyreTemps[i]=this._tyreTemps[i];s.brakePressure[i]=this._brakePressures[i]*mechanical.brakeHydraulicFactors[i];
    const corner=s.suspension[i];
-   Object.assign(s.wheelAudio[i],{surface:corner.material,roughness:corner.roughness,contact:corner.contact,load:corner.load,longitudinalSpeed:long,lateralSpeed:lat,slipSpeed:slip,slipRatio:s.wheelSlip[i],wheelSpeed:wheels[i]*this._tyreRadii[i],
+   Object.assign(s.wheelAudio[i],{surface:corner.material,wetness:corner.wetness,waterDepth:corner.waterDepth,aquaplaning:corner.aquaplaning,roughness:corner.roughness,contact:corner.contact,load:corner.load,longitudinalSpeed:long,lateralSpeed:lat,slipSpeed:slip,slipRatio:s.wheelSlip[i],wheelSpeed:wheels[i]*this._tyreRadii[i],
     bearingWear:(1-chassisDamage.bearings[i].health)**2,bearingPower:bearingWorkJ[i]/dt,tyrePower:tyreWork/dt,brakePower:brakeWork/dt,suspensionVelocity:corner.velocity,suspensionTravel:corner.travel,impactSpeed:corner.impactSpeed,impactCount:corner.impactCount});
   }
   // Resting brake constraints may sleep only with spare tyre AND brake force.
@@ -500,7 +508,7 @@ export class CarPhysics {
   const drivenSlipSpeed=Math.max(...this._drive.driven.map(i=>Math.abs(s.wheelAudio[i].slipSpeed)));
   s.burnoutIntensity=clamp((drivenSlipSpeed-2)/15,0,1)*clamp(1-s.speed/12,0,1);s.burnout=s.burnoutIntensity>.12;
   s.shiftProgress=clamp(this._shift/.19,0,1);s.engineClock=this.engine.getTiming().clock;
-  this._updateCondition(dt,omega,{...drive,fuelLitres:this.condition.fuelLitres,headlights:!!input.headlights,starterRequested:restartRequested,starterTorque:this.engineState.config.starterTorque,starterNoLoadRpm:this.engineState.config.starterNoLoadRpm,brakePedal:brake,clutchWorkJ,bearingWorkJ,referenceLoads:this._staticLoads,wheelOmegas:wheels,attached:this.condition.wheelAttached,brakeWorkJ,tyreWorkJ,tyreLockedWorkJ,tyreRollingWorkJ,tyreSpeeds:s.wheelAudio.map(w=>w.longitudinalSpeed),tyreLoads:s.wheelLoads,tyreAngles:s.wheelSpins});this._updateDebris(dt);this._publishCondition();
+  this._updateCondition(dt,omega,{...drive,fuelLitres:this.condition.fuelLitres,headlights:!!input.headlights,starterRequested:restartRequested,starterTorque:this.engineState.config.starterTorque,starterNoLoadRpm:this.engineState.config.starterNoLoadRpm,brakePedal:brake,clutchWorkJ,bearingWorkJ,referenceLoads:this._staticLoads,wheelOmegas:wheels,attached:this.condition.wheelAttached,brakeWorkJ,tyreWorkJ,tyreLockedWorkJ,tyreRollingWorkJ,tyreSpeeds:s.wheelAudio.map(w=>w.longitudinalSpeed),tyreLoads:s.wheelLoads,tyreAngles:s.wheelSpins,tyreWetness:s.suspension.map(w=>w.contact?w.wetness:0)});this._updateDebris(dt);this._publishCondition();
   return s;
  }
 }

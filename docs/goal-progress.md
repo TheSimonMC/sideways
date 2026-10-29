@@ -1,8 +1,8 @@
 # SIDEWAYS – verbindliche Fortschrittsliste
 
-Stand: V23, Phase 0, Phase 1 Teile A/B/C/D und Phase 2 Teile A/B/C/D. Grundlage: unveränderte Kopie in `docs/goal.txt`.
+Stand: V24, Phase 0, Phase 1 Teile A/B/C/D/E und Phase 2 Teile A/B/C/D. Grundlage: unveränderte Kopie in `docs/goal.txt`.
 
-Status bezieht sich auf den gesamten Wortlaut eines Punktes. Teilweise bedeutet, dass wesentliche Teile noch fehlen. Nur Phase 0 ist abgeschlossen. V19 ergänzt die gemeinsame Reifen-Grundlage aus Phase 2 und ihre Folgen für Phase 1. Phase 1 bleibt wegen Wetter/Nässe und breiterer Kalibrierung teilweise; Phase 2 wegen noch fehlendem Kompressortuning und der späteren Montage-/Ausbauintegration. Wetter hängt zusätzlich von Phase 7 ab.
+Status bezieht sich auf den gesamten Wortlaut eines Punktes. Teilweise bedeutet, dass wesentliche Teile noch fehlen. Nur Phase 0 ist abgeschlossen. V19 ergänzt die gemeinsame Reifen-Grundlage aus Phase 2 und ihre Folgen für Phase 1. V24 schließt die Nässe-Anbindung. Phase 1 bleibt für breitere Grenzbereichs- und Eingabegeräte-Kalibrierung teilweise; Phase 2 wegen noch fehlendem Kompressortuning und der späteren Montage-/Ausbauintegration. Die umfassende Wetterdarstellung wird in Phase 7 weitergeführt.
 
 Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc282ea844a1b96dca`.
 
@@ -18,7 +18,7 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 1: REALISTISCHERE FAHRPHYSIK
 
-**teilweise erledigt** — V15: teileabhängige Lenkung, Reifen und Stabilisatoren statt freier Physikmodi/künstlicher Gierhilfe. V16: Hang-/Kontaktkräfte und einzelne Federwege. V17: FWD/RWD/AWD, Differenziale, thermische Arbeit, Schaden, Einzelreparatur und Persistenz. V18 Teil D: geschwindigkeitsabhängige Kräfte von Spoiler, Splitter und Diffusor, drei GT-Flügelstellungen sowie beschädigungsabhängiger Abtrieb. Ein aus tatsächlicher Reifenschlupfarbeit gespeistes Wheel-Hop-Modell verändert Radlasten und Kontakt; verstärkte Achsführungen reduzieren die Schwingung. Die vier Serienautos bleiben RWD. Vergleichsfahrten bleiben innerhalb dokumentierter kleiner Toleranzen; wegen der neuen Transienten wird keine numerische Identität behauptet. V19 ergänzt vier Druck-/Karkassenzustände, gerichtete Flatspots und überlastabhängige Reifenplatzer mit Folgen für Radius, Kontakt, Seitenführung und Rollwiderstand. Noch offen: Nässe/Wetter und breitere Kalibrierung. Heightfield-Chassis, endliche Antriebsbedingungen und der reduzierte Hop-Modus ersetzen keine vollständige 6-DOF-/Fahrwerkssimulation. Die neuen Reifeneffekte sind eine effiziente Näherung mit fiktiven Spielkoeffizienten.
+**teilweise erledigt** — V15: teileabhängige Lenkung, Reifen und Stabilisatoren statt freier Physikmodi/künstlicher Gierhilfe. V16: Hang-/Kontaktkräfte und einzelne Federwege. V17: FWD/RWD/AWD, Differenziale, thermische Arbeit, Schaden, Einzelreparatur und Persistenz. V18 Teil D: geschwindigkeitsabhängige Kräfte von Spoiler, Splitter und Diffusor, drei GT-Flügelstellungen sowie beschädigungsabhängiger Abtrieb. Ein aus tatsächlicher Reifenschlupfarbeit gespeistes Wheel-Hop-Modell verändert Radlasten und Kontakt; verstärkte Achsführungen reduzieren die Schwingung. Die vier Serienautos bleiben RWD. Vergleichsfahrten bleiben innerhalb dokumentierter kleiner Toleranzen; wegen der neuen Transienten wird keine numerische Identität behauptet. V19 ergänzt vier Druck-/Karkassenzustände, gerichtete Flatspots und überlastabhängige Reifenplatzer mit Folgen für Radius, Kontakt, Seitenführung und Rollwiderstand. V24 ergänzt Regen, Benetzung/Trocknung, materialabhängige Nasshaftung, Pfützen und radweises Aquaplaning nach Tempo, Profil, Druck und Mischung. Alle vier Autos bestehen Trocken-/Nass-Brems- und Lenkvergleiche; bestehende Serien-/Drift-/Antriebsprüfungen bleiben bestehen. Breitere Grenzbereichs- und Eingabegeräte-Kalibrierung bleibt offen. Heightfield-Chassis, endliche Antriebsbedingungen und der reduzierte Hop-Modus ersetzen keine vollständige 6-DOF-/Fahrwerkssimulation. Die neuen Reifeneffekte sind eine effiziente Näherung mit fiktiven Spielkoeffizienten.
 
 - **P01.01 · teilweise erledigt** — Der Serienzustand eines Fahrzeugs soll ein nachvollziehbares, deutlich weniger arcade-lastiges Fahrverhalten haben. Serienfahrzeuge dürfen nicht ständig von selbst driften.
 - **P01.02 · teilweise erledigt** — Reifenkräfte mit sanftem Übergang zwischen Haftung und Rutschen; realistisches Untersteuern und Übersteuern.
@@ -26,8 +26,8 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 - **P01.04 · teilweise erledigt** — Fahrverhalten soll von Gewicht, Schwerpunkt, Radstand, Antrieb (FWD/RWD/AWD), Reifen, Fahrwerk, Leistung, Differenzial und Lenkgeometrie abhängen.
 - **P01.05 · teilweise erledigt** — Realistischere Lenkübersetzung, Lenkwinkel, Rückstellverhalten, Reaktion auf hohe Geschwindigkeiten und unterschiedliche Eingabegeräte.
 - **P01.06 · teilweise erledigt** — Motorbremse, realistische Bremswege, Traktionsverhältnisse, Wheelspin, Wheel Hop, Kupplungs-/Getriebeträgheit, Differenzialwirkung, Luftwiderstand und aerodynamischer Abtrieb.
-- **P01.07 · teilweise erledigt** — Bodenwellen, Schlaglöcher, Bordsteine, Unebenheiten, Nässe und verschiedene Oberflächen wirken sich auf die Räder aus.
-- **P01.08 · teilweise erledigt** — Reifenverschleiß und Temperatur wirken sich auf Haftung und Fahrverhalten aus.
+- **P01.07 · erledigt** — Bodenwellen, Schlaglöcher, Bordsteine, Unebenheiten, Nässe und verschiedene Oberflächen wirken sich auf die Räder aus.
+- **P01.08 · erledigt** — Reifenverschleiß und Temperatur wirken sich auf Haftung und Fahrverhalten aus.
 - **P01.09 · erledigt** — Drift-, Street-, Sport- und Track-Setups entstehen aus tatsächlichen Teilen wie Lenkwinkel-Kits, Differenzialen, Stabis, Fahrwerken, Reifen und Achsvermessung. Nicht aus einem Arcade/Balanced/Realistic-Schalter in den Settings.
 - **P01.10 · teilweise erledigt** — ABS, Traktionskontrolle oder Stabilitätskontrolle dürfen als reale fahrzeugspezifische Hilfen existieren, aber keine getrennten Physikmodi ersetzen.
 - **P01.11 · teilweise erledigt** — Physik weiterhin beherrschbar und spaßig halten. Die Fahrzeugtypen sollen sich klar voneinander unterscheiden.
@@ -81,7 +81,7 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 5: MEHR EXTERIEUR-, INTERIEUR- UND MECHANISCHES TUNING
 
-**teilweise erledigt** — 25 getrennte Teilekategorien: 16 bisherige mechanische, sechs optische und drei neue Fahrwerkskategorien. Preise, Besitz, Vorschau und Installation existieren. Innenraumteile, Widebody, Tönung, Folierungen, separate Lichtteile und abnehmbare Befestigungen fehlen. Kosmetische Flügel/Stoßstangen verändern bisher weder Aero noch Masse; keine gegenteilige Behauptung. Drift-Achsgeometrie wird jetzt sichtbar an den Rädern dargestellt.
+**teilweise erledigt** — 30 getrennte Teilekategorien einschließlich sechs optischer sowie Fahrwerks-, Antriebs- und Aeroeinstellungen. Preise, Besitz, Vorschau und Installation existieren. Innenraumteile, Widebody, Tönung, Folierungen, separate Lichtteile und abnehmbare Befestigungen fehlen. Flügel/Splitter/Diffusor verändern seit V18 Kräfte und Masse; fehlende oder beschädigte Aero-Teile verlieren Wirkung. Drift-Achsgeometrie wird jetzt sichtbar an den Rädern dargestellt.
 
 - **P05.01 · teilweise erledigt** — Exterieurteile: unterschiedliche Front-/Heckstoßstangen, Spoiler, Splitter, Lippen, Schweller, Diffusoren, Kotflügel, Widebody-Kits, Hauben, Grills, Auspuffendrohre, Felgen, Reifen, Lichtdesign, Lacke, Folierungen und Decals.
 - **P05.02 · offen** — Interieurteile: Lenkräder, Sportsitze, Schalensitze, Bezüge, Nähte, Farben, Dashboard-Dekore, Schaltknäufe, Handbremsen, Überrollkäfige, Gurte, Instrumente, Zusatzanzeigen und Ambientebeleuchtung.
@@ -105,7 +105,7 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 7: GRAFIK, LICHT UND NACHTATMOSPHÄRE
 
-**teilweise erledigt** — environment.js besitzt Sonne/Mond/Sterne/Wolken, Tageszeiten, Scheinwerfer-Spots und einen Pool naher Laternen. post.js liefert Comic-Shading/Bloom. Regen, Pfützen, Wetterzustand, getrennte Lichtschäden, Fern-/Nebel-/Rückfahrlicht und Zustands-Glow fehlen. Nacht-/Cockpitlesbarkeit muss nach Innenraumeinbau mit Messungen geprüft werden.
+**teilweise erledigt** — environment.js besitzt Sonne/Mond/Sterne/Wolken, Tageszeiten, Scheinwerfer-Spots und einen Pool naher Laternen. post.js liefert Comic-Shading/Bloom. V24 ergänzt einen gemeinsamen Wetterzustand, Regenlinien, Pfützenmaske, dunklere/glattere Fahrbahn, Nebelweite und Regenbeleuchtung. Direkte Lichter reagieren auf die glattere Oberfläche; spiegelnde Szenenreflexionen und Wetterschutz unter späteren Tunnel-/Garagendächern fehlen. Getrennte Lichtschäden und Fern-/Nebel-/Rückfahrlicht bleiben offen. Bremszustands-Glow ist seit V20 vorhanden. Nacht-/Cockpitlesbarkeit muss nach Innenraumeinbau mit Messungen geprüft werden.
 
 - **P07.01 · teilweise erledigt** — Stilisiertes, kohärentes Cartoon-Bild beibehalten, aber Geometrie, Materialien, Schatten, Texturen und Farbgebung verbessern.
 - **P07.02 · teilweise erledigt** — Nächte sollen deutlich dunkler sein als bisher. Ambient Light nach Tageszeit steuern, sodass Straßenlaternen und Scheinwerfer nachts wirklich wichtig werden.
@@ -155,7 +155,7 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 11: BESSERE VERKEHRS-KI
 
-**teilweise erledigt** — traffic.js nutzt Spurkurven, Kreuzungsreservierungen, Signale, Fahrerparameter, Hindernisabstand und kontinuierliche Bewegung. V14 berücksichtigt schmale Straßen. Spurwechsel, Auffahrten, robuste Stauauflösung, bezirks-/zeitabhängige Verteilung und Wettergeschwindigkeiten fehlen. Polizei/Renn-KI sind eigene Systeme und bleiben erhalten.
+**teilweise erledigt** — traffic.js nutzt Spurkurven, Kreuzungsreservierungen, Signale, Fahrerparameter, Hindernisabstand und kontinuierliche Bewegung. V14 berücksichtigt schmale Straßen. Spurwechsel, Auffahrten, robuste Stauauflösung, bezirks-/zeitabhängige Verteilung fehlen. V24 reduziert Wettertempo und Bremsannahmen; der gemeinsame KI-Integrator berücksichtigt Nässe. Polizei/Renn-KI sind eigene Systeme und bleiben erhalten.
 
 - **P11.01 · teilweise erledigt** — Fahrzeuge sollen Fahrspuren einhalten, Kurven vorausschauend nehmen und sanfter lenken, beschleunigen und bremsen.
 - **P11.02 · teilweise erledigt** — Kreuzungen, Ampeln, Vorfahrt, Spurwechsel, Überholen, Auffahrten, Blockaden und Hindernisse besser behandeln.
@@ -178,7 +178,7 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 13: WIND, MOTORGERÄUSCHE, MUSIK UND UMGEBUNGSAUDIO
 
-**teilweise erledigt** — MotorLab erzeugt bauart-/lastabhängige Quellen; audio.js nutzt Radarbeit, Schäden, Wind und räumliche Reflexionen. music.js besitzt Fahr-/Verfolgungsmusik mit Lizenznachweisen. Es fehlen Sender/Tracks im In-Car-Radio sowie offene/defekte Fenster und Wetter/Tunnel als durchgehend gekoppelte Klangzustände. Neue Assets werden in dieser Phase nicht hinzugefügt.
+**teilweise erledigt** — MotorLab erzeugt bauart-/lastabhängige Quellen; audio.js nutzt Radarbeit, Schäden, Wind und räumliche Reflexionen. music.js besitzt Fahr-/Verfolgungsmusik mit Lizenznachweisen. Es fehlen Sender/Tracks im In-Car-Radio sowie offene/defekte Fenster und Tunnel als durchgehend gekoppelte Klangzustände. V24 ergänzt synthetischen Regen und nasses Abrollgeräusch. Neue Assets werden in dieser Phase nicht hinzugefügt.
 
 - **P13.01 · teilweise erledigt** — Differenzierte Motorsounds nach Motorbauart, Drehzahl, Last, Auspuff, Ansaugung und Tuningzustand.
 - **P13.02 · teilweise erledigt** — Reifenquietschen, Scrubbing, Wheelspin, Untergrund, Fahrwerk, Getriebe, Kupplung, Turbo und Schäden hörbar machen. Auspuffknallen nur bei passendem Motor-/Tuningzustand.
@@ -212,7 +212,7 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 16: FAHRZEUGBESITZ, ZUSTAND, INSPEKTION UND ZUSAMMENSPIEL
 
-**teilweise erledigt** — Bauteilzustände, Teilebesitz, Temperaturen und Diagnose bleiben je Fahrzeug gespeichert. V20 ergänzt Leitungsschäden und zwei Bremsflüssigkeitsstände. Leitung ersetzen stoppt das jeweilige Leck, füllt aber keinen Vorrat; Nachfüllen dichtet keine defekte Leitung ab. Tuning erhält beides. Neuer Lauf/Restart repariert weiterhin bewusst gemäß Nutzerauftrag; R behält Schäden. Freier Aus-/Einbau weiterer Teile, Licht-/Fensterfolgen und Wetterkopplung bleiben offen.
+**teilweise erledigt** — Bauteilzustände, Teilebesitz, Temperaturen und Diagnose bleiben je Fahrzeug gespeichert. V20 ergänzt Leitungsschäden und zwei Bremsflüssigkeitsstände. Leitung ersetzen stoppt das jeweilige Leck, füllt aber keinen Vorrat; Nachfüllen dichtet keine defekte Leitung ab. Tuning erhält beides. Neuer Lauf/Restart repariert weiterhin bewusst gemäß Nutzerauftrag; R behält Schäden. Freier Aus-/Einbau weiterer Teile, Licht-/Fensterfolgen bleiben offen. Wetter, Straße und Reifen sind seit V24 gekoppelt; Wetter bleibt bei Neustart erhalten und wird getrennt vom Fahrzeug gespeichert.
 
 - **P16.01 · teilweise erledigt** — Bauteilzustände, Reifen, Reparaturen, Tuning, aus- oder eingebaute Teile, Einstellungen und Fahrzeugzustand sollen bei vorhandener Speichermöglichkeit zuverlässig persistieren.
 - **P16.02 · teilweise erledigt** — Werkstatt ersetzt die tatsächlich defekten Baugruppen, statt immer einen unspezifischen Komplettschaden zu reparieren.
@@ -220,7 +220,7 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 - **P16.04 · teilweise erledigt** — Fahrzeuge können verschlissen sein, ohne optisch zerstört zu sein; optische Schäden können wiederum mechanische Folgen haben.
 - **P16.05 · teilweise erledigt** — Tuning beeinflusst Sound, Handling, Motorraum, Cockpit, Verschleiß, Gewicht und bei Bedarf Kamerabewegung.
 - **P16.06 · teilweise erledigt** — Schäden an Lichtern ändern Ausleuchtung, zerbrochene Fenster Windgeräusche, fehlende Spoiler gegebenenfalls Aerodynamik, kaputte Reifen Handling und fehlende Teile die Garagenansicht.
-- **P16.07 · teilweise erledigt** — Straßen-, Wetter- und Reifenzustand beeinflussen sich sinnvoll gegenseitig.
+- **P16.07 · erledigt** — Straßen-, Wetter- und Reifenzustand beeinflussen sich sinnvoll gegenseitig.
 - **P16.08 · teilweise erledigt** — Kurze, verständliche Rückmeldungen für mechanische Probleme, ohne die Fahransicht mit HUD-Anzeigen zu überladen.
 
 ## Phase 17: QUALITÄT, OPTIMIERUNG UND KONTROLLEN
@@ -288,3 +288,7 @@ P02.01/P02.05/P02.06/P02.07/P02.11/P02.12 wurden erweitert; P16.01–P16.03 und 
 ## V23 – getrennte Motorbauteile
 
 Phase 2D ist umgesetzt. P02.07/P02.08/P02.11/P02.12 sind jetzt erledigt, mit Nachweisen und Grenzen im [Phasenbericht](phase-2d-engine-report.md). Die übrigen Punkte behalten ihren expliziten Status; alle 156 Anforderungen sind wortgleich enthalten. Nächste Arbeit: offene Nässe-Anbindung und Fahrkalibrierung aus Phase 1 nachholen, anschließend Phase 3 erweitern.
+
+## V24: Phase 1E
+
+Nässe-Anbindung umgesetzt; P01.07/P01.08/P16.07 sind erledigt. Nachweise, Messwerte und Grenzen stehen im [Phasenbericht](phase-1e-weather-report.md). Alle 156 Anforderungen bleiben erhalten. Frühere Versionsabschnitte dokumentieren ihren damaligen Stand. Als Nächstes folgt Phase 3 mit weiteren Karosseriemodulen und ihren mechanischen Folgen.

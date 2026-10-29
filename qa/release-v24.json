@@ -1,0 +1,257 @@
+{
+  "game": "SIDEWAYS",
+  "version": 24,
+  "date": "2026-10-29",
+  "status": "verified-with-documented-limits",
+  "base": "Published V23 cb710d7ab21a7d768b979b2186d94ae1ac86ed09",
+  "scope": "Phase 1E wet-road integration with rain/drying, wheel friction and water drag, cooling, bounded visuals, sound, AI, saves and authoritative multiplayer weather. Whole goal remains active; all 156 requirements retained.",
+  "delivery": {
+    "entry": "SIDEWAYS.html",
+    "separateFile": "SIDEWAYS-v24.html",
+    "htmlBytes": 10612207,
+    "htmlSha256": "f39dbc03d8aacd7fcb2e3152a2669e8f638370edf67b045ea9b75c989521f766",
+    "offlineSinglePlayer": true,
+    "externalRuntimeRequestsDuringOfflineTest": 0,
+    "publishedToSites": false
+  },
+  "currentFunctionalSuites": [
+    {
+      "file": "qa/aero-hop-browser-v24-results.json",
+      "status": "passed",
+      "groups": 3,
+      "sha256": "d0fd80f5724fee93b87044a555d9cb7bc3dbf79efd8225ad53b093ccbc1ae9ce"
+    },
+    {
+      "file": "qa/aero-hop-v24-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "4a7fcb9324a452b9573ac3d2c9d7f95a153543c1e917aa25c20c9cbaf122e245"
+    },
+    {
+      "file": "qa/archipelago-v24-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "e515aca051c64517bbf6ea1d7e67fe1d9a5117c80e78a4c26e0024c06a95cebe"
+    },
+    {
+      "file": "qa/audio-v24-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "decb3b47b4a65a566c67dcf01c91812049d197064bdc248ac43b9bd628bb38b2"
+    },
+    {
+      "file": "qa/auxiliaries-browser-v24-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "bc1042e231f95a3ba490d5852315272ce44c75f1f54085b2c7aa060ad5091c4e"
+    },
+    {
+      "file": "qa/auxiliaries-v24-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "83a785926c8e2a98833bee7b0f3d6628e1660464de6b7e9da66927440ce8c6e8"
+    },
+    {
+      "file": "qa/brakes-browser-v24-results.json",
+      "status": "passed",
+      "groups": 2,
+      "sha256": "7acdde37f1819bbe354b879adabe09c7d695b9d35f4899f8812d38bb16e453c9"
+    },
+    {
+      "file": "qa/brakes-v24-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "d54ff045cccebca8e50b4b7fe4874b2a3e82445c5b111b2e764e7038168291cb"
+    },
+    {
+      "file": "qa/chassis-damage-browser-v24-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "71576d45bb0db6050f52966aee2ef901c06248147142b5108ac1245e303626de"
+    },
+    {
+      "file": "qa/chassis-damage-v24-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "8df61604affe0ebdd13141aa33f2a4af14ae2adbc449b15b88530cb350cd9cac"
+    },
+    {
+      "file": "qa/chassis-v24-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "68b096aafc6dfdb84af1a8492b4bc6ca7c908a223d21df74bfe2cbf4b4bd1a96"
+    },
+    {
+      "file": "qa/cosmetics-v24-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "5e60cf7ccaa45c7c8893969979eefc72211cdb935a0f5130cd82b1704d813bea"
+    },
+    {
+      "file": "qa/damage-v24-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "31bb31e2d5c794cdeecbf1c3b1b0a8839b82a06a48d28d58084e36f9787eccd6"
+    },
+    {
+      "file": "qa/drivetrain-browser-v24-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "51ebcc3df928b1abe7080a6fe827fc0fadae589cdd10c3235fe06d7bb7d0f481"
+    },
+    {
+      "file": "qa/drivetrain-v24-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "967842c7897bd3a61f7f04e209b6dd2c4b2cfe110b42d2952a035652fc8811a8"
+    },
+    {
+      "file": "qa/engine-components-browser-v24-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "0580b6924084c4eb9fa7768629d3ebd644010ef546daf6c23cfcc07d15aaadb2"
+    },
+    {
+      "file": "qa/engine-components-v24-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "c88b6471934b073d756e72ca4e112d80e8081492305281629deb84e6e431cee4"
+    },
+    {
+      "file": "qa/goal-coverage-v24-results.json",
+      "status": "passed",
+      "groups": 2,
+      "sha256": "6cede091565b3a3b2629f7fbbcab70a542faf9b620ed9409395ff540d6a09987"
+    },
+    {
+      "file": "qa/input-taps-v24-results.json",
+      "status": "passed",
+      "groups": 11,
+      "sha256": "64a1b89054dd633a57b87706d23bd3761693d0b7a960fbc3f0b4cf7ed124b7f1"
+    },
+    {
+      "file": "qa/modular-v24-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "de0e4d434f43666e7580b76dcab962b2202f605e74e70834874d965e3e33a99e"
+    },
+    {
+      "file": "qa/multiplayer-browser-v24-results.json",
+      "status": "passed",
+      "groups": 5,
+      "sha256": "7e14bb0b045f148829224821c4bad34336e29465dc4ed2325f45b3e5a96da95a"
+    },
+    {
+      "file": "qa/multiplayer-burst-browser-v24-results.json",
+      "status": "passed",
+      "groups": 3,
+      "sha256": "6d25b782cae487fa22247316ba3790a57598e9a2da7a0a20d29adba1fd546068"
+    },
+    {
+      "file": "qa/multiplayer-burst-v24-results.json",
+      "status": "passed",
+      "groups": 5,
+      "sha256": "bacf644955c7df87f1c0caa65dc29c72822ab51823062ba6a636774aae5b9994"
+    },
+    {
+      "file": "qa/multiplayer-v24-results.json",
+      "status": "passed",
+      "groups": 11,
+      "sha256": "9ee55da5c81d4160d961ae2f364fbe016b2ee61b924c9544310caca54bb40f1e"
+    },
+    {
+      "file": "qa/navigation-main-v24-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "4020dc33477b4bf51ca545e8b537a600901233016ce061d643b18b6621f4a5e9"
+    },
+    {
+      "file": "qa/physics-v24-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "81f17a8b7a159c741bb87c5f333e6e17ba16d237fe2a1c8ef82dc918134ba3ea"
+    },
+    {
+      "file": "qa/police-v24-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "d78d523aae3cef4057f720efc871407a2e3b041af60e3fee5e67d9b974f66ecc"
+    },
+    {
+      "file": "qa/race-v24-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "c1c2c5c9c63af78c792f4e744ba6d15803c2da6b84d30abb61afe18a634ad658"
+    },
+    {
+      "file": "qa/restart-v24-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "953a621a5124e4a1bd12ad6843461ea94c01691ac060ec46fa647a54dff4380f"
+    },
+    {
+      "file": "qa/road-contact-v24-results.json",
+      "status": "passed",
+      "groups": 7,
+      "sha256": "3f341fffecb7432cbe7e33aeb1f457054d66e9e0181c9aa1aaaaee8c241a89ed"
+    },
+    {
+      "file": "qa/standalone-browser-v24-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "1218a4e10045cbf6b6339471c3bace93c174b550f61dd80820ce691d7e7fdedd"
+    },
+    {
+      "file": "qa/standalone-v24-results.json",
+      "status": "passed",
+      "groups": 0,
+      "sha256": "81dc19cd526e499d3c095128e6c33207db341b63584243ac12a0e40b7a52f50a"
+    },
+    {
+      "file": "qa/thermal-v24-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "16bd2aaca03929c039fe0d06588aff955b8d6ac539de6b39a1c7069ac89379b1"
+    },
+    {
+      "file": "qa/tyres-browser-v24-results.json",
+      "status": "passed",
+      "groups": 3,
+      "sha256": "58666fc9b94bea0dbd512607ebf3900a3ebfee72a0d5b3ba538cc8aa41b845cb"
+    },
+    {
+      "file": "qa/tyres-v24-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "71f156909e493529ffd9fa30d43ea8bba134a15168ed44273ecbd6c93c2818c1"
+    },
+    {
+      "file": "qa/weather-browser-v24-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "70e100050df9ad6a4126b9108b29dfbaeadae22cbeb9555b21a53b2cc1644ed9"
+    },
+    {
+      "file": "qa/weather-v24-results.json",
+      "status": "passed",
+      "groups": 7,
+      "sha256": "9c095ee3aa957d68efe5ca90494a17bedc677fbbe39974fe304153579de2f122"
+    }
+  ],
+  "performanceMeasurement": {
+    "file": "qa/chassis-performance-v24-results.json",
+    "status": "measured",
+    "sha256": "59d26a77c7aa07035a38446bcbc5affa3068dd981dff03108365dd38cc97a42c"
+  },
+  "review": {
+    "file": "qa/review-v24.json",
+    "sha256": "283e1d702056d91839b632754f6404f83ad88b9b7ac83cb748789954b56324af"
+  },
+  "limits": [
+    "Fictional wet-tyre and water-drag calibration; no fluid simulation or certified real-car braking data.",
+    "Road material reacts to existing scene lights; no reflected-scene render or mirror-reflection claim. Showroom is sheltered; future tunnels and garage roofs need appropriate rain occlusion.",
+    "Broader handling/controller calibration and all later body/interior/garage/world phases remain tracked.",
+    "Multiplayer uses local independent Chromium processes with public PeerJS/WebRTC; separate PCs, mobile networks and TURN traversal not validated.",
+    "No physical controller, subjective listening or GPU benchmark. CPU sample excludes world/AI/audio/GPU."
+  ]
+}

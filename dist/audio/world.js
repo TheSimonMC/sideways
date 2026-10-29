@@ -34,7 +34,7 @@ export class SpatialWorldAudio{
   this._damage=0;this._steam=0;this._steamLow=0;this._damagePosition=0;this._damagePhase=0;this._scrape=0;this._scrapeLow=0;
   this.acoustics=new StreetAcoustics();this._space=null;this._reverbMix=-1;
   this.radio=null;this.radioQueue=[];this._lastRadio=new Map();this._radioNext=0;this.radioDuck=0;this.radioPlayed=0;this.radioDropped=0;this._radioSerial=0;this._radioHistory=[];this._radioVariants=new Map();this.radioExpired=0;
-  this._ambient={birds:0,crickets:0,wind:0,water:0,industrial:0};this._birdPosition=0;this._cricketPosition=0;this._ambientLowL=0;this._ambientLowR=0;this._waterL=0;this._waterR=0;this._industry=0;this._ambientSeed={seed:849157};this._ambientTime=0;
+  this._ambient={rain:0,birds:0,crickets:0,wind:0,water:0,industrial:0};this._birdPosition=0;this._cricketPosition=0;this._ambientLowL=0;this._ambientLowR=0;this._waterL=0;this._waterR=0;this._industry=0;this._ambientSeed={seed:849157};this._ambientTime=0;
   this.levels=Object.fromEntries(LEVEL_KEYS.map(k=>[k,0]));this.active=true;
  }
  setContext(value={}){
@@ -139,7 +139,7 @@ export class SpatialWorldAudio{
  }
  hasSignal(active=true){
   const c=this.context,d=c.damage,health=c.engineHealth??d?.engineHealth??(typeof d==='number'?1-d:1),fault=c.engineFault??d?.engineFault,lost=(c.wheelAttached??d?.wheelAttached??[]).some(x=>x===false);
-  return this.events.length>0||this.radio!==null||this.radioQueue.length>0||active&&(!!c.acoustics?.ambient||this.voices.length>0||c.playerHorn||c.servicing||fault||health<.65||c.mechanical?.knock>0||c.mechanical?.steam>0||lost||c.bodyScrape>10||this._playerHorn>1e-5||this._service>1e-5||this._damage>1e-5||this._scrape>1e-5||this.acoustics.tail>1e-5);
+  return this.events.length>0||this.radio!==null||this.radioQueue.length>0||active&&(c.weather?.rain>0||this._ambient.rain>1e-5||!!c.acoustics?.ambient||this.voices.length>0||c.playerHorn||c.servicing||fault||health<.65||c.mechanical?.knock>0||c.mechanical?.steam>0||lost||c.bodyScrape>10||this._playerHorn>1e-5||this._service>1e-5||this._damage>1e-5||this._scrape>1e-5||this.acoustics.tail>1e-5);
  }
  mixDucking(mix={}){
   const nearest=this.voices.reduce((best,v)=>v.targetSiren>0?Math.min(best,v.lastDistance??330):best,Infinity),threat=(this.context.worldActive!==false&&Number.isFinite(nearest)?clamp((250-nearest)/220,0,1):0)*clamp(mix.sirens??1,0,1),radio=Math.max(this.radioDuck,(this.radio||this.radioQueue.length)?.65*clamp(mix.radio??.85,0,1):0);
@@ -155,7 +155,7 @@ export class SpatialWorldAudio{
   const hornTarget=active&&c.playerHorn?.23*environment:0,serviceTarget=service==='fuel'?.060*environment:(service==='repair'||service==='components')?.035*mechanical:0;
   const hornPoint=this.playerPoint(0,1.5),hornG=panGains(this.spatial(hornPoint.x,hornPoint.z).pan),serviceG=panGains(service==='fuel'?.42:-.25),hurtPoint=this.playerPoint(0,1),hurtG=panGains(this.spatial(hurtPoint.x,hurtPoint.z).pan);
   const ambient=c.acoustics?.ambient??{},night=clamp(c.night??0,0,1),bedLevel=active&&c.acoustics?.ambient?ambientMix/(1+Math.abs(c.speed||0)/35):0,park=clamp(ambient.park??0,0,1);
-  const ambientTargets={birds:(.012+park*.125)*(1-night)*bedLevel,crickets:(.010+clamp(ambient.insects??park,0,1)*.085)*night*bedLevel,wind:clamp(ambient.wind??.3,0,1)*.020*bedLevel,water:clamp(ambient.water??0,0,1)*.024*bedLevel,industrial:clamp(ambient.industrial??0,0,1)*.025*bedLevel};
+  const ambientTargets={rain:active&&c.worldActive!==false?clamp(c.weather?.rain??0,0,1)*.13*ambientMix*environment:0,birds:(.012+park*.125)*(1-night)*bedLevel,crickets:(.010+clamp(ambient.insects??park,0,1)*.085)*night*bedLevel,wind:clamp(ambient.wind??.3,0,1)*.020*bedLevel,water:clamp(ambient.water??0,0,1)*.024*bedLevel,industrial:clamp(ambient.industrial??0,0,1)*.025*bedLevel};
   if(service!==this._serviceMode){this._serviceMode=service;this._serviceClock=0;}
   if(service==='repair'||service==='components'){this._serviceClock-=left.length/RATE;if(this._serviceClock<=0){this._sample('metal',.055*mechanical,{pan:-.3,rate:1.3+noise(this)*.15});this._sample('switch',.05*mechanical,{pan:.2,delay:.10,rate:.8});this._serviceClock=.64+noise(this)*.12;}}
   const birds=AMBIENT_KIT.birds,crickets=AMBIENT_KIT.crickets;
@@ -180,8 +180,8 @@ export class SpatialWorldAudio{
    for(const key in this._ambient)this._ambient[key]+=(ambientTargets[key]-this._ambient[key])*.000035;
    this._ambientLowL+=(random-this._ambientLowL)*.018;this._ambientLowR+=(other-this._ambientLowR)*.023;this._waterL+=(random-this._waterL)*.095;this._waterR+=(other-this._waterR)*.11;this._industry+=(random-this._industry)*.004;
    this._ambientTime=(this._ambientTime+1/RATE)%1000;const waterSwell=.65+.35*Math.sin(this._ambientTime*.83);
-   const ambL=loop(birds.left,this._birdPosition)*this._ambient.birds+loop(crickets.left,this._cricketPosition)*this._ambient.crickets+this._ambientLowL*this._ambient.wind+(this._waterL-this._ambientLowL)*this._ambient.water*waterSwell+this._industry*this._ambient.industrial;
-   const ambR=loop(birds.right,this._birdPosition)*this._ambient.birds+loop(crickets.right,this._cricketPosition)*this._ambient.crickets+this._ambientLowR*this._ambient.wind+(this._waterR-this._ambientLowR)*this._ambient.water*waterSwell+this._industry*this._ambient.industrial*.78;
+   const ambL=(this._waterL-this._ambientLowL)*this._ambient.rain+loop(birds.left,this._birdPosition)*this._ambient.birds+loop(crickets.left,this._cricketPosition)*this._ambient.crickets+this._ambientLowL*this._ambient.wind+(this._waterL-this._ambientLowL)*this._ambient.water*waterSwell+this._industry*this._ambient.industrial;
+   const ambR=(this._waterR-this._ambientLowR)*this._ambient.rain+loop(birds.right,this._birdPosition)*this._ambient.birds+loop(crickets.right,this._cricketPosition)*this._ambient.crickets+this._ambientLowR*this._ambient.wind+(this._waterR-this._ambientLowR)*this._ambient.water*waterSwell+this._industry*this._ambient.industrial*.78;
    this._birdPosition=(this._birdPosition+birds.rate/RATE)%birds.left.length;this._cricketPosition=(this._cricketPosition+crickets.rate/RATE)%crickets.left.length;
    l+=ambL;r+=ambR;let eventEnergy=0,radioL=0,radioR=0;
    for(const event of this.events){

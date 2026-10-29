@@ -1,0 +1,21 @@
+SIDEWAYS V24 – RAIN AND WET ROADS
+
+Open SIDEWAYS.html to play offline. Multiplayer requires internet.
+Online: https://thesimonmc.github.io/sideways/
+
+Settings > Weather selects changing weather, clear skies or rain.
+Rain and drying take time. Restart repairs the car but keeps road moisture.
+Wet grip and puddles depend on surface, speed, tyre tread, pressure and compound.
+All multiplayer clients need V24. Host weather is shared, including late joins.
+The existing RATE_LIMIT fix remains in place.
+
+Report: docs/phase-1e-weather-report.md
+Full goal/checklist: docs/goal.txt and docs/goal-progress.md
+Evidence: qa/release-v24.json
+Existing licenses: dist/audio/CREDITS.md and source credits. New rain is procedural.
+
+Build: npm ci, then node build.mjs (Node.js 24).
+Native checks: node qa/regressions-v24.mjs and the *-v24-check.mjs files.
+Browser checks need Playwright and Chromium. Set CODEX_PRIMARY_RUNTIME_NODE_MODULES
+to node_modules containing playwright and PLAYWRIGHT_CHROMIUM_EXECUTABLE to Chromium.
+Run the *-browser-v24.cjs files. Package: node qa/package-v24.mjs <output-directory>.

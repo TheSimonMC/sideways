@@ -11,13 +11,13 @@ export class LobbyPanel{
   $('lobby-start').addEventListener('click',()=>{session.start();this.render();});$('lobby-leave').addEventListener('click',()=>onLeave?.());$('lobby-resume').addEventListener('click',()=>onResume?.());
   $('lobby-copy').addEventListener('click',async()=>{try{await navigator.clipboard.writeText(session.getState().code);$('lobby-copy').textContent='COPIED';}catch{$('lobby-status').textContent='Share the eight-character code shown below.';}});
   $('lobby-copy-error')?.addEventListener('click',()=>this.copyIssue());
-  for(const id of ['max','traffic','police','damage','collisions','time'])$('lobby-rule-'+id).addEventListener('change',()=>{session.setRules(this.readRules());this.render();});
+  for(const id of ['max','traffic','police','damage','collisions','time','weather'])$('lobby-rule-'+id).addEventListener('change',()=>{session.setRules(this.readRules());this.render();});
   $('lobby-code').addEventListener('input',()=>{$('lobby-code').value=normalizeLobbyCode($('lobby-code').value).slice(0,8);this.localError='';this.render();});
   $('lobby-code').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();this.connect(false);}});
   $('lobby-keypad-toggle').addEventListener('click',()=>{const hidden=$('lobby-keypad').classList.toggle('hidden');$('lobby-keypad-toggle').setAttribute('aria-expanded',String(!hidden));onLayout?.();if(!hidden)$('lobby-keypad').querySelector('button')?.focus();});
   for(const value of [...'ABCDEFGHJKLMNPQRSTUVWXYZ23456789','DELETE','CLEAR']){const b=document.createElement('button');b.type='button';b.textContent=value;b.setAttribute('aria-label',value==='DELETE'?'Delete last character':value==='CLEAR'?'Clear lobby code':value);b.addEventListener('click',()=>{const input=$('lobby-code');input.value=value==='CLEAR'?'':value==='DELETE'?input.value.slice(0,-1):input.value.length<8?input.value+value:input.value;this.localError='';this.render();});$('lobby-keypad').append(b);}
  }
- readRules(){return{maxPlayers:Number($('lobby-rule-max').value),traffic:$('lobby-rule-traffic').value,police:$('lobby-rule-police').checked,damage:$('lobby-rule-damage').checked,collisions:$('lobby-rule-collisions').value,time:$('lobby-rule-time').value};}
+ readRules(){return{maxPlayers:Number($('lobby-rule-max').value),traffic:$('lobby-rule-traffic').value,police:$('lobby-rule-police').checked,damage:$('lobby-rule-damage').checked,collisions:$('lobby-rule-collisions').value,time:$('lobby-rule-time').value,weather:$('lobby-rule-weather').value};}
  config(){
   const host=$('network-host').value.trim(),path=$('network-path').value.trim(),url=$('network-turn').value.trim();
   const config={};if(host){config.host=host;config.port=443;if(path)config.path=path;}
@@ -54,7 +54,7 @@ export class LobbyPanel{
   if(connected){
    $('lobby-share-code').textContent=state.code.slice(0,4)+' '+state.code.slice(4);$('lobby-copy').textContent='COPY CODE';
    $('lobby-players').replaceChildren();for(const player of state.players){const row=document.createElement('div');row.className='lobby-player';const mark=document.createElement('i');mark.style.background=player.color;const name=document.createElement('strong');name.textContent=player.name+(player.id===state.id?' (YOU)':'');const status=document.createElement('span');status.textContent=player.id===state.hostId?'HOST':playing?'IN SESSION':player.ready?'READY':'NOT READY';status.classList.toggle('ready',player.ready);row.append(mark,name,status);$('lobby-players').append(row);}
-   for(const [id,key]of [['max','maxPlayers'],['traffic','traffic'],['police','police'],['damage','damage'],['collisions','collisions'],['time','time']]){const input=$('lobby-rule-'+id);if(input.type==='checkbox')input.checked=state.rules[key];else input.value=state.rules[key];input.disabled=!state.isHost||playing;}
+   for(const [id,key]of [['max','maxPlayers'],['traffic','traffic'],['police','police'],['damage','damage'],['collisions','collisions'],['time','time'],['weather','weather']]){const input=$('lobby-rule-'+id);if(input.type==='checkbox')input.checked=state.rules[key];else input.value=state.rules[key];input.disabled=!state.isHost||playing;}
    const me=state.players.find(p=>p.id===state.id);$('lobby-ready').textContent=me?.ready?'NOT READY':'READY';$('lobby-ready').classList.toggle('hidden',state.isHost||playing);$('lobby-start').classList.toggle('hidden',!state.isHost||playing);$('lobby-start').disabled=state.players.some(p=>!p.ready);$('lobby-resume').classList.toggle('hidden',!playing);
    $('lobby-rule-note').textContent=playing?'Rules are fixed for this drive.':state.isHost?'Changing a rule asks everyone to ready up again.':'The host sets the rules.';
   }

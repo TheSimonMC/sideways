@@ -1,3 +1,4 @@
+import {wetTyreResponse} from './weather.js';
 import {createAgent,createAgentRenderer,setAgentPose,integrateAgent,syncAgent,agentBuild} from './traffic.js';
 import {resolveVehicleContacts} from './contact.js';
 
@@ -87,13 +88,14 @@ export function createRace(scene,world,{count=5,laps=3,difficulty='club',seed=71
   r.previous={x:body.x,z:body.z};r.roadProgress=road.progress;r.speed=speed;
  }
  function plannedSpeed(car,road){
-  const profile=car.profile,health=.76+.24*car.health;let target=35*level.speed*profile.pace*health;
-  for(let ahead=0;ahead<=Math.max(85,car.speed*3.2);ahead+=6){const p=sample(road.progress*length+ahead),bend=Math.abs(p.curvature),corner=Math.sqrt(level.grip/Math.max(.0007,bend));target=Math.min(target,Math.sqrt(corner*corner+2*level.brake*Math.max(0,ahead-7)));}
+  const wetGrip=wetTyreResponse({...world.getSurfaceAt(car.x,car.z),speed:car.speed,compound:'sport'}).grip;const profile=car.profile,health=.76+.24*car.health;let target=35*level.speed*profile.pace*health*Math.sqrt(wetGrip);
+  for(let ahead=0;ahead<=Math.max(85,car.speed*3.2);ahead+=6){const p=sample(road.progress*length+ahead),bend=Math.abs(p.curvature),corner=Math.sqrt(level.grip*wetGrip/Math.max(.0007,bend));target=Math.min(target,Math.sqrt(corner*corner+2*level.brake*wetGrip*Math.max(0,ahead-7)));}
   if(road.distance>10)target=Math.min(target,Math.max(5,17-(road.distance-10)*1.1));
   return target;
  }
  function nearbyStatic(car,radius=9){return world.getColliders?world.getColliders(car,radius):(world.colliders||[]).filter(c=>Math.abs(c.x-car.x)<radius+c.hx+c.hz&&Math.abs(c.z-car.z)<radius+c.hx+c.hz);}
  function drive(car,dt,player,snapshot){
+  const wetGrip=wetTyreResponse({...world.getSurfaceAt(car.x,car.z),speed:car.speed,compound:'sport'}).grip;
   car.hitHold=Math.max(0,car.hitHold-dt);car.horn=Math.max(0,car.horn-dt);car.passTimer=Math.max(0,car.passTimer-dt);
   const road=project(car.x,car.z),centre=road.nearest,tangent=road.tangent,offset=(car.x-centre.x)*tangent.z-(car.z-centre.z)*tangent.x;
   const base=clamp(sample(road.progress*length+20).curvature*145+car.profile.lane,-2.8,2.8);
@@ -112,7 +114,7 @@ export function createRace(scene,world,{count=5,laps=3,difficulty='club',seed=71
    const dx=other.x-car.x,dz=other.z-car.z,along=dx*fx+dz*fz,lateral=dx*rx+dz*rz;
    if(along<=0||along>55||Math.abs(lateral)>(car.width+other.width)*.5+.25)continue;
    const gap=along-(car.length+other.length)*.5-1.25,closing=Math.max(0,car.speed-other.forward);
-   target=Math.min(target,Math.sqrt(Math.max(0,other.forward)**2+2*level.brake*Math.max(0,gap-closing*.34)));
+   target=Math.min(target,Math.sqrt(Math.max(0,other.forward)**2+2*level.brake*wetGrip*Math.max(0,gap-closing*.34)));
    if(gap<1.2)target=Math.min(target,Math.max(0,gap));
   }
   if(r.finished)target=Math.min(target,18);

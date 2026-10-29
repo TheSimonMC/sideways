@@ -1,0 +1,23 @@
+{
+  "version": 24,
+  "status": "passed",
+  "checks": [
+    "Final offline HTML preserves all new engine faults through real tuning purchase and reload; failed fuel pump cannot inherit warm running engine",
+    "New run repairs all ten parts; Escape opens pause, engine and cooling diagnosis contain the new components",
+    "Real VehiclePanel component replacements repair only the selected part; chain replacement preserves failed valves and stopped engine",
+    "New component labels and service buttons fit at desktop and 390-pixel width"
+  ],
+  "errors": [],
+  "external": [],
+  "htmlSha256": "f39dbc03d8aacd7fcb2e3152a2669e8f638370edf67b045ea9b75c989521f766",
+  "sourceSHA256": {
+    "dist/vehicle-panel.js": "8b93816403142d3ab9b2ad0a96a54d3ec1128a653c1369bd47bcb2ffc4ae52b8",
+    "dist/physics.js": "3b80c865e7296b61fb3e176a6d6b5c2b129937b263c139ad2f3c5eaec1cd65bb",
+    "dist/mechanical.js": "7194e34b43811dd5a4e1d5173743820323adecbdb4cbc29936f1994b54d41d6e",
+    "dist/audio.js": "0fd92b09467c3194528b14cff736b4a510d0270fbd6a176670a7360f4afa5352"
+  },
+  "limits": [
+    "Save/reload/new-run/pause diagnostics tested in final HTML. Damaged service buttons use original VehiclePanel/CarPhysics in a module harness; main repair timer and travel to the mechanic are not tested here.",
+    "Software rendering; no physical-controller or subjective listening test."
+  ]
+}
