@@ -207,3 +207,7 @@ The codec check executes the vendored PeerJS implementation: it reproduces the o
 - [GitHub Pages site creation](https://docs.github.com/en/pages/getting-started-with-github-pages/creating-a-github-pages-site), static hosting.
 
 PeerJS uses the MIT license. Its license is included in `dist/vendor/PEERJS-LICENSE.txt`.
+
+## V14 map and visual builds
+
+V14 uses protocol 10 and the sideways-v10 room namespace. Every participant must use V14. Player, traffic and police coordinate validation covers the archipelago. Sanitized build profiles include hood, spoiler, sideSkirts, rims, frontBumper and rearBumper; invalid or missing choices resolve to stock. This protocol version does not change wallet ownership or physics authority.

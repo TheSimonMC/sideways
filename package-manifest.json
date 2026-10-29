@@ -1,12 +1,12 @@
 {
   "game": "SIDEWAYS",
-  "version": 13,
+  "version": 14,
   "entry": "SIDEWAYS.html",
   "sdk": "1.6.3 + SIDEWAYS spatial extension",
   "files": {
     "dist/agent-snapshot.js": {
       "bytes": 1724,
-      "sha256": "cee63ba84db361224201dd6d947fc6dd2779724ab78e32390de7129be6371e1e"
+      "sha256": "9b38d30bc012ca7d878f965b3cda7405b2494bb26cf2bfa5edf0573ac9376019"
     },
     "dist/audio/acoustics.js": {
       "bytes": 3638,
@@ -68,17 +68,21 @@
       "bytes": 4345,
       "sha256": "a17437c5104fe33c7cd5f311541ca33e77149f68ea0fe55dd60d38d6de10d834"
     },
+    "dist/car-cosmetics.js": {
+      "bytes": 5069,
+      "sha256": "3baca2d37809e650c2cf55d9308e51bcd6e0f99ae19f73847c00486c18f4c845"
+    },
     "dist/car.js": {
-      "bytes": 34183,
-      "sha256": "d4c5a1ad818e3831161366c37b94c4a00926d2a25fc707f7db9a964018d8fc73"
+      "bytes": 34614,
+      "sha256": "f7c7f77bdea200bad21cbb13dfc847778fb44f661911a64838d4d1267d9b1333"
     },
     "dist/career.js": {
-      "bytes": 14313,
-      "sha256": "b971b37d91790bd43c8a5d3a6a6873c171a6d6c9bb2c15bf70c9f6859515c2d4"
+      "bytes": 14380,
+      "sha256": "b6a7632db75d451d69ad574320e7d7bc5704bcddb2531e5979115711c1ed4cb2"
     },
     "dist/catalog.js": {
-      "bytes": 18815,
-      "sha256": "d769ca9d32685ac919f451593d5606df7642c65273a95e3cb27681ef6e83b10a"
+      "bytes": 18957,
+      "sha256": "7d0649ee2755a98260795d52db0234601dc413dbfefcd90777995cfe9fd4fede"
     },
     "dist/city-shape.js": {
       "bytes": 684,
@@ -95,6 +99,22 @@
     "dist/controls-ui.js": {
       "bytes": 21794,
       "sha256": "d20ea4f3fd1cd0ae331d2ec16202574cdf8ed4903d5b2336943c69603d03885e"
+    },
+    "dist/cosmetics.js": {
+      "bytes": 2765,
+      "sha256": "b5e3814e16f47287e1d70ecc87fea0b14f35ff64d94378894a770e991967ebce"
+    },
+    "dist/county-architecture.js": {
+      "bytes": 10877,
+      "sha256": "039e05953dde93992ec001f485ef3845392ae1f3d0d37d7fdbb790f4da42b24b"
+    },
+    "dist/county-junctions.js": {
+      "bytes": 2246,
+      "sha256": "e7255a70a08380825ba2a5459d633a0ce9b8f3cfa66562d00e5b573a4e6e3d6f"
+    },
+    "dist/county-layout.js": {
+      "bytes": 6124,
+      "sha256": "f692af51361755bcf2476546daddf49c7afea03ca0df51a8d2e9d6bc0ce7f858"
     },
     "dist/enforcement.js": {
       "bytes": 4008,
@@ -165,16 +185,16 @@
       "sha256": "9f1a10e5aeb1815dff1f2bc0d99cffed5b8bc4d167f2592cd221cac478d5b37d"
     },
     "dist/garage.js": {
-      "bytes": 10405,
-      "sha256": "bf38555e130f33f6395d1ab208bfa6b5eafca4d7c576ebf2bfe182e7926b3eba"
+      "bytes": 10489,
+      "sha256": "aa29a1b31f36816ee3cc584358907cff5c74a68564a7dab4e3294a75de2ecba8"
     },
     "dist/haptics.js": {
       "bytes": 6850,
       "sha256": "9ddb091ed4e73e78c47c9756d20e0658d07f364182d57824c70a9cc016ed9a7e"
     },
     "dist/index.html": {
-      "bytes": 53002,
-      "sha256": "23a42e29e591d6765c6560a5df30e92ce42f974bd5169b26f50ecd1ee75bc6fd"
+      "bytes": 53130,
+      "sha256": "ebe986ba29ad09ebc7abfcefe462717a1d96c5084bc85f54644280d2a4af4deb"
     },
     "dist/input-prompts.js": {
       "bytes": 3213,
@@ -193,8 +213,8 @@
       "sha256": "040d8dcef7beb4b391cbc7b9ee19c30964b5f344757b365c3ed2c53085b9ba49"
     },
     "dist/main.js": {
-      "bytes": 104365,
-      "sha256": "b3b28411796b1224cd5940d3504fc00a2a79d7654f5bdf19265192d7f8c03316"
+      "bytes": 104452,
+      "sha256": "443d4f955559bcd84319b284b87940491da3b744512fcf5dad7ce54ef442a38e"
     },
     "dist/map-v12.css": {
       "bytes": 10016,
@@ -205,8 +225,8 @@
       "sha256": "e3763ea712d42e0103c5a8faf8bafed9fe9e3d7bf9882aa903d193e99315d7a1"
     },
     "dist/multiplayer.js": {
-      "bytes": 32689,
-      "sha256": "4639fdf18593064d41115a64b24971dd1695607e9cb544762b11b97d661f612e"
+      "bytes": 32692,
+      "sha256": "0db1ccb5ad5c8e358fb34aefcaa8751db752e1bb3c4202576ab51bc455ad8000"
     },
     "dist/music.js": {
       "bytes": 15392,
@@ -217,8 +237,8 @@
       "sha256": "7d80476e58dc6fc1c12cec2a412d2438b48803b3582186f61f803d0d47aa58ba"
     },
     "dist/navigation-map.js": {
-      "bytes": 14400,
-      "sha256": "ce985a172bbab96f91675f86e46a959fbb56fd9061cc13f4de0760e95d472387"
+      "bytes": 14982,
+      "sha256": "c045e24404746658366befa7234c3918a3b983c5866c90465d7f1e5b9a1b4de6"
     },
     "dist/navigation.js": {
       "bytes": 6560,
@@ -238,7 +258,7 @@
     },
     "dist/police.js": {
       "bytes": 33900,
-      "sha256": "2ee60eb5e4e1a33e83eee555df4fbabffd15ca0d97965cfe20a8d21851d7da87"
+      "sha256": "d5e00dced5154659b8a20480fbb605ba82507ac93a6c35c79d545d91bce11015"
     },
     "dist/polish-v12.css": {
       "bytes": 15715,
@@ -261,8 +281,8 @@
       "sha256": "296660409dab7098824b3b372e49e6d26d01b0be51fa16f816a3286c839a51cd"
     },
     "dist/region.js": {
-      "bytes": 20792,
-      "sha256": "2ba45d8cdd05543ed78a6b413126ad395cf8c219f5a6851588baa5a4b739f259"
+      "bytes": 24710,
+      "sha256": "6d6bdfebd00a2692a4cd375ba30fbe6625b03377c8767481ebf537730c75bd64"
     },
     "dist/remote-contacts.js": {
       "bytes": 2727,
@@ -277,8 +297,8 @@
       "sha256": "0bcd3e7c4db8e7b6ed7d7ca92108419ab07e1a52d3fbe9caeaedca76961aa1f5"
     },
     "dist/traffic.js": {
-      "bytes": 30097,
-      "sha256": "b811cca6c4fe0ebd913382eea5394b012ed95ecd24959726c666821b5fc4f73a"
+      "bytes": 30361,
+      "sha256": "75ea00a208580ea0bf044869f5c38ffafb7ff5d53739c4bc5f3e97f00dc4915d"
     },
     "dist/vehicle-panel.js": {
       "bytes": 6162,
@@ -452,9 +472,13 @@
       "bytes": 2477,
       "sha256": "5fd4f0bcac46fc1ffacf8f33dfd711820f6721a23e6dc9ca88f92b4811c827ec"
     },
+    "docs/kontext-v13-historisch.md": {
+      "bytes": 2536,
+      "sha256": "e64da0c9c3c7defbce4a97d54270aedd35875d0b77d8a9b6f3c6bbe762317a2b"
+    },
     "docs/multiplayer.md": {
-      "bytes": 11404,
-      "sha256": "206584577cbca7eecf016c1861e0014d6c9f89a3ec77466b3ad5951bb436fb68"
+      "bytes": 11814,
+      "sha256": "df717792607772b1522e857b47df4efc35fc47eb9539246a9fc73c552cf4d76f"
     },
     "qa/ai-v7-check.mjs": {
       "bytes": 10010,
@@ -471,6 +495,14 @@
     "qa/ai-v8-results.json": {
       "bytes": 3714,
       "sha256": "6c23bd4fbf30fb388367fc2f5b60eaffea3e3b14f91d9d45eb7ca282b60285d0"
+    },
+    "qa/archipelago-v14-check.mjs": {
+      "bytes": 5524,
+      "sha256": "075e03c245f76f8b01ac48c87ef230e6e0639caac558d7001e47ac527ef0c7e1"
+    },
+    "qa/archipelago-v14-results.json": {
+      "bytes": 1163,
+      "sha256": "296203b768b31dc9d3e9bf5f34e7cb610ef908aaf241da790ba525bb55843ff5"
     },
     "qa/archive.mjs": {
       "bytes": 3536,
@@ -664,6 +696,14 @@
       "bytes": 2006,
       "sha256": "2da10027c8ee9ec2d23bd09ceda043e5adc87f8c005600152f77345f83459f36"
     },
+    "qa/cosmetics-v14-check.mjs": {
+      "bytes": 2974,
+      "sha256": "872d458f8216ec30be64a570de70b7af6f60245ef218a3382ade554e4097baa1"
+    },
+    "qa/cosmetics-v14-results.json": {
+      "bytes": 451,
+      "sha256": "8e81a5e59ccdfe57128df944b9e325d6cd4436e2a8999ac73201799f305063dd"
+    },
     "qa/county-agents-v13-check.mjs": {
       "bytes": 2449,
       "sha256": "23d5658e031b4dded246b6da4c04168ff8dc22b5366a539e9110fbc77d613de2"
@@ -672,6 +712,14 @@
       "bytes": 344,
       "sha256": "2f6c0b667002b6a05827e907fa2ae815b9e8512afdc0fd93bbfe7b7aa5d23d5e"
     },
+    "qa/county-agents-v14-check.mjs": {
+      "bytes": 2464,
+      "sha256": "062282500f0da5bae9730a69420b8bffe78563e499862ac0cff484559026b01c"
+    },
+    "qa/county-agents-v14-results.json": {
+      "bytes": 344,
+      "sha256": "d4a1f0ecc855acea4154fd75f0fe5f12f2f7743e3120070e16be20810fd9ee2c"
+    },
     "qa/county-browser-v13-results.json": {
       "bytes": 512,
       "sha256": "2a2e1eec92fa8e4eff0f3ac65a87c8b4971f9e33f0c2d652dfcd3ccf91d2a9f2"
@@ -679,6 +727,14 @@
     "qa/county-browser-v13.cjs": {
       "bytes": 2973,
       "sha256": "a66ce07c1ed8383fd6243c6f4e281ff108a66feb774afa66ecac9d067b463024"
+    },
+    "qa/county-browser-v14-results.json": {
+      "bytes": 729,
+      "sha256": "47217be773ffc28d27259d5512790ec0c94135187de3ca0b30403878d6a68695"
+    },
+    "qa/county-browser-v14.cjs": {
+      "bytes": 4437,
+      "sha256": "356819f157f000236e80c01d93d8909d1cb381b3050c39700c8e52be242c77d7"
     },
     "qa/county-v13-check.mjs": {
       "bytes": 5083,
@@ -954,7 +1010,7 @@
     },
     "qa/multiplayer-v9-results.json": {
       "bytes": 2461,
-      "sha256": "865f0bc57c72f425a3b3e35ba4d59b0ea436cc4bf6f58452a690a628d5673a15"
+      "sha256": "83af4f3fa3f84e3a56ac2b23e8fd0af9f9f8908bdd24b131fb4b9cb2d6d622f7"
     },
     "qa/navigation-main-v12-check.mjs": {
       "bytes": 9320,
@@ -969,6 +1025,14 @@
       "sha256": "eeb29c3d7e0d0d2ca6922ac775e7fca58970bb9195140b1cd92a279b8c552479"
     },
     "qa/navigation-main-v13-results.json": {
+      "bytes": 1072,
+      "sha256": "146fd23314605dc5fa98489654852203adcf5e2c336fe7e8edef473a3f388692"
+    },
+    "qa/navigation-main-v14-check.mjs": {
+      "bytes": 9506,
+      "sha256": "9e2ea9888d897da21883cd814ab449117d92e5eb9c62a4e122ad84941bdf9a5d"
+    },
+    "qa/navigation-main-v14-results.json": {
       "bytes": 1072,
       "sha256": "146fd23314605dc5fa98489654852203adcf5e2c336fe7e8edef473a3f388692"
     },
@@ -1035,6 +1099,10 @@
     "qa/package-v13.mjs": {
       "bytes": 2663,
       "sha256": "e4fc251544fb425835d6314f0f1a6dab20655c0b18bde914f9fd5587019a965b"
+    },
+    "qa/package-v14.mjs": {
+      "bytes": 2663,
+      "sha256": "d95be5a70044f4d8b321a0987b35a251f6076e0edf015de8fe15363fb023e8f8"
     },
     "qa/peerjs-codec-v9-check.mjs": {
       "bytes": 6969,
@@ -1134,7 +1202,7 @@
     },
     "qa/police-v11-results.json": {
       "bytes": 3721,
-      "sha256": "920a2fb54c8dc356a89a782cb91b2d056a1c9c981d4fefe03ee60ea523bc8334"
+      "sha256": "b51ddddaf48a54ee5001926cf4a405f6771abd3489433124e8cc43544bf68101"
     },
     "qa/police-v6-check.mjs": {
       "bytes": 8384,
@@ -1206,7 +1274,7 @@
     },
     "qa/race-v11-results.json": {
       "bytes": 3815,
-      "sha256": "3d4e93f1eac25be49999aaf7119959c3b805609699fa88bd9e4336fd079888b4"
+      "sha256": "9145ac581ca2002db167e937b2b01e8661e7b1beb21745c92d294a378ddaf4ab"
     },
     "qa/regression-v10-check.mjs": {
       "bytes": 2620,
@@ -1227,6 +1295,10 @@
     "qa/release-v13.json": {
       "bytes": 3063,
       "sha256": "c84a1a0379de1d74572acdbc391fdc212d075dbd160c195fee6c84b00550fd72"
+    },
+    "qa/release-v14.json": {
+      "bytes": 3154,
+      "sha256": "42ca34ee9fafd28a1b9fc7ad640f43788f467b4cf24d098a13e60ec0cf6c818e"
     },
     "qa/release-v6.json": {
       "bytes": 6466,
@@ -1257,6 +1329,14 @@
       "sha256": "3d6599d41a097b64f4b6e4db23864b92041dccd581e1328ba4b0b291b76ab670"
     },
     "qa/restart-v13-results.json": {
+      "bytes": 448,
+      "sha256": "8f7e03d671cf4e95b1de5a86cfc014b759835d44a80d836cc6f7b5a34d135a61"
+    },
+    "qa/restart-v14-check.mjs": {
+      "bytes": 2541,
+      "sha256": "2012e51108d2b03eec6dfeef609b8aaa0694395ac267f5e0acda07299a8680d7"
+    },
+    "qa/restart-v14-results.json": {
       "bytes": 448,
       "sha256": "8f7e03d671cf4e95b1de5a86cfc014b759835d44a80d836cc6f7b5a34d135a61"
     },
@@ -1324,6 +1404,14 @@
       "bytes": 3947,
       "sha256": "1ce8a016f9a04cb7b43812bc8abae4fdff5b93912c1649f9c03548ccc0874f41"
     },
+    "qa/standalone-browser-v14-results.json": {
+      "bytes": 805,
+      "sha256": "7cc830f0e2f7388f41a94a6ff691e179a9c7b94010011cf3f936385451fc1375"
+    },
+    "qa/standalone-browser-v14.cjs": {
+      "bytes": 5421,
+      "sha256": "10caac710af14be7cc85ba834f897b7c3a7ff7e35703903f032da251545f82ea"
+    },
     "qa/standalone-check.mjs": {
       "bytes": 2660,
       "sha256": "91662588ecdc1d3b8ad2352de98ddd47d4c569d0f5cb736655be3b9c65d17ca3"
@@ -1355,6 +1443,14 @@
     "qa/standalone-v13-results.json": {
       "bytes": 210,
       "sha256": "06d484b01c21905049baa06e8f79c359a0a92b720d223a6cf4dd8ce40a8c0038"
+    },
+    "qa/standalone-v14-check.mjs": {
+      "bytes": 2743,
+      "sha256": "4e1a1d0699b20318d1372ceb1b1f58a771ab69db4da4071d71a2de17e4abb6e5"
+    },
+    "qa/standalone-v14-results.json": {
+      "bytes": 210,
+      "sha256": "5ca9fd36b5eb6a56a1a1644b6e85fb1d4de25477cde3126e36829ceaade9f670"
     },
     "qa/standalone-v2-results.json": {
       "bytes": 140,
@@ -1501,16 +1597,16 @@
       "sha256": "8cec0167696644671c7f2c11c37404332f6f48053f5e44e083c85ade06d8cb60"
     },
     "README.md": {
-      "bytes": 28655,
-      "sha256": "2dffd20fbdded5c96fe63cc9bad4c621214a6c0a5b016e36511dec79864313a8"
+      "bytes": 30360,
+      "sha256": "831de9f4272264c7ae332e56c039e98379852c5fc4dc02aa872e88c03110e017"
     },
-    "READ-ME-V13.txt": {
-      "bytes": 2403,
-      "sha256": "f472dd163fd810c6aa8897c72cb1275b0032ca8d24ee66e99ac8662a88f7da36"
+    "READ-ME-V14.txt": {
+      "bytes": 2914,
+      "sha256": "0e5c5ae2526024ac99bc4f1897ece6ceab25b096d98832b34f4a32b894922f4d"
     },
     "kontext.md": {
-      "bytes": 2536,
-      "sha256": "e64da0c9c3c7defbce4a97d54270aedd35875d0b77d8a9b6f3c6bbe762317a2b"
+      "bytes": 3397,
+      "sha256": "6ccf7a2429d61f0541fdce5b5ef16b29f9a216d1d5d43ea74ce6e7f931becf56"
     },
     "package.json": {
       "bytes": 249,
@@ -1525,8 +1621,8 @@
       "sha256": "dff8170fe7d5f3c73de6e2262c8a48773c16e5065e2282ae76207d7b2c368e57"
     },
     "SIDEWAYS.html": {
-      "bytes": 10521566,
-      "sha256": "04a0d07ecef6417035e7ecab9cc3e02929fe3c70a417742e8723dcb7171cb82c"
+      "bytes": 10548298,
+      "sha256": "2b3f5ec3bf2452f62360fc8bf0362948acffb70e123c17911862a9bd37abe88f"
     }
   }
 }

@@ -1,20 +1,20 @@
-# SIDEWAYS V13
+# SIDEWAYS V14
 
 [Play in your browser](https://thesimonmc.github.io/sideways/) · [Download ZIP or offline HTML](https://github.com/TheSimonMC/sideways/releases/latest)
 
 GitHub Pages publishes the tested `SIDEWAYS.html` on every push to `main`. To publish source changes, rebuild and rerun the standalone checks described below, then copy `dist/SIDEWAYS.html` to `SIDEWAYS.html` and commit it with the updated browser report. The deployment verifies that their SHA-256 values match.
 
-Start with **READ-ME-V13.txt** for the current UI, controls, audio extension and verification limits.
+Start with **READ-ME-V14.txt** for the current UI, controls, audio extension and verification limits.
 
 ## SIDEWAYS / City Sessions
 
 SIDEWAYS is a 3D driving game with low-poly comic graphics, a top-down camera, a manual drivetrain and a city to explore. Earn points from close passes, drifts and jobs, then buy cars, engine swaps and parts. Up to four friends can share a city through an eight-character lobby code.
 
-The player engine and its sound use the supplied MotorLab SDK 1.6.3, Physics Release 14 and Audio Release 14. The game has four fictional cars and eight engine families, with 16 independently selected part categories. City Free Roam uses Neon County; Time Attack and Drift Rush use the separate Dock 09 track. Chase and hood cameras are available alongside the default top-down view.
+The player engine and its sound use the supplied MotorLab SDK 1.6.3, Physics Release 14 and Audio Release 14. The game has four fictional cars and eight engine families, with 22 independently selected part categories, including six visual categories. City Free Roam uses Neon Archipelago; Time Attack and Drift Rush use the separate Dock 09 track. Chase and hood cameras are available alongside the default top-down view.
 
 ## Play the downloaded game
 
-Open `SIDEWAYS-v13.html` from the chat attachment. The complete ZIP includes the same game as `SIDEWAYS.html` at its root, along with the editable project, SDK, credits and instructions. Extract the ZIP before opening its HTML. Single-player, including NPC racing, needs no server or network download. Multiplayer still needs internet access to signaling and peers.
+Open `SIDEWAYS-v14.html` from the chat attachment. The complete ZIP includes the same game as `SIDEWAYS.html` at its root, along with the editable project, SDK, credits and instructions. Extract the ZIP before opening its HTML. Single-player, including NPC racing, needs no server or network download. Multiplayer still needs internet access to signaling and peers.
 
 The HTML includes code, fonts, models and sound. No Sites address is used by the game. Progress stays in the browser and origin where you played. Copying the HTML to another PC copies the game assets; it does not copy browser storage. Click or press a key to enable sound. A browser must expose a controller or wheel through its Gamepad API before the game can bind it.
 
@@ -25,7 +25,17 @@ npm ci
 node build.mjs
 ```
 
-This creates `dist/SIDEWAYS.html`. After running `node qa/standalone-v13-check.mjs` and `node qa/standalone-browser-v13.cjs` on that build, `node qa/package-v13.mjs` creates `release/SIDEWAYS-v13.html` and `release/SIDEWAYS-v13.zip`. The browser check needs Playwright; dependency and browser path options are in READ-ME-V13.txt. Packaging verifies that the tested HTML matches the delivered bytes. These commands do not publish a Site or push a repository.
+This creates `dist/SIDEWAYS.html`. After running `node qa/standalone-v14-check.mjs` and `node qa/standalone-browser-v14.cjs` on that build, `node qa/package-v14.mjs` creates `release/SIDEWAYS-v14.html` and `release/SIDEWAYS-v14.zip`. The browser check needs Playwright; dependency and browser path options are in READ-ME-V14.txt. Packaging verifies that the tested HTML matches the delivered bytes. These commands do not publish a Site or push a repository.
+
+## V14 changes
+
+Neon Archipelago connects four landmasses with five bridges. Its bounds cover 103.1 km² including water; approximately 52.5 km² are land. About 266 km of roads include the original downtown, expressway and hill routes, new coastal loops, six additional districts and narrow mid-block alleys. Seventeen fuel and garage destinations are reachable through the shared road graph. The northern roads reach 210 m.
+
+Palm Beach uses pastel Art Deco buildings, Westhaven has brick apartments and industrial docks, and Sunset Keys has low-rise resorts. Palm Junction, Eastport and Orchard Village add suburbs and industry around the mainland. The expansion adds 2,244 buildings assembled from separate façade, roof, window, awning and balcony components, plus palms, street furniture and landmarks. Distant architectural details are culled to limit rendering work. These are original low-poly districts; the map area does not imply GTA-level asset density or simulation.
+
+The garage now offers independently selected hoods, spoilers, side skirts, rims, front bumpers and rear bumpers on all four cars. Previewing is free; Buy & Install charges the displayed price and retains ownership. Older saves load factory visual parts. Cosmetic changes preserve engine and drivetrain behavior. V14 multiplayer uses protocol 10 and carries the visual selections; all participants need V14.
+
+Road crossings share navigation nodes. Lane offsets and civilian speeds account for narrow streets, and the map can zoom far enough to select individual roads. Water recovery returns the car to asphalt while preserving damage. The V13 restart and Escape fixes remain in place.
 
 ## V13 changes
 
@@ -236,10 +246,10 @@ node qa/multiplayer-v9-check.mjs
 node qa/police-v11-check.mjs
 node qa/race-v11-check.mjs
 node build.mjs
-node qa/standalone-v13-check.mjs
-node qa/standalone-browser-v13.cjs
+node qa/standalone-v14-check.mjs
+node qa/standalone-browser-v14.cjs
 node qa/county-browser-v13.cjs
-node qa/package-v13.mjs
+node qa/package-v14.mjs
 ```
 
 The county checks cover connectivity, directed roundabouts, lane clearances, grades, service routes, all regional turn guides and 642 raycast wheel positions. The agent checks drive NPCs on hills and verify wheel heights and remote police search coordinates. The standalone browser test starts with a severely damaged save, starts Free Roam, exercises Escape, map, driving and Restart, and records the exact HTML SHA-256. Separate rendered views cover hills, highway, roundabout and overview.

@@ -83,7 +83,7 @@
     "Search knowledge comes from sightings and camera reports; the UI still knows the player position to draw nearby police."
   ],
   "sourceSHA256": {
-    "dist/police.js": "2ee60eb5e4e1a33e83eee555df4fbabffd15ca0d97965cfe20a8d21851d7da87",
-    "dist/traffic.js": "b811cca6c4fe0ebd913382eea5394b012ed95ecd24959726c666821b5fc4f73a"
+    "dist/police.js": "d5e00dced5154659b8a20480fbb605ba82507ac93a6c35c79d545d91bce11015",
+    "dist/traffic.js": "75ea00a208580ea0bf044869f5c38ffafb7ff5d53739c4bc5f3e97f00dc4915d"
   }
 }

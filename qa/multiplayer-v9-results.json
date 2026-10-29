@@ -19,7 +19,7 @@
       "trafficCars": 36,
       "policeCars": 6,
       "players": 4,
-      "jsonMeasureBytes": 21694,
+      "jsonMeasureBytes": 21607,
       "transport": "binary"
     },
     "startFailure": {
@@ -28,11 +28,11 @@
       "detail": "Error: Shader compile failed; username=[redacted] password=[redacted] token=[redacted] [address]",
       "persistent": true
     },
-    "sendFailure": "frame packet: 1015 UTF-8 bytes; transport: binary. Error: Data channel write failed"
+    "sendFailure": "frame packet: 1017 UTF-8 bytes; transport: binary. Error: Data channel write failed"
   },
   "verificationLimit": "Protocol and lifecycle tests use an in-memory PeerJS-compatible transport that records serialization and enforces the shipped JSON byte cap. Actual vendor encoding/chunking is tested in peerjs-codec-v9-check.mjs. These checks do not establish signaling availability or internet ICE connectivity.",
   "modules": {
-    "dist/multiplayer.js": "f38070b56a3accc680fbb771fa60542365dd1dd56a817aab94cca636fcb9e111",
+    "dist/multiplayer.js": "0db1ccb5ad5c8e358fb34aefcaa8751db752e1bb3c4202576ab51bc455ad8000",
     "dist/lobby-panel.js": "040d8dcef7beb4b391cbc7b9ee19c30964b5f344757b365c3ed2c53085b9ba49",
     "qa/network-v9-harness.mjs": "0352e72577d59fbaaeb3ae4851e9604737428a154f7ce9179cb1cc79ff41332b"
   }

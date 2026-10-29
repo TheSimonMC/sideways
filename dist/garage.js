@@ -1,3 +1,4 @@
+import {COSMETIC_LABELS} from './cosmetics.js';
 import {VEHICLES,ENGINES,PARTS,PART_LABELS,resolveBuild} from './catalog.js';
 
 const $=id=>document.getElementById(id);
@@ -53,7 +54,7 @@ export class GaragePanel {
    const owned=this.economy?.owns(group,item.id),price=this.economy?.price(group,item.id)||0;
    const button=document.createElement('button');button.type='button';button.className='part-card'+(active?' active':'');button.dataset.navKey='part-'+key+'-'+item.id;button.setAttribute('aria-pressed',String(active));
    button.innerHTML='<span class="part-tier"></span><strong></strong><p></p><div class="part-bottom"><b></b><span></span></div>';
-   button.querySelector('.part-tier').textContent=key==='cars'?item.model.number:key==='engine'?item.layout.toUpperCase():['STREET','SPORT','RACE'][i]||'PART';
+   button.querySelector('.part-tier').textContent=key==='cars'?item.model.number:key==='engine'?item.layout.toUpperCase():COSMETIC_LABELS[key]?'VISUAL PART':['STREET','SPORT','RACE'][i]||'PART';
    button.querySelector('strong').textContent=item.name;button.querySelector('p').textContent=item.description;
    button.querySelector('.part-bottom b').textContent=owned?'OWNED':number(price)+' PTS';button.querySelector('.part-bottom span').textContent=installed?'INSTALLED':active?'SELECTED':'PREVIEW';
    button.disabled=key==='turbo'&&!build.engine.turbo;if(button.disabled)button.querySelector('p').textContent='Requires a turbocharged engine.';

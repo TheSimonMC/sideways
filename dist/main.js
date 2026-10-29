@@ -52,7 +52,7 @@ const career=new Career(saved.career,activeBuild.selection),navigation=new RoadN
 const remoteContacts=new RemoteContactTracker();
 if(career.quote(activeBuild).total>0)activeBuild=resolveBuild();settings.build=activeBuild.selection;
 const records={sprint:saved.sprint??null,drift:saved.drift??0,free:saved.free??0,raceWins:Math.max(0,Math.floor(Number(saved.raceWins)||0))};
-const persist=()=>{try{localStorage.setItem('sideways-v1',JSON.stringify({...settings,...records,gameVersion:12,career:career.serialize(),worldHour:environment?.hour??17.2,garageState:physics?.exportGarageState?.()}))}catch{}};
+const persist=()=>{try{localStorage.setItem('sideways-v1',JSON.stringify({...settings,...records,gameVersion:14,career:career.serialize(),worldHour:environment?.hour??17.2,garageState:physics?.exportGarageState?.()}))}catch{}};
 const isTouch=matchMedia('(pointer: coarse)').matches;
 let instruments;
 let renderer,post,scene,camera,world,car,fx,physics,audio,sun,checkpointGroup,inputManager,controlsPanel,garagePanel,gameUI,traffic,police,environment,enforcement;
@@ -201,7 +201,7 @@ function updateInputPrompts(force=false){
 function selectMode(value){
  selectedMode=PLAY_MODES.includes(value)?value:'free';
  document.querySelectorAll('[data-mode]').forEach(el=>{const active=el.dataset.mode===selectedMode;el.classList.toggle('active',active);el.setAttribute('aria-pressed',String(active));});
- $('destination-name').textContent=selectedMode==='free'?'NEON COUNTY':'DOCK 09';
+ $('destination-name').textContent=selectedMode==='free'?'NEON ARCHIPELAGO':'DOCK 09';
  $('destination-detail').textContent=selectedMode==='free'?'CITY · TRAFFIC · POLICE · SERVICES':selectedMode==='race'?'5 RIVALS · '+settings.raceLaps+' LAPS · '+settings.raceDifficulty.toUpperCase():selectedMode==='sprint'?'DOCK LAP · YOUR BEST TIME':'90 SECONDS · DRIFT COMBOS';
  $('race-options').classList.toggle('hidden',selectedMode!=='race');$('race-difficulty').value=settings.raceDifficulty;$('race-laps').value=String(settings.raceLaps);gameUI?.sync();
  $('start-label').textContent=selectedMode==='free'?'ENTER THE CITY':selectedMode==='race'?'JOIN THE GRID':'HIT THE TRACK';
@@ -230,7 +230,7 @@ function selectWorld(target){
  }else world=createShowroom(scene);
  worldSignature=signature;physics?.setGroundSampler((x,z)=>world.getSurfaceAt(x,z));environment?.setWorld(world);serviceTarget=null;serviceJob=null;policeState=police?.getState?.()||{phase:'patrol',heat:0,officers:[],arrestProgress:0};
  career.setWorld(world);navigation.setWorld(world);mapView.reset(world,state||world.spawn);refreshMapPlaces();syncCareerUI();
- $('location-name').textContent=world.name||(kind==='dock'?'DOCK 09':'MOTOR WORKS');$('map-title').textContent=kind==='city'?'NEON COUNTY':'DOCK 09';
+ $('location-name').textContent=world.name||(kind==='dock'?'DOCK 09':'MOTOR WORKS');$('map-title').textContent=kind==='city'?'NEON ARCHIPELAGO':'DOCK 09';
 }
 
 function online(){return !!network?.playing;}
@@ -488,7 +488,7 @@ async function startGame(newMode,options={}){
  career.teleport();handleCareerEvents();
  const request=++transitionSerial;audio.start().catch(()=>{});controlsPanel?.hide();mode=PLAY_MODES.includes(newMode)?newMode:'free';phase='loading';paused=true;modalName=null;clearInputs();audio.suspend(true);updateAudioFocus();hideDialog();
  $('menu').classList.add('hidden');$('hud').classList.add('hidden');$('touch-controls').classList.add('hidden');
- gameUI.loading(mode==='free'?'NEON COUNTY':'DOCK 09',mode==='free'?'PREPARING THE CITY':'PREPARING THE TRACK');
+ gameUI.loading(mode==='free'?'NEON ARCHIPELAGO':'DOCK 09',mode==='free'?'PREPARING THE CITY':'PREPARING THE TRACK');
  let loadStage='city';
  try{
   await nextPaint();if(request!==transitionSerial)return;race?.dispose?.();race=null;raceState=null;raceRecovery=0;raceRetired=false;raceUI?.render(null);raceUI?.results(null);selectWorld(mode);resetWorldFeedback();
@@ -497,13 +497,13 @@ async function startGame(newMode,options={}){
   if(mode==='race'){gameUI.loadingStatus('PREPARING THE STARTING GRID');race=createRace(scene,world,{count:5,laps:settings.raceLaps,difficulty:settings.raceDifficulty,playerName:settings.playerName,seed:1109});race.reset();raceState=race.getState();}
   let spawn=race?race.getPlayerSpawn():world.spawn;if(online()){const index=network.getState().players.findIndex(p=>p.id===network.id);if(index>0)spawn=world.getResetPose(spawn.x-Math.sin(spawn.heading)*9*index,spawn.z-Math.cos(spawn.heading)*9*index,spawn.heading);}
   loadStage='vehicle';physics.setDamageEnabled?.(!online()||network.rules.damage);physics.restart(spawn.x,spawn.z,spawn.heading,{neutral:activeInputConfig.transmission!=='auto'});physics.setTune(settings.handling);state=physics.state;persist();lookYaw=0;lookPitch=0;resetPresentation();audio.update(state);fx.reset();initialCamera=true;post.reset();
-  car.group.position.set(state.x,0,state.z);car.group.rotation.y=state.heading;car.update(state,0,totalTime);updateCamera(1,true);world.update(0,totalTime);
+  car.group.position.set(state.x,0,state.z);car.group.rotation.y=state.heading;car.update(state,0,totalTime);updateCamera(1,true);world.update(0,totalTime,state);
   await nextPaint();if(request!==transitionSerial)return;loadStage='shaders';gameUI.loadingStatus('FINISHING LIGHTING');if(renderer.compileAsync)await renderer.compileAsync(scene,camera);if(request!==transitionSerial)return;
   phase=mode==='free'?'playing':'countdown';paused=false;document.body.classList.add('playing');$('hud').classList.remove('hidden');if(isTouch)$('touch-controls').classList.remove('hidden');
   runTime=0;driftRemaining=90;score=0;comboPoints=0;comboDuration=0;comboGrace=0;nextCheckpoint=0;completedCheckpoints=0;lapArmed=false;countdownTime=3.15;previousCountdown=4;accumulator=0;offroadTimer=0;previousBoost=false;distanceDriven=0;lastDistrict='';discoveredDistricts=new Set();
   lastRoad=world.getRoadInfo(state.x,state.z);$('mode-label').textContent={free:'CITY FREE ROAM',race:'CLUB RACE',sprint:'TIME ATTACK',drift:'DRIFT RUSH'}[mode];$('checkpoint-label').classList.toggle('hidden',!['sprint','race'].includes(mode));$('countdown').classList.toggle('hidden',phase!=='countdown');ui.combo.classList.remove('visible');updateCheckpoint();
   gameUI.finishLoading();gameUI.enter($('run-panel'));audio.setMuted(muted);audio.suspend(false);$('game').focus({preventScroll:true});syncSettings();lastNow=performance.now();
-  if(mode==='free')toast(online()?'CITY SESSION · '+network.getState().code:'NEON COUNTY · FREE ROAM');syncCareerUI();updateAudioFocus();
+  if(mode==='free')toast(online()?'CITY SESSION · '+network.getState().code:'NEON ARCHIPELAGO · FREE ROAM');syncCareerUI();updateAudioFocus();
  }catch(error){if(request!==transitionSerial)return;if(options.online)network.failStart(error,{stage:loadStage});showMenu();if(options.online){openLobby();toast(network.lastIssue?.message||'The city could not start. See the lobby for details.');}else toast('COULD NOT START: '+(error?.message||error));console.error(error);}
 }
 function resetCar(){
@@ -547,7 +547,7 @@ function resolveCollisions(previousPosition,dt=1/120){
   }
  }
  const bounds=world.bounds,margin=world.kind==='city'?2:20;
- if(state.x<bounds.minX+margin||state.x>bounds.maxX-margin||state.z<bounds.minZ+margin||state.z>bounds.maxZ-margin){offroadTimer+=dt;if(offroadTimer>1)resetCar()}else offroadTimer=0;
+ if(world.getSurfaceAt(state.x,state.z).material==='water'||state.x<bounds.minX+margin||state.x>bounds.maxX-margin||state.z<bounds.minZ+margin||state.z>bounds.maxZ-margin){offroadTimer+=dt;if(offroadTimer>1)resetCar()}else offroadTimer=0;
 }
 function tickCityAgents(dt){
  const player=localAIPlayer(),players=remoteAIPlayers();if(paused||phase==='arrested'){player.vx=player.vz=player.speed=player.forwardSpeed=player.throttle=0;player.horn=false;}
@@ -742,7 +742,7 @@ function updateHUD(){
   $('tyre-state').textContent=state.burnout?'BURNOUT / REAR WHEELSPIN':state.absActive?'ABS ACTIVE':state.drifting?'SLIDING / DRIFT':state.handbrake>.1?'HANDBRAKE ACTIVE':'TYRES GRIPPING';$('tyre-state').classList.toggle('burning',!!state.burnout);
  }
  ui.time.textContent=mode==='drift'?Math.ceil(driftRemaining).toString().padStart(2,'0')+' SEC':formatTime(runTime);
- ui.detail.textContent=mode==='race'?(raceState?'LAP '+Math.min(raceState.playerLap,raceState.laps)+' / '+raceState.laps:'STARTING GRID'):mode==='drift'?'CHAIN CLEAN DRIFTS':mode==='sprint'?(lapArmed?Math.round(lastRoad.progress*100)+'% OF LAP':'CROSS THE START LINE'):(world.getDistrict?.(state.x,state.z)||'NEON COUNTY')+' · '+(distanceDriven/1000).toFixed(1)+' KM';
+ ui.detail.textContent=mode==='race'?(raceState?'LAP '+Math.min(raceState.playerLap,raceState.laps)+' / '+raceState.laps:'STARTING GRID'):mode==='drift'?'CHAIN CLEAN DRIFTS':mode==='sprint'?(lapArmed?Math.round(lastRoad.progress*100)+'% OF LAP':'CROSS THE START LINE'):(world.getDistrict?.(state.x,state.z)||'NEON ARCHIPELAGO')+' · '+(distanceDriven/1000).toFixed(1)+' KM';
  if(mode==='free'&&world.kind==='city'){const district=world.getDistrict(state.x,state.z);if(district!==lastDistrict){lastDistrict=district;if(!discoveredDistricts.has(district)){discoveredDistricts.add(district);toast(district+' · DISTRICT DISCOVERED');}}$('city-traffic').textContent=traffic.states.length+' CARS';}
  $('city-status').classList.toggle('hidden',mode!=='free');
  raceUI?.render(raceState,{visible:mode==='race'&&['playing','countdown'].includes(phase),recovery:raceRecovery});
@@ -822,5 +822,5 @@ function frame(now){
  requestAnimationFrame(frame);
 }
 // Read-only diagnostics for local QA. No player controls or game-state shortcuts.
-window.sidewaysDiagnostics=()=>({phase,paused,mode,camera:settings.camera,speed:state?.speed,rpm:state?.rpm,gear:state?.gear,heading:state?.heading,x:state?.x,z:state?.z,driftAngle:state?.driftAngle,drifting:state?.drifting,score,runTime,checkpoint:nextCheckpoint,fps:renderFps,drawCalls:renderer?.info.render.calls,roadDistance:lastRoad?.distance,engineVersion:window.MotorLab?.version,engineAudioRelease:window.MotorLab?.audioRelease,enginePhysicsRelease:window.MotorLab?.physicsRelease,engineClock:physics?.engine?.getTiming().clock,transmission:state?.transmission,handbrake:state?.handbrake,clutch:state?.clutch,inputMode:activeInputConfig?.mode,build:activeBuild?.selection,engineRunning:state?.engineRunning,engineStalled:state?.engineStalled,burnout:state?.burnout,wheelLoads:state?.wheelLoads,bodyHeight:state?.bodyHeight,bodyPitch:state?.bodyPitch,bodyRoll:state?.bodyRoll,surfaces:state?.wheelAudio?.map(w=>w.surface),audio:audio?.getDiagnostics?.(),world:world?.kind||'dock',traffic:traffic?.diagnostics?.(),input:inputManager?.getPresentation?.(),nitrousIntensity:state?.nitrousIntensity,nitrousTorque:state?.nitrousTorque,version:13,race:race?.diagnostics?.(),raceState,raceRecovery,mechanical:state?.mechanical,career:career.getState(),navigation:navigation.getState(),multiplayer:network?.diagnostics(),police:policeState,enforcement:enforcementState,acoustics:acousticState,terrain:fx?.debug?.().terrain,worldHour:environment?.hour,worldKind:world?.kind,fuel:state?.fuelLitres,engineHealth:state?.engineHealth,bodyHealth:state?.bodyHealth,wheelAttached:state?.wheelAttached,lookYaw,lookPitch,worldGroups:scene?.children.filter(x=>['NEON-CITY','DOCK-09','SHOWROOM'].includes(x.name)).length});
+window.sidewaysDiagnostics=()=>({phase,paused,mode,camera:settings.camera,speed:state?.speed,rpm:state?.rpm,gear:state?.gear,heading:state?.heading,x:state?.x,z:state?.z,driftAngle:state?.driftAngle,drifting:state?.drifting,score,runTime,checkpoint:nextCheckpoint,fps:renderFps,drawCalls:renderer?.info.render.calls,roadDistance:lastRoad?.distance,engineVersion:window.MotorLab?.version,engineAudioRelease:window.MotorLab?.audioRelease,enginePhysicsRelease:window.MotorLab?.physicsRelease,engineClock:physics?.engine?.getTiming().clock,transmission:state?.transmission,handbrake:state?.handbrake,clutch:state?.clutch,inputMode:activeInputConfig?.mode,build:activeBuild?.selection,engineRunning:state?.engineRunning,engineStalled:state?.engineStalled,burnout:state?.burnout,wheelLoads:state?.wheelLoads,bodyHeight:state?.bodyHeight,bodyPitch:state?.bodyPitch,bodyRoll:state?.bodyRoll,surfaces:state?.wheelAudio?.map(w=>w.surface),audio:audio?.getDiagnostics?.(),world:world?.kind||'dock',traffic:traffic?.diagnostics?.(),input:inputManager?.getPresentation?.(),nitrousIntensity:state?.nitrousIntensity,nitrousTorque:state?.nitrousTorque,version:14,race:race?.diagnostics?.(),raceState,raceRecovery,mechanical:state?.mechanical,career:career.getState(),navigation:navigation.getState(),multiplayer:network?.diagnostics(),police:policeState,enforcement:enforcementState,acoustics:acousticState,terrain:fx?.debug?.().terrain,worldHour:environment?.hour,worldKind:world?.kind,fuel:state?.fuelLitres,engineHealth:state?.engineHealth,bodyHealth:state?.bodyHealth,wheelAttached:state?.wheelAttached,lookYaw,lookPitch,worldGroups:scene?.children.filter(x=>['NEON-CITY','DOCK-09','SHOWROOM'].includes(x.name)).length});
 init().catch(showError);

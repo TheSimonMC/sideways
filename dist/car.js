@@ -1,3 +1,4 @@
+import {addCosmetics,addRim} from './car-cosmetics.js';
 import * as THREE from './vendor/three.module.js';
 import { resolveBuild } from './catalog.js';
 import {bodyDisplacement} from './body-damage.js';
@@ -128,7 +129,7 @@ export function createCar(scene, initialBuild = resolveBuild()) {
         const lamp=new THREE.Mesh(new THREE.CylinderGeometry(.105,.105,.035,12),headlamp);lamp.rotation.x=Math.PI/2;lamp.position.set(side*W*.72+off,.715,L*.984);chassis.add(lamp);
         const rim=new THREE.Mesh(new THREE.TorusGeometry(.108,.014,3,12),chrome);rim.position.copy(lamp.position);rim.position.z+=.024;chassis.add(rim);
       }
-      box(chassis,0,.915,.96,.55,.17,.85,graphite,true);box(chassis,0,.95,1.39,.44,.06,.03,dark);
+      if(build.selection.hood==='stock'){box(chassis,0,.915,.96,.55,.17,.85,graphite,true);box(chassis,0,.95,1.39,.44,.06,.03,dark);}
       for(const side of [-1,1])panel(chassis,[[side*.13,.94,.70],[side*.34,.94,.70],[side*.34,.81,L*.94],[side*.13,.81,L*.94]],dark,false);
     } else if(kind==='wedge'){
       for(const side of [-1,1]){
@@ -168,7 +169,7 @@ export function createCar(scene, initialBuild = resolveBuild()) {
       box(chassis,side*W*.96,.59,-.04,.055,.025,1.40,dark);
       box(chassis,side*W*.98,.73,-.44,.035,.035,.18,dark);
       box(chassis,side*W*1.04,q.sill+.01,q.screenFront-.26,.17,.10,.22,graphite,true);
-      box(chassis,side*W*1.015,.29,0,.13,.10,1.76,graphite,true);
+      if(build.selection.sideSkirts==='stock')box(chassis,side*W*1.015,.29,0,.13,.10,1.76,graphite,true);
       panel(chassis,[[side*W*1.004,.49,-1.02],[side*W*1.004,.72,-.61],[side*W*1.004,.72,-.40],[side*W*1.004,.49,-.81]],accent,false);
       // Angular over-fenders stay fixed to the sprung body, wheels move inside them.
       for(const z0 of [p.frontAxle,-p.rearAxle]){
@@ -196,6 +197,7 @@ export function createCar(scene, initialBuild = resolveBuild()) {
     }
     box(chassis,0,.60,-L*.992,.29,.13,.022,white);
     for(const x of [-.47,0,.47])box(chassis,x,.23,-L*.94,.04,.14,.32,dark);
+    if(build.selection.spoiler==='stock'){
     if(kind==='coupe'){
       for(const side of [-1,1]){box(chassis,side*.59,.98,-L*.81,.055,.34,.10,dark);box(chassis,side*.97,1.15,-L*.86,.047,.20,.42,paint,true);}
       const wing=box(chassis,0,1.14,-L*.86,1.98,.075,.36,graphite,true);wing.rotation.x=-.08;
@@ -208,6 +210,8 @@ export function createCar(scene, initialBuild = resolveBuild()) {
       box(chassis,0,1.40,-1.17,1.48,.07,.24,graphite,true);
       for(const side of [-1,1])box(chassis,side*.60,1.14,-1.48,.035,.17,.045,graphite);
     }
+    }
+    addCosmetics({chassis,selection:build.selection,q,L,W,paint,dark,graphite,chrome,accent,box,panel,beam});
     const flames=[],exhaustMouths=[];
     const pipes=kind==='muscle'?[-.70,.70]:kind==='wedge'?[.60]:[.61,.77];
     for(const x of pipes){
@@ -226,9 +230,11 @@ export function createCar(scene, initialBuild = resolveBuild()) {
       const spin=new THREE.Group();pivot.add(spin);
       const tyre=new THREE.Mesh(new THREE.CylinderGeometry(R,R,tyreWidth,12,1),rubber);tyre.rotation.z=Math.PI/2;tyre.castShadow=true;spin.add(tyre);
       const rim=new THREE.Mesh(new THREE.CylinderGeometry(R*.72,R*.72,tyreWidth+.005,12),graphite);rim.rotation.z=Math.PI/2;spin.add(rim);
+      if(build.selection.rims==='stock'){
       const ring=new THREE.Mesh(new THREE.TorusGeometry(R*.73,.017,3,12),kind==='muscle'?chrome:white);ring.rotation.y=Math.PI/2;ring.position.x=side*(tyreWidth*.5+.009);spin.add(ring);
       const spokes=kind==='wedge'?3:kind==='tourer'?6:5;
       for(let n=0;n<spokes;n++){const spoke=box(spin,side*(tyreWidth*.5+.010),0,0,.024,kind==='wedge'?.08:.05,R*1.23,kind==='muscle'?chrome:white);spoke.rotation.x=n*Math.PI*2/spokes;}
+      }else addRim({spin,style:build.selection.rims,R,side,width:tyreWidth,chrome,graphite,box});
       const hub=new THREE.Mesh(new THREE.CylinderGeometry(.064,.064,tyreWidth+.03,8),dark);hub.rotation.z=Math.PI/2;spin.add(hub);
       const rotor=new THREE.Mesh(new THREE.CylinderGeometry(R*.57,R*.57,.012,12),chrome);rotor.rotation.z=Math.PI/2;rotor.position.x=side*(tyreWidth*.5-.015);pivot.add(rotor);
       box(pivot,side*(tyreWidth*.5-.005),.09,.11,.045,.16,.08,accent);

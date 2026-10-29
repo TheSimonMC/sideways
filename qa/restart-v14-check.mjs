@@ -1,0 +1,15 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import MotorLab from '../sdk/motor-engine.mjs';
+import {CarPhysics} from '../dist/physics.js';
+import {resolveBuild} from '../dist/catalog.js';
+import {sanitizeNetworkPose,MULTIPLAYER_VERSION} from '../dist/multiplayer.js';
+import {captureAgent,validAgent} from '../dist/agent-snapshot.js';
+const report={status:'pending',checks:[]};
+const p=new CarPhysics(MotorLab,resolveBuild());
+p.restoreCondition({engineHealth:.01,engineFault:'seized',bodyHealth:.1,gearboxHealth:.1,fuelLitres:0,boost:0,wheelAttached:[false,false,true,true],brakeHealth:[0,0,0,0],suspensionHealth:[.1,.1,.1,.1]});
+p.reset(10,20,0);assert.equal(p.state.wheelAttached[0],false);assert.equal(p.state.fuelLitres,0);assert.ok(p.state.engineHealth<.1);report.checks.push('Road recovery keeps condition, preventing an accidental change to the recovery mechanic');
+p.restart(40,50,.5,{neutral:true});assert.equal(p.state.x,40);assert.equal(p.state.gear,0);assert.equal(p.state.engineHealth,1);assert.equal(p.state.bodyHealth,1);assert.equal(p.state.engineFault,null);assert.ok(p.state.wheelAttached.every(Boolean));assert.ok(p.state.brakeHealth.every(v=>v===1));assert.equal(p.state.fuelLitres,p.state.fuelCapacity);assert.equal(p.state.boost,1);assert.ok(p.state.engineRunning);assert.equal(p.consumeMechanicalEvents().length,0);report.checks.push('Restart repairs engine, body, wheels, brakes and suspension, refills fuel/NOS and restarts engine');
+const restored=new CarPhysics(MotorLab,resolveBuild());restored.restoreGarageState(p.exportGarageState());assert.equal(restored.state.engineHealth,1);assert.ok(restored.state.wheelAttached.every(Boolean));report.checks.push('The restored condition survives garage serialization and a new physics instance');
+const pose=sanitizeNetworkPose({x:100,z:-2680,heading:.5,bodyHeight:158,groundHeight:157.5,suspension:[{wheelY:158}]});assert.ok(pose);assert.equal(pose.bodyHeight,158);assert.equal(pose.suspension[0].wheelY,158);assert.equal(sanitizeNetworkPose({x:99999,z:0,heading:0}),null);assert.equal(MULTIPLAYER_VERSION,10);assert.ok(validAgent(captureAgent({id:'test',x:100,z:-2680,y:158})));report.checks.push('New county coordinates and hill elevation survive network validation; old map sessions use a different protocol');
+await p.engine.dispose();await restored.engine.dispose();report.status='passed';fs.writeFileSync(new URL('restart-v14-results.json',import.meta.url),JSON.stringify(report,null,2));console.log(JSON.stringify(report));

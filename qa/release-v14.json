@@ -1,0 +1,89 @@
+{
+  "game": "SIDEWAYS",
+  "version": 14,
+  "date": "2026-10-29",
+  "status": "verified-with-documented-limits",
+  "base": "Published V13; reports not listed here are historical. The v9/v11 suite names describe their original fixtures; listed reports were rerun against V14.",
+  "delivery": {
+    "entry": "SIDEWAYS.html",
+    "separateFile": "SIDEWAYS-v14.html",
+    "htmlBytes": 10548298,
+    "htmlSha256": "2b3f5ec3bf2452f62360fc8bf0362948acffb70e123c17911862a9bd37abe88f",
+    "offlineSinglePlayer": true,
+    "externalRuntimeRequestsDuringOfflineTest": 0,
+    "publishedToSites": false
+  },
+  "currentFunctionalSuites": [
+    {
+      "file": "qa/archipelago-v14-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "296203b768b31dc9d3e9bf5f34e7cb610ef908aaf241da790ba525bb55843ff5"
+    },
+    {
+      "file": "qa/cosmetics-v14-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "8e81a5e59ccdfe57128df944b9e325d6cd4436e2a8999ac73201799f305063dd"
+    },
+    {
+      "file": "qa/county-agents-v14-results.json",
+      "status": "passed",
+      "groups": 3,
+      "sha256": "d4a1f0ecc855acea4154fd75f0fe5f12f2f7743e3120070e16be20810fd9ee2c"
+    },
+    {
+      "file": "qa/county-browser-v14-results.json",
+      "status": "passed",
+      "groups": 0,
+      "sha256": "47217be773ffc28d27259d5512790ec0c94135187de3ca0b30403878d6a68695"
+    },
+    {
+      "file": "qa/restart-v14-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "8f7e03d671cf4e95b1de5a86cfc014b759835d44a80d836cc6f7b5a34d135a61"
+    },
+    {
+      "file": "qa/navigation-main-v14-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "146fd23314605dc5fa98489654852203adcf5e2c336fe7e8edef473a3f388692"
+    },
+    {
+      "file": "qa/multiplayer-v9-results.json",
+      "status": "passed",
+      "groups": 11,
+      "sha256": "83af4f3fa3f84e3a56ac2b23e8fd0af9f9f8908bdd24b131fb4b9cb2d6d622f7"
+    },
+    {
+      "file": "qa/police-v11-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "b51ddddaf48a54ee5001926cf4a405f6771abd3489433124e8cc43544bf68101"
+    },
+    {
+      "file": "qa/race-v11-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "9145ac581ca2002db167e937b2b01e8661e7b1beb21745c92d294a378ddaf4ab"
+    },
+    {
+      "file": "qa/standalone-v14-results.json",
+      "status": "passed",
+      "groups": 0,
+      "sha256": "5ca9fd36b5eb6a56a1a1644b6e85fb1d4de25477cde3126e36829ceaade9f670"
+    },
+    {
+      "file": "qa/standalone-browser-v14-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "7cc830f0e2f7388f41a94a6ff691e179a9c7b94010011cf3f936385451fc1375"
+    }
+  ],
+  "limits": [
+    "Automated Chromium software rendering; no physical gamepad/wheel, listening or real cross-network multiplayer test.",
+    "Road geometry is sampled and graph routes are verified; every road metre was not manually driven.",
+    "SDK unchanged; prior replay-fixture discrepancy remains documented in qa/sdk-v12-baseline.json."
+  ]
+}

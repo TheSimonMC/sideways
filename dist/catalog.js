@@ -1,3 +1,4 @@
+import {COSMETIC_PARTS,COSMETIC_LABELS,COSMETIC_DEFAULTS} from './cosmetics.js';
 /** Fictional chassis, real MotorLab engine configurations. All part changes feed the solver. */
 export const VEHICLES = [
   {id:'hachi',name:'HACHI 09',subtitle:'STREET COUPÉ',description:'Light coupe with short gearing and a turbo six.',defaultEngine:'i6t',mass:1160,engineMass:190,inertia:1680,halfTrack:.87,frontAxle:1.30,rearAxle:1.30,wheelRadius:.34,wheelInertia:1.65,cgHeight:.49,finalDrive:3.8,gears:[3.70,2.48,1.83,1.43,1.16,.96],springRate:28000,damperRate:2600,antiRollRate:11000,brakeTorque:8300,brakeBias:.74,model:{kind:'coupe',length:4.42,width:2.03,height:1.31,number:'09'},color:'#d8fa50'},
@@ -20,6 +21,7 @@ export const ENGINES = [
 ];
 
 export const PARTS = {
+  ...COSMETIC_PARTS,
   ecu:[{id:'stock',name:'STOCK',description:'Stock redline and boost pressure.'},{id:'sport',name:'SPORT ECU',description:'Rev limit +300 RPM. Turbo target +0.12 bar.'},{id:'track',name:'TRACK ECU',description:'Rev limit +500 RPM. Turbo target +0.20 bar.'}],
   turbo:[{id:'stock',name:'STOCK TURBO',description:'Stock hardware. Not used by naturally aspirated engines.'},{id:'street',name:'STREET TURBO',description:'Higher flow, +0.20 bar and slightly more turbo inertia.'},{id:'race',name:'RACE TURBO',description:'Larger turbine, +0.45 bar and later boost.'}],
   exhaust:[{id:'street',name:'STREET EXHAUST',description:'Stock pipe size with exhaust damping.'},{id:'sport',name:'SPORT EXHAUST',description:'Larger pipe and less damping.'},{id:'race',name:'OPEN EXHAUST',description:'Short open exhaust with a larger pipe.'}],
@@ -37,8 +39,8 @@ export const PARTS = {
   tyreWidth:[{id:'stock',name:'STOCK WIDTH',description:'Factory tyre width, wheel track and rotational inertia.'},{id:'wide',name:'WIDE WHEELS',description:'300 mm tyres, wider track and more grip. More rolling resistance.'},{id:'race',name:'EXTRA-WIDE WHEELS',description:'340 mm tyres and wider track. More grip, wheel inertia and drag.'}],
   clutch:[{id:'street',name:'STREET CLUTCH',description:'Stock clamp force and progressive engagement.'},{id:'sport',name:'SPORT CLUTCH',description:'35% more clutch torque capacity.'},{id:'race',name:'RACE CLUTCH',description:'75% more clutch torque capacity.'}]
 };
-export const PART_LABELS = {ecu:'ECU',turbo:'TURBO',exhaust:'EXHAUST',tyres:'TYRES',suspension:'SUSPENSION',brakes:'BRAKES',differential:'DIFFERENTIAL',clutch:'CLUTCH',intake:'INTAKE',radiator:'RADIATOR',oilCooler:'OIL COOLING',internals:'ENGINE INTERNALS',transmission:'GEARSET',finalDrive:'FINAL DRIVE',chassis:'CHASSIS',tyreWidth:'WHEEL WIDTH'};
-export const DEFAULT_SELECTION = Object.freeze({carId:'hachi',engineId:'i6t',ecu:'stock',turbo:'stock',exhaust:'street',tyres:'street',suspension:'street',brakes:'street',differential:'lsd',clutch:'street',intake:'stock',radiator:'stock',oilCooler:'stock',internals:'stock',transmission:'stock',finalDrive:'stock',chassis:'stock',tyreWidth:'stock'});
+export const PART_LABELS = {...COSMETIC_LABELS,ecu:'ECU',turbo:'TURBO',exhaust:'EXHAUST',tyres:'TYRES',suspension:'SUSPENSION',brakes:'BRAKES',differential:'DIFFERENTIAL',clutch:'CLUTCH',intake:'INTAKE',radiator:'RADIATOR',oilCooler:'OIL COOLING',internals:'ENGINE INTERNALS',transmission:'GEARSET',finalDrive:'FINAL DRIVE',chassis:'CHASSIS',tyreWidth:'WHEEL WIDTH'};
+export const DEFAULT_SELECTION = Object.freeze({...COSMETIC_DEFAULTS,carId:'hachi',engineId:'i6t',ecu:'stock',turbo:'stock',exhaust:'street',tyres:'street',suspension:'street',brakes:'street',differential:'lsd',clutch:'street',intake:'stock',radiator:'stock',oilCooler:'stock',internals:'stock',transmission:'stock',finalDrive:'stock',chassis:'stock',tyreWidth:'stock'});
 const copy = value => JSON.parse(JSON.stringify(value));
 const find = (items,id,fallback) => items.find(item=>item.id===id) || items.find(item=>item.id===fallback) || items[0];
 

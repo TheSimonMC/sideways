@@ -1,0 +1,38 @@
+{
+  "version": 14,
+  "status": "passed",
+  "views": {
+    "overview": {
+      "drawCalls": 2131,
+      "triangles": 2127301
+    },
+    "palm": {
+      "drawCalls": 750,
+      "triangles": 1820652
+    },
+    "street": {
+      "drawCalls": 538,
+      "triangles": 844584
+    },
+    "bridge": {
+      "drawCalls": 263,
+      "triangles": 690954
+    },
+    "westhaven": {
+      "drawCalls": 264,
+      "triangles": 809636
+    },
+    "keys": {
+      "drawCalls": 1096,
+      "triangles": 1917640
+    },
+    "hills": {
+      "drawCalls": 1528,
+      "triangles": 1991153
+    }
+  },
+  "errors": [],
+  "limits": [
+    "Static regional views in Chromium software rendering; visual assessment is separate from geometric road checks."
+  ]
+}

@@ -56,7 +56,7 @@ export class RoadNavigator{
 }
 
 export function mapProjection({width,height,world,player,full=false,view={}}){
- const bounds=world.bounds,extent=Math.max(bounds.maxX-bounds.minX,bounds.maxZ-bounds.minZ),zoom=clamp(view.zoom||1,.75,4);
+ const bounds=world.bounds,extent=Math.max(bounds.maxX-bounds.minX,bounds.maxZ-bounds.minZ),zoom=clamp(view.zoom||1,.75,10);
  const scale=full?Math.min(width,height)/(extent+55)*zoom:Math.min(width,height)/(205+Math.min(95,(player.speed||0)*1.4));
  const cx=full?(view.x??(bounds.minX+bounds.maxX)/2):player.x,cz=full?(view.z??(bounds.minZ+bounds.maxZ)/2):player.z,angle=full?0:(view.heading??player.heading)-Math.PI,co=Math.cos(angle),si=Math.sin(angle),ox=width/2,oy=full?height/2:height*.57;
  return{scale,angle,ox,oy,project(x,z){const dx=x-cx,dz=z-cz;return{x:ox+(dx*co-dz*si)*scale,y:oy+(dx*si+dz*co)*scale};},unproject(x,y){const dx=(x-ox)/scale,dy=(y-oy)/scale;return{x:cx+dx*co+dy*si,z:cz-dx*si+dy*co};}};
@@ -76,7 +76,9 @@ export function drawRoadMap(ctx,{width,height,world,player,full=false,view={},na
  for(const park of(world.landmarks||[]).filter(p=>p.kind==='park')){const p=projection.project(park.x,park.z);if(!world.mapSurfaces?.length){ctx.fillStyle='#385747';ctx.beginPath();ctx.arc(p.x,p.y,36*projection.scale,0,Math.PI*2);ctx.fill();}ctx.fillStyle='#436a77';ctx.fillRect(p.x-4*projection.scale,p.y-4*projection.scale,8*projection.scale,8*projection.scale);}
  for(const b of world.mapBuildings||[]){const p=projection.project(b.x,b.z),w=(b.width||b.hx*2)*projection.scale,d=(b.depth||b.hz*2)*projection.scale;if(p.x+w<0||p.x-w>width||p.y+d<0||p.y-d>height)continue;ctx.save();ctx.translate(p.x,p.y);ctx.rotate(projection.angle-(b.heading||0));ctx.fillStyle=b.height>32?'#48565f':'#35444c';ctx.fillRect(-w/2,-d/2,w,d);ctx.restore();}
  const roads=world.kind==='city'?world.mapRoads:[{points:world.mapPoints,width:24}];ctx.lineCap='round';ctx.lineJoin='round';
- for(const pass of[0,1])for(const road of roads||[]){const points=road.points||[road.a,road.b];if(!points?.[0])continue;path(ctx,points,projection);ctx.strokeStyle=pass?'#8b9a95':'#142026';ctx.lineWidth=Math.max(road.kind==='alley'?1.8:2.5,(road.width||12)*projection.scale)+(pass?0:2.4);ctx.stroke();}
+ for(const pass of[0,1])for(const road of roads||[]){const points=road.points||[road.a,road.b];if(!points?.[0]||full&&projection.scale<.1&&road.kind==='alley')continue;
+  if(!road._mapBounds)road._mapBounds={minX:Math.min(...points.map(p=>p.x)),maxX:Math.max(...points.map(p=>p.x)),minZ:Math.min(...points.map(p=>p.z)),maxZ:Math.max(...points.map(p=>p.z))};const b=road._mapBounds,corners=[[b.minX,b.minZ],[b.maxX,b.minZ],[b.minX,b.maxZ],[b.maxX,b.maxZ]].map(([x,z])=>projection.project(x,z));if(corners.every(p=>p.x<-10)||corners.every(p=>p.x>width+10)||corners.every(p=>p.y<-10)||corners.every(p=>p.y>height+10))continue;
+  path(ctx,points,projection);ctx.strokeStyle=pass?(road.kind==='bridge'?'#dbc58f':'#8b9a95'):'#142026';ctx.lineWidth=Math.max(full?(road.kind==='alley'?.6:1.1):road.kind==='alley'?1.8:2.5,(road.width||12)*projection.scale)+(pass?0:full?1:2.4);ctx.stroke();}
  if(['chase','search'].includes(police.phase)&&police.searchCenter){const p=projection.project(police.searchCenter.x,police.searchCenter.z);ctx.fillStyle=police.phase==='search'?'#e3bf6227':'#ee6e7526';ctx.strokeStyle=police.phase==='search'?'#e4bf7599':'#ef818a99';ctx.lineWidth=1.5;ctx.beginPath();ctx.arc(p.x,p.y,(police.searchRadius||100)*projection.scale,0,Math.PI*2);ctx.fill();ctx.stroke();}
  if(navigation.points?.length>1){path(ctx,navigation.points,projection);ctx.lineWidth=full?12:8;ctx.strokeStyle='#122438';ctx.stroke();ctx.lineWidth=full?6.5:4.5;ctx.strokeStyle='#97bfff';ctx.stroke();}
  if(full){ctx.font='800 15px Barlow';ctx.fillStyle='#e0e6dca8';ctx.textAlign='center';ctx.textBaseline='middle';const labels=world.mapDistricts||[];for(const d of labels){const p=projection.project(d.x,d.z);ctx.fillText(d.name,p.x,p.y);}}
@@ -99,5 +101,5 @@ export class MapView{
  reset(world,player){this.zoom=1;this.x=(world.bounds.minX+world.bounds.maxX)/2;this.z=(world.bounds.minZ+world.bounds.maxZ)/2;this.cursor={x:player.x,z:player.z};this.heading=player.heading;}
  updateHeading(heading,dt){this.heading+=wrap(heading-this.heading)*(1-Math.exp(-10*dt));}
  moveCursor(dx,dz,world){const step=18/this.zoom*Math.max(1,(world.bounds.maxX-world.bounds.minX)/1000);this.cursor=this.cursor||{x:this.x||0,z:this.z||0};this.cursor.x=clamp(this.cursor.x+dx*step,world.bounds.minX+8,world.bounds.maxX-8);this.cursor.z=clamp(this.cursor.z+dz*step,world.bounds.minZ+8,world.bounds.maxZ-8);}
- changeZoom(amount){this.zoom=clamp(this.zoom*amount,.75,4);}
+ changeZoom(amount){this.zoom=clamp(this.zoom*amount,.75,10);}
 }
