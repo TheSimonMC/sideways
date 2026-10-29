@@ -1,0 +1,76 @@
+{
+  "status": "passed",
+  "scope": "Deterministic native-engine physics at 120 Hz; fictional damage calibration, no claim of vehicle-engineering fidelity.",
+  "checks": [
+    "New damage arrays sanitize, deep-copy and default to healthy for older saves.",
+    "Localized moderate collisions bend alignment and reduce the struck spring/damper and brake, before a wheel detaches.",
+    "Bent alignment produces physical steering pull while coasting; even a damaged car cannot rotate from steering at rest.",
+    "Worn brakes lengthen the measured stop and asymmetric brake damage creates a real yaw reaction.",
+    "A damaged corner has less travel, weaker damping and a lower settled ride height; curb response remains bounded.",
+    "Respawn, car switching and serialized saves preserve each damaged part; repair resets alignment, suspension and brakes without free fuel or NOS.",
+    "A lobby damage-off rule prevents new impact, shift and overrev wear while keeping fuel use and already damaged condition."
+  ],
+  "fixtures": {
+    "Localized moderate collisions bend alignment and reduce the struck spring/damper and brake, before a wheel detaches.": {
+      "toe": [
+        0.024281609195402298,
+        0,
+        0,
+        0
+      ],
+      "suspension": [
+        0.839367816091954,
+        1,
+        1,
+        1
+      ],
+      "brakes": [
+        0.9028735632183909,
+        1,
+        1,
+        1
+      ]
+    },
+    "Bent alignment produces physical steering pull while coasting; even a damaged car cannot rotate from steering at rest.": {
+      "straightX": 5.197428086580503e-8,
+      "bentRestHeading": 0
+    },
+    "Worn brakes lengthen the measured stop and asymmetric brake damage creates a real yaw reaction.": {
+      "initialSpeed": 28,
+      "healthy": {
+        "distance": 33.98629095138167,
+        "seconds": 2.3833333333333275,
+        "yaw": -2.7582434823833526e-7,
+        "lateral": -0.000004377824749681044
+      },
+      "broken": {
+        "distance": 75.29774409763601,
+        "seconds": 5.491666666666729,
+        "yaw": -0.000005864479470448709,
+        "lateral": -0.0000619725641572733
+      },
+      "uneven": {
+        "distance": 43.27952518561562,
+        "seconds": 2.974999999999992,
+        "yaw": 2.913576188501762,
+        "lateral": 9.264196516032799
+      }
+    },
+    "A damaged corner has less travel, weaker damping and a lower settled ride height; curb response remains bounded.": {
+      "healthy": {
+        "height": -0.0002584693037162496,
+        "roll": 2.2878209512435148e-11,
+        "peakHeave": 0.008272459832187953,
+        "peakRoll": 0.011839511231201772,
+        "travel": 0.145
+      },
+      "broken": {
+        "height": -0.016489492814503435,
+        "roll": 0.010446951300508113,
+        "peakHeave": 0.028000875957987663,
+        "peakRoll": 0.03248135037181331,
+        "travel": 0.0725
+      }
+    }
+  }
+}

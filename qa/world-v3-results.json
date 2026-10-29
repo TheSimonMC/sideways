@@ -1,0 +1,128 @@
+{
+  "status": "passed",
+  "checks": [
+    "Original track centerline, checkpoints and minimap structure retained",
+    "Every asphalt, curb, shoulder and edge-ramp triangle centroid matches sampled contact height",
+    "Lane lines, arrows, rubber and finish paint follow the road surface with bounded separation",
+    "Three 4cm expansion joints have 6m spans and return smoothly to road height",
+    "Both curbs have a physical 11cm trapezoid profile and shoulders slope to the ground",
+    "Visible island top and offroad wheel contact are both at -0.06m",
+    "Full district geometry and animated instancing remain finite"
+  ],
+  "profile": {
+    "groundHeight": -0.06,
+    "roadHeight": 0.012,
+    "expansionJoints": [
+      {
+        "progress": 0.2,
+        "height": 0.04,
+        "length": 6
+      },
+      {
+        "progress": 0.5,
+        "height": 0.04,
+        "length": 6
+      },
+      {
+        "progress": 0.79,
+        "height": 0.04,
+        "length": 6
+      }
+    ],
+    "curb": {
+      "inner": 12,
+      "outer": 13.3,
+      "peakHeight": 0.122
+    },
+    "rowCount": 518
+  },
+  "meshSamples": 11374,
+  "maxSurfaceMismatch": 0.000002642793754434325,
+  "maxPaintMismatch": 1.3456145744970144e-7,
+  "joints": [
+    {
+      "progress": 0.2,
+      "centerHeight": 0.052000000000000005,
+      "grip": 0.88
+    },
+    {
+      "progress": 0.5,
+      "centerHeight": 0.052000000000000005,
+      "grip": 0.88
+    },
+    {
+      "progress": 0.79,
+      "centerHeight": 0.05199998331441956,
+      "grip": 0.88
+    }
+  ],
+  "curbs": [
+    {
+      "offset": -12,
+      "height": 0.012
+    },
+    {
+      "offset": -12.28,
+      "height": 0.12200000000000001
+    },
+    {
+      "offset": -12.6,
+      "height": 0.122
+    },
+    {
+      "offset": -12.92,
+      "height": 0.122
+    },
+    {
+      "offset": -13.3,
+      "height": 0.002
+    },
+    {
+      "offset": -14,
+      "height": 0.002
+    },
+    {
+      "offset": -14.5,
+      "height": -0.06
+    },
+    {
+      "offset": -17,
+      "height": -0.06
+    },
+    {
+      "offset": 12,
+      "height": 0.012
+    },
+    {
+      "offset": 12.28,
+      "height": 0.12200000000000051
+    },
+    {
+      "offset": 12.6,
+      "height": 0.12200000000000001
+    },
+    {
+      "offset": 12.92,
+      "height": 0.122
+    },
+    {
+      "offset": 13.3,
+      "height": 0.002
+    },
+    {
+      "offset": 14,
+      "height": 0.002
+    },
+    {
+      "offset": 14.5,
+      "height": -0.06
+    },
+    {
+      "offset": 17,
+      "height": -0.06
+    }
+  ],
+  "meshes": 110,
+  "instances": 2861,
+  "wallTimeSeconds": 0.183901082
+}

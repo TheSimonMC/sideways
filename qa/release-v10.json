@@ -1,0 +1,179 @@
+{
+  "version": 10,
+  "status": "passed",
+  "checkedAt": "2026-10-28T09:47:15.794148+00:00",
+  "engineSdk": {
+    "version": "1.6.0",
+    "physicsRelease": 14,
+    "audioRelease": 14,
+    "suppliedArchiveSHA256": "3e00ee0abf816e55845c7201fae16bcd435436e92fed3e8915ac710ac0392744",
+    "exactMirroredFiles": 28
+  },
+  "reports": [
+    {
+      "path": "qa/sdk-v10-upstream-results.json",
+      "sha256": "8811420df7519e667faa8aaefba7c08210f277ef8394c5aea4c453422c9357c2",
+      "checks": 32,
+      "status": "passed"
+    },
+    {
+      "path": "qa/sdk-v10-results.json",
+      "sha256": "b6ae04021db5ed373dff024d1aea432a5be5d57fb1377280158f222e5aeabc63",
+      "checks": 9,
+      "status": "passed"
+    },
+    {
+      "path": "qa/integration-v10-results.json",
+      "sha256": "40bc6256f8ab8b2fea769be15fae1076bacd1601aa0ebeed260c096a7c935f32",
+      "checks": 49,
+      "status": "passed"
+    },
+    {
+      "path": "qa/thermal-v10-results.json",
+      "sha256": "5013a8e58f452f8ec5c6b2bbde71f6acc12196bb31004b6a8834dd77ddf3ae9e",
+      "checks": 10,
+      "status": "passed"
+    },
+    {
+      "path": "qa/damage-v10-results.json",
+      "sha256": "fe5e883cc0502c4d99ad863aedaa87fc1e450a3deedd130248c18bb91dd3996e",
+      "checks": 6,
+      "status": "passed"
+    },
+    {
+      "path": "qa/audio-v10-results.json",
+      "sha256": "8d2e4deefd862f730d6261447cc7d588bd60ad0335a54df2b6fd8d02ba10507e",
+      "checks": 14,
+      "status": "passed"
+    },
+    {
+      "path": "qa/downloads-v10-results.json",
+      "sha256": "9fcc04862485876266efe176a8d3940c688b5041f5dab00a1f97773d12071c96",
+      "checks": 9,
+      "status": "passed"
+    },
+    {
+      "path": "qa/package-pages-v10-results.json",
+      "sha256": "a2f86dd5fa3ac7640a8d0e2dfc80a4a62b590d48381074590a1fe0e13d21d192",
+      "checks": 8,
+      "status": "passed"
+    },
+    {
+      "path": "qa/zip-v10-results.json",
+      "sha256": "5096e7443e075d684da65819506bc74f21ea22aa613a5efb522739f6b83e47d5",
+      "checks": 7,
+      "status": "passed"
+    },
+    {
+      "path": "qa/standalone-v10-results.json",
+      "sha256": "fbf9e482cfd70875a887ec0f178f460a54bbf316c1dc6ca8cb3418fe46c7a56a",
+      "checks": 0,
+      "status": "passed"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "dist/SIDEWAYS.html",
+      "bytes": 9700866,
+      "sha256": "bb97a2b97fa9e2707a7ee7ac144281b03063e707af02802fe68b1487bf8e40af"
+    },
+    {
+      "path": "dist/downloads.html",
+      "bytes": 14427,
+      "sha256": "17b35fdefcf1317bbeed76282c9c046bbb8d24f54fee1a086dfaed78104c95f8"
+    },
+    {
+      "path": "dist/downloads/SIDEWAYS-v10-pages.zip",
+      "bytes": 11773307,
+      "sha256": "f064fbcee34383d4b23c6ce8f0c1bba89f3fd27bbf7d99c53758b99a994cac49"
+    },
+    {
+      "path": "release/SIDEWAYS-v10-pages.zip",
+      "bytes": 11773307,
+      "sha256": "f064fbcee34383d4b23c6ce8f0c1bba89f3fd27bbf7d99c53758b99a994cac49"
+    }
+  ],
+  "distSHA256": {
+    "dist/SIDEWAYS.html": "bb97a2b97fa9e2707a7ee7ac144281b03063e707af02802fe68b1487bf8e40af",
+    "dist/agent-snapshot.js": "5bc45f0147a0440bc2b3ab5434cda148e1eb9dd97a95cd02748092a37c4ecd12",
+    "dist/audio/ATTRIBUTION.txt": "6d6c870ea118c649e0b0cb8e8aae6b2e2147fc9ce292ae9e4d6f4a5601dac82e",
+    "dist/audio/CC0-LICENSE.txt": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+    "dist/audio/acoustics.js": "0110d463dce56172e450b8c32a0291dea4bcf741124f4a57014dc5ad10acef40",
+    "dist/audio/ambient-kit.js": "71ada3f1bff497968972dc29d5698888f3ee0aec5e82e885223269739dbd8f34",
+    "dist/audio/chase-track.js": "594795a7779d54c8f23dcb4fde7a73f4da94a655aa65ee19c8f7db9a7f1ec3ba",
+    "dist/audio/kit.js": "025ac33ffd6e6d1f8d49e6300b46a296e2f82eeafa91c4a40872d7b5b654031a",
+    "dist/audio/music-track.js": "e0a2a6b8f68dea8f551ab10cfe43548af5df86af151177675f85e9e0e64dd2a7",
+    "dist/audio/radio-kit.js": "badf34bd3b1de9452bb9cd9b8db13a1d7b169790b98f5e0f3eef08749243b6b5",
+    "dist/audio/samples.js": "cc801bf91672a88beda5a6eb7e1b833987d1389f183769702d08183cf4654eda",
+    "dist/audio/world.js": "1545daf8a6cb517d0f5ecec6a4082986ac0621a33825a333750891c9ca75eeda",
+    "dist/audio.js": "22df6644c495a2fb40f332bc8914a5601907c58cde7d2f8ba3c492a5139fd696",
+    "dist/car.js": "5c83d1b59743b55575751e3078b83fefe8002fdc07c3f8919b588d97ed8a96d3",
+    "dist/career.js": "0b76cf961460471697b6e4e0a2ab9b79fc5561775bfa5ec606ed4f8c07e8a72e",
+    "dist/catalog.js": "376f9234d288cc6487d117cf864757c2bb6c71e3851fe4e4dfd24ed520024705",
+    "dist/city-shape.js": "7c54ff001e597e0cfb28d90b9e9ac2457d5a9ee3f7a877ee96e1895d441c15e9",
+    "dist/city.js": "5ec39d4805c05a3d4a491ddc80c12f8113a29e608c26aae05acedb4b0737d2a7",
+    "dist/contact.js": "a4c2ab97626d8b6e7a7a54951251d4369e2ef2660f163e035573e829436d568a",
+    "dist/controls-ui.js": "2028a9534dbac3dfca5b202e23ab896f034fe0abeef5def68285fa8eed8641ef",
+    "dist/downloads/SIDEWAYS-v10-pages.zip": "f064fbcee34383d4b23c6ce8f0c1bba89f3fd27bbf7d99c53758b99a994cac49",
+    "dist/downloads.html": "17b35fdefcf1317bbeed76282c9c046bbb8d24f54fee1a086dfaed78104c95f8",
+    "dist/enforcement.js": "72743b851c6780c1d82e509b2da3a1f5d523219799646d3173bc78cea5f9b843",
+    "dist/environment.js": "39dd8fd215a521e0456da88bfcbc1bfa382c3687b6e5878224fdf055db71cb81",
+    "dist/fonts/barlow-OFL.txt": "186d750eb496a4c17a76385f82be6aea2ac1cf2de074a811d63786cf374ea73f",
+    "dist/fonts/barlowcondensed-OFL.txt": "186d750eb496a4c17a76385f82be6aea2ac1cf2de074a811d63786cf374ea73f",
+    "dist/fonts/font-0.ttf": "a35caa4687f434d66453c1fe423d7074cfa9fd7ab80c19b0780f3862887d2fc9",
+    "dist/fonts/font-1.ttf": "91c841fdfa8e7b94ffedbb983a363947ba6ed720f3bbf0c71d48b618053655bc",
+    "dist/fonts/font-10.ttf": "0ec6b3cca2df54f108f8dc239597e0eab386343a230afad8a0f445c7d21c3e77",
+    "dist/fonts/font-2.ttf": "c15439e7a03af5714282ec1780ff7b0214ec6a7db96300b54928dbcd2569ca0c",
+    "dist/fonts/font-3.ttf": "74103fd6d41bc32c63aa2e6eb3db619ddb80ce9ca1b1420d5548a23b8ee5d154",
+    "dist/fonts/font-4.ttf": "3f25dda39ecf9f2519a703b217629fbdfc54fb5e5725bf4aa2b9234e78a2fc04",
+    "dist/fonts/font-5.ttf": "94cf666814140f0e3d0785fdedbc82a3ddb0791ce0001f13c5477fd80439ed23",
+    "dist/fonts/font-6.ttf": "75338266e60b15dfc5ac0bae8b78fdc5535ea50703ed73c14dc598498ffe8173",
+    "dist/fonts/font-7.ttf": "0d85af813fc3ed87db0c6265515689b2eef5cbaf7aab17922528dfc95a2cd73f",
+    "dist/fonts/font-8.ttf": "7dde307fa887fc65ff5830cfada77a7decc5dae8d3c816c9d39ba3f1af1c4ed7",
+    "dist/fonts/font-9.ttf": "73bc9e17231e9073780d3c81574c7253cecd5645c93544df1a935054b39a364f",
+    "dist/fonts.css": "4cb4e1fa46fef5e05fb54e8a2a6d3e4c88518796da44e5e8dbffab505302d87f",
+    "dist/game-ui.js": "b97a8aea62801e349b0a004074b56bb0330169e96ecbb0201fe343607b851e0a",
+    "dist/garage.js": "e6e2900250e683a71c8e0c93da3510fce8c2e5a8a58bc77279efc7d7a8c02844",
+    "dist/haptics.js": "9ddb091ed4e73e78c47c9756d20e0658d07f364182d57824c70a9cc016ed9a7e",
+    "dist/index.html": "6cfa39eb283f061cbeab706e63b33beb9a13ba6c0823d58a6abab2323637002f",
+    "dist/input-prompts.js": "a53273d9b6dd2c67d4755bf65796d1c529f499494d6355d5dc29a7d3d15543bc",
+    "dist/input.js": "5357da83005d3494c712a7bc2f843cb5de3159d75d62dc37143b221e264a63ee",
+    "dist/lobby-panel.js": "042f1511974fd9eeec1cc2ed6e7f0f31984dd61975f8f4e20867f0ab39c0e690",
+    "dist/main.js": "94e7f728072d9c33428006ec3d6fc90693bf1b945aaa43d2691c7c475c0bd595",
+    "dist/mechanical.js": "cf5c72c80222dd77cf870790402c2e3f3e79040c7fa5366e8921a8030280f8b9",
+    "dist/multiplayer.js": "057d396d5f8fae62417255e2099d6dd269f92105b40e09d8b53fa8f979a75651",
+    "dist/music.js": "d60a5814d26fcba2bac433b018949412f1470e66e83f51c019e126a81ed1c673",
+    "dist/nature.js": "7d80476e58dc6fc1c12cec2a412d2438b48803b3582186f61f803d0d47aa58ba",
+    "dist/navigation-map.js": "a0b30666e4f75a0fcd1efb406f682cfcfe6d3accae199de341d855326698a205",
+    "dist/navigation.js": "6b522bf1b12f337d16dd2c4673ef6359009be71cd86289b4a3aa310b2747b7b7",
+    "dist/network-cars.js": "da25a7195b0f9e9a88a48af996a7742e9ed4c5b3e40b19e4a1d510a53d6f99fe",
+    "dist/phone.js": "3574b9a61e1451632bff5ce072b4286f5dcc04df7ff1307122c547d97cc64413",
+    "dist/physics.js": "b93ae123723cd4796ef62e62f2999755ee1cbf19a3f5af7180d787a1ba12b96f",
+    "dist/police.js": "137852fc85e5b8c805bce18e0a3245eac24a3e7aac38f88cf8b030e2dc104032",
+    "dist/post.js": "f1cf5906d271b741372d4f1618c030270cacbcb24597b9c60f7b33a2f6bbd690",
+    "dist/presentation.js": "977faa42789eb84ba07e9c566a1534d53984869b6d6e528ea00446078a1c441c",
+    "dist/remote-contacts.js": "ab674089afd88618b801269142c67a915a12e50ae23b8a99d7f54ce5bd810fa6",
+    "dist/style.css": "856acf2d0278bb563bcbb9f2e6ad3c7669dd73fa6def1774ff56e85bd75bd33e",
+    "dist/terrain-fx.js": "0bcd3e7c4db8e7b6ed7d7ca92108419ab07e1a52d3fbe9caeaedca76961aa1f5",
+    "dist/traffic.js": "7312f8901d737416ccd42d78ab5fcbbdba30cb19e3ee86ad409949e254db88e3",
+    "dist/vehicle-panel.js": "ba499944e2e00641b01176cbb3d6d3206fdee9101725097d82c2efc47a15e1be",
+    "dist/vehicle-state.js": "0bd5485e2dfe2376642364076dd4fe8d5b124d1b00c5e486067c93dfa9ad9154",
+    "dist/vendor/PEERJS-LICENSE.txt": "9407807dba7f47a79bfb3ac55759d63d77c9371ebd0616d5a093e97d3e810397",
+    "dist/vendor/THREE-LICENSE.txt": "4c40a1ef62450b857c3b2aaf294936304cd552d965fbcd9d32d4c5bcf4ba4454",
+    "dist/vendor/motor-engine.js": "52038ca07bc992c0208928877a23cf464a0b43e17197fb805d21c744d22cb71b",
+    "dist/vendor/peerjs.min.js": "7604d8c31bec4f134b0d15c2d80b1d095ea18af005354f439f14291fcd7b4168",
+    "dist/vendor/three.module.js": "ce1fa418de16a19495a9f72495580e3015d7745c296d3ce0485897f902ddedfb",
+    "dist/world-lifecycle.js": "27b6642ace8472a4c2b2b932ad8297397105d7407b6fa20306d1fd4208853c50",
+    "dist/world.js": "89907acffb0dc56b9894d94fd6a3c8a96572c7c93b2320af7c2f090772b580ce"
+  },
+  "packageRepeatBuild": "Identical SHA-256 before and after a second build with the hosted ZIP present.",
+  "preview": {
+    "status": "unavailable",
+    "reason": "sites-previewd mailbox unavailable; start and status both failed. No alternative browser or server was substituted."
+  },
+  "limits": [
+    "No browser visual or speaker audition.",
+    "No physical gamepad/wheel or multi-PC save-dialog test.",
+    "Local reports do not establish public HTTP delivery; deployment will be verified separately."
+  ]
+}

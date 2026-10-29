@@ -1,0 +1,15 @@
+{
+  "version": 12,
+  "status": "passed",
+  "checks": [
+    "Cursor selection finds the visible service and its drivable entrance without altering the active route",
+    "Route details use road distance only at the actual target; an unrelated cursor uses straight-line distance",
+    "The map layout keeps the original canvas and route controls while adding service details and navigation groups",
+    "Filters hide unavailable focus targets and service selection calls the existing game handlers",
+    "Detail cards display accurate pending and active route states and preserve the waypoint callback",
+    "The canvas draws a continuous route, outlined cursor and service symbols at projected world coordinates"
+  ],
+  "limits": [
+    "DOM events and CPU canvas checked. Browser layout and physical gamepad use require the integrated build."
+  ]
+}

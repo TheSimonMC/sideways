@@ -1,0 +1,90 @@
+{
+  "checks": [
+    "steering at rest creates no force",
+    "left and right steering stay consistent",
+    "parking brake loads engaged crank until it stalls",
+    "manual starter interlock requires neutral or open clutch",
+    "starter restarts actual engine with clutch open",
+    "open clutch isolates revving engine from locked wheels",
+    "dumping clutch against parking brake dissipates energy and stalls",
+    "front service brakes hold while driven rear tyres spin",
+    "releasing service brake converts wheelspin into acceleration",
+    "four brakes, ABS, brake heat and dive",
+    "one-sided curb drives springs, dampers, roll and tyre loads",
+    "open differential has no hidden preload",
+    "neutral disconnects all engine drive",
+    "sequential shift edge changes only one gear",
+    "manual session starts safely in neutral"
+  ],
+  "scenarios": {
+    "steering at rest creates no force": {
+      "speed": 0,
+      "heading": 0
+    },
+    "left and right steering stay consistent": [
+      -0.6201051581892573,
+      0.6201051472378567
+    ],
+    "parking brake loads engaged crank until it stalls": {
+      "rpm": 0.009188811738685805,
+      "speed": 1.3283964302028195e-20,
+      "clutch": 0
+    },
+    "manual starter interlock requires neutral or open clutch": {
+      "rpm": 0.0014803622505419579
+    },
+    "starter restarts actual engine with clutch open": {
+      "rpm": 1082.8447024050995
+    },
+    "open clutch isolates revving engine from locked wheels": {
+      "rpm": 7478.518178228291,
+      "clutchTorque": 0
+    },
+    "dumping clutch against parking brake dissipates energy and stalls": {
+      "rpm": 0,
+      "clutchTemperature": 35.36767210871445
+    },
+    "front service brakes hold while driven rear tyres spin": {
+      "speedKph": 0.16812026079898243,
+      "rpm": 4285.01357606695,
+      "rearWheelRPM": 304.766257188261,
+      "frontWheelRPM": 4.404586201449767e-15,
+      "intensity": 0.5846768187144111,
+      "tyreTemperature": 40.423504185503916,
+      "rearBrakeTemperature": 58.52569611694053
+    },
+    "releasing service brake converts wheelspin into acceleration": {
+      "speedKph": 35.97116958122992
+    },
+    "four brakes, ABS, brake heat and dive": {
+      "acceleration100Seconds": 4.925000000000001,
+      "initialKph": 124.6575634320443,
+      "stopSeconds": 2.975,
+      "accelerationPitch": -0.008513457767071221,
+      "brakePitch": 0.04004017723964232,
+      "maxBrakeTemperature": 70.76943348224857
+    },
+    "one-sided curb drives springs, dampers, roll and tyre loads": {
+      "peakHeave": 0.03229263649074616,
+      "peakRoll": 0.03957810009244449,
+      "loadRange": 4644.083967667607,
+      "peakTravel": 0.0472868533119623,
+      "endHeave": -0.00027863953799295803
+    },
+    "open differential has no hidden preload": {
+      "lock": 0
+    },
+    "neutral disconnects all engine drive": {
+      "rpm": 7478.518165802662,
+      "gear": 0
+    },
+    "sequential shift edge changes only one gear": {
+      "gear": 1
+    },
+    "manual session starts safely in neutral": {
+      "gear": 0,
+      "rpm": 793.2872945742926
+    }
+  },
+  "status": "passed"
+}

@@ -1,0 +1,23 @@
+{
+  "version": 8,
+  "status": "passed",
+  "archive": "release/SIDEWAYS-v8-pages.zip",
+  "site": "release/pages/",
+  "files": 73,
+  "bytes": 11713571,
+  "uncompressedBytes": 19901114,
+  "sha256": "e1470c0fd8f129bb840298a32243bc5e8287192de5183d2e2ec2db27ff119e43",
+  "resourceReferences": 101,
+  "checks": [
+    "Standalone is current and contains the embedded V8 multiplayer client.",
+    "Both HTML editions, runtime modules, fonts, audio attribution and third-party licenses are included.",
+    "Relative HTML, CSS and local module references resolve inside the publishing folder.",
+    "ZIP central directory, decompression, CRC32 and exact entry bytes round-trip.",
+    "No symlinks are included; .nojekyll and index.html are at the archive root.",
+    "All source inputs stayed unchanged during packaging."
+  ],
+  "limits": [
+    "Packaging does not publish to GitHub or exercise GitHub Actions.",
+    "No browser image, speaker audition or live WebRTC connection is established by this check."
+  ]
+}

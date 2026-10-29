@@ -1,0 +1,154 @@
+{
+  "game": "SIDEWAYS",
+  "version": 12,
+  "date": "2026-10-28",
+  "status": "verified-with-documented-limits",
+  "base": "Unmodified user-supplied SIDEWAYS V11 package. Original handover retained in docs/kontext-v11-historisch.md.",
+  "delivery": {
+    "entry": "SIDEWAYS.html",
+    "separateFile": "SIDEWAYS-v12.html",
+    "htmlBytes": 10505374,
+    "htmlSha256": "89006fae959a7f33219f01fde58d47ca575c52fa1274395e6aa11d7375eb84be",
+    "offlineSinglePlayer": true,
+    "externalRuntimeRequestsDuringOfflineTest": 0,
+    "publishedToSites": false
+  },
+  "currentFunctionalSuites": [
+    {
+      "file": "qa/navigation-v12-results.json",
+      "status": "passed",
+      "groups": 12,
+      "sha256": "125ba8d086dae4126b8337bbc6a5c91a1ed16f4d8097faeb5aef641bd3045c21"
+    },
+    {
+      "file": "qa/navigation-main-v12-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "85643c3e9c9b12116b72d9ff7cfccbfbd4f2140f9a86dec8c238861b2a2e2c63"
+    },
+    {
+      "file": "qa/input-v6-results.json",
+      "status": "passed",
+      "groups": 16,
+      "sha256": "442c12a38d550db88d6db4acb670107b3bb72dc92ea5b5bc4782f2ab8cc7b322"
+    },
+    {
+      "file": "qa/input-taps-v12-results.json",
+      "status": "passed",
+      "groups": 11,
+      "sha256": "d7a235c63df1542cab62c12bcc7f1fe8ff329a363382ff4f45eb3e443e6d9a1c"
+    },
+    {
+      "file": "qa/ui-v6-results.json",
+      "status": "passed",
+      "groups": 7,
+      "sha256": "0f0a6d5c85f7e0c4e94442e3d22c25f8d63d941d43e70bd21990009bc2fb76e8"
+    },
+    {
+      "file": "qa/map-v12-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "0a17aa24f50339eb8590864f33c8ab6cbe6ebf270206f51c0f0feea82cf64c7b"
+    },
+    {
+      "file": "qa/instruments-v12-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "f023352d459640a07fc6ffdb9668ca2d2a934d7e81c1d30b7ec915e0964a8782"
+    },
+    {
+      "file": "qa/audio-v12-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "66b51fdf1dbd518229aec7dcabc7f6d5016710f7a914496c332eafab37295bfb"
+    },
+    {
+      "file": "qa/audio-v11-results.json",
+      "status": "passed",
+      "groups": 18,
+      "sha256": "4e183c871e42262636a628a96faf16e2080e85ab85424d1c4a8faaa2a929e246"
+    },
+    {
+      "file": "qa/modular-v11-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "24f902e67ea525f196ef6ea34f0db89b9219db6b6c29524013aae5e6f8432636"
+    },
+    {
+      "file": "qa/race-v11-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "8608799ee6b75628195b443c76a5a24e225513146be3f291f9718d09c6fc55a8"
+    },
+    {
+      "file": "qa/police-v11-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "74abd1114a21cf60420aa040e18b5f8898d9dd5d303035d94fe17692f60bbc24"
+    },
+    {
+      "file": "qa/mechanical-regression-v11-results.json",
+      "status": "passed",
+      "groups": 16,
+      "sha256": "a1b6097e3288ff5d2f3ac14f9bd7f36b68b53aba93cf40ea522a0bf5e360aad2"
+    },
+    {
+      "file": "qa/multiplayer-v9-results.json",
+      "status": "passed",
+      "groups": 11,
+      "sha256": "a20c7c5aa19fab66100de9cbb6992f96e4fb25f8f4dd8844831e6c7bde93a4dc"
+    },
+    {
+      "file": "qa/peerjs-codec-v9-results.json",
+      "status": "passed",
+      "groups": 2,
+      "sha256": "08808c87e99392b2f455131b1c1164eafdb2cf747d1094e65022bfec680cde4f"
+    }
+  ],
+  "standalone": {
+    "staticReport": "qa/standalone-v12-results.json",
+    "browserReport": "qa/standalone-browser-v12-results.json",
+    "checks": [
+      "file:// load with all HTTP(S) and secondary file requests blocked",
+      "Settings keyboard range, simulated shoulder tabs and nested Back focus restoration",
+      "Lobby summary activation, modal Tab trap and controller keyboard commit/cancel",
+      "V12 menu and garage cards load from one file",
+      "Part preview preserves wallet; controller buy and install charges exactly once; owned parts stay free",
+      "Club Race starts; View switches map/panel focus; Back resumes driving; keyboard throttle moves car",
+      "native model emitters available in standalone",
+      "no JavaScript errors or external runtime requests"
+    ]
+  },
+  "additionalBrowserEvidence": {
+    "audio": "qa/audio-v12-browser-results.json",
+    "navigation": "qa/browser-navigation-evidence-v12.json",
+    "map": "qa/map-browser-v12-results.json"
+  },
+  "navigationEvidenceResolution": "Earlier modular browser attempts are retained with their timing failures. The final standalone report now covers settings, text entry, paid installation, map focus/back, race startup and driving in one successful run on the exact delivered bytes.",
+  "sdk": {
+    "version": "MotorLab 1.6.3 + local SIDEWAYS spatial extension",
+    "documentation": "sdk/SIDEWAYS-EXTENSION.md",
+    "passed": 31,
+    "total": 32,
+    "baselineException": "The immutable raw V7 replay fixture hash differs identically in the original and extended SDK on this Windows/Node runtime. The expected fixture and physics sources were not changed.",
+    "evidence": "qa/sdk-v12-baseline.json"
+  },
+  "review": {
+    "scope": "Changed UI, navigation, garage, model audio anchors, native audio adapter and build integration inspected against V11.",
+    "resolved": [
+      "Small-screen garage card scroll and setting prompt contrast",
+      "Map service-list/footer overlap and focus-induced layout shift",
+      "Map confirmation uses the destination displayed in its detail card",
+      "Critical damage colors take precedence over NOS styling",
+      "Short keyboard action taps survive keydown and keyup between rendered frames"
+    ]
+  },
+  "limits": [
+    "Simulated Gamepad API and Chromium software renderer; no physical controller or steering-wheel session.",
+    "No speaker or headphone listening test.",
+    "No live multi-PC or cross-network multiplayer session; protocol tests use controlled transports.",
+    "Audio uses generic ear filters, approximate facade planes and one shared exhaust signal across outlets. NPC audio retains lighter profiles.",
+    "Existing vehicle damage remains a simplified rigid-body/component model, not full softbody simulation."
+  ],
+  "historicalReports": "Only evidence named here or by these reports is current verification. Other retained QA reports describe earlier releases; a filename alone is not evidence of a current run."
+}

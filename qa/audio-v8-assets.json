@@ -1,0 +1,17 @@
+{
+  "cruising": {
+    "title": "Super Wreck Roadway",
+    "author": "Umplix",
+    "license": "CC0 1.0 Universal",
+    "page": "https://opengameart.org/content/super-wreck-roadway",
+    "source": "https://opengameart.org/sites/default/files/super_wreck_roadway_loop.wav",
+    "sourceBytes": 51664026,
+    "sourceSha256": "7f78e33cab242279d1c674128280ebb9bf336300e1cd83d8de94fd5083d675cd",
+    "duration": 134.4,
+    "bpm": 100,
+    "bpmMethod": "Tempo inferred from onset autocorrelation; complete 56-bar arrangement spans 134.4 seconds.",
+    "adaptedBytes": 2151607,
+    "adaptedMp3Sha256": "61f2a3685f2da32df0ec2ffa6904e77a3473e0c873d2a6c317d993d3d767a3f3",
+    "changes": "Trimmed 5ms trailing excess to134.4s, gain0.63 to preserve float-WAV headroom,6ms edge fades, stereo44100Hz MP3 at128kbit/s. No performance/recording technique asserted."
+  }
+}

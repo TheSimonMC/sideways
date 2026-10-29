@@ -1,0 +1,160 @@
+{
+  "status": "passed",
+  "checks": [
+    "continuous low-speed grip through previous threshold",
+    "airborne steering and invisible ground drag removed",
+    "inner and outer tyres follow mirrored steering radii without moving parked car",
+    "surface and mechanical work telemetry reflects each actual contact",
+    "suspension impacts decay after real landing instead of sounding under static load",
+    "stationary burnout has rear tyre work while front wheels stay stopped"
+  ],
+  "scenarios": {
+    "continuous low-speed grip through previous threshold": {
+      "baselineAccelerationJump": 0.3958983908248825,
+      "currentAccelerationJump": 0.00027384685804321407,
+      "probes": [
+        {
+          "speed": 1.49,
+          "acceleration": 2.445009152868387,
+          "slip": 0.014086658607861255
+        },
+        {
+          "speed": 1.499,
+          "acceleration": 2.442539796828953,
+          "slip": 0.014232319816634234
+        },
+        {
+          "speed": 1.5,
+          "acceleration": 2.44226594997091,
+          "slip": 0.014248473036967487
+        },
+        {
+          "speed": 1.501,
+          "acceleration": 2.441992209971122,
+          "slip": 0.014264619887844962
+        },
+        {
+          "speed": 1.51,
+          "acceleration": 2.439533432570826,
+          "slip": 0.014409650539473887
+        }
+      ]
+    },
+    "airborne steering and invisible ground drag removed": {
+      "baselineYawAfter100ms": 0.1809670498959428,
+      "currentYaw": 0,
+      "speed": 14.991663731838543,
+      "aerodynamicOnlySpeed": 14.991663731838543
+    },
+    "inner and outer tyres follow mirrored steering radii without moving parked car": [
+      [
+        -0.6729543495070848,
+        -0.4940490930535609,
+        0,
+        0
+      ],
+      [
+        0.4940490930535609,
+        0.6729543495070848,
+        0,
+        0
+      ]
+    ],
+    "surface and mechanical work telemetry reflects each actual contact": [
+      {
+        "surface": "gravel",
+        "roughness": 0.027,
+        "contact": true,
+        "load": 3525.2399058808114,
+        "longitudinalSpeed": 7.151775951197848,
+        "lateralSpeed": -0.16652869164994516,
+        "slipSpeed": -1.1522857205287655,
+        "slipRatio": -0.1611188225682279,
+        "wheelSpeed": 5.999490230669083,
+        "tyrePower": 2999.411549202202,
+        "brakePower": 16398.550769586353,
+        "suspensionVelocity": 0.12375404659156092,
+        "suspensionTravel": 0.01068552759452342,
+        "impactSpeed": 0,
+        "impactCount": 0
+      },
+      {
+        "surface": "asphalt",
+        "roughness": 0.001,
+        "contact": true,
+        "load": 3125.769016677047,
+        "longitudinalSpeed": 6.887369422304261,
+        "lateralSpeed": -0.16716905862897158,
+        "slipSpeed": -0.3327728957183149,
+        "slipRatio": -0.048316399965515615,
+        "wheelSpeed": 6.5545965265859465,
+        "tyrePower": 1233.8165275392835,
+        "brakePower": 22605.717750488348,
+        "suspensionVelocity": 0.07393064881405959,
+        "suspensionTravel": 0.005286926494878197,
+        "impactSpeed": 0,
+        "impactCount": 0
+      },
+      {
+        "surface": "gravel",
+        "roughness": 0.027,
+        "contact": true,
+        "load": 2583.954304741817,
+        "longitudinalSpeed": 7.146472595988404,
+        "lateralSpeed": -0.07356331304471705,
+        "slipSpeed": -0.11418141566036066,
+        "slipRatio": -0.01597731106174747,
+        "wheelSpeed": 7.032291180328043,
+        "tyrePower": 154.85839775163967,
+        "brakePower": 8521.397225638477,
+        "suspensionVelocity": -0.07144069559448057,
+        "suspensionTravel": -0.004806589243165396,
+        "impactSpeed": 0,
+        "impactCount": 0
+      },
+      {
+        "surface": "asphalt",
+        "roughness": 0.001,
+        "contact": true,
+        "load": 2184.483415538052,
+        "longitudinalSpeed": 6.8818778365641835,
+        "lateralSpeed": -0.07356331304471705,
+        "slipSpeed": -0.10653940363740144,
+        "slipRatio": -0.015481152988701096,
+        "wheelSpeed": 6.775338432926782,
+        "tyrePower": 137.99088620373058,
+        "brakePower": 8210.034062100764,
+        "suspensionVelocity": -0.12126409337198191,
+        "suspensionTravel": -0.01020519034281062,
+        "impactSpeed": 0,
+        "impactCount": 0
+      }
+    ],
+    "suspension impacts decay after real landing instead of sounding under static load": {
+      "peakImpact": 3.18825,
+      "totalImpacts": 4,
+      "settledImpact": [
+        4.543779386798783e-21,
+        4.543779386798783e-21,
+        4.543779386798783e-21,
+        4.543779386798783e-21
+      ]
+    },
+    "stationary burnout has rear tyre work while front wheels stay stopped": {
+      "speed": 0.04670094366299992,
+      "rear": [
+        {
+          "slipSpeed": 8.789756303457823,
+          "tyrePower": 29757.114203999194,
+          "brakePower": 28042.75696953894
+        },
+        {
+          "slipSpeed": 8.789756303457603,
+          "tyrePower": 29757.114203998495,
+          "brakePower": 28042.75696953894
+        }
+      ],
+      "diffPower": 0
+    }
+  }
+}

@@ -1,0 +1,72 @@
+{
+  "status": "passed",
+  "checks": [
+    "Service interaction requires a nearby bay, a stopped vehicle and no pursuit or search",
+    "Fuel and mechanic panels expose only their supported services",
+    "Refueling adds 5 L per second, cancellation keeps partial fuel and preserves damage/NOS",
+    "Fuel completion clamps to tank capacity and keeps the completed UI status visible",
+    "Cancelling a repair preserves the original condition and consumed resources",
+    "Completed repair restores physical parts while leaving fuel and NOS unchanged",
+    "NOS service refills the bottle independently of damage and fuel",
+    "Recovery is blocked during chase/search without moving or repairing the vehicle",
+    "Recovery moves to the nearest mechanic without repairing, refueling or refilling NOS",
+    "An empty tank recovers to the nearest fuel stop and stays empty until refueling",
+    "Arrest event pauses once; release uses the station, repairs damage, clears police and guarantees 8 L",
+    "Station release preserves fuel above the minimum and does not give a full tank",
+    "Dock recovery remains a usable fuel/repair/NOS pit when no fuel station exists"
+  ],
+  "failures": [],
+  "scenarios": {
+    "partialFuel": {
+      "before": 7.25,
+      "after": 13.5,
+      "seconds": 1.25
+    },
+    "repair": {
+      "fuel": 7.25,
+      "nos": 0.23,
+      "wheelAttached": [
+        true,
+        true,
+        true,
+        true
+      ]
+    },
+    "recovery": {
+      "target": "garage-3",
+      "conditionPreserved": true
+    },
+    "arrest": {
+      "fuelAtRelease": 8,
+      "nosAtRelease": 0.23,
+      "nativeRestartRpm": 2827.760523049471,
+      "station": {
+        "x": -90,
+        "z": -42,
+        "heading": 0
+      }
+    }
+  },
+  "mainSha256": "c69f6600a51c94e0c83b565c60bce5ee6cf3b1d6f540c2e548eb0f2dcef86d34",
+  "extractedFunctions": [
+    "nearestService",
+    "interact",
+    "updateServiceUI",
+    "startService",
+    "updateServiceJob",
+    "recoverVehicle",
+    "handlePoliceEvent",
+    "releaseFromStation",
+    "openModal",
+    "closeModal",
+    "clearInputs",
+    "resetPresentation",
+    "toast"
+  ],
+  "limits": [
+    "Actual extracted main.js helpers, real MotorLab CarPhysics, real city service records and police reset logic.",
+    "DOM layout, animations, GPU rendering and audible playback are not verified; painting/audio devices are controlled stubs."
+  ],
+  "finalMainSha256": "c69f6600a51c94e0c83b565c60bce5ee6cf3b1d6f540c2e548eb0f2dcef86d34",
+  "mainChangedDuringRun": false
+}

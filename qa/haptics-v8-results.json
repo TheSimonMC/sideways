@@ -1,0 +1,62 @@
+{
+  "status": "passed",
+  "scope": "Deterministic actuator mocks; no physical controller or wheel verification.",
+  "checks": [
+    "Eight event patterns produce bounded distinct dual-rumble traces, reject duplicate triggers, finish cleanly and include stronger completion than waypoint feedback.",
+    "Simultaneous rewards cap at 12 segments; stalled device promises cap at 2, and stopping clears both pending patterns and hardware output.",
+    "Continuous NOS remains active at a bounded send rate; pause and disabled feedback immediately cancel new event patterns as well as continuous vibration.",
+    "Damaged rotating wheels add a changing wobble pattern while healthy coasting and a damaged parked car stay quiet.",
+    "Input event forwarding obeys active driving, visibility and the user feedback setting; menus cannot leave accidental rumble running.",
+    "Visible menu waypoint, purchase and objective cues have a 0.5 s deadline and never inherit driving NOS/ABS; clear, hidden focus and blur cancel them."
+  ],
+  "fixtures": {
+    "events": {
+      "nearMiss": {
+        "strong": 0.07747967313155268,
+        "weak": 0.27892682327358964,
+        "calls": 2
+      },
+      "objective": {
+        "strong": 0.2700153747959501,
+        "weak": 0.3375077109475743,
+        "calls": 4
+      },
+      "reward": {
+        "strong": 0.17426541625374756,
+        "weak": 0.3666415206539927,
+        "calls": 3
+      },
+      "purchase": {
+        "strong": 0.1665668506635111,
+        "weak": 0.17934089558357963,
+        "calls": 3
+      },
+      "delivery": {
+        "strong": 0.34936593695738083,
+        "weak": 0.4270136110017117,
+        "calls": 4
+      },
+      "waypoint": {
+        "strong": 0.04328395656965841,
+        "weak": 0.09893475787350492,
+        "calls": 1
+      },
+      "pursuit": {
+        "strong": 0.31485924532978016,
+        "weak": 0.3935740566622252,
+        "calls": 5
+      },
+      "escape": {
+        "strong": 0.1938850893037478,
+        "weak": 0.3149552315002489,
+        "calls": 4
+      }
+    },
+    "bounds": {
+      "segments": 12,
+      "pending": 2
+    },
+    "sustainedCallsPer2s": 22,
+    "damagedWheelPeak": 0.08064573222643927
+  }
+}

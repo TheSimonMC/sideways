@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "checks": [
+    "Complete range-arrow taps between frames are delivered once and subsequent taps still work",
+    "Several discrete taps between the same two frames retain their count and order",
+    "Held navigation emits one initial edge, ignores OS repeat, and retains bounded repeat timing",
+    "Held confirm never doubles; release and press between sampled frames generates a fresh action",
+    "Text editing, prevented events and native menu Tab do not become game actions",
+    "Game context buffers discrete camera, shift and Escape actions without latching continuous driving inputs",
+    "Clear, blur, visibility loss, disable and context changes discard queued actions",
+    "Consumed key metadata lasts one sample and is cleared with clear or context transition",
+    "Starting binding capture discards pending input; captured keys do not activate their old or new action",
+    "Calibration accepts only fresh confirm/back and cannot leak pending taps after cancellation",
+    "Legacy custom key bindings also produce short discrete action taps"
+  ],
+  "limit": "Actual InputManager with event-level keyboard ordering and deterministic Gamepad host; no physical hardware claim."
+}

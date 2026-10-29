@@ -1,0 +1,25 @@
+{
+  "status": "passed",
+  "checks": [
+    "Standard layout is A/Cross NOS, B/Circle handbrake, Y/Triangle camera, R3 transmission; menu face buttons remain contextual",
+    "Meaningful activity selects glyphs without connected-device, idle-stick or held-trigger flicker; keyboard and touch reclaim immediately",
+    "Detected wheels report calibration needs and real assigned button numbers; calibrated wheel profiles do not disable standard controllers",
+    "Per-device custom bindings override conflicting standard driving buttons but do not steal canonical menu confirm/back",
+    "Escape emits game home without legacy duplicate pause; nested UI Escape stays back and P remains pause",
+    "Held menu confirm, back and D-pad navigation cannot accidentally fire NOS, handbrake or starter when resuming",
+    "Visibility restoration accepts the first fresh Escape while still requiring held controller buttons to be released",
+    "Controller navigation repeats at a bounded rate, suppresses held buttons through context changes and keeps saved mappings intact",
+    "NOS rumble remains continuous with bounded calls/promises, and pause, disabled haptics, keyboard takeover, visibility and disconnect stop hardware immediately",
+    "Drift slip work, ABS, curb shocks, gear changes and additive collision pulses create distinct feedback; parked idle settles to zero",
+    "Hung and rejected haptic promises cannot create an unbounded queue; unsupported wheel force feedback is never invoked"
+  ],
+  "haptics": {
+    "sustained": {
+      "gaps": 0,
+      "pending": 2,
+      "calls": 42,
+      "resets": 5
+    }
+  },
+  "verificationLimit": "Deterministic Gamepad and actuator hosts, no physical controller or wheel test."
+}

@@ -1,0 +1,24 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import MotorLab from '../sdk/motor-engine.mjs';
+import {CarPhysics} from '../dist/physics.js';
+import {GameAudio} from '../dist/audio.js';
+import {resolveBuild,DEFAULT_SELECTION,ENGINES} from '../dist/catalog.js';
+const base=resolveBuild(DEFAULT_SELECTION),p=new CarPhysics(MotorLab,base),silent=new CarPhysics(MotorLab,base);
+let lastSamples=new Float32Array(0);
+const audio=new GameAudio({pcmEnabled:true,onPCM:l=>lastSamples=new Float32Array(l)});audio.setBuild(base);p.setEngineAdvance((engine,dt)=>audio.advanceEngine(engine,dt));
+const report={status:'pending',checks:[],scenarios:{}};
+const compare=()=>{for(const key of ['rpm','speed','x','z','heading','clutchTorque','bodyHeight','bodyPitch','bodyRoll'])assert.ok(Math.abs(p.state[key]-silent.state[key])<1e-7,`${key}: ${p.state[key]} vs ${silent.state[key]}`);assert.equal(p.state.engineStalled,silent.state.engineStalled);assert.equal(p.engine.getTiming().totalSteps,silent.engine.getTiming().totalSteps);assert.equal(p.engine.getTiming().clock,'pcm');};
+const run=(seconds,input)=>{for(let i=0;i<Math.round(seconds*120);i++){p.update(1/120,input);silent.update(1/120,input);compare();}return p.state;};
+const reset=()=>{p.reset();silent.reset();};
+const rms=()=>Math.sqrt(lastSamples.reduce((s,v)=>s+v*v,0)/Math.max(1,lastSamples.length));
+run(2,{transmission:'auto',throttle:.8});report.scenarios.acceleration={kph:p.state.speed*3.6,rpm:p.state.rpm};
+reset();run(1.8,{transmission:'sequential',handbrake:1,throttle:1});assert.equal(p.state.engineStalled,true);run(.7,{transmission:'sequential',handbrake:1,throttle:1});report.scenarios.stall={rpm:p.state.rpm,stalled:p.state.engineStalled,lastBlockRms:rms()};assert.ok(p.state.rpm<220);assert.ok(rms()<.001,'stalled engine pressure tail must become quiet');
+run(1.2,{transmission:'sequential',gearRequest:0,starter:true});assert.ok(p.state.engineRunning);report.scenarios.restart={rpm:p.state.rpm,running:p.state.engineRunning,lastBlockRms:rms()};
+reset();run(2,{transmission:'sequential',brake:1,throttle:1});assert.ok(p.state.burnout);assert.ok(Math.max(...p.state.wheelOmega.slice(2))>10);report.scenarios.burnout={speed:p.state.speed,wheelOmega:p.state.wheelOmega,rpm:p.state.rpm,lastBlockRms:rms()};
+const before=p.engine.getTiming().totalSteps;audio.suspend(true);assert.equal(p.engine.getTiming().totalSteps,before);audio.suspend(false);run(.1,{transmission:'sequential',brake:1,throttle:1});report.checks.push('Pause/resume does not advance hidden engine time');
+audio.setMuted(true);run(.15,{transmission:'sequential',brake:1,throttle:1});audio.setMuted(false);report.checks.push('Muted driving keeps the same PCM-owned simulation clock and crank dynamics');
+report.scenarios.swaps=[];
+for(const spec of ENGINES){const build=resolveBuild({...DEFAULT_SELECTION,engineId:spec.id});p.setBuild(build);silent.setBuild(build);audio.setBuild(build);run(.25,{transmission:'sequential',gearRequest:0,throttle:.45});report.scenarios.swaps.push({engine:spec.id,clock:p.engine.getTiming().clock,rpm:p.state.rpm});}
+report.checks.push('Live vehicle solver plus actual PCM matches audio-disabled physics each120Hz step','Handbrake stalls, starter restarts, and service-brake burnout produces actual engine PCM',`Reset and ${ENGINES.length} engine swaps safely replace/release/reclaim audio clock`);
+report.status='passed';fs.writeFileSync(new URL('./audio-v3-physics-results.json',import.meta.url),JSON.stringify(report,null,2)+'\n');console.log(JSON.stringify(report,null,2));

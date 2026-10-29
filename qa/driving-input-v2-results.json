@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "stationarySteering": "no motion",
+  "keyboardRightHeading": -0.7435756497816063,
+  "keyboardLeftHeading": 0.7435756497816063,
+  "spaceHandbrake": "locks and releases both rear wheels",
+  "hToSequential": "paddles override H mode without stale neutral",
+  "explicitNeutral": "works in sequential",
+  "hGate": "held gear reaches physics"
+}

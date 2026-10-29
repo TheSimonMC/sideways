@@ -1,0 +1,125 @@
+{
+  "stationary": [
+    {
+      "heading": 0,
+      "steer": -1,
+      "headingDelta": 0,
+      "distance": 0,
+      "yawRate": 0
+    },
+    {
+      "heading": 0,
+      "steer": 1,
+      "headingDelta": 0,
+      "distance": 0,
+      "yawRate": 0
+    },
+    {
+      "heading": 1.37,
+      "steer": -1,
+      "headingDelta": 0,
+      "distance": 0,
+      "yawRate": 0
+    },
+    {
+      "heading": 1.37,
+      "steer": 1,
+      "headingDelta": 0,
+      "distance": 0,
+      "yawRate": 0
+    },
+    {
+      "heading": -2.4,
+      "steer": -1,
+      "headingDelta": 0,
+      "distance": 0,
+      "yawRate": 0
+    },
+    {
+      "heading": -2.4,
+      "steer": 1,
+      "headingDelta": 0,
+      "distance": 0,
+      "yawRate": 0
+    }
+  ],
+  "direction": [
+    {
+      "reverse": false,
+      "semanticRight": -1,
+      "headingDelta": 0.3576617762491021,
+      "x": 9.824660242439553,
+      "z": 11.213561731279945
+    },
+    {
+      "reverse": false,
+      "semanticRight": 1,
+      "headingDelta": -0.3576617762491024,
+      "x": 6.891436002512613,
+      "z": 13.220288400934102
+    },
+    {
+      "reverse": true,
+      "semanticRight": -1,
+      "headingDelta": -0.42793993993116736,
+      "x": -3.6422038121762794,
+      "z": -6.056405682837991
+    },
+    {
+      "reverse": true,
+      "semanticRight": 1,
+      "headingDelta": 0.4279399399311671,
+      "x": -4.325026022152463,
+      "z": -5.5892618754400685
+    }
+  ],
+  "handbrake": {
+    "speedBefore": 26.598167855610054,
+    "speedAfter": 23.975953751132938,
+    "angle": -0.3332212258597718,
+    "rotationWhileLocked": [
+      0,
+      0
+    ],
+    "wheelOmega": [
+      0,
+      0
+    ]
+  },
+  "manual": {
+    "firstGearKph": 68.30112738214544,
+    "sequentialHeldGuard": true,
+    "sequentialOrder": [
+      2,
+      3,
+      4,
+      5,
+      6,
+      5,
+      4,
+      3,
+      2,
+      1,
+      0,
+      -1
+    ],
+    "reverseThrottleSpeed": -9.156115243366092,
+    "clutchRpm": 7471.633301804229,
+    "releaseSpeed": 19.647555016191706,
+    "neutralRpm": 7523.344599663178,
+    "hPatternAllGears": [
+      -1,
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "unsafeShiftGuard": true,
+    "modeSwitch": true,
+    "neutralToAutoAt144Kph": 4
+  },
+  "passed": true
+}

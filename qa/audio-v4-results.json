@@ -1,0 +1,222 @@
+{
+  "status": "passed",
+  "checks": [
+    "Stationary contacts are silent; airborne wheels cannot create road or slip sound",
+    "All six world materials have distinct rolling textures at equal contact speed; no invented corner squeal",
+    "Stationary rear-wheel burnout sings from real slip work; locked stationary tyres stay silent",
+    "Individual wheel material is spatialized; brake friction follows dissipated brake work",
+    "Gear selection, starter, handbrake and actual suspension impact produce one causal transient each; decaying impact flags do not retrigger",
+    "Gear-mesh, clutch-friction and differential sounds follow shaft motion and dissipated work, without free-running pure tones",
+    "Post-drive retains bounded harmonics and useful level; native SDK bite is verified separately in V5",
+    "Coincident maximum layers remain finite and bounded; all four mix stems can independently be silenced",
+    "Engine/exhaust brightness configuration remains audible through the PCM EQ",
+    "Full PCM sound observation preserves actual coupled engine/wheel physics exactly at every 120Hz step; reset/suspend/mute clear tails",
+    "Countdown/finish one-shots play without engine stepping, finish survives driving suspension, rapid calls stay bounded, mute/end clean all UI sources, PCM handoff retains current wheel state",
+    "No oscillator nodes or imported retro wave loops remain in the driving sound renderer"
+  ],
+  "surfaces": [
+    {
+      "material": "asphalt",
+      "rms": 0.010332104431406643,
+      "peak": 0.044174402952194214,
+      "dc": 0.00008223717553515952,
+      "brightness": 0.5127791642549767,
+      "layers": {
+        "engine": 0,
+        "rolling": 0.020236741431077336,
+        "tyres": 0,
+        "brakes": 0,
+        "mechanical": 0,
+        "wind": 0,
+        "nitrous": 0,
+        "traffic": 0,
+        "transients": 0
+      }
+    },
+    {
+      "material": "concrete",
+      "rms": 0.015253416204250851,
+      "peak": 0.06397125124931335,
+      "dc": 0.00010191300498731602,
+      "brightness": 0.610019245921112,
+      "layers": {
+        "engine": 0,
+        "rolling": 0.02808498164010789,
+        "tyres": 0,
+        "brakes": 0,
+        "mechanical": 0,
+        "wind": 0,
+        "nitrous": 0,
+        "traffic": 0,
+        "transients": 0
+      }
+    },
+    {
+      "material": "curb",
+      "rms": 0.018857478850432766,
+      "peak": 0.07529023289680481,
+      "dc": 0.00009658811416898861,
+      "brightness": 0.665385525466986,
+      "layers": {
+        "engine": 0,
+        "rolling": 0.03344972659040393,
+        "tyres": 0,
+        "brakes": 0,
+        "mechanical": 0,
+        "wind": 0,
+        "nitrous": 0,
+        "traffic": 0,
+        "transients": 0
+      }
+    },
+    {
+      "material": "gravel",
+      "rms": 0.06780445149035456,
+      "peak": 0.3137005865573883,
+      "dc": 0.00030221254294980404,
+      "brightness": 0.7928948023575645,
+      "layers": {
+        "engine": 0,
+        "rolling": 0.11913011239984092,
+        "tyres": 0,
+        "brakes": 0,
+        "mechanical": 0,
+        "wind": 0,
+        "nitrous": 0,
+        "traffic": 0,
+        "transients": 0
+      }
+    },
+    {
+      "material": "grass",
+      "rms": 0.00994848457044409,
+      "peak": 0.05088793486356735,
+      "dc": 0.0000724394593219287,
+      "brightness": 0.6232626133139026,
+      "layers": {
+        "engine": 0,
+        "rolling": 0.016299786030023383,
+        "tyres": 0,
+        "brakes": 0,
+        "mechanical": 0,
+        "wind": 0,
+        "nitrous": 0,
+        "traffic": 0,
+        "transients": 0
+      }
+    },
+    {
+      "material": "metal",
+      "rms": 0.02211793156295234,
+      "peak": 0.08230464905500412,
+      "dc": 0.00010129806383194702,
+      "brightness": 0.7431544839740474,
+      "layers": {
+        "engine": 0,
+        "rolling": 0.040610723202105126,
+        "tyres": 0,
+        "brakes": 0,
+        "mechanical": 0,
+        "wind": 0,
+        "nitrous": 0,
+        "traffic": 0,
+        "transients": 0
+      }
+    }
+  ],
+  "fixtures": {
+    "stationary": {
+      "rms": 0,
+      "peak": 0,
+      "dc": 0,
+      "brightness": 0
+    },
+    "stationaryBurnout": {
+      "rms": 0.027467803747962618,
+      "peak": 0.10233388841152191,
+      "dc": 0.000007094015668027604,
+      "brightness": 0.19393496845006195,
+      "layers": {
+        "engine": 0,
+        "rolling": 0,
+        "tyres": 0.04773398903488351,
+        "brakes": 0,
+        "mechanical": 0,
+        "wind": 0,
+        "nitrous": 0,
+        "traffic": 0,
+        "transients": 0
+      }
+    },
+    "splitSurfaceStereo": {
+      "left": 0.04596719973255532,
+      "right": 0.020296840676872267
+    },
+    "braking": {
+      "engine": 0,
+      "rolling": 0,
+      "tyres": 0,
+      "brakes": 0.006203670204331762,
+      "mechanical": 0,
+      "wind": 0,
+      "nitrous": 0,
+      "traffic": 0,
+      "transients": 0
+    },
+    "events": {
+      "shift": 1,
+      "handbrake": 1,
+      "suspension": 1,
+      "impact": 0,
+      "starter": 1,
+      "clutch": 0,
+      "selector": 0,
+      "ui": 0,
+      "nitro": 0
+    },
+    "drivetrain": {
+      "engine": 0,
+      "rolling": 0,
+      "tyres": 0,
+      "brakes": 0,
+      "mechanical": 0.0028860596182908376,
+      "wind": 0,
+      "nitrous": 0,
+      "traffic": 0,
+      "transients": 0
+    },
+    "drive": {
+      "dry": {
+        "rms": 0.30470873110348184,
+        "peak": 0.43246349692344666,
+        "dc": 0.000004524393990950685,
+        "brightness": 0.013120155272878015
+      },
+      "driven": {
+        "rms": 0.33008866792714986,
+        "peak": 0.4685594439506531,
+        "dc": 0.000051466403635625376,
+        "brightness": 0.01312444700441002
+      },
+      "thirdHarmonicDry": 0.0002515040722166368,
+      "thirdHarmonicDriven": 0.0018758446926583064
+    },
+    "stress": {
+      "rms": 0.7815929399413998,
+      "peak": 0.9399799704551697,
+      "dc": -0.0001745442729045696,
+      "brightness": 1.4901374976164996
+    },
+    "exhaustBrightness": {
+      "dark": 0.3751725756431556,
+      "bright": 0.5184930673044712
+    },
+    "actualBurnout": {
+      "rpm": 2516.222873371123,
+      "kph": 0.1683006809140233,
+      "maxPeak": 0.18098624050617218,
+      "maxTyres": 0.03519541521795065,
+      "lastRms": 0.059949934873791334
+    }
+  }
+}

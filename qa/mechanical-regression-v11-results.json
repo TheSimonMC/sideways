@@ -1,0 +1,37 @@
+{
+  "version": 11,
+  "status": "passed",
+  "checks": [
+    "thermal: 10 existing behavioral groups passed against V11.",
+    "damage: 6 existing behavioral groups passed against V11."
+  ],
+  "suites": [
+    {
+      "name": "thermal",
+      "source": "qa/thermal-v9-check.mjs",
+      "result": "qa/thermal-v11-results.json",
+      "checks": 10,
+      "sha256": "d7dd01a58dfa7a6d39b497a0abf8d7a014f83bdcc3186043bf1434ff8eb3118f"
+    },
+    {
+      "name": "damage",
+      "source": "qa/damage-v9-check.mjs",
+      "result": "qa/damage-v11-results.json",
+      "checks": 6,
+      "sha256": "3d44ff38784ad19e2ad400a94d30236e0f3b190fef52e9be5370ed2db260048c"
+    }
+  ],
+  "sourceSHA256": {
+    "dist/audio.js": "cf169af71aff2ee0532326504e605b9d298facab7c868e0054a1371154e54190",
+    "dist/physics.js": "f2a61381a78e7bac2d002238a7dd1e9caf3d109f31ca0636da7b11176ee36b11",
+    "dist/mechanical.js": "e3763ea712d42e0103c5a8faf8bafed9fe9e3d7bf9882aa903d193e99315d7a1",
+    "dist/vehicle-state.js": "ef218457b5940396e1729a1f6ebf30cfde88cb44abfa1e7b0046cf23db8ddeb0",
+    "dist/catalog.js": "d769ca9d32685ac919f451593d5606df7642c65273a95e3cb27681ef6e83b10a",
+    "dist/body-damage.js": "a17437c5104fe33c7cd5f311541ca33e77149f68ea0fe55dd60d38d6de10d834",
+    "dist/vendor/motor-engine.js": "35e29500cc16ef5cf2b51b6490c07d80010cdf34d72fdc4fae9649fc527c820d"
+  },
+  "groups": 16,
+  "limits": [
+    "Controlled DOM, PCM/DSP and vehicle simulation. No live browser layout, speaker audition, hardware controller or internet WebRTC validation."
+  ]
+}

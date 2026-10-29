@@ -1,0 +1,242 @@
+SIDEWAYS audio attribution
+
+Recorded tyre sample
+Title: Car tire squeal / skid loop (tires_squal_loop.wav)
+Original recording: audible-edge (Tom Haigh)
+Loop edit: qubodup
+Source: https://opengameart.org/content/car-tire-squeal-skid-loop
+Original recording source: https://freesound.org/people/audible-edge/sounds/71739/
+License of the loop adaptation: Creative Commons Attribution 3.0 Unported
+License: https://creativecommons.org/licenses/by/3.0/
+Legal text: https://creativecommons.org/licenses/by/3.0/legalcode
+
+SIDEWAYS modifications: resampled from 96 kHz mono PCM24 to 48 kHz mono
+PCM16; bandpass filtering at 280 Hz and 10 kHz to reduce recorded engine
+bleed; DC removal; normalized output; 30 ms loop crossfade. Playback gain,
+small pitch variation and stereo position follow the actual wheel contact,
+slip speed, normal load and dissipated tyre work. Stored as PCM data in
+samples.js so no network request is needed during play.
+
+No endorsement by the original authors is implied.
+
+Player engine and native mechanical sources
+MotorLab SDK 1.6.3, supplied by the user. Player sound comes from the same
+live engine session as crank physics. Source configurations and simulation
+remain in sdk/. Continuous contact, wind, NOS and some mechanical layers are
+original procedural game effects. NOS sound is an arcade treatment, not a
+measured nitrous injection recording. Recorded interface and world samples
+are listed below.
+
+Distant traffic engine bed
+Generated offline from MotorLab 1.5.0 I4, approximately 1800 RPM, then
+resampled to 24 kHz PCM16 with DC removal, bandpass and 50 ms loop seam.
+Used only for lightweight ambient NPC engine audio. NPC pitch and gain
+follow traffic speed/load estimates; it is not a second player-engine clock.
+
+V6 music and acoustic kit
+========================
+
+Band phrase
+Title: Funked Up
+Author: Joth
+Source: https://opengameart.org/content/funked-up
+Original file: https://opengameart.org/sites/default/files/Funked%20Up.mp3
+License: Creative Commons CC0 1.0 Universal
+License: https://creativecommons.org/publicdomain/zero/1.0/
+Changes: selected a twelve-bar phrase (33.103448 seconds, 87 BPM) starting
+at 0.080 seconds; applied short edge fades and level trim; re-encoded to
+128 kbit/s stereo MP3. The game adds separately scheduled acoustic drum
+samples, filters and gain changes according to menu, driving and pursuit.
+Embedded in music-track.js; no streaming or runtime download.
+The published source describes guitar, bass, Rhodes and drumset. No claim
+is made about the original recording technique or live performance.
+
+Acoustic drum, metal and piano recordings
+Collection: Versilian Community Sample Library (VCSL)
+Author: Versilian Studios LLC / Sam Gossner
+Source: https://github.com/sgossner/VCSL
+Revision: c1ea7bcc3c7309650ab0da9d15c9cd1fbc4a4c7e
+License: Creative Commons CC0 1.0 Universal; exact text in CC0-LICENSE.txt
+License source:
+https://github.com/sgossner/VCSL/blob/c1ea7bcc3c7309650ab0da9d15c9cd1fbc4a4c7e/LICENSE
+Original paths at that revision:
+- Membranophones/Struck Membranophones/Bass Drum 1/BDrumNew_hit_v5_rr1_Sum.wav
+- Membranophones/Struck Membranophones/Snare Drum, Modern 2/Snare3M_HitSN_v5_rr1_Mid.wav
+- Membranophones/Struck Membranophones/Snare Drum, Modern 2/Snare3M_HitSN_v5_rr2_Mid.wav
+- Idiophones/Struck Idiophones/Hi-Hat Cymbal/HiHat_HitC_v3_rr1_Mid.wav
+- Idiophones/Struck Idiophones/Hi-Hat Cymbal/HiHat_HitLoose_rr1_Mid.wav
+- Idiophones/Struck Idiophones/Clash Cymbals 1/cymbal_crash1_short1.wav
+- Idiophones/Struck Idiophones/Brake Drum/BrakeDrum1_Hammer_v2_rr1_Mid.wav
+- Chordophones/Zithers/Upright Piano, Knight/Sustains/Player_vl1_rr1_A3.wav
+Changes: selected attacks and tails, mixed to mono, resampled to 32 kHz,
+removed DC, high-pass filtered, normalized and faded tails, stored PCM16
+in kit.js. The game varies gain, rate and stereo position. The escape cue
+is an original short piano phrase; it does not reproduce a game theme.
+
+Recorded interface switches
+Collection: 51 UI sound effects (buttons, switches and clicks)
+Author: Kenney
+Source: https://opengameart.org/content/51-ui-sound-effects-buttons-switches-and-clicks
+Original archive: https://opengameart.org/sites/default/files/UI_SFX_Set.zip
+Original files: switch3.wav, click2.wav
+License: Creative Commons CC0 1.0 Universal
+Changes: selected transients, mixed to mono, resampled to 32 kHz, removed
+DC, high-pass filtered, normalized, faded tails and embedded in kit.js.
+
+Recorded horn
+Title: Car Horn Beeps.mp3
+Author: hsaunier10
+Source: https://freesound.org/people/hsaunier10/sounds/254678/
+Public high-quality preview used:
+https://cdn.freesound.org/previews/254/254678_1835926-hq.mp3
+License: Creative Commons CC0 1.0 Universal
+Changes: selected the sustained portion starting at 0.46 seconds, removed
+DC, filtered, normalized, resampled to 24 kHz mono, made a short crossfaded
+loop and embedded PCM16 in kit.js. No specific vehicle model is asserted.
+
+Emergency siren
+Title: police.wav
+Author: guitarguy1985
+Source: https://freesound.org/people/guitarguy1985/sounds/70936/
+Public high-quality preview used:
+https://cdn.freesound.org/previews/70/70936_533680-hq.mp3
+License: Creative Commons CC0 1.0 Universal
+Changes: selected a 4.60-second wail starting at 0.80 seconds; made a
+20 ms loop crossfade; filtered at 200 Hz and 8 kHz; removed DC, normalized
+and resampled to 24 kHz mono PCM16. Embedded in kit.js. The source is a
+designed emergency-siren sound, not represented as a field recording.
+
+All V6 source and adapted-file hashes, sample rates and selected durations
+are recorded in qa/audio-v6-assets.json. CC0 source authors are credited
+voluntarily; no endorsement is implied. Each license applies to its own
+listed material. The MotorLab SDK remains under its supplied license.
+
+V7 pursuit music, dispatch and ambience
+======================================
+
+Pursuit arrangement
+Title: Skateboard-car-chase
+Author: bertsz
+Source: https://opengameart.org/content/skateboard-car-chase
+Original archive: https://opengameart.org/sites/default/files/ld44.zip
+Original file: main1_not_looped.flac
+License: Creative Commons CC0 1.0 Universal
+Changes: selected sixteen bars at 118 BPM (32.542372881 seconds), starting
+at 4.067796610 seconds; level trim, short edge fades and stereo MP3 encode
+at 128 kbit/s. Two synchronized eight-bar sections crossfade with pursuit
+pressure. Search filters the arrangement; escape releases it over several
+seconds before the cruising phrase returns. Added VCSL percussion uses
+its own gain, pan and timing. No original recording technique is asserted.
+Embedded in chase-track.js, without runtime downloads.
+
+Contextual radio speech
+1. Police Priority Traffic Dispatch, by bluelinevibes
+   https://freesound.org/people/bluelinevibes/sounds/752406/
+   Public preview used:
+   https://cdn.freesound.org/previews/752/752406_16289147-hq.mp3
+2. Dispatcher2.wav, by ciaranm758 (Harsfield Police Chatter)
+   https://freesound.org/people/ciaranm758/sounds/422839/
+   Public preview used:
+   https://cdn.freesound.org/previews/422/422839_6613451-hq.mp3
+3. Reply2.wav, by ciaranm758 (Harsfield Police Chatter)
+   https://freesound.org/people/ciaranm758/sounds/422842/
+   Public preview used:
+   https://cdn.freesound.org/previews/422/422842_6613451-hq.mp3
+Each source license: Creative Commons CC0 1.0 Universal
+Changes: band-limited at 290 Hz and 3.7 kHz, converted to mono 24 kHz,
+normalized, DC removed, short edge fades, embedded PCM16 in radio-kit.js.
+These are authored radio snippets. They are not represented as recordings
+of a real police operation. Tactical on-screen summaries are game-generated
+and are not claimed to be verbatim transcripts of the sampled speech.
+
+Stereo park ambience
+Title: Birds Singing in a Park
+Author: synth2
+Source: https://freesound.org/people/synth2/sounds/789567/
+Public preview used:
+https://cdn.freesound.org/previews/789/789567_2381713-hq.mp3
+License: Creative Commons CC0 1.0 Universal
+Changes: selected 4.906 seconds, filtered at 180 Hz and 7.2 kHz, converted
+to 16 kHz stereo, DC removed, normalized, made a 200 ms equal-power seam
+and embedded PCM16 in ambient-kit.js. Original stereo image retained.
+
+Stereo night ambience
+Title: Southern Summer Evening Ambience with Crickets 2
+Author: RyanKingArt
+Source: https://freesound.org/people/RyanKingArt/sounds/746363/
+Public preview used:
+https://cdn.freesound.org/previews/746/746363_11069322-hq.mp3
+License: Creative Commons CC0 1.0 Universal
+The author describes a recording made in Middle Tennessee on July 13, 2024.
+Changes: selected seven seconds starting at two seconds, filtered at
+180 Hz and 7.2 kHz, converted to 16 kHz stereo, DC removed, normalized,
+made a 200 ms equal-power seam and embedded PCM16 in ambient-kit.js.
+
+Wind, water and industrial beds remain procedural broadband textures.
+Facade reflection delays are derived from map geometry and camera basis;
+they are signal processing, not field recordings. All V7 source and adapted
+hashes are in qa/audio-v7-assets.json. CC0 credits do not imply endorsement.
+
+V8 driving music
+================
+
+Title: Super Wreck Roadway
+Author: Umplix
+Source: https://opengameart.org/content/super-wreck-roadway
+Original file: https://opengameart.org/sites/default/files/super_wreck_roadway_loop.wav
+License: Creative Commons CC0 1.0 Universal
+Changes: retained the complete 56-bar rock arrangement, trimmed the final
+5 ms to 134.4 seconds, multiplied gain by 0.63 to retain headroom from the
+floating-point WAV, applied 6 ms edge fades, and encoded stereo 44.1 kHz
+MP3 at 128 kbit/s. Tempo is inferred as 100 BPM from onset autocorrelation.
+No claim is made about the original recording or instrument technique.
+This replaces the earlier Joth cruising phrase in the shipped V8 soundtrack.
+The bertsz pursuit arrangement and recorded VCSL percussion remain, with
+stronger pursuit gain and additional focus/reading filtering.
+Source and adapted hashes are in qa/audio-v8-assets.json.
+
+V11 radio, native NPC voices and spatial acoustics
+=================================================
+
+Five additional spoken radio recordings and a radio click are embedded in
+radio-kit.js. These are recorded authored radio lines, not live police traffic.
+The game chooses different replies per event, avoids immediate repetitions,
+expires stale tactical messages and retains captions as game summaries.
+Captions are not presented as verbatim transcripts of these recordings.
+
+Author: ciaranm758, Harsfield Police Chatter
+- Reply1.wav: https://freesound.org/people/ciaranm758/sounds/422843/
+  https://cdn.freesound.org/previews/422/422843_6613451-hq.mp3
+- Reply3.wav: https://freesound.org/people/ciaranm758/sounds/422847/
+  https://cdn.freesound.org/previews/422/422847_6613451-hq.mp3
+- RadioIn.wav: https://freesound.org/people/ciaranm758/sounds/422844/
+  https://cdn.freesound.org/previews/422/422844_6613451-hq.mp3
+Author: alean, Radio Voice line of military jargon
+- Affirmative 2.wav: https://freesound.org/people/alean/sounds/520308/
+  https://cdn.freesound.org/previews/520/520308_3234030-hq.mp3
+- Ruger that.wav: https://freesound.org/people/alean/sounds/520363/
+  https://cdn.freesound.org/previews/520/520363_3234030-hq.mp3
+- Standing by 2.wav: https://freesound.org/people/alean/sounds/520362/
+  https://cdn.freesound.org/previews/520/520362_3234030-hq.mp3
+Each source license: Creative Commons CC0 1.0 Universal.
+https://creativecommons.org/publicdomain/zero/1.0/
+Changes: public previews decoded, mono24kHz,260Hz high-pass and3650Hz
+low-pass, DC removal, silence-only edge trimming, fixed peak normalization
+and10ms edge fades. No generated speech or voice pitch shifting.
+Exact source/adapted hashes and trims: qa/audio-v11-assets.json.
+
+The shipped NPC engines now use four new offline-rendered MotorLab1.6.3
+beds: inline four, turbo inline six, V8 and twin rotor. Each is generated
+from one native engine under a physical load near1800RPM, mixed to mono
+24kHz, DC removed, level trimmed and given a60ms loop seam. Nearby cars
+use the matching family with simulated RPM/load, distance, Doppler and
+camera-relative stereo. These replace the earlier I4-only traffic bed in
+world playback; they are lightweight NPC audio, not separate native player
+clocks. Generation code and sample hashes are in qa/build-npc-audio-v11.mjs
+and qa/npc-audio-v11-assets.json. The user-supplied SDK terms still apply.
+
+Player and world reflections retain stereo direction. Facade distance also
+reduces high-frequency echo energy. Dock09 now uses its container/building
+colliders to measure reflection paths; small posts and low kerbs do not
+create false acoustic walls. No environment or radio asset is fetched at
+runtime. No author endorsement is implied.

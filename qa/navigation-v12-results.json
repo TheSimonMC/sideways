@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "checks": [
+    "Text fields are editable while ranges and checkboxes remain navigation controls",
+    "Nested screens restore exact origin and preserve unrelated inert attributes",
+    "Removed and rebuilt cards recover focus by stable nav key",
+    "Summary is navigable; closed details exclude their inputs and opened details include them",
+    "Tab and reverse Tab wrap inside the current modal and recover from outside focus",
+    "Fractional ranges change once, clamp at their bounds and emit both form events",
+    "Explicit neighbors beat geometry and horizontal groups retain their own row",
+    "Shoulder tab cycling wraps visible tabs and executes the selected tab handler",
+    "Controller keyboard commits bounded text once and restores its exact input",
+    "Cancel discards a network credential draft and clears sensitive memory",
+    "Full punctuation, uppercase, cursor insertion, delete and maximum length are available",
+    "Controller confirmation clicks keys and direction stays inside the keyboard"
+  ],
+  "limit": "Functional DOM behavior, including actual navigation and text-entry modules; no physical controller or rendered-layout claim."
+}

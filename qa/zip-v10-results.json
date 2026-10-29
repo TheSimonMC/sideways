@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "reader": "Python standard-library zipfile, independent of the JavaScript writer",
+  "archive": "release/SIDEWAYS-v10-pages.zip",
+  "hostedArchive": "dist/downloads/SIDEWAYS-v10-pages.zip",
+  "bytes": 11773307,
+  "sha256": "f064fbcee34383d4b23c6ce8f0c1bba89f3fd27bbf7d99c53758b99a994cac49",
+  "entries": 76,
+  "currentRuntimeFilesCompared": 70,
+  "checks": [
+    "Standard-library central-directory parsing, decompression and CRC check pass for every entry.",
+    "Hosted and release ZIP files are byte-for-byte identical.",
+    "The manifest covers every packaged file with matching uncompressed size and SHA-256.",
+    "Packaged runtime bytes match the current dist files, including standalone HTML and the SDK.",
+    "The archive contains root index.html and .nojekyll with no nested download archives.",
+    "All archive paths are relative regular files without traversal or duplicate names.",
+    "HTML and ZIP sizes fit the download page guard and the offline HTML contains the V10 SDK."
+  ],
+  "limits": [
+    "This checks actual file bytes; it does not start a browser download or publish the archive."
+  ]
+}

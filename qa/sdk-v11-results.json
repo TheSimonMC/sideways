@@ -1,0 +1,310 @@
+{
+  "status": "passed",
+  "scope": "Actual MotorLab 1.6.3 migration and pressure-driven exhaust presence, native source processing, camera stereo, one crank clock and V9 damage persistence.",
+  "sampleRate": 48000,
+  "checks": [
+    "The installed browser and module SDK are the exact supplied 1.6.3 release14 bundles.",
+    "An actual V9 1.5.0 save preserves crank, cylinders, timing and existing mix while adding source-layer defaults.",
+    "Every catalog engine renders finite stereo with native layers and exactly one 24000Hz crank clock.",
+    "Native master remains linear after source distortion; disabling drive changes timbre without changing crank physics.",
+    "Exhaust upgrades, source drive and all three cameras reach the native SDK with dry geometry-aware reflections.",
+    "Camera-right orientation swaps the actual PCM ears without altering the native crank or sound-source setup.",
+    "PCM, manual fallback and fractional frame durations advance a single physical clock through a real vehicle.",
+    "V9 component condition survives garage save and recovery; selective repair safely releases and reclaims PCM ownership.",
+    "A stopped native engine stays silent instead of receiving a fabricated sound loop.",
+    "A genuine 1.6.0 session migrates without resetting its crank while the new passive pressure observers initialize safely.",
+    "Race intake and exhaust upgrades retain finite headroom through outside and hood camera mixes."
+  ],
+  "engines": [
+    {
+      "id": "i4",
+      "rpm": 7707.146009023821,
+      "rms": 0.11017908252503805,
+      "peak": 0.4587756395339966,
+      "zeroCrossingHz": 932.6666666666666,
+      "nativeOutputHeadroomDb": 31.01003670834983,
+      "nativeSteps": 36000,
+      "pcmManualRpmDifference": 0,
+      "cpuMsPerSimulatedSecond": 1006.3106666666666
+    },
+    {
+      "id": "i6t",
+      "rpm": 7489.361518789157,
+      "rms": 0.0869575737069056,
+      "peak": 0.3232702314853668,
+      "zeroCrossingHz": 856,
+      "nativeOutputHeadroomDb": 24.528836710128935,
+      "nativeSteps": 36000,
+      "pcmManualRpmDifference": 0,
+      "cpuMsPerSimulatedSecond": 1151.8713333333333
+    },
+    {
+      "id": "v8",
+      "rpm": 6616.237607255533,
+      "rms": 0.1263443913684331,
+      "peak": 0.5014506578445435,
+      "zeroCrossingHz": 857.6666666666666,
+      "nativeOutputHeadroomDb": 28.68905802413409,
+      "nativeSteps": 36000,
+      "pcmManualRpmDifference": 0,
+      "cpuMsPerSimulatedSecond": 998.372
+    },
+    {
+      "id": "rotary",
+      "rpm": 9092.334425304507,
+      "rms": 0.13241620054668535,
+      "peak": 0.5360128283500671,
+      "zeroCrossingHz": 855.3333333333334,
+      "nativeOutputHeadroomDb": 24.98149797743778,
+      "nativeSteps": 36000,
+      "pcmManualRpmDifference": 0,
+      "cpuMsPerSimulatedSecond": 810.8713333333334
+    },
+    {
+      "id": "boxer6",
+      "rpm": 8098.169241321749,
+      "rms": 0.11248534881416865,
+      "peak": 0.5460225939750671,
+      "zeroCrossingHz": 1140,
+      "nativeOutputHeadroomDb": 32.963459338013855,
+      "nativeSteps": 36000,
+      "pcmManualRpmDifference": 0,
+      "cpuMsPerSimulatedSecond": 714.2986666666667
+    },
+    {
+      "id": "v6",
+      "rpm": 7907.92505405047,
+      "rms": 0.1056226450655435,
+      "peak": 0.4113401770591736,
+      "zeroCrossingHz": 1176.6666666666667,
+      "nativeOutputHeadroomDb": 30.371823777186165,
+      "nativeSteps": 36000,
+      "pcmManualRpmDifference": 0,
+      "cpuMsPerSimulatedSecond": 761.3886666666667
+    },
+    {
+      "id": "v10",
+      "rpm": 8597.959906018852,
+      "rms": 0.11875417150009095,
+      "peak": 0.5046418309211731,
+      "zeroCrossingHz": 1265.6666666666667,
+      "nativeOutputHeadroomDb": 29.664624579918645,
+      "nativeSteps": 36000,
+      "pcmManualRpmDifference": 0,
+      "cpuMsPerSimulatedSecond": 927.4226666666667
+    },
+    {
+      "id": "v12",
+      "rpm": 8327.564942515417,
+      "rms": 0.11629156046904104,
+      "peak": 0.5062200427055359,
+      "zeroCrossingHz": 1535.6666666666667,
+      "nativeOutputHeadroomDb": 36.50541466666309,
+      "nativeSteps": 36000,
+      "pcmManualRpmDifference": 0,
+      "cpuMsPerSimulatedSecond": 989.182
+    }
+  ],
+  "fixtures": {
+    "The installed browser and module SDK are the exact supplied 1.6.3 release14 bundles.": {
+      "version": "1.6.3",
+      "physicsRelease": 14,
+      "audioRelease": 14,
+      "browserBundleSHA256": "a3bd9ae87c0053382683bb99e55bdbc8ab803c6e4b3e4b1a9e52b90a22054f23"
+    },
+    "An actual V9 1.5.0 save preserves crank, cylinders, timing and existing mix while adding source-layer defaults.": {
+      "from": "1.5.0",
+      "to": "1.6.3",
+      "time": 1.0000000000005642,
+      "rpm": 3480.761737205833,
+      "stepsAfterTwentyFiveMilliseconds": 600,
+      "fixtureSHA256": "f082149ebe92349feff19af36266ffe56efdf7fc6fbc324d454235b39db0ae32"
+    },
+    "Native master remains linear after source distortion; disabling drive changes timbre without changing crank physics.": {
+      "quarterMasterRatio": 0.25,
+      "maxSampleLinearityError": 0,
+      "driveDifferenceRms": 0.01010220732372654
+    },
+    "Exhaust upgrades, source drive and all three cameras reach the native SDK with dry geometry-aware reflections.": {
+      "exhaustProfiles": [
+        {
+          "enabled": true,
+          "solo": false,
+          "preGain": 1.05,
+          "distortion": 0.52
+        },
+        {
+          "enabled": true,
+          "solo": false,
+          "preGain": 1.16,
+          "distortion": 0.6
+        },
+        {
+          "enabled": true,
+          "solo": false,
+          "preGain": 1.28,
+          "distortion": 0.68
+        }
+      ],
+      "cameraListeners": [
+        {
+          "mode": "outside",
+          "distance": 2.4,
+          "azimuth": 46,
+          "reflections": 0
+        },
+        {
+          "mode": "outside",
+          "distance": 1.8,
+          "azimuth": 46,
+          "reflections": 0
+        },
+        {
+          "mode": "engine",
+          "distance": 0.7,
+          "azimuth": 46,
+          "reflections": 0
+        }
+      ]
+    },
+    "Camera-right orientation swaps the actual PCM ears without altering the native crank or sound-source setup.": {
+      "maxEarSwapError": 0,
+      "stereoDifferenceRms": 0.023527062286619462
+    },
+    "PCM, manual fallback and fractional frame durations advance a single physical clock through a real vehicle.": {
+      "vehiclePcmManualParity": true,
+      "manualFallbackSteps": 4800,
+      "pcmReclaimSteps": 4800,
+      "resetSteps": 2400,
+      "fractionalOneSecondSteps": 24000
+    },
+    "V9 component condition survives garage save and recovery; selective repair safely releases and reclaims PCM ownership.": {
+      "radiatorHealth": 0.2,
+      "clutchHealth": 0.65,
+      "gearOneHealth": 0.35,
+      "hotClutchC": 349.75559166458237,
+      "afterRepairAndCoolingC": 349.2673245689572,
+      "exactReclaimedSteps": 4800
+    },
+    "A stopped native engine stays silent instead of receiving a fabricated sound loop.": {
+      "stoppedRms": 0
+    },
+    "A genuine 1.6.0 session migrates without resetting its crank while the new passive pressure observers initialize safely.": {
+      "from": "1.6.0",
+      "to": "1.6.3",
+      "zeroedBeforeFirstStep": true,
+      "livePressureAfterStep": true
+    },
+    "Race intake and exhaust upgrades retain finite headroom through outside and hood camera mixes.": [
+      {
+        "engineId": "i4",
+        "camera": 0,
+        "peak": 0.3356180787086487,
+        "rms": 0.08872324575959607
+      },
+      {
+        "engineId": "i4",
+        "camera": 2,
+        "peak": 0.3664478063583374,
+        "rms": 0.07765839661097793
+      },
+      {
+        "engineId": "i6t",
+        "camera": 0,
+        "peak": 0.1568169891834259,
+        "rms": 0.05605857476015311
+      },
+      {
+        "engineId": "i6t",
+        "camera": 2,
+        "peak": 0.19640657305717468,
+        "rms": 0.054011087563027006
+      },
+      {
+        "engineId": "v8",
+        "camera": 0,
+        "peak": 0.31951797008514404,
+        "rms": 0.10164734078337727
+      },
+      {
+        "engineId": "v8",
+        "camera": 2,
+        "peak": 0.2835349142551422,
+        "rms": 0.07382118046912793
+      },
+      {
+        "engineId": "rotary",
+        "camera": 0,
+        "peak": 0.3613083064556122,
+        "rms": 0.10066408331545784
+      },
+      {
+        "engineId": "rotary",
+        "camera": 2,
+        "peak": 0.2962360084056854,
+        "rms": 0.06636839822886044
+      },
+      {
+        "engineId": "boxer6",
+        "camera": 0,
+        "peak": 0.3168452978134155,
+        "rms": 0.09292567556525219
+      },
+      {
+        "engineId": "boxer6",
+        "camera": 2,
+        "peak": 0.3567948043346405,
+        "rms": 0.08058923750711228
+      },
+      {
+        "engineId": "v6",
+        "camera": 0,
+        "peak": 0.36043864488601685,
+        "rms": 0.0921961684084472
+      },
+      {
+        "engineId": "v6",
+        "camera": 2,
+        "peak": 0.3384464383125305,
+        "rms": 0.07138002512018647
+      },
+      {
+        "engineId": "v10",
+        "camera": 0,
+        "peak": 0.3888048529624939,
+        "rms": 0.08934499098173729
+      },
+      {
+        "engineId": "v10",
+        "camera": 2,
+        "peak": 0.27886152267456055,
+        "rms": 0.07954838596678902
+      },
+      {
+        "engineId": "v12",
+        "camera": 0,
+        "peak": 0.2641238868236542,
+        "rms": 0.07866520193083408
+      },
+      {
+        "engineId": "v12",
+        "camera": 2,
+        "peak": 0.2720850110054016,
+        "rms": 0.08141663904306023
+      }
+    ]
+  },
+  "limits": [
+    "Deterministic Node PCM and vehicle simulation; no browser playback, hardware latency, wheel hardware or listening assessment.",
+    "CPU timings are local process measurements in a shared execution environment, not a browser or device performance guarantee."
+  ],
+  "sourceSHA256": {
+    "sdk/motor-engine.mjs": "9429afaf17e38de7753e0c93eeda563b5ce2204cf0337a30ffa7beea0cf2e751",
+    "dist/vendor/motor-engine.js": "a3bd9ae87c0053382683bb99e55bdbc8ab803c6e4b3e4b1a9e52b90a22054f23",
+    "dist/audio.js": "396cf3e02170cbebaf16162f134e172aa73bdc83a5afa3706c94d84c054f93fe",
+    "dist/catalog.js": "d769ca9d32685ac919f451593d5606df7642c65273a95e3cb27681ef6e83b10a",
+    "dist/physics.js": "f2a61381a78e7bac2d002238a7dd1e9caf3d109f31ca0636da7b11176ee36b11",
+    "dist/mechanical.js": "e3763ea712d42e0103c5a8faf8bafed9fe9e3d7bf9882aa903d193e99315d7a1",
+    "dist/vehicle-state.js": "ef218457b5940396e1729a1f6ebf30cfde88cb44abfa1e7b0046cf23db8ddeb0"
+  }
+}

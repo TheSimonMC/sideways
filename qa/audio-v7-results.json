@@ -1,0 +1,225 @@
+{
+  "status": "passed",
+  "scope": "Deterministic PCM/DSP and mocked Web Audio scheduling; real MP3 decoding through ffmpeg. No browser, speaker or controller listening claim.",
+  "checks": [
+    "Emergency voices survive a crowd of closer civilians, remain audible in measured PCM to320m, use an independent siren mix, and obey6active/10total bounds.",
+    "Civilian RPM/load sound and recorded horns carry to practical street distances; actual camera-right reverses stereo, with bounded Doppler.",
+    "Settings siren preview ends after2.15s without traffic; recorded speech PCM is serialized, priority-interrupted, cooldown/queue bounded and independently muted. Speed-camera cue works while stationary.",
+    "Geometry changes reverb tail energy and early stereo reflection direction; changing facade distances remain finite, disabled reverb is dry, tails decay and resets clear buffers.",
+    "Real stereo birds and evening insects crossfade with day/night and park context, independent ambience volume fades to silence, and pause clears the beds.",
+    "Two recorded arrangements and real percussion respond distinctly to chase/search;8bar sections stay synchronized, escape decays continuously over10s, pause freezes the release, scheduling is bounded and codec failure isolated.",
+    "World sound, siren/radio previews and music run without advancing the native engine in both menu Settings and suspended-driving Settings; master/mute, independent gains, world-reset flushing and6buffer bound hold.",
+    "100m siren PCM has measurable headroom relative to actual full-load native-engine output; player native-clock regression is run separately at each120Hz step.",
+    "Embedded CC0 asset hashes, stereo channels and rates are verified; actual pursuit MP3 decodes, attribution is complete and no runtime network or oscillator nodes are used."
+  ],
+  "fixtures": {
+    "sirens": {
+      "distances": [
+        {
+          "distance": 30,
+          "rms": 0.10916891957659967
+        },
+        {
+          "distance": 100,
+          "rms": 0.05844650429707061
+        },
+        {
+          "distance": 200,
+          "rms": 0.02764685664468299
+        },
+        {
+          "distance": 320,
+          "rms": 0.014532655316854841
+        }
+      ],
+      "maxActive": 6,
+      "maxFading": 10,
+      "reservedEmergency": 3,
+      "mutedReleaseRms": 0.010251919373250335
+    },
+    "traffic": {
+      "near": 0.013011719396697437,
+      "far": 0.003143934045937942,
+      "right": 0.012108752470703676,
+      "left": 0.004762128734142328,
+      "lookBackLeft": 0.010250074479305364,
+      "horn": 0.028537408462627728
+    },
+    "radio": {
+      "testSirenRms": 0.1251576287545506,
+      "radioRms": 0.059542112242327076,
+      "played": 2,
+      "dropped": 4,
+      "queueLimit": 3,
+      "mutedRms": 0
+    },
+    "acoustics": {
+      "openTailEnergy": 0.007276678386741192,
+      "streetTailEnergy": 3.0952065292256417,
+      "leftFacadeEnergyRatio": 27.85493827160492,
+      "rightFacadeEnergyRatio": 27.854938271604922,
+      "disabledTail": 0,
+      "peak": 0.4999958823693967
+    },
+    "ambience": {
+      "day": 0.005168803092411956,
+      "night": 0.00545943832388402,
+      "mutedRelease": 0.0025968148576217946,
+      "paused": 0
+    },
+    "music": {
+      "chaseBpm": 118,
+      "decodes": 2,
+      "driveHits": 17,
+      "chaseHits": 58,
+      "chase": {
+        "ready": true,
+        "enabled": true,
+        "mode": "chase",
+        "intensity": 0.9,
+        "energy": 0.999932271263509,
+        "chaseLevel": 0.9099190912557905,
+        "bandLevel": 0.01501182815000499,
+        "paused": false,
+        "volume": 0.42,
+        "bpm": 118,
+        "bars": 12,
+        "playing": true,
+        "chaseLoops": 2,
+        "activeVoices": 9,
+        "maxVoices": 11,
+        "scheduledHits": 75,
+        "hits": {
+          "kick": 13,
+          "hat": 41,
+          "snareAlt": 5,
+          "snare": 6,
+          "crash": 2,
+          "metal": 7,
+          "openHat": 1
+        },
+        "error": null,
+        "source": "Joth cruising band, bertsz pursuit cue and VCSL acoustic percussion"
+      },
+      "search": {
+        "ready": true,
+        "enabled": true,
+        "mode": "search",
+        "intensity": 0.3,
+        "energy": 0.2890222659902446,
+        "chaseLevel": 0.19083915229283127,
+        "bandLevel": 2.0527468142736425e-7,
+        "paused": false,
+        "volume": 0.42,
+        "bpm": 118,
+        "bars": 12,
+        "playing": true,
+        "chaseLoops": 2,
+        "activeVoices": 4,
+        "maxVoices": 11,
+        "scheduledHits": 84,
+        "hits": {
+          "kick": 16,
+          "hat": 43,
+          "snareAlt": 5,
+          "snare": 6,
+          "crash": 2,
+          "metal": 7,
+          "openHat": 1,
+          "piano": 4
+        },
+        "error": null,
+        "source": "Joth cruising band, bertsz pursuit cue and VCSL acoustic percussion"
+      },
+      "release": [
+        {
+          "seconds": 1,
+          "chase": 0.7734660906139335,
+          "band": 0.006715011443736093,
+          "energy": 0.9097659443102614
+        },
+        {
+          "seconds": 2,
+          "chase": 0.5691803558107597,
+          "band": 0.003017249136049366,
+          "energy": 0.7483538261106297
+        },
+        {
+          "seconds": 3,
+          "chase": 0.3949594418643395,
+          "band": 0.046683461139284614,
+          "energy": 0.581975471390696
+        },
+        {
+          "seconds": 4,
+          "chase": 0.2669417317600189,
+          "band": 0.14523347008881296,
+          "energy": 0.4376655551112859
+        },
+        {
+          "seconds": 5,
+          "chase": 0.1781652726895921,
+          "band": 0.2684443586670403,
+          "energy": 0.32213102721980547
+        },
+        {
+          "seconds": 6,
+          "chase": 0.1181815883736889,
+          "band": 0.4027360947430508,
+          "energy": 0.23369117636708195
+        },
+        {
+          "seconds": 7,
+          "chase": 0.07815236894680151,
+          "band": 0.5420067765467814,
+          "energy": 0.16784285884687644
+        },
+        {
+          "seconds": 8,
+          "chase": 0.051601859686046754,
+          "band": 0.6835146428767447,
+          "energy": 0.11969839998692942
+        },
+        {
+          "seconds": 9,
+          "chase": 0.03404488613183885,
+          "band": 0.7807000173019458,
+          "energy": 0.08493126131981592
+        },
+        {
+          "seconds": 10,
+          "chase": 0.02245270765782803,
+          "band": 0.8243682209197682,
+          "energy": 0.06004090895731936
+        }
+      ],
+      "maxVoices": 12,
+      "pausedOffset": 24.944999999999858,
+      "decodeFailure": "band: codec unavailable; chase: codec unavailable"
+    },
+    "transport": {
+      "worldFrames": 195840,
+      "playerFrames": 0,
+      "nativeSteps": 0,
+      "maxQueued": 5,
+      "previews": "menu Settings and suspended-driving Settings"
+    },
+    "nativeMix": {
+      "engineRms": 0.1006649327991439,
+      "sirenAt100mRms": 0.05844650429707061,
+      "monoSirenToStereoEngineRatio": 0.5806044137901383,
+      "limitation": "Signal-level proxy before final music/limiter; no loudspeaker or perceptual masking claim."
+    },
+    "assets": {
+      "radio": 3,
+      "ambience": 2,
+      "chaseBytes": 521690,
+      "chaseDecodedSeconds": 32.542375,
+      "chase": {
+        "rms": 0.11811244563383952,
+        "peak": 0.7787493467330933
+      },
+      "offline": true
+    }
+  }
+}

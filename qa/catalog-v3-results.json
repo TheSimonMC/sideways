@@ -1,0 +1,274 @@
+{
+  "status": "passed",
+  "catalog": [
+    {
+      "engine": "i4",
+      "tune": "stock",
+      "redline": 7600,
+      "kind": "four",
+      "cylinders": 4,
+      "rotors": 0,
+      "exhaustDiameter": 0.058
+    },
+    {
+      "engine": "i4",
+      "tune": "track",
+      "redline": 8100,
+      "kind": "four",
+      "cylinders": 4,
+      "rotors": 0,
+      "exhaustDiameter": 0.07134
+    },
+    {
+      "engine": "i6t",
+      "tune": "stock",
+      "redline": 7400,
+      "kind": "four",
+      "cylinders": 6,
+      "rotors": 0,
+      "exhaustDiameter": 0.076
+    },
+    {
+      "engine": "i6t",
+      "tune": "track",
+      "redline": 7900,
+      "kind": "four",
+      "cylinders": 6,
+      "rotors": 0,
+      "exhaustDiameter": 0.09348
+    },
+    {
+      "engine": "v8",
+      "tune": "stock",
+      "redline": 6500,
+      "kind": "four",
+      "cylinders": 8,
+      "rotors": 0,
+      "exhaustDiameter": 0.088
+    },
+    {
+      "engine": "v8",
+      "tune": "track",
+      "redline": 7000,
+      "kind": "four",
+      "cylinders": 8,
+      "rotors": 0,
+      "exhaustDiameter": 0.10823999999999999
+    },
+    {
+      "engine": "rotary",
+      "tune": "stock",
+      "redline": 9000,
+      "kind": "rotary",
+      "cylinders": 0,
+      "rotors": 2,
+      "exhaustDiameter": 0.068
+    },
+    {
+      "engine": "rotary",
+      "tune": "track",
+      "redline": 9500,
+      "kind": "rotary",
+      "cylinders": 0,
+      "rotors": 2,
+      "exhaustDiameter": 0.08364
+    },
+    {
+      "engine": "boxer6",
+      "tune": "stock",
+      "redline": 7900,
+      "kind": "four",
+      "cylinders": 6,
+      "rotors": 0,
+      "exhaustDiameter": 0.078
+    },
+    {
+      "engine": "boxer6",
+      "tune": "track",
+      "redline": 8400,
+      "kind": "four",
+      "cylinders": 6,
+      "rotors": 0,
+      "exhaustDiameter": 0.09594
+    },
+    {
+      "engine": "v6",
+      "tune": "stock",
+      "redline": 7800,
+      "kind": "four",
+      "cylinders": 6,
+      "rotors": 0,
+      "exhaustDiameter": 0.074
+    },
+    {
+      "engine": "v6",
+      "tune": "track",
+      "redline": 8300,
+      "kind": "four",
+      "cylinders": 6,
+      "rotors": 0,
+      "exhaustDiameter": 0.09101999999999999
+    },
+    {
+      "engine": "v10",
+      "tune": "stock",
+      "redline": 8500,
+      "kind": "four",
+      "cylinders": 10,
+      "rotors": 0,
+      "exhaustDiameter": 0.088
+    },
+    {
+      "engine": "v10",
+      "tune": "track",
+      "redline": 9000,
+      "kind": "four",
+      "cylinders": 10,
+      "rotors": 0,
+      "exhaustDiameter": 0.10823999999999999
+    },
+    {
+      "engine": "v12",
+      "tune": "stock",
+      "redline": 8200,
+      "kind": "four",
+      "cylinders": 12,
+      "rotors": 0,
+      "exhaustDiameter": 0.095
+    },
+    {
+      "engine": "v12",
+      "tune": "track",
+      "redline": 8700,
+      "kind": "four",
+      "cylinders": 12,
+      "rotors": 0,
+      "exhaustDiameter": 0.11685
+    }
+  ],
+  "models": [
+    {
+      "car": "hachi",
+      "meshes": 126,
+      "vertices": 3606,
+      "wheelbase": 2.6,
+      "bounds": {
+        "kind": "coupe",
+        "length": 4.42,
+        "width": 2.03,
+        "height": 1.31,
+        "number": "09"
+      }
+    },
+    {
+      "car": "atlas",
+      "meshes": 123,
+      "vertices": 3872,
+      "wheelbase": 2.82,
+      "bounds": {
+        "kind": "muscle",
+        "length": 5.03,
+        "width": 2.14,
+        "height": 1.47,
+        "number": "71"
+      }
+    },
+    {
+      "car": "kitsune",
+      "meshes": 113,
+      "vertices": 3460,
+      "wheelbase": 2.42,
+      "bounds": {
+        "kind": "wedge",
+        "length": 4.08,
+        "width": 1.9,
+        "height": 1.18,
+        "number": "13"
+      }
+    },
+    {
+      "car": "vector",
+      "meshes": 124,
+      "vertices": 3594,
+      "wheelbase": 2.72,
+      "bounds": {
+        "kind": "tourer",
+        "length": 4.58,
+        "width": 2,
+        "height": 1.51,
+        "number": "46"
+      }
+    }
+  ],
+  "engineBench": [
+    {
+      "engine": "i4",
+      "referenceRpm": 4000,
+      "meanCombustionTorqueNm": 191.95,
+      "netShaftTorqueNm": 192.07,
+      "note": "Fixed-speed SDK fixture, not a real-world dyno rating"
+    },
+    {
+      "engine": "i6t",
+      "referenceRpm": 4000,
+      "meanCombustionTorqueNm": 327.81,
+      "netShaftTorqueNm": 328.45,
+      "note": "Fixed-speed SDK fixture, not a real-world dyno rating"
+    },
+    {
+      "engine": "v8",
+      "referenceRpm": 4000,
+      "meanCombustionTorqueNm": 443.14,
+      "netShaftTorqueNm": 442.66,
+      "note": "Fixed-speed SDK fixture, not a real-world dyno rating"
+    },
+    {
+      "engine": "rotary",
+      "referenceRpm": 4000,
+      "meanCombustionTorqueNm": 225.78,
+      "netShaftTorqueNm": 225.95,
+      "note": "Fixed-speed SDK fixture, not a real-world dyno rating"
+    },
+    {
+      "engine": "boxer6",
+      "referenceRpm": 4000,
+      "meanCombustionTorqueNm": 359.48,
+      "netShaftTorqueNm": 358.54,
+      "note": "Fixed-speed SDK fixture, not a real-world dyno rating"
+    },
+    {
+      "engine": "v6",
+      "referenceRpm": 4000,
+      "meanCombustionTorqueNm": 309.72,
+      "netShaftTorqueNm": 309.22,
+      "note": "Fixed-speed SDK fixture, not a real-world dyno rating"
+    },
+    {
+      "engine": "v10",
+      "referenceRpm": 4000,
+      "meanCombustionTorqueNm": 489.32,
+      "netShaftTorqueNm": 489.2,
+      "note": "Fixed-speed SDK fixture, not a real-world dyno rating"
+    },
+    {
+      "engine": "v12",
+      "referenceRpm": 4000,
+      "meanCombustionTorqueNm": 576.93,
+      "netShaftTorqueNm": 576.88,
+      "note": "Fixed-speed SDK fixture, not a real-world dyno rating"
+    }
+  ],
+  "checks": [
+    "Four distinct model shapes and eight engine choices",
+    "Unknown and incompatible part selections sanitize safely",
+    "Car default engine is selected when no swap is specified",
+    "No mutations leak into catalogue defaults",
+    "Every stock and fully tuned engine validates in the original SDK",
+    "Every selectable part constructs a valid MotorLab engine",
+    "All model meshes finite, exactly four aligned wheels, real independent wheel angles",
+    "Model replacement preserves one root and disposal removes it",
+    "Stationary physical wheelspin produces smoke and rubber patches",
+    "Stationary locked wheels do not generate fake burnout smoke",
+    "Eight engines produce distinct actual SDK net shaft torque at the same speed"
+  ]
+}

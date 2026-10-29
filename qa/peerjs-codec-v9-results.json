@@ -1,0 +1,37 @@
+{
+  "version": 9,
+  "status": "passed",
+  "checks": [
+    "The actual shipped JSON codec reproduces message-too-big for first and evolved city frames; BinaryPack decodes the same frames without losing any fields",
+    "Two interleaved fragmented frames reassemble independently and clear all vendor chunk buffers"
+  ],
+  "fixtures": [
+    {
+      "label": "First live city frame, 36 traffic cars and six police",
+      "jsonBytes": 17806,
+      "jsonError": "message-too-big",
+      "binaryChunks": 1,
+      "binaryBytes": 11888,
+      "largestChunk": 11888
+    },
+    {
+      "label": "Real city after one second with four player poses",
+      "jsonBytes": 24735,
+      "jsonError": "message-too-big",
+      "binaryChunks": 1,
+      "binaryBytes": 15173,
+      "largestChunk": 15173
+    },
+    {
+      "label": "Bounded 96-agent stress frame uses real vendor fragmentation",
+      "jsonBytes": 55259,
+      "jsonError": "message-too-big",
+      "binaryChunks": 3,
+      "binaryBytes": 33399,
+      "largestChunk": 16331
+    }
+  ],
+  "verificationLimit": "Runs the shipped PeerJS 1.5.5 JSON and BinaryPack classes, including real chunking/reassembly, in a VM without WebRTC. This verifies serialization, not signaling, ICE traversal, browser rendering or live internet connectivity.",
+  "vendorSHA256": "7604d8c31bec4f134b0d15c2d80b1d095ea18af005354f439f14291fcd7b4168",
+  "multiplayerSHA256": "057d396d5f8fae62417255e2099d6dd269f92105b40e09d8b53fa8f979a75651"
+}

@@ -1,0 +1,123 @@
+{
+  "data": [
+    {
+      "engineId": "i4",
+      "camera": 0,
+      "rms": 0.01840391361313817,
+      "peak": 0.07498551905155182,
+      "cpuSecondsPerSimulatedSecond": 0.508515,
+      "rpm": 7707.146009023821
+    },
+    {
+      "engineId": "i4",
+      "camera": 2,
+      "rms": 0.010691286254288649,
+      "peak": 0.049652911722660065,
+      "cpuSecondsPerSimulatedSecond": 0.500127,
+      "rpm": 7707.146009023821
+    },
+    {
+      "engineId": "boxer6",
+      "camera": 0,
+      "rms": 0.011773050711843657,
+      "peak": 0.05721990019083023,
+      "cpuSecondsPerSimulatedSecond": 0.576956,
+      "rpm": 8098.169241321749
+    },
+    {
+      "engineId": "boxer6",
+      "camera": 2,
+      "rms": 0.013346304400874618,
+      "peak": 0.0418989472091198,
+      "cpuSecondsPerSimulatedSecond": 0.545064,
+      "rpm": 8098.169241321749
+    },
+    {
+      "engineId": "v6",
+      "camera": 0,
+      "rms": 0.011146084867154479,
+      "peak": 0.04266873002052307,
+      "cpuSecondsPerSimulatedSecond": 0.613796,
+      "rpm": 7907.92505405047
+    },
+    {
+      "engineId": "v6",
+      "camera": 2,
+      "rms": 0.01176183106685354,
+      "peak": 0.0406644307076931,
+      "cpuSecondsPerSimulatedSecond": 0.552781,
+      "rpm": 7907.92505405047
+    },
+    {
+      "engineId": "v10",
+      "camera": 0,
+      "rms": 0.013666325815733134,
+      "peak": 0.061610281467437744,
+      "cpuSecondsPerSimulatedSecond": 0.729688,
+      "rpm": 8597.959906018852
+    },
+    {
+      "engineId": "v10",
+      "camera": 2,
+      "rms": 0.014310683717682373,
+      "peak": 0.04091886803507805,
+      "cpuSecondsPerSimulatedSecond": 0.707895,
+      "rpm": 8597.959906018852
+    },
+    {
+      "engineId": "v12",
+      "camera": 0,
+      "rms": 0.012539034383651919,
+      "peak": 0.05940479412674904,
+      "cpuSecondsPerSimulatedSecond": 0.78091,
+      "rpm": 8327.564942515417
+    },
+    {
+      "engineId": "v12",
+      "camera": 2,
+      "rms": 0.012488437290198188,
+      "peak": 0.0367664135992527,
+      "cpuSecondsPerSimulatedSecond": 0.846614,
+      "rpm": 8327.564942515417
+    }
+  ],
+  "cpu": [
+    {
+      "version": "old",
+      "engineId": "i6t",
+      "camera": 0,
+      "rms": 0.09016152618556615,
+      "peak": 0.44385576248168945,
+      "cpuSecondsPerSimulatedSecond": 0.732465,
+      "rpm": 7489.361518789157
+    },
+    {
+      "version": "new",
+      "engineId": "i6t",
+      "camera": 0,
+      "rms": 0.025932497369835394,
+      "peak": 0.08877741545438766,
+      "cpuSecondsPerSimulatedSecond": 0.908962,
+      "rpm": 7489.361518789157
+    },
+    {
+      "version": "new",
+      "engineId": "i6t",
+      "camera": 0,
+      "rms": 0.025932497369835394,
+      "peak": 0.08877741545438766,
+      "cpuSecondsPerSimulatedSecond": 0.670673,
+      "rpm": 7489.361518789157
+    },
+    {
+      "version": "old",
+      "engineId": "i6t",
+      "camera": 0,
+      "rms": 0.09016152618556615,
+      "peak": 0.44385576248168945,
+      "cpuSecondsPerSimulatedSecond": 0.6267,
+      "rpm": 7489.361518789157
+    }
+  ],
+  "scope": "Pre-trim camera and CPU measurements used to choose linear output gains. Final calibrated integration levels are in sdk-v10-results.json."
+}

@@ -1,0 +1,301 @@
+{
+  "status": "passed",
+  "verificationLimit": "CPU geometry and shader-equivalent math only; GPU shader compilation and visual browser inspection unavailable",
+  "checks": [
+    "All four model poses invert the actual chassis transform including heave, pitch, roll, yaw and ride height",
+    "Dynamic screen rectangle contains actual chassis geometry across four models",
+    "Projected depth reconstructs true world position",
+    "Flat road remains unmasked below every tested body pose",
+    "Actual main-loop footprint sampler rejects raised curbs and joints beneath every lowered car",
+    "Conservative ground rejection still protects upper car body",
+    "Environment translation remains visible in all three cameras",
+    "World exposure stable across 30/60/120fps",
+    "Pause and camera cuts suppress motion blur",
+    "Shader uses tested matrix/mask expressions and retains original color/filter constants"
+  ],
+  "poses": [
+    {
+      "car": "hachi",
+      "pose": "flat",
+      "rideHeight": 0,
+      "maxTransformError": 2.831068712794149e-15,
+      "maxReconstructionError": 9.588695404852935e-13,
+      "protectedBodyPoints": 4,
+      "actualChassisScreenPoints": 1568,
+      "protectedModelVertices": 1568
+    },
+    {
+      "car": "hachi",
+      "pose": "braking-lowered",
+      "rideHeight": -0.025,
+      "maxTransformError": 2.914203267236168e-15,
+      "maxReconstructionError": 1.87343782519399e-12,
+      "protectedBodyPoints": 4,
+      "actualChassisScreenPoints": 1568,
+      "protectedModelVertices": 1565
+    },
+    {
+      "car": "hachi",
+      "pose": "curb-roll",
+      "rideHeight": -0.045,
+      "maxTransformError": 2.1868857395626282e-15,
+      "maxReconstructionError": 2.455636822758463e-12,
+      "protectedBodyPoints": 4,
+      "actualChassisScreenPoints": 1568,
+      "protectedModelVertices": 1565
+    },
+    {
+      "car": "hachi",
+      "pose": "airborne",
+      "rideHeight": -0.045,
+      "maxTransformError": 2.628586363139634e-15,
+      "maxReconstructionError": 2.3569853243824165e-12,
+      "protectedBodyPoints": 4,
+      "actualChassisScreenPoints": 1568,
+      "protectedModelVertices": 1568
+    },
+    {
+      "car": "atlas",
+      "pose": "flat",
+      "rideHeight": 0,
+      "maxTransformError": 2.831068712794149e-15,
+      "maxReconstructionError": 1.2457759872837218e-12,
+      "protectedBodyPoints": 4,
+      "actualChassisScreenPoints": 1834,
+      "protectedModelVertices": 1834
+    },
+    {
+      "car": "atlas",
+      "pose": "braking-lowered",
+      "rideHeight": -0.025,
+      "maxTransformError": 2.914203267236168e-15,
+      "maxReconstructionError": 1.87343782519399e-12,
+      "protectedBodyPoints": 4,
+      "actualChassisScreenPoints": 1834,
+      "protectedModelVertices": 1824
+    },
+    {
+      "car": "atlas",
+      "pose": "curb-roll",
+      "rideHeight": -0.045,
+      "maxTransformError": 2.1868857395626282e-15,
+      "maxReconstructionError": 2.455636822758463e-12,
+      "protectedBodyPoints": 4,
+      "actualChassisScreenPoints": 1834,
+      "protectedModelVertices": 1831
+    },
+    {
+      "car": "atlas",
+      "pose": "airborne",
+      "rideHeight": -0.045,
+      "maxTransformError": 2.628586363139634e-15,
+      "maxReconstructionError": 2.3569853243824165e-12,
+      "protectedBodyPoints": 4,
+      "actualChassisScreenPoints": 1834,
+      "protectedModelVertices": 1834
+    },
+    {
+      "car": "kitsune",
+      "pose": "flat",
+      "rideHeight": 0,
+      "maxTransformError": 2.831068712794149e-15,
+      "maxReconstructionError": 1.400288207023421e-12,
+      "protectedBodyPoints": 4,
+      "actualChassisScreenPoints": 1660,
+      "protectedModelVertices": 1660
+    },
+    {
+      "car": "kitsune",
+      "pose": "braking-lowered",
+      "rideHeight": -0.025,
+      "maxTransformError": 2.914203267236168e-15,
+      "maxReconstructionError": 1.87343782519399e-12,
+      "protectedBodyPoints": 4,
+      "actualChassisScreenPoints": 1660,
+      "protectedModelVertices": 1657
+    },
+    {
+      "car": "kitsune",
+      "pose": "curb-roll",
+      "rideHeight": -0.045,
+      "maxTransformError": 2.1868857395626282e-15,
+      "maxReconstructionError": 2.455636822758463e-12,
+      "protectedBodyPoints": 4,
+      "actualChassisScreenPoints": 1660,
+      "protectedModelVertices": 1657
+    },
+    {
+      "car": "kitsune",
+      "pose": "airborne",
+      "rideHeight": -0.045,
+      "maxTransformError": 2.628586363139634e-15,
+      "maxReconstructionError": 2.3569853243824165e-12,
+      "protectedBodyPoints": 4,
+      "actualChassisScreenPoints": 1660,
+      "protectedModelVertices": 1660
+    },
+    {
+      "car": "vector",
+      "pose": "flat",
+      "rideHeight": 0,
+      "maxTransformError": 2.831068712794149e-15,
+      "maxReconstructionError": 9.588695404852935e-13,
+      "protectedBodyPoints": 4,
+      "actualChassisScreenPoints": 1460,
+      "protectedModelVertices": 1460
+    },
+    {
+      "car": "vector",
+      "pose": "braking-lowered",
+      "rideHeight": -0.025,
+      "maxTransformError": 2.914203267236168e-15,
+      "maxReconstructionError": 1.87343782519399e-12,
+      "protectedBodyPoints": 4,
+      "actualChassisScreenPoints": 1460,
+      "protectedModelVertices": 1454
+    },
+    {
+      "car": "vector",
+      "pose": "curb-roll",
+      "rideHeight": -0.045,
+      "maxTransformError": 3.0485681130056856e-15,
+      "maxReconstructionError": 2.455636822758463e-12,
+      "protectedBodyPoints": 4,
+      "actualChassisScreenPoints": 1460,
+      "protectedModelVertices": 1457
+    },
+    {
+      "car": "vector",
+      "pose": "airborne",
+      "rideHeight": -0.045,
+      "maxTransformError": 2.628586363139634e-15,
+      "maxReconstructionError": 2.3569853243824165e-12,
+      "protectedBodyPoints": 4,
+      "actualChassisScreenPoints": 1460,
+      "protectedModelVertices": 1460
+    }
+  ],
+  "flow": [
+    {
+      "mode": 0,
+      "fps": 30,
+      "pixels": 34.22181767702677,
+      "shutterSeconds": 0.04363636363636364
+    },
+    {
+      "mode": 0,
+      "fps": 60,
+      "pixels": 34.608916287946236,
+      "shutterSeconds": 0.04363636363636364
+    },
+    {
+      "mode": 0,
+      "fps": 120,
+      "pixels": 34.80576825928644,
+      "shutterSeconds": 0.04363636363636364
+    },
+    {
+      "mode": 1,
+      "fps": 30,
+      "pixels": 10.365532115764793,
+      "shutterSeconds": 0.05090909090909091
+    },
+    {
+      "mode": 1,
+      "fps": 60,
+      "pixels": 10.64304130497753,
+      "shutterSeconds": 0.05090909090909091
+    },
+    {
+      "mode": 1,
+      "fps": 120,
+      "pixels": 10.787443672057119,
+      "shutterSeconds": 0.05090909090909091
+    },
+    {
+      "mode": 2,
+      "fps": 30,
+      "pixels": 10.453111803988385,
+      "shutterSeconds": 0.03018181818181818
+    },
+    {
+      "mode": 2,
+      "fps": 60,
+      "pixels": 10.853999848949226,
+      "shutterSeconds": 0.03018181818181818
+    },
+    {
+      "mode": 2,
+      "fps": 120,
+      "pixels": 11.066200169498845,
+      "shutterSeconds": 0.03018181818181818
+    }
+  ],
+  "warnings": [],
+  "raisedGround": [
+    {
+      "car": "hachi",
+      "terrain": "curb",
+      "maskGroundHeight": 0.122,
+      "highestActual": 0.12200000000000001,
+      "maxRoadMask": 0,
+      "samples": 441
+    },
+    {
+      "car": "hachi",
+      "terrain": "joint",
+      "maskGroundHeight": 0.05199998331441956,
+      "highestActual": 0.051999998104681255,
+      "maxRoadMask": 0,
+      "samples": 441
+    },
+    {
+      "car": "atlas",
+      "terrain": "curb",
+      "maskGroundHeight": 0.12200000000000001,
+      "highestActual": 0.12200000000000001,
+      "maxRoadMask": 0,
+      "samples": 441
+    },
+    {
+      "car": "atlas",
+      "terrain": "joint",
+      "maskGroundHeight": 0.05199998331441956,
+      "highestActual": 0.051999998906124,
+      "maxRoadMask": 0,
+      "samples": 441
+    },
+    {
+      "car": "kitsune",
+      "terrain": "curb",
+      "maskGroundHeight": 0.122,
+      "highestActual": 0.12200000000000001,
+      "maxRoadMask": 0,
+      "samples": 441
+    },
+    {
+      "car": "kitsune",
+      "terrain": "joint",
+      "maskGroundHeight": 0.05199998331441956,
+      "highestActual": 0.05199999715752163,
+      "maxRoadMask": 0,
+      "samples": 441
+    },
+    {
+      "car": "vector",
+      "terrain": "curb",
+      "maskGroundHeight": 0.122,
+      "highestActual": 0.12200000000000001,
+      "maxRoadMask": 0,
+      "samples": 441
+    },
+    {
+      "car": "vector",
+      "terrain": "joint",
+      "maskGroundHeight": 0.05199998331441956,
+      "highestActual": 0.05199999788610596,
+      "maxRoadMask": 0,
+      "samples": 441
+    }
+  ]
+}

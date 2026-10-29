@@ -1,0 +1,45 @@
+{
+  "status": "passed",
+  "builds": [
+    {
+      "car": "hachi",
+      "engine": "i6t",
+      "speedAfter4SecondsKph": 85.54351141033726,
+      "gear": 2,
+      "rpm": 6441.7499016367165,
+      "maxEngineMeanTorque": 337.96444493055355,
+      "maxBodyRoll": 0.02505017941556844,
+      "boostAvailable": true
+    },
+    {
+      "car": "atlas",
+      "engine": "v8",
+      "speedAfter4SecondsKph": 87.5106123128729,
+      "gear": 2,
+      "rpm": 5142.353481180142,
+      "maxEngineMeanTorque": 509.188340064292,
+      "maxBodyRoll": 0.024274170353485006,
+      "boostAvailable": false
+    },
+    {
+      "car": "kitsune",
+      "engine": "rotary",
+      "speedAfter4SecondsKph": 87.16897611694606,
+      "gear": 2,
+      "rpm": 7748.290188911164,
+      "maxEngineMeanTorque": 227.4807577201059,
+      "maxBodyRoll": 0.029281441425066928,
+      "boostAvailable": false
+    },
+    {
+      "car": "vector",
+      "engine": "i4",
+      "speedAfter4SecondsKph": 66.37564347676135,
+      "gear": 2,
+      "rpm": 5497.637954258955,
+      "maxEngineMeanTorque": 220.3806309704904,
+      "maxBodyRoll": 0.02265566313397601,
+      "boostAvailable": false
+    }
+  ]
+}

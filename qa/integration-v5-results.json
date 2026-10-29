@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "checks": [
+    "All literal element IDs used by main, GameUI, garage and controls exist, with no duplicate HTML IDs",
+    "Actual controller focus skips hidden native selects and arrows; visible choices, checkboxes and sliders operate through real handlers",
+    "Garage uses real dynamic engine and part choices; preview is cancelled and installation updates the active build",
+    "Starting free roam waits for both visible loading frames and compilation, then activates only the city and traffic",
+    "Escape during driving goes directly to the main menu; P/Start pause, controller B resumes, and Escape from pause opens main menu",
+    "Nested controls back preserves pause and Escape while learning cancels both capture and panel state before leaving the nested screen",
+    "Loading can be cancelled before world creation, after world selection and during compile; stale completion never reopens a cancelled run",
+    "Countdown Escape returns home; city to sprint loading never draws the sprint HUD against the old city; load errors recover to the menu",
+    "Held menu confirm/back/starter never leak into NOS, handbrake or starter after actual loading/resume; RT remains a driving pedal only",
+    "Real frame updates prompt glyphs for the last active device and keyboard fallback; pause, blur and hidden document disable feedback",
+    "Quick wheel calibration leaves a visible focus target in the calibration tab"
+  ],
+  "verificationLimit": "Actual main.js handlers, InputManager, GameUI, ControlsPanel and GaragePanel in a functional DOM; renderer/world/audio are controlled stubs. No browser layout, GPU or hardware claims.",
+  "htmlIds": 185,
+  "asyncCompileCalls": 9,
+  "cityCreations": 1,
+  "worldSwitchesVerified": [
+    "dock→city",
+    "city→dock",
+    "cancel before first paint",
+    "cancel after world selection",
+    "cancel during compilation",
+    "superseded compile completion",
+    "compile rejection"
+  ]
+}

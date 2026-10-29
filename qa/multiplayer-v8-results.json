@@ -1,0 +1,32 @@
+{
+  "version": 8,
+  "status": "passed",
+  "checks": [
+    "Codes use eight unambiguous cryptographic characters; rules, profiles, signaling and ICE inputs are bounded",
+    "Host creates a short-code room; joining clients exchange a bounded roster, ready status and host-only rules",
+    "Twenty-Hz owner poses and ten-Hz host AI/time reach all clients; late join starts the same run and full rooms reject cleanly",
+    "Clients cannot change host rules or inject shared-world events; replayed packets and nonfinite player poses are rejected",
+    "Host-only game events preserve target IDs; names remain data, and snapshot size/backpressure cannot grow transport queues",
+    "Away state removes a remote car from active play; ping, timeout and client departure have bounded cleanup",
+    "Host departure ends clients, destroys connections and discards queued starts; cancelled factory completion cannot create a zombie room",
+    "Real 36-car and 6-officer world snapshots survive transport validation and apply to matching replicas without local AI advancement",
+    "Actual remote cars interpolate wrapped headings and wheel motion, snap teleports, carry damage/lights and expose matching audio/contact poses"
+  ],
+  "limits": [
+    "Protocol tests use an in-memory PeerJS-compatible transport. They do not prove ICE traversal, signaling availability or real browser WebRTC connectivity.",
+    "Remote geometry tests use actual Three.js and createCar without GPU rendering.",
+    "Solid player contacts are local kinematic contacts; no rollback or anti-cheat system is asserted."
+  ],
+  "room": {
+    "players": 4,
+    "codeLength": 8,
+    "poseRate": 20,
+    "worldRate": 10,
+    "lateJoin": true
+  },
+  "worldBytes": 21645,
+  "modules": {
+    "dist/multiplayer.js": "9f3ea092b4b30d3806da29942636a36e0c48816bd51e2fffcd34eb8e00d5ee67",
+    "dist/network-cars.js": "da25a7195b0f9e9a88a48af996a7742e9ed4c5b3e40b19e4a1d510a53d6f99fe"
+  }
+}

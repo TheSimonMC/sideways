@@ -1,0 +1,127 @@
+{
+  "status": "passed",
+  "checks": [
+    "Distributed day patrols and visible station reserves perform two night deployments and one daylight return without teleports or stale body identities",
+    "Civilian drivers pull right and slow for an approaching siren, stay on the road and resume after it passes",
+    "A following horn prompts courtesy movement, and a close fast pass emits one throttled near-miss reaction",
+    "Pursuit, interception and containment use observed motion; two different hidden player positions produce identical police search movement",
+    "Twelve visible directional cameras measure forward lane crossings, flash, report serious excess speed, respect cooldown and reject wrong-way/other-lane/reset cases",
+    "Camera report sends a real unit to the photographed location without heat; pursuit starts only after an officer actually sees the car"
+  ],
+  "limits": [
+    "Deterministic dynamic AI, geometry, rendered instance matrices and event contracts in Node. No browser image or speaker listening claim.",
+    "Driver reactions and police planning are bounded authored game behaviours, not a general intelligence simulation."
+  ],
+  "shifts": {
+    "stages": [
+      {
+        "night": 1,
+        "active": 6,
+        "reserve": 0,
+        "duties": [
+          "patrol",
+          "patrol",
+          "patrol",
+          "patrol",
+          "patrol",
+          "patrol"
+        ]
+      },
+      {
+        "night": 0,
+        "active": 3,
+        "reserve": 3,
+        "duties": [
+          "patrol",
+          "patrol",
+          "patrol",
+          "reserve",
+          "reserve",
+          "reserve"
+        ]
+      },
+      {
+        "night": 1,
+        "active": 6,
+        "reserve": 0,
+        "duties": [
+          "patrol",
+          "patrol",
+          "patrol",
+          "patrol",
+          "patrol",
+          "patrol"
+        ]
+      }
+    ],
+    "deployTimes": [
+      1.0083333333333322,
+      4.416666666666676,
+      7.825000000000179,
+      300.0083333332248,
+      303.41666666655505,
+      306.8249999998853
+    ],
+    "maxStepM": 0.1041666666666912,
+    "offroad": 0
+  },
+  "emergency": {
+    "maxSwerveM": 3.404615648013369,
+    "yieldSpeed": 4.197296417987005,
+    "resumedSpeed": 11.133697564459126,
+    "yields": 1
+  },
+  "courtesy": {
+    "yields": 1,
+    "nearMisses": 1,
+    "event": {
+      "type": "nearMiss",
+      "npcId": "npc-0",
+      "x": 5.491824166715658,
+      "z": -132.6795516987429,
+      "distance": 3.000000000000001,
+      "intensity": 0.6399780638871259
+    }
+  },
+  "search": {
+    "roles": [
+      "pursuit",
+      "intercept",
+      "contain"
+    ],
+    "remaining": 14.491666666666676,
+    "progress": 0.19490740740740686,
+    "events": [
+      "pursuit",
+      "search"
+    ]
+  },
+  "cameras": {
+    "count": 12,
+    "firstCapture": {
+      "type": "speedCamera",
+      "cameraId": "speed-camera-0",
+      "name": "MIDTOWN SPEED CHECK",
+      "district": "MIDTOWN",
+      "x": 5,
+      "z": -450,
+      "speedKph": 126,
+      "limitKph": 50,
+      "excessKph": 76,
+      "tickets": 1,
+      "reported": true,
+      "time": 0.016666666666666666,
+      "message": "126 KM/H IN A 50 ZONE · POLICE NOTIFIED"
+    },
+    "falsePositiveCases": 5
+  },
+  "investigation": {
+    "unit": "police-0",
+    "reportedPosition": [
+      5,
+      -450
+    ],
+    "distanceBeforeSpotting": 123.29300728100839,
+    "sirensInRange": 1
+  }
+}

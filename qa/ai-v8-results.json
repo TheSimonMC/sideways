@@ -1,0 +1,164 @@
+{
+  "status": "passed",
+  "checks": [
+    "traffic",
+    "shift",
+    "courtesy",
+    "close-pass",
+    "cameras",
+    "target-custody",
+    "observation-radio",
+    "camera-investigation",
+    "snapshots"
+  ],
+  "limits": [
+    "Deterministic physical AI and Three.js instance matrices in Node. No GPU image or audible siren claim.",
+    "AI uses a bounded bicycle model, steering/braking and shared planar collision bodies. It does not run a full MotorLab drivetrain for each NPC."
+  ],
+  "traffic": {
+    "cars": 36,
+    "time": 120.00000000004157,
+    "entries": 216,
+    "turns": 74,
+    "redStops": 173660,
+    "playerStops": 0,
+    "contacts": 0,
+    "horns": 0,
+    "recycled": 0,
+    "emergencyYields": 0,
+    "nearMisses": 0,
+    "courtesyYields": 0,
+    "stopped": 19,
+    "intersectionsOccupied": 9,
+    "yielding": 0,
+    "temperaments": [
+      "cautious",
+      "steady",
+      "assertive"
+    ],
+    "dynamic": true,
+    "replica": false,
+    "seconds": 120,
+    "offroad": 0,
+    "redEntries": 0,
+    "wrongLane": 0,
+    "overlaps": 0,
+    "minLaneOffset": -3.279398615626243,
+    "minTravelM": 158.63591645289958,
+    "maxInstanceErrorM": 0.00002124220793465036,
+    "wallMs": 5391.135748
+  },
+  "shift": {
+    "stages": [
+      {
+        "night": 1,
+        "active": 6,
+        "duties": [
+          "patrol",
+          "patrol",
+          "patrol",
+          "patrol",
+          "patrol",
+          "patrol"
+        ]
+      },
+      {
+        "night": 0,
+        "active": 3,
+        "duties": [
+          "patrol",
+          "patrol",
+          "patrol",
+          "reserve",
+          "reserve",
+          "reserve"
+        ]
+      }
+    ],
+    "maxStepM": 0.10416666389635791,
+    "offroad": 0,
+    "wrongLane": 0
+  },
+  "courtesy": {
+    "leftPullOverM": -1.5927734704918195,
+    "remoteHornYield": true
+  },
+  "closePass": {
+    "local": {
+      "events": [
+        {
+          "type": "nearMiss",
+          "npcId": "npc-0",
+          "playerId": "host",
+          "x": -11.92397258941419,
+          "z": -75.14779784902849,
+          "distance": 3.001219851157402,
+          "clearance": 1.0448916510161006,
+          "relativeSpeed": 29.55000241853787,
+          "speed": 35,
+          "intensity": 0.6850000806179289,
+          "completed": true
+        }
+      ],
+      "firstEventAt": 0.55,
+      "completedSeparation": 4.999932091489597
+    },
+    "remote": {
+      "events": [
+        {
+          "type": "nearMiss",
+          "npcId": "npc-0",
+          "playerId": "guest",
+          "x": -11.92397258941419,
+          "z": -75.14779784902849,
+          "distance": 3.001219851157402,
+          "clearance": 1.0448916510161006,
+          "relativeSpeed": 29.55000241853787,
+          "speed": 35,
+          "intensity": 0.6850000806179289,
+          "completed": true
+        }
+      ],
+      "firstEventAt": 0.55,
+      "completedSeparation": 4.999932091489597
+    },
+    "falsePositiveCases": 5
+  },
+  "cameras": {
+    "count": 12,
+    "players": [
+      {
+        "playerId": "host",
+        "tickets": 1,
+        "speedKph": 126
+      },
+      {
+        "playerId": "guest",
+        "tickets": 1,
+        "speedKph": 126
+      }
+    ],
+    "falsePositiveCases": 5
+  },
+  "custody": {
+    "targetId": "guest",
+    "arrests": 1,
+    "releasePhase": "patrol",
+    "graceSecondsObserved": 8
+  },
+  "observation": {
+    "hiddenAndDisconnectedSamePaths": true,
+    "location": "Suspect northbound in MIDTOWN."
+  },
+  "cameraInvestigation": {
+    "targetId": "guest",
+    "otherDriverCannotRetarget": true
+  },
+  "snapshots": {
+    "trafficBytes": 18116,
+    "policeBytes": 3340,
+    "remoteTickFrozen": true,
+    "interpolationMilliseconds": 100,
+    "rejectedMutations": 5
+  }
+}

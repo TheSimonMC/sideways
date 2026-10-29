@@ -1,0 +1,215 @@
+{
+  "suite": "additive-game-api",
+  "version": 14,
+  "sourceSHA256": {
+    "core.js": "3bbca9649fecb68cf45f98beba023d4ad807747afa54463d81791b6d4cef43d2",
+    "vehicle.js": "884962cada36838e8cb841047169dbf027f55cf94467f89f68832a8a91b3e61e",
+    "audio.js": "b94c39b82ed2846d99dee93c25b6bf7791efb28c259f46145fdca126b5bf32e8",
+    "game-api.js": "34df821cedd3749fbfa301076019d16d34184e5ac6aae9da08b98a7f499d9a40"
+  },
+  "artifactSHA256": {
+    "tests/game-api-tests.mjs": "e959c0e5f878437867f0944c97cc9f49e47a043ab954aeafbff765edb9cb0029",
+    "tests/legacy-state.mjs": "81cb062f93d3466d9f434ac2dfd5ebd6b6f674a0cfd704a04289980ac5aae786",
+    "tests/sdk-legacy-v7-fixture.json": "8a17067e840b2516fbf7bc8a9daeb8d3256d2c386b804311004a12393196c771",
+    "tests/core-v8-baseline.js": "efd882f510d5bff174aafa7dfe929c90598c05a9ed92996a678a1e2258bcd57f",
+    "tests/vehicle-v10-baseline.js": "9a4db840ce4a9b8542a7033e427222206726c8f23220b5e27d23f99854398f98"
+  },
+  "finalSourceSHA256": {
+    "core.js": "3bbca9649fecb68cf45f98beba023d4ad807747afa54463d81791b6d4cef43d2",
+    "vehicle.js": "884962cada36838e8cb841047169dbf027f55cf94467f89f68832a8a91b3e61e",
+    "audio.js": "b94c39b82ed2846d99dee93c25b6bf7791efb28c259f46145fdca126b5bf32e8",
+    "game-api.js": "34df821cedd3749fbfa301076019d16d34184e5ac6aae9da08b98a7f499d9a40"
+  },
+  "finalArtifactSHA256": {
+    "tests/game-api-tests.mjs": "e959c0e5f878437867f0944c97cc9f49e47a043ab954aeafbff765edb9cb0029",
+    "tests/legacy-state.mjs": "81cb062f93d3466d9f434ac2dfd5ebd6b6f674a0cfd704a04289980ac5aae786",
+    "tests/sdk-legacy-v7-fixture.json": "8a17067e840b2516fbf7bc8a9daeb8d3256d2c386b804311004a12393196c771",
+    "tests/core-v8-baseline.js": "efd882f510d5bff174aafa7dfe929c90598c05a9ed92996a678a1e2258bcd57f",
+    "tests/vehicle-v10-baseline.js": "9a4db840ce4a9b8542a7033e427222206726c8f23220b5e27d23f99854398f98"
+  },
+  "baselineCoreSHA256": "efd882f510d5bff174aafa7dfe929c90598c05a9ed92996a678a1e2258bcd57f",
+  "baselineVehicleSHA256": "9a4db840ce4a9b8542a7033e427222206726c8f23220b5e27d23f99854398f98",
+  "sourceUnchangedDuringRun": true,
+  "filter": null,
+  "checks": 32,
+  "passed": 31,
+  "failed": 1,
+  "verificationScope": [
+    "immutable legacy core and vehicle reference bytes",
+    "every original serialized state field and additional optional controls",
+    "optional physical RPM limits and independent marker",
+    "twelve-gear vehicle path",
+    "fixed-step debt",
+    "real in-memory PCM",
+    "mocked device lifecycle",
+    "bundle coexistence"
+  ],
+  "exclusions": [
+    "native browser device playback",
+    "auditory judgment",
+    "arbitrary third-party game physics"
+  ],
+  "results": [
+    {
+      "name": "immutable old core and vehicle references anchor the compatible release-14 SDK",
+      "pass": true,
+      "milliseconds": 0.2417999999999978
+    },
+    {
+      "name": "headless construction preserves complete cold legacy state for engine and vehicle",
+      "pass": true,
+      "milliseconds": 13.260600000000004
+    },
+    {
+      "name": "all advertised presets build actual validated engines, including 12-litre V8 and typo rejection",
+      "pass": true,
+      "milliseconds": 136.5315
+    },
+    {
+      "name": "timed start and loadNm alias match full legacy trajectory without rearming starter",
+      "pass": true,
+      "milliseconds": 20.827300000000008
+    },
+    {
+      "name": "vehicle aliases and the physical shift path match all serialized legacy fields",
+      "pass": true,
+      "milliseconds": 170.21559999999997
+    },
+    {
+      "name": "saved v7 fixture hashes verify complete raw and wrapped replay paths",
+      "pass": false,
+      "milliseconds": 490.61139999999995,
+      "error": "AssertionError [ERR_ASSERTION]: immutable raw v7 fixture i4\n+ actual - expected\n\n+ 'efd7685d74d78520e4f749fd9f5d27cec6e242e4b6608eff40a6e9d00dc21b98'\n- '9e19ee89d1ed31ef66b56fe28fe75347631f16341366f6445eb8148746cac9d7'\n\n    at file:///C:/Users/schag/Documents/Codex/2026-10-28/3d-browser-rennspiel-chatgpt-conversation-6ae05837/work/sideways/sdk/tests/game-api-tests.mjs:116:12\n    at test (file:///C:/Users/schag/Documents/Codex/2026-10-28/3d-browser-rennspiel-chatgpt-conversation-6ae05837/work/sideways/sdk/tests/game-api-tests.mjs:32:15)\n    at file:///C:/Users/schag/Documents/Codex/2026-10-28/3d-browser-rennspiel-chatgpt-conversation-6ae05837/work/sideways/sdk/tests/game-api-tests.mjs:102:7"
+    },
+    {
+      "name": "bounded updates retain unpaid time, report actual work and drain explicitly",
+      "pass": true,
+      "milliseconds": 4.738899999999944
+    },
+    {
+      "name": "irregular frame partitions keep the same physical step count and complete state",
+      "pass": true,
+      "milliseconds": 9.580699999999979
+    },
+    {
+      "name": "pause retains existing debt and explicit discard reports the lost duration",
+      "pass": true,
+      "milliseconds": 0.8223000000000411
+    },
+    {
+      "name": "SDK save-load restores immutable opaque legacy state plus fraction and starter deadline",
+      "pass": true,
+      "milliseconds": 14.858799999999974
+    },
+    {
+      "name": "bare legacy vehicle restore follows the same original restore and replay path",
+      "pass": true,
+      "milliseconds": 27.715299999999957
+    },
+    {
+      "name": "invalid load is atomic, rejects JSON poison and does not alter existing legacy state",
+      "pass": true,
+      "milliseconds": 6.355000000000018
+    },
+    {
+      "name": "external torque is a booked legacy shaft impulse, with no hidden test drive",
+      "pass": true,
+      "milliseconds": 6.133299999999963
+    },
+    {
+      "name": "snapshots are detached and reset constructs the same cold validated motor",
+      "pass": true,
+      "milliseconds": 11.086099999999988
+    },
+    {
+      "name": "manual PCM and browser audio are exclusive clocks; disconnect also releases direct PCM",
+      "pass": true,
+      "milliseconds": 5.931400000000053
+    },
+    {
+      "name": "whole pending steps block audio claim without dropping time or clock ownership",
+      "pass": true,
+      "milliseconds": 5.786799999999971
+    },
+    {
+      "name": "real PCM is finite and block partition leaves identical samples and complete physics",
+      "pass": true,
+      "milliseconds": 210.57629999999995
+    },
+    {
+      "name": "slow-motion PCM advances the same original physics duration without a second clock",
+      "pass": true,
+      "milliseconds": 19.44360000000006
+    },
+    {
+      "name": "zero volume reaches real zero samples while preserving engine progression",
+      "pass": true,
+      "milliseconds": 39.918499999999995
+    },
+    {
+      "name": "audio connect resumes synchronously, uses real session PCM, and preserves borrowed context",
+      "pass": true,
+      "milliseconds": 11.37279999999987
+    },
+    {
+      "name": "failed audio retry clears prior error and suspended connection can resume again",
+      "pass": true,
+      "milliseconds": 3.0901000000001204
+    },
+    {
+      "name": "dispose invalidates pending owned audio and cannot reconnect after delayed resume",
+      "pass": true,
+      "milliseconds": 1.4398000000001048
+    },
+    {
+      "name": "audio timeout cleans failed ownership and leaves manual updates available",
+      "pass": true,
+      "milliseconds": 9.648100000000113
+    },
+    {
+      "name": "live cam targets use the same bounded physical actuator through the game wrapper",
+      "pass": true,
+      "milliseconds": 33.61930000000007
+    },
+    {
+      "name": "boost targets control the existing valves without setting a pressure or creating an audio clock",
+      "pass": true,
+      "milliseconds": 9.234299999999848
+    },
+    {
+      "name": "parallel twin family uses two real shafts through the existing create and update API",
+      "pass": true,
+      "milliseconds": 107.87959999999998
+    },
+    {
+      "name": "parallel twin save restore preserves both shafts through engine and vehicle sessions",
+      "pass": true,
+      "milliseconds": 126.36600000000021
+    },
+    {
+      "name": "parallel twin PCM is deterministic across block partitions with one physical clock",
+      "pass": true,
+      "milliseconds": 145.14160000000015
+    },
+    {
+      "name": "disabled RPM cut preserves real over-threshold shaft motion independently of the redline marker",
+      "pass": true,
+      "milliseconds": 4.949200000000019
+    },
+    {
+      "name": "separate RPM cut threshold survives SDK save restore and uses the actual core cutoff",
+      "pass": true,
+      "milliseconds": 10.992299999999886
+    },
+    {
+      "name": "twelve-gear vehicle and its saved continuation use the same actual drivetrain as the raw core",
+      "pass": true,
+      "milliseconds": 232.99540000000002
+    },
+    {
+      "name": "classic bundle coexists with old lexical globals, ESM and CJS expose the same engine",
+      "pass": true,
+      "milliseconds": 30.674499999999853
+    }
+  ]
+}

@@ -1,0 +1,129 @@
+{
+  "status": "passed",
+  "checks": [
+    "ESM, CommonJS and distributed classic MotorLab SDK are coherent at 1.5.0 / physics release 13",
+    "New 3.2 L 60-degree V6 is naturally aspirated in stock and track builds, ignores turbo hardware, and renders finite bounded PCM with exact manual crank parity",
+    "Real attributed CC BY 3.0 tyre recording and offline SDK traffic bed are finite, seam-crossfaded and embedded without runtime downloads",
+    "Native bite changes actual engine PCM with exactly unchanged crank physics; manifold, mechanical and declared timing-chain sources are active",
+    "NOS air sound remains continuous for a three-second hold, follows valve intensity even without combustion, triggers only edges, and decays after release",
+    "Traffic bed follows distance and stereo position, adds a bounded horn, fades removed sources, respects environment mix and limits CPU to four active/eight fading voices",
+    "Pause and mute silence transport and clear transient queues without advancing engine time; new build clears continuous NOS and traffic state"
+  ],
+  "fixtures": {
+    "v6NA": [
+      {
+        "id": "v6",
+        "name": "V6 3.2 NA",
+        "ecu": "stock",
+        "redline": 7800,
+        "limiter": 8000,
+        "boost": "none",
+        "engineMassKg": 190,
+        "pcm": {
+          "rms": 0.12418073431448066,
+          "peak": 0.3013608455657959,
+          "dc": -0.000005098014045268144,
+          "brightness": 0.09893099136591976
+        },
+        "rpm": 7884.683406147111,
+        "nativeSteps": 24000,
+        "pcmManualRpmDifference": 0
+      },
+      {
+        "id": "v6",
+        "name": "V6 3.2 NA",
+        "ecu": "track",
+        "redline": 8300,
+        "limiter": 8500,
+        "boost": "none",
+        "engineMassKg": 190,
+        "pcm": {
+          "rms": 0.11908429257073382,
+          "peak": 0.2852006256580353,
+          "dc": -0.00006811909375337636,
+          "brightness": 0.10741191291392548
+        },
+        "rpm": 8485.68318581632,
+        "nativeSteps": 24000,
+        "pcmManualRpmDifference": 0
+      }
+    ],
+    "assets": {
+      "tyre": {
+        "rms": 0.2343015443774155,
+        "peak": 0.90997314453125,
+        "dc": -8.134595740390012e-9,
+        "brightness": 0.20019525500122298
+      },
+      "traffic": {
+        "rms": 0.23999268521828818,
+        "peak": 0.753082275390625,
+        "dc": -8.477105034722222e-9,
+        "brightness": 0.10680552512071911
+      },
+      "tyreSeconds": 2.97,
+      "trafficSeconds": 1.95
+    },
+    "nativeBite": {
+      "dry": {
+        "rms": 0.03210477922787837,
+        "peak": 0.14933067560195923,
+        "dc": 0.000017192440947441836,
+        "brightness": 0.2460473701684903
+      },
+      "driven": {
+        "rms": 0.04295689354307992,
+        "peak": 0.17986975610256195,
+        "dc": 0.000045527378931254064,
+        "brightness": 0.20594893244456866
+      },
+      "difference": {
+        "rms": 0.022720544082083304,
+        "peak": 0.08911455050110817,
+        "dc": 0.000028334937983812227,
+        "brightness": 0.1536695536017573
+      },
+      "rpm": 5805.807602073675,
+      "sources": {
+        "manifold": {
+          "rms": 0.004897511247881628,
+          "peak": 0.011576851829886436,
+          "dc": 0.00014260422796584093,
+          "brightness": 0.03715148970915199
+        },
+        "mechanical": {
+          "rms": 0.005990965206674344,
+          "peak": 0.022853143513202667,
+          "dc": 0.00009650588990347559,
+          "brightness": 0.3784741369193428
+        },
+        "chain": {
+          "rms": 0.003541021147364004,
+          "peak": 0.010161778889596462,
+          "dc": 0.00010257924365596146,
+          "brightness": 0.16695676180482122
+        }
+      }
+    },
+    "nitrous": {
+      "heldRms": 0.06576711953427124,
+      "activeLast": 0.0935802145608269,
+      "releasedLast": 1.549046024184487e-12,
+      "intensity30Last": 0.027126573012178974
+    },
+    "traffic": {
+      "nearLeft": 0.018345275333605436,
+      "nearRight": 0.006361191389154035,
+      "farLeft": 0.0009812049177706727,
+      "rightLeft": 0.006361191389154035,
+      "rightRight": 0.018345275333605436,
+      "hornRms": 0.04512921812119587,
+      "maxVoices": 8
+    }
+  },
+  "sdk": {
+    "version": "1.5.0",
+    "physicsRelease": 13,
+    "vendorSHA256": "32bdea5ef002e6dc131de4aa162077d5811e61d5d97f6b6e79f8f3987b82be4c"
+  }
+}

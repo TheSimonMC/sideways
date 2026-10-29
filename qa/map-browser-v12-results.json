@@ -1,0 +1,388 @@
+{
+  "version": 12,
+  "status": "passed",
+  "errors": [],
+  "viewports": [
+    {
+      "width": 390,
+      "height": 844,
+      "routes": [
+        "Central Precinct",
+        "Garden Fuel",
+        "Motor Works",
+        "Central Precinct",
+        "Garden Fuel"
+      ],
+      "filter": "passed",
+      "zoom": "N ↑  /  125%",
+      "layout": {
+        "modalWidth": 364,
+        "modalScrollWidth": 364,
+        "listWidth": 338,
+        "listScrollWidth": 338,
+        "listHeight": 150
+      }
+    },
+    {
+      "width": 1280,
+      "height": 720,
+      "routes": [
+        "Central Precinct",
+        "Garden Fuel",
+        "Motor Works",
+        "Central Precinct",
+        "Garden Fuel"
+      ],
+      "filter": "passed",
+      "zoom": "N ↑  /  156%",
+      "layout": {
+        "modalWidth": 1238,
+        "modalScrollWidth": 1238,
+        "listWidth": 265,
+        "listScrollWidth": 265,
+        "listHeight": 190
+      }
+    },
+    {
+      "width": 2560,
+      "height": 1080,
+      "routes": [
+        "Central Precinct",
+        "Garden Fuel",
+        "Motor Works",
+        "Central Precinct",
+        "Garden Fuel"
+      ],
+      "filter": "passed",
+      "zoom": "N ↑  /  195%",
+      "layout": {
+        "modalWidth": 1578,
+        "modalScrollWidth": 1578,
+        "listWidth": 300,
+        "listScrollWidth": 300,
+        "listHeight": 260
+      }
+    }
+  ],
+  "limits": [
+    "Uses the shipped MapPresentation and CSS in a real headless Chromium page with a minimal city fixture. Verifies layout, pointer focus, route callbacks, filter and zoom controls. No WebGL, road routing, physical gamepad or audio claim."
+  ],
+  "assertionScope": "Final component checks only; historical full-game issue is recorded separately below.",
+  "previousFullGameCheck": {
+    "status": "pre_fix_issue_found",
+    "scope": "Full game in Chromium with WebGL, three responsive viewport sizes, before final detail-height fix.",
+    "resultsByViewport": [
+      {
+        "viewport": "390x844",
+        "result": "passed",
+        "evidence": "First and last service, garage filter and zoom matched expected values."
+      },
+      {
+        "viewport": "1280x720",
+        "result": "passed",
+        "evidence": "First and last service, garage filter and zoom matched expected values after action-bar fix."
+      },
+      {
+        "viewport": "2560x1080",
+        "result": "failed",
+        "evidence": "POI click returned previous Motor Works target instead of Central Precinct / Garden Fuel."
+      }
+    ],
+    "defect": "Focus changed preview title/description height before pointerup and moved the clicked service button.",
+    "fix": "Reserved two title lines and three description lines so preview updates preserve button positions.",
+    "finalVerification": "The final shipped MapPresentation and CSS were then verified in an isolated Chromium component page at all three sizes, with repeated real clicks and strict expected-target assertions. A full WebGL run after the last CSS fix is not claimed by this component report.",
+    "observations": {
+      "errors": [],
+      "viewports": [
+        {
+          "width": 390,
+          "height": 844,
+          "layout": {
+            "#map-modal": {
+              "x": 12,
+              "y": 16,
+              "width": 366,
+              "height": 764,
+              "scrollWidth": 364,
+              "scrollHeight": 957,
+              "font": "16px",
+              "overflow": "auto",
+              "position": "relative",
+              "flexWrap": "nowrap"
+            },
+            ".map-layout": {
+              "x": 26,
+              "y": 171,
+              "width": 338,
+              "height": 633.890625,
+              "scrollWidth": 338,
+              "scrollHeight": 634,
+              "font": "16px",
+              "overflow": "visible",
+              "position": "static",
+              "flexWrap": "nowrap"
+            },
+            ".map-sidebar": {
+              "x": 26,
+              "y": 403.390625,
+              "width": 338,
+              "height": 401.5,
+              "scrollWidth": 338,
+              "scrollHeight": 402,
+              "font": "16px",
+              "overflow": "visible",
+              "position": "static",
+              "flexWrap": "nowrap"
+            },
+            ".map-directory": {
+              "x": 26,
+              "y": 592.296875,
+              "width": 338,
+              "height": 212.59375,
+              "scrollWidth": 338,
+              "scrollHeight": 213,
+              "font": "16px",
+              "overflow": "visible",
+              "position": "static",
+              "flexWrap": "nowrap"
+            },
+            "#map-poi-list": {
+              "x": 26,
+              "y": 654.890625,
+              "width": 338,
+              "height": 150,
+              "scrollWidth": 338,
+              "scrollHeight": 220,
+              "font": "16px",
+              "overflow": "auto",
+              "position": "static",
+              "flexWrap": "nowrap"
+            },
+            ".map-action-bar": {
+              "x": 26,
+              "y": 843.890625,
+              "width": 338,
+              "height": 113.78125,
+              "scrollWidth": 338,
+              "scrollHeight": 113,
+              "font": "9px",
+              "overflow": "visible",
+              "position": "static",
+              "flexWrap": "wrap"
+            },
+            "#full-map": {
+              "x": 27,
+              "y": 172,
+              "width": 336,
+              "height": 218.390625,
+              "scrollWidth": 336,
+              "scrollHeight": 218,
+              "font": "16px",
+              "overflow": "clip",
+              "position": "static",
+              "flexWrap": "nowrap"
+            }
+          },
+          "first": "Central Precinct",
+          "lastExpected": "Garden Fuel",
+          "last": "Garden Fuel",
+          "garageExpected": "Motor Works",
+          "garage": "Motor Works",
+          "zoom": "N ↑  /  125%"
+        },
+        {
+          "width": 1280,
+          "height": 720,
+          "layout": {
+            "#map-modal": {
+              "x": 20,
+              "y": 26,
+              "width": 1240,
+              "height": 628,
+              "scrollWidth": 1238,
+              "scrollHeight": 645,
+              "font": "16px",
+              "overflow": "auto",
+              "position": "relative",
+              "flexWrap": "nowrap"
+            },
+            ".map-layout": {
+              "x": 49,
+              "y": 198,
+              "width": 1182,
+              "height": 371.984375,
+              "scrollWidth": 1182,
+              "scrollHeight": 372,
+              "font": "16px",
+              "overflow": "visible",
+              "position": "static",
+              "flexWrap": "nowrap"
+            },
+            ".map-sidebar": {
+              "x": 966,
+              "y": 198,
+              "width": 265,
+              "height": 370,
+              "scrollWidth": 265,
+              "scrollHeight": 512,
+              "font": "16px",
+              "overflow": "auto",
+              "position": "static",
+              "flexWrap": "nowrap"
+            },
+            ".map-directory": {
+              "x": 966,
+              "y": 457,
+              "width": 265,
+              "height": 253,
+              "scrollWidth": 265,
+              "scrollHeight": 253,
+              "font": "16px",
+              "overflow": "visible",
+              "position": "static",
+              "flexWrap": "nowrap"
+            },
+            "#map-poi-list": {
+              "x": 966,
+              "y": 520,
+              "width": 265,
+              "height": 190,
+              "scrollWidth": 265,
+              "scrollHeight": 235,
+              "font": "16px",
+              "overflow": "auto",
+              "position": "static",
+              "flexWrap": "nowrap"
+            },
+            ".map-action-bar": {
+              "x": 49,
+              "y": 608.984375,
+              "width": 1182,
+              "height": 45,
+              "scrollWidth": 1182,
+              "scrollHeight": 44,
+              "font": "10px",
+              "overflow": "visible",
+              "position": "static",
+              "flexWrap": "wrap"
+            },
+            "#full-map": {
+              "x": 213.890625,
+              "y": 199,
+              "width": 569.21875,
+              "height": 369.984375,
+              "scrollWidth": 569,
+              "scrollHeight": 370,
+              "font": "16px",
+              "overflow": "clip",
+              "position": "static",
+              "flexWrap": "nowrap"
+            }
+          },
+          "first": "Central Precinct",
+          "lastExpected": "Garden Fuel",
+          "last": "Garden Fuel",
+          "garageExpected": "Motor Works",
+          "garage": "Motor Works",
+          "zoom": "N ↑  /  156%"
+        },
+        {
+          "width": 2560,
+          "height": 1080,
+          "layout": {
+            "#map-modal": {
+              "x": 490,
+              "y": 26,
+              "width": 1580,
+              "height": 988,
+              "scrollWidth": 1578,
+              "scrollHeight": 1019,
+              "font": "16px",
+              "overflow": "auto",
+              "position": "relative",
+              "flexWrap": "nowrap"
+            },
+            ".map-layout": {
+              "x": 519,
+              "y": 211.59375,
+              "width": 1522,
+              "height": 731.984375,
+              "scrollWidth": 1522,
+              "scrollHeight": 732,
+              "font": "16px",
+              "overflow": "visible",
+              "position": "static",
+              "flexWrap": "nowrap"
+            },
+            ".map-sidebar": {
+              "x": 1741,
+              "y": 211.59375,
+              "width": 300,
+              "height": 730,
+              "scrollWidth": 300,
+              "scrollHeight": 730,
+              "font": "16px",
+              "overflow": "auto",
+              "position": "static",
+              "flexWrap": "nowrap"
+            },
+            ".map-directory": {
+              "x": 1741,
+              "y": 474.578125,
+              "width": 300,
+              "height": 323,
+              "scrollWidth": 300,
+              "scrollHeight": 323,
+              "font": "16px",
+              "overflow": "visible",
+              "position": "static",
+              "flexWrap": "nowrap"
+            },
+            "#map-poi-list": {
+              "x": 1741,
+              "y": 537.578125,
+              "width": 300,
+              "height": 260,
+              "scrollWidth": 300,
+              "scrollHeight": 260,
+              "font": "16px",
+              "overflow": "auto",
+              "position": "static",
+              "flexWrap": "nowrap"
+            },
+            ".map-action-bar": {
+              "x": 519,
+              "y": 982.578125,
+              "width": 1522,
+              "height": 45,
+              "scrollWidth": 1522,
+              "scrollHeight": 44,
+              "font": "10px",
+              "overflow": "visible",
+              "position": "static",
+              "flexWrap": "wrap"
+            },
+            "#full-map": {
+              "x": 559.46875,
+              "y": 212.59375,
+              "width": 1123.0625,
+              "height": 729.984375,
+              "scrollWidth": 1123,
+              "scrollHeight": 730,
+              "font": "16px",
+              "overflow": "clip",
+              "position": "static",
+              "flexWrap": "nowrap"
+            }
+          },
+          "first": "Motor Works",
+          "lastExpected": "Garden Fuel",
+          "last": "Motor Works",
+          "garageExpected": "Motor Works",
+          "garage": "Motor Works",
+          "zoom": "N ↑  /  195%"
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,10 @@
+import MotorLab from '../sdk/motor-engine.mjs';
+import { CarPhysics } from '../dist/physics.js';
+const p=new CarPhysics(MotorLab); const dt=1/120;
+const out=(phase,t)=>console.log(phase,t.toFixed(1),JSON.stringify(Object.fromEntries(['speed','forwardSpeed','rpm','gear','driftAngle','yawRate','wheelSlipL','wheelSlipR','clutchTorque','engineTorque','x','z'].map(k=>[k,Math.round(p.state[k]*100)/100]))));
+const phase=(name,seconds,input)=>{for(let i=0;i<seconds*120;i++){p.update(dt,typeof input==='function'?input(i*dt):input);if(i%120===119)out(name,(i+1)*dt); for(const [k,v] of Object.entries(p.state))if(typeof v==='number'&&!Number.isFinite(v))throw Error(k+' NaN');}};
+phase('ACCEL',14,{throttle:1});
+phase('BRAKE',7,{brake:1});
+p.reset(0,0,0);phase('LAUNCH',6,{throttle:1});phase('TURN',8,{throttle:.65,steer:.45});
+p.reset(0,0,0);phase('LAUNCH2',5,{throttle:1});phase('DRIFT',6,t=>({throttle:1,steer:t<.8?.8:t<3?-.25:.15,handbrake:t<.35}));
+p.reset(0,0,0);phase('REVERSE',5,{brake:1});phase('FWD',6,{throttle:1});

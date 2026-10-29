@@ -1,0 +1,60 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "name": "Stationary neutral NOS accepts no throttle, full brake and handbrake; adds shaft torque, consumes bottle, and cannot propel a disconnected gearbox",
+      "maxRpm": 5637.334266814573,
+      "maxNos": 169.8449800658557,
+      "bottle": 0.8200000000000065
+    },
+    {
+      "name": "Failed engine still allows NOS valve activation and bottle use, but gets no combustion torque"
+    },
+    {
+      "name": "Forced high-speed first gear is accepted and wheel-driven overrev damages engine and gearbox",
+      "maxRpm": 11092.761967190052,
+      "maxNos": 0,
+      "engineHealth": 0.9251032607970732,
+      "gearboxHealth": 0.9023524554027743
+    },
+    {
+      "name": "Selecting a short gear with clutch open does not damage an uncoupled engine"
+    },
+    {
+      "name": "Reverse while moving is accepted and produces drivetrain reaction instead of a protected selection",
+      "speed": 22.75245930520502,
+      "engineHealth": 0.9981309086420225,
+      "gearboxHealth": 0.9197911361711614,
+      "rpm": 0
+    },
+    {
+      "name": "Reverse has no artificial road-speed throttle cutoff"
+    },
+    {
+      "name": "Fuel follows SDK injected mass, starvation cuts combustion, and refuel plus starter restores the engine",
+      "usedLitres": 0.007140920260205519,
+      "sdkLitres": 0.00714092026021452,
+      "restartRpm": 4933.885588447307
+    },
+    {
+      "name": "Localized wheel loss removes real contact forces; respawn and car swaps preserve damage; repair and refuel affect only requested systems",
+      "impact": {
+        "damage": 0.5028735632183908,
+        "detached": [
+          1
+        ],
+        "energyJ": 420000
+      }
+    },
+    {
+      "name": "A wheel-less body settles on chassis support and condition survives serialization",
+      "bodyHeight": -0.2138002115477406
+    },
+    {
+      "name": "Handbrake stall and service-brake burnout still emerge from the coupled drivetrain",
+      "burnout": true,
+      "speed": 0.04679151530921172,
+      "rpm": 5191.071545568597
+    }
+  ]
+}

@@ -1,0 +1,185 @@
+{
+  "passed": true,
+  "checks": [
+    "World depth reconstruction",
+    "World translation flow in all cameras",
+    "Exposure stable at 30/60/120 fps",
+    "Exact body mask",
+    "Road remains unmasked",
+    "Pause and camera cut suppression",
+    "Original color/filter constants retained"
+  ],
+  "results": [
+    {
+      "cameraMode": 0,
+      "fps": 30,
+      "worldPoint": [
+        9,
+        0.012,
+        54
+      ],
+      "worldMotionPixels": 34.221817677002164,
+      "shutterSeconds": 0.04363636363636364,
+      "carMask": 1,
+      "roadMask": 0,
+      "bounds": [
+        0.47798187220719046,
+        0.33478478377523313,
+        0.5220181277928096,
+        0.49616897720878594
+      ]
+    },
+    {
+      "cameraMode": 0,
+      "fps": 60,
+      "worldPoint": [
+        9,
+        0.012,
+        54
+      ],
+      "worldMotionPixels": 34.60891628789582,
+      "shutterSeconds": 0.04363636363636364,
+      "carMask": 1,
+      "roadMask": 0,
+      "bounds": [
+        0.47798187220719046,
+        0.33478478377523313,
+        0.5220181277928096,
+        0.49616897720878594
+      ]
+    },
+    {
+      "cameraMode": 0,
+      "fps": 120,
+      "worldPoint": [
+        9,
+        0.012,
+        54
+      ],
+      "worldMotionPixels": 34.80576825918435,
+      "shutterSeconds": 0.04363636363636364,
+      "carMask": 1,
+      "roadMask": 0,
+      "bounds": [
+        0.47798187220719046,
+        0.33478478377523313,
+        0.5220181277928096,
+        0.49616897720878594
+      ]
+    },
+    {
+      "cameraMode": 1,
+      "fps": 30,
+      "worldPoint": [
+        8,
+        0.012,
+        72
+      ],
+      "worldMotionPixels": 8.321579922722629,
+      "shutterSeconds": 0.03981818181818182,
+      "carMask": 1,
+      "roadMask": 0,
+      "bounds": [
+        0.4101106615199319,
+        0.18868147225521234,
+        0.5898893384800682,
+        0.4915221440642153
+      ]
+    },
+    {
+      "cameraMode": 1,
+      "fps": 60,
+      "worldPoint": [
+        8,
+        0.012,
+        72
+      ],
+      "worldMotionPixels": 8.548312815260337,
+      "shutterSeconds": 0.03981818181818182,
+      "carMask": 1,
+      "roadMask": 0,
+      "bounds": [
+        0.4101106615199319,
+        0.18868147225521234,
+        0.5898893384800682,
+        0.4915221440642153
+      ]
+    },
+    {
+      "cameraMode": 1,
+      "fps": 120,
+      "worldPoint": [
+        8,
+        0.012,
+        72
+      ],
+      "worldMotionPixels": 8.666376489927272,
+      "shutterSeconds": 0.03981818181818182,
+      "carMask": 1,
+      "roadMask": 0,
+      "bounds": [
+        0.4101106615199319,
+        0.18868147225521234,
+        0.5898893384800682,
+        0.4915221440642153
+      ]
+    },
+    {
+      "cameraMode": 2,
+      "fps": 30,
+      "worldPoint": [
+        8,
+        0.012,
+        72
+      ],
+      "worldMotionPixels": 8.563995212904135,
+      "shutterSeconds": 0.02472727272727273,
+      "carMask": 1,
+      "roadMask": 0,
+      "bounds": [
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "cameraMode": 2,
+      "fps": 60,
+      "worldPoint": [
+        8,
+        0.012,
+        72
+      ],
+      "worldMotionPixels": 8.892433611182874,
+      "shutterSeconds": 0.02472727272727273,
+      "carMask": 1,
+      "roadMask": 0,
+      "bounds": [
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "cameraMode": 2,
+      "fps": 120,
+      "worldPoint": [
+        8,
+        0.012,
+        72
+      ],
+      "worldMotionPixels": 9.066284476206418,
+      "shutterSeconds": 0.02472727272727273,
+      "carMask": 1,
+      "roadMask": 0,
+      "bounds": [
+        0,
+        0,
+        1,
+        1
+      ]
+    }
+  ]
+}

@@ -1,0 +1,73 @@
+{
+  "status": "passed",
+  "checks": [
+    "All literal element IDs used by main, GameUI, garage and controls exist, with no duplicate HTML IDs",
+    "The first successful sound-button click enables audio; later clicks mute and unmute with matching labels, while a failed start leaves audio off",
+    "Actual controller focus skips hidden native selects and arrows; visible choices, checkboxes and sliders operate through real handlers",
+    "Garage uses real dynamic engine and part choices; preview is cancelled and installation updates the active build",
+    "Starting free roam waits for both visible loading frames and compilation, then activates only the city and traffic",
+    "Escape during driving goes directly to the main menu; P/Start pause, controller B resumes, and Escape from pause opens main menu",
+    "Nested controls back preserves pause and Escape while learning cancels both capture and panel state before leaving the nested screen",
+    "Loading can be cancelled before world creation, after world selection and during compile; stale completion never reopens a cancelled run",
+    "Countdown Escape returns home; city to sprint loading never draws the sprint HUD against the old city; load errors recover to the menu",
+    "Held menu confirm/back/starter never leak into NOS, handbrake or starter after actual loading/resume; RT remains a driving pedal only",
+    "Real frame updates prompt glyphs for the last active device and keyboard fallback; pause, blur and hidden document disable feedback",
+    "Quick wheel calibration leaves a visible focus target in the calibration tab",
+    "The keyboard tab keeps focus visible, captures keys through its actual buttons, updates prompts and cancels capture before switching tabs or restoring defaults",
+    "Actual frame routes held R3 and right-stick values without changing transmission; horn reaches audio and new lights/map/interact buttons reach their UI actions",
+    "Fuel and mechanic menus run their actual service jobs while paused, can be cancelled, and restore enabled controller controls on completion",
+    "Arrest uses the actual modal/release handlers, blocks driving input, releases at the station and prevents held confirm from triggering NOS",
+    "Recovery clears pending police dispatch and feedback before opening the mechanic service menu",
+    "World transitions leave one map root and dispose both traffic and police when returning to the showroom",
+    "Main-menu left and right use spatial columns; empty or unknown focus has a stable first/last fallback",
+    "Settings tabs hide inactive controls, retain visible controller focus and expose working look, shading and individual sound controls",
+    "Pause shortcuts open audio, map, guide or controls directly; controller Back returns to pause and two-dimensional navigation chooses adjacent buttons",
+    "Actual fixed ticks feed night, emergency units and contacts to AI; frame forwards all nearby sirens, listener acoustics and environmental police context",
+    "Police dispatch uses captioned, prioritized, rate-limited radio events and waits while paused",
+    "A real directional speed-camera crossing reaches the HUD, flash, police investigation, sound cue and map without assigning instant wanted heat",
+    "Music receives distinct chase, search, escape and driving modes with proximity, NOS, drift, near-pass and search progress; a new pursuit interrupts relief",
+    "Restarting free roam reuses its map but clears old dispatch, camera captures, police state, relief music, acoustics and audio feedback",
+    "Leaving the city disposes enforcement and clears transient dispatch, camera, acoustic and sound-source state"
+  ],
+  "verificationLimit": "Actual main.js handlers, frame, tickGameplay, speed-camera enforcement, InputManager, GameUI, ControlsPanel, GaragePanel and controller navigation in a functional DOM; physics, map/AI population, audio and renderer boundaries are tracked fixtures. Core traffic/police have separate deterministic suites. No browser layout, GPU, speaker or hardware claims.",
+  "htmlIds": 266,
+  "frameRouting": {
+    "fixedTicksPerFrame": 1,
+    "audiblePoliceForwarded": 6,
+    "trafficForwarded": 8,
+    "sixthEnvironmentContext": true,
+    "night": 0.87
+  },
+  "speedCameraIntegration": {
+    "reading": "126 / 50 KM/H",
+    "tickets": 1,
+    "visibleFlash": true,
+    "policeInvestigation": true,
+    "mapMarker": true,
+    "instantWantedHeat": false
+  },
+  "musicModes": [
+    "chase",
+    "search",
+    "escape",
+    "drive",
+    "fresh pursuit interrupts escape"
+  ],
+  "sameCityRestart": {
+    "reusesMap": true,
+    "resetsFeedback": true,
+    "resetsCameraRecords": true
+  },
+  "asyncCompileCalls": 12,
+  "cityCreations": 10,
+  "worldSwitchesVerified": [
+    "showroom→city",
+    "city→showroom",
+    "city→dock",
+    "cancel before first paint",
+    "cancel after world selection",
+    "cancel during compilation",
+    "superseded compile completion",
+    "compile rejection"
+  ]
+}

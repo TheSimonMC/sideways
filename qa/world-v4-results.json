@@ -1,0 +1,252 @@
+{
+  "status": "passed",
+  "checks": [
+    "All five rendered material polygons match sampled boundaries on both sides of every edge",
+    "All three steel covers match their entire rendered footprints, including curved-road edges",
+    "All 40 rotated barrier colliders match rendered position, orientation and dimensions",
+    "All six actual world materials reach individual tyre physics without inventing movement or dissipated work at rest",
+    "Identical locked-wheel braking produces distinct correctly ordered forces for all six surfaces",
+    "Terrain sampler remains finite over 20000 road, curb and offroad queries; timing recorded without a host-dependent pass gate"
+  ],
+  "patches": [
+    {
+      "material": "gravel",
+      "progress": 0.085,
+      "edgeProbes": 40,
+      "maxGeometryError": 0.000007762227552626935
+    },
+    {
+      "material": "gravel",
+      "progress": 0.39,
+      "edgeProbes": 40,
+      "maxGeometryError": 0.000007681948212697652
+    },
+    {
+      "material": "gravel",
+      "progress": 0.68,
+      "edgeProbes": 40,
+      "maxGeometryError": 0.000009638347023647641
+    },
+    {
+      "material": "grass",
+      "progress": 0.29,
+      "edgeProbes": 40,
+      "maxGeometryError": 0.000007433094113378805
+    },
+    {
+      "material": "grass",
+      "progress": 0.89,
+      "edgeProbes": 40,
+      "maxGeometryError": 0.000007594437953017336
+    }
+  ],
+  "plates": [
+    {
+      "progress": 0.2,
+      "inside": 9,
+      "outside": 4
+    },
+    {
+      "progress": 0.5,
+      "inside": 9,
+      "outside": 4
+    },
+    {
+      "progress": 0.79,
+      "inside": 9,
+      "outside": 4
+    }
+  ],
+  "surfaces": [
+    {
+      "fixture": "asphalt",
+      "contacts": [
+        {
+          "surface": "asphalt",
+          "grip": 1,
+          "roughness": 0.001
+        },
+        {
+          "surface": "asphalt",
+          "grip": 1,
+          "roughness": 0.001
+        },
+        {
+          "surface": "asphalt",
+          "grip": 1,
+          "roughness": 0.001
+        },
+        {
+          "surface": "asphalt",
+          "grip": 1,
+          "roughness": 0.001
+        }
+      ]
+    },
+    {
+      "fixture": "concrete",
+      "contacts": [
+        {
+          "surface": "concrete",
+          "grip": 0.94,
+          "roughness": 0.004
+        },
+        {
+          "surface": "concrete",
+          "grip": 0.94,
+          "roughness": 0.004
+        },
+        {
+          "surface": "concrete",
+          "grip": 0.94,
+          "roughness": 0.004
+        },
+        {
+          "surface": "concrete",
+          "grip": 0.94,
+          "roughness": 0.004
+        }
+      ]
+    },
+    {
+      "fixture": "curb",
+      "contacts": [
+        {
+          "surface": "asphalt",
+          "grip": 1,
+          "roughness": 0.001
+        },
+        {
+          "surface": "curb",
+          "grip": 0.86,
+          "roughness": 0.012
+        },
+        {
+          "surface": "asphalt",
+          "grip": 1,
+          "roughness": 0.001
+        },
+        {
+          "surface": "curb",
+          "grip": 0.86,
+          "roughness": 0.012
+        }
+      ]
+    },
+    {
+      "fixture": "gravel",
+      "contacts": [
+        {
+          "surface": "gravel",
+          "grip": 0.6,
+          "roughness": 0.027
+        },
+        {
+          "surface": "gravel",
+          "grip": 0.6,
+          "roughness": 0.027
+        },
+        {
+          "surface": "gravel",
+          "grip": 0.6,
+          "roughness": 0.027
+        },
+        {
+          "surface": "gravel",
+          "grip": 0.6,
+          "roughness": 0.027
+        }
+      ]
+    },
+    {
+      "fixture": "grass",
+      "contacts": [
+        {
+          "surface": "grass",
+          "grip": 0.48,
+          "roughness": 0.022
+        },
+        {
+          "surface": "grass",
+          "grip": 0.48,
+          "roughness": 0.022
+        },
+        {
+          "surface": "grass",
+          "grip": 0.48,
+          "roughness": 0.022
+        },
+        {
+          "surface": "grass",
+          "grip": 0.48,
+          "roughness": 0.022
+        }
+      ]
+    },
+    {
+      "fixture": "metal",
+      "contacts": [
+        {
+          "surface": "metal",
+          "grip": 0.88,
+          "roughness": 0.006
+        },
+        {
+          "surface": "metal",
+          "grip": 0.88,
+          "roughness": 0.006
+        },
+        {
+          "surface": "asphalt",
+          "grip": 1,
+          "roughness": 0.001
+        },
+        {
+          "surface": "asphalt",
+          "grip": 1,
+          "roughness": 0.001
+        }
+      ]
+    }
+  ],
+  "barriers": 40,
+  "materialBraking": [
+    {
+      "material": "asphalt",
+      "grip": 1,
+      "deceleration": 11.815569310344785
+    },
+    {
+      "material": "concrete",
+      "grip": 0.94,
+      "deceleration": 11.165166310345072
+    },
+    {
+      "material": "metal",
+      "grip": 0.88,
+      "deceleration": 10.514763310344932
+    },
+    {
+      "material": "curb",
+      "grip": 0.86,
+      "deceleration": 10.297962310344815
+    },
+    {
+      "material": "gravel",
+      "grip": 0.6,
+      "deceleration": 7.479549310344993
+    },
+    {
+      "material": "grass",
+      "grip": 0.48,
+      "deceleration": 6.178743310344714
+    }
+  ],
+  "samplerPerformance": {
+    "queries": 20000,
+    "totalMs": 49.98626299999978,
+    "microsecondsPerQuery": 2.499313149999989,
+    "fourWheelsAt120HzMsPerSimulationSecond": 1.1996703119999947,
+    "checksum": 19259.515416055398
+  }
+}

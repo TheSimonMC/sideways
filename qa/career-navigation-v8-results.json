@@ -1,0 +1,42 @@
+{
+  "version": 8,
+  "status": "passed",
+  "checks": [
+    "Garage quotes include the car, engine and new parts; failed purchases are atomic and repeated installation is free",
+    "Legacy migration retains the installed setup once; later saves and forged build descriptors cannot unlock unpaid parts",
+    "Only completed close passes earn points; duplicate traffic IDs are cooled down and an objective pays once",
+    "Drift points remain bankable on the dock while city objectives, delivery timers and police payouts stay in the city",
+    "Distance counts plausible motion, rejects teleport jumps and invalid states, and recovery cancels the active job",
+    "Delivery pickup, cargo damage, payment and persisted jobs survive normal play without duplicate rewards",
+    "Pursuit rewards require a real pursuit interval and clean-run collisions reset the active streak",
+    "Road routes follow the actual curved graph and do not cut across neighbouring streets or blocks",
+    "Directed unreachable routes stay absent and navigator arrivals cannot leak into a new waypoint or world",
+    "Map projection round-trips across viewports and headings, and vehicle forward and compass north use the same axes",
+    "Real CPU canvas renders circular clipping, player orientation, rotating north, district labels and surface polygons"
+  ],
+  "limits": [
+    "Map checks execute the real Canvas 2D renderer on a CPU canvas. They do not verify browser layout, GPU rendering or physical controller navigation.",
+    "Progression is local to the browser save. It is not an anti-cheat or server-backed economy."
+  ],
+  "economy": {
+    "expensiveBuildCost": 166600,
+    "startingWallet": 3500,
+    "transactionRoundtrip": true
+  },
+  "routes": {
+    "sampledRoutes": 18,
+    "curvedRoutePoints": 20,
+    "curvedRouteMetres": 90.32001254223076,
+    "nodes": 81,
+    "directedEdges": 288
+  },
+  "canvas": {
+    "engine": "@napi-rs/canvas",
+    "renders": 6,
+    "districtLabels": 5
+  },
+  "modules": {
+    "dist/career.js": "0b76cf961460471697b6e4e0a2ab9b79fc5561775bfa5ec606ed4f8c07e8a72e",
+    "dist/navigation-map.js": "a0b30666e4f75a0fcd1efb406f682cfcfe6d3accae199de341d855326698a205"
+  }
+}

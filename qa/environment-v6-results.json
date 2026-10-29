@@ -1,0 +1,84 @@
+{
+  "status": "passed",
+  "checks": [
+    "Day/night cycle changes sun, moon, sky, ambient, fog, exposure, stars and nearby street lights; zero dt pauses the cycle",
+    "Headlight targets follow vehicle heading and switches; sun/moon billboards face the camera away from the world origin",
+    "Actual map selection constructs only the selected map and removes every owned geometry, material and texture on eight mode changes",
+    "Menu uses a small showroom; city traffic/police only exist while the city is active and selecting the current map reuses it"
+  ],
+  "lighting": [
+    {
+      "timeMode": "day",
+      "hour": 13.5,
+      "night": 0,
+      "sun": 2.6391036260090295,
+      "ambient": 1.65,
+      "headlight": 12,
+      "stars": 0,
+      "activeStreetLights": 0
+    },
+    {
+      "timeMode": "sunset",
+      "hour": 18.2,
+      "night": 0.8219367269551147,
+      "sun": 0.3308649294520402,
+      "ambient": 0.6061403567670043,
+      "headlight": 39.12391198951879,
+      "stars": 0.6986462179118474,
+      "activeStreetLights": 2
+    },
+    {
+      "timeMode": "night",
+      "hour": 23,
+      "night": 1,
+      "sun": 0,
+      "ambient": 0.3799999999999999,
+      "headlight": 45,
+      "stars": 0.85,
+      "activeStreetLights": 2
+    }
+  ],
+  "worlds": [
+    {
+      "target": "free",
+      "kind": "city",
+      "disposedResources": 6
+    },
+    {
+      "target": "sprint",
+      "kind": "dock",
+      "disposedResources": 164
+    },
+    {
+      "target": "menu",
+      "kind": "showroom",
+      "disposedResources": 155
+    },
+    {
+      "target": "free",
+      "kind": "city",
+      "disposedResources": 6
+    },
+    {
+      "target": "menu",
+      "kind": "showroom",
+      "disposedResources": 164
+    },
+    {
+      "target": "drift",
+      "kind": "dock",
+      "disposedResources": 6
+    },
+    {
+      "target": "free",
+      "kind": "city",
+      "disposedResources": 155
+    },
+    {
+      "target": "menu",
+      "kind": "showroom",
+      "disposedResources": 164
+    }
+  ],
+  "verificationLimit": "Actual Three.js scene objects, camera transforms, lights and owned-resource disposal in Node. No GPU render or visual validation."
+}

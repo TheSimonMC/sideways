@@ -1,0 +1,71 @@
+{
+  "status": "passed",
+  "checks": [
+    "Actual stationary tyre contacts override stale global drift/slip flags on hard and loose ground",
+    "Actual standing burnout retains comic smoke and one rubber patch per grounded rear tyre on asphalt",
+    "Loose-ground wheelspin emits dust without rubber or hard-surface smoke",
+    "Rolling over loose ground emits restrained dust; clean asphalt rolling stays quiet despite legacy drift flags",
+    "Airborne spinning tyres emit neither contact particles nor skid marks",
+    "Mixed rear materials emit independently and only the hard-ground tyre stamps rubber",
+    "Impact, reset, build replacement and legacy wheelspin fallback retain finite visual data"
+  ],
+  "samples": {
+    "asphaltBurnout": {
+      "activeParticles": 43,
+      "activeSmoke": 43,
+      "activeDust": 0,
+      "terrain": {
+        "activeClods": 0,
+        "activeGrass": 0,
+        "activeTracks": 0,
+        "counts": {
+          "clods": 0,
+          "grass": 0,
+          "tracks": 0
+        },
+        "capacity": 680
+      },
+      "skidCursor": 2,
+      "carId": "hachi",
+      "marks": 2
+    },
+    "gravelRolling": {
+      "activeParticles": 12,
+      "activeSmoke": 0,
+      "activeDust": 12,
+      "terrain": {
+        "activeClods": 42,
+        "activeGrass": 0,
+        "activeTracks": 116,
+        "counts": {
+          "clods": 340,
+          "grass": 96,
+          "tracks": 116
+        },
+        "capacity": 680
+      },
+      "skidCursor": 2,
+      "carId": "hachi",
+      "marks": 0
+    },
+    "mixedRear": {
+      "activeParticles": 29,
+      "activeSmoke": 22,
+      "activeDust": 7,
+      "terrain": {
+        "activeClods": 18,
+        "activeGrass": 22,
+        "activeTracks": 0,
+        "counts": {
+          "clods": 364,
+          "grass": 120,
+          "tracks": 116
+        },
+        "capacity": 680
+      },
+      "skidCursor": 3,
+      "carId": "hachi",
+      "marks": 1
+    }
+  }
+}

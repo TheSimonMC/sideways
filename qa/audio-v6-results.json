@@ -1,0 +1,95 @@
+{
+  "status": "passed",
+  "checks": [
+    "Saved .85 tyre mix stays quiet in ordinary corners; severe skid and stationary burnout remain audible, with a quieter filtered recording and a smooth release",
+    "NOS airflow follows the valve while the engine is stopped, remains continuous during a hold, and releases on valve close",
+    "Camera look-back reverses world and wheel stereo; explicit camera-right overrides yaw; distance, rear filtering, Doppler and four-active/eight-fading voice bounds remain finite",
+    "Recorded horn works with the engine stopped; pump, repair, damaged engine and detached-wheel scrape follow actual state; event cues remain finite and never mutate simulation state",
+    "One embedded band loop persists across menu, drive, chase and escape; real drum layers intensify, scheduling stays bounded, pause resumes position, off/mute clears nodes and decode failure is isolated",
+    "Display-frame world/music transport works with stopped or suspended player physics, service can opt in, fresh pause cues play, mute stops all sources, and no hidden MotorLab steps occur",
+    "Twelve attributed finite samples and the stereo band phrase are embedded, hash-verified, and require neither runtime downloads nor oscillator nodes"
+  ],
+  "fixtures": {
+    "tyres": {
+      "mix": 0.85,
+      "ordinary": 0,
+      "marginal": 0,
+      "severe": 0.05163990714979097,
+      "burnout": {
+        "left": {
+          "rms": 0.02712374278741565,
+          "peak": 0.10233388841152191,
+          "dc": -0.000004044944233159876,
+          "brightness": 0.19382760748828923
+        },
+        "right": {
+          "rms": 0.026901753103980252,
+          "peak": 0.09706347435712814,
+          "dc": -0.0000048153333274381496,
+          "brightness": 0.19350555681128973
+        },
+        "layers": {
+          "engine": 0,
+          "rolling": 0,
+          "tyres": 0.04773398903488351,
+          "brakes": 0,
+          "mechanical": 0,
+          "wind": 0,
+          "nitrous": 0,
+          "traffic": 0,
+          "transients": 0
+        }
+      },
+      "priorFixtureRms": 0.08941133819275737,
+      "release": 0.0000019157395402333644
+    },
+    "nos": {
+      "engineOffValveOpen": 0.0910048869510878,
+      "valveShut": 1.4136955544668157e-12
+    },
+    "spatial": {
+      "normal": -0.7682212795973757,
+      "backward": 0.7682212795973759,
+      "wheelNormal": 0.18423353307023296,
+      "wheelBack": -0.18423353307023269,
+      "left": 0.004256710590710236,
+      "leftOther": 0.0020837758947300404,
+      "right": 0.004256710590710236,
+      "far": 0.00020725638776852905,
+      "distantSiren": 0.0017769006908613032,
+      "horn": 0.04090393296751203
+    },
+    "world": {
+      "heldHorn": 0.05799438742581827,
+      "hornReleased": 3.083587270737384e-14,
+      "fuel": 0.007976964420309159,
+      "repair": 0.004548293387589003,
+      "serviceEnded": 9.443036917917985e-11,
+      "engineHurt": 0.0017554748834773754,
+      "scrape": 0.006016277606861274,
+      "suspendedCue": 0.10602225108713946
+    },
+    "music": {
+      "bpm": 87,
+      "duration": 33.10344827586207,
+      "driveHits": 18,
+      "chaseHits": 39,
+      "maxVoices": 9,
+      "decodes": 1,
+      "resumeOffset": 0.8415517241379931,
+      "decodeFailure": "Unsupported sample codec"
+    },
+    "transport": {
+      "worldFrames": 248640,
+      "playerEngineFrames": 0,
+      "unchangedNativeSteps": 0,
+      "maxQueued": 5
+    },
+    "assets": {
+      "sampleCount": 12,
+      "musicBytes": 530852,
+      "offline": true
+    }
+  },
+  "scope": "Deterministic PCM, scheduling and source checks; no claim of listening or browser execution."
+}

@@ -1,0 +1,13 @@
+{
+  "status": "passed",
+  "checks": [
+    "Each native select has one visible, labelled controller focus target; repeated scans do not duplicate wrappers",
+    "Mouse arrows, confirm and controller left/right change the real value once and keep focus on the visible choice",
+    "Disabled options are skipped and disabled or empty select controls cannot change settings",
+    "Dynamic garage/setup selects and replacement option lists update the same visible controls",
+    "Interrupted leave/enter animations cannot hide a reopened menu; completed leave is hidden with its animation cleared",
+    "Loading transitions are restartable and reduced motion removes transform animations",
+    "Real input presentation paints contextual keyboard, Xbox, PlayStation and wheel prompts without idle-noise flicker"
+  ],
+  "verificationLimit": "Functional DOM and mocked animation/gamepad APIs; no browser layout, WebGL or physical device validation."
+}

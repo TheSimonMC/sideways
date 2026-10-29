@@ -1,0 +1,32 @@
+{
+  "version": 10,
+  "status": "passed",
+  "hostedArchive": "dist/downloads/SIDEWAYS-v10-pages.zip",
+  "recursiveArchives": false,
+  "engineSdk": {
+    "version": "1.6.0",
+    "physicsRelease": 14,
+    "audioRelease": 14
+  },
+  "archive": "release/SIDEWAYS-v10-pages.zip",
+  "site": "release/pages/",
+  "files": 76,
+  "bytes": 11773307,
+  "uncompressedBytes": 20097738,
+  "sha256": "f064fbcee34383d4b23c6ce8f0c1bba89f3fd27bbf7d99c53758b99a994cac49",
+  "resourceReferences": 110,
+  "checks": [
+    "Standalone is current and contains MotorLab 1.6, native source-layer integration and the multiplayer client.",
+    "Both HTML editions, the download page, runtime modules, fonts, audio attribution and third-party licenses are included.",
+    "Relative HTML, CSS and local module references resolve inside the publishing folder.",
+    "ZIP central directory, decompression, CRC32 and exact entry bytes round-trip.",
+    "No symlinks are included; .nojekyll and index.html are at the archive root.",
+    "All source inputs stayed unchanged during packaging.",
+    "The hosted ZIP is byte-for-byte identical to the release ZIP.",
+    "Generated download archives are excluded from the package to prevent recursive ZIP growth."
+  ],
+  "limits": [
+    "Packaging does not publish to GitHub or exercise GitHub Actions.",
+    "No browser image, speaker audition or live WebRTC connection is established by this check."
+  ]
+}

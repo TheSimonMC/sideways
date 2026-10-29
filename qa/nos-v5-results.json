@@ -1,0 +1,133 @@
+{
+  "status": "passed",
+  "scope": "Native NA/turbo NOS shaft torque, activation gates, bottle lifecycle and PCM/manual simulation parity",
+  "checks": [
+    "i4: actual native shaft torque increases road acceleration",
+    "i4: idle, stationary, neutral, reverse, clutch, brakes, shift, stall and redline gates",
+    "i6t: actual native shaft torque increases road acceleration",
+    "i6t: idle, stationary, neutral, reverse, clutch, brakes, shift, stall and redline gates",
+    "Bottle depletion latches while held, release permits recovery and restart",
+    "Recharge requires released NOS, cooldown and motion, and caps at full",
+    "i4: native PCM and manual clocks match through NOS, mute and suspend",
+    "i6t: native PCM and manual clocks match through NOS, mute and suspend"
+  ],
+  "failures": [],
+  "scenarios": {
+    "i4": {
+      "startKph": 63.02212716786806,
+      "nosKph": 109.14559349965997,
+      "stockKph": 93.47302244300128,
+      "advantageKph": 15.672571056658684,
+      "maxTorqueNm": 109.32324721926334,
+      "shaftImpulseNms": 251.5023236854846,
+      "activeSteps": 332,
+      "bottleRemaining": 0.548058857044709,
+      "boostTargetPa": 0,
+      "gates": [
+        "released button",
+        "idle pedal",
+        "70 percent pedal threshold",
+        "stationary high revs",
+        "4 m/s speed threshold",
+        "neutral",
+        "reverse gear",
+        "fully depressed clutch",
+        "20 percent clutch threshold",
+        "handbrake",
+        "10 percent handbrake threshold",
+        "service brake",
+        "12 percent service brake threshold",
+        "shift torque cut",
+        "stalled engine",
+        "idle crank speed",
+        "1700 RPM lower cutoff",
+        "redline",
+        "above redline",
+        "10 percent bottle start threshold"
+      ],
+      "immediateInhibits": 5,
+      "clockParity": {
+        "steps": 540,
+        "nativeSteps": 108000,
+        "pcmFrames": 216000,
+        "activeSteps": 256,
+        "maxStateDelta": 0,
+        "pcmSamplePeak": 0.47067585587501526
+      }
+    },
+    "i6t": {
+      "startKph": 78.62376618628579,
+      "nosKph": 131.68117489318405,
+      "stockKph": 119.47451984114987,
+      "advantageKph": 12.20665505203418,
+      "maxTorqueNm": 122.15643027312282,
+      "shaftImpulseNms": 272.54365052569386,
+      "activeSteps": 332,
+      "bottleRemaining": 0.5614217455466132,
+      "boostTargetPa": 85000,
+      "gates": [
+        "released button",
+        "idle pedal",
+        "70 percent pedal threshold",
+        "stationary high revs",
+        "4 m/s speed threshold",
+        "neutral",
+        "reverse gear",
+        "fully depressed clutch",
+        "20 percent clutch threshold",
+        "handbrake",
+        "10 percent handbrake threshold",
+        "service brake",
+        "12 percent service brake threshold",
+        "shift torque cut",
+        "stalled engine",
+        "idle crank speed",
+        "1700 RPM lower cutoff",
+        "redline",
+        "above redline",
+        "10 percent bottle start threshold"
+      ],
+      "immediateInhibits": 5,
+      "clockParity": {
+        "steps": 540,
+        "nativeSteps": 108000,
+        "pcmFrames": 216000,
+        "activeSteps": 256,
+        "maxStateDelta": 0,
+        "pcmSamplePeak": 0.5456681251525879
+      }
+    },
+    "bottle": {
+      "eligibleSecondsToEmpty": 5.625,
+      "consumed": 0.9982375020828533,
+      "emptyResidual": 0.0017624979171628726,
+      "heldEmptySeconds": 2,
+      "recoveredBeforeRestart": 0.12455416458382886,
+      "restartTorqueNm": 154.57794794079987
+    },
+    "recharge": {
+      "afterUse": 0.9598727933826686,
+      "afterMovingCooldown": 0.9738727933826697,
+      "stationaryUnchanged": true,
+      "fullClamp": true
+    }
+  },
+  "sourceHashes": {
+    "dist/physics.js": "113937fd9e7cd12b448061de752b859ae2e6927d22905ec3ab6b4b4210627486",
+    "dist/audio.js": "295b7c3a3fed13ba893f42797e1f2acff240508ddfcd4e84543fa31c563b12bf",
+    "dist/catalog.js": "8c5e68c97dd96ad85bd7184694b8bdc586878b3da840c5a9e10980c25395b35d",
+    "sdk/motor-engine.mjs": "1e39c39cd8ae1ee0823bb6f416aa96bfb3506313f7c5d500aad3ff9893cd6475"
+  },
+  "finalSourceHashes": {
+    "dist/physics.js": "113937fd9e7cd12b448061de752b859ae2e6927d22905ec3ab6b4b4210627486",
+    "dist/audio.js": "295b7c3a3fed13ba893f42797e1f2acff240508ddfcd4e84543fa31c563b12bf",
+    "dist/catalog.js": "8c5e68c97dd96ad85bd7184694b8bdc586878b3da840c5a9e10980c25395b35d",
+    "sdk/motor-engine.mjs": "1e39c39cd8ae1ee0823bb6f416aa96bfb3506313f7c5d500aad3ff9893cd6475"
+  },
+  "sourceChangedDuringRun": false,
+  "limits": [
+    "NOS is an arcade external shaft-torque adapter, not a nitrous chemistry simulation.",
+    "Bottle lifecycle tests hold a controlled rolling RPM with native shaft impulses to isolate the resource logic.",
+    "PCM is rendered offline; audible quality and physical controller/wheel hardware are outside this test."
+  ]
+}

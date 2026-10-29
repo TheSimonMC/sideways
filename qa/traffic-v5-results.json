@@ -1,0 +1,42 @@
+{
+  "status": "passed",
+  "checks": [
+    "Civilian brakes to a red stop line, waits, then enters on green and clears the junction",
+    "Following traffic brakes behind a stopped leader with a finite gap and no overlap",
+    "Traffic detects a player blocking its lane, stops, gives a bounded horn, and resumes once clear",
+    "Nearby moving collision boxes carry NPC identity; impact braking recovers; reset clears state and reservations",
+    "Twenty-eight cars navigate for 90 seconds, turn, queue and obey signals without collisions or offroad paths; all render matrices stay finite"
+  ],
+  "redLight": {
+    "stopped": {
+      "x": -17.09975518515121,
+      "z": -4.05,
+      "speed": 0
+    },
+    "entries": 1,
+    "afterGreenSpeed": 6.8
+  },
+  "queueMinGap": 1.9002677611339767,
+  "blockedPlayer": {
+    "horns": 1,
+    "recoveredSpeed": 8.600519187428548
+  },
+  "population": {
+    "cars": 28,
+    "time": 90.00000000001769,
+    "entries": 116,
+    "turns": 53,
+    "redStops": 93536,
+    "playerStops": 0,
+    "contacts": 0,
+    "horns": 0,
+    "stopped": 10,
+    "intersectionsOccupied": 5,
+    "invalidGreen": 0,
+    "offroad": 0,
+    "overlaps": 0,
+    "minCentreDistance": 6.085001398948307,
+    "moved": 28,
+    "wallMs": 678.787701
+  }
+}

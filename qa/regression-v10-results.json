@@ -1,0 +1,53 @@
+{
+  "version": 10,
+  "status": "passed",
+  "checks": [
+    "integration: 49 existing behavioral groups passed against V10.",
+    "thermal: 10 existing behavioral groups passed against V10.",
+    "damage: 6 existing behavioral groups passed against V10.",
+    "audio: 14 existing behavioral groups passed against V10."
+  ],
+  "suites": [
+    {
+      "name": "integration",
+      "source": "qa/integration-v9-check.mjs",
+      "result": "qa/integration-v10-results.json",
+      "checks": 49,
+      "sha256": "40bc6256f8ab8b2fea769be15fae1076bacd1601aa0ebeed260c096a7c935f32"
+    },
+    {
+      "name": "thermal",
+      "source": "qa/thermal-v9-check.mjs",
+      "result": "qa/thermal-v10-results.json",
+      "checks": 10,
+      "sha256": "5013a8e58f452f8ec5c6b2bbde71f6acc12196bb31004b6a8834dd77ddf3ae9e"
+    },
+    {
+      "name": "damage",
+      "source": "qa/damage-v9-check.mjs",
+      "result": "qa/damage-v10-results.json",
+      "checks": 6,
+      "sha256": "fe5e883cc0502c4d99ad863aedaa87fc1e450a3deedd130248c18bb91dd3996e"
+    },
+    {
+      "name": "audio",
+      "source": "qa/audio-v8-check.mjs",
+      "result": "qa/audio-v10-results.json",
+      "checks": 14,
+      "sha256": "8d2e4deefd862f730d6261447cc7d588bd60ad0335a54df2b6fd8d02ba10507e"
+    }
+  ],
+  "sourceSHA256": {
+    "dist/main.js": "94e7f728072d9c33428006ec3d6fc90693bf1b945aaa43d2691c7c475c0bd595",
+    "dist/index.html": "6cfa39eb283f061cbeab706e63b33beb9a13ba6c0823d58a6abab2323637002f",
+    "dist/audio.js": "22df6644c495a2fb40f332bc8914a5601907c58cde7d2f8ba3c492a5139fd696",
+    "dist/physics.js": "b93ae123723cd4796ef62e62f2999755ee1cbf19a3f5af7180d787a1ba12b96f",
+    "dist/mechanical.js": "cf5c72c80222dd77cf870790402c2e3f3e79040c7fa5366e8921a8030280f8b9",
+    "dist/multiplayer.js": "057d396d5f8fae62417255e2099d6dd269f92105b40e09d8b53fa8f979a75651",
+    "dist/vendor/motor-engine.js": "52038ca07bc992c0208928877a23cf464a0b43e17197fb805d21c744d22cb71b"
+  },
+  "groups": 79,
+  "limits": [
+    "Controlled DOM, PCM/DSP and vehicle simulation. No live browser layout, speaker audition, hardware controller or internet WebRTC validation."
+  ]
+}

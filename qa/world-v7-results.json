@@ -1,0 +1,224 @@
+{
+  "status": "passed",
+  "checks": [
+    "Twelve visible directional speed-camera models, roadside colliders, lane measurement records and isolated fading flash instances agree",
+    "Directional facade probes give distinct open-park and street-canyon acoustics, flip with the camera basis and remain finite throughout the map",
+    "Leafy branch/crown geometry, individual leaves, wind shaders and vehicle grass bending are connected to live uniforms",
+    "Nearby movement sheds leaves, leaves fall and retire, insects move near vegetation and light, and all particle pools stay bounded",
+    "New shop fronts, landmarks, planters and stalls preserve service entrances; facade, ground and animated water material variants are present",
+    "Two nearest sirens illuminate the road with bounded red/blue lights, stop on siren-off, reduce work in PSX mode and add no shadow maps",
+    "City disposal releases all nature geometry, leaves, insects, camera flashes, sign textures and building resources exactly once per owned set"
+  ],
+  "limits": [
+    "CPU geometry, metadata, shader-source wiring, animation state and light checks. No browser GPU or rendered-image validation."
+  ],
+  "speedCameras": [
+    {
+      "id": "speed-camera-0",
+      "district": "MIDTOWN",
+      "limitKph": 50,
+      "trigger": {
+        "x": 5,
+        "z": -450
+      }
+    },
+    {
+      "id": "speed-camera-1",
+      "district": "MIDTOWN",
+      "limitKph": 50,
+      "trigger": {
+        "x": 5,
+        "z": 270
+      }
+    },
+    {
+      "id": "speed-camera-2",
+      "district": "DOWNTOWN",
+      "limitKph": 70,
+      "trigger": {
+        "x": 365,
+        "z": 270
+      }
+    },
+    {
+      "id": "speed-camera-3",
+      "district": "DOWNTOWN",
+      "limitKph": 70,
+      "trigger": {
+        "x": 535,
+        "z": 450
+      }
+    },
+    {
+      "id": "speed-camera-4",
+      "district": "GARDEN HEIGHTS",
+      "limitKph": 50,
+      "trigger": {
+        "x": -355,
+        "z": 270
+      }
+    },
+    {
+      "id": "speed-camera-5",
+      "district": "GARDEN HEIGHTS",
+      "limitKph": 50,
+      "trigger": {
+        "x": -450,
+        "z": 535
+      }
+    },
+    {
+      "id": "speed-camera-6",
+      "district": "OLD TOWN",
+      "limitKph": 50,
+      "trigger": {
+        "x": -450,
+        "z": -365
+      }
+    },
+    {
+      "id": "speed-camera-7",
+      "district": "IRONWORKS",
+      "limitKph": 70,
+      "trigger": {
+        "x": 270,
+        "z": -545
+      }
+    },
+    {
+      "id": "speed-camera-8",
+      "district": "MIDTOWN",
+      "limitKph": 70,
+      "trigger": {
+        "x": 450,
+        "z": -185
+      }
+    },
+    {
+      "id": "speed-camera-9",
+      "district": "MIDTOWN",
+      "limitKph": 50,
+      "trigger": {
+        "x": -270,
+        "z": 5
+      }
+    },
+    {
+      "id": "speed-camera-10",
+      "district": "MIDTOWN",
+      "limitKph": 70,
+      "trigger": {
+        "x": 90,
+        "z": 535
+      }
+    },
+    {
+      "id": "speed-camera-11",
+      "district": "MIDTOWN",
+      "limitKph": 70,
+      "trigger": {
+        "x": -90,
+        "z": -725
+      }
+    }
+  ],
+  "acoustics": {
+    "park": {
+      "zone": "park",
+      "enclosure": 0,
+      "reflectivity": 0.1,
+      "openness": 1,
+      "leftDistance": 90,
+      "rightDistance": 90,
+      "frontDistance": 90,
+      "backDistance": 90,
+      "surface": "concrete",
+      "district": "MIDTOWN",
+      "ambient": {
+        "park": 1,
+        "water": 1,
+        "industrial": 0,
+        "traffic": 0,
+        "wind": 1,
+        "insects": 1
+      }
+    },
+    "urban": {
+      "zone": "street-canyon",
+      "enclosure": 0.428438957455527,
+      "reflectivity": 0.37401001225960556,
+      "openness": 0.571561042544473,
+      "leftDistance": 30.6367169986479,
+      "rightDistance": 30.213692833436653,
+      "frontDistance": 84.41731131083993,
+      "backDistance": 90,
+      "surface": "asphalt",
+      "district": "DOWNTOWN",
+      "ambient": {
+        "park": 0,
+        "water": 0,
+        "industrial": 0,
+        "traffic": 1,
+        "wind": 0.7000927297811311,
+        "insects": 0
+      }
+    },
+    "industrial": {
+      "zone": "industrial",
+      "enclosure": 0.3986393413044775,
+      "reflectivity": 0.319227403355946,
+      "openness": 0.6013606586955225,
+      "leftDistance": 35.931752867481514,
+      "rightDistance": 29,
+      "frontDistance": 90,
+      "backDistance": 90,
+      "surface": "asphalt",
+      "district": "IRONWORKS",
+      "ambient": {
+        "park": 0,
+        "water": 0,
+        "industrial": 1,
+        "traffic": 1,
+        "wind": 0.7209524610868658,
+        "insects": 0
+      }
+    },
+    "samples": 1681
+  },
+  "nature": {
+    "initial": {
+      "trees": 138,
+      "leafInstances": 4968,
+      "grassTufts": 754,
+      "fallingLeaves": 0,
+      "emittedLeaves": 0,
+      "insects": 0,
+      "night": 0,
+      "nearTrees": 2,
+      "wind": 0.7375877443845567
+    },
+    "moving": {
+      "trees": 138,
+      "leafInstances": 4968,
+      "grassTufts": 754,
+      "fallingLeaves": 9,
+      "emittedLeaves": 9,
+      "insects": 96,
+      "night": 0,
+      "nearTrees": 1,
+      "wind": 0.8422029882003523
+    },
+    "final": {
+      "trees": 138,
+      "leafInstances": 4968,
+      "grassTufts": 754,
+      "fallingLeaves": 0,
+      "emittedLeaves": 1640,
+      "insects": 0,
+      "night": 0,
+      "nearTrees": 0,
+      "wind": 0.7764678450093927
+    }
+  },
+  "disposedResources": 179
+}

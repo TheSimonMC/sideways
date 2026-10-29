@@ -1,0 +1,118 @@
+{
+  "status": "passed",
+  "source": "same MotorLab session renderAudio",
+  "sampleRate": 48000,
+  "engines": [
+    {
+      "id": "i4",
+      "rms": 0.10615058971566363,
+      "peak": 0.3013613224029541,
+      "zeroCrossingHz": 456.25,
+      "brightnessRatio": 0.09506612189222813,
+      "rpm": 7745.300848730329,
+      "exactNativeSteps": 48000,
+      "pcmVsManualRpmDifference": 0,
+      "combinedPcmAndManualWallMs": 2052.2632270000004,
+      "pcmAndEngineCpuMsPerSimulatedSecond": 744.567
+    },
+    {
+      "id": "i6t",
+      "rms": 0.09386025523083912,
+      "peak": 0.4551701545715332,
+      "zeroCrossingHz": 1661.5,
+      "brightnessRatio": 0.25569438564622327,
+      "rpm": 7482.627682729257,
+      "exactNativeSteps": 48000,
+      "pcmVsManualRpmDifference": 0,
+      "combinedPcmAndManualWallMs": 3282.4697260000003,
+      "pcmAndEngineCpuMsPerSimulatedSecond": 1125.678
+    },
+    {
+      "id": "v8",
+      "rms": 0.10911828996064296,
+      "peak": 0.3484223783016205,
+      "zeroCrossingHz": 478,
+      "brightnessRatio": 0.0986975748455536,
+      "rpm": 6575.087127930517,
+      "exactNativeSteps": 48000,
+      "pcmVsManualRpmDifference": 0,
+      "combinedPcmAndManualWallMs": 2921.7277729999996,
+      "pcmAndEngineCpuMsPerSimulatedSecond": 910.2255
+    },
+    {
+      "id": "rotary",
+      "rms": 0.10727348667616428,
+      "peak": 0.33679500222206116,
+      "zeroCrossingHz": 447,
+      "brightnessRatio": 0.08016293670279229,
+      "rpm": 9085.735715372533,
+      "exactNativeSteps": 48000,
+      "pcmVsManualRpmDifference": 0,
+      "combinedPcmAndManualWallMs": 1914.8706710000006,
+      "pcmAndEngineCpuMsPerSimulatedSecond": 631.2115
+    },
+    {
+      "id": "boxer6",
+      "rms": 0.11158112416425309,
+      "peak": 0.32002097368240356,
+      "zeroCrossingHz": 743.5,
+      "brightnessRatio": 0.11094464219515893,
+      "rpm": 7981.327579746744,
+      "exactNativeSteps": 48000,
+      "pcmVsManualRpmDifference": 0,
+      "combinedPcmAndManualWallMs": 2009.2067270000007,
+      "pcmAndEngineCpuMsPerSimulatedSecond": 602.4705
+    },
+    {
+      "id": "v6",
+      "rms": 0.10949632530153751,
+      "peak": 0.32787707448005676,
+      "zeroCrossingHz": 749.75,
+      "brightnessRatio": 0.11004558197014154,
+      "rpm": 7935.252015395052,
+      "exactNativeSteps": 48000,
+      "pcmVsManualRpmDifference": 0,
+      "combinedPcmAndManualWallMs": 2001.3134820000014,
+      "pcmAndEngineCpuMsPerSimulatedSecond": 597.8235
+    },
+    {
+      "id": "v10",
+      "rms": 0.12967863794913376,
+      "peak": 0.3534243106842041,
+      "zeroCrossingHz": 692.75,
+      "brightnessRatio": 0.1274973364194928,
+      "rpm": 8535.895497671085,
+      "exactNativeSteps": 48000,
+      "pcmVsManualRpmDifference": 0,
+      "combinedPcmAndManualWallMs": 3023.796472000002,
+      "pcmAndEngineCpuMsPerSimulatedSecond": 870.5115
+    },
+    {
+      "id": "v12",
+      "rms": 0.11443453929304465,
+      "peak": 0.2998557686805725,
+      "zeroCrossingHz": 993.75,
+      "brightnessRatio": 0.14892104320186603,
+      "rpm": 8377.495525818067,
+      "exactNativeSteps": 48000,
+      "pcmVsManualRpmDifference": 0,
+      "combinedPcmAndManualWallMs": 3279.839787000001,
+      "pcmAndEngineCpuMsPerSimulatedSecond": 936.1335
+    }
+  ],
+  "checks": [
+    "Distinct SDK voices, finite PCM and bounded output for all 8 engines",
+    "Exactly 24000 engine steps per second, identical crank state to manual-only stepping",
+    "PCM release/reset/reclaim on the same engine without a second clock",
+    "A stationary, unstarted SDK engine is silent; real starter/combustion creates audio",
+    "Playback buffers stay bounded and mute clears already scheduled PCM",
+    "Fractional 1/180 s updates keep exact cumulative one-second time"
+  ],
+  "stoppedRms": 0,
+  "startingRms": 0.024713086773962487,
+  "transport": {
+    "maxBuffers": 4,
+    "maxQueueMs": 60.00000000001427,
+    "mutingClearsQueuedAudio": true
+  }
+}

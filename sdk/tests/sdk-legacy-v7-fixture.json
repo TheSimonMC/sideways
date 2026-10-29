@@ -1,0 +1,138 @@
+{
+  "format": "MotorLab.LegacyV7Replay",
+  "version": 1,
+  "provenance": "Generated from the unchanged release-7 source bytes; expected hashes cover complete original serialize() output, not selected display fields.",
+  "sourceSHA256": {
+    "core.js": "efd882f510d5bff174aafa7dfe929c90598c05a9ed92996a678a1e2258bcd57f",
+    "vehicle.js": "9a4db840ce4a9b8542a7033e427222206726c8f23220b5e27d23f99854398f98"
+  },
+  "stepSeconds": 0.000041666666666666665,
+  "scenarios": [
+    {
+      "kind": "engine",
+      "preset": "i4",
+      "commands": [
+        {
+          "inputs": {
+            "fuel": true,
+            "ignition": true,
+            "starter": true,
+            "starterSeconds": 0.35,
+            "throttle": 0.2
+          },
+          "steps": 9600
+        },
+        {
+          "inputs": {
+            "throttle": 0.5,
+            "load": 18
+          },
+          "steps": 7200
+        },
+        {
+          "inputs": {
+            "fuel": false,
+            "ignition": false,
+            "starter": false
+          },
+          "steps": 2400
+        }
+      ],
+      "expectedStateSHA256": "9e19ee89d1ed31ef66b56fe28fe75347631f16341366f6445eb8148746cac9d7"
+    },
+    {
+      "kind": "engine",
+      "preset": "turbo",
+      "commands": [
+        {
+          "inputs": {
+            "fuel": true,
+            "ignition": true,
+            "starter": true,
+            "starterSeconds": 0.3,
+            "throttle": 0.5
+          },
+          "steps": 12000
+        },
+        {
+          "inputs": {
+            "throttle": 0.1,
+            "load": 7
+          },
+          "steps": 6000
+        }
+      ],
+      "expectedStateSHA256": "7447bb2e086bfb1e5b078e9bd0de25d001b767042975b4ca89f7adf866b4a27b"
+    },
+    {
+      "kind": "vehicle",
+      "preset": "bestia50",
+      "commands": [
+        {
+          "inputs": {
+            "fuel": true,
+            "ignition": true,
+            "starter": true,
+            "starterSeconds": 0.4,
+            "throttle": 0.4,
+            "clutch": 1,
+            "parking": false
+          },
+          "steps": 12000
+        },
+        {
+          "inputs": {
+            "gearRequest": 1
+          },
+          "steps": 2400
+        },
+        {
+          "inputs": {
+            "clutch": 0
+          },
+          "steps": 7200
+        },
+        {
+          "inputs": {
+            "clutch": 1,
+            "gearRequest": 2
+          },
+          "steps": 3600
+        }
+      ],
+      "expectedStateSHA256": "f6d61e8d202553d55cd16e83562c9a7275f2e3960215b13912f6fe4a063c38c7"
+    },
+    {
+      "kind": "vehicle",
+      "preset": "bmw-m3-e46-2002-us",
+      "commands": [
+        {
+          "inputs": {
+            "fuel": true,
+            "ignition": true,
+            "starter": true,
+            "starterSeconds": 0.4,
+            "throttle": 0.25,
+            "clutch": 1,
+            "parking": false
+          },
+          "steps": 12000
+        },
+        {
+          "inputs": {
+            "gearRequest": 1
+          },
+          "steps": 3600
+        },
+        {
+          "inputs": {
+            "clutch": 0,
+            "throttle": 0.4
+          },
+          "steps": 6000
+        }
+      ],
+      "expectedStateSHA256": "3120f0271f9c38ac298fc93632f680d0b9770895f928527864d5bf4ae4d14e3d"
+    }
+  ]
+}

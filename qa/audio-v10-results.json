@@ -1,0 +1,318 @@
+{
+  "status": "passed",
+  "scope": "Deterministic PCM/DSP and mocked Web Audio scheduling; real MP3 decoding through ffmpeg. No browser, speaker or controller listening claim.",
+  "checks": [
+    "Emergency voices survive a crowd of closer civilians, remain audible in measured PCM to320m, use an independent siren mix, and obey6active/10total bounds.",
+    "Civilian RPM/load sound and recorded horns carry to practical street distances; actual camera-right reverses stereo, with bounded Doppler.",
+    "Settings siren preview ends after2.15s without traffic; recorded speech PCM is serialized, priority-interrupted, cooldown/queue bounded and independently muted. Speed-camera cue works while stationary.",
+    "Geometry changes reverb tail energy and early stereo reflection direction; changing facade distances remain finite, disabled reverb is dry, tails decay and resets clear buffers.",
+    "Real stereo birds and evening insects crossfade with day/night and park context, independent ambience volume fades to silence, and pause clears the beds.",
+    "Two recorded arrangements and real percussion respond distinctly to chase/search;8bar sections stay synchronized, escape decays continuously over10s, pause freezes the release, scheduling is bounded and codec failure isolated.",
+    "World sound, siren/radio previews and music run without advancing the native engine in both menu Settings and suspended-driving Settings; master/mute, independent gains, world-reset flushing and6buffer bound hold.",
+    "100m siren PCM has measurable headroom relative to actual full-load native-engine output; player native-clock regression is run separately at each120Hz step.",
+    "Embedded CC0 asset hashes, stereo channels and rates are verified; actual pursuit MP3 decodes, attribution is complete and no runtime network or oscillator nodes are used.",
+    "Focus API ducks and filters reading/pause without replaying music, freezes pursuit release, stops hidden playback without animation frames, and allows bounded quiet background playback; mute always wins.",
+    "Hidden focus immediately flushes engine/UI/world queues and rejects previews and rewards while optional background music remains independent; visibility restores normal event playback.",
+    "Near miss, objective, reward, purchase, delivery and waypoint cues use existing recorded kit samples, produce finite nonzero PCM, and preserve bounded event queues.",
+    "The complete licensed Umplix rock arrangement is embedded offline, hashed and decoded as 134.4 seconds of finite stereo PCM with measured headroom and credited provenance.",
+    "A remote or NPC engine marked stopped decays to silence while its independent horn and siren remain audible."
+  ],
+  "fixtures": {
+    "sirens": {
+      "distances": [
+        {
+          "distance": 30,
+          "rms": 0.10916891957659967
+        },
+        {
+          "distance": 100,
+          "rms": 0.05844650429707061
+        },
+        {
+          "distance": 200,
+          "rms": 0.02764685664468299
+        },
+        {
+          "distance": 320,
+          "rms": 0.014532655316854841
+        }
+      ],
+      "maxActive": 6,
+      "maxFading": 10,
+      "reservedEmergency": 3,
+      "mutedReleaseRms": 0.010251919373250335
+    },
+    "traffic": {
+      "near": 0.013011719396697437,
+      "far": 0.003143934045937942,
+      "right": 0.012108752470703676,
+      "left": 0.004762128734142328,
+      "lookBackLeft": 0.010250074479305364,
+      "horn": 0.028537408462627728
+    },
+    "radio": {
+      "testSirenRms": 0.1251576287545506,
+      "radioRms": 0.06722496543488542,
+      "played": 2,
+      "dropped": 4,
+      "queueLimit": 3,
+      "mutedRms": 0
+    },
+    "acoustics": {
+      "openTailEnergy": 0.007276678386741192,
+      "streetTailEnergy": 3.0952065292256417,
+      "leftFacadeEnergyRatio": 27.85493827160492,
+      "rightFacadeEnergyRatio": 27.854938271604922,
+      "disabledTail": 0,
+      "peak": 0.4999958823693967
+    },
+    "ambience": {
+      "day": 0.005168803092411956,
+      "night": 0.00545943832388402,
+      "mutedRelease": 0.0025968148576217946,
+      "paused": 0
+    },
+    "music": {
+      "chaseBpm": 118,
+      "decodes": 2,
+      "driveHits": 20,
+      "chaseHits": 58,
+      "chase": {
+        "ready": true,
+        "enabled": true,
+        "mode": "chase",
+        "intensity": 0.9,
+        "energy": 0.999932271263509,
+        "chaseLevel": 1.1798965952405394,
+        "bandLevel": 0.01501182815000499,
+        "paused": false,
+        "focus": {
+          "managed": false,
+          "hidden": false,
+          "reading": false,
+          "paused": false,
+          "backgroundMusic": false,
+          "gain": 1,
+          "cutoff": 18000
+        },
+        "masterLevel": 0.21167999999999998,
+        "volume": 0.42,
+        "bpm": 118,
+        "bars": 56,
+        "playing": true,
+        "chaseLoops": 2,
+        "activeVoices": 9,
+        "maxVoices": 11,
+        "scheduledHits": 78,
+        "hits": {
+          "kick": 14,
+          "hat": 43,
+          "snareAlt": 5,
+          "snare": 6,
+          "crash": 2,
+          "metal": 7,
+          "openHat": 1
+        },
+        "error": null,
+        "source": "Umplix driving rock, bertsz pursuit cue and VCSL acoustic percussion"
+      },
+      "search": {
+        "ready": true,
+        "enabled": true,
+        "mode": "search",
+        "intensity": 0.3,
+        "energy": 0.2890222659902446,
+        "chaseLevel": 0.19415375787543324,
+        "bandLevel": 2.0527468142736425e-7,
+        "paused": false,
+        "focus": {
+          "managed": false,
+          "hidden": false,
+          "reading": false,
+          "paused": false,
+          "backgroundMusic": false,
+          "gain": 1,
+          "cutoff": 18000
+        },
+        "masterLevel": 0.16127999999999998,
+        "volume": 0.42,
+        "bpm": 118,
+        "bars": 56,
+        "playing": true,
+        "chaseLoops": 2,
+        "activeVoices": 4,
+        "maxVoices": 11,
+        "scheduledHits": 87,
+        "hits": {
+          "kick": 17,
+          "hat": 45,
+          "snareAlt": 5,
+          "snare": 6,
+          "crash": 2,
+          "metal": 7,
+          "openHat": 1,
+          "piano": 4
+        },
+        "error": null,
+        "source": "Umplix driving rock, bertsz pursuit cue and VCSL acoustic percussion"
+      },
+      "release": [
+        {
+          "seconds": 1,
+          "chase": 1.0030035768948593,
+          "band": 0.006715011443736093,
+          "energy": 0.9097659443102614
+        },
+        {
+          "seconds": 2,
+          "chase": 0.7380930330421341,
+          "band": 0.003017249136049366,
+          "energy": 0.7483538261106297
+        },
+        {
+          "seconds": 3,
+          "chase": 0.5121694896849214,
+          "band": 0.046683461139284614,
+          "energy": 0.581975471390696
+        },
+        {
+          "seconds": 4,
+          "chase": 0.3461606333191507,
+          "band": 0.14523347008881296,
+          "energy": 0.4376655551112859
+        },
+        {
+          "seconds": 5,
+          "chase": 0.23103844881456467,
+          "band": 0.2684443586670403,
+          "energy": 0.32213102721980547
+        },
+        {
+          "seconds": 6,
+          "chase": 0.15325372023463663,
+          "band": 0.4027360947430508,
+          "energy": 0.23369117636708195
+        },
+        {
+          "seconds": 7,
+          "chase": 0.10134523872175105,
+          "band": 0.5420067765467814,
+          "energy": 0.16784285884687644
+        },
+        {
+          "seconds": 8,
+          "chase": 0.06691547369381104,
+          "band": 0.6835146428767447,
+          "energy": 0.11969839998692942
+        },
+        {
+          "seconds": 9,
+          "chase": 0.04414820892549859,
+          "band": 0.7807000173019458,
+          "energy": 0.08493126131981592
+        },
+        {
+          "seconds": 10,
+          "chase": 0.02911588027589021,
+          "band": 0.8243682209197682,
+          "energy": 0.06004090895731936
+        }
+      ],
+      "maxVoices": 12,
+      "pausedOffset": 24.94499999999985,
+      "decodeFailure": "band: codec unavailable; chase: codec unavailable"
+    },
+    "transport": {
+      "worldFrames": 195840,
+      "playerFrames": 0,
+      "nativeSteps": 0,
+      "maxQueued": 5,
+      "previews": "menu Settings and suspended-driving Settings"
+    },
+    "nativeMix": {
+      "engineRms": 0.10106606015529318,
+      "sirenAt100mRms": 0.05844650429707061,
+      "monoSirenToStereoEngineRatio": 0.5783000169123498,
+      "limitation": "Signal-level proxy before final music/limiter; no loudspeaker or perceptual masking claim."
+    },
+    "assets": {
+      "radio": 3,
+      "ambience": 2,
+      "chaseBytes": 521690,
+      "chaseDecodedSeconds": 32.542375,
+      "chase": {
+        "rms": 0.11811244563383952,
+        "peak": 0.7787493467330933
+      },
+      "offline": true
+    },
+    "focus": {
+      "normalMaster": 0.16127999999999998,
+      "chaseMaster": 0.21167999999999998,
+      "readingGain": 0.28,
+      "backgroundGain": 0.18,
+      "readingCutoffHz": 1800,
+      "backgroundCutoffHz": 1200,
+      "hiddenStopsWithoutFrames": true,
+      "liveLoopBound": 3
+    },
+    "feedback": {
+      "nearMiss": {
+        "rms": 0.006945918089392903,
+        "peak": 0.08186375349760056
+      },
+      "objective": {
+        "rms": 0.0048209712105410215,
+        "peak": 0.08121363073587418
+      },
+      "reward": {
+        "rms": 0.0503094953145244,
+        "peak": 0.1224510595202446
+      },
+      "purchase": {
+        "rms": 0.005557924262049667,
+        "peak": 0.08201677352190018
+      },
+      "delivery": {
+        "rms": 0.05062951508746791,
+        "peak": 0.12340184301137924
+      },
+      "waypoint": {
+        "rms": 0.0016139465180601401,
+        "peak": 0.03590887784957886
+      }
+    },
+    "rock": {
+      "title": "Super Wreck Roadway",
+      "author": "Umplix",
+      "license": "CC0 1.0 Universal",
+      "page": "https://opengameart.org/content/super-wreck-roadway",
+      "source": "https://opengameart.org/sites/default/files/super_wreck_roadway_loop.wav",
+      "sourceBytes": 51664026,
+      "sourceSha256": "7f78e33cab242279d1c674128280ebb9bf336300e1cd83d8de94fd5083d675cd",
+      "duration": 134.4,
+      "bpm": 100,
+      "bpmMethod": "Tempo inferred from onset autocorrelation; complete 56-bar arrangement spans 134.4 seconds.",
+      "adaptedBytes": 2151607,
+      "adaptedMp3Sha256": "61f2a3685f2da32df0ec2ffa6904e77a3473e0c873d2a6c317d993d3d767a3f3",
+      "changes": "Trimmed 5ms trailing excess to134.4s, gain0.63 to preserve float-WAV headroom,6ms edge fades, stereo44100Hz MP3 at128kbit/s. No performance/recording technique asserted.",
+      "decodedSeconds": 134.4,
+      "rms": 0.08627428066534484,
+      "peak": 0.5933421850204468
+    },
+    "stoppedRemote": {
+      "traffic": 9.331430294257898e-10,
+      "horns": 0.04703947369925102,
+      "sirens": 0.13319841551461423,
+      "service": 0,
+      "damage": 0,
+      "worldEvents": 0,
+      "radio": 0,
+      "ambience": 0,
+      "reflections": 0
+    }
+  },
+  "verifiedInRelease": 10,
+  "suiteSource": "qa/audio-v8-check.mjs",
+  "engineSdk": "1.6.0"
+}

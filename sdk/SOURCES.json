@@ -1,0 +1,49 @@
+{
+  "sdkVersion": "1.6.3",
+  "physicsRelease": 14,
+  "audioRelease": 14,
+  "sourceSHA256": {
+    "core.js": "3bbca9649fecb68cf45f98beba023d4ad807747afa54463d81791b6d4cef43d2",
+    "vehicle.js": "884962cada36838e8cb841047169dbf027f55cf94467f89f68832a8a91b3e61e",
+    "audio.js": "b94c39b82ed2846d99dee93c25b6bf7791efb28c259f46145fdca126b5bf32e8",
+    "game-api.js": "34df821cedd3749fbfa301076019d16d34184e5ac6aae9da08b98a7f499d9a40"
+  },
+  "audioModuleSHA256": {
+    "src/audio/header.js": "01f1a7476746394942b9699e802357309cf41f2d0813e235cbb0827a3c35a591",
+    "src/audio/runtime.js": "cf053c2db21b61183f06e1c0e119aac750a6ac6bb9767aebf766bceb3cd97f95",
+    "src/audio/pre.js": "6eadd8a1ae77e2199b6a78b906b9cd8fa2502f053614d4eca8a717fa07e50423",
+    "src/audio/layer.js": "52f8510a5b1582665ed68cf0d68f5027bd925bd7795f6141f2882bb246100ad5",
+    "src/audio/listener.js": "0b902910b08664eb1db7a0a95fb27e8b76f162d427e4219b417ae9ef7ad7650e",
+    "src/audio/sources.js": "9a19d7e39bbdcc40a13526499b1d534d407454689ea3320afcff594fad1e0f25",
+    "src/audio/processor.js": "4e6613003945439048b679e9a7f7c182830f95a206a8db69df9dee9688b4cb7c",
+    "src/audio/driver.js": "f68adad969cde30afcbe090b77ef275d64b3351b18798ddd8906894a2ac695d0"
+  },
+  "compatibilityBaselineRelease": 8,
+  "compatibilityBaselineSHA256": {
+    "core.js": "efd882f510d5bff174aafa7dfe929c90598c05a9ed92996a678a1e2258bcd57f",
+    "vehicle.js": "9a4db840ce4a9b8542a7033e427222206726c8f23220b5e27d23f99854398f98"
+  },
+  "compatibilityBaselineFiles": {
+    "core.js": "tests/core-v8-baseline.js",
+    "vehicle.js": "tests/vehicle-v10-baseline.js"
+  },
+  "testArtifactSHA256": {
+    "tests/game-api-tests.mjs": "e959c0e5f878437867f0944c97cc9f49e47a043ab954aeafbff765edb9cb0029",
+    "tests/sdk-legacy-v7-fixture.json": "8a17067e840b2516fbf7bc8a9daeb8d3256d2c386b804311004a12393196c771",
+    "tests/core-v8-baseline.js": "efd882f510d5bff174aafa7dfe929c90598c05a9ed92996a678a1e2258bcd57f",
+    "tests/vehicle-v10-baseline.js": "9a4db840ce4a9b8542a7033e427222206726c8f23220b5e27d23f99854398f98",
+    "tests/legacy-state.mjs": "81cb062f93d3466d9f434ac2dfd5ebd6b6f674a0cfd704a04289980ac5aae786"
+  },
+  "generatedSHA256": {
+    "motor-engine.js": "35e29500cc16ef5cf2b51b6490c07d80010cdf34d72fdc4fae9649fc527c820d",
+    "motor-engine.cjs": "5107121f52b8ca0f24dc1125cc9b862c6ec9f4e1ea407760c5a74edc784315b0",
+    "motor-engine.mjs": "3d2edb832f026420b0fe1f42db43d3e00b2563136c4353c9ec1fc9e3504e9d81",
+    "motor-engine.d.ts": "3e08702bbf4004d1b4c6616c3dd642385c28cee3b8142da0d4134cc13696a252",
+    "motor-engine.d.mts": "b1cddce2b3472a81a5c8a756b22d0398b0673aaa2a9ec1d2f85f6f7c383cb5c0",
+    "motor-engine.d.cts": "e90da1a8719b0f16bf64a17f341b946b6315340fabc28fd73efaec4b37189470",
+    "README.md": "1b2e6a75b8e8e043a449870a0cfa273b61d57db62fabcf3caab9b5648602e48b",
+    "game-loop.html": "895d550075dbcf3549c4e2f9530ac4936b452c045814e7211443a5888d3c4abe"
+  },
+  "testReportStatus": "Original qa report is historical. See ../qa/audio-v12-results.json for extension validation.",
+  "integrationExtension": "SIDEWAYS V12 explicit emitter scene; base physics and SDK version unchanged"
+}

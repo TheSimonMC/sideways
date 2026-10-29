@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "checks": [
+    "Main-menu → settings → controls → back restores each precise originating control",
+    "Pause → settings → controls returns to pause, then resumes without stale history",
+    "Service → garage cancellation returns to service while explicit resume goes to driving",
+    "View switches map cursor and places; confirm on a panel button does not also mark the cursor",
+    "Shoulders change settings tabs and slider arrows work through actual keyboard input",
+    "Map confirmation routes to the destination shown in the detail card, including its entrance",
+    "Summary confirms and text fields open the keyboard; Back cancels only the keyboard",
+    "Prevented key events and menu Tab never leak map actions into InputManager",
+    "A complete Escape tap between frames still leaves Pause for the main menu"
+  ],
+  "limit": "Actual main.js navigation handlers plus InputManager and GameUI in the functional DOM harness. Physics, map drawing and audio are controlled boundaries; no physical device claim."
+}

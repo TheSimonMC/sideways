@@ -1,0 +1,47 @@
+{
+  "status": "passed",
+  "checks": [
+    "Equal NPC/player velocity depenetrates with zero collision impulse",
+    "Rear-end response uses player-minus-NPC closing velocity",
+    "Approaching NPC pushes stationary player and separating NPC has no false impulse",
+    "Oncoming traffic uses combined relative speed",
+    "Normal and friction impulses are invariant under common translation velocity",
+    "Missing or non-finite NPC velocity preserves static response exactly",
+    "Original static collision suite remains unchanged"
+  ],
+  "failures": [],
+  "scenarios": {
+    "rearEnd": {
+      "playerBefore": 30,
+      "npcVelocity": 15,
+      "closingSpeed": 15,
+      "playerAfter": 13.799999999999997,
+      "impulse": 18792.000000000004
+    },
+    "rearPush": {
+      "npcVelocity": 10,
+      "playerAfter": 10.8
+    },
+    "oncoming": {
+      "playerBefore": 20,
+      "npcVelocity": -10,
+      "closingSpeed": 30,
+      "playerAfter": -12.400000000000006
+    },
+    "frameInvariance": {
+      "cases": 32,
+      "maxVelocityDelta": 7.105427357601002e-15
+    },
+    "staticRegression": {
+      "status": "passed",
+      "scenarios": 528,
+      "randomContacts": 355,
+      "maxEnergyRatio": 1
+    }
+  },
+  "sourceHash": "7d8c4e5f902de105af4dc946c6871853f9ab6e9638e2d175ad6498a3af851814",
+  "limits": [
+    "NPCs are kinematic obstacles. Player energy can increase in the world frame when an NPC pushes it; energy is checked in the NPC frame.",
+    "The solver uses NPC linear velocity at contact and does not implement equal-mass rigid-body exchanges or swept NPC trajectories."
+  ]
+}

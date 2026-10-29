@@ -1,0 +1,10 @@
+import assert from 'node:assert/strict';
+import fs from 'node:fs';
+import {gaugeState} from '../dist/instruments.js';
+const checks=[];
+const check=(name,fn)=>{fn();checks.push(name);};
+check('Healthy, idle and empty NOS remain finite and noncritical',()=>{assert.deepEqual(gaugeState({},7400),{rpm:0,boost:0,critical:false,warning:''});});
+check('Redline clamps the arc while retaining over-rev warning',()=>{const g=gaugeState({rpm:11000,boost:1.2},7400);assert.equal(g.rpm,1);assert.equal(g.boost,1);assert.equal(g.warning,'OVER REV');});
+check('Mechanical or body failure and lost wheels retain critical warning',()=>{for(const state of [{engineHealth:.1},{bodyHealth:.1},{wheelAttached:[true,true,false,true]}]){assert.equal(gaugeState(state,7400).critical,true);assert.equal(gaugeState(state,7400).warning,'CRITICAL DAMAGE');}});
+check('Repair clears critical state; NOS and drift are lower priority',()=>{assert.equal(gaugeState({engineHealth:1,bodyHealth:1,boosting:true},7400).warning,'NOS ACTIVE');assert.equal(gaugeState({engineHealth:.1,boosting:true,drifting:true},7400).warning,'CRITICAL DAMAGE');assert.equal(gaugeState({drifting:true},7400).warning,'DRIFT');});
+const report={status:'passed',checks};fs.writeFileSync(new URL('./instruments-v12-results.json',import.meta.url),JSON.stringify(report,null,2));console.log(JSON.stringify(report));

@@ -1,0 +1,382 @@
+{
+  "version": 8,
+  "status": "passed",
+  "preparedAt": "2026-10-27T19:24:14.831442+00:00",
+  "sourceBaseCommit": "f92b472d2b744d7f0f2d963946ad5e2d09e43815",
+  "standalone": "dist/SIDEWAYS.html",
+  "pagesPackage": {
+    "path": "release/SIDEWAYS-v8-pages.zip",
+    "bytes": 11713571,
+    "sha256": "e1470c0fd8f129bb840298a32243bc5e8287192de5183d2e2ec2db27ff119e43"
+  },
+  "checks": [
+    {
+      "report": "qa/integration-v8-results.json",
+      "status": "passed",
+      "groups": 41,
+      "sha256": "c25a97ccc91d9f40c36222495c788643861ec6005bccab5579a4ba53f3d562b8"
+    },
+    {
+      "report": "qa/world-v8-results.json",
+      "status": "passed",
+      "groups": 5,
+      "sha256": "b692853a73d747c65709f83584270bc7be23dabcd5f98da7b9ed86d8dd88a95b"
+    },
+    {
+      "report": "qa/ai-v8-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "6c23bd4fbf30fb388367fc2f5b60eaffea3e3b14f91d9d45eb7ca282b60285d0"
+    },
+    {
+      "report": "qa/multiplayer-v8-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "750a4ee91f27a69b6faa346e62e86e7dbf9ea5f26f6c33aefe37950ad6aec66f"
+    },
+    {
+      "report": "qa/career-navigation-v8-results.json",
+      "status": "passed",
+      "groups": 11,
+      "sha256": "bceb1fe37a9b443517e76efc44feecfbd46a52fb6a9ef396a5ec5c1318aada2f"
+    },
+    {
+      "report": "qa/audio-v8-results.json",
+      "status": "passed",
+      "groups": 14,
+      "sha256": "1ab1fae7a0d2d7914b2cedb749bb20654cc7b9f34ff3f30d3e805d61ac815122"
+    },
+    {
+      "report": "qa/damage-v8-results.json",
+      "status": "passed",
+      "groups": 7,
+      "sha256": "4e9d764775b1785e3405d3fc7bdfe18251a00437f9f73bcd3b1c9b454a0d8303"
+    },
+    {
+      "report": "qa/haptics-v8-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "78533f1d6278c14e6057b4dd7fec87221d533b1be393b61150e0072fc6fa8173"
+    },
+    {
+      "report": "qa/remote-contacts-v8-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "a801005dc855d90a789d725f34d3e25d97c8eddf7165aa4ef4699aac588a5c94"
+    },
+    {
+      "report": "qa/standalone-v8-results.json",
+      "status": "passed",
+      "groups": 0,
+      "sha256": "285e62e32957c326b118485445e8d3e76ec47c514400dc0dd996538a6310f9ab"
+    },
+    {
+      "report": "qa/package-pages-v8-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "7fdcc3a9cc52c05ab5634a445894588984876a49353d8d4edda866b587c689b9"
+    },
+    {
+      "report": "qa/input-v6-results.json",
+      "status": "passed",
+      "groups": 16,
+      "sha256": "442c12a38d550db88d6db4acb670107b3bb72dc92ea5b5bc4782f2ab8cc7b322"
+    },
+    {
+      "report": "qa/presentation-v7-results.json",
+      "status": "passed",
+      "groups": 16,
+      "sha256": "a98f7ac33033d5663b8a21204a348a78e7185bcf10768b0090ba22a2266e484f"
+    },
+    {
+      "report": "qa/post-v3-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "c6528752377f38e40d56706ada2c8d49a5d2aa7b80e84af8055ec016c7e89fa7"
+    },
+    {
+      "report": "qa/contact-v6-results.json",
+      "status": "passed",
+      "groups": 3,
+      "sha256": "2da10027c8ee9ec2d23bd09ceda043e5adc87f8c005600152f77345f83459f36"
+    }
+  ],
+  "runtimeFiles": {
+    "dist/SIDEWAYS.html": {
+      "bytes": 9620584,
+      "sha256": "5281a1a2e08573135bdbed731ae92f93bf27d14ffd2a4555d0e265044459d2ee"
+    },
+    "dist/agent-snapshot.js": {
+      "bytes": 1724,
+      "sha256": "5bc45f0147a0440bc2b3ab5434cda148e1eb9dd97a95cd02748092a37c4ecd12"
+    },
+    "dist/audio/ATTRIBUTION.txt": {
+      "bytes": 9921,
+      "sha256": "6d6c870ea118c649e0b0cb8e8aae6b2e2147fc9ce292ae9e4d6f4a5601dac82e"
+    },
+    "dist/audio/CC0-LICENSE.txt": {
+      "bytes": 7048,
+      "sha256": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499"
+    },
+    "dist/audio/acoustics.js": {
+      "bytes": 3075,
+      "sha256": "0110d463dce56172e450b8c32a0291dea4bcf741124f4a57014dc5ad10acef40"
+    },
+    "dist/audio/ambient-kit.js": {
+      "bytes": 982354,
+      "sha256": "71ada3f1bff497968972dc29d5698888f3ee0aec5e82e885223269739dbd8f34"
+    },
+    "dist/audio/chase-track.js": {
+      "bytes": 695756,
+      "sha256": "594795a7779d54c8f23dcb4fde7a73f4da94a655aa65ee19c8f7db9a7f1ec3ba"
+    },
+    "dist/audio/kit.js": {
+      "bytes": 1050426,
+      "sha256": "025ac33ffd6e6d1f8d49e6300b46a296e2f82eeafa91c4a40872d7b5b654031a"
+    },
+    "dist/audio/music-track.js": {
+      "bytes": 2869010,
+      "sha256": "e0a2a6b8f68dea8f551ab10cfe43548af5df86af151177675f85e9e0e64dd2a7"
+    },
+    "dist/audio/radio-kit.js": {
+      "bytes": 673783,
+      "sha256": "badf34bd3b1de9452bb9cd9b8db13a1d7b169790b98f5e0f3eef08749243b6b5"
+    },
+    "dist/audio/samples.js": {
+      "bytes": 505865,
+      "sha256": "cc801bf91672a88beda5a6eb7e1b833987d1389f183769702d08183cf4654eda"
+    },
+    "dist/audio/world.js": {
+      "bytes": 22239,
+      "sha256": "37436c959a9ffd81aaa11ea69a161e7883e073ecfae00d4c4e25da2f46844837"
+    },
+    "dist/audio.js": {
+      "bytes": 35232,
+      "sha256": "1e183c03d60ae477dae1a74aa510b685c35844ad53cd0e99f3deb15b1a2cf6a6"
+    },
+    "dist/car.js": {
+      "bytes": 30474,
+      "sha256": "093ed6646fce6d26a67abc4f29e9f854217d2ef9570ab14026ee52a1a9eb2862"
+    },
+    "dist/career.js": {
+      "bytes": 13980,
+      "sha256": "0b76cf961460471697b6e4e0a2ab9b79fc5561775bfa5ec606ed4f8c07e8a72e"
+    },
+    "dist/catalog.js": {
+      "bytes": 13724,
+      "sha256": "1faac9a72fc38fc8fe3c2c1e76b863e1b174482df4a0a6509ea797ca81eced82"
+    },
+    "dist/city-shape.js": {
+      "bytes": 1373,
+      "sha256": "7c54ff001e597e0cfb28d90b9e9ac2457d5a9ee3f7a877ee96e1895d441c15e9"
+    },
+    "dist/city.js": {
+      "bytes": 37186,
+      "sha256": "5ec39d4805c05a3d4a491ddc80c12f8113a29e608c26aae05acedb4b0737d2a7"
+    },
+    "dist/contact.js": {
+      "bytes": 9379,
+      "sha256": "a4c2ab97626d8b6e7a7a54951251d4369e2ef2660f163e035573e829436d568a"
+    },
+    "dist/controls-ui.js": {
+      "bytes": 20982,
+      "sha256": "2028a9534dbac3dfca5b202e23ab896f034fe0abeef5def68285fa8eed8641ef"
+    },
+    "dist/enforcement.js": {
+      "bytes": 4008,
+      "sha256": "72743b851c6780c1d82e509b2da3a1f5d523219799646d3173bc78cea5f9b843"
+    },
+    "dist/environment.js": {
+      "bytes": 9120,
+      "sha256": "39dd8fd215a521e0456da88bfcbc1bfa382c3687b6e5878224fdf055db71cb81"
+    },
+    "dist/fonts/barlow-OFL.txt": {
+      "bytes": 4377,
+      "sha256": "186d750eb496a4c17a76385f82be6aea2ac1cf2de074a811d63786cf374ea73f"
+    },
+    "dist/fonts/barlowcondensed-OFL.txt": {
+      "bytes": 4377,
+      "sha256": "186d750eb496a4c17a76385f82be6aea2ac1cf2de074a811d63786cf374ea73f"
+    },
+    "dist/fonts/font-0.ttf": {
+      "bytes": 82624,
+      "sha256": "a35caa4687f434d66453c1fe423d7074cfa9fd7ab80c19b0780f3862887d2fc9"
+    },
+    "dist/fonts/font-1.ttf": {
+      "bytes": 81924,
+      "sha256": "91c841fdfa8e7b94ffedbb983a363947ba6ed720f3bbf0c71d48b618053655bc"
+    },
+    "dist/fonts/font-10.ttf": {
+      "bytes": 88228,
+      "sha256": "0ec6b3cca2df54f108f8dc239597e0eab386343a230afad8a0f445c7d21c3e77"
+    },
+    "dist/fonts/font-2.ttf": {
+      "bytes": 85876,
+      "sha256": "c15439e7a03af5714282ec1780ff7b0214ec6a7db96300b54928dbcd2569ca0c"
+    },
+    "dist/fonts/font-3.ttf": {
+      "bytes": 85776,
+      "sha256": "74103fd6d41bc32c63aa2e6eb3db619ddb80ce9ca1b1420d5548a23b8ee5d154"
+    },
+    "dist/fonts/font-4.ttf": {
+      "bytes": 87600,
+      "sha256": "3f25dda39ecf9f2519a703b217629fbdfc54fb5e5725bf4aa2b9234e78a2fc04"
+    },
+    "dist/fonts/font-5.ttf": {
+      "bytes": 89652,
+      "sha256": "94cf666814140f0e3d0785fdedbc82a3ddb0791ce0001f13c5477fd80439ed23"
+    },
+    "dist/fonts/font-6.ttf": {
+      "bytes": 89324,
+      "sha256": "75338266e60b15dfc5ac0bae8b78fdc5535ea50703ed73c14dc598498ffe8173"
+    },
+    "dist/fonts/font-7.ttf": {
+      "bytes": 86636,
+      "sha256": "0d85af813fc3ed87db0c6265515689b2eef5cbaf7aab17922528dfc95a2cd73f"
+    },
+    "dist/fonts/font-8.ttf": {
+      "bytes": 87120,
+      "sha256": "7dde307fa887fc65ff5830cfada77a7decc5dae8d3c816c9d39ba3f1af1c4ed7"
+    },
+    "dist/fonts/font-9.ttf": {
+      "bytes": 87556,
+      "sha256": "73bc9e17231e9073780d3c81574c7253cecd5645c93544df1a935054b39a364f"
+    },
+    "dist/fonts.css": {
+      "bytes": 1744,
+      "sha256": "4cb4e1fa46fef5e05fb54e8a2a6d3e4c88518796da44e5e8dbffab505302d87f"
+    },
+    "dist/game-ui.js": {
+      "bytes": 6153,
+      "sha256": "b97a8aea62801e349b0a004074b56bb0330169e96ecbb0201fe343607b851e0a"
+    },
+    "dist/garage.js": {
+      "bytes": 5921,
+      "sha256": "e6e2900250e683a71c8e0c93da3510fce8c2e5a8a58bc77279efc7d7a8c02844"
+    },
+    "dist/haptics.js": {
+      "bytes": 6575,
+      "sha256": "8ae5946b06bca135184e280e45fc00b96c43a01598d517dfd5d338d94d69ba80"
+    },
+    "dist/index.html": {
+      "bytes": 47659,
+      "sha256": "ba1a1018deb3c0ab29816915c7c00bb43e892e25a19abd8b4290d880fad70fdf"
+    },
+    "dist/input-prompts.js": {
+      "bytes": 3213,
+      "sha256": "a53273d9b6dd2c67d4755bf65796d1c529f499494d6355d5dc29a7d3d15543bc"
+    },
+    "dist/input.js": {
+      "bytes": 37092,
+      "sha256": "5357da83005d3494c712a7bc2f843cb5de3159d75d62dc37143b221e264a63ee"
+    },
+    "dist/lobby-panel.js": {
+      "bytes": 5885,
+      "sha256": "d389d3dd0445764e199948fc54c6387cadca79d96124cce52ab635e6701dca9e"
+    },
+    "dist/main.js": {
+      "bytes": 92528,
+      "sha256": "e704e3a7d9e370dd8d3dd8b1b404a2fa9af7f0fbe265dbe98de87cb9e87948c1"
+    },
+    "dist/multiplayer.js": {
+      "bytes": 24364,
+      "sha256": "9f3ea092b4b30d3806da29942636a36e0c48816bd51e2fffcd34eb8e00d5ee67"
+    },
+    "dist/music.js": {
+      "bytes": 15392,
+      "sha256": "d60a5814d26fcba2bac433b018949412f1470e66e83f51c019e126a81ed1c673"
+    },
+    "dist/nature.js": {
+      "bytes": 12251,
+      "sha256": "7d80476e58dc6fc1c12cec2a412d2438b48803b3582186f61f803d0d47aa58ba"
+    },
+    "dist/navigation-map.js": {
+      "bytes": 13859,
+      "sha256": "a0b30666e4f75a0fcd1efb406f682cfcfe6d3accae199de341d855326698a205"
+    },
+    "dist/navigation.js": {
+      "bytes": 1190,
+      "sha256": "6b522bf1b12f337d16dd2c4673ef6359009be71cd86289b4a3aa310b2747b7b7"
+    },
+    "dist/network-cars.js": {
+      "bytes": 6400,
+      "sha256": "da25a7195b0f9e9a88a48af996a7742e9ed4c5b3e40b19e4a1d510a53d6f99fe"
+    },
+    "dist/phone.js": {
+      "bytes": 2661,
+      "sha256": "3574b9a61e1451632bff5ce072b4286f5dcc04df7ff1307122c547d97cc64413"
+    },
+    "dist/physics.js": {
+      "bytes": 37764,
+      "sha256": "ddcc88ae3890f53f062f342bd94a6d098f65211cbc1dbce979c79f9a6acbc2b9"
+    },
+    "dist/police.js": {
+      "bytes": 26981,
+      "sha256": "137852fc85e5b8c805bce18e0a3245eac24a3e7aac38f88cf8b030e2dc104032"
+    },
+    "dist/post.js": {
+      "bytes": 15749,
+      "sha256": "f1cf5906d271b741372d4f1618c030270cacbcb24597b9c60f7b33a2f6bbd690"
+    },
+    "dist/presentation.js": {
+      "bytes": 2558,
+      "sha256": "977faa42789eb84ba07e9c566a1534d53984869b6d6e528ea00446078a1c441c"
+    },
+    "dist/remote-contacts.js": {
+      "bytes": 2727,
+      "sha256": "ab674089afd88618b801269142c67a915a12e50ae23b8a99d7f54ce5bd810fa6"
+    },
+    "dist/style.css": {
+      "bytes": 114834,
+      "sha256": "cb28ad7761905d2b14b7bebb8820a658b8ad2b56639869f6874e4970341e2464"
+    },
+    "dist/terrain-fx.js": {
+      "bytes": 6984,
+      "sha256": "0bcd3e7c4db8e7b6ed7d7ca92108419ab07e1a52d3fbe9caeaedca76961aa1f5"
+    },
+    "dist/traffic.js": {
+      "bytes": 29134,
+      "sha256": "7312f8901d737416ccd42d78ab5fcbbdba30cb19e3ee86ad409949e254db88e3"
+    },
+    "dist/vehicle-state.js": {
+      "bytes": 2182,
+      "sha256": "f1d973405b2fc5d7a0135d929be0ef614d0d85592ee2d4071a3bddfca4e10168"
+    },
+    "dist/vendor/PEERJS-LICENSE.txt": {
+      "bytes": 1108,
+      "sha256": "9407807dba7f47a79bfb3ac55759d63d77c9371ebd0616d5a093e97d3e810397"
+    },
+    "dist/vendor/THREE-LICENSE.txt": {
+      "bytes": 1081,
+      "sha256": "4c40a1ef62450b857c3b2aaf294936304cd552d965fbcd9d32d4c5bcf4ba4454"
+    },
+    "dist/vendor/motor-engine.js": {
+      "bytes": 318236,
+      "sha256": "32bdea5ef002e6dc131de4aa162077d5811e61d5d97f6b6e79f8f3987b82be4c"
+    },
+    "dist/vendor/peerjs.min.js": {
+      "bytes": 86948,
+      "sha256": "7604d8c31bec4f134b0d15c2d80b1d095ea18af005354f439f14291fcd7b4168"
+    },
+    "dist/vendor/three.module.js": {
+      "bytes": 1314681,
+      "sha256": "ce1fa418de16a19495a9f72495580e3015d7745c296d3ce0485897f902ddedfb"
+    },
+    "dist/world-lifecycle.js": {
+      "bytes": 2226,
+      "sha256": "27b6642ace8472a4c2b2b932ad8297397105d7407b6fa20306d1fd4208853c50"
+    },
+    "dist/world.js": {
+      "bytes": 29320,
+      "sha256": "89907acffb0dc56b9894d94fd6a3c8a96572c7c93b2320af7c2f090772b580ce"
+    }
+  },
+  "verificationLimits": [
+    "Managed browser preview unavailable: sites-previewd mailbox missing. No GPU browser image was inspected.",
+    "WebRTC protocol and host/guest integration use an in-memory PeerJS-compatible transport; no live ICE or cross-network session was tested.",
+    "Audio was decoded and measured; no speaker audition was performed.",
+    "Controller feedback and wheel input use deterministic device fixtures; no physical gamepad or Logitech wheel was tested.",
+    "Responsive CSS parses and preserves canvas aspect ratios; physical monitor curvature cannot be detected or calibrated automatically."
+  ],
+  "deployment": "Prepared for existing owner-private Site. GitHub deployment is not performed."
+}

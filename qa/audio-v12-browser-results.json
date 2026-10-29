@@ -1,0 +1,54 @@
+{
+  "assets": [
+    {
+      "name": "chase",
+      "sha256": "931bfab85affdf7fa9c856bec1cf95c3fdc32542e172a30d54f61d80daa6d709",
+      "duration": 32.542375,
+      "channels": 2,
+      "sampleRate": 48000,
+      "frames": 1562034,
+      "rms": 0.11815503047444795,
+      "peak": 0.7811705470085144,
+      "finite": true
+    },
+    {
+      "name": "drive",
+      "sha256": "61f2a3685f2da32df0ec2ffa6904e77a3473e0c873d2a6c317d993d3d767a3f3",
+      "duration": 134.4,
+      "channels": 2,
+      "sampleRate": 48000,
+      "frames": 6451200,
+      "rms": 0.08635324302777396,
+      "peak": 0.5955764651298523,
+      "finite": true
+    }
+  ],
+  "models": [
+    {
+      "carId": "hachi",
+      "outlets": 2,
+      "maxFallbackError": 1.7763568394002505e-15,
+      "emitters": 11
+    },
+    {
+      "carId": "atlas",
+      "outlets": 2,
+      "maxFallbackError": 1.7763568394002505e-15,
+      "emitters": 11
+    },
+    {
+      "carId": "kitsune",
+      "outlets": 1,
+      "maxFallbackError": 8.881784197001252e-16,
+      "emitters": 10
+    },
+    {
+      "carId": "vector",
+      "outlets": 2,
+      "maxFallbackError": 1.7763568394002505e-15,
+      "emitters": 11
+    }
+  ],
+  "status": "passed",
+  "scope": "Real Chromium decodeAudioData and car model transform checks; no speaker or headphone listening claim."
+}

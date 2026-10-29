@@ -1,0 +1,82 @@
+{
+  "status": "passed",
+  "checks": [
+    "Dynamic player/NPC contacts conserve combined linear momentum and cannot add combined kinetic energy",
+    "Head-on, rear-end, side-swipe and rotated police intercepts produce reciprocal impulse and yaw",
+    "Collider mirrors are synchronized after body correction; damage receives actual dissipated energy, local contact and impulse vector"
+  ],
+  "cases": [
+    {
+      "label": "Head on",
+      "playerVelocity": [
+        2.0782311074267322e-16,
+        4.509374999999999
+      ],
+      "npcVelocity": [
+        -1.7219629175821496e-16,
+        7.149375000000003
+      ],
+      "yawRates": [
+        -1.3557001300127854e-15,
+        1.555229968149351e-15
+      ],
+      "energyBefore": 390780,
+      "energyAfter": 47573.48250000003,
+      "reportedLoss": 343206.51749999996
+    },
+    {
+      "label": "Rear end",
+      "playerVelocity": [
+        0,
+        15.778124999999998
+      ],
+      "npcVelocity": [
+        0,
+        17.298125000000002
+      ],
+      "yawRates": [
+        0,
+        0
+      ],
+      "energyBefore": 467620,
+      "energyAfter": 353848.1425,
+      "reportedLoss": 113771.85749999998
+    },
+    {
+      "label": "Side swipe",
+      "playerVelocity": [
+        7.3195774805100315,
+        20.50226479376321
+      ],
+      "npcVelocity": [
+        3.878064373291688,
+        11.24098059945334
+      ],
+      "yawRates": [
+        -2.484200860147981,
+        0.712623533715155
+      ],
+      "energyBefore": 434248.4,
+      "energyAfter": 379569.46106443944,
+      "reportedLoss": 54678.93893556058
+    },
+    {
+      "label": "Police intercept",
+      "playerVelocity": [
+        -4.224410405995411,
+        15.351293857551841
+      ],
+      "npcVelocity": [
+        -9.117461134732542,
+        17.172058308964626
+      ],
+      "yawRates": [
+        -2.683745261719592,
+        0.39176499347807286
+      ],
+      "energyBefore": 521208,
+      "energyAfter": 474590.7081954777,
+      "reportedLoss": 46617.291804522276
+    }
+  ]
+}

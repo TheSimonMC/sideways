@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "checks": [
+    "Healthy, idle and empty NOS remain finite and noncritical",
+    "Redline clamps the arc while retaining over-rev warning",
+    "Mechanical or body failure and lost wheels retain critical warning",
+    "Repair clears critical state; NOS and drift are lower priority"
+  ]
+}

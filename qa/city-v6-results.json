@@ -1,0 +1,104 @@
+{
+  "status": "passed",
+  "checks": [
+    "Connected 81-intersection city, 144 two-way streets and 25.92 km of road",
+    "All 288 overhead heads and road stop bars use the same mutually exclusive signal phases",
+    "Grass, gravel and pavement partition one surface, with matching sampled height and no overlapping sheets",
+    "All five service pads and the station respawn have collision-free entrances from a road",
+    "Every legal intersection path stays on the visible streets and joins its outgoing lane",
+    "Street ends, reset poses and visible perimeter barriers match the map limits",
+    "Finite instanced geometry and one owned root, with bounded mesh count and night hook",
+    "Repeated child/world disposal is safe and leaves no geometry root behind"
+  ],
+  "limits": [
+    "Node geometry, sampler and instance verification; no browser GPU verification."
+  ],
+  "signalPhaseSamples": 13608,
+  "surface": {
+    "triangles": 2192,
+    "maxHeightError": 0.000007012777608492171,
+    "area": 1557504,
+    "areaByMaterial": {
+      "concrete": 1339286,
+      "gravel": 160380,
+      "grass": 57838
+    },
+    "patchSamples": 84
+  },
+  "services": [
+    {
+      "id": "police-0",
+      "kind": "police",
+      "name": "Central Precinct",
+      "x": -90,
+      "z": -45,
+      "radius": 12,
+      "heading": 0,
+      "spawn": {
+        "x": -90,
+        "z": -42,
+        "heading": 0
+      }
+    },
+    {
+      "id": "garage-1",
+      "kind": "garage",
+      "name": "Motor Works",
+      "x": 90,
+      "z": -45,
+      "radius": 12,
+      "heading": 0,
+      "spawn": {
+        "x": 90,
+        "z": -42,
+        "heading": 0
+      }
+    },
+    {
+      "id": "fuel-2",
+      "kind": "fuel",
+      "name": "Volt Fuel",
+      "x": 90,
+      "z": 135,
+      "radius": 12,
+      "heading": 0,
+      "spawn": {
+        "x": 90,
+        "z": 138,
+        "heading": 0
+      }
+    },
+    {
+      "id": "garage-3",
+      "kind": "garage",
+      "name": "Eastside Customs",
+      "x": 450,
+      "z": 135,
+      "radius": 12,
+      "heading": 0,
+      "spawn": {
+        "x": 450,
+        "z": 138,
+        "heading": 0
+      }
+    },
+    {
+      "id": "fuel-4",
+      "kind": "fuel",
+      "name": "Garden Fuel",
+      "x": -450,
+      "z": 495,
+      "radius": 12,
+      "heading": 0,
+      "spawn": {
+        "x": -450,
+        "z": 498,
+        "heading": 0
+      }
+    }
+  ],
+  "legalTurnPaths": 764,
+  "meshesWithoutCanvasLabels": 43,
+  "instances": 66667,
+  "colliders": 1327
+}

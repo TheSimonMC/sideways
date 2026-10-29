@@ -1,0 +1,52 @@
+{
+  "status": "passed",
+  "scope": "Real MotorLab crank, finite wheel/clutch impulses, persistent damage and manual/PCM clock boundary.",
+  "checks": [
+    "A held partial clutch heats from measured slip work; reset, car switching and serialization preserve the hot worn plate.",
+    "A forced downshift exceeds the native fuel limiter and separately damages valves, pistons and the selected gear.",
+    "A stripped selected gear or broken driveshaft removes propulsion; selecting an intact gear restores that path.",
+    "Selective engine repair releases PCM ownership safely and resumes exactly one native clock without repairing coolant leaks.",
+    "The damage-off rule preserves component condition under a real downshift and collision while fuel and thermal work continue.",
+    "A swapped large engine retains its fluid volumes when an inactive garage condition is restored."
+  ],
+  "fixtures": {
+    "A held partial clutch heats from measured slip work; reset, car switching and serialization preserve the hot worn plate.": {
+      "rpm": 1601.2484140346003,
+      "clutchC": 346.28877428955894,
+      "health": 0.936796768201829,
+      "workJ": 4306791.028776153
+    },
+    "A forced downshift exceeds the native fuel limiter and separately damages valves, pistons and the selected gear.": {
+      "maxRpm": 10901.753512390995,
+      "limiter": 7600,
+      "health": {
+        "pistons": 0.9719819487555207,
+        "bearings": 0.9869249094192429,
+        "valvetrain": 0.9140779761835973,
+        "headGasket": 1,
+        "radiator": 1,
+        "waterPump": 0.9977585559004418,
+        "oilPump": 0.9970114078672551,
+        "oilPan": 1,
+        "clutch": 0.9995938254132591,
+        "gearbox": 0.9758634990371153,
+        "differential": 0.9895774200387544,
+        "driveshaft": 0.9856689525532872,
+        "turbo": 1
+      },
+      "gear1": 0.9115730496216473
+    },
+    "A stripped selected gear or broken driveshaft removes propulsion; selecting an intact gear restores that path.": {
+      "intactGearSpeed": 13.37530532440911,
+      "brokenShaftSpeed": 0
+    },
+    "Selective engine repair releases PCM ownership safely and resumes exactly one native clock without repairing coolant leaks.": {
+      "clock": "pcm",
+      "stepsForPointTwoSeconds": 4800,
+      "radiator": 0.2
+    }
+  },
+  "verifiedInRelease": 10,
+  "suiteSource": "qa/damage-v9-check.mjs",
+  "engineSdk": "1.6.0"
+}

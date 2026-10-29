@@ -1,0 +1,76 @@
+{
+  "status": "passed",
+  "checks": [
+    "Repeated reset retains body identity and all body/collider/render positions remain aligned",
+    "Dynamic braking stops behind a red signal and accelerates through green",
+    "Follower braking keeps a physical gap behind a red-light queue",
+    "A close player obstruction causes braking and a bounded horn, followed by recovery",
+    "Early obstacle avoidance steers within the street without passing through the player",
+    "Player impact transfers momentum to the NPC, persists as dynamic motion and recovers to its route",
+    "Thirty-six dynamic cars navigate for two minutes with finite states, turns, signal compliance and aligned rendered bodies"
+  ],
+  "limits": [
+    "Dynamic civilian bicycle model and reciprocal planar contacts; no independent SDK engines or full vehicle drivetrain per NPC.",
+    "Rendered instance matrices verified in Node; no browser GPU or visual-quality claim."
+  ],
+  "resetAlignment": {
+    "resets": 3,
+    "cars": 36,
+    "maxErrorM": 0.000026855468604480848
+  },
+  "redLight": {
+    "stopped": {
+      "x": -20.899998511973894,
+      "z": -5,
+      "speed": 1.7232026482102558e-9
+    },
+    "frontBumper": -18.674998511973893,
+    "entries": 1,
+    "maxDistance": 139.1000014880261
+  },
+  "queueMinGapM": 2.4175000145536867,
+  "playerBlock": {
+    "horns": 1,
+    "recoveredSpeed": 10.368175706624392
+  },
+  "avoidance": {
+    "maxSwerveM": 1.6292744659845209,
+    "minDistanceM": 5.5685013675357125,
+    "passed": false
+  },
+  "impact": {
+    "npcImpactVX": 7.033070866141734,
+    "npcRecoveredSpeed": 11.196592784684185,
+    "energyLostJ": 72064.7369754359
+  },
+  "population": {
+    "cars": 36,
+    "time": 120.00000000004157,
+    "entries": 167,
+    "turns": 57,
+    "redStops": 132719,
+    "playerStops": 0,
+    "contacts": 0,
+    "horns": 0,
+    "recycled": 0,
+    "emergencyYields": 0,
+    "nearMisses": 0,
+    "courtesyYields": 0,
+    "stopped": 18,
+    "intersectionsOccupied": 6,
+    "yielding": 0,
+    "temperaments": [
+      "cautious",
+      "steady",
+      "assertive"
+    ],
+    "dynamic": true,
+    "seconds": 120,
+    "redEntries": 0,
+    "offroad": 0,
+    "overlaps": 0,
+    "maxMatrixError": 0.00003886876048642794,
+    "minTravelM": 410.8139340543192,
+    "wallMs": 4226.59403
+  }
+}

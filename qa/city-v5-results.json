@@ -1,0 +1,16 @@
+{
+  "status": "passed",
+  "checks": [
+    "Connected 25-intersection graph, 40 two-way streets and safe player spawn",
+    "Conflicting axes never receive green; all 80 visible heads match the same signal state",
+    "Rendered sidewalks/curbs and ground query match; grass, gravel and concrete paths agree; reset poses avoid static geometry",
+    "All legal straight and turning connections stay on roads and join outgoing lanes continuously",
+    "Full city and civilian model geometry is finite and instanced within a bounded draw-call count"
+  ],
+  "signals": 7200,
+  "turnPaths": 188,
+  "maxSurfaceHeightMismatch": 0.000003256767988971121,
+  "meshes": 50,
+  "instances": 7262,
+  "colliders": 338
+}

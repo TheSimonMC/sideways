@@ -1,0 +1,61 @@
+SIDEWAYS / CITY SESSIONS V12
+
+PLAY
+Extract the ZIP, then open SIDEWAYS.html in a current browser.
+The separately supplied SIDEWAYS-v12.html is the same file.
+Click a button or press a key to enable audio. Single-player works offline.
+Multiplayer still needs signaling/peer connectivity. No Sites service is used.
+Progress stays in the browser and does not travel with the HTML file.
+
+WHAT CHANGED
+The garage has a vehicle stage, category rail and part cards showing ownership,
+price, installed/selected state and differences from the current build. Previewing
+does not spend points. BUY & INSTALL commits the complete preview.
+Shoulder buttons (Q/E on keyboard) switch categories. Closing cancels the preview.
+
+Menus remember the previous screen and its selected control. Tab navigation stays
+inside dialogs; controls outside are inactive. Ranges accept arrow changes.
+Controller confirmation on a text field opens a keyboard with letters, symbols,
+cursor controls, cancel and commit. Keyboard/mouse input remains available.
+
+Settings use highlighted rows and a separate explanation. The large map has a
+place directory, service filters, route details, a stronger route and a cursor.
+On controller, View/Select switches between the map and places; B/Circle returns.
+On keyboard, Tab cycles controls, arrows move the focused map cursor and Enter
+marks a location. Q/E zoom while the map canvas has focus.
+
+The round instrument shows RPM, speed, gear and NOS. Severe engine/body damage
+or a missing wheel turns it red. A short distortion occurs only on entering the
+critical state; the warning then stays stable. Reduced-motion skips distortion.
+
+Audio follows actual vehicle points, including each visible exhaust outlet and
+damaged geometry. Engine, intake, gearbox, differential and tyres have separate
+positions. Camera position and orientation affect the listener. Top-down keeps
+an intentional near-car microphone. Early facade reflections are calculated per
+source. Native engine physics and sound still share one simulation timeline.
+
+SOURCE AND TESTS
+dist/ contains modular source. sdk/ contains MotorLab 1.6.3 with the documented
+SIDEWAYS spatial extension; this is not an official new SDK release.
+Read sdk/SIDEWAYS-EXTENSION.md before replacing or rebuilding that adapter.
+With Node.js installed: npm ci, then node build.mjs.
+For a package: node qa/package-v12.mjs.
+Current verification is summarized in qa/release-v12.json. Historical v8-v11
+reports are retained for reference and are not claims about this build.
+Browser QA scripts use Playwright. Set CODEX_PRIMARY_RUNTIME_NODE_MODULES to an
+existing dependency directory, or install playwright and @napi-rs/canvas for QA.
+PLAYWRIGHT_CHROMIUM_EXECUTABLE can select an existing compatible test browser.
+
+KNOWN LIMITS
+Browser tests use a simulated controller and software rendering. A physical
+controller/wheel, live two-PC multiplayer and speaker/headphone listening were
+not tested here. The engine SDK has one V7 replay-fixture hash mismatch on this
+Windows/Node runtime; the unmodified original fails the same test. Details are
+in qa/sdk-v12-baseline.json. Remaining SDK regression groups pass.
+Acoustic propagation uses generic ear filters and approximate facade planes.
+Multiple outlets share one exhaust signal. NPC audio keeps lighter profiles.
+The existing damage model is not full BeamNG softbody physics.
+
+LICENSES
+Existing model, font, engine and audio license notices remain included.
+Audio attribution: dist/audio/ATTRIBUTION.txt and the in-game info screen.

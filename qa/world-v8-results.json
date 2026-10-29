@@ -1,0 +1,55 @@
+{
+  "status": "passed",
+  "checks": [
+    "A reversible metre-scale layout keeps a 12 metre road and 2.7 metre left lane offset across five compact districts",
+    "Every directed road follows a sampled curve in the left lane; all 764 legal turn paths stay on the drivable road",
+    "Vehicle bodies clear every sampled road, turn, alley and service entrance; lamp, signal and camera footprints stay outside the asphalt",
+    "Rendered road and ground triangles agree with tyre material/height sampling; grass tufts stay on grass and no probe has coplanar surface overlap",
+    "Reset poses consistently use the left side in both directions and avoid intersections and colliders"
+  ],
+  "limits": [
+    "Real Three.js meshes, world collision boxes, road sampling and ray intersections in Node. No browser GPU image comparison.",
+    "The city is a compact, curved grid with driveable courtyard alleys, not a streamed open-world engine."
+  ],
+  "layout": {
+    "inverseErrorM": 2.3437142008433856e-13,
+    "roadWidthM": 12,
+    "laneOffsetM": 2.7,
+    "bounds": {
+      "minX": -490,
+      "maxX": 490,
+      "minZ": -480,
+      "maxZ": 480
+    },
+    "buildings": 204,
+    "alleys": 23,
+    "districts": [
+      "OLD TOWN",
+      "GARDEN HEIGHTS",
+      "MIDTOWN",
+      "DOWNTOWN",
+      "IRONWORKS"
+    ]
+  },
+  "paths": {
+    "legalTurns": 764,
+    "laneSamples": 5850,
+    "turnSamples": 6876,
+    "maxCurveM": 1.913357363381119,
+    "minLaneOffset": -2.7044430974346185,
+    "maxLaneOffset": -2.6956300943803853,
+    "maxLengthError": 0
+  },
+  "clearance": {
+    "alleySamples": 437,
+    "poleChecks": 7884,
+    "vehicleSamples": 13233
+  },
+  "surfaces": {
+    "probes": 515,
+    "maxHeightErrorM": 0.000004555700878414171,
+    "overlapCount": 0,
+    "grassTufts": 403,
+    "towers": 26
+  }
+}

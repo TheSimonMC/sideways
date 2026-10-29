@@ -1,0 +1,262 @@
+{
+  "version": 9,
+  "status": "passed",
+  "checks": [
+    "All literal element IDs used by main, GameUI, garage and controls exist, with no duplicate HTML IDs",
+    "The first successful sound-button click enables audio; later clicks mute and unmute with matching labels, while a failed start leaves audio off",
+    "Actual controller focus skips hidden native selects and arrows; visible choices, checkboxes and sliders operate through real handlers",
+    "Garage previews and cancellation do not spend points; unaffordable builds stay blocked and successful purchases charge once",
+    "Starting free roam waits for both visible loading frames and compilation, then activates only the city and traffic",
+    "Escape during driving goes directly to the main menu; P/Start pause, controller B resumes, and Escape from pause opens main menu",
+    "Nested controls back preserves pause and Escape while learning cancels both capture and panel state before leaving the nested screen",
+    "Loading can be cancelled before world creation, after world selection and during compile; stale completion never reopens a cancelled run",
+    "Countdown Escape returns home; city to sprint loading never draws the sprint HUD against the old city; load errors recover to the menu",
+    "Held menu confirm/back/starter never leak into NOS, handbrake or starter after actual loading/resume; RT remains a driving pedal only",
+    "Real frame updates prompt glyphs for the last active device and keyboard fallback; pause, blur and hidden document disable feedback",
+    "Quick wheel calibration leaves a visible focus target in the calibration tab",
+    "The keyboard tab keeps focus visible, captures keys through its actual buttons, updates prompts and cancels capture before switching tabs or restoring defaults",
+    "Actual frame routes held R3 and right-stick values without changing transmission; horn reaches audio and new lights/map/interact buttons reach their UI actions",
+    "Fuel and mechanic menus run their actual service jobs while paused, can be cancelled, and restore enabled controller controls on completion",
+    "Installing at a mechanic keeps the purchased visual build when the garage closes and resumes the same drive",
+    "Arrest uses the actual modal/release handlers, blocks driving input, releases at the station and prevents held confirm from triggering NOS",
+    "Recovery clears pending police dispatch and feedback before opening the mechanic service menu",
+    "World transitions leave one map root and dispose both traffic and police when returning to the showroom",
+    "Main-menu left and right use spatial columns; empty or unknown focus has a stable first/last fallback",
+    "Settings tabs hide inactive controls, retain visible controller focus and expose working look, shading and individual sound controls",
+    "Pause shortcuts open audio, map, guide or controls directly; controller Back returns to pause and two-dimensional navigation chooses adjacent buttons",
+    "Actual fixed ticks feed night, emergency units and contacts to AI; frame forwards all nearby sirens, listener acoustics and environmental police context",
+    "Police dispatch uses captioned, prioritized, rate-limited radio events and waits while paused",
+    "A real directional speed-camera crossing reaches the HUD, flash, police investigation, sound cue and map without assigning instant wanted heat",
+    "Music receives distinct chase, search, escape and driving modes with proximity, NOS, drift, near-pass and search progress; a new pursuit interrupts relief",
+    "Restarting free roam reuses its map but clears old dispatch, camera captures, police state, relief music, acoustics and audio feedback",
+    "Leaving the city disposes enforcement and clears transient dispatch, camera, acoustic and sound-source state",
+    "Map pointer selection, controller cursor, POIs, zoom and clear all update the real navigator without moving the car",
+    "Phone buttons accept and track a real delivery, pickup changes the target, and completing delivery pays the wallet once",
+    "Completed close passes award points and feedback once per traffic car; unfinished and slow passes cannot farm the wallet",
+    "Menus and reading pass focus state immediately; blur and visibility stop driving sound, while background music is an explicit saved option",
+    "An invalid lobby code keeps its error visible after render and clears when the player edits it",
+    "Lobby UI creates a real protocol room, shows a guest, locks start until ready and starts the host through normal loading",
+    "Host ticks shared AI once, forwards remote targets and routes remote rewards and arrests without penalizing the host",
+    "Starting the shared city transfers a real 36-car and six-officer snapshot without the PeerJS JSON-size disconnect",
+    "Host integration transfers a guest crash to shared NPC bodies and police evidence once per received pose, without mutating the owner pose",
+    "Host UI pause keeps shared AI moving, while blur immediately publishes an away pose and held world without another frame",
+    "Host room exit closes peers and returns to a single showroom without leaving loading, audio or input state active",
+    "Joining by controller keypad reaches the host lobby; clients cannot alter rules and ready through the real UI",
+    "Clients apply host traffic, police and clock snapshots and advance replicas without running local shared AI",
+    "When the remote host leaves, the client ends cleanly and can create another room without stale session events",
+    "A host startup failure reaches every guest and remains in the lobby after transient toasts disappear",
+    "An unexpected data-channel close reports CONNECTION_CLOSED instead of claiming the host intentionally ended the session",
+    "A guest loading failure keeps its own diagnostic visible while the host stays in the drive",
+    "Cancelling an online load sends intentional host departure and a late shader rejection cannot reopen or relabel the lobby",
+    "Vehicle inspection shows the real component schema, ranks critical faults, stays read-only from pause and keeps controller focus during refreshes",
+    "Selective repairs run through the mechanic inspector once, survive Back to the service screen and keep unrelated damage, fuel and NOS",
+    "Mechanical warnings produce one sound and controller event per drained batch, with failures taking priority and persistent HUD detail"
+  ],
+  "verificationLimit": "Actual main.js handlers, frame, fixed ticks, vehicle HUD, enforcement, InputManager, GameUI, ControlsPanel, GaragePanel, Career, RoadNavigator, MapView, PhonePanel, LobbyPanel, VehiclePanel and MultiplayerSession in a functional DOM. Component rows originate from real MechanicalSystem diagnostics. Engine ticks, service effects, routine AI, audio and renderer boundaries are tracked fixtures; the payload regression additionally uses real 36-car traffic and six-officer police snapshots. PeerJS transport is in-memory, records requested serialization and enforces the vendored JSON payload limit. Actual binary serializer/chunking is validated separately by peerjs-codec-v9-check.mjs. No browser layout, GPU, audio listening, physical gamepad, live signaling or ICE connectivity claim.",
+  "htmlIds": 374,
+  "economy": {
+    "purchaseCost": 22000,
+    "balance": 11500,
+    "previewDoesNotSpend": true,
+    "noDoubleCharge": true
+  },
+  "frameRouting": {
+    "fixedTicksPerFrame": 1,
+    "audiblePoliceForwarded": 6,
+    "trafficForwarded": 8,
+    "sixthEnvironmentContext": true,
+    "night": 0.87
+  },
+  "speedCameraIntegration": {
+    "reading": "126 / 50 KM/H",
+    "tickets": 1,
+    "visibleFlash": true,
+    "policeInvestigation": true,
+    "mapMarker": true,
+    "instantWantedHeat": false
+  },
+  "musicModes": [
+    "chase",
+    "search",
+    "escape",
+    "drive",
+    "fresh pursuit interrupts escape"
+  ],
+  "sameCityRestart": {
+    "reusesMap": true,
+    "resetsFeedback": true,
+    "resetsCameraRecords": true
+  },
+  "mapNavigation": {
+    "pointer": true,
+    "controller": true,
+    "poi": true,
+    "zoom": true,
+    "clear": true,
+    "carUnmoved": true,
+    "bumperZoom": true,
+    "keyboardZoom": true,
+    "viewTabToggle": true,
+    "gearUnchanged": true
+  },
+  "delivery": {
+    "pickup": "FUEL STOP",
+    "destination": "FOUNDRY",
+    "payment": 3958,
+    "paidOnce": true
+  },
+  "closePassReward": {
+    "amount": 211,
+    "repeatBlocked": true,
+    "unfinishedBlocked": true,
+    "slowBlocked": true
+  },
+  "audioFocus": {
+    "reading": true,
+    "immediateBlur": true,
+    "hidden": true,
+    "backgroundOptIn": true,
+    "escapeTimerFrozen": true
+  },
+  "lobbyCodeError": {
+    "visible": true,
+    "retained": true,
+    "editable": true
+  },
+  "lobby": {
+    "roster": 2,
+    "readyGate": true,
+    "hostRules": true,
+    "normalLoading": true
+  },
+  "hostRouting": {
+    "singleFixedTick": true,
+    "remoteTargets": true,
+    "targetedRewards": true,
+    "targetedArrests": true,
+    "worldSnapshots": true
+  },
+  "populatedStartup": {
+    "bytes": 23176,
+    "traffic": 36,
+    "police": 6,
+    "serialization": "binary",
+    "jsonLimit": 16300,
+    "sessionRetained": true
+  },
+  "remoteContacts": {
+    "sharedImpulse": true,
+    "guestOffenseId": true,
+    "ownerPoseUnchanged": true,
+    "receivedPoseOnce": true,
+    "noExtraEngineTick": true
+  },
+  "hostFocus": {
+    "uiPauseKeepsAI": true,
+    "blurImmediateSnapshot": true,
+    "remoteAway": true
+  },
+  "hostExit": {
+    "clientEnded": true,
+    "showroomOnly": true,
+    "drivingStopped": true
+  },
+  "clientJoin": {
+    "keypad": true,
+    "hostOnlyRules": true,
+    "ready": true
+  },
+  "clientRouting": {
+    "noLocalAI": true,
+    "trafficReplica": true,
+    "policeReplica": true,
+    "timeFromHost": true,
+    "pauseKeepsReceiving": true
+  },
+  "clientExit": {
+    "hostDepartureHandled": true,
+    "newRoomClean": true,
+    "transportReleased": true
+  },
+  "startupFailure": {
+    "hostCode": "HOST_START_FAILED",
+    "guestCode": "HOST_START_FAILED",
+    "stage": "shaders",
+    "persistent": true,
+    "reopenPreservesReason": true,
+    "copyRedacted": true
+  },
+  "connectionClose": {
+    "code": "CONNECTION_CLOSED",
+    "notMislabelled": true,
+    "persistent": true
+  },
+  "guestStartupFailure": {
+    "code": "PLAYER_START_FAILED",
+    "hostContinues": true,
+    "failedGuestRemoved": true,
+    "persistent": true
+  },
+  "onlineLoadingCancellation": {
+    "hostLeft": true,
+    "lateRejectionIgnored": true,
+    "noFalseStartupFailure": true,
+    "noModalReopen": true
+  },
+  "vehicleInspection": {
+    "actualComponentSchema": true,
+    "criticalWarningFirst": true,
+    "temperaturesAndPressure": true,
+    "pauseReadonly": true,
+    "hudEntry": true,
+    "stableRowsAndFocus": true,
+    "unfittedPartsExcluded": true
+  },
+  "selectiveService": {
+    "exactIdsOnce": true,
+    "backPreservesJob": true,
+    "controllerFocus": true,
+    "unrelatedDamageRetained": true,
+    "fuelAndNosRetained": true,
+    "fluidTopUp": true,
+    "unknownAndUnfittedRejected": true,
+    "movingAndPursuitBlocked": true
+  },
+  "mechanicalFeedback": {
+    "oncePerBatch": true,
+    "failurePriority": true,
+    "soundRouted": true,
+    "controllerEventRouted": true,
+    "hudOutlastsToast": true
+  },
+  "mainChangedDuringRun": false,
+  "modules": {
+    "main.js": "cf4bef1b387b7abdd57bae3d99c3851e5cd11ed0699e6f84ead6bef81cdced31",
+    "index.html": "4b0fd4d70ba7942971b28cda3bf57b5c13899d8d1144bbaf5ff04ed2fdf77f34",
+    "career.js": "0b76cf961460471697b6e4e0a2ab9b79fc5561775bfa5ec606ed4f8c07e8a72e",
+    "navigation-map.js": "a0b30666e4f75a0fcd1efb406f682cfcfe6d3accae199de341d855326698a205",
+    "phone.js": "3574b9a61e1451632bff5ce072b4286f5dcc04df7ff1307122c547d97cc64413",
+    "lobby-panel.js": "042f1511974fd9eeec1cc2ed6e7f0f31984dd61975f8f4e20867f0ab39c0e690",
+    "vehicle-panel.js": "ba499944e2e00641b01176cbb3d6d3206fdee9101725097d82c2efc47a15e1be",
+    "mechanical.js": "cf5c72c80222dd77cf870790402c2e3f3e79040c7fa5366e8921a8030280f8b9",
+    "vehicle-state.js": "0bd5485e2dfe2376642364076dd4fe8d5b124d1b00c5e486067c93dfa9ad9154",
+    "multiplayer.js": "057d396d5f8fae62417255e2099d6dd269f92105b40e09d8b53fa8f979a75651",
+    "input.js": "5357da83005d3494c712a7bc2f843cb5de3159d75d62dc37143b221e264a63ee",
+    "remote-contacts.js": "ab674089afd88618b801269142c67a915a12e50ae23b8a99d7f54ce5bd810fa6",
+    "city.js": "5ec39d4805c05a3d4a491ddc80c12f8113a29e608c26aae05acedb4b0737d2a7",
+    "traffic.js": "7312f8901d737416ccd42d78ab5fcbbdba30cb19e3ee86ad409949e254db88e3",
+    "police.js": "137852fc85e5b8c805bce18e0a3245eac24a3e7aac38f88cf8b030e2dc104032"
+  },
+  "asyncCompileCalls": 20,
+  "cityCreations": 18,
+  "worldSwitchesVerified": [
+    "showroom→city",
+    "city→showroom",
+    "city→dock",
+    "cancel before first paint",
+    "cancel after world selection",
+    "cancel during compilation",
+    "superseded compile completion",
+    "compile rejection"
+  ]
+}

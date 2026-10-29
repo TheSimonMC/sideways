@@ -1,0 +1,53 @@
+{
+  "version": 10,
+  "status": "passed",
+  "checks": [
+    "Built standalone HTML transfers byte-for-byte into a named Blob; Save Again avoids a refetch and back-forward cache keeps the ready file.",
+    "The hosted V10 ZIP transfers byte-for-byte with its versioned filename and completed progress.",
+    "HTTP 404 produces a visible retryable error and does not save a bad file.",
+    "HTTP 403 produces a visible retryable error and does not save a bad file.",
+    "An HTML login/error page produces a visible retryable error and does not save a bad file.",
+    "A truncated transfer produces a visible retryable error and does not save a bad file.",
+    "The republished Pages copy leaves the canonical ZIP link to the browser without a cross-origin fetch.",
+    "Cancel aborts an in-flight request, restores retry and releases the timeout.",
+    "The release and hosted ZIP match, contain current V10 HTML and exclude generated downloads to prevent ZIP recursion."
+  ],
+  "fixtures": {
+    "Built standalone HTML transfers byte-for-byte into a named Blob; Save Again avoids a refetch and back-forward cache keeps the ready file.": {
+      "bytes": 9700866,
+      "sha256": "bb97a2b97fa9e2707a7ee7ac144281b03063e707af02802fe68b1487bf8e40af"
+    },
+    "The hosted V10 ZIP transfers byte-for-byte with its versioned filename and completed progress.": {
+      "bytes": 11773307,
+      "sha256": "f064fbcee34383d4b23c6ce8f0c1bba89f3fd27bbf7d99c53758b99a994cac49"
+    },
+    "The release and hosted ZIP match, contain current V10 HTML and exclude generated downloads to prevent ZIP recursion.": {
+      "files": 76,
+      "version": 10,
+      "recursiveArchives": 0
+    }
+  },
+  "verificationLimit": "Actual downloads.html handlers in a functional DOM, with native Response/Blob streams and the built V10 payloads. ZIP content and bytes are checked locally. No real HTTP transfer, browser save dialog, visual layout or multiple-PC test is claimed.",
+  "inputs": [
+    {
+      "path": "dist/downloads.html",
+      "bytes": 14427,
+      "sha256": "17b35fdefcf1317bbeed76282c9c046bbb8d24f54fee1a086dfaed78104c95f8"
+    },
+    {
+      "path": "dist/SIDEWAYS.html",
+      "bytes": 9700866,
+      "sha256": "bb97a2b97fa9e2707a7ee7ac144281b03063e707af02802fe68b1487bf8e40af"
+    },
+    {
+      "path": "dist/downloads/SIDEWAYS-v10-pages.zip",
+      "bytes": 11773307,
+      "sha256": "f064fbcee34383d4b23c6ce8f0c1bba89f3fd27bbf7d99c53758b99a994cac49"
+    },
+    {
+      "path": "release/SIDEWAYS-v10-pages.zip",
+      "bytes": 11773307,
+      "sha256": "f064fbcee34383d4b23c6ce8f0c1bba89f3fd27bbf7d99c53758b99a994cac49"
+    }
+  ]
+}

@@ -1,0 +1,15 @@
+{
+  "version": 12,
+  "scope": "Native PCM and emitted-path checks. No physical listening claim.",
+  "checks": [
+    "Camera-right reverses both interaural delays and ear levels without moving source or simulation",
+    "Two outlets share the source budget and equal the sum of separately propagated half-level outlets",
+    "Invalid coordinates, zero head axis, duplicate IDs and amplified outlet sums are rejected",
+    "Every body has matching outlet count and coordinates, pitch/roll alter anchors, and detached-wheel positions are not used as body points",
+    "Chase and hood retain actual camera height and position; overhead microphone remains at most 5.5 metres away",
+    "Separate outlet image sources yield source-dependent facade delays; disabling reverb removes reflection energy",
+    "Scene rendering changes audible PCM while preserving exact engine time and physical state",
+    "GameAudio uses one renderAudio call per frame block, preserves world anchors and emits finite limited PCM"
+  ],
+  "status": "passed"
+}

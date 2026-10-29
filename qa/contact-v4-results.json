@@ -1,0 +1,29 @@
+{
+  "status": "passed",
+  "checks": [
+    "ATLAS front contact occurs before the shorter KITSUNE reaches the same wall",
+    "Four chassis sizes resolve centered front, rear and both side contacts without false yaw",
+    "Offset corner contact exchanges angular impulse at the impact point",
+    "Contained and center-line-intersecting spawns depenetrate without imparting energy",
+    "Separating contacts correct overlap without a braking or bounce impulse",
+    "Oriented barriers return world normals and contact points with consistent response",
+    "Two-wall corners settle against both faces without added kinetic energy",
+    "Swept subdivision catches a thin wall even when the predicted endpoint has fully crossed it",
+    "Unobstructed prediction is preserved exactly",
+    "500 seeded poses, velocities and rotated boxes stay finite, separate cleanly and never create kinetic energy"
+  ],
+  "scenarios": 528,
+  "offsetHit": {
+    "yawRate": 1.520266850215111,
+    "closingSpeed": 17.061369252067205,
+    "impulse": 17947.456355363494
+  },
+  "sweep": {
+    "startZ": -12,
+    "predictedZ": 12,
+    "resolvedZ": -3.3525789473684275,
+    "closingSpeed": 2880
+  },
+  "randomContacts": 355,
+  "maxEnergyRatio": 1
+}

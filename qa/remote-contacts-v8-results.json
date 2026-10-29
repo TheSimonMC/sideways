@@ -1,0 +1,10 @@
+{
+  "status": "passed",
+  "checks": [
+    "A guest impact transfers real impulse to the shared NPC, returns a guest-tagged offense contact, preserves the owner pose, and resolves a received pose only once.",
+    "Shared police receive the colliding guest ID, allowing the normal offense path to target the guest instead of the host.",
+    "Plausible fast motion between received poses uses a swept contact and cannot skip through an NPC between snapshots.",
+    "Teleports do not sweep across the map; away, stale and nonfinite poses cannot hit traffic, and reset clears contact history."
+  ],
+  "scope": "Real planar collision solver with authoritative NPC body fixtures; no native engine update and no live network claim."
+}

@@ -1,0 +1,122 @@
+{
+  "status": "passed",
+  "checks": [
+    "Fixed-step interpolation follows continuous motion at30/60/120/144/240Hz and uneven frames without mutating live physics",
+    "Heading wrap uses the shortest rotation; reset discards old position and wheel-spin history at every interpolation phase",
+    "Actual camera helper keeps the intended translation offset at every tested refresh rate, without speed/stiffness drift",
+    "Camera switches and teleports use the new heading on the first cut frame and reset the blur history",
+    "Actual car wheels, Ackermann pivots, sprung body and postprocess mask consume the same interpolated pose",
+    "Actual frame wiring shares render pose across car/FX/camera/blur and passes raw physics to audio; masking cannot contaminate physics",
+    "A reset inside a running fixed-step frame clears old poses and cannot produce a negative accumulator"
+  ],
+  "rates": [
+    {
+      "rate": 30,
+      "maxError": 1.4551915228366852e-11,
+      "minAdvance": 1.666666666666515
+    },
+    {
+      "rate": 60,
+      "maxError": 1.0516032489249483e-11,
+      "minAdvance": 0.8333333333332575
+    },
+    {
+      "rate": 120,
+      "maxError": 1.4210854715202004e-14,
+      "minAdvance": 0.4166666666666572
+    },
+    {
+      "rate": 144,
+      "maxError": 2.2737367544323206e-12,
+      "minAdvance": 0.3472222222222001
+    },
+    {
+      "rate": 240,
+      "maxError": 1.5631940186722204e-13,
+      "minAdvance": 0.2083333333333286
+    },
+    {
+      "rate": "uneven",
+      "maxError": 6.0254023992456496e-12,
+      "minAdvance": 0.20833333333331439
+    }
+  ],
+  "cameras": [
+    {
+      "mode": 0,
+      "fps": 30,
+      "distance": 17.000000000000057
+    },
+    {
+      "mode": 0,
+      "fps": 60,
+      "distance": 16.999999999999886
+    },
+    {
+      "mode": 0,
+      "fps": 120,
+      "distance": 17.00000000000017
+    },
+    {
+      "mode": 0,
+      "fps": 144,
+      "distance": 17.000000000000114
+    },
+    {
+      "mode": 0,
+      "fps": 240,
+      "distance": 16.999999999999574
+    },
+    {
+      "mode": 1,
+      "fps": 30,
+      "distance": -7.5
+    },
+    {
+      "mode": 1,
+      "fps": 60,
+      "distance": -7.5
+    },
+    {
+      "mode": 1,
+      "fps": 120,
+      "distance": -7.5
+    },
+    {
+      "mode": 1,
+      "fps": 144,
+      "distance": -7.5
+    },
+    {
+      "mode": 1,
+      "fps": 240,
+      "distance": -7.5
+    },
+    {
+      "mode": 2,
+      "fps": 30,
+      "distance": 1.1310000000000002
+    },
+    {
+      "mode": 2,
+      "fps": 60,
+      "distance": 1.1310000000000002
+    },
+    {
+      "mode": 2,
+      "fps": 120,
+      "distance": 1.1310000000000286
+    },
+    {
+      "mode": 2,
+      "fps": 144,
+      "distance": 1.1310000000000286
+    },
+    {
+      "mode": 2,
+      "fps": 240,
+      "distance": 1.1309999999999434
+    }
+  ],
+  "verificationLimit": "CPU math and actual JS consumers only. Browser rendering and GPU shader execution are not available."
+}

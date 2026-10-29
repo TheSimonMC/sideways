@@ -1,0 +1,89 @@
+{
+  "radio": [
+    {
+      "key": "radioPriority",
+      "author": "bluelinevibes",
+      "source": "https://freesound.org/people/bluelinevibes/sounds/752406/",
+      "preview": "https://cdn.freesound.org/previews/752/752406_16289147-hq.mp3",
+      "license": "CC0 1.0",
+      "rate": 24000,
+      "frames": 160969,
+      "sourceSha256": "bc543ac1a2b6462c779a5e5caf3f162262bd920325cf6e8239e24ccc719f69e8",
+      "pcmSha256": "2c656c6764e38e7840a35456e278d47faee2ccf598ee8d292d8f18e4e1eb90e8"
+    },
+    {
+      "key": "radioCall",
+      "author": "ciaranm758",
+      "source": "https://freesound.org/people/ciaranm758/sounds/422839/",
+      "preview": "https://cdn.freesound.org/previews/422/422839_6613451-hq.mp3",
+      "license": "CC0 1.0",
+      "rate": 24000,
+      "frames": 44613,
+      "sourceSha256": "7f82b7b606140885c7e7b4d862af1eaf755cd472cb2eecf36b6f39ef759630f4",
+      "pcmSha256": "0793134716f86ead9921f25a0fcca488a4490ef65cd28df16f41ead60c7c3931"
+    },
+    {
+      "key": "radioReply",
+      "author": "ciaranm758",
+      "source": "https://freesound.org/people/ciaranm758/sounds/422842/",
+      "preview": "https://cdn.freesound.org/previews/422/422842_6613451-hq.mp3",
+      "license": "CC0 1.0",
+      "rate": 24000,
+      "frames": 46931,
+      "sourceSha256": "291c8535736efd4d30eaca5961b6a5dbf9786e4a644679c743fff8629195d802",
+      "pcmSha256": "a4c8601c7e6faeedff2c34c9afb19d0cb0aa8e1795c1b084c3b5291bfbe1c736"
+    }
+  ],
+  "chase": {
+    "author": "bertsz",
+    "title": "Skateboard-car-chase",
+    "source": "https://opengameart.org/content/skateboard-car-chase",
+    "download": "https://opengameart.org/sites/default/files/ld44.zip",
+    "license": "CC0 1.0",
+    "sourceFile": "main1_not_looped.flac",
+    "sourceArchiveSha256": "1ab3174f3661dde466bc1354db622e0135e69a3505c8d32d44fbca7eb7984818",
+    "sourceFileSha256": "398a761124729ad5c1f65b9b5d9329bd085d566891a29a7b678d14894c9fa2f9",
+    "adaptedMp3Sha256": "931bfab85affdf7fa9c856bec1cf95c3fdc32542e172a30d54f61d80daa6d709",
+    "offset": 4.067796610169491,
+    "duration": 32.54237288135593,
+    "bpm": 118,
+    "bars": 16,
+    "bytes": 521690,
+    "rate": 44100,
+    "channels": 2
+  },
+  "ambience": [
+    {
+      "source": "https://freesound.org/people/synth2/sounds/789567/",
+      "preview": "https://cdn.freesound.org/previews/789/789567_2381713-hq.mp3",
+      "key": "birds",
+      "title": "Birds Singing in a Park",
+      "author": "synth2",
+      "license": "CC0 1.0",
+      "sourceSha256": "57d50c7e97a5339d04f373caaba2bd1cd2fa16cd82bb584a7bf9cade4c29ebd3",
+      "pcmSha256": "202dfdbdd0627b250e063dea6b4286eaf1c2a539c2240a11568b46bbe583bb1f",
+      "offset": 0,
+      "inputDuration": 4.906,
+      "rate": 16000,
+      "frames": 75296,
+      "channels": 2,
+      "crossfadeSeconds": 0.2
+    },
+    {
+      "source": "https://freesound.org/people/RyanKingArt/sounds/746363/",
+      "preview": "https://cdn.freesound.org/previews/746/746363_11069322-hq.mp3",
+      "key": "crickets",
+      "title": "Southern Summer Evening Ambience with Crickets 2",
+      "author": "RyanKingArt",
+      "license": "CC0 1.0",
+      "sourceSha256": "5c16543113d424be6db567bd199018a594d7888125b301cea20664dc39a53424",
+      "pcmSha256": "010aa642ee6c024f90d17237daaf331b90318803df64e917142e57966220cd75",
+      "offset": 2,
+      "inputDuration": 7,
+      "rate": 16000,
+      "frames": 108800,
+      "channels": 2,
+      "crossfadeSeconds": 0.2
+    }
+  ]
+}

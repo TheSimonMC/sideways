@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "checks": [
+    "No duplicate HTML IDs; all literal IDs referenced by main, garage and controls exist",
+    "Actual ControlsPanel constructor, tab navigation and cancellation run without missing DOM nodes",
+    "Opening and cancelling garage during a run restores the active car and resumes audio without installing preview",
+    "Garage opened from pause/settings returns to the paused state on cancel",
+    "Garage install updates physics/audio build and returns to a reset menu, cancelling the active run",
+    "Standard D-pad Up is starter while driving and menu navigation while paused; L3 clutch is driving-only",
+    "Escape works while a setup/garage select has keyboard focus",
+    "I and Ctrl are continuous starter/clutch controls, G is a single garage action, release clears controls",
+    "All five real sound sliders update displayed percentages, the audio mixer and persistent settings",
+    "Sound control bounds are clamped and Standard Mix restores/persists every default",
+    "Sound disclosure accessibility state and controller range adjustment work through actual menu handlers",
+    "Persisted mix migration sanitizes invalid entries without dropping valid user preferences",
+    "Starting, roadside reset and menu reset clear old render history; pause/garage cancellation preserves the paused run"
+  ],
+  "htmlIds": 170,
+  "verificationLimit": "Functional DOM harness and actual handlers; no browser layout or device hardware validation."
+}

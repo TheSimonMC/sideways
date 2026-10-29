@@ -1,0 +1,63 @@
+{
+  "status": "partially-verified",
+  "environment": "Chromium headless shell, software WebGL, 1440 x 900, isolated browser storage, simulated standard Xbox Gamepad API",
+  "physicalControllerTested": false,
+  "evidenceRuns": [
+    {
+      "id": "browser-run-1",
+      "endpoint": "http://127.0.0.1:8765",
+      "passed": [
+        "Keyboard arrows changed the settings volume range",
+        "Simulated shoulder buttons changed settings tabs",
+        "Back from Controls restored the exact settings opener",
+        "Lobby summary opened using simulated controller confirm",
+        "Tab stayed inside the lobby and background menu became inert",
+        "Controller keyboard committed a driver name and restored field focus",
+        "Controller keyboard Cancel discarded draft changes without closing lobby",
+        "Unaffordable garage engine selection disabled Buy & Install",
+        "Garage preview preserved active build and wallet",
+        "Garage cancellation retained the installed build",
+        "Free roam reached playing phase and displayed driving HUD",
+        "View switched between map canvas and place controls without closing the map"
+      ],
+      "interruption": "Immediate isVisible assertion after map Back observed the modal during its outgoing animation. The subsequent failure screenshot already shows the driving HUD. Test now waits for hidden state rather than relying on a fixed delay.",
+      "pageErrors": [],
+      "screenshots": ["settings-v12.png", "lobby-v12.png", "hud-v12.png"]
+    },
+    {
+      "id": "browser-run-2",
+      "endpoint": "http://127.0.0.1:8765",
+      "passed": ["Settings keyboard/controller group", "Lobby modal/text-entry group"],
+      "interruption": "Another immediate isVisible assertion during garage's outgoing animation. All modal-close assertions now await hidden state.",
+      "pageErrors": []
+    },
+    {
+      "id": "browser-run-3",
+      "endpoint": "http://127.0.0.1:8765",
+      "passed": [],
+      "interruption": "Startup did not satisfy the menu-ready predicate within 90 seconds. Local HTTP server log output was subsequently drained. No product defect was established.",
+      "pageErrors": []
+    },
+    {
+      "id": "boot-diagnostic",
+      "endpoint": "http://127.0.0.1:8765",
+      "passed": ["Main module initialized and exposed sidewaysDiagnostics", "No failed HTTP requests, console errors or page errors"],
+      "observation": "After 15 seconds loading text was PREPARING LIGHTING AND MATERIALS. Software WebGL reported ReadPixels stalls and unavailable KHR_parallel_shader_compile. This run did not inject the simulated gamepad."
+    },
+    {
+      "id": "browser-run-4-targeted",
+      "endpoint": "http://127.0.0.1:8767",
+      "requested": ["Paid garage installation", "Map close completion", "Club Race start"],
+      "passed": [],
+      "interruption": "Startup again failed the menu-ready predicate after 90 seconds on the quiet server. The cause remains unproven. No page errors were reported. Further runs were stopped at coordinator request.",
+      "pageErrors": []
+    }
+  ],
+  "remainingBrowserVerification": [
+    "A complete successful final browser run",
+    "Paid garage installation and ownership persistence",
+    "Club Race opponent load and countdown completion",
+    "Explicit awaited map-close completion after the test timing correction"
+  ],
+  "limits": "Earlier successful assertions are retained as separate evidence. Later startup timeouts do not retroactively constitute successful final-artifact verification. No physical controller, wheel, speaker listening, or live multiplayer session was tested. Functional navigation/main-handler suites are recorded separately."
+}

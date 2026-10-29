@@ -1,0 +1,20 @@
+{
+  "status": "passed",
+  "checks": [
+    "file:// load with all HTTP(S) and secondary file requests blocked",
+    "Settings keyboard range, simulated shoulder tabs and nested Back focus restoration",
+    "Lobby summary activation, modal Tab trap and controller keyboard commit/cancel",
+    "V12 menu and garage cards load from one file",
+    "Part preview preserves wallet; controller buy and install charges exactly once; owned parts stay free",
+    "Club Race starts; View switches map/panel focus; Back resumes driving; keyboard throttle moves car",
+    "native model emitters available in standalone",
+    "no JavaScript errors or external runtime requests"
+  ],
+  "htmlSha256": "89006fae959a7f33219f01fde58d47ca575c52fa1274395e6aa11d7375eb84be",
+  "speed": 2.959752707198661,
+  "errors": [],
+  "external": [],
+  "limits": [
+    "Isolated Chromium software renderer with simulated standard Gamepad API; not a physical controller or listening test."
+  ]
+}

@@ -1,0 +1,67 @@
+{
+  "status": "passed",
+  "checks": [
+    "Repeated reset retains body identity and all body/collider/render positions remain aligned",
+    "Dynamic braking stops behind a red signal and accelerates through green",
+    "Follower braking keeps a physical gap behind a red-light queue",
+    "A close player obstruction causes braking and a bounded horn, followed by recovery",
+    "Early obstacle avoidance steers within the street without passing through the player",
+    "Player impact transfers momentum to the NPC, persists as dynamic motion and recovers to its route",
+    "Thirty-six dynamic cars navigate for two minutes with finite states, turns, signal compliance and aligned rendered bodies"
+  ],
+  "limits": [
+    "Dynamic civilian bicycle model and reciprocal planar contacts; no independent SDK engines or full vehicle drivetrain per NPC.",
+    "Rendered instance matrices verified in Node; no browser GPU or visual-quality claim."
+  ],
+  "resetAlignment": {
+    "resets": 3,
+    "cars": 36,
+    "maxErrorM": 0.000026855468604480848
+  },
+  "redLight": {
+    "stopped": {
+      "x": -20.89999903735845,
+      "z": -5,
+      "speed": 1.4725267618874172e-9
+    },
+    "frontBumper": -18.67499903735845,
+    "entries": 1,
+    "maxDistance": 139.10000096264156
+  },
+  "queueMinGapM": 2.200000006459403,
+  "playerBlock": {
+    "horns": 1,
+    "recoveredSpeed": 10.400002068870068
+  },
+  "avoidance": {
+    "maxSwerveM": 1.6418672223338637,
+    "minDistanceM": 5.067669737055211,
+    "passed": false
+  },
+  "impact": {
+    "npcImpactVX": 7.033070866141734,
+    "npcRecoveredSpeed": 11.496319409250313,
+    "energyLostJ": 72064.7369754359
+  },
+  "population": {
+    "cars": 36,
+    "time": 120.00000000004157,
+    "entries": 164,
+    "turns": 55,
+    "redStops": 141548,
+    "playerStops": 0,
+    "contacts": 0,
+    "horns": 0,
+    "recycled": 0,
+    "stopped": 18,
+    "intersectionsOccupied": 8,
+    "dynamic": true,
+    "seconds": 120,
+    "redEntries": 0,
+    "offroad": 0,
+    "overlaps": 0,
+    "maxMatrixError": 0.00004033264262400181,
+    "minTravelM": 332.1392429658767,
+    "wallMs": 2839.6220249999997
+  }
+}

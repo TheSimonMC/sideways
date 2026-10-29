@@ -1,0 +1,31 @@
+{
+  "tests": 25,
+  "status": "passed",
+  "cases": [
+    "keyboard signed steering and analog clutch convention",
+    "shift action is one edge while held",
+    "touch analog input and clear release",
+    "standard controller triggers, stick and bumpers",
+    "clear and context transitions do not retrigger held Start",
+    "disabled driving retains menu keyboard and repeating navigation",
+    "menu horizontal stick and A confirm mapping",
+    "independent inverted pedals and calibrated center",
+    "steering calibration detects reversed axis",
+    "pedal calibration and disabled preview are live",
+    "combined pedal axis uses opposite halves without phantom throttle",
+    "separate H-shifter holds all gears, neutral and conflicting buttons",
+    "active shifter disconnect pauses and clears held gear",
+    "reconnect at a different index restores device identity after release",
+    "unused accessory disconnect does not pause driving",
+    "learn detects actual button, auto-binds and suppresses captured action",
+    "learn ignores idle axis noise then binds pedal travel",
+    "profile persistence keeps IDs, not browser indexes",
+    "axis-pair H pattern resolves captured slots and neutral gate",
+    "raw diagnostics expose values, counts and preview separately",
+    "blur releases keyboard, touch and requires device release",
+    "security-blocked API fails safely with keyboard available",
+    "calibration permits deliberate confirm/back and blocks steering navigation",
+    "learn timeout produces one consumable terminal result",
+    "countdown-to-driving transition retains held keyboard throttle"
+  ]
+}

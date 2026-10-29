@@ -1,0 +1,79 @@
+{
+  "status": "passed",
+  "checks": [
+    "Pause/resume does not advance hidden engine time",
+    "Muted driving keeps the same PCM-owned simulation clock and crank dynamics",
+    "Live vehicle solver plus actual PCM matches audio-disabled physics each120Hz step",
+    "Handbrake stalls, starter restarts, and service-brake burnout produces actual engine PCM",
+    "Reset and 8 engine swaps safely replace/release/reclaim audio clock"
+  ],
+  "scenarios": {
+    "acceleration": {
+      "kph": 49.34345524333436,
+      "rpm": 5582.177283875454
+    },
+    "stall": {
+      "rpm": 0.025788005234456773,
+      "stalled": true,
+      "lastBlockRms": 6.142667400256109e-11
+    },
+    "restart": {
+      "rpm": 1700.5551195608075,
+      "running": true,
+      "lastBlockRms": 0.02997479530753423
+    },
+    "burnout": {
+      "speed": 0.04708053715275042,
+      "wheelOmega": [
+        -1.8163079552189106e-16,
+        2.5905478552105453e-17,
+        15.939214930862493,
+        15.939214930862494
+      ],
+      "rpm": 2048.8234994319687,
+      "lastBlockRms": 0.04243586353265117
+    },
+    "swaps": [
+      {
+        "engine": "i4",
+        "clock": "pcm",
+        "rpm": 3483.7045850097024
+      },
+      {
+        "engine": "i6t",
+        "clock": "pcm",
+        "rpm": 2975.723086716675
+      },
+      {
+        "engine": "v8",
+        "clock": "pcm",
+        "rpm": 3336.17243677813
+      },
+      {
+        "engine": "rotary",
+        "clock": "pcm",
+        "rpm": 2949.412280673716
+      },
+      {
+        "engine": "boxer6",
+        "clock": "pcm",
+        "rpm": 3735.472516354842
+      },
+      {
+        "engine": "v6",
+        "clock": "pcm",
+        "rpm": 3668.3696354932617
+      },
+      {
+        "engine": "v10",
+        "clock": "pcm",
+        "rpm": 3769.962312241282
+      },
+      {
+        "engine": "v12",
+        "clock": "pcm",
+        "rpm": 3626.262734401883
+      }
+    ]
+  }
+}

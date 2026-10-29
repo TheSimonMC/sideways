@@ -1,0 +1,177 @@
+{
+  "version": 7,
+  "status": "passed",
+  "createdAt": "2026-10-27T18:47:47.293118+00:00",
+  "suites": 16,
+  "checkGroups": 156,
+  "reports": [
+    {
+      "file": "qa/audio-v7-results.json",
+      "status": "passed",
+      "checks": 9,
+      "sha256": "0fd0eae9d00afb18db1d6dfb85a289ff0459e5400f2fec633fd019c8a1d8b5d3"
+    },
+    {
+      "file": "qa/audio-v3-physics-results.json",
+      "status": "passed",
+      "checks": 5,
+      "sha256": "98478cef68337962a906ec12654e7e4dc039eecf3517f44764b83aa7090cf9eb"
+    },
+    {
+      "file": "qa/audio-v4-results.json",
+      "status": "passed",
+      "checks": 12,
+      "sha256": "69fe27bcaa02356768688aed9854abf486b59f5625be30f0371bfb4608208343"
+    },
+    {
+      "file": "qa/fx-v4-results.json",
+      "status": "passed",
+      "checks": 7,
+      "sha256": "755c86bbd27b7a733ab586ef5960e737b5fafddbbb3bc68c81a1f49653fc80f2"
+    },
+    {
+      "file": "qa/city-v6-results.json",
+      "status": "passed",
+      "checks": 8,
+      "sha256": "ae8e0f4b5562f3f773696bec5d28a03f54c332a3a82fa1e41401c0db0a539b57"
+    },
+    {
+      "file": "qa/input-v6-results.json",
+      "status": "passed",
+      "checks": 16,
+      "sha256": "442c12a38d550db88d6db4acb670107b3bb72dc92ea5b5bc4782f2ab8cc7b322"
+    },
+    {
+      "file": "qa/ui-v6-results.json",
+      "status": "passed",
+      "checks": 7,
+      "sha256": "0f0a6d5c85f7e0c4e94442e3d22c25f8d63d941d43e70bd21990009bc2fb76e8"
+    },
+    {
+      "file": "qa/integration-v7-results.json",
+      "status": "passed",
+      "checks": 27,
+      "sha256": "fab899336b2df7ad4d2b9cb4a1a73d6662c2adc0f033ed61ded197e6c81b799d"
+    },
+    {
+      "file": "qa/terrain-v7-results.json",
+      "status": "passed",
+      "checks": 7,
+      "sha256": "0122a796cbe695c0677d7ed56dc88de44c4422eaee7fc70092d4339bc519b4a2"
+    },
+    {
+      "file": "qa/presentation-v7-results.json",
+      "status": "passed",
+      "checks": 16,
+      "sha256": "a98f7ac33033d5663b8a21204a348a78e7185bcf10768b0090ba22a2266e484f"
+    },
+    {
+      "file": "qa/world-v7-results.json",
+      "status": "passed",
+      "checks": 7,
+      "sha256": "a1d03f4f6d7e56e6eb16419ef72e29af80d263292422949e282435be23d824ac"
+    },
+    {
+      "file": "qa/ai-v7-results.json",
+      "status": "passed",
+      "checks": 6,
+      "sha256": "06ef7f1ff449a49445860affcd39efc23b87853a8fd9bd6ee3de1211f10f7995"
+    },
+    {
+      "file": "qa/traffic-v7-results.json",
+      "status": "passed",
+      "checks": 7,
+      "sha256": "13aef551ae2265deb64fb5119a034b0fdc9f802c816c1c9bea749f6fc9b827dc"
+    },
+    {
+      "file": "qa/police-v7-results.json",
+      "status": "passed",
+      "checks": 9,
+      "sha256": "4f9a5ecbee3370baf26280fc7253de5c2fd210529bfa760b26632004cb379283"
+    },
+    {
+      "file": "qa/services-v7-results.json",
+      "status": "passed",
+      "checks": 13,
+      "sha256": "851e7ce84b8c8a1812f4cf66cf00671907e652060ee5bd22ffc99d0afd09c037"
+    },
+    {
+      "file": "qa/standalone-v7-results.json",
+      "status": "passed",
+      "checks": null,
+      "sha256": "abcbee9d04c5293bc8a810be9aaab27f238b55321fd368c1a518ef2acdfc5332"
+    }
+  ],
+  "artifact": {
+    "file": "dist/SIDEWAYS.html",
+    "bytes": 7221717,
+    "sha256": "14d8383f742df0cb17aa31470991f14ca151a90cf5451a5b58c4561ef77680f5"
+  },
+  "sourceHashes": {
+    "dist/audio/ATTRIBUTION.txt": "93bf5496b605f52525bee8309f40b5811f5b56526f4828f164c54c68d6b09158",
+    "dist/audio/CC0-LICENSE.txt": "a2010f343487d3f7618affe54f789f5487602331c0a8d03f49e9a7c547cf0499",
+    "dist/audio/acoustics.js": "0110d463dce56172e450b8c32a0291dea4bcf741124f4a57014dc5ad10acef40",
+    "dist/audio/ambient-kit.js": "71ada3f1bff497968972dc29d5698888f3ee0aec5e82e885223269739dbd8f34",
+    "dist/audio/chase-track.js": "594795a7779d54c8f23dcb4fde7a73f4da94a655aa65ee19c8f7db9a7f1ec3ba",
+    "dist/audio/kit.js": "025ac33ffd6e6d1f8d49e6300b46a296e2f82eeafa91c4a40872d7b5b654031a",
+    "dist/audio/music-track.js": "216d071930e6685374bdabab38c62fbe9872479caa849282f36edd17c90c972b",
+    "dist/audio/radio-kit.js": "badf34bd3b1de9452bb9cd9b8db13a1d7b169790b98f5e0f3eef08749243b6b5",
+    "dist/audio/samples.js": "cc801bf91672a88beda5a6eb7e1b833987d1389f183769702d08183cf4654eda",
+    "dist/audio/world.js": "f1e2c516ede13aa61e6e61d3d7f0f3ec460fc2aa4ac196627f3f51b5a6d4898e",
+    "dist/audio.js": "91e4fafd3ffb542a05a1a8b424cd5f0a400ed800ec511a8c53164a0d38dd0bb0",
+    "dist/car.js": "582b84ed2cb00f2e4aad9819126f8f6672ab73ea5b8aa11412d0320d11c27e19",
+    "dist/catalog.js": "1faac9a72fc38fc8fe3c2c1e76b863e1b174482df4a0a6509ea797ca81eced82",
+    "dist/city.js": "d3a4c7190edd478a289cf58a1737b8431de07a0d3af16204e7bccbcf13a1b6b0",
+    "dist/contact.js": "a4c2ab97626d8b6e7a7a54951251d4369e2ef2660f163e035573e829436d568a",
+    "dist/controls-ui.js": "2028a9534dbac3dfca5b202e23ab896f034fe0abeef5def68285fa8eed8641ef",
+    "dist/enforcement.js": "07bbff65fec9dba7cf46b372135d4b43bbb5cef6cc121562da1d723a42ffa8a2",
+    "dist/environment.js": "39dd8fd215a521e0456da88bfcbc1bfa382c3687b6e5878224fdf055db71cb81",
+    "dist/fonts/barlow-OFL.txt": "186d750eb496a4c17a76385f82be6aea2ac1cf2de074a811d63786cf374ea73f",
+    "dist/fonts/barlowcondensed-OFL.txt": "186d750eb496a4c17a76385f82be6aea2ac1cf2de074a811d63786cf374ea73f",
+    "dist/fonts/font-0.ttf": "a35caa4687f434d66453c1fe423d7074cfa9fd7ab80c19b0780f3862887d2fc9",
+    "dist/fonts/font-1.ttf": "91c841fdfa8e7b94ffedbb983a363947ba6ed720f3bbf0c71d48b618053655bc",
+    "dist/fonts/font-10.ttf": "0ec6b3cca2df54f108f8dc239597e0eab386343a230afad8a0f445c7d21c3e77",
+    "dist/fonts/font-2.ttf": "c15439e7a03af5714282ec1780ff7b0214ec6a7db96300b54928dbcd2569ca0c",
+    "dist/fonts/font-3.ttf": "74103fd6d41bc32c63aa2e6eb3db619ddb80ce9ca1b1420d5548a23b8ee5d154",
+    "dist/fonts/font-4.ttf": "3f25dda39ecf9f2519a703b217629fbdfc54fb5e5725bf4aa2b9234e78a2fc04",
+    "dist/fonts/font-5.ttf": "94cf666814140f0e3d0785fdedbc82a3ddb0791ce0001f13c5477fd80439ed23",
+    "dist/fonts/font-6.ttf": "75338266e60b15dfc5ac0bae8b78fdc5535ea50703ed73c14dc598498ffe8173",
+    "dist/fonts/font-7.ttf": "0d85af813fc3ed87db0c6265515689b2eef5cbaf7aab17922528dfc95a2cd73f",
+    "dist/fonts/font-8.ttf": "7dde307fa887fc65ff5830cfada77a7decc5dae8d3c816c9d39ba3f1af1c4ed7",
+    "dist/fonts/font-9.ttf": "73bc9e17231e9073780d3c81574c7253cecd5645c93544df1a935054b39a364f",
+    "dist/fonts.css": "4cb4e1fa46fef5e05fb54e8a2a6d3e4c88518796da44e5e8dbffab505302d87f",
+    "dist/game-ui.js": "b97a8aea62801e349b0a004074b56bb0330169e96ecbb0201fe343607b851e0a",
+    "dist/garage.js": "1ebd01d6ee6985f65ef629d8c1d9987f837b922c14617c84d0a46d398c6701d4",
+    "dist/haptics.js": "14fbc5b1ca7c152e4497dea1444fe60fc0ec2add1fb90b2827f503887bbc0149",
+    "dist/index.html": "f7378c4ce38d7d27dd26813decb1e42edbea980f3bba00075dd2433328593d4c",
+    "dist/input-prompts.js": "a53273d9b6dd2c67d4755bf65796d1c529f499494d6355d5dc29a7d3d15543bc",
+    "dist/input.js": "b6032bba4ac470a6d8df7a7c9201de81b25fc9e60567a5a8e43672162ce9443d",
+    "dist/main.js": "539c2b74dd58167097a7fcb1b75e95c9df2b35af3199e1c49542f6a18416a380",
+    "dist/music.js": "f4c97266268713f4d2dcbac1d887c917c8cf31c90d8b9eb8a6c114100b64e3dd",
+    "dist/nature.js": "7d80476e58dc6fc1c12cec2a412d2438b48803b3582186f61f803d0d47aa58ba",
+    "dist/navigation.js": "6b522bf1b12f337d16dd2c4673ef6359009be71cd86289b4a3aa310b2747b7b7",
+    "dist/physics.js": "ea93b5f0590fbdac6fe6afc3d633a02b7e839c3e15049f812a30d0de1b5500ba",
+    "dist/police.js": "5b6b8149049c29b54b6f371425104eccf212b18ed4b09a222e680de2a740391f",
+    "dist/post.js": "f1cf5906d271b741372d4f1618c030270cacbcb24597b9c60f7b33a2f6bbd690",
+    "dist/presentation.js": "977faa42789eb84ba07e9c566a1534d53984869b6d6e528ea00446078a1c441c",
+    "dist/style.css": "ab06a410209428e3209ddab3f2a309444867f217ba977ff25b80deb8f7a8c546",
+    "dist/terrain-fx.js": "0bcd3e7c4db8e7b6ed7d7ca92108419ab07e1a52d3fbe9caeaedca76961aa1f5",
+    "dist/traffic.js": "63dd259320832128b615d482d36f32fa11110bf7eb8a5e51f08c261d594a7161",
+    "dist/vehicle-state.js": "e34be0c66fbc0191778724cc76748a192641f886c0c0eccaf32d8d82724a3d21",
+    "dist/vendor/THREE-LICENSE.txt": "4c40a1ef62450b857c3b2aaf294936304cd552d965fbcd9d32d4c5bcf4ba4454",
+    "dist/vendor/motor-engine.js": "32bdea5ef002e6dc131de4aa162077d5811e61d5d97f6b6e79f8f3987b82be4c",
+    "dist/vendor/three.module.js": "ce1fa418de16a19495a9f72495580e3015d7745c296d3ce0485897f902ddedfb",
+    "dist/world-lifecycle.js": "27b6642ace8472a4c2b2b932ad8297397105d7407b6fa20306d1fd4208853c50",
+    "dist/world.js": "89907acffb0dc56b9894d94fd6a3c8a96572c7c93b2320af7c2f090772b580ce"
+  },
+  "syntax": {
+    "javascriptModules": 36,
+    "failures": 0
+  },
+  "limits": [
+    "Managed browser preview service unavailable: no live WebGL render, browser layout inspection or speaker audition.",
+    "Gamepads, rumble and wheel/shifter inputs tested with controlled signal hosts, not physical hardware.",
+    "Radio text is a tactical game-event summary, not a verbatim transcript of the sampled speech.",
+    "Vehicle physics remain an authored game simulation with planar bodies and four spring contacts; no full 3D soft-body model."
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "passed": true,
+  "length": 1225.759230336321,
+  "spawn": {
+    "x": -167.20837141354892,
+    "z": 85.07257268328894,
+    "heading": -2.704938099978128
+  },
+  "spawnProgress": 0.9850001244868125,
+  "checkpoints": 8,
+  "colliders": 50,
+  "minColliderDistance": 13.614829851948066,
+  "minColliderIndex": 0,
+  "minColliderProgress": 0.999375,
+  "maxProgressError": 0.0000011640964969195089,
+  "maxCenterError": 0.05513383577881896,
+  "maxTangentAngleDegrees": 5.033686461567032,
+  "roadRibbons": 10,
+  "minNormalY": 1,
+  "signedArea": 104717.90634323913,
+  "directionOnNorthUpMap": "clockwise",
+  "meshes": 93,
+  "instances": 2550,
+  "vertices": 79196,
+  "landBounds": {
+    "minX": -265,
+    "maxX": 265,
+    "minZ": -245,
+    "maxZ": 235
+  }
+}

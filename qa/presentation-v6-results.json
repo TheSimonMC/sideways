@@ -1,0 +1,725 @@
+{
+  "status": "passed",
+  "checks": [
+    "Fixed-step interpolation follows continuous motion at30/60/120/144/240Hz and uneven frames without mutating live physics",
+    "Heading wrap uses the shortest rotation; reset discards old position and wheel-spin history at every interpolation phase",
+    "Actual camera helper keeps the intended translation offset at every tested refresh rate, without speed/stiffness drift",
+    "Camera switches and teleports use the new heading on the first cut frame and reset the blur history",
+    "Actual car wheels, Ackermann pivots, sprung body and postprocess mask consume the same interpolated pose",
+    "Chase pullback is monotonic and bounded at 6.6–10.9 m, with 61–88 degree FOV, across 30/60/120/144/240 Hz and speed/NOS ramps",
+    "All three gameplay cameras settle completely at standstill, without idle orbit, drifting offsets or periodic bobbing",
+    "World-flow shutter remains consistent through 240 Hz after exposure cap fix; peripheral motion exceeds central road flow and NOS increases it",
+    "Shader bounds final blur distance in pixels, protects player samples and limits blue NOS light to peripheral moving-world pixels",
+    "Pause, reset and standstill suppress both motion blur and visible NOS post effects",
+    "All four cars have blue additive NOS exhaust with bright cores, driven by active boost and hidden again on release",
+    "Right stick look and held rear view use the actual camera helper; release recenters in 0.4 seconds with a continuous camera transition",
+    "All four car models toggle headlamps, hide lost wheels, draw detached-wheel bodies and restore geometry after repair",
+    "Quarter-resolution bloom has distinct source/output targets, valid resize and composite wiring; disabling bloom skips all three extra passes"
+  ],
+  "rates": [
+    {
+      "rate": 30,
+      "maxError": 1.4551915228366852e-11,
+      "minAdvance": 1.666666666666515
+    },
+    {
+      "rate": 60,
+      "maxError": 1.0516032489249483e-11,
+      "minAdvance": 0.8333333333332575
+    },
+    {
+      "rate": 120,
+      "maxError": 1.4210854715202004e-14,
+      "minAdvance": 0.4166666666666572
+    },
+    {
+      "rate": 144,
+      "maxError": 2.2737367544323206e-12,
+      "minAdvance": 0.3472222222222001
+    },
+    {
+      "rate": 240,
+      "maxError": 1.5631940186722204e-13,
+      "minAdvance": 0.2083333333333286
+    },
+    {
+      "rate": "uneven",
+      "maxError": 6.0254023992456496e-12,
+      "minAdvance": 0.20833333333331439
+    }
+  ],
+  "cameras": [
+    {
+      "mode": 0,
+      "fps": 30,
+      "distance": 17.000000000000057
+    },
+    {
+      "mode": 0,
+      "fps": 60,
+      "distance": 16.999999999999886
+    },
+    {
+      "mode": 0,
+      "fps": 120,
+      "distance": 17.00000000000017
+    },
+    {
+      "mode": 0,
+      "fps": 144,
+      "distance": 17.000000000000114
+    },
+    {
+      "mode": 0,
+      "fps": 240,
+      "distance": 16.999999999999574
+    },
+    {
+      "mode": 1,
+      "fps": 30,
+      "distance": -9.09993170781678
+    },
+    {
+      "mode": 1,
+      "fps": 60,
+      "distance": -9.09993170781678
+    },
+    {
+      "mode": 1,
+      "fps": 120,
+      "distance": -9.099931707816808
+    },
+    {
+      "mode": 1,
+      "fps": 144,
+      "distance": -9.09993170781678
+    },
+    {
+      "mode": 1,
+      "fps": 240,
+      "distance": -9.09993170781678
+    },
+    {
+      "mode": 2,
+      "fps": 30,
+      "distance": 1.1310000000000002
+    },
+    {
+      "mode": 2,
+      "fps": 60,
+      "distance": 1.1310000000000002
+    },
+    {
+      "mode": 2,
+      "fps": 120,
+      "distance": 1.1310000000000286
+    },
+    {
+      "mode": 2,
+      "fps": 144,
+      "distance": 1.1310000000000286
+    },
+    {
+      "mode": 2,
+      "fps": 240,
+      "distance": 1.1309999999999434
+    }
+  ],
+  "chase": [
+    {
+      "speedMps": 0,
+      "nitrous": 0,
+      "distanceM": 6.6000000000000005,
+      "fov": 61.00000000379271
+    },
+    {
+      "speedMps": 5,
+      "nitrous": 0,
+      "distanceM": 6.978379975668844,
+      "fov": 63.07498696320307
+    },
+    {
+      "speedMps": 15,
+      "nitrous": 0,
+      "distanceM": 7.531467215522492,
+      "fov": 66.10804601471325
+    },
+    {
+      "speedMps": 30,
+      "nitrous": 0,
+      "distanceM": 8.244417804176429,
+      "fov": 70.0177750418529
+    },
+    {
+      "speedMps": 50,
+      "nitrous": 0,
+      "distanceM": 9.099931707816797,
+      "fov": 74.70930289162902
+    },
+    {
+      "speedMps": 65,
+      "nitrous": 0,
+      "distanceM": 9.700000000000001,
+      "fov": 77.99999997155469
+    },
+    {
+      "speedMps": 90,
+      "nitrous": 0,
+      "distanceM": 9.699999999999969,
+      "fov": 77.99999997155469
+    },
+    {
+      "speedMps": 120,
+      "nitrous": 0,
+      "distanceM": 9.700000000000017,
+      "fov": 77.99999997155469
+    },
+    {
+      "speedMps": 0,
+      "nitrous": 0.5,
+      "distanceM": 7.2,
+      "fov": 65.99999999431094
+    },
+    {
+      "speedMps": 5,
+      "nitrous": 0.5,
+      "distanceM": 7.5783799756688435,
+      "fov": 68.07498695372131
+    },
+    {
+      "speedMps": 15,
+      "nitrous": 0.5,
+      "distanceM": 8.131467215522493,
+      "fov": 71.10804600523149
+    },
+    {
+      "speedMps": 30,
+      "nitrous": 0.5,
+      "distanceM": 8.844417804176427,
+      "fov": 75.01777503237115
+    },
+    {
+      "speedMps": 50,
+      "nitrous": 0.5,
+      "distanceM": 9.699931707816786,
+      "fov": 79.70930288214727
+    },
+    {
+      "speedMps": 65,
+      "nitrous": 0.5,
+      "distanceM": 10.299999999999985,
+      "fov": 82.99999996207295
+    },
+    {
+      "speedMps": 90,
+      "nitrous": 0.5,
+      "distanceM": 10.300000000000038,
+      "fov": 82.99999996207295
+    },
+    {
+      "speedMps": 120,
+      "nitrous": 0.5,
+      "distanceM": 10.299999999999985,
+      "fov": 82.99999996207295
+    },
+    {
+      "speedMps": 0,
+      "nitrous": 1,
+      "distanceM": 7.800000000000001,
+      "fov": 70.99999998482917
+    },
+    {
+      "speedMps": 5,
+      "nitrous": 1,
+      "distanceM": 8.178379975668843,
+      "fov": 73.07498694423955
+    },
+    {
+      "speedMps": 15,
+      "nitrous": 1,
+      "distanceM": 8.731467215522494,
+      "fov": 76.10804599574973
+    },
+    {
+      "speedMps": 30,
+      "nitrous": 1,
+      "distanceM": 9.44441780417643,
+      "fov": 80.01777502288938
+    },
+    {
+      "speedMps": 50,
+      "nitrous": 1,
+      "distanceM": 10.299931707816796,
+      "fov": 84.70930287266549
+    },
+    {
+      "speedMps": 65,
+      "nitrous": 1,
+      "distanceM": 10.9,
+      "fov": 87.99999995259118
+    },
+    {
+      "speedMps": 90,
+      "nitrous": 1,
+      "distanceM": 10.899999999999995,
+      "fov": 87.99999995259118
+    },
+    {
+      "speedMps": 120,
+      "nitrous": 1,
+      "distanceM": 10.900000000000006,
+      "fov": 87.99999995259118
+    }
+  ],
+  "standstill": [
+    {
+      "mode": 0,
+      "fps": 30,
+      "maxMovement": 0,
+      "maxLook": 0,
+      "maxRotation": 0,
+      "maxFov": 6.0394711454137e-10
+    },
+    {
+      "mode": 0,
+      "fps": 60,
+      "maxMovement": 0,
+      "maxLook": 0,
+      "maxRotation": 0,
+      "maxFov": 6.039542199687276e-10
+    },
+    {
+      "mode": 0,
+      "fps": 144,
+      "maxMovement": 0,
+      "maxLook": 0,
+      "maxRotation": 0,
+      "maxFov": 6.038334277036483e-10
+    },
+    {
+      "mode": 1,
+      "fps": 30,
+      "maxMovement": 0,
+      "maxLook": 0,
+      "maxRotation": 0,
+      "maxFov": 0
+    },
+    {
+      "mode": 1,
+      "fps": 60,
+      "maxMovement": 0,
+      "maxLook": 0,
+      "maxRotation": 0,
+      "maxFov": 0
+    },
+    {
+      "mode": 1,
+      "fps": 144,
+      "maxMovement": 0,
+      "maxLook": 0,
+      "maxRotation": 0,
+      "maxFov": 0
+    },
+    {
+      "mode": 2,
+      "fps": 30,
+      "maxMovement": 0,
+      "maxLook": 0,
+      "maxRotation": 0,
+      "maxFov": 0
+    },
+    {
+      "mode": 2,
+      "fps": 60,
+      "maxMovement": 0,
+      "maxLook": 0,
+      "maxRotation": 0,
+      "maxFov": 0
+    },
+    {
+      "mode": 2,
+      "fps": 144,
+      "maxMovement": 0,
+      "maxLook": 0,
+      "maxRotation": 0,
+      "maxFov": 0
+    }
+  ],
+  "flow": [
+    {
+      "mode": 0,
+      "fps": 30,
+      "boost": 0,
+      "worldPixels": 54.645978135550735,
+      "centerPixels": 43.47860155366722,
+      "maxPixels": 59.81818181818181,
+      "shutterMs": 43.63636363636365
+    },
+    {
+      "mode": 0,
+      "fps": 30,
+      "boost": 1,
+      "worldPixels": 81.52894885930424,
+      "centerPixels": 70.58374573674959,
+      "maxPixels": 99.81818181818181,
+      "shutterMs": 59.63636363636364
+    },
+    {
+      "mode": 0,
+      "fps": 60,
+      "boost": 0,
+      "worldPixels": 54.53254488373245,
+      "centerPixels": 43.38839419537724,
+      "maxPixels": 59.81818181818181,
+      "shutterMs": 43.63636363636365
+    },
+    {
+      "mode": 0,
+      "fps": 60,
+      "boost": 1,
+      "worldPixels": 81.37370655398064,
+      "centerPixels": 70.44938810805907,
+      "maxPixels": 99.81818181818181,
+      "shutterMs": 59.63636363636364
+    },
+    {
+      "mode": 0,
+      "fps": 120,
+      "boost": 0,
+      "worldPixels": 54.47600113826929,
+      "centerPixels": 43.34342971519259,
+      "maxPixels": 59.81818181818181,
+      "shutterMs": 43.63636363636365
+    },
+    {
+      "mode": 0,
+      "fps": 120,
+      "boost": 1,
+      "worldPixels": 81.29630432858724,
+      "centerPixels": 70.38240043343339,
+      "maxPixels": 99.81818181818178,
+      "shutterMs": 59.636363636363626
+    },
+    {
+      "mode": 0,
+      "fps": 144,
+      "boost": 0,
+      "worldPixels": 54.466588339051015,
+      "centerPixels": 43.33594462562733,
+      "maxPixels": 59.81818181818181,
+      "shutterMs": 43.63636363636364
+    },
+    {
+      "mode": 0,
+      "fps": 144,
+      "boost": 1,
+      "worldPixels": 81.28341809794611,
+      "centerPixels": 70.37124817229265,
+      "maxPixels": 99.81818181818178,
+      "shutterMs": 59.63636363636363
+    },
+    {
+      "mode": 0,
+      "fps": 240,
+      "boost": 0,
+      "worldPixels": 54.44777228580476,
+      "centerPixels": 43.32098213976752,
+      "maxPixels": 59.81818181818181,
+      "shutterMs": 43.63636363636365
+    },
+    {
+      "mode": 0,
+      "fps": 240,
+      "boost": 1,
+      "worldPixels": 81.25765773667386,
+      "centerPixels": 70.34895422164468,
+      "maxPixels": 99.81818181818177,
+      "shutterMs": 59.636363636363626
+    },
+    {
+      "mode": 1,
+      "fps": 30,
+      "boost": 0,
+      "worldPixels": 13.10374904851685,
+      "centerPixels": 3.0275239412280692,
+      "maxPixels": 59.81818181818181,
+      "shutterMs": 50.909090909090914
+    },
+    {
+      "mode": 1,
+      "fps": 30,
+      "boost": 1,
+      "worldPixels": 19.808593615041893,
+      "centerPixels": 4.758779019019924,
+      "maxPixels": 99.81818181818181,
+      "shutterMs": 74.9090909090909
+    },
+    {
+      "mode": 1,
+      "fps": 60,
+      "boost": 0,
+      "worldPixels": 13.431873157426644,
+      "centerPixels": 3.103604068445043,
+      "maxPixels": 59.81818181818181,
+      "shutterMs": 50.909090909090914
+    },
+    {
+      "mode": 1,
+      "fps": 60,
+      "boost": 1,
+      "worldPixels": 20.28837138449886,
+      "centerPixels": 4.874278388832392,
+      "maxPixels": 99.81818181818181,
+      "shutterMs": 74.90909090909089
+    },
+    {
+      "mode": 1,
+      "fps": 120,
+      "boost": 0,
+      "worldPixels": 13.602198091610628,
+      "centerPixels": 3.143096268773673,
+      "maxPixels": 59.81818181818181,
+      "shutterMs": 50.909090909090914
+    },
+    {
+      "mode": 1,
+      "fps": 120,
+      "boost": 1,
+      "worldPixels": 20.537100979493488,
+      "centerPixels": 4.934156347430023,
+      "maxPixels": 99.81818181818178,
+      "shutterMs": 74.90909090909089
+    },
+    {
+      "mode": 1,
+      "fps": 144,
+      "boost": 0,
+      "worldPixels": 13.63100789948471,
+      "centerPixels": 3.1497762227258064,
+      "maxPixels": 59.81818181818181,
+      "shutterMs": 50.90909090909092
+    },
+    {
+      "mode": 1,
+      "fps": 144,
+      "boost": 1,
+      "worldPixels": 20.579151257197335,
+      "centerPixels": 4.944279327994471,
+      "maxPixels": 99.81818181818178,
+      "shutterMs": 74.90909090909089
+    },
+    {
+      "mode": 1,
+      "fps": 240,
+      "boost": 0,
+      "worldPixels": 13.68899645628156,
+      "centerPixels": 3.1632216748026796,
+      "maxPixels": 59.81818181818181,
+      "shutterMs": 50.909090909090914
+    },
+    {
+      "mode": 1,
+      "fps": 240,
+      "boost": 1,
+      "worldPixels": 20.663771569665307,
+      "centerPixels": 4.9646504131661535,
+      "maxPixels": 99.81818181818177,
+      "shutterMs": 74.90909090909088
+    },
+    {
+      "mode": 2,
+      "fps": 30,
+      "boost": 0,
+      "worldPixels": 14.794289467561809,
+      "centerPixels": 1.2915025703821763,
+      "maxPixels": 59.81818181818181,
+      "shutterMs": 30.18181818181818
+    },
+    {
+      "mode": 2,
+      "fps": 30,
+      "boost": 1,
+      "worldPixels": 24.28212996040244,
+      "centerPixels": 2.2623757260392217,
+      "maxPixels": 99.81818181818181,
+      "shutterMs": 45.18181818181818
+    },
+    {
+      "mode": 2,
+      "fps": 60,
+      "boost": 0,
+      "worldPixels": 15.332071722320526,
+      "centerPixels": 1.3389016482808362,
+      "maxPixels": 59.81818181818181,
+      "shutterMs": 30.18181818181818
+    },
+    {
+      "mode": 2,
+      "fps": 60,
+      "boost": 1,
+      "worldPixels": 25.162661391443095,
+      "centerPixels": 2.345406541040571,
+      "maxPixels": 99.81818181818181,
+      "shutterMs": 45.18181818181818
+    },
+    {
+      "mode": 2,
+      "fps": 120,
+      "boost": 0,
+      "worldPixels": 15.616042316830478,
+      "centerPixels": 1.3639302615262223,
+      "maxPixels": 59.81818181818181,
+      "shutterMs": 30.18181818181818
+    },
+    {
+      "mode": 2,
+      "fps": 120,
+      "boost": 1,
+      "worldPixels": 25.627617289395335,
+      "centerPixels": 2.389250139584159,
+      "maxPixels": 99.81818181818178,
+      "shutterMs": 45.18181818181817
+    },
+    {
+      "mode": 2,
+      "fps": 144,
+      "boost": 0,
+      "worldPixels": 15.664406159295103,
+      "centerPixels": 1.368192956049894,
+      "maxPixels": 59.81818181818181,
+      "shutterMs": 30.18181818181818
+    },
+    {
+      "mode": 2,
+      "fps": 144,
+      "boost": 1,
+      "worldPixels": 25.706805255106534,
+      "centerPixels": 2.3967172679112148,
+      "maxPixels": 99.81818181818178,
+      "shutterMs": 45.18181818181818
+    },
+    {
+      "mode": 2,
+      "fps": 240,
+      "boost": 0,
+      "worldPixels": 15.762046458779734,
+      "centerPixels": 1.376798781128468,
+      "maxPixels": 59.81818181818181,
+      "shutterMs": 30.18181818181818
+    },
+    {
+      "mode": 2,
+      "fps": 240,
+      "boost": 1,
+      "worldPixels": 25.86667544487332,
+      "centerPixels": 2.411792427483242,
+      "maxPixels": 99.81818181818177,
+      "shutterMs": 45.18181818181817
+    }
+  ],
+  "nos": [
+    {
+      "car": "hachi",
+      "blueFlames": 2,
+      "additive": true,
+      "whiteCore": true,
+      "offStateHidden": true
+    },
+    {
+      "car": "atlas",
+      "blueFlames": 2,
+      "additive": true,
+      "whiteCore": true,
+      "offStateHidden": true
+    },
+    {
+      "car": "kitsune",
+      "blueFlames": 1,
+      "additive": true,
+      "whiteCore": true,
+      "offStateHidden": true
+    },
+    {
+      "car": "vector",
+      "blueFlames": 2,
+      "additive": true,
+      "whiteCore": true,
+      "offStateHidden": true
+    }
+  ],
+  "look": [
+    {
+      "mode": 0,
+      "fps": 30,
+      "releaseSeconds": 0.4,
+      "yaw": 0
+    },
+    {
+      "mode": 0,
+      "fps": 60,
+      "releaseSeconds": 0.4,
+      "yaw": 0
+    },
+    {
+      "mode": 0,
+      "fps": 144,
+      "releaseSeconds": 0.4,
+      "yaw": 0
+    },
+    {
+      "mode": 0,
+      "fps": 240,
+      "releaseSeconds": 0.4,
+      "yaw": 0
+    },
+    {
+      "mode": 1,
+      "fps": 30,
+      "releaseSeconds": 0.4,
+      "yaw": 0
+    },
+    {
+      "mode": 1,
+      "fps": 60,
+      "releaseSeconds": 0.4,
+      "yaw": 0
+    },
+    {
+      "mode": 1,
+      "fps": 144,
+      "releaseSeconds": 0.4,
+      "yaw": 0
+    },
+    {
+      "mode": 1,
+      "fps": 240,
+      "releaseSeconds": 0.4,
+      "yaw": 0
+    },
+    {
+      "mode": 2,
+      "fps": 30,
+      "releaseSeconds": 0.4,
+      "yaw": 0
+    },
+    {
+      "mode": 2,
+      "fps": 60,
+      "releaseSeconds": 0.4,
+      "yaw": 0
+    },
+    {
+      "mode": 2,
+      "fps": 144,
+      "releaseSeconds": 0.4,
+      "yaw": 0
+    },
+    {
+      "mode": 2,
+      "fps": 240,
+      "releaseSeconds": 0.4,
+      "yaw": 0
+    }
+  ],
+  "verificationLimit": "CPU Three.js math, actual JS consumers and shader-equivalent expressions only. No GPU shader execution, browser visual inspection, controller hardware or speaker audition."
+}

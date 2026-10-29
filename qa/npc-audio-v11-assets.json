@@ -1,0 +1,50 @@
+{
+  "sdk": "1.6.3",
+  "method": "Native PCM, physical dynamometer load near1800RPM, mono24kHz, DC removal, fixed peak trim,60ms equal-power loop seam.",
+  "engines": [
+    {
+      "id": "i4",
+      "rate": 24000,
+      "frames": 22560,
+      "referenceRpm": 1800.4488560266664,
+      "minRpm": 1773.7388824781601,
+      "maxRpm": 1827.1936251551915,
+      "rms": 0.12622419873993534,
+      "peak": 0.65,
+      "pcmSha256": "e380ec6f142969a940ba17d1722a4b84809f0d6485d322b12b41856955c366fb"
+    },
+    {
+      "id": "i6t",
+      "rate": 24000,
+      "frames": 22560,
+      "referenceRpm": 1800.623347837473,
+      "minRpm": 1773.2072743506228,
+      "maxRpm": 1823.013773394119,
+      "rms": 0.16982078630697225,
+      "peak": 0.65,
+      "pcmSha256": "7d45205e7b3a4adbf2f5f800d89f9bd16e64f07fb7129ef1fc3237bb25aa0a54"
+    },
+    {
+      "id": "v8",
+      "rate": 24000,
+      "frames": 22560,
+      "referenceRpm": 1800.7532803762638,
+      "minRpm": 1799.2088321709834,
+      "maxRpm": 1805.9118868947264,
+      "rms": 0.17692964170882852,
+      "peak": 0.65,
+      "pcmSha256": "13aba50f55b4d30d3dded9002d27cb194738a1eac274858e34fa07c855a2ab5c"
+    },
+    {
+      "id": "rotary",
+      "rate": 24000,
+      "frames": 22560,
+      "referenceRpm": 1800.29965151071,
+      "minRpm": 1778.681185016473,
+      "maxRpm": 1822.1871217048797,
+      "rms": 0.10707724529615915,
+      "peak": 0.65,
+      "pcmSha256": "46b31439bd2222e15cafbdf637dfd49c59dc3fede55c93c422f81f84a6bf6e2f"
+    }
+  ]
+}

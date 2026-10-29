@@ -1,0 +1,107 @@
+{
+  "status": "passed",
+  "checks": [
+    "All four tyres throw surface-appropriate debris and leave loose-ground tracks; asphalt produces none",
+    "Detached wheels stop emission, pools remain bounded, every instance transform is finite, reset and disposal clear all active effects",
+    "Stationary tyres do not emit; stationary wheelspin does, and airborne contacts do not create debris or teleport tracks",
+    "Forward and reverse stationary wheelspin launch both earth and grass in opposite directions at two car headings",
+    "Debris crossing raised and lowered surfaces lands at the sampled height with at most one sample per active particle per frame",
+    "Absent or invalid samplers retain finite fallback landings; the FX API keeps its sampler across resets and vehicle changes",
+    "Track planes follow uphill and downhill contact endpoints at three headings without flipping their visible face"
+  ],
+  "fixtures": [
+    {
+      "material": "asphalt",
+      "activeClods": 0,
+      "activeGrass": 0,
+      "activeTracks": 0,
+      "counts": {
+        "clods": 0,
+        "grass": 0,
+        "tracks": 0
+      },
+      "capacity": 680
+    },
+    {
+      "material": "grass",
+      "activeClods": 0,
+      "activeGrass": 67,
+      "activeTracks": 396,
+      "counts": {
+        "clods": 0,
+        "grass": 212,
+        "tracks": 396
+      },
+      "capacity": 680
+    },
+    {
+      "material": "dirt",
+      "activeClods": 47,
+      "activeGrass": 0,
+      "activeTracks": 396,
+      "counts": {
+        "clods": 212,
+        "grass": 0,
+        "tracks": 396
+      },
+      "capacity": 680
+    },
+    {
+      "material": "gravel",
+      "activeClods": 47,
+      "activeGrass": 0,
+      "activeTracks": 396,
+      "counts": {
+        "clods": 212,
+        "grass": 0,
+        "tracks": 396
+      },
+      "capacity": 680
+    },
+    {
+      "reverseWheelspin": [
+        {
+          "surface": "dirt",
+          "heading": 0,
+          "forward": -0.9218036711215973,
+          "reverse": 0.7732419490814209
+        },
+        {
+          "surface": "dirt",
+          "heading": 1.5707963267948966,
+          "forward": -0.6201289176940918,
+          "reverse": 1.0749167919158935
+        },
+        {
+          "surface": "grass",
+          "heading": 0,
+          "forward": -0.7993686676025391,
+          "reverse": 0.6871035814285278
+        },
+        {
+          "surface": "grass",
+          "heading": 1.5707963267948966,
+          "forward": -0.5367807626724244,
+          "reverse": 0.9496914863586425
+        }
+      ]
+    },
+    {
+      "surfaceTransitions": [
+        {
+          "heightChange": 0.18,
+          "landed": true,
+          "calls": 76,
+          "maxCallsPerFrame": 2
+        },
+        {
+          "heightChange": -0.18,
+          "landed": true,
+          "calls": 73,
+          "maxCallsPerFrame": 2
+        }
+      ]
+    }
+  ],
+  "limits": "Three.js instance matrices and contact-driven effect math in Node, without a GPU render."
+}

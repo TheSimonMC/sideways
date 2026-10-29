@@ -1,0 +1,9 @@
+{
+  "sampleRate": 48000,
+  "frames": 142560,
+  "duration": 2.97,
+  "sourceSha256": "2b341cfa20987388fcca9fd91d8be5056cb6c6c54abc2a97846c2be5e5a4f604",
+  "pcmSha256": "46dfed3a593882b3a45336aef96c85418544de97e1ab462b4c198a76f911d4e7",
+  "rms": 0.23430872811258324,
+  "peak": 0.91
+}

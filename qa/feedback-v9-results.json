@@ -1,0 +1,111 @@
+{
+  "version": 9,
+  "status": "passed",
+  "checks": [
+    "Bearing knock and hot coolant leakage produce separate finite stereo PCM at full aggregate engine health; pause fades them and reset clears them.",
+    "Mechanical warning and failure cues use the recorded sample bank, reject duplicate triggers and end without an overlapping loop.",
+    "A running damaged engine produces bounded RPM-related rumble at rest; a stopped or healthy engine does not. Failure is stronger than a warning, and pausing cancels output.",
+    "Measured coolant steam and engine smoke drive separate bounded particle types, stop when their causes disappear, and clear on reset."
+  ],
+  "measurements": {
+    "pcm": {
+      "healthy": {
+        "rms": 0,
+        "peak": 0,
+        "leftEnergy": 0,
+        "rightEnergy": 0
+      },
+      "knock": {
+        "rms": 0.0016448883931017128,
+        "peak": 0.015067851170897484,
+        "leftEnergy": 0.006233835627090436,
+        "rightEnergy": 0.20156068539133404
+      },
+      "steam": {
+        "rms": 0.00885468025583512,
+        "peak": 0.030531613156199455,
+        "leftEnergy": 0.18064595505877004,
+        "rightEnergy": 5.84088587980149
+      }
+    },
+    "cues": {
+      "mechanicalWarning": {
+        "rms": 0.0013213233037244086,
+        "peak": 0.02778858318924904,
+        "leftEnergy": 0.0707816428660687,
+        "rightEnergy": 0.05659887624947126
+      },
+      "mechanicalFailure": {
+        "rms": 0.007190802971115811,
+        "peak": 0.09141405671834946,
+        "leftEnergy": 1.8862949760360028,
+        "rightEnergy": 1.8862949760360028
+      }
+    },
+    "rumble": {
+      "healthy": {
+        "calls": 0,
+        "maximum": 0
+      },
+      "hurt": {
+        "calls": 11,
+        "maximum": 0.03624590511844518
+      },
+      "stopped": {
+        "calls": 0,
+        "maximum": 0
+      },
+      "warning": {
+        "calls": 3,
+        "maximum": 0.13384806333951862
+      },
+      "failure": {
+        "calls": 4,
+        "maximum": 0.4117123951381701
+      }
+    },
+    "particles": {
+      "hot": {
+        "activeParticles": 11,
+        "activeSmoke": 0,
+        "activeSteam": 5,
+        "activeEngineSmoke": 6,
+        "activeDust": 0,
+        "terrain": {
+          "activeClods": 0,
+          "activeGrass": 0,
+          "activeTracks": 0,
+          "counts": {
+            "clods": 0,
+            "grass": 0,
+            "tracks": 0
+          },
+          "capacity": 680
+        },
+        "skidCursor": 0,
+        "carId": "hachi"
+      },
+      "cool": {
+        "activeParticles": 0,
+        "activeSmoke": 0,
+        "activeSteam": 0,
+        "activeEngineSmoke": 0,
+        "activeDust": 0,
+        "terrain": {
+          "activeClods": 0,
+          "activeGrass": 0,
+          "activeTracks": 0,
+          "counts": {
+            "clods": 0,
+            "grass": 0,
+            "tracks": 0
+          },
+          "capacity": 680
+        },
+        "skidCursor": 0,
+        "carId": "hachi"
+      }
+    }
+  },
+  "limits": "Actual PCM mixer, particle CPU state and mocked dual-rumble output. No speaker audition, GPU rendering or physical controller test."
+}

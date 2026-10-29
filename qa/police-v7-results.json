@@ -1,0 +1,83 @@
+{
+  "status": "passed",
+  "checks": [
+    "Normal local driving does not create wanted heat",
+    "Observed speeding triggers a delayed pursuit and the police car drives through the street graph",
+    "Buildings block detection and offenses outside the detection radius do not create heat",
+    "Losing sight starts a local search area and visible reacquisition resumes the pursuit",
+    "Unsuccessful search produces one escape event, clears heat and returns to patrol",
+    "Arrest requires three stopped seconds near a slow officer, yields the clear station spawn and waits for root respawn",
+    "Police receive reciprocal impact velocity, react without duplicate impulse and expose spatial siren descriptors",
+    "Thirty-six civilians and three patrol cars share intersections for 90 seconds with moving, aligned bodies",
+    "Empty populations and repeated reset/disposal remain safe"
+  ],
+  "limits": [
+    "Police use a road graph with local line-of-sight pursuit and a lightweight planar dynamic vehicle model.",
+    "AI scenarios, collision response and render matrices verified in Node; no browser GPU or audible siren verification."
+  ],
+  "speeding": {
+    "detectedAfterSeconds": 1.1,
+    "distanceMoved": 125.20558177964837,
+    "entries": 1,
+    "maxStepM": 0.1748970314495466,
+    "phase": "chase"
+  },
+  "reacquisition": {
+    "searchRadius": 183.96666666666667,
+    "searchCenter": {
+      "x": 5,
+      "z": -70
+    }
+  },
+  "escape": {
+    "lostTime": 22.499999999999364,
+    "escapes": 1
+  },
+  "arrest": {
+    "event": {
+      "type": "arrest",
+      "phase": "arrested",
+      "heat": 1,
+      "station": {
+        "x": -90,
+        "z": -42,
+        "heading": 0
+      },
+      "serviceId": "police-0"
+    },
+    "requiresExternalRespawn": true
+  },
+  "jointPatrol": {
+    "seconds": 90,
+    "civilianCars": 36,
+    "policeCars": 3,
+    "minOfficerTravelM": 311.7024386766124,
+    "offroad": 0,
+    "maxInstanceErrorM": 0.00003274388057883264,
+    "wallMs": 3873.2780190000003,
+    "entries": 9,
+    "traffic": {
+      "cars": 36,
+      "time": 90.00000000001769,
+      "entries": 127,
+      "turns": 40,
+      "redStops": 96901,
+      "playerStops": 0,
+      "contacts": 0,
+      "horns": 0,
+      "recycled": 0,
+      "emergencyYields": 0,
+      "nearMisses": 0,
+      "courtesyYields": 0,
+      "stopped": 7,
+      "intersectionsOccupied": 5,
+      "yielding": 0,
+      "temperaments": [
+        "cautious",
+        "steady",
+        "assertive"
+      ],
+      "dynamic": true
+    }
+  }
+}
