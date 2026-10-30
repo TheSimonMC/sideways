@@ -1,0 +1,87 @@
+{
+  "status": "passed",
+  "checks": [
+    {
+      "name": "Stationary neutral NOS accepts no throttle, full brake and handbrake; adds shaft torque, consumes bottle, and cannot propel a disconnected gearbox",
+      "maxRpm": 5612.94049269767,
+      "maxNos": 169.8449800658557,
+      "bottle": 0.8200000000000065
+    },
+    {
+      "name": "Failed engine still allows NOS valve activation and bottle use, but gets no combustion torque"
+    },
+    {
+      "name": "Forced high-speed first gear is accepted and wheel-driven overrev damages engine and gearbox",
+      "maxRpm": 10188.59097135455,
+      "maxNos": 0,
+      "engineHealth": 0.9576733057697034,
+      "gearboxHealth": 0.9758634990371153
+    },
+    {
+      "name": "Selecting a short gear with clutch open does not damage an uncoupled engine"
+    },
+    {
+      "name": "Reverse while moving is accepted and produces drivetrain reaction instead of a protected selection",
+      "speed": 23.338713947224623,
+      "engineHealth": 0.9994131284416038,
+      "gearboxHealth": 0.9803271110841741,
+      "rpm": 0
+    },
+    {
+      "name": "Reverse has no artificial road-speed throttle cutoff"
+    },
+    {
+      "name": "Fuel follows SDK injected mass, starvation cuts combustion, and refuel plus starter restores the engine",
+      "usedLitres": 0.006193338132156612,
+      "sdkLitres": 0.006193338132175221,
+      "restartRpm": 4728.39537902721
+    },
+    {
+      "name": "Localized wheel loss removes real contact forces; respawn and car swaps preserve damage; repair and refuel affect only requested systems",
+      "impact": {
+        "damage": 0.5028735632183908,
+        "detached": [
+          1
+        ],
+        "panels": [],
+        "exterior": [
+          "fenderFR"
+        ],
+        "brokenGlass": [],
+        "underbody": [
+          "armFR",
+          "strutFR",
+          "tieRodFR"
+        ],
+        "energyJ": 420000
+      }
+    },
+    {
+      "name": "A wheel-less body settles on chassis support and condition survives serialization",
+      "bodyHeight": -0.21285234716664483
+    },
+    {
+      "name": "Handbrake stall and service-brake burnout still emerge from the coupled drivetrain",
+      "burnout": true,
+      "speed": 0.030238765118422297,
+      "rpm": 5688.152439743542
+    }
+  ],
+  "version": 30,
+  "verifiedInRelease": 30,
+  "suiteSource": "qa/physics-v6-check.mjs",
+  "suiteSHA256": "f10dc1eff70d6e9bbee29a26aa41b58b0b6741996041edd4212d073590f66529",
+  "sourceSHA256": {
+    "dist/drivetrain.js": "9927f12d0ab5de0ad2de6f59b5f5f21cfb1ec0ce6c1efc81ca253ded1efb16d3",
+    "dist/physics.js": "c377b1842e6d647d6612a8a2054d55c24f18bcf8d4d79c13a82b86331605a0a3",
+    "dist/mechanical.js": "e471161ba8f51d2bf6b6c4d95fdc35752c7f93799068609ce2eafcf4f50e278c",
+    "dist/car.js": "c6f5e97a69640ef8eb16c9714eb9f67dfb99d2c8a4621b423b3f47341131950e",
+    "dist/catalog.js": "1b76ec91d6ce4ec7d634433005bf96a1e8cc780411fa874b1821eefb6bd341e1",
+    "dist/career.js": "897e573bee772b0b8e7a265333e5c180d91dce0a163eea3911b88c4a41fe5aab",
+    "dist/garage.js": "8239b3d61c46916e39b5244af31a0fc8fc6bf15728a19075f25c3b2d10185d6e",
+    "dist/audio.js": "df58985fdfd8228901e2dc9db5c1c4862eaab688ed08da1f4bd1cb7e780ce61e",
+    "dist/audio-anchors.js": "ed65635fad9d265e2ab6cd964489bcd703b28397999fd16d4e609fd6fb7a15e5",
+    "dist/main.js": "744dd76fc8ac67f930883e7bc2d711deb16b13f673fda47070eb476a08165d4a",
+    "dist/multiplayer.js": "289d03187ae7dd8f29b68d2958f45f3c92aee542ed5571467bba2f2f531fa97a"
+  }
+}

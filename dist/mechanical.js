@@ -8,7 +8,7 @@ import {createAuxiliaries,snapshotAuxiliaries,auxiliaryResponse,stepAuxiliaries,
 import {createBrakeHydraulics,snapshotBrakeHydraulics,hydraulicFactors,stepBrakeHydraulics,BRAKE_CIRCUITS,BRAKE_FLUID_CAPACITY,brakePedalTravel,repairBrakeCircuit} from './brake-hydraulics.js';
 import {createChassisDamage,snapshotChassisDamage,stepChassisDamage} from './chassis-damage.js';
 import {createTyre,stepTyre,tyrePressure} from './tyres.js';
-import {EXTERIOR_PARTS,exteriorMissing} from './exterior-damage.js';
+import {EXTERIOR_PARTS,exteriorMissing,exteriorLayout} from './exterior-damage.js';
 import {BODY_PANELS,repairBody} from './body-damage.js';
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,Number.isFinite(v)?v:a));
 const smooth=v=>(v=clamp(v,0,1),v*v*(3-2*v));
@@ -283,7 +283,7 @@ export class MechanicalSystem{
   }
   add('body','Body structure','chassis',c.bodyHealth,null);
   for(const [id,panel]of Object.entries(BODY_PANELS)){const zone=c.bodyDamage?.zones[id];if(zone&&(id!=='spoiler'||this.build.selection.spoiler!=='none')){add('panel:'+id,panel.label,'chassis',Math.min(zone.health,zone.mounts??1,zone.latch??1),null);const row=components.at(-1);if(zone.detached){row.status='failed';row.reason='Panel detached';}else{row.reason=[zone.latch<.08?'Latch broken':zone.open?'Open':null,zone.mounts<.75?'Mounts '+Math.round(zone.mounts*100)+'%':null,zone.crush>.01?Math.round(zone.crush*100)+' cm local crush':null].filter(Boolean).join(' · ');}}}
-  for(const [id,part]of Object.entries(EXTERIOR_PARTS)){const p=c.bodyDamage?.exterior?.[id];if(!p)continue;add('exterior:'+id,part.label,'chassis',Math.min(p.health,p.mounts,1-p.scratches*.4),null);const row=components.at(-1);row.reason=exteriorMissing(c.bodyDamage,id)?(p.detached?'Missing / shattered':'Mounting assembly missing'):part.kind==='lamp'&&p.health<=.25?'Lamp circuit broken':p.cracked?'Cracked':p.scratches>.015?'Surface scraped':'';if(exteriorMissing(c.bodyDamage,id))row.status='failed';}
+  for(const [id,part]of Object.entries(exteriorLayout(this.build))){const p=c.bodyDamage?.exterior?.[id];if(!p||part.mass<=0)continue;add('exterior:'+id,part.label,'chassis',Math.min(p.health,p.mounts,1-p.scratches*.4),null);const row=components.at(-1);row.reason=exteriorMissing(c.bodyDamage,id)?(p.detached?'Missing / shattered':'Mounting assembly missing'):part.kind==='lamp'&&p.health<=.25?'Lamp circuit broken':p.cracked?'Cracked':p.scratches>.015?'Surface scraped':'';if(exteriorMissing(c.bodyDamage,id))row.status='failed';}
   for(const [id,d]of Object.entries(UNDERBODY_PARTS)){const part=c.bodyDamage?.underbody?.[id];add('underbody:'+id,d.label,d.kind==='pipe'?'engine':'chassis',underbodyHealth(part),null);const row=components.at(-1);row.reason=part?.detached?'Assembly missing':part?.crush>.01?'Crush '+Math.round(part.crush*100)+'% · mounts '+Math.round(part.mounts*100)+'%':part?.mounts<.99?'Mounts '+Math.round(part.mounts*100)+'%':'';}
   const warn=(id,label,severity,reason)=>warnings.push({id,label,severity,reason});
   for(const [id,d]of Object.entries(UNDERBODY_PARTS))if(c.bodyDamage?.underbody?.[id]?.detached)warn('mount-'+id,d.label+' missing',d.kind==='pipe'?'warning':'critical','Replace this assembly; other damaged components need separate repairs');

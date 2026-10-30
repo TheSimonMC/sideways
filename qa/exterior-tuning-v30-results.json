@@ -1,0 +1,75 @@
+{
+  "version": 30,
+  "status": "passed",
+  "checks": [
+    "41 categories preserve old choices and reject invalid IDs and incompatible GT/stock-tyre combinations before quoting.",
+    "Independent lips and diffusers alter downforce, drag and assembly mass; damage removes their effect without double-counting children.",
+    "Wide kits change wheel track and collision width; lightweight skins and their detached masses agree.",
+    "Every exterior variant fits all four bodies, keeps finite meshes, mounted children, wrap coordinates and connected outlets, and disposes.",
+    "Preview is free; purchase charges once; ownership/build and unrelated damage survive reload and installation."
+  ],
+  "fixtures": {
+    "41 categories preserve old choices and reject invalid IDs and incompatible GT/stock-tyre combinations before quoting.": {},
+    "Independent lips and diffusers alter downforce, drag and assembly mass; damage removes their effect without double-counting children.": {
+      "base": {
+        "front": 247.50000000000003,
+        "rear": 247.50000000000003,
+        "downforce": 495.00000000000006,
+        "pitchMoment": 0,
+        "drag": 387.00000000000006,
+        "dragCoefficient": 0.43000000000000005,
+        "wingEfficiency": 1
+      },
+      "none": {
+        "front": 157.50000000000003,
+        "rear": 211.50000000000003,
+        "downforce": 369.00000000000006,
+        "pitchMoment": -70.19999999999999,
+        "drag": 369,
+        "dragCoefficient": 0.41000000000000003,
+        "wingEfficiency": 1
+      },
+      "race": {
+        "front": 535.5,
+        "rear": 355.5,
+        "downforce": 891,
+        "pitchMoment": 233.99999999999994,
+        "drag": 450,
+        "dragCoefficient": 0.5,
+        "wingEfficiency": 1
+      },
+      "lost": 12
+    },
+    "Wide kits change wheel track and collision width; lightweight skins and their detached masses agree.": {},
+    "Every exterior variant fits all four bodies, keeps finite meshes, mounted children, wrap coordinates and connected outlets, and disposes.": {
+      "variants": 164,
+      "maxMeshes": 209
+    },
+    "Preview is free; purchase charges once; ownership/build and unrelated damage survive reload and installation.": {
+      "charged": 21800
+    }
+  },
+  "sourceSHA256": {
+    "dist/exterior-tuning.js": "683e3350dc2e97130ebd65feb06856666afa2acae01919c0a58c3a53065676fe",
+    "dist/exterior-tuning-view.js": "811de8e4d91ef2329a1206c3566a20b2e8dec59f5f707a09fcc0dc15bb7207af",
+    "dist/catalog.js": "1b76ec91d6ce4ec7d634433005bf96a1e8cc780411fa874b1821eefb6bd341e1",
+    "dist/career.js": "897e573bee772b0b8e7a265333e5c180d91dce0a163eea3911b88c4a41fe5aab",
+    "dist/garage.js": "8239b3d61c46916e39b5244af31a0fc8fc6bf15728a19075f25c3b2d10185d6e",
+    "dist/car.js": "c6f5e97a69640ef8eb16c9714eb9f67dfb99d2c8a4621b423b3f47341131950e",
+    "dist/car-cosmetics.js": "641278971605d77bef1e30c70107f0c3fae4079a38a59bffb3db03a11eb1cb7c",
+    "dist/aerodynamics.js": "344a3d2f041f8bb7be75b8cec8f9f5d60d917338520c522da0fab131ef7df099",
+    "dist/body-layout.js": "1f5b715ba0d9ff07d4914f08ea0710d914053a3efb899ae5fb0b04ba5ca802a4",
+    "dist/exterior-damage.js": "ab8b3b66c28add5b820df1b3e28f3a45285e32617e81c226ec692f69db0a8103",
+    "dist/underbody.js": "2ec4109181c9e244b1734a78842ed53e959d53cb8579edc165f2e67fe0d650f7",
+    "dist/part-shapes.js": "21a5ca2466f692644004b0df5e16ef842e2e9e3a94134f1b357424a861bf6e70",
+    "dist/contact.js": "773fef580f7f4457f73c3cf3ec33b5248f3e4b2bf3217599bb93d8ea9129bd65",
+    "dist/environment.js": "7e4e42b006305dfbb602eebfe9f195dbd24ff240701a05b216997b97f709f607",
+    "dist/mechanical.js": "e471161ba8f51d2bf6b6c4d95fdc35752c7f93799068609ce2eafcf4f50e278c",
+    "dist/main.js": "744dd76fc8ac67f930883e7bc2d711deb16b13f673fda47070eb476a08165d4a",
+    "dist/multiplayer.js": "289d03187ae7dd8f29b68d2958f45f3c92aee542ed5571467bba2f2f531fa97a",
+    "dist/network-cars.js": "ca0588ed14bf67daaf2136ebcc1e4ff8ce6ebfa4d3d851c480f16aa25ef6a7e7"
+  },
+  "limits": [
+    "Native geometry/solver checks do not prove rendered appearance or physical hardware performance; browser verification follows."
+  ]
+}

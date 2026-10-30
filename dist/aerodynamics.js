@@ -1,3 +1,4 @@
+import {frontLip,rearDiffuser,aeroPartMass,resolveExteriorTuning} from './exterior-tuning.js';
 /** Lumped C*rho*A/2 coefficients, in N/(m/s)^2. Fictional calibration,
  * not wind-tunnel data. Factory force/drag totals retain the V17 baseline. */
 import {exteriorMissing,windowAir} from './exterior-damage.js';
@@ -12,12 +13,12 @@ export const AERO_PRICES={wingAngle:{stock:0,low:1200,high:1800}};
 export const wingAngleDegrees=id=>id==='low'?2:id==='high'?14:6;
 export function aeroCompatibility(s,key,id){return key==='wingAngle'&&id!=='stock'&&s.spoiler!=='gt'?'Requires a GT wing.':'';}
 export function resolveAero(vehicle,s){
- const front={stock:.10,street:.17,race:.42}[s.frontBumper],rear={stock:.04,street:.06,race:.16}[s.rearBumper];
+ const front={none:0,stock:.10,street:.17,race:.42}[frontLip(s)],rear={none:0,stock:.04,street:.06,race:.16}[rearDiffuser(s)];
  const wing={none:0,stock:.18,ducktail:.25,gt:s.wingAngle==='low'?.30:s.wingAngle==='high'?.95:.55}[s.spoiler];
- const frontDrag={stock:.015,street:.025,race:.07}[s.frontBumper],rearDrag={stock:.005,street:.008,race:.02}[s.rearBumper],wingDrag={none:0,stock:.025,ducktail:.035,gt:s.wingAngle==='low'?.045:s.wingAngle==='high'?.18:.09}[s.spoiler];
+ const frontDrag={none:0,stock:.015,street:.025,race:.07}[frontLip(s)],rearDrag={none:0,stock:.005,street:.008,race:.02}[rearDiffuser(s)],wingDrag={none:0,stock:.025,ducktail:.035,gt:s.wingAngle==='low'?.045:s.wingAngle==='high'?.18:.09}[s.spoiler];
  const wheelbase=vehicle.frontAxle+vehicle.rearAxle;
- return {front,rear,wing,frontDrag,rearDrag,wingDrag,bodyFront:.55*vehicle.rearAxle/wheelbase-.10,bodyRear:.55*vehicle.frontAxle/wheelbase-.22,bodyDrag:.385,
-  mass:({none:-2,stock:0,ducktail:1,gt:6}[s.spoiler])+({stock:0,street:1,race:3}[s.frontBumper])+({stock:0,street:1,race:3}[s.rearBumper])+(s.wingAngle==='stock'?0:1)};
+ return {front,rear,wing,frontDrag,rearDrag,wingDrag,bodyFront:.55*vehicle.rearAxle/wheelbase-.10,bodyRear:.55*vehicle.frontAxle/wheelbase-.22,bodyDrag:.385+resolveExteriorTuning(s).dragExtra,
+  mass:({none:-2,stock:0,ducktail:1,gt:6}[s.spoiler])+aeroPartMass(frontLip(s))+aeroPartMass(rearDiffuser(s))+(s.wingAngle==='stock'?0:1)};
 }
 export function aerodynamicForces(build,condition,speed,forward=speed,lateral=0){
  const a=build.physics.aero,zone=id=>{const p=condition?.bodyDamage?.zones?.[id];return p?.detached?0:Math.max(0,Math.min(1,p?.health??1))**2;};

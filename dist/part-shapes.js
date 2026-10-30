@@ -1,3 +1,4 @@
+import {outletPositions} from './exterior-tuning.js';
 import {underbodyLayout} from './underbody.js';
 import {bodyLayout,panelCenter} from './body-layout.js';
 import {exteriorLayout} from './exterior-damage.js';
@@ -14,7 +15,7 @@ export function partShapes(build){
   all[id]={...part,center,half};
  }
  for(const [id,part]of Object.entries(exteriorLayout(build))){
-  const half=id.startsWith('glass')?[W*.72,.23,.05]:id.startsWith('lamp')?[.27,.14,.15]:id.startsWith('mirror')?[.14,.10,.16]:id.startsWith('skirt')?[.10,.10,L*.68]:id.startsWith('fender')?[.16,.29,.57]:id==='splitter'||id==='diffuser'?[W*1.10,.07,.32]:id==='grille'?[W*.58,.14,.05]:[build.vehicle.model.kind==='muscle'?.78:.22,.08,.18];
+  const half=id.startsWith('glass')?[W*.72,.23,.05]:id.startsWith('lamp')?[.27,.14,.15]:id.startsWith('mirror')?[.14,.10,.16]:id.startsWith('skirt')?[.10,.10,L*.68]:id.startsWith('fender')?[.16,.29,.57]:id==='splitter'||id==='diffuser'?[W*1.10,.07,.32]:id==='grille'?[W*.58,.14,.05]:[(Math.max(...outletPositions(build.vehicle.model.kind,build.selection))-Math.min(...outletPositions(build.vehicle.model.kind,build.selection)))/2+.10,.10,.18];
   const hinge=all[part.parent];all['exterior:'+id]={...part,half,...(hinge?.pivot?{pivot:hinge.pivot,axis:hinge.axis,sign:hinge.sign}: {})};
  }
  for(const [id,part]of Object.entries(underbodyLayout(build)))all['underbody:'+id]=part;

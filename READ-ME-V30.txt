@@ -1,0 +1,24 @@
+SIDEWAYS V30 – EXTERIOR TUNING
+
+Open SIDEWAYS.html for offline single-player. Multiplayer needs internet.
+Online: https://thesimonmc.github.io/sideways/
+
+Garage now contains 41 separate categories. Eleven new categories cover lips,
+diffusers, fenders, widebody, grilles, outlets, lamps, paint, wraps, decals and
+tint. Preview is free; Install charges the displayed cost once. GT widebody
+requires WIDE or EXTRA-WIDE WHEELS. Existing damaged parts stay damaged.
+Tint changes visibility inside and outside; darker glass reduces night vision.
+All multiplayer participants must reload V30 (protocol 19).
+
+Report: docs/phase-5a-exterior-report.md
+Checklist: docs/goal.txt and docs/goal-progress.md/.json
+Evidence: qa/release-v30.json
+Next: Phase 5B interior tuning, then compressor and mounting integration.
+
+Build: npm ci, then node build.mjs (Node.js 24).
+Checks: node qa/regressions-v30.mjs and *-v30-check.mjs.
+Browser: *-browser-v30.cjs with Playwright and Chromium. Set
+CODEX_PRIMARY_RUNTIME_NODE_MODULES to node_modules containing playwright;
+PLAYWRIGHT_CHROMIUM_EXECUTABLE to the Chromium executable.
+Run browser suites and CPU-heavy native suites serially.
+Package: node qa/package-v30.mjs <output-directory>.

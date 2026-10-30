@@ -1,0 +1,26 @@
+{
+  "status": "passed",
+  "checks": [
+    "Road recovery keeps condition, preventing an accidental change to the recovery mechanic",
+    "Restart repairs engine, body, wheels, brakes and suspension, refills fuel/NOS and restarts engine",
+    "The restored condition survives garage serialization and a new physics instance",
+    "New county coordinates and hill elevation survive network validation; old map sessions use a different protocol"
+  ],
+  "version": 30,
+  "verifiedInRelease": 30,
+  "suiteSource": "qa/restart-v15-check.mjs",
+  "suiteSHA256": "9a186783ea8f064ea9b15c6905da9dd161cb175c474174a3fa3abf80407bb5c5",
+  "sourceSHA256": {
+    "dist/drivetrain.js": "9927f12d0ab5de0ad2de6f59b5f5f21cfb1ec0ce6c1efc81ca253ded1efb16d3",
+    "dist/physics.js": "c377b1842e6d647d6612a8a2054d55c24f18bcf8d4d79c13a82b86331605a0a3",
+    "dist/mechanical.js": "e471161ba8f51d2bf6b6c4d95fdc35752c7f93799068609ce2eafcf4f50e278c",
+    "dist/car.js": "c6f5e97a69640ef8eb16c9714eb9f67dfb99d2c8a4621b423b3f47341131950e",
+    "dist/catalog.js": "1b76ec91d6ce4ec7d634433005bf96a1e8cc780411fa874b1821eefb6bd341e1",
+    "dist/career.js": "897e573bee772b0b8e7a265333e5c180d91dce0a163eea3911b88c4a41fe5aab",
+    "dist/garage.js": "8239b3d61c46916e39b5244af31a0fc8fc6bf15728a19075f25c3b2d10185d6e",
+    "dist/audio.js": "df58985fdfd8228901e2dc9db5c1c4862eaab688ed08da1f4bd1cb7e780ce61e",
+    "dist/audio-anchors.js": "ed65635fad9d265e2ab6cd964489bcd703b28397999fd16d4e609fd6fb7a15e5",
+    "dist/main.js": "744dd76fc8ac67f930883e7bc2d711deb16b13f673fda47070eb476a08165d4a",
+    "dist/multiplayer.js": "289d03187ae7dd8f29b68d2958f45f3c92aee542ed5571467bba2f2f531fa97a"
+  }
+}

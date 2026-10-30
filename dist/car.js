@@ -1,3 +1,5 @@
+import {makePaintFinish,bindPaintCoordinates,makeWindowMaterial,addExteriorTuning} from './exterior-tuning-view.js';
+import {outletPositions,outletHeight} from './exterior-tuning.js';
 import {createInterior} from './interior.js';
 import {createUnderbodyView} from './underbody-view.js';
 import {underbodyLayout,exhaustRoute} from './underbody.js';
@@ -91,7 +93,7 @@ function decalTexture(text, width = 256, height = 128, color = '#f7f6dc', bg = n
   return texture;
 }
 function decal(parent, texture, x, y, z, w, h, ry = 0, rx = 0) {
-  const m = new THREE.MeshBasicMaterial({map:texture, transparent:true, side:THREE.DoubleSide, depthWrite:false, polygonOffset:true, polygonOffsetFactor:-2});
+  const m = new THREE.MeshBasicMaterial({map:texture, transparent:true, side:THREE.FrontSide, depthWrite:false, polygonOffset:true, polygonOffsetFactor:-2});
   const mesh = new THREE.Mesh(new THREE.PlaneGeometry(w,h), m); mesh.position.set(x,y,z); mesh.rotation.set(rx,ry,0); mesh.renderOrder=3; parent.add(mesh); return mesh;
 }
 
@@ -120,7 +122,7 @@ export function createCar(scene, initialBuild = resolveBuild()) {
     const spec=build.vehicle.model,p=build.physics,kind=spec.kind,L=spec.length*.5,W=spec.width*.46,R=p.wheelRadius;
     group.name=build.vehicle.name;
     const content=new THREE.Group(),chassis=new THREE.Group();group.add(content);content.add(chassis);
-    const paint=material(paintHex),dark=material(INK),graphite=material(0x242938),glass=material(0x659b9d,{roughness:.26,metalness:.20,transparent:true,opacity:.58,depthWrite:false});
+    const paint=material(paintHex),dark=material(INK),graphite=material(0x242938),glass=makeWindowMaterial(build.selection);makePaintFinish(paint,build.selection);
     const glint=new THREE.MeshBasicMaterial({color:0x81d9cf,side:THREE.DoubleSide});
     const white=material(0xf3f0df),accent=material(kind==='muscle'?CYAN:PINK),rubber=material(0x10111a),chrome=material(0xa4adb4,{metalness:.78,roughness:.28});
     const headlamp=new THREE.MeshStandardMaterial({color:0xd7e8ec,emissive:0xd2eaff,emissiveIntensity:2.5,roughness:.25});
@@ -138,8 +140,8 @@ export function createCar(scene, initialBuild = resolveBuild()) {
     const frontBumper=box(chassis,0,.34,L*.976,W*2.02,.12,.17,kind==='muscle'?chrome:graphite,true);frontBumper.userData.panel='front';
     const rearBumper=box(chassis,0,.35,-L*.976,W*2.02,.15,.17,kind==='muscle'?chrome:graphite,true);rearBumper.userData.panel='rear';
     // Splitter, separate grille and sculpted lamps give each body its own face.
-    panel(chassis,[[-W*1.04,.31,L*1.015],[W*1.04,.31,L*1.015],[W*1.10,.28,L*.78],[-W*1.10,.28,L*.78]],graphite).userData.exterior='splitter';
-    box(chassis,0,kind==='wedge'?.435:kind==='muscle'?.68:.51,L*.974,W*1.12,kind==='muscle'?.24:.15,.035,dark).userData.exterior='grille';
+
+    if(build.selection.grille==='stock')box(chassis,0,kind==='wedge'?.435:kind==='muscle'?.68:.51,L*.974,W*1.12,kind==='muscle'?.24:.15,.035,dark).userData.exterior='grille';
     const hoodTrim=new THREE.Group();hoodTrim.userData.panel='hood';chassis.add(hoodTrim);
     if(kind==='muscle'){
       for(const side of [-1,1])for(const off of [-.125,.125]){
@@ -171,11 +173,12 @@ export function createCar(scene, initialBuild = resolveBuild()) {
         for(const side of [-1,1])box(hoodTrim,side*.47,.872,.97,.045,.028,.66,graphite);
       }
     }
+    if(build.selection.livery!=='stock')hoodTrim.visible=false;
     // Four glass planes, roof, visible pillars and specular comic strokes.
     const sideW=W*.79,rw=q.roofW;
     panel(chassis,[[-sideW,q.sill,q.screenBack],[sideW,q.sill,q.screenBack],[rw,q.roof,q.roofBack],[-rw,q.roof,q.roofBack]],glass).userData.exterior='glassRear';
     panel(chassis,[[-rw,q.roof,q.roofBack],[rw,q.roof,q.roofBack],[rw,q.roof+.018,q.roofFront],[-rw,q.roof+.018,q.roofFront]],paint);
-    if(kind!=='muscle')panel(chassis,[[-rw+.07,q.roof+.01,q.roofBack+.06],[rw-.07,q.roof+.01,q.roofBack+.06],[rw-.07,q.roof+.028,q.roofFront-.06],[-rw+.07,q.roof+.028,q.roofFront-.06]],dark,false);
+    if(kind!=='muscle'&&build.selection.livery==='stock')panel(chassis,[[-rw+.07,q.roof+.01,q.roofBack+.06],[rw-.07,q.roof+.01,q.roofBack+.06],[rw-.07,q.roof+.028,q.roofFront-.06],[-rw+.07,q.roof+.028,q.roofFront-.06]],dark,false);
     panel(chassis,[[-rw,q.roof+.018,q.roofFront],[rw,q.roof+.018,q.roofFront],[sideW,q.sill,q.screenFront],[-sideW,q.sill,q.screenFront]],glass).userData.exterior='glassFront';
     const windshieldGlint=panel(chassis,[[-rw+.035,q.roof+.017,q.roofFront+.025],[-rw+.14,q.roof+.017,q.roofFront+.025],[-sideW+.16,q.sill+.018,q.screenFront-.04],[-sideW+.035,q.sill+.018,q.screenFront-.04]],glint,false);windshieldGlint.userData.exterior='glassFront';
     for(const side of [-1,1]){
@@ -187,18 +190,7 @@ export function createCar(scene, initialBuild = resolveBuild()) {
       box(chassis,side*W*.98,.73,-.44,.035,.035,.18,dark).userData.panel=side<0?'left':'right';
       box(chassis,side*W*1.04,q.sill+.01,q.screenFront-.26,.17,.10,.22,graphite,true).userData.exterior=side<0?'mirrorLeft':'mirrorRight';
       if(build.selection.sideSkirts==='stock')box(chassis,side*W*1.015,.29,0,.13,.10,1.76,graphite,true).userData.exterior=side<0?'skirtLeft':'skirtRight';
-      panel(chassis,[[side*W*1.004,.49,-1.02],[side*W*1.004,.72,-.61],[side*W*1.004,.72,-.40],[side*W*1.004,.49,-.81]],accent,false).userData.panel=side<0?'left':'right';
-      // Angular over-fenders stay fixed to the sprung body, wheels move inside them.
-      for(const z0 of [p.frontAxle,-p.rearAxle]){
-        const shape=new THREE.Shape(),outer=R+.095,inner=R+.041;
-        shape.moveTo(z0+outer,R+.015);
-        for(let j=0;j<=8;j++){const a=Math.PI*j/8;shape.lineTo(z0+Math.cos(a)*outer,R+.015+Math.sin(a)*outer);}
-        for(let j=8;j>=0;j--){const a=Math.PI*j/8;shape.lineTo(z0+Math.cos(a)*inner,R+.015+Math.sin(a)*inner);}shape.closePath();
-        const geo=new THREE.ShapeGeometry(shape),positions=geo.attributes.position;
-        for(let i=0;i<positions.count;i++){const z=positions.getX(i),y=positions.getY(i);positions.setXYZ(i,side*(p.halfTrack+(p.tyreWidth??.27)*.5+.008),y,z);}geo.computeVertexNormals();
-        const fender=new THREE.Mesh(geo,paint);fender.castShadow=true;outline(fender);chassis.add(fender);ext(fender,'fender'+(z0>0?'F':'R')+(side<0?'L':'R'));
-        for(const dz of [-.30,.30])box(chassis,side*(p.halfTrack+(p.tyreWidth??.27)*.5+.013),.54,z0+dz,.018,.028,.028,dark).userData.exterior='fender'+(z0>0?'F':'R')+(side<0?'L':'R');
-      }
+      if(build.selection.livery==='stock')panel(chassis,[[side*W*1.004,.49,-1.02],[side*W*1.004,.72,-.61],[side*W*1.004,.72,-.40],[side*W*1.004,.49,-.81]],accent,false).userData.panel=side<0?'left':'right';
     }
     // Tail treatment: round sports lamps, long muscle strips or upright tourer clusters.
     for(const side of [-1,1]){
@@ -213,7 +205,7 @@ export function createCar(scene, initialBuild = resolveBuild()) {
       }
     }
     box(chassis,0,.60,-L*.992,.29,.13,.022,white);
-    for(const x of [-.47,0,.47])box(chassis,x,.23,-L*.94,.04,.14,.32,dark).userData.exterior='diffuser';
+
     if(build.selection.spoiler==='stock'){
     const wingRoot=new THREE.Group();wingRoot.name='factory-spoiler';wingRoot.userData.panel='spoiler';chassis.add(wingRoot);
     if(kind==='coupe'){
@@ -230,12 +222,15 @@ export function createCar(scene, initialBuild = resolveBuild()) {
     }
     }
     addCosmetics({chassis,selection:build.selection,q,L,W,paint,dark,graphite,chrome,accent,box,panel,beam});
-    const flames=[],exhaustMouths=[];
-    const pipes=kind==='muscle'?[-.70,.70]:kind==='wedge'?[.60]:[.61,.77];
+    if(build.selection.lightDesign!=='stock'){const old=[];chassis.traverse(n=>{if(n.userData.exterior?.startsWith('lamp'))old.push(n);});for(const n of old){n.parent?.remove(n);n.traverse(v=>{v.geometry?.dispose();if(v.isLineSegments)v.material.dispose();});}}
+    if(build.selection.fenders==='carbon')chassis.traverse(n=>{if(n.name?.startsWith('body-skin-fender'))n.material=graphite;});
+    addExteriorTuning({chassis,build,q,L,W,paint,dark,graphite,chrome,accent,lampMaterials,box,panel,beam});
+    const flames=[],exhaustMouths=[],titanium=build.selection.exhaustTips==='twin'?material(0x587cbe,{roughness:.3,metalness:.7}):null;
+    const pipes=outletPositions(kind,build.selection),outletY=outletHeight(build.selection);
     for(const x of pipes){
-      const pipe=new THREE.Mesh(new THREE.CylinderGeometry(.062,.062,.23,8),chrome);pipe.rotation.x=Math.PI/2;pipe.position.set(x,.32,-L*.976);chassis.add(pipe);ext(pipe,'exhaustTip');
-      const hole=new THREE.Mesh(new THREE.CircleGeometry(.049,8),dark);hole.rotation.y=Math.PI;hole.position.set(x,.32,-L*.976-.119);chassis.add(hole);ext(hole,'exhaustTip');exhaustMouths.push(hole);
-      const flame=new THREE.Mesh(new THREE.ConeGeometry(.12,.90,5),new THREE.MeshBasicMaterial({color:NOS_BLUE,transparent:true,opacity:.85,side:THREE.DoubleSide,blending:THREE.AdditiveBlending,depthWrite:false}));flame.rotation.x=-Math.PI/2;flame.position.set(x,.32,-L*.976-.48);flame.visible=false;chassis.add(flame);flames.push(flame);
+      const pipe=new THREE.Mesh(new THREE.CylinderGeometry(build.selection.exhaustTips==='single'?.09:.062,build.selection.exhaustTips==='single'?.09:.062,.23,12),chrome);pipe.rotation.x=Math.PI/2;pipe.position.set(x,outletY,-L*.976);chassis.add(pipe);ext(pipe,'exhaustTip');if(build.selection.exhaustTips==='twin'){const rim=new THREE.Mesh(new THREE.TorusGeometry(.062,.012,4,12),titanium);rim.position.set(x,outletY,-L*.976-.11);chassis.add(rim);ext(rim,'exhaustTip');}
+      const hole=new THREE.Mesh(new THREE.CircleGeometry(build.selection.exhaustTips==='single'?.076:.049,12),dark);hole.rotation.y=Math.PI;hole.position.set(x,outletY,-L*.976-.119);chassis.add(hole);ext(hole,'exhaustTip');exhaustMouths.push(hole);
+      const flame=new THREE.Mesh(new THREE.ConeGeometry(.12,.90,5),new THREE.MeshBasicMaterial({color:NOS_BLUE,transparent:true,opacity:.85,side:THREE.DoubleSide,blending:THREE.AdditiveBlending,depthWrite:false}));flame.rotation.x=-Math.PI/2;flame.position.set(x,outletY,-L*.976-.48);flame.visible=false;chassis.add(flame);flames.push(flame);
       const core=new THREE.Mesh(new THREE.ConeGeometry(.055,.58,5),new THREE.MeshBasicMaterial({color:0xe5ffff,transparent:true,opacity:.9,blending:THREE.AdditiveBlending,depthWrite:false}));flame.add(core);
     }
     if(build.selection.chassis==='reinforced'){for(const side of [-1,1]){beam(chassis,[side*W*.68,.40,-.80],[side*q.roofW*.88,q.roof-.08,-.46],.045,graphite);beam(chassis,[side*q.roofW*.88,q.roof-.08,-.46],[-side*W*.68,.40,-.80],.035,graphite);}}
@@ -271,15 +266,17 @@ export function createCar(scene, initialBuild = resolveBuild()) {
       wheels.push(pivot);spinGroups.push({spin,pivot,front,side,index,tyre,rotor,tyreBase:tyre.geometry.attributes.position.array.slice(),tyreShape:null});
     }
     const underbody=createUnderbodyView(chassis,build);
-    const number=decalTexture(spec.number,256,128,'#f5f0da');
-    for(const side of [-1,1])decal(chassis,number,side*W*1.01,.68,-.02,.62,.29,side*Math.PI/2).userData.panel=side<0?'left':'right';
-    const roofNo=decal(chassis,number,0,q.roof+.033,(q.roofBack+q.roofFront)*.5,.63,.39,0,-Math.PI/2);roofNo.rotation.z=Math.PI;
+    const lettering=build.selection.decals==='club'?'SIDEWAYS':build.selection.decals==='works'?'WORKS '+spec.number:spec.number;
+    const number=build.selection.decals==='none'?null:decalTexture(lettering,512,128,'#f5f0da');
+    if(number)for(const side of [-1,1])decal(chassis,number,side*W*1.01,.68,-.02,build.selection.decals==='stock'?.62:1.35,.29,side*Math.PI/2).userData.panel=side<0?'left':'right';
+    if(number){const roofNo=decal(chassis,number,0,q.roof+.033,(q.roofBack+q.roofFront)*.5,.63,.39,0,-Math.PI/2);roofNo.rotation.z=Math.PI;}
     decal(chassis,decalTexture(spec.number,128,64,'#111321'),0,.605,-L*1.004,.23,.10,Math.PI);
     const shadow=new THREE.Mesh(new THREE.CircleGeometry(1,24),new THREE.MeshBasicMaterial({color:0x080e1b,transparent:true,opacity:.27,depthWrite:false}));shadow.rotation.x=-Math.PI/2;shadow.scale.set(W*1.20,L*1.06,1);shadow.position.y=.018;shadow.renderOrder=1;content.add(shadow);
     const glow=new THREE.Mesh(new THREE.PlaneGeometry(W*1.85,L*1.5),new THREE.MeshBasicMaterial({color:CYAN,transparent:true,opacity:.08,depthWrite:false,blending:THREE.AdditiveBlending}));glow.rotation.x=-Math.PI/2;glow.position.y=.024;content.add(glow);
     const ribbon=new THREE.Group();ribbon.visible=false;content.add(ribbon);
     const ribbonMat=new THREE.MeshBasicMaterial({color:NOS_BLUE,side:THREE.DoubleSide,transparent:true,opacity:.65,depthWrite:false});
     for(const side of [-1,1])panel(ribbon,[[side*W,.53,-L*.86],[side*W*1.3,.80,-L-1.4],[side*W,.55,-L-2.8],[side*W*.8,.48,-L]],ribbonMat,false);
+    bindPaintCoordinates(chassis,paint);chassis.traverse(n=>{if(n.isMesh&&n.material===glass)n.castShadow=false;});
     // Collect tagged children before mounting their assemblies. Nested cosmetic
     // groups retain their own materials and tuning geometry.
     const tagged=[];chassis.traverse(n=>{if(n.userData.exterior)tagged.push(n);});
@@ -292,7 +289,7 @@ export function createCar(scene, initialBuild = resolveBuild()) {
     for(const [id,root]of Object.entries(exteriorRoots)){const parent=panelRoots[EXTERIOR_PARTS[id].parent];if(parent){root.position.sub(parent.position);parent.add(root);}}
     chassis.updateMatrixWorld(true);const bodyInverse=chassis.matrixWorld.clone().invert(),deformables=[];
     chassis.traverse(node=>{if(node.isMesh){let ancestor=node;while(ancestor){if(ancestor.userData.panel&&!node.userData.panel)node.userData.panel=ancestor.userData.panel;if(ancestor.userData.exterior&&!node.userData.exterior)node.userData.exterior=ancestor.userData.exterior;ancestor=ancestor.parent;}}if(node.userData.interior||node.userData.underbody||!node.isMesh||!node.geometry?.attributes.position||node.material?.blending===THREE.AdditiveBlending)return;const toBody=bodyInverse.clone().multiply(node.matrixWorld);deformables.push({mesh:node,base:node.geometry.attributes.position.array.slice(),toBody,toLocal:toBody.clone().invert()});});
-    model={content,chassis,interior,windshieldGlint,underbody,layout,panelRoots,exteriorRoots,lampMaterials,paint,headlamp,tail,glow,shadow,flames,exhaustMouths,ribbon,wheels,spinGroups,shell,shellBase,deformables,bodyRevision:-1,bodyState:null,health:1};
+    model={content,chassis,interior,windshieldGlint,underbody,layout,panelRoots,exteriorRoots,lampMaterials,paint,glass,headlamp,tail,glow,shadow,flames,exhaustMouths,ribbon,wheels,spinGroups,shell,shellBase,deformables,bodyRevision:-1,bodyState:null,health:1};
   }
   assemble(initialBuild);
   return {
@@ -305,6 +302,7 @@ export function createCar(scene, initialBuild = resolveBuild()) {
     get underbodyParts(){return model.underbody.roots;},
     get bodyParts(){return model.panelRoots;},
     exteriorDiagnostics(){return Object.fromEntries(Object.entries(model.exteriorRoots).map(([id,root])=>[id,{visible:root.visible&&root.parent.visible,meshes:(()=>{let n=0;root.traverse(x=>{if(x.isMesh)n++;});return n;})(),emissive:model.lampMaterials[id]?.emissiveIntensity}]));},
+    tuningDiagnostics(){return {selection:build.selection,mass:build.physics.mass,width:build.physics.bodyWidth,track:build.physics.halfTrack*2,glassTransmission:model.glass.userData.transmission,glassOpacity:model.glass.opacity,paintRoughness:model.paint.roughness,paintMetalness:model.paint.metalness,outlets:model.exhaustMouths.map(m=>m.position.x)};},
     get exteriorParts(){return model.exteriorRoots;},
     get wheels(){return model.wheels;},
     get bounds(){return {...build.vehicle.model};},

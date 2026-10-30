@@ -1,3 +1,4 @@
+import {outletPositions,outletHeight} from './exterior-tuning.js';
 // Structural mounts are separate from the existing damper, bearing and engine
 // wear. These fixed keys are shared by saves, network, repairs and geometry.
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,Number.isFinite(v)?v:a));
@@ -23,7 +24,7 @@ export function underbodyLayout(build){
   else if(d.kind==='rod')lines=[[[side*.35,.36,z-.17],[x-side*.10,p.wheelRadius,z-.15]]];
   else if(id==='exhaustFront')lines=[[[.22,.56,L*.60],[.28,.18,L*.29]],[[.28,.18,L*.29],[.23,.18,.08]]];
   else if(id==='exhaustCenter'){lines=[[[.23,.18,.08],[.23,.18,-L*.53]]];can={center:[.23,.18,-L*.26],size:[.22,.16,.42]};}
-  else {const ends=build.vehicle.model.kind==='muscle'?[-.70,.70]:build.vehicle.model.kind==='wedge'?[.60]:[.61,.77];lines=[[[.23,.18,-L*.53],[.23,.24,-L*.73]],...ends.map(e=>[[.23,.24,-L*.73],[e,.32,-L*.925]])];can={center:[.23,.24,-L*.73],size:[.55,.20,.33]};}
+  else {const ends=outletPositions(build.vehicle.model.kind,build.selection);lines=[[[.23,.18,-L*.53],[.23,.24,-L*.73]],...ends.map(e=>[[.23,.24,-L*.73],[e,outletHeight(build.selection),-L*.925]])];can={center:[.23,.24,-L*.73],size:[.55,.20,.33]};}
   const points=lines.flat(),padding=d.kind==='strut'?.10:.06,lo=[0,1,2].map(n=>Math.min(...points.map(v=>v[n]))-padding),hi=[0,1,2].map(n=>Math.max(...points.map(v=>v[n]))+padding);
   if(can)for(let n=0;n<3;n++){lo[n]=Math.min(lo[n],can.center[n]-can.size[n]/2);hi[n]=Math.max(hi[n],can.center[n]+can.size[n]/2);}
   const center=lo.map((v,n)=>(v+hi[n])/2),half=lo.map((v,n)=>(hi[n]-v)/2);

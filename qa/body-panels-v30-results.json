@@ -1,0 +1,69 @@
+{
+  "version": 30,
+  "status": "passed",
+  "checks": [
+    "V1 body saves migrate mounts and hinges without healing crush; malformed values remain finite.",
+    "Stopped car opens four actual hinges, high-speed operation is rejected, positions persist and selective repair leaves other panels damaged.",
+    "Hit-side energy breaks door mounts, detaches the actual side, changes mass and static load, and repair restores them.",
+    "Damaged latch opens under airflow; compromised mounts can tear away, damage-off preserves mounts and open panels increase drag.",
+    "Detached proxies bounce from rotated static walls, slide on terrain, expire by age/distance and remain bounded after repeated repairs.",
+    "Four authored bodies contain separate nonempty skins, working hinge transforms and exact-shaped loose pieces; no second intact skin fills the openings.",
+    "An open door catches an obstacle outside the closed car body and transfers an impulse only to that side.",
+    "Opening or losing a door increases the speed-dependent wind signal and preserves finite, limited PCM.",
+    "Protocol 19 sanitizes bounded panel poses and keeps hinged/detached state for remote cars without extra messages."
+  ],
+  "fixtures": {
+    "V1 body saves migrate mounts and hinges without healing crush; malformed values remain finite.": {},
+    "Stopped car opens four actual hinges, high-speed operation is rejected, positions persist and selective repair leaves other panels damaged.": {},
+    "Hit-side energy breaks door mounts, detaches the actual side, changes mass and static load, and repair restores them.": {},
+    "Damaged latch opens under airflow; compromised mounts can tear away, damage-off preserves mounts and open panels increase drag.": {},
+    "Detached proxies bounce from rotated static walls, slide on terrain, expire by age/distance and remain bounded after repeated repairs.": {
+      "contacts": 1,
+      "speed": 0
+    },
+    "Four authored bodies contain separate nonempty skins, working hinge transforms and exact-shaped loose pieces; no second intact skin fills the openings.": [
+      {
+        "car": "hachi",
+        "looseMeshes": 12
+      },
+      {
+        "car": "atlas",
+        "looseMeshes": 12
+      },
+      {
+        "car": "kitsune",
+        "looseMeshes": 12
+      },
+      {
+        "car": "vector",
+        "looseMeshes": 12
+      }
+    ],
+    "An open door catches an obstacle outside the closed car body and transfers an impulse only to that side.": {},
+    "Opening or losing a door increases the speed-dependent wind signal and preserves finite, limited PCM.": {
+      "closed": 0.0620256,
+      "open": 0.08029305995035523,
+      "missing": 0.08373456
+    },
+    "Protocol 19 sanitizes bounded panel poses and keeps hinged/detached state for remote cars without extra messages.": {}
+  },
+  "sourceSHA256": {
+    "dist/body-layout.js": "1f5b715ba0d9ff07d4914f08ea0710d914053a3efb899ae5fb0b04ba5ca802a4",
+    "dist/body-hinges.js": "2f59f6d0eb1bb31ffa9a1e8128be3f58b57275ea1ee768b57813e3b1c18c1a24",
+    "dist/body-damage.js": "f55beaadbcbf101620007d75b56ab042b521a076d3f7865ff213c13dfff3be97",
+    "dist/panel-debris.js": "216ff0fcdc218f9ec96c11e94a9ca6c8acb3e2c492d7b955f86f864a7e10f822",
+    "dist/physics.js": "c377b1842e6d647d6612a8a2054d55c24f18bcf8d4d79c13a82b86331605a0a3",
+    "dist/car.js": "c6f5e97a69640ef8eb16c9714eb9f67dfb99d2c8a4621b423b3f47341131950e",
+    "dist/mechanical.js": "e471161ba8f51d2bf6b6c4d95fdc35752c7f93799068609ce2eafcf4f50e278c",
+    "dist/aerodynamics.js": "344a3d2f041f8bb7be75b8cec8f9f5d60d917338520c522da0fab131ef7df099",
+    "dist/multiplayer.js": "289d03187ae7dd8f29b68d2958f45f3c92aee542ed5571467bba2f2f531fa97a",
+    "dist/network-cars.js": "ca0588ed14bf67daaf2136ebcc1e4ff8ce6ebfa4d3d851c480f16aa25ef6a7e7",
+    "dist/main.js": "744dd76fc8ac67f930883e7bc2d711deb16b13f673fda47070eb476a08165d4a",
+    "dist/audio.js": "df58985fdfd8228901e2dc9db5c1c4862eaab688ed08da1f4bd1cb7e780ce61e",
+    "dist/car-cosmetics.js": "641278971605d77bef1e30c70107f0c3fae4079a38a59bffb3db03a11eb1cb7c"
+  },
+  "limits": [
+    "Authored rigid box proxies, no full soft body or debris-to-debris collision.",
+    "Full Phase 4 interior/Phase 6 engine bay remain open; exterior integration has a separate V28 suite."
+  ]
+}

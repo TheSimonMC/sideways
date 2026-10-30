@@ -1,3 +1,4 @@
+import {lampSpecification} from './exterior-tuning.js';
 import * as THREE from './vendor/three.module.js';
 import {lampOutput} from './exterior-damage.js';
 import {RoadWeather} from './weather.js';
@@ -52,8 +53,8 @@ export class DayNight {
   this.scene.fog.color.copy(this._fogDay).lerp(this._fogNight,this.night);this.scene.fog.near=mix(220,130,this.night);this.scene.fog.far=mix(this.world?.region?2400:980,this.world?.region?1200:610,this.night);
   this.scene.fog.near*=1-rain*.65;this.scene.fog.far*=1-rain*.6;
   this.weatherView.update(state,camera,time,settings.quality);this.renderer.toneMappingExposure=mix(1.03,.91,this.night);
-  const heading=state.heading||0,sn=Math.sin(heading),cs=Math.cos(heading),on=!!settings.headlights;
-  for(const {light,side}of this.headlights){light.position.set(x+sn*1.9+cs*side*.65,(state.bodyHeight||0)+.68,z+cs*1.9-sn*side*.65);light.target.position.set(x+sn*32+cs*side*.7,(state.groundHeight||0)+.03,z+cs*32-sn*side*.7);light.intensity=on?mix(12,45,this.night)*(state.mechanical?.auxiliaries?.lampFactor??1)*lampOutput(state.bodyDamage,side<0?'lampFL':'lampFR'):0;light.castShadow=on&&light.intensity>0&&side<0&&settings.quality==='high';light.target.updateMatrixWorld();}
+  const heading=state.heading||0,sn=Math.sin(heading),cs=Math.cos(heading),on=!!settings.headlights,lamp=lampSpecification(context.build?.selection);
+  for(const {light,side}of this.headlights){light.color.setHex(lamp.color);light.distance=lamp.range;light.angle=lamp.angle;light.position.set(x+sn*1.9+cs*side*.65,(state.bodyHeight||0)+.68,z+cs*1.9-sn*side*.65);light.target.position.set(x+sn*32+cs*side*.7,(state.groundHeight||0)+.03,z+cs*32-sn*side*.7);light.intensity=on?mix(12,45,this.night)*lamp.power*(state.mechanical?.auxiliaries?.lampFactor??1)*lampOutput(state.bodyDamage,side<0?'lampFL':'lampFR'):0;light.castShadow=on&&light.intensity>0&&side<0&&settings.quality==='high';light.target.updateMatrixWorld();}
   this._lampClock-=Math.max(0,dt);if(this._lampClock<=0||Math.hypot(x-this._lampAnchor.x,z-this._lampAnchor.z)>8){this._lampClock=.25;this._lampAnchor={x,z};this._lamps=(this.world?.streetLights||[]).map(p=>({p,d:(p.x-x)**2+(p.z-z)**2})).filter(q=>q.d<65**2).sort((a,b)=>a.d-b.d).slice(0,4);}
   this.streetPool.forEach((light,i)=>{const p=this._lamps[i]?.p;if(p){light.position.set(p.x,p.y||6.5,p.z);light.intensity=22*this.night;}else light.intensity=0;});
   const officers=(context.police||[]).filter(p=>p.siren&&Number.isFinite(p.x)&&Number.isFinite(p.z)&&Math.hypot(p.x-x,p.z-z)<90).sort((a,b)=>Math.hypot(a.x-x,a.z-z)-Math.hypot(b.x-x,b.z-z));

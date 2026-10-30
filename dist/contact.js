@@ -7,7 +7,7 @@ const wrap=a=>Math.atan2(Math.sin(a),Math.cos(a));
 
 function dimensions(build={}){
  const m=build.vehicle?.model||build.model||build,p=build.physics||build;
- const width=Math.max(.2,finite(m.width,2.03)),length=Math.max(width,finite(m.length,4.42));
+ const width=Math.max(.2,finite(p.bodyWidth,finite(m.width,2.03))),length=Math.max(width,finite(m.length,4.42));
  return {radius:width*.5,halfSegment:(length-width)*.5,length,width,mass:Math.max(1,finite(p.mass,1160)),inertia:Math.max(1,finite(p.inertia,1680))};
 }
 

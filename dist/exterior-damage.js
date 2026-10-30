@@ -1,3 +1,4 @@
+import {frontLip,rearDiffuser,aeroPartMass,resolveExteriorTuning,outletPositions,outletHeight} from './exterior-tuning.js';
 import {bodyLayout} from './body-layout.js';
 
 // Fixed component keys also bound save and network input. Masses/thresholds are
@@ -37,7 +38,9 @@ export function exteriorLayout(build){
   mirrorLeft:[-W*1.04,q.sill+.01,front-.26],mirrorRight:[W*1.04,q.sill+.01,front-.26],skirtLeft:[-W*1.04,.29,0],skirtRight:[W*1.04,.29,0],
   fenderFL:[-W,.62,p.frontAxle],fenderFR:[W,.62,p.frontAxle],fenderRL:[-W,.62,-p.rearAxle],fenderRR:[W,.62,-p.rearAxle],
   splitter:[0,.28,L*.95],diffuser:[0,.23,-L*.94],grille:[0,.53,L*.974],exhaustTip:[build.vehicle.model.kind==='muscle'?0:.68,.32,-L*.976]};
- return Object.fromEntries(Object.entries(EXTERIOR_PARTS).map(([id,d])=>[id,{...d,center:centers[id],radius:Math.min(.65,d.radius*.55)}]));
+ const tuning=resolveExteriorTuning(build.selection),outlets=outletPositions(build.vehicle.model.kind,build.selection);centers.exhaustTip[0]=(Math.min(...outlets)+Math.max(...outlets))/2;centers.exhaustTip[1]=outletHeight(build.selection);
+ for(const id of ['fenderFL','fenderFR','fenderRL','fenderRR'])centers[id][0]=(id.endsWith('L')?-1:1)*(p.halfTrack+p.tyreWidth*.5);
+ return Object.fromEntries(Object.entries(EXTERIOR_PARTS).map(([id,d])=>[id,{...d,mass:d.mass+(tuning.componentMass[id]||0)+(id==='splitter'?aeroPartMass(frontLip(build.selection)):id==='diffuser'?aeroPartMass(rearDiffuser(build.selection)):0),center:centers[id],radius:Math.min(.65,d.radius*.55)}]));
 }
 export function exteriorMissing(body,id){const d=EXTERIOR_PARTS[id];return !!body?.exterior?.[id]?.detached||!!(d?.parent&&body?.zones?.[d.parent]?.detached)||id==='exhaustTip'&&!!body?.underbody?.exhaustRear?.detached;}
 export function lampOutput(body,id){const p=body?.exterior?.[id];return exteriorMissing(body,id)||p?.health<=.25?0:clamp(p?.health??1,.3,1);}
@@ -46,7 +49,7 @@ export function damageExterior(body,build,{local,energyJ,closingSpeed}){
  const detached=[],brokenGlass=[],layout=exteriorLayout(build),mass=build.physics.mass,strength=build.physics.bodyStrength??1;
  let changed=false;
  for(const [id,d]of Object.entries(EXTERIOR_PARTS)){
-  const p=body.exterior[id];if(!p||exteriorMissing(body,id))continue;
+  const p=body.exterior[id];if(!p||layout[id].mass<=0||exteriorMissing(body,id))continue;
   const [x,,z]=layout[id].center;
   // A side hit cannot directly break the opposite lamp, window or mirror.
   if(x&&local.x*x<0&&Math.abs(local.x)>.2)continue;

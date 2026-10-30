@@ -1,7 +1,7 @@
 {
   "source": "docs/goal.txt",
   "sourceSHA256": "4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc282ea844a1b96dca",
-  "version": 29,
+  "version": 30,
   "requirements": [
     {
       "id": "P00.01",
@@ -294,7 +294,7 @@
     {
       "id": "P05.01",
       "phase": 5,
-      "status": "teilweise erledigt",
+      "status": "erledigt",
       "requirement": "Exterieurteile: unterschiedliche Front-/Heckstoßstangen, Spoiler, Splitter, Lippen, Schweller, Diffusoren, Kotflügel, Widebody-Kits, Hauben, Grills, Auspuffendrohre, Felgen, Reifen, Lichtdesign, Lacke, Folierungen und Decals."
     },
     {
@@ -306,7 +306,7 @@
     {
       "id": "P05.03",
       "phase": 5,
-      "status": "teilweise erledigt",
+      "status": "erledigt",
       "requirement": "Scheibentönung mit einstellbarer Stärke und richtiger Lichtdurchlässigkeit; von außen bei passenden Bedingungen weiterhin hineinschauen können. Keine undurchsichtige schwarze Fläche als Ersatz für Glas."
     },
     {
@@ -941,20 +941,18 @@
     }
   ],
   "currentIncrement": {
-    "phase": 4,
-    "part": "Vier Innenräume, Cockpit und Fahrer",
-    "status": "erledigt",
+    "phase": 5,
+    "part": "A – Exterieurteile, Folierungen und Scheibentönung",
+    "status": "teilweise erledigt",
     "implemented": [
-      "Vier zur bestehenden Hülle passende Innenräume, Instrumententypen und Fahrerplätze; Atlas mit Navi-Halter.",
-      "Augenposition, Sitz/FOV/Bewegungsregler, Blicksteuerung, Lenkrad-/Arm-Ausblendung und optionaler Außentacho.",
-      "Instrumente aus realen Fahr-/Komponentendaten; Karte aus dem vorhandenen Router, bedienbare Musiksteuerung, begrenzte echte Spiegel.",
-      "Gelenkiger Fahrer mit Lenkgriffen/Umgreifen, Links-/Rechtslenker-Schalthand, Handbremse, Pedalen und Lastreaktion.",
-      "Gespeicherter Hardware-Lenkwinkel über die vorhandene Gamepad-Kalibrierung; begrenzte Fahrer-/Anzeigewerte im vorhandenen Multiplayer-Strom."
+      "Elf zusätzliche Kategorien, insgesamt 41; getrennte Lippen/Diffusoren, Kotflügel, Widebody, Grills, Auspuffenden und Lichtdesigns auf allen vier vorhandenen Fahrzeugen.",
+      "Lackoberflächen, drei eigene Folierungen, Decals und vier Glas-Durchlassstufen, mit Vorschau, Kauf und Speicherung.",
+      "Spurweite, Kollisionsbreite, Masse, Aero, abfallende Baugruppen, Abgasanschlüsse und Lichtkegel folgen den Teilen; GT-Kompatibilität wird geprüft."
     ],
     "remaining": [
-      "Phase 5: vollständiges Exterieur-, Interieur- und mechanisches Tuning einschließlich Kompressor, Tönung und Kompatibilität. Die vorhandenen Teile bleiben Grundlage.",
-      "Breitere Grenzbereichs-/Hardware-Kalibrierung aus Phase 1 sowie spätere Montage-, Motorraum-, Welt-, Grafik-, KI-, Audio- und Garagenarbeiten bleiben laut den 156 Einzelpunkten offen.",
-      "Spiegel: drei 256×128-Ansichten, Nahbereich und eigener Wagen ausgeblendet, adaptiv zeitversetzt. Fahrer-IK ist eine stilisierte Näherung; keine Hardware-Wheel-/FFB-, mobile GPU- oder subjektive Hörabnahme."
+      "Phase 5B: vollständiges Interieur-Tuning mit passenden Geometrien, Befestigungen, Masse und erhaltenen Fahrer-/Instrumentfunktionen.",
+      "Phase 5C: Kompressor und restliche mechanische Kompatibilität; Montage/Ausbau gemeinsam mit Phase 6 erweitern.",
+      "Frühere teilweise Anforderungen und alle späteren Phasen bleiben gemäß den 156 Einzelpunkten offen."
     ]
   }
 }
