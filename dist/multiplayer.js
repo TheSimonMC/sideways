@@ -55,12 +55,13 @@ export function normalizeLobbyRules(value={}){
 export function sanitizeNetworkPose(value){
  if(!object(value)||![value.x,value.z,value.heading].every(Number.isFinite)||!bounded(value.x,-8192,8192)||!bounded(value.z,-8192,8192))return null;
  const out={x:value.x,z:value.z,heading:wrap(value.heading)};
- const ranges={vx:[-170,170],vz:[-170,170],yawRate:[-12,12],speed:[0,180],forwardSpeed:[-180,180],bodyHeight:[-32,512],groundHeight:[-32,512],bodyPitch:[-.8,.8],bodyRoll:[-.8,.8],steer:[-1.5,1.5],brake:[0,1],throttle:[0,1],rpm:[0,16000],bodyHealth:[0,1],engineHealth:[0,1],nitrousIntensity:[0,1],driftAngle:[-Math.PI,Math.PI],gear:[-1,8]};
+ const ranges={vx:[-170,170],vz:[-170,170],yawRate:[-12,12],speed:[0,180],forwardSpeed:[-180,180],bodyHeight:[-32,512],groundHeight:[-32,512],bodyPitch:[-.8,.8],bodyRoll:[-.8,.8],steer:[-1.5,1.5],clutch:[0,1],handbrake:[0,1],accelerationLong:[-30,30],accelerationLat:[-30,30],fuelLitres:[0,150],fuelCapacity:[1,150],brake:[0,1],throttle:[0,1],rpm:[0,16000],bodyHealth:[0,1],engineHealth:[0,1],nitrousIntensity:[0,1],driftAngle:[-Math.PI,Math.PI],gear:[-1,8]};
  for(const [key,[a,b]]of Object.entries(ranges))out[key]=clamp(value[key]??(key.endsWith('Health')?1:0),a,b);
  for(const key of ['headlights','boosting','horn','drifting'])out[key]=!!value[key];out.engineRunning=value.engineRunning!==false;
  out.wheelAttached=Array.from({length:4},(_,i)=>value.wheelAttached?.[i]!==false);
  out.wheelCamber=Array.from({length:4},(_,i)=>clamp(value.wheelCamber?.[i]??0,-.3,.3));
- out.mechanical={chassisDamage:{tieRods:Array.from({length:2},(_,i)=>({health:clamp(value.mechanical?.chassisDamage?.tieRods?.[i]?.health??1,0,1),bend:clamp(value.mechanical?.chassisDamage?.tieRods?.[i]?.bend??0,-.18,.18)}))}};
+ out.engineFault=!!value.engineFault;
+ out.mechanical={temperatures:{coolant:clamp(value.mechanical?.temperatures?.coolant??24,-40,250),oil:clamp(value.mechanical?.temperatures?.oil??24,-40,300)},oilPressureBar:clamp(value.mechanical?.oilPressureBar??0,0,12),auxiliaries:{voltage:clamp(value.mechanical?.auxiliaries?.voltage??12.6,0,18)},chassisDamage:{tieRods:Array.from({length:2},(_,i)=>({health:clamp(value.mechanical?.chassisDamage?.tieRods?.[i]?.health??1,0,1),bend:clamp(value.mechanical?.chassisDamage?.tieRods?.[i]?.bend??0,-.18,.18)}))}};
  out.wheelSpins=Array.from({length:4},(_,i)=>wrap(value.wheelSpins?.[i]));
  out.wheelSteers=Array.from({length:4},(_,i)=>clamp(value.wheelSteers?.[i]??(i<2?out.steer:0),-1.5,1.5));
  out.suspension=Array.from({length:4},(_,i)=>({wheelY:clamp(value.suspension?.[i]?.wheelY??out.groundHeight+.34,-32,513),groundHeight:clamp(value.suspension?.[i]?.groundHeight??out.groundHeight,-32,512),contact:value.suspension?.[i]?.contact!==false}));

@@ -1,7 +1,7 @@
 import {keyLabel} from './input-prompts.js';
 const byId = id => document.getElementById(id);
 const clamp = (n,a,b) => Math.max(a,Math.min(b,Number(n)||0));
-const names = {steer:'Steering',steerLeft:'Steer left',steerRight:'Steer right',throttle:'Throttle',brake:'Brake',clutch:'Clutch',handbrake:'Handbrake',boost:'NOS',starter:'Starter',garage:'Garage',shiftDown:'Downshift',shiftUp:'Upshift',camera:'Camera',home:'Pause menu',pause:'Pause',reset:'Reset car',transmission:'Transmission',settings:'Settings',confirm:'Confirm',back:'Back',menuPrev:'Menu up',menuNext:'Menu down',menuLeft:'Menu left',menuRight:'Menu right',mute:'Mute',neutral:'Neutral',lookBack:'Look back',lookX:'Look sideways',lookY:'Look up/down',lookLeft:'Look left',lookRight:'Look right',lookUp:'Look up',lookDown:'Look down',horn:'Horn',lights:'Headlights',interact:'Interact',map:'Map'};
+const names = {radio:'Radio on/off',radioUp:'Radio volume up',radioDown:'Radio volume down',steer:'Steering',steerLeft:'Steer left',steerRight:'Steer right',throttle:'Throttle',brake:'Brake',clutch:'Clutch',handbrake:'Handbrake',boost:'NOS',starter:'Starter',garage:'Garage',shiftDown:'Downshift',shiftUp:'Upshift',camera:'Camera',home:'Pause menu',pause:'Pause',reset:'Reset car',transmission:'Transmission',settings:'Settings',confirm:'Confirm',back:'Back',menuPrev:'Menu up',menuNext:'Menu down',menuLeft:'Menu left',menuRight:'Menu right',mute:'Mute',neutral:'Neutral',lookBack:'Look back',lookX:'Look sideways',lookY:'Look up/down',lookLeft:'Look left',lookRight:'Look right',lookUp:'Look up',lookDown:'Look down',horn:'Horn',lights:'Headlights',interact:'Interact',map:'Map'};
 const gearNames = {gear1:'1',gear2:'2',gear3:'3',gear4:'4',gear5:'5',gear6:'6',gearReverse:'R'};
 const stageText = {
  center:['Center the wheel','Center the wheel, then choose CAPTURE POSITION.'],
@@ -45,6 +45,7 @@ export class ControlsPanel {
   byId('calibration-capture').addEventListener('click',()=>this.capture());
   byId('calibration-cancel').addEventListener('click',()=>{this.cancel();this.message('Calibration cancelled.')});
   byId('cancel-binding').addEventListener('click',()=>{this.cancel();this.message('Binding cancelled.')});
+  byId('wheel-rotation').addEventListener('change',e=>{this.input.setConfig({wheelRotation:Number(e.target.value)});this.changed();});
   byId('steer-deadzone').addEventListener('input',e=>this.adjustSteering('deadzone',Number(e.target.value)/100));
   byId('steer-curve').addEventListener('input',e=>this.adjustSteering('curve',Number(e.target.value)/100));
   byId('save-profile').addEventListener('click',()=>{const name=byId('profile-name').value.trim();if(!name){this.message('Enter a profile name first.',true);byId('profile-name').focus();return}this.input.saveProfile(name);this.refreshProfiles();this.message('Profile "'+name+'" saved.')});
@@ -52,11 +53,11 @@ export class ControlsPanel {
  }
  changed(){this.input.saveConfig();this.refresh();this.onChanged()}
  buildBindings(){
-  for(const action of ['handbrake','clutch','starter','boost','shiftDown','shiftUp','camera','lookBack','lookX','lookY','horn','lights','interact','map','pause','home','reset','transmission','neutral','garage','settings','confirm','back','menuPrev','menuNext','menuLeft','menuRight'])this.makeBindingRow(action,names[action],byId('binding-list'));
+  for(const action of ['handbrake','clutch','starter','boost','shiftDown','shiftUp','camera','lookBack','lookX','lookY','horn','lights','interact','map','radio','radioUp','radioDown','pause','home','reset','transmission','neutral','garage','settings','confirm','back','menuPrev','menuNext','menuLeft','menuRight'])this.makeBindingRow(action,names[action],byId('binding-list'));
   for(const [action,label] of Object.entries(gearNames))this.makeBindingRow(action,label,byId('gear-bindings'));
  }
  buildKeyboard(){
-  for(const action of ['throttle','brake','steerLeft','steerRight','handbrake','boost','clutch','starter','shiftDown','shiftUp','neutral','transmission','camera','lookBack','lookLeft','lookRight','lookUp','lookDown','horn','lights','interact','map','reset','pause','home','garage','settings','mute']){
+  for(const action of ['throttle','brake','steerLeft','steerRight','handbrake','boost','clutch','starter','shiftDown','shiftUp','neutral','transmission','camera','lookBack','lookLeft','lookRight','lookUp','lookDown','horn','lights','interact','map','radio','radioUp','radioDown','reset','pause','home','garage','settings','mute']){
    const row=document.createElement('div');row.className='binding-row keyboard-row';row.dataset.navGroup='keybinding-'+action;const title=document.createElement('strong');title.textContent=names[action];const value=document.createElement('span');value.className='binding-value';const button=document.createElement('button');button.className='small-button';button.dataset.navKey='keybind-'+action;button.textContent='BIND KEY';button.setAttribute('aria-label','Bind '+names[action]);button.addEventListener('click',()=>{this.cancel();this.learning={action,type:'keyboard'};this.input.learn(action,{kind:'key',allowKeyboard:true,timeout:20000});row.classList.add('learning');byId('cancel-keybinding').classList.remove('hidden');this.message('Press a key for '+names[action]+'. Escape cancels.');});
    const clear=document.createElement('button');clear.className='binding-clear';clear.textContent='✕';clear.setAttribute('aria-label','Clear '+names[action]);clear.addEventListener('click',()=>{this.cancel();this.input.setKeys(action,[]);this.changed();});row.append(title,value,button,clear);byId('keyboard-bindings').append(row);this.keyRows.set(action,{row,value,button});
   }
@@ -76,7 +77,7 @@ export class ControlsPanel {
   return (b.type==='axis'?'Axis ':'Button ')+b.index+(Array.isArray(binding)&&binding.length>1?' +'+(binding.length-1):'');
  }
  refresh(){
-  const c=this.input.getConfig();byId('input-mode').value=c.mode;byId('haptics-toggle').checked=c.haptics!==false;byId('hshifter-toggle').checked=!!c.shifter?.enabled;
+  const c=this.input.getConfig();byId('wheel-rotation').value=String(c.wheelRotation||0);byId('input-mode').value=c.mode;byId('haptics-toggle').checked=c.haptics!==false;byId('hshifter-toggle').checked=!!c.shifter?.enabled;
   byId('shifter-tolerance').value=Math.round((c.shifter?.tolerance??.22)*100);
   byId('hshifter-mode').value=c.shifter?.mode||'buttons';byId('axis-shifter-setup').classList.toggle('hidden',c.shifter?.mode!=='axes');
   for(const [action,{value,button}] of this.bindingRows){const gear=action==='gearReverse'?-1:Number(action.slice(4));const axisGear=action.startsWith('gear')&&c.shifter?.mode==='axes';value.textContent=axisGear?(c.shifter.slots?.[gear]?'Position saved':'Not captured'):this.bindingText(c.bindings?.[action],action);value.title=value.textContent;button.textContent=axisGear?'CAPTURE POSITION':'BIND';}

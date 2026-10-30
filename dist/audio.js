@@ -69,7 +69,7 @@ export class GameAudio {
   this._sourceRevision++;this._engine=null;this._lastEngineTime=-1;this._resetAcoustics();this._flush();this._applyCameraMix();return this;
  }
  setMix(values={}){const priorDrive=this.mix.drive,priorMechanical=this.mix.mechanical;for(const key of Object.keys(DEFAULT_MIX))if(Number.isFinite(values?.[key]))this.mix[key]=clamp(values[key],0,1);if(priorDrive!==this.mix.drive||priorMechanical!==this.mix.mechanical)this._sourceRevision++;return this;}
- setCamera(mode=0){const next=clamp(Math.round(mode),0,2);if(next===this.cameraMode)return;this.cameraMode=next;this._sourceRevision++;this._applyCameraMix();}
+ setCamera(mode=0){const next=clamp(Math.round(mode),0,3);if(next===this.cameraMode)return;this.cameraMode=next;this._sourceRevision++;this._applyCameraMix();}
  _sourceMix(){
   const v=this.voice,hood=this.cameraMode===2,exhaust=this.exhaustKind==='race'?{preGain:1.28,distortion:.68}:this.exhaustKind==='sport'?{preGain:1.16,distortion:.6}:{preGain:1.05,distortion:.52};
   return {master:.65,exhaust:clamp(v.exhaust*(hood?.81:1.1),0,1),intake:clamp(v.intake*(hood?1.30:1.05),0,1),combustion:clamp(v.combustion*1.08,0,1),
@@ -153,7 +153,7 @@ export class GameAudio {
 
  _updateTargets(s,dt,engine){
   this._foleyTime+=dt;const speed=clamp(s?.speed??0,0,110),hood=this.cameraMode===2,doorAir=Math.max(0,...['left','right'].map(id=>{const p=s?.bodyDamage?.zones?.[id];return p?.detached?1:Math.sin(p?.angle||0);}));
-  this._windTarget=(.0018*speed+speed*speed*.000026)*this.mix.environment*(hood?1:.78)*(1+Math.max(doorAir,windowAir(s?.bodyDamage))*.35);this._windTarget=clamp(this._windTarget,0,.32);
+  const cabin=this.cameraMode===3,opening=Math.max(doorAir,windowAir(s?.bodyDamage));this._cabinOpening=opening;this._windTarget=(.0018*speed+speed*speed*.000026)*this.mix.environment*(cabin?.30+.70*opening:hood?1:.78)*(1+opening*.35);this._windTarget=clamp(this._windTarget,0,.32);
   const nos=!!s?.boosting;this._nosTarget=nos?clamp(s?.nitrousIntensity??1,0,1)*.19*this.mix.engine:0;
   if(nos!==this._lastNOS){this._event('nitro',nos?.12:.065,0,nos?.16:.12,nos?2700:1900,180);this._lastNOS=nos;}
   const shaft=Math.abs(s?.inputShaftRpm??0),gear=s?.gear??0,torque=clamp(Math.abs(s?.clutchTorque??0)/500,0,1.5);
@@ -241,7 +241,7 @@ export class GameAudio {
   const load=clamp(throttle*.65+shaftLoad*.35,0,1),bodyGain=1.04+load*.06,presenceGain=.08;
   // Linear family trims restore the release-14 source levels to the game mix.
   // They preserve load dynamics and leave distortion inside the native layers.
-  const pDC=pole(28),pLow=pole(240),pPresence=pole(1900),pAir=pole(this.voice.brightness*(this.cameraMode===2?.94:1)),pWind=pole(1800),pWindBody=pole(180),engineGain=this.mix.engine*this.voice.outputGain*(this.cameraMode===2?1.22*this.voice.hoodGain:1.28);
+  const pDC=pole(28),pLow=pole(240),pPresence=pole(1900),pAir=pole(this.voice.brightness*(this.cameraMode===3?.48+.46*(this._cabinOpening||0):this.cameraMode===2?.94:1)),pWind=pole(1800),pWindBody=pole(180),engineGain=this.mix.engine*this.voice.outputGain*(this.cameraMode===3?.78+.40*(this._cabinOpening||0):this.cameraMode===2?1.22*this.voice.hoodGain:1.28);
   const tyreAttack=1-Math.exp(-1/(RATE*.075)),tyreRelease=1-Math.exp(-1/(RATE*.12)),pRubber=pole(4500);
   const gains=point=>{const p=point||this.world.playerPoint(),pan=this.world.spatial(p.x,p.z).pan;return [Math.sqrt((1-pan)*.5),Math.sqrt((1+pan)*.5)];};
   const gearPan=gains(this._audioAnchors?.gearbox),enginePan=gains(this._audioAnchors?.engine),diffPan=gains(this._audioAnchors?.differential),intakePan=gains(this._audioAnchors?.intake);

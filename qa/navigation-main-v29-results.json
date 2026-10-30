@@ -1,0 +1,32 @@
+{
+  "status": "passed",
+  "checks": [
+    "Main-menu → settings → controls → back restores each precise originating control",
+    "Pause → settings → controls returns to pause, then resumes without stale history",
+    "Service → garage cancellation returns to service while explicit resume goes to driving",
+    "View switches map cursor and places; confirm on a panel button does not also mark the cursor",
+    "Shoulders change settings tabs and slider arrows work through actual keyboard input",
+    "Map confirmation routes to the destination shown in the detail card, including its entrance",
+    "Summary confirms and text fields open the keyboard; Back cancels only the keyboard",
+    "Prevented key events and menu Tab never leak map actions into InputManager",
+    "Escape opens Pause during driving and resumes from Pause without leaving the session"
+  ],
+  "limit": "Actual main.js navigation handlers plus InputManager and GameUI in the functional DOM harness. Physics, map drawing and audio are controlled boundaries; no physical device claim.",
+  "version": 29,
+  "verifiedInRelease": 29,
+  "suiteSource": "qa/navigation-main-v14-check.mjs",
+  "suiteSHA256": "9e2ea9888d897da21883cd814ab449117d92e5eb9c62a4e122ad84941bdf9a5d",
+  "sourceSHA256": {
+    "dist/drivetrain.js": "9927f12d0ab5de0ad2de6f59b5f5f21cfb1ec0ce6c1efc81ca253ded1efb16d3",
+    "dist/physics.js": "c377b1842e6d647d6612a8a2054d55c24f18bcf8d4d79c13a82b86331605a0a3",
+    "dist/mechanical.js": "2b2b87a7107f89529fa0dc31736892d484498d335633633e453c8f010666b0b9",
+    "dist/car.js": "6eba9dd3a929c7142d79ad24dad32a9fa1c88fb608d04a160045cb54486beef2",
+    "dist/catalog.js": "c5da9ed3102fe56916bf85badb4a9c355de106cbcf29dda37f92f6d551425065",
+    "dist/career.js": "e609ca9085aba7ced8eca015b637bcbfb7b9b6f594d6c04bfbf4dbad80de1e67",
+    "dist/garage.js": "433365d6d28b2f8444982b003cdb5d2d5adc6f89f93e84caa0057585c3691f37",
+    "dist/audio.js": "df58985fdfd8228901e2dc9db5c1c4862eaab688ed08da1f4bd1cb7e780ce61e",
+    "dist/audio-anchors.js": "ed65635fad9d265e2ab6cd964489bcd703b28397999fd16d4e609fd6fb7a15e5",
+    "dist/main.js": "5d4085a926e088e8154b57b1fcd1fddf96878d25b28de510dc7103bc82401a05",
+    "dist/multiplayer.js": "3081b120b4dd105cd0a70a7b92b972cf39ccb29f0a2cbd55b6b554a91ea43701"
+  }
+}

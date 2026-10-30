@@ -38,10 +38,12 @@ export function resolveChassis(vehicle,s){
   aeroDrag:.43,aeroDownforce:.55,tractionControl:.65,abs:true
  };
 }
-export function steeringDemand(steer,speed,chassis,device='keyboard'){
+export function steeringDemand(steer,speed,chassis,device='keyboard',wheelRotation=0){
  const wheel=device==='wheel',keyboard=device==='keyboard'||device==='touch';
  const limit=wheel?chassis.steeringLock:chassis.steeringLock*(.26+.74/(1+(Math.abs(speed)/22)**1.6));
- return {target:clamp(steer,-1,1)*limit,rate:wheel?28:keyboard?7:12,returnRate:wheel?28:keyboard?9:14};
+ const rotation=Number.isFinite(wheelRotation)?clamp(wheelRotation,0,1440):0;
+ const target=wheel&&rotation>0?clamp(clamp(steer,-1,1)*rad(rotation)/2/chassis.steeringRatio,-limit,limit):clamp(steer,-1,1)*limit;
+ return {target,rate:wheel?28:keyboard?7:12,returnRate:wheel?28:keyboard?9:14};
 }
 /** Smooth adhesion-to-sliding falloff with load sensitivity and compound heat.
  * Slip energy/wear stay owned by MechanicalSystem; no parallel tyre state. */

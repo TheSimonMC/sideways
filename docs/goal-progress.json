@@ -1,7 +1,7 @@
 {
   "source": "docs/goal.txt",
   "sourceSHA256": "4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc282ea844a1b96dca",
-  "version": 28,
+  "version": 29,
   "requirements": [
     {
       "id": "P00.01",
@@ -222,73 +222,73 @@
     {
       "id": "P04.01",
       "phase": 4,
-      "status": "teilweise erledigt",
+      "status": "erledigt",
       "requirement": "Eine neue, nutzbare Cockpitkamera für jedes spielbare Fahrzeug; passende Augenposition, einstellbare Sitzposition, Blickbewegung und korrektes Sichtfeld."
     },
     {
       "id": "P04.02",
       "phase": 4,
-      "status": "offen",
+      "status": "erledigt",
       "requirement": "JEDES bestehende spielbare Fahrzeug bekommt einen zum Modell passenden sichtbaren Innenraum. Gemeinsame Bauteile dürfen wiederverwendet werden, aber nicht einfach derselbe generische Innenraum für alle."
     },
     {
       "id": "P04.03",
       "phase": 4,
-      "status": "teilweise erledigt",
+      "status": "erledigt",
       "requirement": "Je nach Fahrzeug: Dashboard, analoge oder digitale Instrumente, Lenkrad, Sitze, Rücksitze, Pedale, Ganghebel, Handbremse, Mittelkonsole, Türverkleidungen, Spiegel, Dachhimmel, Innenbeleuchtung, Radio/Infotainment und passende Materialien."
     },
     {
       "id": "P04.04",
       "phase": 4,
-      "status": "offen",
+      "status": "erledigt",
       "requirement": "Kein dauerhaft schwebender HUD-Tacho in der Cockpitansicht. Das tatsächliche Cockpit-Instrument zeigt Geschwindigkeit, Drehzahl, Gang, Tank, Temperaturen und Warnleuchten korrekt an. Nadel und Anzeigen reagieren ohne sinnlose Verzögerung."
     },
     {
       "id": "P04.05",
       "phase": 4,
-      "status": "teilweise erledigt",
+      "status": "erledigt",
       "requirement": "Third-Person darf optional eine kleine, abschaltbare Geschwindigkeitsanzeige behalten, wenn sie für die Spielbarkeit benötigt wird."
     },
     {
       "id": "P04.06",
       "phase": 4,
-      "status": "offen",
+      "status": "erledigt",
       "requirement": "Navigation und Karte in ein tatsächlich sichtbares Display am Radio/Infotainment einbauen, mit Routenanzeige, Position und Musiksteuerung. Für ältere Autos sinnvoller externer Navi-Halter statt unpassendem modernen Touchscreen."
     },
     {
       "id": "P04.07",
       "phase": 4,
-      "status": "teilweise erledigt",
+      "status": "erledigt",
       "requirement": "Scheiben und Seitenscheiben sind durchsichtig. Man muss von außen Fahrer und Innenraum sehen können, abhängig von Spiegelungen, Licht und Tönung."
     },
     {
       "id": "P04.08",
       "phase": 4,
-      "status": "offen",
+      "status": "erledigt",
       "requirement": "Innenspiegel und Seitenspiegel sollen brauchbare Ansichten bieten, ggf. mit performancegerechter Renderinglösung."
     },
     {
       "id": "P04.09",
       "phase": 4,
-      "status": "offen",
+      "status": "erledigt",
       "requirement": "Ein sichtbarer Fahrer sitzt im Wagen, mit Kopf/Körper, Oberarmen, Unterarmen, Händen und Beinen. Hände greifen ans Lenkrad und folgen präzise der Lenkraddrehung, bei starken Winkeln mit sinnvoller Handbewegung."
     },
     {
       "id": "P04.10",
       "phase": 4,
-      "status": "offen",
+      "status": "erledigt",
       "requirement": "Passende Animationen für Schalten, Handbremse und Pedalbedienung sowie subtile Körperreaktionen auf Beschleunigung, Bremsen, Schlaglöcher und Kurven. Keine Clipping-Arme im Dashboard."
     },
     {
       "id": "P04.11",
       "phase": 4,
-      "status": "teilweise erledigt",
+      "status": "erledigt",
       "requirement": "Bei kompatiblen Lenkradcontrollern über verfügbare Browser-APIs nutzbare Achsen, Buttons, Kalibrierung, Deadzones und einstellbaren Lenkwinkel anbieten. Keine Funktionen behaupten, die der jeweilige Browser nicht bereitstellt."
     },
     {
       "id": "P04.12",
       "phase": 4,
-      "status": "offen",
+      "status": "erledigt",
       "requirement": "Virtuelles Cockpit-Lenkrad für Wheel-Nutzer optional ausblenden. Arme/Hände bei Bedarf ebenfalls ausblendbar. Die Lenkung, Anzeigen und der restliche Innenraum funktionieren dabei weiter."
     },
     {
@@ -882,13 +882,13 @@
     {
       "id": "P18.08",
       "phase": 18,
-      "status": "offen",
+      "status": "erledigt",
       "requirement": "Cockpit jedes spielbaren Autos zeigt korrekte RPM/Geschwindigkeit; Radio-Map und Lenkrad-/Fahreranimation sind nutzbar."
     },
     {
       "id": "P18.09",
       "phase": 18,
-      "status": "offen",
+      "status": "erledigt",
       "requirement": "Ausgeblendetes virtuelles Lenkrad beeinträchtigt die Fahrzeugsteuerung nicht."
     },
     {
@@ -941,18 +941,20 @@
     }
   ],
   "currentIncrement": {
-    "phase": 3,
-    "part": "D – Fahrwerksglieder und vollständige Auspuffführung",
+    "phase": 4,
+    "part": "Vier Innenräume, Cockpit und Fahrer",
     "status": "erledigt",
     "implemented": [
-      "13 getrennte Unterbodenbaugruppen: vier Querlenker, vier Federbeine, zwei Spurstangen und drei Auspuffabschnitte.",
-      "Befestigungsschaden, Verformung, Abreißen, Radabstützung/Lenkverlust und Verlust von Masse/Achslasten sind verbunden.",
-      "Gequetschte Rohre erzeugen Pumpverluste; vorzeitige Abgasöffnung umgeht nachfolgende Blockaden und ändert Geräusch-/Rauchquelle.",
-      "Gezielte Reparatur, Diagnose, alte Speicherstände und begrenzte Multiplayer-Zustände sind integriert."
+      "Vier zur bestehenden Hülle passende Innenräume, Instrumententypen und Fahrerplätze; Atlas mit Navi-Halter.",
+      "Augenposition, Sitz/FOV/Bewegungsregler, Blicksteuerung, Lenkrad-/Arm-Ausblendung und optionaler Außentacho.",
+      "Instrumente aus realen Fahr-/Komponentendaten; Karte aus dem vorhandenen Router, bedienbare Musiksteuerung, begrenzte echte Spiegel.",
+      "Gelenkiger Fahrer mit Lenkgriffen/Umgreifen, Links-/Rechtslenker-Schalthand, Handbremse, Pedalen und Lastreaktion.",
+      "Gespeicherter Hardware-Lenkwinkel über die vorhandene Gamepad-Kalibrierung; begrenzte Fahrer-/Anzeigewerte im vorhandenen Multiplayer-Strom."
     ],
     "remaining": [
-      "Phase 4: vier passende Innenräume, Cockpit, Instrumente, Navigation, Spiegel und Fahrer.",
-      "Boxkontakte, vereinfachte Federbein-/Lenkerbewegung und Unterbodenabrieb über die vorhandene Straßenebene; keine Soft-Body-/Mehrkörpersimulation. Trümmer bleiben lokal. Alle späteren offenen Anforderungen bleiben erhalten."
+      "Phase 5: vollständiges Exterieur-, Interieur- und mechanisches Tuning einschließlich Kompressor, Tönung und Kompatibilität. Die vorhandenen Teile bleiben Grundlage.",
+      "Breitere Grenzbereichs-/Hardware-Kalibrierung aus Phase 1 sowie spätere Montage-, Motorraum-, Welt-, Grafik-, KI-, Audio- und Garagenarbeiten bleiben laut den 156 Einzelpunkten offen.",
+      "Spiegel: drei 256×128-Ansichten, Nahbereich und eigener Wagen ausgeblendet, adaptiv zeitversetzt. Fahrer-IK ist eine stilisierte Näherung; keine Hardware-Wheel-/FFB-, mobile GPU- oder subjektive Hörabnahme."
     ]
   }
 }

@@ -1,0 +1,209 @@
+{
+  "game": "SIDEWAYS",
+  "version": 29,
+  "date": "2026-10-30",
+  "status": "verified-with-documented-limits",
+  "base": "Published V28 acbca9f1c8dddf54d3eea9595aedc2000a80d441",
+  "scope": "Phase 4: model-specific interiors and cockpit for all four existing cars, live gauges/navigation/radio, bounded mirrors, animated driver, saved seat/visibility settings and calibrated wheel rotation. Full goal remains active.",
+  "delivery": {
+    "entry": "SIDEWAYS.html",
+    "separateFile": "SIDEWAYS-v29.html",
+    "htmlBytes": 10686047,
+    "htmlSha256": "e7847f35b42d4b74330a9242bee6e1988fc94e3d8448a3eb879547f67515af77",
+    "offlineSinglePlayer": true,
+    "externalRuntimeRequestsDuringOfflineTest": 0,
+    "publishedToSites": false
+  },
+  "currentFunctionalSuites": [
+    {
+      "file": "qa/archipelago-v29-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "9ffa83a9acd389da8fcfe250d6ec42d5e04c1b354c0fd2d2a51536dedc9dc6b6"
+    },
+    {
+      "file": "qa/audio-v29-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "3c5ef6d6493a67e147557698634f801e00dc8462ea10c24455f72653cfa37bc4"
+    },
+    {
+      "file": "qa/body-panels-v29-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "8ed833fec7c986d388afed46f0c38bfd6fc1bba10e4c36385aa32a6cbce23dca"
+    },
+    {
+      "file": "qa/chassis-v29-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "8a4f363de137e8ffa34e422d8d5aaaa2c96f243dfa03af95abb3e110cfd2afb6"
+    },
+    {
+      "file": "qa/cockpit-browser-v29-results.json",
+      "status": "passed",
+      "groups": 2,
+      "sha256": "801e77ef1512c542bf7e270a4495d0eccd6ca50fa210b2d78d617c25cc9b9811"
+    },
+    {
+      "file": "qa/cockpit-game-browser-v29-results.json",
+      "status": "passed",
+      "groups": 5,
+      "sha256": "a95789829b2579d5655bbb1d094f2ad82375ad9ec17c74faab5a8a5b9b4352fd"
+    },
+    {
+      "file": "qa/cockpit-v29-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "abe160404e6237ef9e6bd877f9b1b1f728cdb342bed5a177fcfc9913c3067288"
+    },
+    {
+      "file": "qa/cosmetics-v29-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "c8d73a3ddea72d42fb188082f3302690fae9e7b0fde7065df39cf4baa25e8cc8"
+    },
+    {
+      "file": "qa/damage-v29-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "ea96c9d888bbf0b9170236fdf8bc7f1c0b5718866693536104fd4c85281ba03f"
+    },
+    {
+      "file": "qa/input-taps-v29-results.json",
+      "status": "passed",
+      "groups": 11,
+      "sha256": "f72b743f0b690c90d9f48ee4e9844926d9f1bc202e536b7d15a361e30f998ec3"
+    },
+    {
+      "file": "qa/input-v29-results.json",
+      "status": "passed",
+      "groups": 16,
+      "sha256": "d3225ea7c95dd7320476ae150546ef77f5fd52445cc25b4d8af4c4d3ed86f4b1"
+    },
+    {
+      "file": "qa/modular-v29-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "d3df8898aa9b727a7c74441d5d9398764aab0cfa504354a0e1f3eceb211271fc"
+    },
+    {
+      "file": "qa/multiplayer-browser-v29-results.json",
+      "status": "passed",
+      "groups": 5,
+      "sha256": "f4986b023984febb8d6b47193cf47b40903388aba4175e2a3753d3bcd3c5c962"
+    },
+    {
+      "file": "qa/multiplayer-burst-browser-v29-results.json",
+      "status": "passed",
+      "groups": 3,
+      "sha256": "35f1648eb248d801e6f56bb7344bb06bf6de04216e96ab14b5304b44fa08e163"
+    },
+    {
+      "file": "qa/multiplayer-burst-v29-results.json",
+      "status": "passed",
+      "groups": 5,
+      "sha256": "a90d6db7a0a9c919950bd5dc62194aab252a8c63a9d38eb88f1fce774d376796"
+    },
+    {
+      "file": "qa/multiplayer-v29-results.json",
+      "status": "passed",
+      "groups": 11,
+      "sha256": "a1c2a08154c96a9e0a8bc3406c3ce57957ef0b6db61f682e4534573744f1075d"
+    },
+    {
+      "file": "qa/navigation-main-v29-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "3403c5fe1a4928fcd7752bca3af5a795988e3fec285a4659c9f8aa8ec130d4ce"
+    },
+    {
+      "file": "qa/physics-v29-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "63c6e897eebdac159d801dc210fac92919ca6a9163accb1a578dbae6f6cacf88"
+    },
+    {
+      "file": "qa/police-v29-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "0bf2e6624affbe0a9ce8da0e3307a7d310f92547b8ee09abaa4505264499ad53"
+    },
+    {
+      "file": "qa/race-v29-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "b76e918d40c53c1ec86bd21fd8acb3a1114e5b89342afaeb7107e754d1120974"
+    },
+    {
+      "file": "qa/responsive-panels-browser-v29-results.json",
+      "status": "passed",
+      "groups": 2,
+      "sha256": "b7209d18c75c9724f42e9894393774ec0a89b7c65911744510ac7aebae13716f"
+    },
+    {
+      "file": "qa/restart-v29-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "98b4b87ca8b1db77438529bec49402a117ea12607a8e7df325a1d80d33acc307"
+    },
+    {
+      "file": "qa/standalone-browser-v29-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "9a38d2d63e7c4619af02436a2e89cadaca86881747f2e694ecbf7b232ef30359"
+    },
+    {
+      "file": "qa/standalone-v29-results.json",
+      "status": "passed",
+      "groups": 0,
+      "sha256": "de408ea94daa061a31821bc7d821e2bf61ed852e65b74e913163b867393eebe5"
+    },
+    {
+      "file": "qa/thermal-v29-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "dbf3582dcce13d732b1f3756b0a87aaf68c895eb9d4f03a9048be51aee4bdad4"
+    },
+    {
+      "file": "qa/underbody-v29-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "941abccda4e4ed45bf8e60b400eb97540e6fd219cb9fa4e2b8b8447c6561d07f"
+    }
+  ],
+  "performanceMeasurements": {
+    "file": "qa/cockpit-browser-v29-results.json",
+    "data": [
+      {
+        "mirrors": false,
+        "samples": 40,
+        "meanMs": 1.8274999999906867,
+        "p95Ms": 6.599999999627471,
+        "mirrorPasses": 0,
+        "geometries": 171,
+        "textures": 6
+      },
+      {
+        "mirrors": true,
+        "samples": 40,
+        "meanMs": 1.9424999999813735,
+        "p95Ms": 4.399999998509884,
+        "mirrorPasses": 15,
+        "geometries": 171,
+        "textures": 6
+      }
+    ],
+    "method": "40 frames after warmup per case, actual WebGL render + gl.finish in a small source fixture; software renderer."
+  },
+  "review": {
+    "file": "qa/review-v29.json",
+    "sha256": "f38d92de8be25b9bbf3889d2f47fc372242db44e5cc4aa5cc3ccb3d47d1d0182"
+  },
+  "limits": [
+    "Full 156-requirement objective remains active; Phase 5 tuning is next and Phase 6 engine bays/mounting follows. Earlier explicitly partial points remain listed.",
+    "Three bounded 256×128 mirror views, 140/220 m range, own car omitted, sky approximated by current fog; reduced adaptive refresh. Authored driver IK is stylized.",
+    "Four exact-HTML flows and two source-module browser fixtures use local Chromium software rendering; no physical-wheel/FFB, mobile-GPU, separate-PC/TURN or subjective-listening acceptance.",
+    "Render-cost samples include GPU completion only within a small fixture. The legacy whole-game FPS diagnostic derives from capped simulation dt and is not a wall-clock hardware FPS measurement."
+  ]
+}

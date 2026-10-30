@@ -1,0 +1,26 @@
+SIDEWAYS V29 – COCKPITS AND INTERIORS
+
+Open SIDEWAYS.html for offline single-player. Multiplayer requires internet.
+Online: https://thesimonmc.github.io/sideways/
+
+All four original cars have fitted interiors, live instruments, a fourth
+camera, navigation/music controls, rear-view mirrors and an animated driver.
+C cycles cameras. Settings > Drive adjusts seat, FOV, head motion and wheel,
+hand and mirror visibility. U toggles music; [ and ] adjust volume. You can
+also click the actual radio display or assign controller buttons.
+Controls > Calibration offers hardware wheel rotation after axis calibration.
+Use the same total rotation as your device driver. Factory Range preserves
+the existing full fitted-rack range. No physical wheel/FFB test is claimed.
+
+Report: docs/phase-4-cockpit-report.md
+Requirements/checklist: docs/goal.txt and docs/goal-progress.md/.json
+Evidence: qa/release-v29.json
+Next: Phase 5 expanded tuning, then Phase 6 interactive garage/engine bay.
+
+Build: npm ci, then node build.mjs (Node.js 24).
+Checks: node qa/regressions-v29.mjs and *-v29-check.mjs.
+Browser: *-browser-v29.cjs, using Playwright and Chromium. Set
+CODEX_PRIMARY_RUNTIME_NODE_MODULES to node_modules containing playwright;
+PLAYWRIGHT_CHROMIUM_EXECUTABLE to the Chromium executable.
+Run browser suites and native CPU work serially.
+Package: node qa/package-v29.mjs <output-directory>.

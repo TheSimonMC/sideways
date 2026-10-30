@@ -1,3 +1,5 @@
+import {cockpitSettings} from './cockpit-state.js';
+import {CockpitMirrors} from './cockpit-mirrors.js';
 import * as THREE from './vendor/three.module.js';
 import {createWorld} from './world.js';
 import {createCity} from './region.js';
@@ -44,7 +46,7 @@ const PLAY_MODES=['free','race','sprint','drift'];
 const mixDefaults={engine:1,mechanical:.8,tyres:.55,environment:.7,drive:.65,sirens:1,radio:.85,reverb:.65,ambience:.65};
 const savedMix=Object.fromEntries(Object.entries(mixDefaults).map(([key,value])=>[key,Number.isFinite(saved.audioMix?.[key])?clamp(saved.audioMix[key],0,1):value]));
 const settings={camera:saved.camera??0,blur:saved.blur??(matchMedia('(prefers-reduced-motion: reduce)').matches?.2:.65),quality:saved.quality??(innerWidth<600?'medium':'high'),volume:saved.volume??.55,assists:saved.assists??true,telemetry:saved.telemetry??false,build:saved.build??{},paints:saved.paints&&typeof saved.paints==='object'?saved.paints:{}};
-settings.audioMix=savedMix;
+settings.audioMix=savedMix;settings.cockpit=cockpitSettings(saved.cockpit);settings.camera=clamp(Math.round(Number(settings.camera)||0),0,3);
 Object.assign(settings,{bloom:saved.bloom??.45,timeMode:saved.timeMode||'cycle',weatherMode:WEATHER_MODES.includes(saved.weatherMode)?saved.weatherMode:'cycle',dayMinutes:saved.dayMinutes??12,headlights:saved.headlights??true,music:saved.music??true,musicVolume:saved.musicVolume??.58,lookSensitivity:saved.lookSensitivity??1,invertLook:!!saved.invertLook,vignette:saved.vignette??.38,shading:saved.shading??.6});
 Object.assign(settings,{backgroundMusic:!!saved.backgroundMusic,displayMode:['auto','wide','curved'].includes(saved.displayMode)?saved.displayMode:'auto',hudInset:clamp(Number(saved.hudInset)||0,0,12),playerName:String(saved.playerName||'DRIVER 09').slice(0,20)});
 settings.raceDifficulty=['rookie','club','pro'].includes(saved.raceDifficulty)?saved.raceDifficulty:'club';settings.raceLaps=[1,3,5].includes(saved.raceLaps)?saved.raceLaps:3;
@@ -53,9 +55,9 @@ const career=new Career(saved.career,activeBuild.selection),navigation=new RoadN
 const remoteContacts=new RemoteContactTracker();
 if(career.quote(activeBuild).total>0)activeBuild=resolveBuild();settings.build=activeBuild.selection;
 const records={sprint:saved.sprint??null,drift:saved.drift??0,free:saved.free??0,raceWins:Math.max(0,Math.floor(Number(saved.raceWins)||0))};
-const persist=()=>{try{localStorage.setItem('sideways-v1',JSON.stringify({...settings,...records,gameVersion:28,career:career.serialize(),worldHour:environment?.hour??17.2,worldWeather:sessionWeather??environment?.weather.snapshot(),garageState:physics?.exportGarageState?.()}))}catch{}};
+const persist=()=>{try{localStorage.setItem('sideways-v1',JSON.stringify({...settings,...records,gameVersion:29,career:career.serialize(),worldHour:environment?.hour??17.2,worldWeather:sessionWeather??environment?.weather.snapshot(),garageState:physics?.exportGarageState?.()}))}catch{}};
 const isTouch=matchMedia('(pointer: coarse)').matches;
-let instruments;
+let instruments,mirrors;
 let garagePreviewCondition=null;
 let renderer,post,scene,camera,world,car,fx,physics,audio,sun,checkpointGroup,inputManager,controlsPanel,garagePanel,gameUI,traffic,police,environment,enforcement;
 let network,networkCars,lobbyPanel,phonePanel,worldSignature='',windowFocused=document.hasFocus(),hostHold=false,awaitingWorld=false,networkWorldClock=0,networkWorld=null,sessionTimeMode=null,sessionWeather=null;
@@ -106,7 +108,7 @@ async function init(){
  physics=new CarPhysics(window.MotorLab,activeBuild);if(saved.garageState)physics.restoreGarageState?.(saved.garageState);physics.setGroundSampler((x,z)=>world.getSurfaceAt(x,z));physics.setDebrisColliders((point,radius)=>world.getColliders?.(point,radius)||world.colliders||[]);physics.reset(world.spawn.x,world.spawn.z,world.spawn.heading);state=physics.state;resetPresentation();
  lastRoad=world.getRoadInfo(state.x,state.z);car.group.position.set(state.x,0,state.z);car.group.rotation.y=state.heading;
  audio=new GameAudio();audio.setVolume(settings.volume);audio.setMix(settings.audioMix);audio.setBuild(activeBuild);audio.setCamera?.(settings.camera);audio.update(state);physics.setEngineAdvance((engine,dt)=>audio.advanceEngine(engine,dt));
- post=new ComicRenderer(renderer);post.setCarBounds({...activeBuild.vehicle.model,rideHeight:activeBuild.physics.rideHeight});inputManager=new InputManager({storageKey:'sideways-input-v2'});activeInputConfig=inputManager.getConfig();controlsPanel=new ControlsPanel(inputManager,{onChanged:()=>{activeInputConfig=inputManager.getConfig();syncSettings()}});
+ post=new ComicRenderer(renderer);mirrors=new CockpitMirrors(renderer);post.setCarBounds({...activeBuild.vehicle.model,rideHeight:activeBuild.physics.rideHeight});inputManager=new InputManager({storageKey:'sideways-input-v2'});activeInputConfig=inputManager.getConfig();controlsPanel=new ControlsPanel(inputManager,{onChanged:()=>{activeInputConfig=inputManager.getConfig();syncSettings()}});
  gameUI=new GameUI();instruments=new Instruments();setupSettingsDetails();raceUI=new RaceUI();garagePanel=new GaragePanel({onPreview:previewBuild,onCancel:previewBuild,onApply:applyBuild,economy:career});garagePanel.onCategory=()=>{};
  network=new MultiplayerSession();networkCars=createNetworkCars(scene);
  lobbyPanel=new LobbyPanel(network,{onLeave:()=>{leaveSession();showMenu();},onResume:()=>closeModal({resume:true}),onProfile:name=>{settings.playerName=String(name).slice(0,20);persist();},onLayout:()=>gameUI?.scan()});
@@ -125,9 +127,9 @@ function resize(){
  initialCamera=true;
 }
 function syncSettings(){
- $('camera-select').value=settings.camera;$('blur-range').value=settings.blur*100;$('quality-select').value=settings.quality;$('volume-range').value=settings.volume*100;
+ syncCockpitSettings();$('camera-select').value=settings.camera;$('blur-range').value=settings.blur*100;$('quality-select').value=settings.quality;$('volume-range').value=settings.volume*100;
  const cfg=inputManager?.getConfig();if(cfg){activeInputConfig=cfg;$('transmission-select').value=cfg.transmission;$('manual-clutch-toggle').checked=cfg.manualClutch&&cfg.transmission!=='auto';$('manual-clutch-toggle').disabled=cfg.transmission==='auto';$('touch-shifts').classList.toggle('hidden',cfg.transmission==='auto');}
- $('camera-label').textContent=['TOP DOWN','CHASE CAM','HOOD CAM'][settings.camera];$('handling-label').textContent=activeBuild.selection.tyres.toUpperCase()+' TYRES · '+Math.round(activeBuild.stats.steeringLockDeg)+'° LOCK';
+ $('camera-label').textContent=['TOP DOWN','CHASE CAM','HOOD CAM','COCKPIT'][settings.camera];$('handling-label').textContent=activeBuild.selection.tyres.toUpperCase()+' TYRES · '+Math.round(activeBuild.stats.steeringLockDeg)+'° LOCK';
  $('assists-toggle').checked=settings.assists;$('telemetry-toggle').checked=settings.telemetry;$('mechanical-hud').classList.toggle('hidden',!settings.telemetry);
  $('hero-car-name').textContent=activeBuild.vehicle.name;$('hero-car-engine').textContent=activeBuild.engine.name+' / '+activeBuild.physics.driveLayout;audio?.setCamera?.(settings.camera);
  $('sound-button').classList.toggle('muted',muted);$('sound-button').setAttribute('aria-label',audio?.started&&!muted?'Mute audio':'Enable audio');
@@ -378,6 +380,9 @@ function setupUI(){
  document.querySelectorAll('.close-modal').forEach(b=>b.addEventListener('click',closeModal));
  $('modal-wrap').addEventListener('click',e=>{if(e.target===$('modal-wrap')&&['settings','info','controls','garage'].includes(modalName))closeModal()});
  $('sound-button').addEventListener('click',()=>toggleSound());$('camera-button').addEventListener('click',cycleCamera);
+ for(const key of ['seatHeight','seatDistance','fov','motion'])$('cockpit-'+key).addEventListener('input',e=>{settings.cockpit=cockpitSettings({...settings.cockpit,[key]:Number(e.target.value)/(key==='fov'?1:100)});initialCamera=true;persist();});
+ for(const key of ['wheel','hands','mirrors','hud'])$('cockpit-'+key).addEventListener('change',e=>{settings.cockpit[key]=e.target.checked;persist();});
+ $('game').addEventListener('pointerdown',e=>{if(settings.camera!==3||phase!=='playing'||paused)return;const rect=$('game').getBoundingClientRect(),ray=new THREE.Raycaster();ray.setFromCamera(new THREE.Vector2((e.clientX-rect.left)/rect.width*2-1,1-(e.clientY-rect.top)/rect.height*2),camera);const hit=ray.intersectObject(car.cockpitScreen)[0];if(!hit||!car.cockpitDiagnostics().screenPowered)return;const uv=hit.uv;if(uv.y>.21)radioControl('map');else radioControl(uv.x<.25?'map':uv.x<.53?'toggle':uv.x<.78?'down':'up');});
  $('camera-select').addEventListener('change',e=>{settings.camera=Number(e.target.value);initialCamera=true;post.reset();syncSettings();persist()});
  $('blur-range').addEventListener('input',e=>{settings.blur=Number(e.target.value)/100;persist()});
  $('quality-select').addEventListener('change',e=>{settings.quality=e.target.value;resize();persist()});
@@ -434,6 +439,7 @@ function processInputActions(actions){
   if(action==='deviceLost'){if(phase==='playing'||phase==='countdown')setPaused(true);toast('INPUT DEVICE DISCONNECTED · PAUSED');continue}
   if(textKeyboard.handleAction(action))continue;
   if(action==='mute'){toggleSound();continue}
+  if(['radio','radioUp','radioDown'].includes(action)&&phase==='playing'&&!paused){radioControl(action==='radio'?'toggle':action==='radioUp'?'up':'down');continue;}
   if(action==='lights'&&phase==='playing'&&!paused){toggleLights();continue}
   if(action==='interact'&&phase==='playing'&&!paused){interact();continue}
   if(action==='map'&&phase==='playing'){
@@ -460,7 +466,12 @@ function processInputActions(actions){
   if(action==='pause'||action==='back')setPaused(!paused);else if(action==='settings')openModal('settings');else if(action==='garage')openGarage();else if(action==='camera')cycleCamera();else if(action==='reset'&&phase==='playing')resetCar();else if(action==='transmission')setTransmission(activeInputConfig.transmission==='auto'?'sequential':'auto');else if(action==='shiftUp')requestShift(1);else if(action==='shiftDown')requestShift(-1);else if(action==='neutral'){if(activeInputConfig.transmission==='auto')setTransmission('sequential');pendingNeutral=true;}
  }
 }
-function cycleCamera(){settings.camera=(settings.camera+1)%3;audio.tick('ui');initialCamera=true;post.reset();syncSettings();persist();toast(['TOP-DOWN CAMERA','CHASE CAMERA','HOOD CAMERA'][settings.camera])}
+function syncCockpitSettings(){
+ for(const key of ['seatHeight','seatDistance','fov','motion']){const el=$('cockpit-'+key);if(el)el.value=settings.cockpit[key]*(key==='fov'?1:100);}
+ for(const key of ['wheel','hands','mirrors','hud']){const el=$('cockpit-'+key);if(el)el.checked=settings.cockpit[key];}
+}
+function radioControl(action){if(action==='map'){openModal('map');return;}if(action==='toggle')settings.music=!settings.music;else settings.musicVolume=clamp(settings.musicVolume+(action==='up'?.1:-.1),0,1);syncV6Settings();persist();toast(settings.music?'RADIO · '+Math.round(settings.musicVolume*100)+'%':'RADIO OFF');}
+function cycleCamera(){settings.camera=(settings.camera+1)%4;audio.tick('ui');initialCamera=true;post.reset();syncSettings();persist();toast(['TOP-DOWN CAMERA','CHASE CAMERA','HOOD CAMERA','COCKPIT CAMERA'][settings.camera])}
 async function toggleSound(){const wasStarted=audio.started;if(!await audio.start()){toast('AUDIO COULD NOT START');return;}muted=wasStarted?!muted:false;audio.setMuted(muted);$('sound-button').classList.toggle('muted',muted);$('sound-button').setAttribute('aria-label',muted?'Enable audio':'Mute audio');toast(muted?'SOUND OFF':'SOUND ON')}
 function toast(text){$('toast').textContent=text;$('toast').classList.add('visible');toastTimer=2.6}
 function comic(text,duration=.8){if(settings.blur===0&&matchMedia('(prefers-reduced-motion: reduce)').matches)return;$('comic-word').textContent=text;$('comic-word').classList.add('visible');comicTimer=duration}
@@ -533,7 +544,7 @@ function updateCheckpoint(){
  $('checkpoint-text').textContent=mode==='race'?(index===0?'START / FINISH':'CHECKPOINT '+index+' / 7'):!lapArmed?'CROSS THE START LINE':nextCheckpoint===0?'FINISH LINE':'CHECKPOINT '+nextCheckpoint+' / 7';
 }
 function inputState(){
- const controls={...frameControls,steer:-(frameControls.steer||0),transmission:activeInputConfig.transmission,manualClutch:!!activeInputConfig.manualClutch,assists:settings.assists,deviceKind:inputManager.getPresentation().kind,shiftUp:pendingShiftUp,shiftDown:pendingShiftDown};
+ const controls={...frameControls,steer:-(frameControls.steer||0),transmission:activeInputConfig.transmission,manualClutch:!!activeInputConfig.manualClutch,assists:settings.assists,deviceKind:inputManager.getPresentation().kind,wheelRotation:activeInputConfig.wheelRotation,shiftUp:pendingShiftUp,shiftDown:pendingShiftDown};
  if(activeInputConfig.transmission!=='hpattern')delete controls.gearRequest;
  if(pendingNeutral)controls.gearRequest=0;
  pendingShiftUp=false;pendingShiftDown=false;pendingNeutral=false;
@@ -714,6 +725,8 @@ function updateCamera(dt,snap=false){
   const side=new THREE.Vector3(Math.cos(offsetAngle),0,-Math.sin(offsetAngle));
   desiredLook.set(x,(garage?(innerWidth<=900?-1.4:-.9):portrait?-.6:.55)+(view.groundHeight||0),z).addScaledVector(side,garage?0:portrait?-.15:-2.3);
   camera.fov=smooth(camera.fov,portrait?52:47,5,dt);
+ }else if(settings.camera===3){
+  const pose=car.cockpitPose(settings.cockpit,lookYaw,lookPitch,view);desiredPosition.copy(pose.position);desiredLook.copy(pose.look);camera.up.copy(pose.up);camera.fov=settings.cockpit.fov;
  }else if(settings.camera===0){
   const ahead=clamp(view.speed*.25,0,9);const height=30+Math.min(7,view.speed*.11)+nos*1.6;
   desiredPosition.set(x+Math.sin(lookYaw)*(16+view.speed*.02),height+lookPitch*7,z+Math.cos(lookYaw)*(16+view.speed*.02));desiredLook.set(x+view.vx*.29,.05,z+view.vz*.29-ahead*.08);
@@ -729,11 +742,11 @@ function updateCamera(dt,snap=false){
   // Follow translation directly; smooth camera offsets and direction instead.
   // Smoothing world coordinates made chase distance grow by speed / stiffness.
   if(phase!=='menu'&&modalName!=='garage'){const dx=view.x-cameraAnchor.x,dz=view.z-cameraAnchor.z;camera.position.x+=dx;camera.position.z+=dz;cameraLook.x+=dx;cameraLook.z+=dz;}
-  const stiffness=phase==='menu'?2:settings.camera===2?22:settings.camera===0?8:9;camera.position.lerp(desiredPosition,1-Math.exp(-stiffness*dt));cameraLook.lerp(desiredLook,1-Math.exp(-10*dt));
+  const stiffness=phase==='menu'?2:settings.camera===3?100:settings.camera===2?22:settings.camera===0?8:9;camera.position.lerp(desiredPosition,1-Math.exp(-stiffness*dt));cameraLook.lerp(desiredLook,1-Math.exp(-10*dt));
  }
  cameraAnchor.x=view.x;cameraAnchor.z=view.z;
  camShake=smooth(camShake,0,8,dt);if(camShake>.002&&settings.blur>0){camera.position.x+=Math.sin(totalTime*71)*camShake;camera.position.y+=Math.cos(totalTime*83)*camShake*.45;}
- camera.lookAt(cameraLook);camera.updateProjectionMatrix();
+ camera.near=settings.camera===3&&phase!=='menu'&&modalName!=='garage'?.035:.16;camera.lookAt(cameraLook);camera.updateProjectionMatrix();
 
 }
 function updateHUD(){
@@ -827,13 +840,18 @@ function frame(now){
  const nearestSirenDistance=nearbySounds.filter(s=>s.siren).reduce((d,s)=>Math.min(d,s.distance??999),999),proximity=clamp(1-nearestSirenDistance/150,0,1);
  audio.setWorldContext?.({weather:world.kind==='showroom'?{rain:0}:environment.weather.snapshot(),audioAnchors:car.getAudioAnchors?.(),listenerPosition:{x:camera.position.x,y:camera.position.y,z:camera.position.z},heading:state.heading,cameraHeading,listenerRight:{x:right.x,y:right.y,z:right.z},cameraMode:settings.camera,night:light.night,acoustics:acousticState,ambient:acousticState.ambient,district:world.getDistrict?.(state.x,state.z)||world.name,policePhase:policeState.phase,nearestSirenDistance,playerHorn:canDrive&&!!frameControls.horn,policeIntensity:policeState.heatNormalized??(policeState.heat||0)/3,speed:state.speed,engineHealth:state.engineHealth,engineFault:state.engineFault,mechanical:state.mechanical,wheelAttached:state.wheelAttached,fuelLitres:state.fuelLitres,damage:1-(state.bodyHealth??1),servicing:serviceJob?.type==='nitrous'?null:serviceJob?.type||null,worldActive:canDrive||!!serviceJob});
  if(canDrive)escapeMusic=Math.max(0,escapeMusic-dt);
- audio.setMusic?.({enabled:settings.music,volume:settings.musicVolume,paused:phase==='loading'||!!modalName&&modalName!=='arrest'&&modalName!=='service',mode:phase==='arrested'?'arrest':escapeMusic>0?'escape':phase==='menu'?'menu':policeState.phase==='search'?'search':policeState.phase==='chase'?'chase':'drive',intensity:policeState.heat?clamp(policeState.heat/3*.6+proximity*.4,0,1):Math.max(nearMissPulse*.7,Math.min(.8,state.speed/60)),heat:policeState.heatNormalized??(policeState.heat||0)/3,proximity,speed:state.speed,nitrous:canDrive&&state.boosting?state.nitrousIntensity??1:0,drift:canDrive&&state.drifting?Math.min(1,Math.abs(state.driftAngle)*2):0,nearMiss:nearMissPulse,searchProgress:policeState.searchProgress??0});audio.updateWorld?.(dt);
+ audio.setMusic?.({enabled:settings.music&&(phase==='menu'||(state.mechanical?.auxiliaries?.voltage??12)>7),volume:settings.musicVolume,paused:phase==='loading'||!!modalName&&modalName!=='arrest'&&modalName!=='service',mode:phase==='arrested'?'arrest':escapeMusic>0?'escape':phase==='menu'?'menu':policeState.phase==='search'?'search':policeState.phase==='chase'?'chase':'drive',intensity:policeState.heat?clamp(policeState.heat/3*.6+proximity*.4,0,1):Math.max(nearMissPulse*.7,Math.min(.8,state.speed/60)),heat:policeState.heatNormalized??(policeState.heat||0)/3,proximity,speed:state.speed,nitrous:canDrive&&state.boosting?state.nitrousIntensity??1:0,drift:canDrive&&state.drifting?Math.min(1,Math.abs(state.driftAngle)*2):0,nearMiss:nearMissPulse,searchProgress:policeState.searchProgress??0});audio.updateWorld?.(dt);
  inputManager.updateFeedback?.(state,dt,{active:canDrive});sendNetworkFrame(dt);
  if(canDrive){conditionSaveClock+=dt;if(conditionSaveClock>12){conditionSaveClock=0;persist();}}
  if(modalName==='map')drawFullMap();
+ const cockpitActive=settings.camera===3&&phase!=='menu'&&phase!=='loading'&&modalName!=='garage';
+ document.body.classList.toggle('cockpit-view',cockpitActive);document.body.classList.toggle('cockpit-rhd',['coupe','wedge'].includes(activeBuild.vehicle.model.kind));document.body.classList.toggle('hide-speed-hud',!settings.cockpit.hud);
+ car.updateCockpit(visualState(),dt,totalTime,{cockpit:cockpitActive,settings:settings.cockpit,music:{enabled:settings.music,volume:settings.musicVolume},drawNavigation:(c,w,h)=>{c.save();c.beginPath();c.rect(0,0,w,h);c.clip();drawMapOn(c,w,h,false);c.restore();}});
+ mirrors.update(scene,car,dt,{active:cockpitActive&&settings.cockpit.mirrors&&!document.hidden,quality:settings.quality});
  const view=visualState();updateBodyGroundMask(view);drawSpeedFX(view);post.render(scene,camera,view,dt,totalTime,settings,{active:canDrive,cameraMode:settings.camera,heat:policeState.heatNormalized??0});
  requestAnimationFrame(frame);
 }
 // Read-only diagnostics for local QA. No player controls or game-state shortcuts.
-window.sidewaysDiagnostics=()=>({phase,paused,mode,camera:settings.camera,speed:state?.speed,rpm:state?.rpm,gear:state?.gear,heading:state?.heading,x:state?.x,z:state?.z,driftAngle:state?.driftAngle,drifting:state?.drifting,score,runTime,checkpoint:nextCheckpoint,fps:renderFps,drawCalls:renderer?.info.render.calls,roadDistance:lastRoad?.distance,engineVersion:window.MotorLab?.version,engineAudioRelease:window.MotorLab?.audioRelease,enginePhysicsRelease:window.MotorLab?.physicsRelease,engineClock:physics?.engine?.getTiming().clock,transmission:state?.transmission,handbrake:state?.handbrake,clutch:state?.clutch,inputMode:activeInputConfig?.mode,build:activeBuild?.selection,driveLayout:state?.driveLayout,axleTorques:state?.axleTorques,drivenWheels:state?.drivenWheels,tyres:state?.tyres,wheelRadii:state?.wheelRadii,aero:state?.aero,wheelHop:state?.wheelHop,engineRunning:state?.engineRunning,engineStalled:state?.engineStalled,burnout:state?.burnout,wheelLoads:state?.wheelLoads,bodyHeight:state?.bodyHeight,bodyPitch:state?.bodyPitch,bodyRoll:state?.bodyRoll,roadGradeLong:state?.roadGradeLong,roadGradeLat:state?.roadGradeLat,surfaces:state?.wheelAudio?.map(w=>w.surface),audio:audio?.getDiagnostics?.(),world:world?.kind||'dock',traffic:traffic?.diagnostics?.(),input:inputManager?.getPresentation?.(),nitrousIntensity:state?.nitrousIntensity,nitrousTorque:state?.nitrousTorque,version:28,race:race?.diagnostics?.(),raceState,raceRecovery,mechanical:state?.mechanical,career:career.getState(),navigation:navigation.getState(),multiplayer:network?.diagnostics(),remoteCars:networkCars?.diagnostics(),police:policeState,enforcement:enforcementState,acoustics:acousticState,terrain:fx?.debug?.().terrain,weather:{...environment?.weather.snapshot(),...environment?.weatherView.diagnostics(),wheels:state?.suspension?.map(w=>({wetness:w.wetness,depth:w.waterDepth,grip:w.wetGrip,aquaplaning:w.aquaplaning})),spray:fx?.debug?.().activeSpray},worldHour:environment?.hour,worldKind:world?.kind,fuel:state?.fuelLitres,engineHealth:state?.engineHealth,bodyHealth:state?.bodyHealth,bodyDamage:state?.bodyDamage,bodyMass:state?.bodyMass,exteriorViews:car?.exteriorDiagnostics?.(),headlightIntensities:environment?.headlights.map(p=>p.light.intensity),underbodyViews:Object.fromEntries(Object.entries(car?.underbodyParts||{}).map(([id,part])=>[id,{visible:part.visible}])),bodyViews:Object.fromEntries(Object.entries(car?.bodyParts||{}).map(([id,part])=>[id,{visible:part.visible,rotation:{x:part.rotation.x,y:part.rotation.y}}])),detachedPanels:state?.detachedPanels,wheelAttached:state?.wheelAttached,lookYaw,lookPitch,worldGroups:scene?.children.filter(x=>['NEON-CITY','DOCK-09','SHOWROOM'].includes(x.name)).length});
+function cockpitScreenPoint(u,v){if(!car?.cockpitScreen)return null;const mesh=car.cockpitScreen,{width,height}=mesh.geometry.parameters;mesh.updateWorldMatrix(true,false);const p=new THREE.Vector3((u-.5)*width,(v-.5)*height,0).applyMatrix4(mesh.matrixWorld).project(camera);return {x:(p.x+1)*innerWidth/2,y:(1-p.y)*innerHeight/2};}
+window.sidewaysDiagnostics=()=>({cockpitScreenButtons:[.125,.375,.625,.875].map(u=>cockpitScreenPoint(u,.05)),cameraPosition:camera?.position.toArray(),cameraFov:camera?.fov,cockpit:car?.cockpitDiagnostics(),mirrors:mirrors?.diagnostics(),phase,paused,mode,camera:settings.camera,speed:state?.speed,rpm:state?.rpm,gear:state?.gear,heading:state?.heading,x:state?.x,z:state?.z,driftAngle:state?.driftAngle,drifting:state?.drifting,score,runTime,checkpoint:nextCheckpoint,fps:renderFps,drawCalls:renderer?.info.render.calls,roadDistance:lastRoad?.distance,engineVersion:window.MotorLab?.version,engineAudioRelease:window.MotorLab?.audioRelease,enginePhysicsRelease:window.MotorLab?.physicsRelease,engineClock:physics?.engine?.getTiming().clock,transmission:state?.transmission,handbrake:state?.handbrake,clutch:state?.clutch,inputMode:activeInputConfig?.mode,build:activeBuild?.selection,driveLayout:state?.driveLayout,axleTorques:state?.axleTorques,drivenWheels:state?.drivenWheels,tyres:state?.tyres,wheelRadii:state?.wheelRadii,aero:state?.aero,wheelHop:state?.wheelHop,engineRunning:state?.engineRunning,engineStalled:state?.engineStalled,burnout:state?.burnout,wheelLoads:state?.wheelLoads,bodyHeight:state?.bodyHeight,bodyPitch:state?.bodyPitch,bodyRoll:state?.bodyRoll,roadGradeLong:state?.roadGradeLong,roadGradeLat:state?.roadGradeLat,surfaces:state?.wheelAudio?.map(w=>w.surface),audio:audio?.getDiagnostics?.(),world:world?.kind||'dock',traffic:traffic?.diagnostics?.(),input:inputManager?.getPresentation?.(),nitrousIntensity:state?.nitrousIntensity,nitrousTorque:state?.nitrousTorque,version:29,race:race?.diagnostics?.(),raceState,raceRecovery,mechanical:state?.mechanical,career:career.getState(),navigation:navigation.getState(),multiplayer:network?.diagnostics(),remoteCars:networkCars?.diagnostics(),police:policeState,enforcement:enforcementState,acoustics:acousticState,terrain:fx?.debug?.().terrain,weather:{...environment?.weather.snapshot(),...environment?.weatherView.diagnostics(),wheels:state?.suspension?.map(w=>({wetness:w.wetness,depth:w.waterDepth,grip:w.wetGrip,aquaplaning:w.aquaplaning})),spray:fx?.debug?.().activeSpray},worldHour:environment?.hour,worldKind:world?.kind,fuel:state?.fuelLitres,engineHealth:state?.engineHealth,bodyHealth:state?.bodyHealth,bodyDamage:state?.bodyDamage,bodyMass:state?.bodyMass,exteriorViews:car?.exteriorDiagnostics?.(),headlightIntensities:environment?.headlights.map(p=>p.light.intensity),underbodyViews:Object.fromEntries(Object.entries(car?.underbodyParts||{}).map(([id,part])=>[id,{visible:part.visible}])),bodyViews:Object.fromEntries(Object.entries(car?.bodyParts||{}).map(([id,part])=>[id,{visible:part.visible,rotation:{x:part.rotation.x,y:part.rotation.y}}])),detachedPanels:state?.detachedPanels,wheelAttached:state?.wheelAttached,lookYaw,lookPitch,worldGroups:scene?.children.filter(x=>['NEON-CITY','DOCK-09','SHOWROOM'].includes(x.name)).length});
 init().catch(showError);

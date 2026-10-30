@@ -1,0 +1,37 @@
+{
+  "status": "reviewed",
+  "result": "No findings.",
+  "method": "Read-only complete runtime diff, new modules, callers and relevant tests reviewed using review-agent. Self-review by the implementing agent; not an independent review.",
+  "baseCommit": "acbca9f1c8dddf54d3eea9595aedc2000a80d441",
+  "sourceSHA256": {
+    "dist/audio.js": "df58985fdfd8228901e2dc9db5c1c4862eaab688ed08da1f4bd1cb7e780ce61e",
+    "dist/car.js": "6eba9dd3a929c7142d79ad24dad32a9fa1c88fb608d04a160045cb54486beef2",
+    "dist/chassis-setup.js": "b12d15842415df1fe4647bdbeb015ee5b15e31566c63234472d6f1c4ad73ac96",
+    "dist/controls-ui.js": "6459fb3e9434bb97626de56fbd2653f14fda1a746160dcde279dcfc12f0b3e73",
+    "dist/input.js": "1b44d5e48e61de92cbef80081b15507ba78f55f531ae0ff1d2df67cbbbbf344e",
+    "dist/main.js": "5d4085a926e088e8154b57b1fcd1fddf96878d25b28de510dc7103bc82401a05",
+    "dist/multiplayer.js": "3081b120b4dd105cd0a70a7b92b972cf39ccb29f0a2cbd55b6b554a91ea43701",
+    "dist/network-cars.js": "7c1af1863432a514b4af6ab0582b20913c6cea82ad42eb688b071a2c6635b0a3",
+    "dist/physics.js": "c377b1842e6d647d6612a8a2054d55c24f18bcf8d4d79c13a82b86331605a0a3",
+    "dist/cockpit-state.js": "fc5bb8809f53928149c7b0c473a9adf70f5e4a266ede32f8fa89ae63c0bd3681",
+    "dist/cockpit-mirrors.js": "437341887954348cd389bb567e22856017a359e67048812dd53fdf1bcfad28e9",
+    "dist/driver.js": "8ccea40a179ed707b66c1da643ea6f85c088e55f1730d9a0f61b86a8a6a19215",
+    "dist/interior.js": "8a2cf76fae7021b15a42175f0b493a610feb6cba03f86fc2c59ab7be3dd4b145",
+    "dist/index.html": "3742b30731011ed500c6e717cab9afb398ccf76cd2e233bbeab4915d0c312f77",
+    "dist/style.css": "e93e5d68041ef8f1fb24cfae7b3f91eb69dacd499b897ef0e2bb56e0f8179428",
+    ".github/workflows/pages.yml": "ccb08a006bd5182b40964d9b8945e1c4075aa8594fbbe7837a0556be56a7f74f"
+  },
+  "resolvedDuringImplementation": [
+    "Lower roof obstruction and wheel placement; put warnings and temperatures above the wheel and move navigation above the shifter.",
+    "Correct clutch-pedal direction, physical left/right pedal layout and console-side reaching hand.",
+    "Move the phone HUD away from right-hand-drive navigation and hide the exterior comic windshield highlight in cockpit.",
+    "Restore renderer state, clear disabled mirrors, bound their refresh and use current night/weather fog behind the shortened view.",
+    "Keep remote driver controls and basic instrument values within fixed pose-packet bounds."
+  ],
+  "limits": [
+    "Full 156-requirement objective remains active; Phase 5 tuning is next and Phase 6 engine bays/mounting follows. Earlier explicitly partial points remain listed.",
+    "Three bounded 256×128 mirror views, 140/220 m range, own car omitted, sky approximated by current fog; reduced adaptive refresh. Authored driver IK is stylized.",
+    "Four exact-HTML flows and two source-module browser fixtures use local Chromium software rendering; no physical-wheel/FFB, mobile-GPU, separate-PC/TURN or subjective-listening acceptance.",
+    "Render-cost samples include GPU completion only within a small fixture. The legacy whole-game FPS diagnostic derives from capped simulation dt and is not a wall-clock hardware FPS measurement."
+  ]
+}

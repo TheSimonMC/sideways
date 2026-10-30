@@ -1,8 +1,8 @@
 # SIDEWAYS – verbindliche Fortschrittsliste
 
-Stand: V28, Phase 0, Phase 1 Teile A/B/C/D/E, Phase 2 Teile A/B/C/D und Phase 3 Teile A/B/C/D. Grundlage: unveränderte Kopie in `docs/goal.txt`.
+Stand: V29, Phase 0, Phase 1 Teile A/B/C/D/E, Phase 2 Teile A/B/C/D und Phase 3 Teile A/B/C/D sowie Phase 4. Grundlage: unveränderte Kopie in `docs/goal.txt`.
 
-Status bezieht sich auf den gesamten Wortlaut eines Punktes. Teilweise bedeutet, dass wesentliche Teile noch fehlen. Phase 0 und Phase 3 sind innerhalb der dokumentierten Browser-Näherungen abgeschlossen. V19 ergänzt die gemeinsame Reifen-Grundlage aus Phase 2 und ihre Folgen für Phase 1. V24 schließt die Nässe-Anbindung. Phase 1 bleibt für breitere Grenzbereichs- und Eingabegeräte-Kalibrierung teilweise; Phase 2 wegen noch fehlendem Kompressortuning und der späteren Montage-/Ausbauintegration. Die umfassende Wetterdarstellung wird in Phase 7 weitergeführt.
+Status bezieht sich auf den gesamten Wortlaut eines Punktes. Teilweise bedeutet, dass wesentliche Teile noch fehlen. Phase 0, Phase 3 und Phase 4 sind innerhalb der dokumentierten Browser-Näherungen abgeschlossen. V19 ergänzt die gemeinsame Reifen-Grundlage aus Phase 2 und ihre Folgen für Phase 1. V24 schließt die Nässe-Anbindung. Phase 1 bleibt für breitere Grenzbereichs- und Eingabegeräte-Kalibrierung teilweise; Phase 2 wegen noch fehlendem Kompressortuning und der späteren Montage-/Ausbauintegration. Die umfassende Wetterdarstellung wird in Phase 7 weitergeführt.
 
 Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc282ea844a1b96dca`.
 
@@ -64,20 +64,20 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 4: ECHTE FIRST-PERSON-KAMERA UND INNENRÄUME FÜR JEDES FAHRZEUG
 
-**teilweise erledigt** — Vorhanden sind Top-down-, Verfolger- und Haubenkamera, Blicksteuerung und Browser-Gamepad-/Wheel-Kalibrierung. Es gibt noch keine Cockpitkamera, passenden Innenräume, Fahrer, Echtzeitspiegel oder In-Car-Navigation. Seit V26 ist das Glas transparent; passende vollständige Innenräume und Fahrer fehlen weiterhin. Dafür müssen alle vier Modelle erweitert und die Render-/Kamerapfade ergänzt werden; die Haubenkamera gilt ausdrücklich nicht als Cockpit.
+**erledigt** — V29 ergänzt die vier vorhandenen Autos um passende Innenräume, Cockpitkamera, echte Anzeigen, Radio-Navigation, Spiegel und Fahrer. Sitz/FOV/Bewegung, Lenkrad-/Arm-Sichtbarkeit und Hardware-Lenkwinkel werden gespeichert. Tag/Nacht, Bedienung, alte Kameras, Schaden/Reparatur, Eingaben und Multiplayer wurden auf dem finalen Build geprüft. Spiegel und Fahrer verwenden die im [Phasenbericht](phase-4-cockpit-report.md) benannten Browser-Näherungen. Physische Wheel-Hardware und mobile GPUs wurden nicht abgenommen.
 
-- **P04.01 · teilweise erledigt** — Eine neue, nutzbare Cockpitkamera für jedes spielbare Fahrzeug; passende Augenposition, einstellbare Sitzposition, Blickbewegung und korrektes Sichtfeld.
-- **P04.02 · offen** — JEDES bestehende spielbare Fahrzeug bekommt einen zum Modell passenden sichtbaren Innenraum. Gemeinsame Bauteile dürfen wiederverwendet werden, aber nicht einfach derselbe generische Innenraum für alle.
-- **P04.03 · teilweise erledigt** — Je nach Fahrzeug: Dashboard, analoge oder digitale Instrumente, Lenkrad, Sitze, Rücksitze, Pedale, Ganghebel, Handbremse, Mittelkonsole, Türverkleidungen, Spiegel, Dachhimmel, Innenbeleuchtung, Radio/Infotainment und passende Materialien.
-- **P04.04 · offen** — Kein dauerhaft schwebender HUD-Tacho in der Cockpitansicht. Das tatsächliche Cockpit-Instrument zeigt Geschwindigkeit, Drehzahl, Gang, Tank, Temperaturen und Warnleuchten korrekt an. Nadel und Anzeigen reagieren ohne sinnlose Verzögerung.
-- **P04.05 · teilweise erledigt** — Third-Person darf optional eine kleine, abschaltbare Geschwindigkeitsanzeige behalten, wenn sie für die Spielbarkeit benötigt wird.
-- **P04.06 · offen** — Navigation und Karte in ein tatsächlich sichtbares Display am Radio/Infotainment einbauen, mit Routenanzeige, Position und Musiksteuerung. Für ältere Autos sinnvoller externer Navi-Halter statt unpassendem modernen Touchscreen.
-- **P04.07 · teilweise erledigt** — Scheiben und Seitenscheiben sind durchsichtig. Man muss von außen Fahrer und Innenraum sehen können, abhängig von Spiegelungen, Licht und Tönung.
-- **P04.08 · offen** — Innenspiegel und Seitenspiegel sollen brauchbare Ansichten bieten, ggf. mit performancegerechter Renderinglösung.
-- **P04.09 · offen** — Ein sichtbarer Fahrer sitzt im Wagen, mit Kopf/Körper, Oberarmen, Unterarmen, Händen und Beinen. Hände greifen ans Lenkrad und folgen präzise der Lenkraddrehung, bei starken Winkeln mit sinnvoller Handbewegung.
-- **P04.10 · offen** — Passende Animationen für Schalten, Handbremse und Pedalbedienung sowie subtile Körperreaktionen auf Beschleunigung, Bremsen, Schlaglöcher und Kurven. Keine Clipping-Arme im Dashboard.
-- **P04.11 · teilweise erledigt** — Bei kompatiblen Lenkradcontrollern über verfügbare Browser-APIs nutzbare Achsen, Buttons, Kalibrierung, Deadzones und einstellbaren Lenkwinkel anbieten. Keine Funktionen behaupten, die der jeweilige Browser nicht bereitstellt.
-- **P04.12 · offen** — Virtuelles Cockpit-Lenkrad für Wheel-Nutzer optional ausblenden. Arme/Hände bei Bedarf ebenfalls ausblendbar. Die Lenkung, Anzeigen und der restliche Innenraum funktionieren dabei weiter.
+- **P04.01 · erledigt** — Eine neue, nutzbare Cockpitkamera für jedes spielbare Fahrzeug; passende Augenposition, einstellbare Sitzposition, Blickbewegung und korrektes Sichtfeld.
+- **P04.02 · erledigt** — JEDES bestehende spielbare Fahrzeug bekommt einen zum Modell passenden sichtbaren Innenraum. Gemeinsame Bauteile dürfen wiederverwendet werden, aber nicht einfach derselbe generische Innenraum für alle.
+- **P04.03 · erledigt** — Je nach Fahrzeug: Dashboard, analoge oder digitale Instrumente, Lenkrad, Sitze, Rücksitze, Pedale, Ganghebel, Handbremse, Mittelkonsole, Türverkleidungen, Spiegel, Dachhimmel, Innenbeleuchtung, Radio/Infotainment und passende Materialien.
+- **P04.04 · erledigt** — Kein dauerhaft schwebender HUD-Tacho in der Cockpitansicht. Das tatsächliche Cockpit-Instrument zeigt Geschwindigkeit, Drehzahl, Gang, Tank, Temperaturen und Warnleuchten korrekt an. Nadel und Anzeigen reagieren ohne sinnlose Verzögerung.
+- **P04.05 · erledigt** — Third-Person darf optional eine kleine, abschaltbare Geschwindigkeitsanzeige behalten, wenn sie für die Spielbarkeit benötigt wird.
+- **P04.06 · erledigt** — Navigation und Karte in ein tatsächlich sichtbares Display am Radio/Infotainment einbauen, mit Routenanzeige, Position und Musiksteuerung. Für ältere Autos sinnvoller externer Navi-Halter statt unpassendem modernen Touchscreen.
+- **P04.07 · erledigt** — Scheiben und Seitenscheiben sind durchsichtig. Man muss von außen Fahrer und Innenraum sehen können, abhängig von Spiegelungen, Licht und Tönung.
+- **P04.08 · erledigt** — Innenspiegel und Seitenspiegel sollen brauchbare Ansichten bieten, ggf. mit performancegerechter Renderinglösung.
+- **P04.09 · erledigt** — Ein sichtbarer Fahrer sitzt im Wagen, mit Kopf/Körper, Oberarmen, Unterarmen, Händen und Beinen. Hände greifen ans Lenkrad und folgen präzise der Lenkraddrehung, bei starken Winkeln mit sinnvoller Handbewegung.
+- **P04.10 · erledigt** — Passende Animationen für Schalten, Handbremse und Pedalbedienung sowie subtile Körperreaktionen auf Beschleunigung, Bremsen, Schlaglöcher und Kurven. Keine Clipping-Arme im Dashboard.
+- **P04.11 · erledigt** — Bei kompatiblen Lenkradcontrollern über verfügbare Browser-APIs nutzbare Achsen, Buttons, Kalibrierung, Deadzones und einstellbaren Lenkwinkel anbieten. Keine Funktionen behaupten, die der jeweilige Browser nicht bereitstellt.
+- **P04.12 · erledigt** — Virtuelles Cockpit-Lenkrad für Wheel-Nutzer optional ausblenden. Arme/Hände bei Bedarf ebenfalls ausblendbar. Die Lenkung, Anzeigen und der restliche Innenraum funktionieren dabei weiter.
 
 ## Phase 5: MEHR EXTERIEUR-, INTERIEUR- UND MECHANISCHES TUNING
 
@@ -93,7 +93,7 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 6: INTERAKTIVE GARAGE UND SICHTBARER, BEWEGLICHER MOTOR
 
-**teilweise erledigt** — V25 ermöglicht das Öffnen und Schließen von Türen, Haube und Kofferraum in der bestehenden Garage. Der einfache Motorraum-Boden mit Blockgrundform und die Türkarten verhindern leere Öffnungen zum Boden, ersetzen jedoch weder ein detailliertes Interieur noch den geforderten eingebauten Motor mit Nebenaggregaten. Gezielt ausbaubare Komponenten, Motorraumdetails, RPM-gekoppelte Animationen und räumliche Werkstattübergänge sind weiterhin offen.
+**teilweise erledigt** — V25 ermöglicht das Öffnen und Schließen von Türen, Haube und Kofferraum in der bestehenden Garage. V29 liefert die Innenräume; der einfache Motorraum-Boden mit Blockgrundform ersetzt weiterhin nicht den geforderten Motor mit Nebenaggregaten. Gezielt ausbaubare Komponenten, Motorraumdetails, RPM-gekoppelte Animationen und räumliche Werkstattübergänge sind weiterhin offen.
 
 - **P06.01 · teilweise erledigt** — In der bestehenden Garage mit dem Fahrzeug interagieren: Haube öffnen, Türen öffnen, Räder, Stoßstangen, Spoiler, Motorraumteile und andere Komponenten gezielt aus- oder wieder einbauen.
 - **P06.02 · offen** — Ausbau verändert das Fahrzeug sofort sichtbar und, sofern relevant, physikalisch. Ohne Räder, Kühler oder andere wichtige Komponenten kann nicht normal gefahren werden.
@@ -105,7 +105,7 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 7: GRAFIK, LICHT UND NACHTATMOSPHÄRE
 
-**teilweise erledigt** — environment.js besitzt Sonne/Mond/Sterne/Wolken, Tageszeiten, Scheinwerfer-Spots und einen Pool naher Laternen. post.js liefert Comic-Shading/Bloom. V24 ergänzt einen gemeinsamen Wetterzustand, Regenlinien, Pfützenmaske, dunklere/glattere Fahrbahn, Nebelweite und Regenbeleuchtung. Direkte Lichter reagieren auf die glattere Oberfläche; spiegelnde Szenenreflexionen und Wetterschutz unter späteren Tunnel-/Garagendächern fehlen. Getrennte Lichtschäden und Fern-/Nebel-/Rückfahrlicht bleiben offen. Bremszustands-Glow ist seit V20 vorhanden. Nacht-/Cockpitlesbarkeit muss nach Innenraumeinbau mit Messungen geprüft werden.
+**teilweise erledigt** — environment.js besitzt Sonne/Mond/Sterne/Wolken, Tageszeiten, Scheinwerfer-Spots und einen Pool naher Laternen. post.js liefert Comic-Shading/Bloom. V24 ergänzt einen gemeinsamen Wetterzustand, Regenlinien, Pfützenmaske, dunklere/glattere Fahrbahn, Nebelweite und Regenbeleuchtung. Direkte Lichter reagieren auf die glattere Oberfläche; spiegelnde Szenenreflexionen und Wetterschutz unter späteren Tunnel-/Garagendächern fehlen. Getrennte Lichtschäden und Fern-/Nebel-/Rückfahrlicht bleiben offen. Bremszustands-Glow ist seit V20 vorhanden. V29 prüft Cockpits bei Tag/Nacht im lokalen Browser; weitere Lichtgestaltung und Hardware-Messungen bleiben offen.
 
 - **P07.01 · teilweise erledigt** — Stilisiertes, kohärentes Cartoon-Bild beibehalten, aber Geometrie, Materialien, Schatten, Texturen und Farbgebung verbessern.
 - **P07.02 · teilweise erledigt** — Nächte sollen deutlich dunkler sein als bisher. Ambient Light nach Tageszeit steuern, sodass Straßenlaternen und Scheinwerfer nachts wirklich wichtig werden.
@@ -167,7 +167,7 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 12: KAMERA, VIEW BOBBING UND GESCHWINDIGKEITSGEFÜHL
 
-**teilweise erledigt** — main.js enthält gedämpfte Kamera, Blicksteuerung, FOV-/Geschwindigkeitseffekte und Aufprallreaktionen; post.js Bewegungsunschärfe. Zielabhängige Kamerakalibrierung und Komfortregler müssen erweitert werden. Cockpitbewegung setzt Phase 4 voraus; physischer Gerätekomfort ist nicht automatisiert nachgewiesen.
+**teilweise erledigt** — main.js enthält gedämpfte Kamera, Blicksteuerung, FOV-/Geschwindigkeitseffekte und Aufprallreaktionen; post.js Bewegungsunschärfe. Zielabhängige Kamerakalibrierung und Komfortregler müssen erweitert werden. V29 ergänzt Cockpitbewegung aus Chassispose, Federwegsgeschwindigkeit und Last sowie einen Komfortregler. Weitere Kameraabstimmung und physischer Gerätekomfort bleiben offen.
 
 - **P12.01 · teilweise erledigt** — Third-Person-Kamera darf nicht mehr steif und linear am Fahrzeug hängen. Adaptive Kameradistanz, leichtes Camera Lag, Kurven-Offset, Anfahr-/Bremsreaktion, Roll-/Nick-Reaktion und kontrollierte Rotation.
 - **P12.02 · teilweise erledigt** — Geschwindigkeit kann FOV leicht verändern. Dezente Vibration, periphere Bewegung, Bewegungsunschärfe und natürliche Dämpfung der Kamera.
@@ -178,7 +178,7 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 13: WIND, MOTORGERÄUSCHE, MUSIK UND UMGEBUNGSAUDIO
 
-**teilweise erledigt** — MotorLab erzeugt bauart-/lastabhängige Quellen; audio.js nutzt Radarbeit, Schäden, Wind und räumliche Reflexionen. music.js besitzt Fahr-/Verfolgungsmusik mit Lizenznachweisen. Es fehlen Sender/Tracks im In-Car-Radio sowie offene/defekte Fenster und Tunnel als durchgehend gekoppelte Klangzustände. V24 ergänzt synthetischen Regen und nasses Abrollgeräusch. Neue Assets werden in dieser Phase nicht hinzugefügt.
+**teilweise erledigt** — MotorLab erzeugt bauart-/lastabhängige Quellen; audio.js nutzt Radarbeit, Schäden, Wind und räumliche Reflexionen. music.js besitzt Fahr-/Verfolgungsmusik mit Lizenznachweisen. V29 ergänzt die In-Car-Bedienung der vorhandenen Musik und eine gedämpfte Kabinenmischung; offene/fehlende Türen und Scheiben verändern Wind und Motorfilter. Sender-/Trackauswahl und weitere räumliche Hörabstimmung bleiben offen. V24 ergänzt synthetischen Regen und nasses Abrollgeräusch. Neue Assets werden in dieser Phase nicht hinzugefügt.
 
 - **P13.01 · teilweise erledigt** — Differenzierte Motorsounds nach Motorbauart, Drehzahl, Last, Auspuff, Ansaugung und Tuningzustand.
 - **P13.02 · teilweise erledigt** — Reifenquietschen, Scrubbing, Wheelspin, Untergrund, Fahrwerk, Getriebe, Kupplung, Turbo und Schäden hörbar machen. Auspuffknallen nur bei passendem Motor-/Tuningzustand.
@@ -246,8 +246,8 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 - **P18.05 · teilweise erledigt** — Frontalaufprall beschädigt Kühler; Motortemperatur steigt; Reparatur des Kühlers behebt Ursache, ein bereits beschädigter Motor braucht ggf. gesonderte Reparatur.
 - **P18.06 · teilweise erledigt** — Kupplung verschleißt durch Missbrauch, rutscht und kann ausfallen. Heiße Bremsen verzögern schlechter.
 - **P18.07 · erledigt** — Tür oder Spoiler fällt durch Unfall ab und fehlt anschließend sichtbar am Fahrzeug.
-- **P18.08 · offen** — Cockpit jedes spielbaren Autos zeigt korrekte RPM/Geschwindigkeit; Radio-Map und Lenkrad-/Fahreranimation sind nutzbar.
-- **P18.09 · offen** — Ausgeblendetes virtuelles Lenkrad beeinträchtigt die Fahrzeugsteuerung nicht.
+- **P18.08 · erledigt** — Cockpit jedes spielbaren Autos zeigt korrekte RPM/Geschwindigkeit; Radio-Map und Lenkrad-/Fahreranimation sind nutzbar.
+- **P18.09 · erledigt** — Ausgeblendetes virtuelles Lenkrad beeinträchtigt die Fahrzeugsteuerung nicht.
 - **P18.10 · offen** — Die Garage zeigt den Motor, dessen Riemen mit der Drehzahl laufen; entfernte Komponenten bleiben entfernt und haben gegebenenfalls Folgen.
 - **P18.11 · teilweise erledigt** — Tag/Nacht verändert Licht. Scheinwerfer beleuchten bei Dunkelheit die Straße, Bremslicht reagiert und kaputte Lampen bleiben aus.
 - **P18.12 · teilweise erledigt** — Neue Bergstraßen folgen dem Terrain, Stadtteile sind weniger gleichförmig, Verkehr kann sie befahren.
@@ -306,3 +306,7 @@ P03.06 und P16.06 sind damit umgesetzt. P04.07 ist nur teilweise erfüllt: durch
 ## V27 – räumliche Kontakte
 
 Phase 3C ergänzt offene Hauben/Türen und lose Räder um räumliche Kontakte. P03.04 ist damit umgesetzt; Phase 3 insgesamt bleibt wegen einzelner Fahrwerksglieder und der Auspuffführung teilweise offen. Bericht und Messgrenzen: phase-3c-contacts-report.md. Alle ursprünglichen 156 Anforderungen bleiben erhalten.
+
+## V29 – Phase 4
+
+Alle zwölf Phase-4-Punkte und die End-to-End-Punkte P18.08/P18.09 sind mit den dokumentierten Browser-Näherungen umgesetzt. Alle 156 ursprünglichen Anforderungen bleiben wortgleich enthalten. [Phasenbericht und Testgrenzen](phase-4-cockpit-report.md). Nächste Phase: 5, erweitertes Tuning; danach die interaktive Garage und der sichtbare Motorraum aus Phase 6. Frühere Versionsabschnitte beschreiben ihren damaligen Stand.

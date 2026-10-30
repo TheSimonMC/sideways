@@ -357,7 +357,7 @@ export class CarPhysics {
    if(rpm>this.redlineRpm*.93&&roadRpm>this.redlineRpm*.73&&s.gear<this.gears.length&&Math.abs(v)>9&&!handbrake)this._requestGear(s.gear+1,{...context,report:false});
    else if(rpm<this.redlineRpm*.33&&s.gear>1)this._requestGear(s.gear-1,{...context,report:false});
   }
-  const ratio=this._ratio(s.gear),steering=steeringDemand(steerInput,speed,this.build.physics,input.deviceKind);
+  const ratio=this._ratio(s.gear),steering=steeringDemand(steerInput,speed,this.build.physics,input.deviceKind,input.wheelRotation);
   const steerRate=(Math.abs(steerInput)<.01?steering.returnRate:steering.rate)*15.5/this.build.physics.steeringRatio;
   const chassisDamage=this.condition.mechanical.chassisDamage;
   s.steer+=(rackTarget(steering.target,s.steer,chassisDamage.rack)-s.steer)*(1-Math.exp(-dt*steerRate*(.18+.82*chassisDamage.rack)));

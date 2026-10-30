@@ -4,7 +4,7 @@ import {DrivingFeedback} from './haptics.js';
 import {isTextEntry} from './navigation.js';
 const clamp=(n,a,b)=>Math.max(a,Math.min(b,Number.isFinite(Number(n))?Number(n):a));
 const clone=v=>JSON.parse(JSON.stringify(v));
-const ACTIONS=['shiftUp','shiftDown','home','pause','camera','reset','mute','confirm','back','menuPrev','menuNext','menuLeft','menuRight','transmission','neutral','settings','garage','lights','interact','map'];
+const ACTIONS=['shiftUp','shiftDown','home','pause','camera','reset','mute','confirm','back','menuPrev','menuNext','menuLeft','menuRight','transmission','neutral','settings','garage','lights','interact','map','radio','radioUp','radioDown'];
 const DRIVE=['steer','steerLeft','steerRight','throttle','brake','clutch','handbrake','boost','starter','horn','lookBack','lookX','lookY','lookLeft','lookRight','lookUp','lookDown'];
 const SIGNED=new Set(['steer','lookX','lookY']);
 const GEARS=['gear1','gear2','gear3','gear4','gear5','gear6','gearReverse'];
@@ -14,12 +14,12 @@ const MENU_ACTIONS=new Set([...MENU,'confirm','back','pause','settings','garage'
 const DEFAULT_KEYS={
  throttle:['KeyW','ArrowUp'],brake:['KeyS','ArrowDown'],steerLeft:['KeyA','ArrowLeft'],steerRight:['KeyD','ArrowRight'],
  clutch:['ControlLeft','ControlRight'],handbrake:['Space'],boost:['ShiftLeft','ShiftRight'],starter:['KeyI'],garage:['KeyG'],
- horn:['KeyH'],lights:['KeyL'],interact:['KeyF'],map:['Tab'],lookBack:['KeyB'],lookLeft:['Numpad4'],lookRight:['Numpad6'],lookUp:['Numpad8'],lookDown:['Numpad2'],
+ radio:['KeyU'],radioUp:['BracketRight'],radioDown:['BracketLeft'],horn:['KeyH'],lights:['KeyL'],interact:['KeyF'],map:['Tab'],lookBack:['KeyB'],lookLeft:['Numpad4'],lookRight:['Numpad6'],lookUp:['Numpad8'],lookDown:['Numpad2'],
  shiftDown:['KeyQ'],shiftUp:['KeyE'],home:['Escape'],pause:['KeyP'],camera:['KeyC'],reset:['KeyR'],mute:['KeyM'],
  transmission:['KeyT'],neutral:['KeyN'],settings:['KeyO'],confirm:['Enter','Space'],back:['Escape'],
  menuPrev:['ArrowUp','KeyW'],menuNext:['ArrowDown','KeyS'],menuLeft:['ArrowLeft','KeyA'],menuRight:['ArrowRight','KeyD']
 };
-const DEFAULT_CONFIG={version:4,mode:'auto',transmission:'auto',manualClutch:false,haptics:true,steerDeadzone:.1,steerCurve:1.25,pedalDeadzone:.025,bindings:{},keys:DEFAULT_KEYS,shifter:{enabled:false,mode:'buttons',tolerance:.22,slots:{}}};
+const DEFAULT_CONFIG={version:4,mode:'auto',transmission:'auto',manualClutch:false,haptics:true,wheelRotation:0,steerDeadzone:.1,steerCurve:1.25,pedalDeadzone:.025,bindings:{},keys:DEFAULT_KEYS,shifter:{enabled:false,mode:'buttons',tolerance:.22,slots:{}}};
 const standardButton=STANDARD_BUTTONS;
 const standardAxis={steer:0,lookX:2,lookY:3};
 const isEditable=el=>isTextEntry(el)||el?.tagName==='SELECT';
@@ -92,7 +92,7 @@ export class InputManager {
   if(!['auto','keyboard','custom'].includes(c.mode))c.mode='auto';
   if(!['auto','sequential','hpattern'].includes(c.transmission))c.transmission='auto';
   for(const k of ['manualClutch','haptics'])if(patch[k]!==undefined)c[k]=!!patch[k];
-  for(const [key,min,max] of [['steerDeadzone',0,.45],['steerCurve',.3,3],['pedalDeadzone',0,.4]])if(patch[key]!==undefined)c[key]=clamp(patch[key],min,max);
+  for(const [key,min,max] of [['wheelRotation',0,1440],['steerDeadzone',0,.45],['steerCurve',.3,3],['pedalDeadzone',0,.4]])if(patch[key]!==undefined)c[key]=clamp(patch[key],min,max);
   if(patch.keys&&typeof patch.keys==='object')for(const action of Object.keys(patch.keys))if(ALL.has(action)&&Array.isArray(patch.keys[action]))c.keys[action]=patch.keys[action].filter(k=>typeof k==='string').slice(0,8);
   if(patch.bindings&&typeof patch.bindings==='object')for(const action of Object.keys(patch.bindings)){
    if(!ALL.has(action))continue;const list=Array.isArray(patch.bindings[action])?patch.bindings[action]:[patch.bindings[action]];

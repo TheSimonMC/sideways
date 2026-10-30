@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "version": 29,
+  "checks": [
+    "Five chassis/drift parts preview free, charge 18,500 points once, persist and remain owned; legacy handling setting has no selector",
+    "A new Free Roam run restores the severely damaged saved car",
+    "Escape opens Pause and a second Escape resumes without returning to Main Menu",
+    "County map contains remote service destinations and returns to drive",
+    "Driving and Pause → Restart work in the final standalone",
+    "No JavaScript errors and no external or secondary local-file loads"
+  ],
+  "htmlSha256": "e7847f35b42d4b74330a9242bee6e1988fc94e3d8448a3eb879547f67515af77",
+  "errors": [],
+  "external": [],
+  "limits": [
+    "Chromium software rendering and keyboard automation; physical controller, listening and live multiplayer not tested."
+  ]
+}

@@ -9,7 +9,7 @@ const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const interpolate=(a,b,t,key)=>lerp(a[key]??0,b[key]??0,t);
 function samplePose(a,b,t){
  const state={...b};
- for(const key of ['x','z','vx','vz','yawRate','speed','forwardSpeed','bodyHeight','groundHeight','bodyPitch','bodyRoll','steer','brake','throttle','rpm','nitrousIntensity'])state[key]=interpolate(a,b,t,key);
+ for(const key of ['x','z','vx','vz','yawRate','speed','forwardSpeed','bodyHeight','groundHeight','bodyPitch','bodyRoll','steer','brake','throttle','clutch','handbrake','accelerationLong','accelerationLat','rpm','nitrousIntensity'])state[key]=interpolate(a,b,t,key);
  state.heading=a.heading+wrap(b.heading-a.heading)*t;
  state.wheelSpins=b.wheelSpins.map((v,i)=>(a.wheelSpins[i]??0)+wrap(v-(a.wheelSpins[i]??0))*t);
  state.wheelSteers=b.wheelSteers.map((v,i)=>lerp(a.wheelSteers[i]??0,v,t));

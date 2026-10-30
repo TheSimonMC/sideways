@@ -380,3 +380,8 @@ input[type="range"]{appearance:none;-webkit-appearance:none;height:4px;border:0;
 
 @media(max-width:760px){body.garage-open #garage-modal{grid-template-rows:51px 43px minmax(140px,1fr) 46px 225px 75px}#garage-modal .garage-specs{display:block;grid-column:1;grid-row:4;padding:0;overflow:visible;background:none}#garage-modal .garage-specs>:not(.garage-body-controls){display:none}#garage-modal .garage-body-controls{margin:0;grid-template-columns:repeat(4,minmax(0,1fr));gap:4px}#garage-modal .garage-body-controls button{font-size:9px;padding:9px 2px}#garage-modal .garage-options{grid-row:5}body #garage-modal>.garage-install{grid-row:6}}
 @media(max-height:520px) and (orientation:landscape){body.garage-open #garage-modal{grid-template-columns:140px 1fr;grid-template-rows:42px 80px 42px 180px 65px}#garage-modal .garage-specs{display:block;grid-column:2;grid-row:3;padding:0;overflow:visible;background:none}#garage-modal .garage-specs>:not(.garage-body-controls){display:none}#garage-modal .garage-body-controls{margin:0;grid-template-columns:repeat(4,minmax(0,1fr))}#garage-modal .garage-categories{grid-row:2/5}#garage-modal .garage-options{grid-row:4}body #garage-modal>.garage-install{grid-row:5}}
+
+/* The physical cluster and radio replace the floating speed/map display. */
+body.cockpit-view .speedometer,body.hide-speed-hud .speedometer,body.cockpit-view .map-panel{display:none}
+body.cockpit-view .phone-panel{opacity:.85}
+body.cockpit-view.cockpit-rhd .phone-panel{left:auto;right:var(--hud-right)}
