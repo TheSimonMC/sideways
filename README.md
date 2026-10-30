@@ -1,12 +1,12 @@
-# SIDEWAYS V25
+# SIDEWAYS V26
 
 [Play in your browser](https://thesimonmc.github.io/sideways/) · [Download ZIP or offline HTML](https://github.com/TheSimonMC/sideways/releases/latest)
 
 GitHub Pages publishes the tested `SIDEWAYS.html` on every push to `main`. To publish source changes, rebuild and rerun the standalone checks described below, then copy `dist/SIDEWAYS.html` to `SIDEWAYS.html` and commit it with the updated browser report. The deployment verifies that their SHA-256 values match.
 
-Start with **READ-ME-V25.txt** for this update, offline setup and verification limits.
+Start with **READ-ME-V26.txt** for this update, offline setup and verification limits.
 
-V25 adds separate opening doors, hood and trunk, attachment damage, visible detached meshes, mass/drag effects, garage controls and saved/networked panel states. Phase 3 remains in progress: glass, individual lamps and smaller appendages follow next. Full interiors and animated engine bays are still pending.
+V26 adds twenty separate exterior components: glass breaks, individual lamps fail, smaller attachments detach, and surface damage persists. Mass, light, wind, repair and multiplayer share those states. Full interiors and animated engine bays remain pending.
 
 ## SIDEWAYS / City Sessions
 
@@ -16,7 +16,7 @@ The player engine and its sound use the supplied MotorLab SDK 1.6.3, Physics Rel
 
 ## Play the downloaded game
 
-Open `SIDEWAYS-v25.html` from the chat attachment. The complete ZIP includes the same game as `SIDEWAYS.html` at its root, along with the editable project, SDK, credits and instructions. Extract the ZIP before opening its HTML. Single-player, including NPC racing, needs no server or network download. Multiplayer still needs internet access to signaling and peers.
+Open `SIDEWAYS-v26.html` from the chat attachment. The complete ZIP includes the same game as `SIDEWAYS.html` at its root, along with the editable project, SDK, credits and instructions. Extract the ZIP before opening its HTML. Single-player, including NPC racing, needs no server or network download. Multiplayer still needs internet access to signaling and peers.
 
 The HTML includes code, fonts, models and sound. No Sites address is used by the game. Progress stays in the browser and origin where you played. Copying the HTML to another PC copies the game assets; it does not copy browser storage. Click or press a key to enable sound. A browser must expose a controller or wheel through its Gamepad API before the game can bind it.
 
@@ -27,7 +27,13 @@ npm ci
 node build.mjs
 ```
 
-This creates `dist/SIDEWAYS.html`. After running `node qa/standalone-v25-check.mjs` and `node qa/standalone-browser-v25.cjs` on that build, `node qa/package-v25.mjs` creates `release/SIDEWAYS-v25.html` and `release/SIDEWAYS-v25.zip`. The browser check needs Playwright; dependency and browser path options are in READ-ME-V25.txt. Packaging verifies that the tested HTML matches the delivered bytes. These commands do not publish a Site or push a repository.
+This creates `dist/SIDEWAYS.html`. After running `node qa/standalone-v26-check.mjs` and `node qa/standalone-browser-v26.cjs` on that build, `node qa/package-v26.mjs` creates `release/SIDEWAYS-v26.html` and `release/SIDEWAYS-v26.zip`. The browser check needs Playwright; dependency and browser path options are in READ-ME-V26.txt. Packaging verifies that the tested HTML matches the delivered bytes. These commands do not publish a Site or push a repository.
+
+## V26: Glass, lamps and smaller attachments
+
+Each of the four cars has twenty additional exterior components. Cracked or missing glass changes wind, a broken headlamp loses its own light beam, and missing splitters/diffusers change downforce. Mirrors, skirts, fenders, grille and exhaust outlets detach as separate meshes. Small local glass fragments use a bounded pool. Inspect and replace each damaged component at a mechanic; recovery and reload preserve damage, while a new run begins serviced.
+
+Network protocol 18 shares component states through the existing pose messages. All players need V26. The RATE_LIMIT fix remains; loose fragments stay local. See [the V26 report](docs/phase-3b-exterior-report.md), [the complete checklist](docs/goal-progress.md) and qa/release-v26.json. Remaining Phase 3 contacts and suspension/exhaust pieces precede Phase 4 interiors. Older release notes below describe their historical versions.
 
 ## V25: Opening panels and detachable bodywork
 

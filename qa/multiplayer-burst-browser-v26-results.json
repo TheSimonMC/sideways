@@ -1,0 +1,53 @@
+{
+  "version": 26,
+  "status": "passed",
+  "checks": [
+    "Real PeerJS/WebRTC at 20 Hz survives a 7.5-second receiver main-thread stall and coalesces the queued state burst",
+    "The same stall on the host preserves the guest and processes the latest queued pose",
+    "Leave and late rejoin into the running session work after both burst tests"
+  ],
+  "states": [
+    {
+      "status": "playing",
+      "issue": null,
+      "stats": {
+        "sent": 178,
+        "received": 102,
+        "dropped": 78,
+        "backpressure": 0,
+        "coalesced": 72,
+        "invalid": 0,
+        "lastPacketBytes": 71,
+        "maxPacketBytes": 3700
+      },
+      "players": 2
+    },
+    {
+      "status": "playing",
+      "issue": null,
+      "stats": {
+        "sent": 176,
+        "received": 104,
+        "dropped": 78,
+        "backpressure": 0,
+        "coalesced": 72,
+        "invalid": 0,
+        "lastPacketBytes": 719,
+        "maxPacketBytes": 755
+      },
+      "players": 2
+    }
+  ],
+  "errors": [],
+  "sourceSHA256": {
+    "dist/multiplayer.js": "afb2851cb15e9f9a310aea1916a8ea1f4423950773793070449be71e28fd8c9c",
+    "dist/exterior-damage.js": "367986d8b1a2b1d95094495025c6c10f7c942fdcdd0a87a13498e563451261a6",
+    "dist/body-damage.js": "a7c71271751ac16d381b37464e9e1d2960ccc2bcd585f28a97539ade200970d0",
+    "dist/body-layout.js": "42f35ee176becaa444c807ed7418541763a1d40ad73542beff173d9c29126043",
+    "dist/vendor/peerjs.min.js": "7604d8c31bec4f134b0d15c2d80b1d095ea18af005354f439f14291fcd7b4168"
+  },
+  "limits": [
+    "Two local Chromium contexts with real public PeerJS signaling and WebRTC; no separate physical PCs, mobile network or TURN traversal test.",
+    "Transport harness uses the actual source module; full-game UI is covered by a separate final-HTML browser test."
+  ]
+}

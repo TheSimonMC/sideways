@@ -3,6 +3,7 @@
  * acoustic models from actual contact/work signals. The player never uses a
  * second engine clock or a pitch-shifted engine loop. Distant NPCs use a small
  * offline SDK bed; tyre squeal uses an attributed recording. */
+import {windowAir,exteriorMissing} from './exterior-damage.js';
 import {TYRE_SAMPLE,TYRE_SAMPLE_RATE} from './audio/samples.js';
 import {AUDIO_KIT} from './audio/kit.js';
 import {SpatialWorldAudio} from './audio/world.js';
@@ -152,7 +153,7 @@ export class GameAudio {
 
  _updateTargets(s,dt,engine){
   this._foleyTime+=dt;const speed=clamp(s?.speed??0,0,110),hood=this.cameraMode===2,doorAir=Math.max(0,...['left','right'].map(id=>{const p=s?.bodyDamage?.zones?.[id];return p?.detached?1:Math.sin(p?.angle||0);}));
-  this._windTarget=(.0018*speed+speed*speed*.000026)*this.mix.environment*(hood?1:.78)*(1+doorAir*.35);this._windTarget=clamp(this._windTarget,0,.32);
+  this._windTarget=(.0018*speed+speed*speed*.000026)*this.mix.environment*(hood?1:.78)*(1+Math.max(doorAir,windowAir(s?.bodyDamage))*.35);this._windTarget=clamp(this._windTarget,0,.32);
   const nos=!!s?.boosting;this._nosTarget=nos?clamp(s?.nitrousIntensity??1,0,1)*.19*this.mix.engine:0;
   if(nos!==this._lastNOS){this._event('nitro',nos?.12:.065,0,nos?.16:.12,nos?2700:1900,180);this._lastNOS=nos;}
   const shaft=Math.abs(s?.inputShaftRpm??0),gear=s?.gear??0,torque=clamp(Math.abs(s?.clutchTorque??0)/500,0,1.5);
@@ -160,7 +161,7 @@ export class GameAudio {
   this._gearMesh.tune(gearHz,gear<0?5.6:3.5);this._gearCase.tune(Math.min(11000,gearHz*1.97),1.1);
   const gearWear=1-clamp(s?.gearboxHealth??1,0,1),diffWear=1-clamp(Math.min(1,...(s?.mechanical?.components||[]).filter(part=>part.applicable!==false&&['differential','frontDifferential','centerDifferential'].includes(part.id)).map(part=>part.health)),0,1);
   this._gearTarget=gear===0?0:clamp(shaft/750,0,1)*(.008+torque*.014+clamp(speed/20,0,1)*.004)*this.gearboxGain*this.mix.mechanical*(1+gearWear*1.5)*(gear<0?2.4:1)*(hood?1.2:.85);
-  const firing=s?.engineRunning&&engine.rpm>250?1:0;this._intakeLeakTarget=(s?.mechanical?.intakeLeak??0)*.05*firing*this.mix.mechanical;this._exhaustLeakTarget=(s?.mechanical?.exhaustLeak??0)*.08*firing*this.mix.mechanical;this._exhaustLeakCase.tune(100+Math.abs(engine.rpm)*.045,1.1);
+  const firing=s?.engineRunning&&engine.rpm>250?1:0;this._intakeLeakTarget=(s?.mechanical?.intakeLeak??0)*.05*firing*this.mix.mechanical;this._exhaustLeakTarget=Math.max(s?.mechanical?.exhaustLeak??0,exteriorMissing(s?.bodyDamage,'exhaustTip')?.30:0)*.08*firing*this.mix.mechanical;this._exhaustLeakCase.tune(100+Math.abs(engine.rpm)*.045,1.1);
   const aux=s?.mechanical?.auxiliaries;this._fanTarget=(aux?.fan??0)*.045*this.mix.mechanical;this._beltTarget=(aux?.beltSlip??0)*(aux?.beltDrive??0)*.055*this.mix.mechanical;this._beltCase.tune(1500+clamp(engine.rpm,0,8000)*.45,2);
   const starter=!!(s?.starterActive??engine.controls?.starter)&&!(s?.engineRunning&&engine.rpm>1000);
   this._starterTarget=starter?.065*this.mix.mechanical:0;this._starterCase.tune(260+clamp(engine.rpm,0,700)*.45,1.2);
@@ -317,6 +318,7 @@ export class GameAudio {
  _flushSources(){for(const node of this._scheduled){try{node.stop();node.disconnect();}catch{}node.onended=null;}this._scheduled.clear();}
  _flush(){this._flushSources();this._stagingCount=0;this._nextTime=0;this._needsFade=true;}
  suspend(value){this.suspended=!!value;if(this.suspended){this._flush();this._flushWorld();this._events.length=0;this.world.clearTransients();this.acoustics.reset();}this.setMusic({});this._setMaster();this.music.update();}
+ glassBreak(contact={}){if(this.suspended||this.muted||this.focus.hidden)return;this._event('glassBreak',.20,this.world.spatial(contact.x,contact.z,0).pan,.24,6200,1200);}
  impact(strength=1,contact={}){if(this.suspended||this.muted||this.focus.hidden)return;if(this._foleyTime-this._lastImpact<.09)return;this._lastImpact=this._foleyTime;const level=clamp(strength,.05,2),metal=contact?.material==='metal',pan=this.world.spatial(contact?.x,contact?.z,contact?.pan??0).pan;this._event('impact',.12+level*.12,clamp(pan,-.8,.8),(metal?.20:.13)+level*.045,metal?2600:650+level*600,metal?420:110+level*35);}
  _flushUI(){for(const node of this._uiScheduled){try{node.stop();node.disconnect();}catch{}node.onended=null;}this._uiScheduled.clear();}
  tick(type='checkpoint'){

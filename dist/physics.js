@@ -15,6 +15,7 @@ import {roadPlane,contactFrame} from './road-contact.js';
    Audio may supply the sole engine stepper; never run two engine clocks. */
 import {resolveBuild} from './catalog.js';
 import {createVehicleCondition,snapshotVehicleCondition,FUEL_DENSITY_KG_PER_LITRE} from './vehicle-state.js';
+import {damageExterior,exteriorLayout,EXTERIOR_PARTS} from './exterior-damage.js';
 import {deformBody} from './body-damage.js';
 import {MechanicalSystem} from './mechanical.js';
 const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
@@ -96,7 +97,7 @@ export class CarPhysics {
    wheelOmegas:[0,0,0,0],wheelOmega:[0,0,0,0],wheelSpins:[0,0,0,0],wheelSteers:[0,0,0,0],tieRodAngles:[0,0],wheelSlip:[0,0,0,0],wheelLoads:[...this._staticLoads],brakeTemps:this._brakeTemps,tyreTemps:this._tyreTemps,
    brakePressure:[0,0,0,0],absActive:false,burnout:false,burnoutIntensity:0,halfTrack:this.halfTrack,rearAxle:this.rearAxle,frontAxle:this.frontAxle,wheelRadius:this.wheelRadius,
    aero:{front:0,rear:0,downforce:0,drag:0,pitchMoment:0},wheelHop:this._hop.wheels,driveLayout:this.build.physics.driveLayout,drivenWheels:this._drive.driven,axleTorques:[0,0],centerSlipRPM:0,frontDifferentialLock:0,centerDifferentialLock:0,accelerationLong:0,accelerationLat:0,diffSlipRPM:0,diffTorque:0,diffPower:0,
-   fuelFlowLph:0,fuelStarved:this.condition.fuelLitres<=0,overrev:0,damageMessage:'',bodyScrape:0,scrapeLoads:[0,0,0,0],detachedWheels:[],detachedPanels:[],
+   fuelFlowLph:0,fuelStarved:this.condition.fuelLitres<=0,overrev:0,damageMessage:'',bodyScrape:0,scrapeLoads:[0,0,0,0],detachedWheels:[],detachedPanels:[],glassShards:[],
    suspension:this._staticLoads.map((load,i)=>({compression:load/this.springRate,travel:0,load,normalLoad:load*plane.normalScale,groundHeight:samples[i].height,contact:true,wheelY:samples[i].height+this._tyreRadii[i],velocity:0,impactSpeed:0,impactCount:0})),
    wheelAudio:this._staticLoads.map(load=>({surface:'asphalt',roughness:.001,contact:true,load,longitudinalSpeed:0,lateralSpeed:0,slipSpeed:0,slipRatio:0,wheelSpeed:0,tyrePower:0,brakePower:0,suspensionVelocity:0,suspensionTravel:0,impactSpeed:0,impactCount:0}))});
   this._previousGround=this.state.suspension.map(p=>p.groundHeight);this._mechanics.observe(this.state.gear,this._omega);this._publishCondition();
@@ -156,7 +157,7 @@ export class CarPhysics {
    this._brakeTemps=this.condition.mechanical.temperatures.brakes;this._tyreTemps=this.condition.mechanical.temperatures.tyres;this._clutchTemp=this.condition.mechanical.temperatures.clutch;
    if(wasFailed&&!this.condition.engineFault&&this._canWarmStart()){if(this.engine.getTiming().clock!=='manual')void this.engine.disconnectAudio();this.engine.load(this._warmState);this.engineState=this.engine.getState();this._mechanics._lastSample={...this._mechanics._lastSample,starterRequested:false,starterTorque:this.engineState.config.starterTorque,starterNoLoadRpm:this.engineState.config.starterNoLoadRpm};this._omega=this.engineState.omega;this._stalled=false;this._stallTime=0;this._fuelMeter=this.engineState.totals?.fuelInjected??0;this._heatMeter={wall:this.engineState.totals?.wallHeat??0,friction:this.engineState.totals?.frictionWork??0,load:this.engineState.totals?.loadWork??0};this.state.engineRunning=this.condition.fuelLitres>0;this.state.engineStalled=false;this.state.rpm=this.engineState.rpm;}
    for(let i=0;i<4;i++)if(repaired.includes('tyre'+['FL','FR','RL','RR'][i])){this._previousTyreRadii[i]=this.wheelRadius;this.state.suspension[i].wheelY=this.state.suspension[i].groundHeight+this.wheelRadius;}
-   this.state.detachedWheels=this.state.detachedWheels.filter(w=>!this.condition.wheelAttached[w.index]);this.state.detachedPanels=this.state.detachedPanels.filter(p=>this.condition.bodyDamage.zones[p.panel]?.detached);this._refreshBodyMass();this.state.damageMessage='Repairs complete';this._mechanics.observe(this.state.gear,this._omega,this.state.speed);this._publishCondition();
+   this.state.detachedWheels=this.state.detachedWheels.filter(w=>!this.condition.wheelAttached[w.index]);this.state.detachedPanels=this.state.detachedPanels.filter(p=>p.panel.startsWith('exterior:')?this.condition.bodyDamage.exterior[p.panel.slice(9)]?.detached:this.condition.bodyDamage.zones[p.panel]?.detached);this._refreshBodyMass();this.state.damageMessage='Repairs complete';this._mechanics.observe(this.state.gear,this._omega,this.state.speed);this._publishCondition();
   }
   return {repaired:repaired.length>0,components:repaired,condition:this.getCondition()};
  }
@@ -171,6 +172,10 @@ export class CarPhysics {
   c.bodyHealth=Math.max(0,c.bodyHealth-damage);c.damageEnergyJ+=energy;c.damageRevision++;
   const bodyHit=deformBody(c.bodyDamage,this.build,{local,energyJ:energy,closingSpeed:closing});
   for(const panel of bodyHit.detached)this._detachPanel(panel,contact);
+  const exteriorHit=damageExterior(c.bodyDamage,this.build,{local,energyJ:energy,closingSpeed:closing});
+  for(const id of exteriorHit.detached)if(EXTERIOR_PARTS[id].kind!=='glass')this._detachPanel('exterior:'+id,contact);
+  for(const id of exteriorHit.brokenGlass)this._shatterGlass(id,contact);
+  if(exteriorHit.changed)this._refreshBodyMass();
   s.lastImpactLocal={...local};
   const front=clamp((local.z+this.rearAxle)/(this.frontAxle+this.rearAxle),0,1);
   this._mechanics.impact({damage,front,local,closing,severity});s.damageMessage='Body damage';
@@ -184,7 +189,7 @@ export class CarPhysics {
    if(c.wheelAttached[i]&&closing>13&&(wheelDamage>.48||c.wheelHealth[i]<.22)){this._detachWheel(i,contact);detached.push(i);s.damageMessage='Wheel detached';}
   }
   if(c.engineHealth<=.025){c.engineHealth=0;c.engineFault='Impact damage';this._stalled=true;this.engine.stop();s.damageMessage='Engine failure';}
-  this._mechanics.publish(true);this._publishCondition();return {damage,detached,panels:bodyHit.detached,energyJ:energy};
+  this._mechanics.publish(true);this._publishCondition();return {damage,detached,panels:bodyHit.detached,exterior:exteriorHit.detached,brokenGlass:exteriorHit.brokenGlass,energyJ:energy};
  }
  _detachWheel(index,contact){
   const s=this.state,c=this.condition,[x,z]=this._positions[index],sn=Math.sin(s.heading),cs=Math.cos(s.heading),normal=contact.normal||{x:0,z:0};
@@ -195,15 +200,25 @@ export class CarPhysics {
   s.suspension[index].contact=false;s.suspension[index].load=0;s.wheelLoads[index]=0;s.wheelAudio[index].contact=false;s.wheelAudio[index].load=0;
  }
  _detachPanel(panel,contact={}){
-  const s=this.state,part=bodyLayout(this.build).parts[panel];if(!part)return;
-  const [x,y,z]=panelCenter(part,this.condition.bodyDamage.zones[panel]?.angle),sn=Math.sin(s.heading),cs=Math.cos(s.heading),normal=contact.normal||{x:0,z:0};
+  const s=this.state,layout=bodyLayout(this.build),external=panel.startsWith('exterior:'),part=external?exteriorLayout(this.build)[panel.slice(9)]:layout.parts[panel];if(!part)return;
+  const hinge=part.parent&&layout.parts[part.parent];if(hinge?.pivot){Object.assign(part,{pivot:hinge.pivot,axis:hinge.axis,sign:hinge.sign});}
+  const [x,y,z]=panelCenter(part,this.condition.bodyDamage.zones[external?part.parent:panel]?.angle),sn=Math.sin(s.heading),cs=Math.cos(s.heading),normal=contact.normal||{x:0,z:0};
   const kick=Math.min(3,(contact.closingSpeed||s.speed)*.09),rot=this.condition.bodyDamage.zones[panel]?.angle||0;
   s.detachedPanels.push({id:++this._debrisId,panel,x:s.x+x*cs+z*sn,z:s.z-x*sn+z*cs,y:(s.bodyHeight||0)+this.rideHeight+y,
    vx:s.vx+s.yawRate*z*cs+normal.x*kick,vz:s.vz-s.yawRate*x*cs+normal.z*kick,vy:.7+kick*.2,heading:s.heading,rotation:0,spin:(x<0?-1:1)*(1+kick),age:0,radius:part.radius,floorOffset:.10,mass:part.mass,opening:rot,contacts:0});
   if(s.detachedPanels.length>8)s.detachedPanels.shift();this._refreshBodyMass();
  }
+ _shatterGlass(id,contact={}){
+  const s=this.state,part=exteriorLayout(this.build)[id],parent=bodyLayout(this.build).parts[part.parent];
+  if(parent?.pivot)Object.assign(part,{pivot:parent.pivot,axis:parent.axis,sign:parent.sign});
+  const [x,y,z]=panelCenter(part,this.condition.bodyDamage.zones[part.parent]?.angle),sn=Math.sin(s.heading),cs=Math.cos(s.heading),normal=contact.normal||{x:0,z:0};
+  for(let i=0;i<6;i++){const a=i*2.399,spread=.10+(i%3)*.06;s.glassShards.push({id:++this._debrisId,x:s.x+x*cs+z*sn+Math.cos(a)*spread,z:s.z-x*sn+z*cs+Math.sin(a)*spread,y:(s.bodyHeight||0)+this.rideHeight+y, vx:s.vx+normal.x*1.5+Math.cos(a)*2,vz:s.vz+normal.z*1.5+Math.sin(a)*2,vy:1+(i%3)*.45,spin:3+i*.4,rotation:a,heading:s.heading+a,age:0,radius:.035,floorOffset:.025,contacts:0,size:.09+(i%3)*.03});}
+  if(s.glassShards.length>24)s.glassShards.splice(0,s.glassShards.length-24);
+ }
  _updateDebris(dt){
   const s=this.state;
+  for(const shard of s.glassShards)advanceDebris(shard,dt,(x,z)=>this._ground(x,z),this._debrisColliders);
+  s.glassShards=s.glassShards.filter(p=>p.age<8&&Math.hypot(p.x-s.x,p.z-s.z)<100);
   for(const panel of s.detachedPanels)advanceDebris(panel,dt,(x,z)=>this._ground(x,z),this._debrisColliders);
   s.detachedPanels=s.detachedPanels.filter(p=>p.age<24&&Math.hypot(p.x-s.x,p.z-s.z)<180);
   for(const wheel of this.state.detachedWheels){wheel.age+=dt;wheel.vy-=G*dt;wheel.x+=wheel.vx*dt;wheel.z+=wheel.vz*dt;wheel.y+=wheel.vy*dt;wheel.spin+=wheel.omega*dt;const floor=this._ground(wheel.x,wheel.z).height+wheel.radius;

@@ -1,6 +1,6 @@
 # SIDEWAYS – verbindliche Fortschrittsliste
 
-Stand: V25, Phase 0, Phase 1 Teile A/B/C/D/E, Phase 2 Teile A/B/C/D und Phase 3 Teil A. Grundlage: unveränderte Kopie in `docs/goal.txt`.
+Stand: V26, Phase 0, Phase 1 Teile A/B/C/D/E, Phase 2 Teile A/B/C/D und Phase 3 Teile A/B. Grundlage: unveränderte Kopie in `docs/goal.txt`.
 
 Status bezieht sich auf den gesamten Wortlaut eines Punktes. Teilweise bedeutet, dass wesentliche Teile noch fehlen. Nur Phase 0 ist abgeschlossen. V19 ergänzt die gemeinsame Reifen-Grundlage aus Phase 2 und ihre Folgen für Phase 1. V24 schließt die Nässe-Anbindung. Phase 1 bleibt für breitere Grenzbereichs- und Eingabegeräte-Kalibrierung teilweise; Phase 2 wegen noch fehlendem Kompressortuning und der späteren Montage-/Ausbauintegration. Die umfassende Wetterdarstellung wird in Phase 7 weitergeführt.
 
@@ -51,14 +51,14 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 3: VERFORMUNG UND ABFALLENDE FAHRZEUGTEILE
 
-**teilweise erledigt** — V25 trennt Türen, Haube und Kofferraum aus den vier vorhandenen Hüllen. Scharniere, Schlösser und Befestigungen bestimmen Bewegung und Ablösen. Eine offene Tür kann außerhalb des normalen Fahrzeugumrisses an einem Hindernis hängen bleiben. Garagenknöpfe bedienen die montierten Teile, Position und Schaden werden gespeichert; gezielte Reparatur stellt das gewählte Teil wieder her. Abgefallene Teile zeigen ihre tatsächlichen Meshes, verändern Masse/Achslasten/Schwerpunkt/Trägheit und laufen in einem auf acht Teile und 24 Sekunden/180 Meter begrenzten Trümmermodell mit Boden-/Wandkontakt. Offene/fehlende Türen verändern Wind und Luftwiderstand. Multiplayer zeigt geöffnete/fehlende/verformte Teile. Offen: separate Glas-/Leuchtenschäden und weitere Anbauteile, Kratzer/Risse, präzisere Kontaktkörper und synchronisierte lose Trümmer. Keine volle Soft-Body- oder räumliche Starrkörpersimulation.
+**teilweise erledigt** — V25 trennt Türen, Haube und Kofferraum aus den vier vorhandenen Hüllen. Scharniere, Schlösser und Befestigungen bestimmen Bewegung und Ablösen. Eine offene Tür kann außerhalb des normalen Fahrzeugumrisses an einem Hindernis hängen bleiben. Garagenknöpfe bedienen die montierten Teile, Position und Schaden werden gespeichert; gezielte Reparatur stellt das gewählte Teil wieder her. Abgefallene Teile zeigen ihre tatsächlichen Meshes, verändern Masse/Achslasten/Schwerpunkt/Trägheit und laufen in einem auf acht Teile und 24 Sekunden/180 Meter begrenzten Trümmermodell mit Boden-/Wandkontakt. Offene/fehlende Türen verändern Wind und Luftwiderstand. Multiplayer zeigt geöffnete/fehlende/verformte Teile. V26 ergänzt 20 einzelne Exterieurkomponenten, Kratzer und Glasrisse, durchsichtige Scheiben, begrenzte Glassplitter, seitengenaue Lampenausfälle samt Lichtkegel und Einzelreparatur. Unterteile hängen an ihren Baugruppen; Masse wird bei gemeinsamem Verlust nicht doppelt abgezogen. Offen: genauere räumliche Kontakte für offene Hauben und lose Räder, ablösbare Fahrwerksglieder und die vollständige Auspuffführung. Lose Trümmer bleiben lokal. Keine volle Soft-Body- oder räumliche Starrkörpersimulation.
 
 - **P03.01 · teilweise erledigt** — BeamNG-inspirierte modulare Kollisionen, soweit in der Browser-Engine sinnvoll.
 - **P03.02 · teilweise erledigt** — Einzelteile: Türen, Motorhaube, Kofferraum, Stoßstangen, Lippe/Splitter, Seitenschweller, Spoiler, Diffusor, Kotflügel, Spiegel, Grill, Scheinwerfer, Rückleuchten, Auspuff, Scheiben, Felgen/Räder und Fahrwerksteile.
 - **P03.03 · teilweise erledigt** — Treffpunkt, Aufprallrichtung, Energie und Bauteilbefestigungen bestimmen Schaden: Kratzer, Risse, Verformung, lockere Befestigung, Funktionsausfall, Abreißen.
 - **P03.04 · teilweise erledigt** — Abfallende Teile werden kurzzeitig physikalische Objekte mit Kollision, Reibung, Rollen und Rutschen. Performancebewusst nach Entfernung/Lebensdauer aufräumen.
 - **P03.05 · erledigt** — Motorhaube und Türen können geöffnet, beschädigt und gelöst werden; offene Teile sollen sich mechanisch glaubwürdig bewegen.
-- **P03.06 · teilweise erledigt** — Zerbrochene Scheiben, kaputte Leuchten, defekte Kühler und verbogene Fahrwerksteile beeinflussen die restlichen Systeme.
+- **P03.06 · erledigt** — Zerbrochene Scheiben, kaputte Leuchten, defekte Kühler und verbogene Fahrwerksteile beeinflussen die restlichen Systeme.
 - **P03.07 · erledigt** — Sichtbare Schäden müssen an der getroffenen Fahrzeugseite entstehen und nach Möglichkeit erhalten bleiben.
 - **P03.08 · teilweise erledigt** — Keine volle Soft-Body-Simulation erzwingen, wenn eine modulare, lokale Deformation mit passenden Kollisionspunkten besser läuft.
 
@@ -72,7 +72,7 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 - **P04.04 · offen** — Kein dauerhaft schwebender HUD-Tacho in der Cockpitansicht. Das tatsächliche Cockpit-Instrument zeigt Geschwindigkeit, Drehzahl, Gang, Tank, Temperaturen und Warnleuchten korrekt an. Nadel und Anzeigen reagieren ohne sinnlose Verzögerung.
 - **P04.05 · teilweise erledigt** — Third-Person darf optional eine kleine, abschaltbare Geschwindigkeitsanzeige behalten, wenn sie für die Spielbarkeit benötigt wird.
 - **P04.06 · offen** — Navigation und Karte in ein tatsächlich sichtbares Display am Radio/Infotainment einbauen, mit Routenanzeige, Position und Musiksteuerung. Für ältere Autos sinnvoller externer Navi-Halter statt unpassendem modernen Touchscreen.
-- **P04.07 · offen** — Scheiben und Seitenscheiben sind durchsichtig. Man muss von außen Fahrer und Innenraum sehen können, abhängig von Spiegelungen, Licht und Tönung.
+- **P04.07 · teilweise erledigt** — Scheiben und Seitenscheiben sind durchsichtig. Man muss von außen Fahrer und Innenraum sehen können, abhängig von Spiegelungen, Licht und Tönung.
 - **P04.08 · offen** — Innenspiegel und Seitenspiegel sollen brauchbare Ansichten bieten, ggf. mit performancegerechter Renderinglösung.
 - **P04.09 · offen** — Ein sichtbarer Fahrer sitzt im Wagen, mit Kopf/Körper, Oberarmen, Unterarmen, Händen und Beinen. Hände greifen ans Lenkrad und folgen präzise der Lenkraddrehung, bei starken Winkeln mit sinnvoller Handbewegung.
 - **P04.10 · offen** — Passende Animationen für Schalten, Handbremse und Pedalbedienung sowie subtile Körperreaktionen auf Beschleunigung, Bremsen, Schlaglöcher und Kurven. Keine Clipping-Arme im Dashboard.
@@ -219,7 +219,7 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 - **P16.03 · teilweise erledigt** — Diagnosebildschirm mit Komponentenzustand, Temperatur, Verschleiß und konkreten Fehlern.
 - **P16.04 · teilweise erledigt** — Fahrzeuge können verschlissen sein, ohne optisch zerstört zu sein; optische Schäden können wiederum mechanische Folgen haben.
 - **P16.05 · teilweise erledigt** — Tuning beeinflusst Sound, Handling, Motorraum, Cockpit, Verschleiß, Gewicht und bei Bedarf Kamerabewegung.
-- **P16.06 · teilweise erledigt** — Schäden an Lichtern ändern Ausleuchtung, zerbrochene Fenster Windgeräusche, fehlende Spoiler gegebenenfalls Aerodynamik, kaputte Reifen Handling und fehlende Teile die Garagenansicht.
+- **P16.06 · erledigt** — Schäden an Lichtern ändern Ausleuchtung, zerbrochene Fenster Windgeräusche, fehlende Spoiler gegebenenfalls Aerodynamik, kaputte Reifen Handling und fehlende Teile die Garagenansicht.
 - **P16.07 · erledigt** — Straßen-, Wetter- und Reifenzustand beeinflussen sich sinnvoll gegenseitig.
 - **P16.08 · teilweise erledigt** — Kurze, verständliche Rückmeldungen für mechanische Probleme, ohne die Fahransicht mit HUD-Anzeigen zu überladen.
 
@@ -295,4 +295,10 @@ Nässe-Anbindung umgesetzt; P01.07/P01.08/P16.07 sind erledigt. Nachweise, Messw
 
 ## V25: Phase 3A
 
-T�ren, Haube und Kofferraum sind getrennt, bedienbar, besch�digbar und l�sbar. P03.05/P03.07 sind erledigt; P06.01 ist teilweise erledigt. Die Phase bleibt offen f�r Glas, Leuchten, kleinere Anbauteile und weitere Schadensdetails. Nachweise und technische Grenzen stehen im [Phasenbericht](phase-3a-body-panels-report.md). N�chster Teil ist Phase 3B; anschlie�end Phase 4. Alle 156 Anforderungen bleiben verbindlich.
+Türen, Haube und Kofferraum sind getrennt, bedienbar, beschädigbar und lösbar. P03.05/P03.07 sind erledigt; P06.01 ist teilweise erledigt. Die Phase bleibt offen für Glas, Leuchten, kleinere Anbauteile und weitere Schadensdetails. Nachweise und technische Grenzen stehen im [Phasenbericht](phase-3a-body-panels-report.md). Nächster Teil ist Phase 3B; anschließend Phase 4. Alle 156 Anforderungen bleiben verbindlich.
+
+## V26 – Phase 3B
+
+20 zusätzliche Komponenten sind mit den vorhandenen Hüllen aller vier Autos verbunden: Scheiben, Leuchten, Spiegel, Schweller, Kotflügel, Splitter, Diffusor, Grill und Auspuffauslass. Schaden, fehlende Geometrie, Leuchtwirkung, Wind, Masse, Abtrieb, Diagnose, gezielte Reparatur und Save-Migration greifen ineinander. Kleine Glassplitter nutzen einen eigenen Pool mit 24 Plätzen und acht Sekunden/100 Metern Lebensdauer. Bestehende Karosserietrümmer bleiben auf acht Stück begrenzt. Protokoll 18 überträgt den Zustand am Fahrzeug, nicht die losen Trümmer.
+
+P03.06 und P16.06 sind damit umgesetzt. P04.07 ist nur teilweise erfüllt: durchsichtiges Glas ist vorhanden, passende vollständige Innenräume und Fahrer fehlen weiterhin. P03.01–04 und P03.08 bleiben teilweise wegen vereinfachter Kontaktkörper, noch nicht einzeln ablösbarer Fahrwerksglieder und der bisher nur sichtbaren Endrohrbaugruppe. Vor Phase 4 folgt die verbleibende Kontakt-/Anbauteilarbeit aus Phase 3. Bericht und genaue Testgrenzen: docs/phase-3b-exterior-report.md.

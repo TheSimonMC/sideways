@@ -1,0 +1,113 @@
+{
+  "version": 26,
+  "status": "passed",
+  "checks": [
+    "Existing V1/V2 saves retain dents and door hinges; twenty bounded exterior components default healthy.",
+    "Local strikes damage the struck lamp/window and preserve the opposite side; screens crack before shattering.",
+    "Collision integration, exact component repair, migration/reload and reset preserve consistent mass and diagnostics.",
+    "Shattered glass emits independently moving, colliding fragments with a fixed 24-slot cap and eight-second lifetime.",
+    "Nested assemblies do not subtract child mass twice, and separate splitter/diffuser loss changes downforce.",
+    "Every original car and tuned variant has all twenty real exterior assemblies; absent parts disappear without hiding their parent.",
+    "A failed left headlamp extinguishes only its actual night spotlight; component repair restores light.",
+    "Broken glass increases actual wind PCM; a missing exhaust outlet adds outlet noise; break transient is finite and bounded.",
+    "Protocol 18 bounds both damage stores, preserves per-lamp/window state and stays below packet limits."
+  ],
+  "fixtures": {
+    "Existing V1/V2 saves retain dents and door hinges; twenty bounded exterior components default healthy.": {},
+    "Local strikes damage the struck lamp/window and preserve the opposite side; screens crack before shattering.": {
+      "leftLamp": {
+        "changed": true,
+        "detached": [],
+        "brokenGlass": []
+      },
+      "shattered": [
+        "glassLeft"
+      ]
+    },
+    "Collision integration, exact component repair, migration/reload and reset preserve consistent mass and diagnostics.": {},
+    "Shattered glass emits independently moving, colliding fragments with a fixed 24-slot cap and eight-second lifetime.": {},
+    "Nested assemblies do not subtract child mass twice, and separate splitter/diffuser loss changes downforce.": {},
+    "Every original car and tuned variant has all twenty real exterior assemblies; absent parts disappear without hiding their parent.": [
+      {
+        "vehicle": "hachi",
+        "tune": false,
+        "loose": 1,
+        "marks": 1
+      },
+      {
+        "vehicle": "hachi",
+        "tune": true,
+        "loose": 1,
+        "marks": 1
+      },
+      {
+        "vehicle": "atlas",
+        "tune": false,
+        "loose": 1,
+        "marks": 1
+      },
+      {
+        "vehicle": "atlas",
+        "tune": true,
+        "loose": 1,
+        "marks": 1
+      },
+      {
+        "vehicle": "kitsune",
+        "tune": false,
+        "loose": 1,
+        "marks": 1
+      },
+      {
+        "vehicle": "kitsune",
+        "tune": true,
+        "loose": 1,
+        "marks": 1
+      },
+      {
+        "vehicle": "vector",
+        "tune": false,
+        "loose": 1,
+        "marks": 1
+      },
+      {
+        "vehicle": "vector",
+        "tune": true,
+        "loose": 1,
+        "marks": 1
+      }
+    ],
+    "A failed left headlamp extinguishes only its actual night spotlight; component repair restores light.": {
+      "full": [
+        45,
+        45
+      ]
+    },
+    "Broken glass increases actual wind PCM; a missing exhaust outlet adds outlet noise; break transient is finite and bounded.": {
+      "closed": 0.0620256,
+      "broken": 0.07830732
+    },
+    "Protocol 18 bounds both damage stores, preserves per-lamp/window state and stays below packet limits.": {
+      "bytes": 3652
+    }
+  },
+  "sourceSHA256": {
+    "dist/exterior-damage.js": "367986d8b1a2b1d95094495025c6c10f7c942fdcdd0a87a13498e563451261a6",
+    "dist/surface-damage.js": "51e300545a66274dda315231ee4555756883fed9f5772cdf895efc066dc84b92",
+    "dist/body-damage.js": "a7c71271751ac16d381b37464e9e1d2960ccc2bcd585f28a97539ade200970d0",
+    "dist/body-hinges.js": "9ad2bbb767d6c127f8d43e2e0a16c14e3eeaa3d4fa3896b52c728b978907e80d",
+    "dist/physics.js": "46670d2c2008c55f398a451b9742a3a8534734dda55d9bd653be7ddbedee8950",
+    "dist/car.js": "e5e8eb7929dc4bcca2389bf4fd19d3d0f277bb4fea84615d8f5618e47fc09528",
+    "dist/car-cosmetics.js": "5f59754420ad2ecf0a149c7f45b79c054acc88e93b44c44865306938786d1bd9",
+    "dist/mechanical.js": "4dacda5e0d2e29e81c2348ad3cb085c4ae8a83b6df7a5cce084912e27e8d6468",
+    "dist/environment.js": "dfad44a6dbda6878c1417883c69a3a0f8a3b1c31ca9715443d3d453ab56c61bd",
+    "dist/audio.js": "ede050780bbf0c34cec437ec2bc5e791b6a8a5be4cbf74c09e59dc6ea4a6b2fc",
+    "dist/aerodynamics.js": "a210e742adba9c433666f1d725252e476dc4b9d858d06ca149ee3feb68bdaea6",
+    "dist/multiplayer.js": "afb2851cb15e9f9a310aea1916a8ea1f4423950773793070449be71e28fd8c9c",
+    "dist/main.js": "bc63d7df4211bba5be110871e5a5804c5a6cf398f3a30b91df9202f49026b238"
+  },
+  "limits": [
+    "Static contact proxies and locally bounded debris, no full soft body; up to 24 small glass proxies.",
+    "No claim of completed cockpit/interior or motor-bay phases."
+  ]
+}

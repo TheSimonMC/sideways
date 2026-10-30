@@ -1,5 +1,6 @@
 /* Persistent local crush zones. This is a lightweight plastic deformation
  * model coupled to collision energy, not a soft-body structural solver. */
+import {createExterior,repairExterior} from './exterior-damage.js';
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,Number.isFinite(v)?v:a));
 export const BODY_PANELS={
  front:{label:'Front bumper',x:0,z:.48,radius:.29,detach:true},
@@ -16,11 +17,11 @@ export function createBodyDamage(build,saved={},legacyHealth=1){
  const zones={},width=build.vehicle.model.width,length=build.vehicle.model.length;
  for(const [id,definition]of Object.entries(BODY_PANELS)){
   const prior=saved?.zones?.[id]||{},legacy=Object.keys(saved?.zones||{}).length?0:(1-clamp(legacyHealth,0,1))*.25;
-  zones[id]={health:clamp(prior.health??1-legacy,0,1),crush:clamp(prior.crush??legacy*.25,0,.7),x:clamp(prior.x??definition.x*width,-width,width),z:clamp(prior.z??definition.z*length,-length,length),pushX:clamp(prior.pushX??0,-1,1),pushZ:clamp(prior.pushZ??(definition.z>0?-1:1),-1,1),detached:!!definition.detach&&prior.detached===true,mounts:clamp(prior.mounts??prior.health??1,0,1),latch:clamp(prior.latch??prior.health??1,0,1),open:!!definition.hinged&&prior.open===true,angle:definition.hinged?clamp(prior.angle??0,0,1.16):0,velocity:definition.hinged?clamp(prior.velocity??0,-5,5):0};
+  zones[id]={scratches:clamp(prior.scratches??0,0,1),health:clamp(prior.health??1-legacy,0,1),crush:clamp(prior.crush??legacy*.25,0,.7),x:clamp(prior.x??definition.x*width,-width,width),z:clamp(prior.z??definition.z*length,-length,length),pushX:clamp(prior.pushX??0,-1,1),pushZ:clamp(prior.pushZ??(definition.z>0?-1:1),-1,1),detached:!!definition.detach&&prior.detached===true,mounts:clamp(prior.mounts??prior.health??1,0,1),latch:clamp(prior.latch??prior.health??1,0,1),open:!!definition.hinged&&prior.open===true,angle:definition.hinged?clamp(prior.angle??0,0,1.16):0,velocity:definition.hinged?clamp(prior.velocity??0,-5,5):0};
  }
- return {version:2,revision:Math.round(clamp(saved?.revision??0,0,1e9)),zones};
+ return {version:3,exterior:createExterior(saved?.exterior),revision:Math.round(clamp(saved?.revision??0,0,1e9)),zones};
 }
-export const snapshotBodyDamage=body=>({version:2,revision:body.revision,zones:Object.fromEntries(Object.entries(body.zones).map(([id,zone])=>[id,{...zone}]))});
+export const snapshotBodyDamage=body=>({version:3,exterior:createExterior(body.exterior),revision:body.revision,zones:Object.fromEntries(Object.entries(body.zones).map(([id,zone])=>[id,{...zone}]))});
 
 export function deformBody(body,build,{local,energyJ,closingSpeed}){
  const width=build.vehicle.model.width,length=build.vehicle.model.length,scale=build.physics.bodyStrength??1;
@@ -38,7 +39,7 @@ export function deformBody(body,build,{local,energyJ,closingSpeed}){
   if((id==='hood'&&!front||id==='boot'&&!rear)&&side)weight*=.32;
   const loss=specific*weight*.33*strength;if(loss<.0001)continue;
   const previous=zone.crush,increment=Math.min(.20,specific*weight*.16*strength),next=Math.min(.7,previous+increment);
-  zone.health=clamp(zone.health-loss,0,1);zone.crush=next;
+  zone.scratches=clamp((zone.scratches||0)+loss*.7,0,1);zone.health=clamp(zone.health-loss,0,1);zone.crush=next;
   // Mounts absorb impact energy independently of the cosmetic skin. A released
   // panel gives the next impact more leverage against its remaining hinges.
   zone.mounts=clamp(zone.mounts-loss*(definition.hinged?(1+zone.angle*1.6):1.18),0,1);
@@ -52,8 +53,10 @@ export function deformBody(body,build,{local,energyJ,closingSpeed}){
 }
 
 export function repairBody(body,id='body'){
+ if(id.startsWith('exterior:'))return repairExterior(body,id);
+ if(id==='body')body.exterior=createExterior();
  const keys=id==='body'?Object.keys(BODY_PANELS):id.startsWith('panel:')?[id.slice(6)]:[];
- let repaired=false;for(const key of keys){const zone=body.zones[key];if(!zone)continue;Object.assign(zone,{health:1,crush:0,detached:false,mounts:1,latch:1,open:false,angle:0,velocity:0,pushX:0,pushZ:0});repaired=true;}
+ let repaired=false;for(const key of keys){const zone=body.zones[key];if(!zone)continue;Object.assign(zone,{health:1,scratches:0,crush:0,detached:false,mounts:1,latch:1,open:false,angle:0,velocity:0,pushX:0,pushZ:0});repaired=true;}
  if(repaired)body.revision++;return repaired;
 }
 

@@ -1,4 +1,5 @@
 import {bodyLayout,panelCenter} from './body-layout.js';
+import {exteriorLayout,exteriorMissing} from './exterior-damage.js';
 export const HINGED_PANELS=['hood','left','right','boot'];
 const clamp=(x,a,b)=>Math.max(a,Math.min(b,x));
 export function toggleBodyPanel(body,id,speed=0){
@@ -38,6 +39,7 @@ export function bodyMassProperties(build,body){
  for(const [id,part]of Object.entries(parts))if(body?.zones?.[id]?.detached){
   const [x,y,z]=part.center,m=part.mass;missing+=m;momentY+=m*y;momentZ+=m*z;momentX+=m*x;inertia+=m*(x*x+z*z);
  }
+ for(const [id,part]of Object.entries(exteriorLayout(build)))if(exteriorMissing(body,id)&&!(part.parent&&body?.zones?.[part.parent]?.detached)){const [x,y,z]=part.center,m=part.mass;missing+=m;momentY+=m*y;momentZ+=m*z;momentX+=m*x;inertia+=m*(x*x+z*z);}
  const mass=Math.max(p.mass*.65,p.mass-missing),wheelbase=p.frontAxle+p.rearAxle;
  const cgX=-momentX/mass,cgZ=-momentZ/mass;
  const front=clamp((p.rearAxle+cgZ)/wheelbase,.2,.8),left=clamp((p.halfTrack-cgX)/(2*p.halfTrack),.25,.75);

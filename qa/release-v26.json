@@ -1,0 +1,185 @@
+{
+  "game": "SIDEWAYS",
+  "version": 26,
+  "date": "2026-10-30",
+  "status": "verified-with-documented-limits",
+  "base": "Published V25 6598f958f848dd7697deac345f31fe131176d6a4",
+  "scope": "Phase 3B: glass, individual lamps, smaller attachments, surface damage, consequential lighting/audio/aero/mass, repairs, saves and bounded multiplayer state. Full goal remains active.",
+  "delivery": {
+    "entry": "SIDEWAYS.html",
+    "separateFile": "SIDEWAYS-v26.html",
+    "htmlBytes": 10637266,
+    "htmlSha256": "89f85ec1a02d53a397d76faa7b24b04c70ac29bd9fb1ef0c47779ce41a47fec5",
+    "offlineSinglePlayer": true,
+    "externalRuntimeRequestsDuringOfflineTest": 0,
+    "publishedToSites": false
+  },
+  "currentFunctionalSuites": [
+    {
+      "file": "qa/archipelago-v26-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "55be140733ffdb195ccb878fd0b8440b4fe839972f243ac3462dd8e66f96604f"
+    },
+    {
+      "file": "qa/audio-v26-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "2507184f55b26cdfbd8bc6e0fdedf49927dc3ff122f85f78b6f8a23cf59123e0"
+    },
+    {
+      "file": "qa/body-panels-browser-v26-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "b54750bd54d411ae3af0170b9f5a80d7da5c15c07b7696d8e0d1af314862d059"
+    },
+    {
+      "file": "qa/body-panels-v26-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "a406c1cf16f95909b07e6923c7cd973ca073d027f59a9dbcdee20ab3ab943fc0"
+    },
+    {
+      "file": "qa/chassis-v26-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "b8f07a2868f554d6b0a459be68d5f853b66e463b1cc147db69a0940135788883"
+    },
+    {
+      "file": "qa/cosmetics-v26-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "e437db1e183cc51b59590b6e595fbcd0808616c303076fb3fa189ca1231dcecc"
+    },
+    {
+      "file": "qa/damage-v26-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "95ddc3dad74e55cf998d06a7a695cdbaeef3971aa20417bf877bab031ab86600"
+    },
+    {
+      "file": "qa/exterior-browser-v26-results.json",
+      "status": "passed",
+      "groups": 5,
+      "sha256": "0ebf7aceb15c1ee47ba4db4e85f2a200455b0b2e870a42dba92eb3d89c4a43c4"
+    },
+    {
+      "file": "qa/exterior-v26-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "2087da346a1be537d59843854a1341f47d7347a8f47af9e67f750520cec3c6b9"
+    },
+    {
+      "file": "qa/goal-coverage-v26-results.json",
+      "status": "passed",
+      "groups": 2,
+      "sha256": "76451785261520991ad09834cccdaa735a684f94920dd9205b82f16dddab53de"
+    },
+    {
+      "file": "qa/input-taps-v26-results.json",
+      "status": "passed",
+      "groups": 11,
+      "sha256": "45a3588bd407a1963520ba595ef500c1fd674952ec85eed45c35a0d11d9bcb8a"
+    },
+    {
+      "file": "qa/modular-v26-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "1cc5dee361a6e6cb53cf65e89fdd8abdc63763b2f7d0f65de9966db72a5af002"
+    },
+    {
+      "file": "qa/multiplayer-browser-v26-results.json",
+      "status": "passed",
+      "groups": 5,
+      "sha256": "2eb27a64e23d7e96b57a557de1fb76a1fcc7ef5a1adfd8690b55e061f9c760f0"
+    },
+    {
+      "file": "qa/multiplayer-burst-browser-v26-results.json",
+      "status": "passed",
+      "groups": 3,
+      "sha256": "24c50e239f74c3a6f319304060a32c64707a6f570d924d97da302a289f4e2bac"
+    },
+    {
+      "file": "qa/multiplayer-burst-v26-results.json",
+      "status": "passed",
+      "groups": 5,
+      "sha256": "e4c2576b1e43e798b68f020c0a7bea53e04b92c9b9975f7ae2db5d51099e6288"
+    },
+    {
+      "file": "qa/multiplayer-v26-results.json",
+      "status": "passed",
+      "groups": 11,
+      "sha256": "8267c787ed08ceeb12c7950f090c62e126e36f567fadf53f7b02f0149b9ed300"
+    },
+    {
+      "file": "qa/navigation-main-v26-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "42e783a30b4a8c20064d4aa97594f17421a879f1dee10a81ffdf1908ce98dcfe"
+    },
+    {
+      "file": "qa/physics-v26-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "7c033210225997190153ea0b049ddb9b2ba00890af52a3c1d030954ad64bd1e5"
+    },
+    {
+      "file": "qa/police-v26-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "372eaf31553c34a145c646d4e9969d11e2eecff80b827d8d68b7dae3e6e8b059"
+    },
+    {
+      "file": "qa/race-v26-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "63fd380291de02eb34c6436cecdd750c0138a19497099c70a1a7a70f371400fa"
+    },
+    {
+      "file": "qa/responsive-panels-browser-v26-results.json",
+      "status": "passed",
+      "groups": 2,
+      "sha256": "e58f611ce21e583bf26d8ad86119b62d27942236d7b879d78e17dc035d1ddaa4"
+    },
+    {
+      "file": "qa/restart-v26-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "19f7c30ceaa1bee17d39ebb01cc40520a7d29bea3163e32589c07e51e5c0bf18"
+    },
+    {
+      "file": "qa/standalone-browser-v26-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "bbe27245d07162ee6eb2f503ec84aee69abe8a6672d32bc4360a75ec4643c787"
+    },
+    {
+      "file": "qa/standalone-v26-results.json",
+      "status": "passed",
+      "groups": 0,
+      "sha256": "07f3c2d604e23a33e547d18a7e74fe489a312ae508ea5804a1aca75160152ab9"
+    },
+    {
+      "file": "qa/thermal-v26-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "83cc7787a3a5f28337163b3a0185dd165fff20edd83c5ab06fdeb547f40135e6"
+    }
+  ],
+  "performanceMeasurement": {
+    "file": "qa/chassis-performance-v26-results.json",
+    "status": "measured",
+    "sha256": "07d6a93fbae13905d352abec386999805e340a3365f003d0ff6513f68584901c"
+  },
+  "review": {
+    "file": "qa/review-v26.json",
+    "sha256": "31f983dab225e52b27a44dac70a4124507b0f000a2d02bd3197607a51ebf0fb7"
+  },
+  "limits": [
+    "Phase 3 remains partial: complete open-hood contacts, loose-wheel static contacts, individual detachable suspension members and full exhaust piping remain open.",
+    "Rigid debris proxies are local and do not collide with one another. Glass uses up to 24 stylized small triangle proxies, not a material fracture solver.",
+    "Transparent glass does not complete Phase 4 interiors, cockpit, driver or useful mirrors; animated engine bays and removal/installation remain future work.",
+    "Tests use local Chromium software rendering, public PeerJS/WebRTC and native simulations; no separate physical PCs, mobile network, TURN, physical controller or listening acceptance.",
+    "CPU sample excludes world, debris queries, GPU, AI and audio; no FPS guarantee."
+  ]
+}

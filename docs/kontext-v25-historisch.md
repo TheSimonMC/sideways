@@ -1,0 +1,15 @@
+# SIDEWAYS V25 – Phase 3A: getrennte Karosserieteile
+
+Verbindlich bleiben docs/goal.txt und alle 156 Anforderungen in docs/goal-progress.md/.json. SHA-256 4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc282ea844a1b96dca. Gesamtziel aktiv, main/Pages/Release-Veröffentlichung autorisiert. Vorheriger Kontext: docs/kontext-v24-historisch.md.
+
+Neue body-layout.js übernimmt die vier bestehenden Profile unverändert und liefert gemeinsame Scharniere, Anker und Spielmassen. car.js teilt die echten Hüllendreiecke zwischen Frame, Türen, Haube und Kofferraum; unter den Öffnungen bleibt keine zweite vollständige Hülle. Türglas, Spiegel, Griffe, Decals und Haubenvarianten folgen dem jeweiligen Teil. Ein einfaches Abteil mit Motorblock-Grundform sowie Türkarten sind sichtbar; kein fertiger Phase-4-Innenraum oder Phase-6-Motorraum.
+
+body-damage.js migriert Version 1 auf 2 mit mounts/latch/open/angle/velocity. Aufprallenergie beschädigt Befestigung und Schloss. body-hinges.js integriert Feder/Dämpfung und Luft-/Beschleunigungslast, beschädigte offene Befestigungen können nachgeben. Türkontakt außerhalb des geschlossenen Fahrzeugs verändert Impuls und nur die betroffene Tür. Diagnose benutzt Minimum aus Haut/Befestigung/Schloss, gezielte Reparatur schließt und montiert das Teil. Normale Recovery erhält Schaden; neue Fahrt/Restart repariert wie zuvor.
+
+physics.js berechnet bei Abriss/Reparatur/Reload/Build die verbleibende Masse, Achslasten, Schwerpunkt und Trägheit; main.js benutzt diese auch für Fahrzeugkontakte. panel-debris.js simuliert höchstens acht Karosserieteile, 24 Sekunden und 180 Meter; Teilgeometrie wird erst beim Abriss geklont und danach entsorgt. Bodenreibung und lokale statische Quaderkontakte mit Unterschritten gegen Tunneln. Vereinfachte räumliche Abmessungen; keine gegenseitigen Trümmerkollisionen und keine vollständige 6-DOF-Dynamik. Bestehende lose Räder bleiben im bisherigen Modell.
+
+Garage besitzt vier Knöpfe am eingebauten Fahrzeug. Andere Vorschaufahrzeuge zeigen ihren eigenen gespeicherten Karosseriezustand; Knöpfe bleiben bis zum Einbau gesperrt. Geöffnete/fehlende Türen erhöhen Wind, alle geöffneten Hauptpaneele Luftwiderstand. Multiplayer-Protokoll 17, Prefix sideways-v17-: feste acht Zonen, begrenzte numerische Werte innerhalb bestehender Pose-Pakete. Kein zusätzlicher Nachrichtenstrom; RATE_LIMIT-Koaleszierung bleibt erhalten. Lose Trümmer sind lokal, fehlende/geöffnete/verformte Teile werden übertragen. Alle Spieler müssen V25 laden.
+
+Tests und Grenzen: docs/phase-3a-body-panels-report.md, qa/release-v25.json. Build node build.mjs; Paket node qa/package-v25.mjs ../../outputs. Final-HTML-Hash und Quellenhashes müssen den QA-Berichten entsprechen. SDK bleibt unverändert. Historische QA nicht überschreiben.
+
+Nächster Schritt Phase 3B: Glas, einzelne Leuchten und kleinere Anbauteile, Kratzer/Risse und genauere Trümmerkonturen. Danach Phase 4 Cockpit/Innenräume/Fahrer. Phase 6 Motorraum/Ausbau und alle späteren Anforderungen bleiben bestehen; Phase 1 Grenzbereichs-/Eingabegeräte-Abnahme und Phase 2 Kompressortuning nicht vergessen. Gesamtziel nicht als fertig markieren.

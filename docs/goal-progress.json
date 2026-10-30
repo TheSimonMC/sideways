@@ -1,7 +1,7 @@
 {
   "source": "docs/goal.txt",
   "sourceSHA256": "4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc282ea844a1b96dca",
-  "version": 25,
+  "version": 26,
   "requirements": [
     {
       "id": "P00.01",
@@ -204,7 +204,7 @@
     {
       "id": "P03.06",
       "phase": 3,
-      "status": "teilweise erledigt",
+      "status": "erledigt",
       "requirement": "Zerbrochene Scheiben, kaputte Leuchten, defekte Kühler und verbogene Fahrwerksteile beeinflussen die restlichen Systeme."
     },
     {
@@ -258,7 +258,7 @@
     {
       "id": "P04.07",
       "phase": 4,
-      "status": "offen",
+      "status": "teilweise erledigt",
       "requirement": "Scheiben und Seitenscheiben sind durchsichtig. Man muss von außen Fahrer und Innenraum sehen können, abhängig von Spiegelungen, Licht und Tönung."
     },
     {
@@ -780,7 +780,7 @@
     {
       "id": "P16.06",
       "phase": 16,
-      "status": "teilweise erledigt",
+      "status": "erledigt",
       "requirement": "Schäden an Lichtern ändern Ausleuchtung, zerbrochene Fenster Windgeräusche, fehlende Spoiler gegebenenfalls Aerodynamik, kaputte Reifen Handling und fehlende Teile die Garagenansicht."
     },
     {
@@ -942,22 +942,19 @@
   ],
   "currentIncrement": {
     "phase": 3,
-    "part": "A – Türen, Hauben, Befestigungen und Karosserietrümmer",
+    "part": "B – Glas, Leuchten, Anbauteile und Oberflächenschäden",
     "status": "erledigt",
     "implemented": [
-      "Vier vorhandene Karosserien in reale Tür-, Hauben- und Kofferraummeshes getrennt; keine geschlossene Hülle unter den Öffnungen",
-      "Scharnierbewegung, separate Schloss-/Befestigungszustände, Aufprall- und Luftlast, Türkontakt außerhalb der geschlossenen Karosserie",
-      "Abreißende Teile behalten ihre sichtbare Geometrie; begrenzte Kollisionsproxies, Reibung und Bereinigung",
-      "Fehlende Teile verändern Masse, Achslasten, Schwerpunkt, Gierträgheit und Luftwiderstand",
-      "Garagenknöpfe, gezielte Reparatur, Version-1-Migration, Speicherung sowie begrenzte Multiplayer-Übertragung"
+      "20 unabhängige Exterieurkomponenten mit gespeichertem Zustand, treffseitigem Schaden und Einzelreparatur.",
+      "Vier Scheiben mit Rissen, Bruch, Wind und bis zu 24 lokalen Splittern; vier einzeln ausfallende Leuchten mit passender Emission/Lichtkegel.",
+      "Spiegel, Schweller, Kotflügel, Splitter, Diffusor, Grill und Auspuffauslass besitzen getrennte Meshes; Abreißen ändert Masse und gegebenenfalls Abtrieb oder Geräusch.",
+      "Protocol 18 überträgt begrenzte Komponenten- und Kratzerzustände in vorhandenen Pose-Nachrichten."
     ],
     "remaining": [
-      "Phase 3: einzelne Glas-/Leuchtenschäden, unabhängige kleinere Anbauteile, Kratzer-/Rissdarstellung und genauere Trümmerkonturen fehlen.",
-      "Trümmer kollidieren über vereinfachte Quader-/Bodenproxies; keine gegenseitigen Trümmerkollisionen, keine vollständige räumliche Starrkörpersimulation. Fremde Spieler sehen die fehlenden/geöffneten Teile, nicht die losen Trümmer.",
-      "Phase 4: komplette Innenräume, Cockpit und Fahrer. Die neuen einfachen Türkarten sind nur eine Grundlage.",
-      "Phase 6: vollständiger, zum eingebauten Motor passender Motorraum, RPM-Animationen und gezielter Ausbau. Die Geometrie unter der Haube ist bisher nur ein einfaches Abteil mit Blockgrundform.",
-      "Frühere Restpunkte aus Phase 1/2 und alle späteren Phasen bleiben verbindlich."
-    ],
-    "next": "Phase 3B: Glas, einzelne Leuchten und kleinere Anbauteile mit ihren mechanischen, optischen und akustischen Folgen. Danach Phase 4."
+      "Phase 3: genauere räumliche Kontakte insbesondere für offene Hauben und lose Räder; ablösbare einzelne Fahrwerksglieder und vollständige Auspuffführung.",
+      "Lose Trümmer bleiben lokal; keine gegenseitigen Trümmerkollisionen.",
+      "Phase 4 vollständige Innenräume/Cockpit/Fahrer/Spiegel und Phase 6 Motorraum/Ausbau bleiben offen.",
+      "Restliche Anforderungen aller Phasen bleiben unverändert in der 156-Punkte-Liste."
+    ]
   }
 }

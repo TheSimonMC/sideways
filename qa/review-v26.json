@@ -1,0 +1,35 @@
+{
+  "status": "reviewed",
+  "result": "No findings.",
+  "method": "Read-only review of the complete runtime diff, new modules, callers, new/reused tests and release workflow using review-agent; self-review by the implementation agent, not independent.",
+  "baseCommit": "6598f958f848dd7697deac345f31fe131176d6a4",
+  "sourceSHA256": {
+    "dist/exterior-damage.js": "367986d8b1a2b1d95094495025c6c10f7c942fdcdd0a87a13498e563451261a6",
+    "dist/surface-damage.js": "51e300545a66274dda315231ee4555756883fed9f5772cdf895efc066dc84b92",
+    "dist/body-damage.js": "a7c71271751ac16d381b37464e9e1d2960ccc2bcd585f28a97539ade200970d0",
+    "dist/body-hinges.js": "9ad2bbb767d6c127f8d43e2e0a16c14e3eeaa3d4fa3896b52c728b978907e80d",
+    "dist/physics.js": "46670d2c2008c55f398a451b9742a3a8534734dda55d9bd653be7ddbedee8950",
+    "dist/car.js": "e5e8eb7929dc4bcca2389bf4fd19d3d0f277bb4fea84615d8f5618e47fc09528",
+    "dist/car-cosmetics.js": "5f59754420ad2ecf0a149c7f45b79c054acc88e93b44c44865306938786d1bd9",
+    "dist/environment.js": "dfad44a6dbda6878c1417883c69a3a0f8a3b1c31ca9715443d3d453ab56c61bd",
+    "dist/mechanical.js": "4dacda5e0d2e29e81c2348ad3cb085c4ae8a83b6df7a5cce084912e27e8d6468",
+    "dist/audio.js": "ede050780bbf0c34cec437ec2bc5e791b6a8a5be4cbf74c09e59dc6ea4a6b2fc",
+    "dist/aerodynamics.js": "a210e742adba9c433666f1d725252e476dc4b9d858d06ca149ee3feb68bdaea6",
+    "dist/main.js": "bc63d7df4211bba5be110871e5a5804c5a6cf398f3a30b91df9202f49026b238",
+    "dist/multiplayer.js": "afb2851cb15e9f9a310aea1916a8ea1f4423950773793070449be71e28fd8c9c",
+    "dist/index.html": "a2659c4078e7ec60995badb69362606c01a0c4e461c6f2a65a189bcb1763cedf",
+    ".github/workflows/pages.yml": "d8cbf0f6d62642f626bbc3c76bd423f8dacf90c856b53415a0b8af3502ab9a86"
+  },
+  "resolvedDuringImplementation": [
+    "Use the preview vehicle condition for its headlight beams.",
+    "Preserve unbroken child windows/mirrors when cloning a detached door, while keeping previously missing children absent.",
+    "Keep parent/child mass accounting from subtracting the same component twice."
+  ],
+  "limits": [
+    "Phase 3 remains partial: complete open-hood contacts, loose-wheel static contacts, individual detachable suspension members and full exhaust piping remain open.",
+    "Rigid debris proxies are local and do not collide with one another. Glass uses up to 24 stylized small triangle proxies, not a material fracture solver.",
+    "Transparent glass does not complete Phase 4 interiors, cockpit, driver or useful mirrors; animated engine bays and removal/installation remain future work.",
+    "Tests use local Chromium software rendering, public PeerJS/WebRTC and native simulations; no separate physical PCs, mobile network, TURN, physical controller or listening acceptance.",
+    "CPU sample excludes world, debris queries, GPU, AI and audio; no FPS guarantee."
+  ]
+}

@@ -1,0 +1,27 @@
+SIDEWAYS V26 – GLASS, LAMPS AND EXTERIOR DAMAGE
+
+Open SIDEWAYS.html to play offline. Multiplayer needs internet.
+Online: https://thesimonmc.github.io/sideways/
+
+Glass can crack or shatter. Each headlamp/tail lamp can fail independently.
+Mirrors, skirts, fenders, splitter, diffuser, grille and exhaust outlets can detach.
+Inspect VEHICLE CONDITION in Pause. Stop at a mechanic, choose INSPECT & REPAIR
+PARTS, then replace the specific component. Recovery keeps damage; restart
+begins serviced. Garage opening controls from V25 are unchanged.
+All multiplayer clients must load V26 (protocol 18). RATE_LIMIT coalescing remains.
+
+Report: docs/phase-3b-exterior-report.md
+Full scope: docs/goal.txt and docs/goal-progress.md
+Evidence: qa/release-v26.json
+New geometry/behavior are authored in code; SDK and licensed assets are retained.
+
+Remaining Phase 3 work includes more accurate debris/open-hood contacts,
+separate suspension members and full exhaust piping. Full interiors, cockpit,
+driver, engine bays and other unfinished phases remain on the checklist.
+
+Build: npm ci, then node build.mjs (Node.js 24).
+Native checks: node qa/regressions-v26.mjs and *-v26-check.mjs.
+Browser checks: *-browser-v26.cjs, using Playwright and Chromium.
+Set CODEX_PRIMARY_RUNTIME_NODE_MODULES to node_modules containing playwright;
+set PLAYWRIGHT_CHROMIUM_EXECUTABLE to the Chromium binary.
+Package: node qa/package-v26.mjs <output-directory>.

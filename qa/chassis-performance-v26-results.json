@@ -1,0 +1,112 @@
+{
+  "version": 26,
+  "status": "measured",
+  "current": {
+    "stock": {
+      "flat": {
+        "steps": 1200,
+        "meanMs": 1.5542178333333314,
+        "medianMs": 1.5174999999999272,
+        "p95Ms": 1.731999999999971,
+        "groundQueriesPerStep": 4
+      },
+      "hills": {
+        "steps": 1200,
+        "meanMs": 1.5951372499999945,
+        "medianMs": 1.53650000000016,
+        "p95Ms": 1.9005999999999403,
+        "groundQueriesPerStep": 4
+      },
+      "wet": {
+        "steps": 1200,
+        "meanMs": 1.6872047500000091,
+        "medianMs": 1.5586999999995896,
+        "p95Ms": 2.5187999999998283,
+        "groundQueriesPerStep": 4
+      }
+    },
+    "fwd": {
+      "flat": {
+        "steps": 1200,
+        "meanMs": 1.5819890000000063,
+        "medianMs": 1.5064999999995052,
+        "p95Ms": 1.9411000000000058,
+        "groundQueriesPerStep": 4
+      },
+      "hills": {
+        "steps": 1200,
+        "meanMs": 1.599117583333338,
+        "medianMs": 1.5102999999999156,
+        "p95Ms": 2.041900000000169,
+        "groundQueriesPerStep": 4
+      },
+      "wet": {
+        "steps": 1200,
+        "meanMs": 1.5729869999999877,
+        "medianMs": 1.4940999999998894,
+        "p95Ms": 1.9341999999996915,
+        "groundQueriesPerStep": 4
+      }
+    },
+    "awd": {
+      "flat": {
+        "steps": 1200,
+        "meanMs": 1.596879333333336,
+        "medianMs": 1.5177000000003318,
+        "p95Ms": 1.999100000000908,
+        "groundQueriesPerStep": 4
+      },
+      "hills": {
+        "steps": 1200,
+        "meanMs": 1.56141383333336,
+        "medianMs": 1.5091000000029453,
+        "p95Ms": 1.7884000000012747,
+        "groundQueriesPerStep": 4
+      },
+      "wet": {
+        "steps": 1200,
+        "meanMs": 1.6394204999999298,
+        "medianMs": 1.5095999999975902,
+        "p95Ms": 2.46469999999681,
+        "groundQueriesPerStep": 4
+      }
+    }
+  },
+  "limits": [
+    "Node.js wall-clock on this machine for one native engine/chassis and a synthetic sampler. Browser GPU, world query cost, AI, audio and frame scheduling excluded; no FPS guarantee.",
+    "Same Vector V6 inputs and samplers; native engine load and JIT timing may differ. Single local run, not a universal comparison."
+  ],
+  "baselineV25": {
+    "flat": {
+      "steps": 1200,
+      "meanMs": 1.6346506666667149,
+      "medianMs": 1.5445999999974447,
+      "p95Ms": 2.1194000000032247,
+      "groundQueriesPerStep": 4
+    },
+    "hills": {
+      "steps": 1200,
+      "meanMs": 1.6171135000000505,
+      "medianMs": 1.5529999999998836,
+      "p95Ms": 1.9716999999982363,
+      "groundQueriesPerStep": 4
+    }
+  },
+  "sourceSHA256": {
+    "dist/exterior-damage.js": "367986d8b1a2b1d95094495025c6c10f7c942fdcdd0a87a13498e563451261a6",
+    "dist/body-hinges.js": "9ad2bbb767d6c127f8d43e2e0a16c14e3eeaa3d4fa3896b52c728b978907e80d",
+    "dist/body-layout.js": "42f35ee176becaa444c807ed7418541763a1d40ad73542beff173d9c29126043",
+    "dist/panel-debris.js": "5f038bb6efeb983c35e537de724f0a77c9744bd4618a4e78176cf490174aaa00",
+    "dist/body-damage.js": "a7c71271751ac16d381b37464e9e1d2960ccc2bcd585f28a97539ade200970d0",
+    "dist/drivetrain.js": "9927f12d0ab5de0ad2de6f59b5f5f21cfb1ec0ce6c1efc81ca253ded1efb16d3",
+    "dist/physics.js": "46670d2c2008c55f398a451b9742a3a8534734dda55d9bd653be7ddbedee8950",
+    "dist/mechanical.js": "4dacda5e0d2e29e81c2348ad3cb085c4ae8a83b6df7a5cce084912e27e8d6468",
+    "dist/wheel-hop.js": "cf5f23aef7a49a1cee3dd0abba6614fc83db16fc31f4c62cc58e6b529d7b2a4c",
+    "dist/aerodynamics.js": "a210e742adba9c433666f1d725252e476dc4b9d858d06ca149ee3feb68bdaea6",
+    "dist/catalog.js": "c5da9ed3102fe56916bf85badb4a9c355de106cbcf29dda37f92f6d551425065",
+    "dist/tyres.js": "b222bd0f4f2be0e519505c653dc9b96f76abffc527d2ca9b82838bb6c55a5f14",
+    "dist/vehicle-state.js": "888f606612f2a452c8fe4693a77fba4020a1b7aa3538f9ae8e848129bef4af3e",
+    "dist/brake-hydraulics.js": "e39673b289e3ef7eb2c8ad322889c120918566ca6d17144a7607ecc0758b7636",
+    "dist/chassis-damage.js": "621bd5933b6dcb7ce23c5f8125cbdc70c0ee3fe7d479886840108d255e39ecfe"
+  }
+}

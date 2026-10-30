@@ -1,5 +1,6 @@
 /** Lumped C*rho*A/2 coefficients, in N/(m/s)^2. Fictional calibration,
  * not wind-tunnel data. Factory force/drag totals retain the V17 baseline. */
+import {exteriorMissing,windowAir} from './exterior-damage.js';
 export const AERO_PARTS={wingAngle:[
  {id:'stock',name:'STANDARD WING MOUNTS',description:'GT wing at 6°. A compromise between rear downforce and drag.'},
  {id:'low',name:'LOW-DRAG WING MOUNTS',description:'GT wing only, 2°. Less rear downforce and air resistance. Adds 1 kg.'},
@@ -20,11 +21,11 @@ export function resolveAero(vehicle,s){
 }
 export function aerodynamicForces(build,condition,speed,forward=speed,lateral=0){
  const a=build.physics.aero,zone=id=>{const p=condition?.bodyDamage?.zones?.[id];return p?.detached?0:Math.max(0,Math.min(1,p?.health??1))**2;};
- const frontHealth=zone('front'),rearHealth=zone('rear'),wingHealth=zone('spoiler');
+ const frontHealth=zone('front')*(exteriorMissing(condition?.bodyDamage,'splitter')?.2:1),rearHealth=zone('rear')*(exteriorMissing(condition?.bodyDamage,'diffuser')?.25:1),wingHealth=zone('spoiler');
  // A stalled sideways/reversed appendage cannot keep its forward-flow downforce.
  const forwardFlow=Math.max(0,forward)**2/(1+(lateral/Math.max(1,Math.abs(forward)))**2);
  const bodyQ=speed*speed,front=(a.bodyFront+.10)*bodyQ+(a.front*frontHealth-.10)*forwardFlow,rear=(a.bodyRear+.22)*bodyQ+(a.rear*rearHealth+a.wing*wingHealth-.22)*forwardFlow;
  const openingDrag=['hood','boot','left','right'].reduce((sum,id)=>{const p=condition?.bodyDamage?.zones?.[id];return sum+(p?.detached?.055:.18*Math.sin(p?.angle||0)**2);},0);
- const dragCoefficient=openingDrag+a.bodyDrag+a.frontDrag*frontHealth+a.rearDrag*rearHealth+a.wingDrag*wingHealth;
+ const dragCoefficient=openingDrag+windowAir(condition?.bodyDamage)*.025+a.bodyDrag+a.frontDrag*frontHealth+a.rearDrag*rearHealth+a.wingDrag*wingHealth;
  return {front,rear,downforce:front+rear,pitchMoment:front*build.physics.frontAxle-rear*build.physics.rearAxle,drag:dragCoefficient*forward*Math.abs(forward)*(1+(1-(condition?.bodyHealth??1))*.35),dragCoefficient,wingEfficiency:wingHealth};
 }
