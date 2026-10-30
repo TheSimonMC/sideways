@@ -1,3 +1,4 @@
+import {advanceInduction} from './induction-drive.js';
 import {UNDERBODY_PARTS,underbodyLayout,underbodySupport,underbodyToe,damageUnderbody,stepUnderbody} from './underbody.js';
 import {bodyLayout,panelCenter} from './body-layout.js';
 import {toggleBodyPanel,stepBodyHinges,bodyMassProperties,openDoorContacts} from './body-hinges.js';
@@ -95,7 +96,7 @@ export class CarPhysics {
   // synchronously before returning the cleanup promise.
   if(this.engine.getTiming().clock!=='manual')void this.engine.disconnectAudio();
   this.engine.load(this._warmState);this.engineState=this.engine.getState();this._mechanics._lastSample={...this._mechanics._lastSample,starterRequested:false,starterTorque:this.engineState.config.starterTorque,starterNoLoadRpm:this.engineState.config.starterNoLoadRpm};
-  this._omega=this.engineState.omega;this._wheelOmega=[0,0,0,0];this._drive.reset(this._wheelOmega);this._hop.reset();this._fuelMeter=this.engineState.totals?.fuelInjected??0;this._heatMeter={wall:this.engineState.totals?.wallHeat??0,friction:this.engineState.totals?.frictionWork??0,load:this.engineState.totals?.loadWork??0};
+  this._omega=this.engineState.omega;this._wheelOmega=[0,0,0,0];this._drive.reset(this._wheelOmega);this._hop.reset();this._fuelMeter=this.engineState.totals?.fuelInjected??0;this._heatMeter={compressorLoss:this.engineState.totals?.superchargerLossWork??0,intercooler:this.engineState.totals?.intercoolerHeat??0,wall:this.engineState.totals?.wallHeat??0,friction:this.engineState.totals?.frictionWork??0,load:this.engineState.totals?.loadWork??0};
   if(this.condition.engineFault||this.condition.fuelLitres<=0||!this._canWarmStart()){this.engine.stop();this.engine.applyShaftImpulse(-this._omega*this.engineState.config.inertia);this.engineState=this.engine.getState();this._omega=0;}
   this._shift=this._reverseHold=this._shiftMessageTime=0;
   this._shiftUpHeld=this._shiftDownHeld=false;this._accelLong=this._accelLat=0;
@@ -175,7 +176,7 @@ export class CarPhysics {
   const wasFailed=!!this.condition.engineFault,repaired=this._mechanics.repair(ids);
   if(repaired.length){
    this._brakeTemps=this.condition.mechanical.temperatures.brakes;this._tyreTemps=this.condition.mechanical.temperatures.tyres;this._clutchTemp=this.condition.mechanical.temperatures.clutch;
-   if(wasFailed&&!this.condition.engineFault&&this._canWarmStart()){if(this.engine.getTiming().clock!=='manual')void this.engine.disconnectAudio();this.engine.load(this._warmState);this.engineState=this.engine.getState();this._mechanics._lastSample={...this._mechanics._lastSample,starterRequested:false,starterTorque:this.engineState.config.starterTorque,starterNoLoadRpm:this.engineState.config.starterNoLoadRpm};this._omega=this.engineState.omega;this._stalled=false;this._stallTime=0;this._fuelMeter=this.engineState.totals?.fuelInjected??0;this._heatMeter={wall:this.engineState.totals?.wallHeat??0,friction:this.engineState.totals?.frictionWork??0,load:this.engineState.totals?.loadWork??0};this.state.engineRunning=this.condition.fuelLitres>0;this.state.engineStalled=false;this.state.rpm=this.engineState.rpm;}
+   if(wasFailed&&!this.condition.engineFault&&this._canWarmStart()){if(this.engine.getTiming().clock!=='manual')void this.engine.disconnectAudio();this.engine.load(this._warmState);this.engineState=this.engine.getState();this._mechanics._lastSample={...this._mechanics._lastSample,starterRequested:false,starterTorque:this.engineState.config.starterTorque,starterNoLoadRpm:this.engineState.config.starterNoLoadRpm};this._omega=this.engineState.omega;this._stalled=false;this._stallTime=0;this._fuelMeter=this.engineState.totals?.fuelInjected??0;this._heatMeter={compressorLoss:this.engineState.totals?.superchargerLossWork??0,intercooler:this.engineState.totals?.intercoolerHeat??0,wall:this.engineState.totals?.wallHeat??0,friction:this.engineState.totals?.frictionWork??0,load:this.engineState.totals?.loadWork??0};this.state.engineRunning=this.condition.fuelLitres>0;this.state.engineStalled=false;this.state.rpm=this.engineState.rpm;}
    for(let i=0;i<4;i++)if(repaired.includes('tyre'+['FL','FR','RL','RR'][i])){this._previousTyreRadii[i]=this.wheelRadius;this.state.suspension[i].wheelY=this.state.suspension[i].groundHeight+this.wheelRadius;}
    this.state.detachedWheels=this.state.detachedWheels.filter(w=>!this.condition.wheelAttached[w.index]);this.state.detachedPanels=this.state.detachedPanels.filter(p=>p.panel.startsWith('underbody:')?this.condition.bodyDamage.underbody[p.panel.slice(10)]?.detached:p.panel.startsWith('exterior:')?this.condition.bodyDamage.exterior[p.panel.slice(9)]?.detached:this.condition.bodyDamage.zones[p.panel]?.detached);this._refreshBodyMass();this.state.damageMessage='Repairs complete';this._mechanics.observe(this.state.gear,this._omega,this.state.speed);this._publishCondition();
   }
@@ -265,11 +266,13 @@ export class CarPhysics {
   const used=Math.min(c.fuelLitres,Math.max(0,nativeLitres+nosLitres));c.fuelLitres=Math.max(0,c.fuelLitres-used);c.fuelConsumedLitres+=used;
   s.fuelFlowLph+=(used/dt*3600-s.fuelFlowLph)*(1-Math.exp(-dt*4));
   const wall=this.engineState.totals?.wallHeat??this._heatMeter.wall,friction=this.engineState.totals?.frictionWork??this._heatMeter.friction,load=this.engineState.totals?.loadWork??this._heatMeter.load;
+  const compressorLoss=this.engineState.totals?.superchargerLossWork??this._heatMeter.compressorLoss,intercooler=this.engineState.totals?.intercoolerHeat??this._heatMeter.intercooler;
   this._mechanics.step(dt,{omega,speed:s.speed,lateralAcceleration:s.accelerationLat,gear:s.gear,ratio:this._ratio(s.gear),clutchTorque:s.clutchTorque,
+   compressorLossJ:Math.max(0,compressorLoss-this._heatMeter.compressorLoss),intercoolerHeatJ:Math.max(0,intercooler-this._heatMeter.intercooler),superchargerRpm:this.engineState.boost?.rpm??0,compressorPowerW:this.engineState.boost?.shaftPower??0,chargeC:(this.engineState.charge?.T??297.15)-273.15,manifoldBar:s.manifoldBar,
    wallHeatJ:Math.max(0,wall-this._heatMeter.wall),frictionJ:Math.max(0,friction-this._heatMeter.friction),// Generator work powers electrics and heats the alternator, not engine oil.
    extraFrictionJ:Math.max(0,load-this._heatMeter.load)*(1-(this._auxLoadFraction||0)),
    nosHeatJ:nosLitres*FUEL_DENSITY_KG_PER_LITRE*44e6*.22,exhaustC:(this.engineState.exhaust?.T??297.15)-273.15,exhaustFlow:this.engineState.flows?.turbine??0,turboRpm:this.engineState.boost?.rpm??0,...work},this.damageEnabled);
-  this._heatMeter={wall,friction,load};this._clutchTemp=c.mechanical.temperatures.clutch;
+  this._heatMeter={wall,friction,load,compressorLoss,intercooler};this._clutchTemp=c.mechanical.temperatures.clutch;
   if(c.engineFault){this._stalled=true;this.engine.stop();s.engineRunning=false;s.engineStalled=true;s.damageMessage=c.engineFault;}
   if(c.fuelLitres<=0){this._stalled=true;this.engine.stop();s.engineRunning=false;s.engineStalled=true;s.damageMessage='Fuel tank empty';s.nitrousTorque=0;}
  }
@@ -381,7 +384,8 @@ export class CarPhysics {
   const restartRequested=!!input.starter&&!this.condition.engineFault&&(!manualClutch||ratio===0||clutchPedal>.65);
   this._mechanics._lastSample={...this._mechanics._lastSample,headlights:!!input.headlights,starterRequested:restartRequested,starterTorque:this.engineState.config.starterTorque,starterNoLoadRpm:this.engineState.config.starterNoLoadRpm};
   const mechanical=this._mechanics.refreshEffects(s.gear,this._omega),aux=mechanical.auxiliaries,starter=aux.starterActive,supplyReady=aux.ignition&&mechanical.fuelAvailable&&mechanical.ignitionAvailable;
-  const damageDrag=mechanical.loadTorqueNm+aux.loadTorque+aux.starterDrag;this._auxLoadFraction=damageDrag>0?(aux.loadTorque+aux.starterDrag+mechanical.exhaustLoadNm)/damageDrag:0;
+  const induction=mechanical.induction,slipLoad=induction.slipLoadNm;
+  const damageDrag=mechanical.loadTorqueNm+aux.loadTorque+aux.starterDrag+slipLoad;this._auxLoadFraction=damageDrag>0?(aux.loadTorque+aux.starterDrag+mechanical.exhaustLoadNm+slipLoad)/damageDrag:0;
   if(!supplyReady)this._stalled=true;
   // Re-enabling ignition can catch a crank still coasting after starvation;
   // the starter motor itself does not engage above its safe cranking speed.
@@ -393,9 +397,9 @@ export class CarPhysics {
   if(!canFire){s.nitrousTorque=0;s.nitrousIntensity=0;s.boosting=false;}
   const misfire=mechanical.misfire,cycle=Math.floor((this.engineState.angle||0)/(TAU*2));
   const cylinders=this.engineState.controls.cylinders.map((_,i)=>((cycle+i*7)%19+19)%19>=misfire*19);
-  this.engine.setInputs({throttle:clamp(s.throttle,0,1)*mechanical.intakeFactor,lambdaTarget:clamp(this._baseLambda+mechanical.lambdaOffset,.6,1.8),externalTorqueNm:s.nitrousTorque,loadNm:damageDrag,boostTarget:this.boostTarget*mechanical.boostFactor,
+  this.engine.setInputs({throttle:clamp(s.throttle,0,1)*mechanical.intakeFactor,lambdaTarget:clamp(this._baseLambda+mechanical.lambdaOffset,.6,1.8),externalTorqueNm:s.nitrousTorque,loadNm:damageDrag,boostTarget:this.boostTarget*mechanical.boostFactor,bypass:induction.bypass,
    fuel:canFire,ignition:canFire&&this._shift<=.09,starter,cylinders});
-  this.engineState=this._advanceEngine?this._advanceEngine(this.engine,dt):this.engine.update(dt);
+  this.engineState=advanceInduction(this.engine,induction,()=>this._advanceEngine?this._advanceEngine(this.engine,dt):this.engine.update(dt));
   this._omega=this.engineState.omega;
   const engineInertia=this.engineState.config.inertia;
   let engagement;
@@ -563,6 +567,7 @@ export class CarPhysics {
   s.rpm=Math.max(0,omega*60/TAU);this._stallTime=s.rpm<220&&!starter?this._stallTime+dt:0;
   if(this._stallTime>.12)this._stalled=true;
   s.engineStalled=this._stalled;s.engineRunning=!this._stalled&&!this.condition.engineFault&&this.condition.fuelLitres>0&&s.rpm>250;
+  s.induction={rpm:this.engineState.boost?.rpm??0,drive:induction.drive,health:induction.health,coolerHealth:induction.coolerHealth,beltHealth:this.condition.mechanical.auxiliaries.health.accessoryBelt,temperature:induction.temperature,coolerTemperature:induction.coolerTemperature};
   s.manifoldBar=((this.engineState.intake?.p??101325)-(this.engineState.config.ambientP??101325))/100000;s.combustionTorque=this.engineState.meanTorque;s.engineTorque=s.combustionTorque+s.nitrousTorque;s.clutchTorque=Jclutch/dt;s.clutchSlipRPM=clutchSlip*60/TAU;s.inputShaftRpm=Math.abs(shaft)*60/TAU;s.clutchTemperature=this._clutchTemp;
   s.tyreForceL=Jlong[this._drive.main]/dt;s.tyreForceR=Jlong[this._drive.main+1]/dt;
   Object.assign(s,{driveLayout:this.build.physics.driveLayout,drivenWheels:this._drive.driven,axleTorques:drive.axleTorques,centerSlipRPM:drive.centerSlipRPM,differentialLock:drive.differentialLock,frontDifferentialLock:drive.frontDifferentialLock,centerDifferentialLock:drive.centerDifferentialLock,diffSlipRPM:drive.diffSlipRPM,diffTorque:drive.diffTorque,diffPower:drive.diffPower});

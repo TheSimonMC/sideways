@@ -1,0 +1,30 @@
+SIDEWAYS V32 – SUPERCHARGERS AND CHARGE-AIR COOLING
+
+Open SIDEWAYS.html for offline single-player. Multiplayer needs internet.
+Online: https://thesimonmc.github.io/sideways/
+
+Garage contains 56 categories. Fit a naturally aspirated engine, then choose
+Street or High-Output Supercharger and charge-air cooling. Open the hood in
+the Garage to inspect the hardware. Preview is free; Install charges unowned
+parts once. Existing damage and purchases remain. Repair blower, cooler and
+accessory belt separately in Vehicle Condition at a service location.
+All multiplayer participants must reload V32 (protocol 21).
+
+Report: docs/phase-5c-induction-report.md
+Checklist: docs/goal.txt and docs/goal-progress.md/.json
+Evidence: qa/release-v32.json
+Next: Phase 6 full component mounting/removal, detailed engine bays and
+component interaction. Spatial transitions remain in later checklist phases. Phase 5 and the complete goal remain partial.
+
+Build: npm ci, then node build.mjs (Node.js 24).
+Checks: node qa/regressions-v32.mjs and *-v32-check.mjs.
+Browser: *-browser-v32.cjs with Playwright and Chromium. Set
+CODEX_PRIMARY_RUNTIME_NODE_MODULES to node_modules containing playwright;
+PLAYWRIGHT_CHROMIUM_EXECUTABLE to the Chromium executable.
+Run browser suites and CPU-heavy native suites serially.
+Package: node qa/package-v32.mjs <output-directory>.
+
+Limits: fictional belt/thermal/wear approximation; pinned private MotorLab
+1.6.3 coefficient adapter. No physical-wheel, mobile-GPU, separate-PC/TURN
+or subjective-listening acceptance. Models have no individual mechanical
+removal states yet. No SDK file was changed for this update.

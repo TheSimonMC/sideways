@@ -1,0 +1,418 @@
+{
+  "version": 32,
+  "status": "passed",
+  "checks": [
+    "56 priced categories preserve factory builds and prevent turbo/blower stacking or unfitted charge coolers.",
+    "All seven NA engines produce native blower pressure/work; a snapped belt stops rotors and shaft work, repair recovers pressure on the same clock.",
+    "Charge cooler hardware and damage change native gas temperature; high-output hardware produces more boost and shaft load.",
+    "Actual physics shares belt failure with cooling/charging, persists individual faults, repairs only requested parts and uses the PCM advance callback once.",
+    "Native PCM owns the same shaft clock and remains finite through belt failure and recovery.",
+    "Blower, pulley, belt and cooling hardware fit all four bodies; broken belts disappear and rotors follow actual telemetry."
+  ],
+  "fixtures": {
+    "56 priced categories preserve factory builds and prevent turbo/blower stacking or unfitted charge coolers.": {
+      "charged": 29000,
+      "massAdded": 30
+    },
+    "All seven NA engines produce native blower pressure/work; a snapped belt stops rotors and shaft work, repair recovers pressure on the same clock.": {
+      "i4": {
+        "healthy": {
+          "bar": 0.45931617015083204,
+          "rpm": 6156.34273877708,
+          "torque": 271.55273481353794,
+          "shaftTorque": 15.521554485625808,
+          "work": 11269.873047106044,
+          "chargeC": 46.9143261349829,
+          "time": 2.000000000001786
+        },
+        "slipping": {
+          "bar": -0.025824156993663926,
+          "rpm": 2441.732858565819,
+          "torque": 200.52063726243776,
+          "shaftTorque": 0.08132349600753734,
+          "work": 70.24984286917788,
+          "chargeC": 19.043814376963667,
+          "time": 3.0000000000030083
+        },
+        "broken": {
+          "bar": -0.007610717903173936,
+          "rpm": 0,
+          "torque": 198.2509550897909,
+          "shaftTorque": 0,
+          "work": 0,
+          "chargeC": 21.02304663544379,
+          "time": 4.00000000000423
+        },
+        "fixed": {
+          "bar": 0.4593122757298584,
+          "rpm": 6156.3443489246565,
+          "torque": 271.5518095148607,
+          "shaftTorque": 15.521449628464207,
+          "work": 5478.485408620332,
+          "chargeC": 46.91407128643317,
+          "time": 4.999999999994794
+        }
+      },
+      "v8": {
+        "healthy": {
+          "bar": 0.4512875385881335,
+          "rpm": 6166.205385823333,
+          "torque": 642.3623876522896,
+          "shaftTorque": 35.399467968444256,
+          "work": 26059.46031529553,
+          "chargeC": 46.64112083446395,
+          "time": 2.000000000001786
+        },
+        "slipping": {
+          "bar": -0.010579634279939056,
+          "rpm": 2444.0334219757724,
+          "torque": 469.1355816541247,
+          "shaftTorque": 0.20502119486325882,
+          "work": 119.68505573059156,
+          "chargeC": 19.8184920026506,
+          "time": 3.0000000000030083
+        },
+        "broken": {
+          "bar": -0.01856072034254801,
+          "rpm": 0,
+          "torque": 463.66531038761656,
+          "shaftTorque": 0,
+          "work": 0,
+          "chargeC": 20.014372464434416,
+          "time": 4.00000000000423
+        },
+        "fixed": {
+          "bar": 0.4501509386509319,
+          "rpm": 6169.1482359038855,
+          "torque": 643.109676274939,
+          "shaftTorque": 35.39243758827226,
+          "work": 12565.497321145547,
+          "chargeC": 46.61949441890249,
+          "time": 4.999999999994794
+        }
+      },
+      "rotary": {
+        "healthy": {
+          "bar": 0.44914297709259643,
+          "rpm": 6161.468098291635,
+          "torque": 309.636149443856,
+          "shaftTorque": 19.456331614274358,
+          "work": 14221.068136697037,
+          "chargeC": 46.61958391239381,
+          "time": 2.000000000001786
+        },
+        "slipping": {
+          "bar": -0.011877676817250904,
+          "rpm": 2440.4756480396013,
+          "torque": 226.81184005802348,
+          "shaftTorque": 0.13281851939960754,
+          "work": 69.25262686722999,
+          "chargeC": 19.85558400769594,
+          "time": 3.0000000000030083
+        },
+        "broken": {
+          "bar": -0.024343043647815792,
+          "rpm": 0,
+          "torque": 223.93416044859134,
+          "shaftTorque": 0,
+          "work": 0,
+          "chargeC": 19.857194572495075,
+          "time": 4.00000000000423
+        },
+        "fixed": {
+          "bar": 0.44235320508353065,
+          "rpm": 6157.651004031653,
+          "torque": 309.1330082594626,
+          "shaftTorque": 19.22265165436897,
+          "work": 6860.320318849541,
+          "chargeC": 46.190203726031655,
+          "time": 4.999999999994794
+        }
+      },
+      "boxer6": {
+        "healthy": {
+          "bar": 0.4539548927285918,
+          "rpm": 6214.194017851704,
+          "torque": 520.8761880475244,
+          "shaftTorque": 27.58693957575013,
+          "work": 20236.978057794957,
+          "chargeC": 46.80023333104373,
+          "time": 2.000000000001786
+        },
+        "slipping": {
+          "bar": -0.011064353981752938,
+          "rpm": 2431.56488479003,
+          "torque": 379.99969532987745,
+          "shaftTorque": 0.1747345531727983,
+          "work": 102.23383343487876,
+          "chargeC": 19.76358966797949,
+          "time": 3.0000000000030083
+        },
+        "broken": {
+          "bar": -0.021377661269140518,
+          "rpm": 0,
+          "torque": 375.836516181693,
+          "shaftTorque": 0,
+          "work": 0,
+          "chargeC": 19.913604971227755,
+          "time": 4.00000000000423
+        },
+        "fixed": {
+          "bar": 0.45440793552971503,
+          "rpm": 6231.583428541736,
+          "torque": 520.5957983964687,
+          "shaftTorque": 27.630861284054028,
+          "work": 9764.418938112634,
+          "chargeC": 46.83826417309518,
+          "time": 4.999999999994794
+        }
+      },
+      "v6": {
+        "healthy": {
+          "bar": 0.4471238104550622,
+          "rpm": 6123.07885726999,
+          "torque": 443.45414639049545,
+          "shaftTorque": 23.20569361795866,
+          "work": 17221.26821821328,
+          "chargeC": 46.32062856661008,
+          "time": 2.000000000001786
+        },
+        "slipping": {
+          "bar": -0.010303231084401922,
+          "rpm": 2469.3264413341385,
+          "torque": 324.4458050076325,
+          "shaftTorque": 0.1826148137974477,
+          "work": 93.6426306192734,
+          "chargeC": 19.844677386234594,
+          "time": 3.0000000000030083
+        },
+        "broken": {
+          "bar": -0.017362221989077515,
+          "rpm": 0,
+          "torque": 321.0083243909927,
+          "shaftTorque": 0,
+          "work": 0,
+          "chargeC": 20.107122932649986,
+          "time": 4.00000000000423
+        },
+        "fixed": {
+          "bar": 0.4516772799131746,
+          "rpm": 6254.652601920194,
+          "torque": 443.5605164756685,
+          "shaftTorque": 23.536849634704584,
+          "work": 8301.836366234464,
+          "chargeC": 46.6737259511641,
+          "time": 4.999999999994794
+        }
+      },
+      "v10": {
+        "healthy": {
+          "bar": 0.4511247862587767,
+          "rpm": 6222.876145999079,
+          "torque": 699.5061681853973,
+          "shaftTorque": 35.40229520613865,
+          "work": 26058.485033965346,
+          "chargeC": 46.61126389047058,
+          "time": 2.000000000001786
+        },
+        "slipping": {
+          "bar": -0.00972511255182675,
+          "rpm": 2450.136206922607,
+          "torque": 511.74238456057105,
+          "shaftTorque": 0.201774218106752,
+          "work": 119.75935454823048,
+          "chargeC": 19.82322418723652,
+          "time": 3.0000000000030083
+        },
+        "broken": {
+          "bar": -0.01874966832243299,
+          "rpm": 0,
+          "torque": 505.9551784768188,
+          "shaftTorque": 0,
+          "work": 0,
+          "chargeC": 20.019329092561634,
+          "time": 4.00000000000423
+        },
+        "fixed": {
+          "bar": 0.45105909225694835,
+          "rpm": 6188.240233374358,
+          "torque": 699.019307453617,
+          "shaftTorque": 35.364787513143035,
+          "work": 12539.670480015095,
+          "chargeC": 46.598906837085735,
+          "time": 4.999999999994794
+        }
+      },
+      "v12": {
+        "healthy": {
+          "bar": 0.4515879256209792,
+          "rpm": 6197.006781323612,
+          "torque": 824.3552682073084,
+          "shaftTorque": 42.047568619784414,
+          "work": 30940.26049378974,
+          "chargeC": 46.63864412827132,
+          "time": 2.000000000001786
+        },
+        "slipping": {
+          "bar": -0.009796821628465987,
+          "rpm": 2452.9366733246848,
+          "torque": 604.0247005369522,
+          "shaftTorque": 0.2163517247032335,
+          "work": 134.03414149225136,
+          "chargeC": 19.823573196706604,
+          "time": 3.0000000000030083
+        },
+        "broken": {
+          "bar": -0.01929170711777115,
+          "rpm": 0,
+          "torque": 596.2589600688144,
+          "shaftTorque": 0,
+          "work": 0,
+          "chargeC": 19.97573506690844,
+          "time": 4.00000000000423
+        },
+        "fixed": {
+          "bar": 0.4514388773852758,
+          "rpm": 6197.380161742059,
+          "torque": 824.3494702966549,
+          "shaftTorque": 42.030264297715675,
+          "work": 14883.287584184414,
+          "chargeC": 46.62463146023299,
+          "time": 4.999999999994794
+        }
+      }
+    },
+    "Charge cooler hardware and damage change native gas temperature; high-output hardware produces more boost and shaft load.": [
+      {
+        "bar": 0.45931617015083204,
+        "rpm": 6156.34273877708,
+        "torque": 271.55273481353794,
+        "shaftTorque": 15.521554485625808,
+        "work": 11269.873047106044,
+        "chargeC": 46.9143261349829,
+        "time": 2.000000000001786
+      },
+      {
+        "bar": 0.8186032032533607,
+        "rpm": 6923.135407705868,
+        "torque": 322.6270994178389,
+        "shaftTorque": 28.550014216146366,
+        "work": 20757.472634992482,
+        "chargeC": 61.56640951096023,
+        "time": 2.000000000001786
+      },
+      {
+        "bar": 0.8080260209815289,
+        "rpm": 6944.475586882605,
+        "torque": 348.38096172971836,
+        "shaftTorque": 28.313368344476924,
+        "work": 20491.98082136428,
+        "chargeC": 32.816503121938695,
+        "time": 2.000000000001786
+      },
+      {
+        "bar": 0.8280720051716868,
+        "rpm": 6901.362388229117,
+        "torque": 296.43256504041597,
+        "shaftTorque": 28.752739691011083,
+        "work": 20976.800953748894,
+        "chargeC": 95.42221329023096,
+        "time": 2.000000000001786
+      }
+    ],
+    "Actual physics shares belt failure with cooling/charging, persists individual faults, repairs only requested parts and uses the PCM advance callback once.": {
+      "clock": 2.0833333333352213,
+      "heat": {
+        "clutchJ": 0,
+        "gearboxJ": 0,
+        "differentialJ": 0,
+        "frontDifferentialJ": 0,
+        "centerDifferentialJ": 0,
+        "engineHeatJ": 13218.552824194216,
+        "oilHeatJ": 4142.581213497213,
+        "superchargerHeatJ": 1823.6897882712094,
+        "chargeCoolerHeatJ": 755.1203362493205,
+        "brakeJ": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "tyreJ": [
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "belt": 24
+    },
+    "Native PCM owns the same shaft clock and remains finite through belt failure and recovery.": {
+      "frames": 24000,
+      "energy": 107.41032791568286,
+      "clock": "pcm"
+    },
+    "Blower, pulley, belt and cooling hardware fit all four bodies; broken belts disappear and rotors follow actual telemetry.": {
+      "hachi": {
+        "fitted": true,
+        "cooler": true,
+        "meshes": 28,
+        "blowerAngle": 2.96705972839036,
+        "crankAngle": 3.4906585039886586,
+        "beltVisible": false,
+        "top": 0.6023658197006613,
+        "housingTop": 0.5923658197006613
+      },
+      "atlas": {
+        "fitted": true,
+        "cooler": true,
+        "meshes": 28,
+        "blowerAngle": 2.96705972839036,
+        "crankAngle": 3.4906585039886586,
+        "beltVisible": false,
+        "top": 0.747145294897283,
+        "housingTop": 0.737145294897283
+      },
+      "kitsune": {
+        "fitted": true,
+        "cooler": true,
+        "meshes": 28,
+        "blowerAngle": 2.96705972839036,
+        "crankAngle": 3.4906585039886586,
+        "beltVisible": false,
+        "top": 0.41755614973262034,
+        "housingTop": 0.40755614973262033
+      },
+      "vector": {
+        "fitted": true,
+        "cooler": true,
+        "meshes": 28,
+        "blowerAngle": 2.96705972839036,
+        "crankAngle": 3.4906585039886586,
+        "beltVisible": false,
+        "top": 0.7536539301310043,
+        "housingTop": 0.7436539301310043
+      }
+    }
+  },
+  "sourceSHA256": {
+    "dist/forced-induction.js": "a586aec8581a69a964c8bda8d2af51700ba7c81331638a591b4072316a7724f3",
+    "dist/induction-drive.js": "6b946545de90c9e4bfc581c199b7f773a9b32a63c8ca2b8e031be8360d6d079a",
+    "dist/induction-view.js": "58ef6d2449b73d65ee6ee0aba55654694fd05d6770b5910f99d22519646fd59c",
+    "dist/catalog.js": "5abffdbcf0d4e0937e9a803a5a420968095482dbe01be849a4846269ded40c13",
+    "dist/career.js": "7746fca09092f045af45da8438d0b6019908b19878b7f33ff1720945dbd4b215",
+    "dist/garage.js": "18300618333d8a65a618323e2fb59b4f003b8607c8843eb7d128deccf41f85aa",
+    "dist/mechanical.js": "21e2dd3521c7bedc6c267916f6bdbd66ea0a7a54e7d495aa417419fb6d157e19",
+    "dist/engine-auxiliaries.js": "4cca8cbb7a1d3e8df7f390db8794e6231a1bcdea5404fdd653340bf3302131cf",
+    "dist/physics.js": "bf87e52ec17bbf5393e808ab6fda37f50d5f13504f388296c30f4b895787c2f7",
+    "dist/audio.js": "53e1a85513683f4626bf8e9db85fa12841b56051fc70651f2d29de9fb9e16361",
+    "dist/multiplayer.js": "a9b29eace743ea96f99462fce323723d94b7541950f6515528f33eba7b6251de",
+    "dist/car.js": "e35b63f998b969e2b80798453128409174e04c74a8747d7c21084b70e6a5b723",
+    "dist/main.js": "c988fa3368214e05b2ecd0065259ca752c40c23b8f6aad023e93df9329178293"
+  },
+  "limits": [
+    "Fictional belt, thermal and wear calibration; not a real vehicle specification.",
+    "Pinned private MotorLab 1.6.3 coefficient adapter, requiring revalidation before SDK upgrades.",
+    "Component mount removal and detailed engine internals remain Phase 6 work."
+  ]
+}

@@ -12,10 +12,10 @@ export function createAuxiliaries(saved={}){
   chargedAh:clamp(finite(saved.chargedAh,0),0,1e12),dischargedAh:clamp(finite(saved.dischargedAh,0),0,1e12)};
 }
 export function snapshotAuxiliaries(a){return {...a,health:{...a.health},temperatures:{...a.temperatures}};}
-export function auxiliaryResponse(a,{omega=0,coolant=84,headlights=false,starterRequested=false,starterTorque=150,starterNoLoadRpm=907,waterPump=1}={}){
+export function auxiliaryResponse(a,{omega=0,coolant=84,headlights=false,starterRequested=false,starterTorque=150,starterNoLoadRpm=907,waterPump=1,superchargerHealth=1}={}){
  const h=a.health,rpm=Math.max(0,omega)*30/Math.PI,rotating=smooth(rpm/500),alive=id=>h[id]>.025;
  const tension=alive('beltTensioner')?smooth(h.beltTensioner/.7):0;
- const obstruction=Math.max(1-waterPump,1-h.alternator),slip=alive('accessoryBelt')?clamp((1-tension)*(.25+.65*rotating)+obstruction*obstruction*.42,0,1):0;
+ const obstruction=Math.max(1-waterPump,1-h.alternator),slip=alive('accessoryBelt')?superchargerHealth<=.025?1:clamp((1-tension)*(.25+.65*rotating)+obstruction*obstruction*.42,0,1):0;
  const beltDrive=alive('accessoryBelt')?(1-slip)*smooth(h.accessoryBelt/.3):0;
  const fanDemand=smooth((coolant-91)/12),fanHealth=alive('radiatorFan')?h.radiatorFan:0;
  const demandA=5+(rpm>250?7:0)+(headlights?10:0)+24*fanDemand*fanHealth;
@@ -44,10 +44,10 @@ export function stepAuxiliaries(a,dt,response,damageEnabled=true,speed=0){
  const ah=e.netA*dt/3600;
  if(ah>=0){const accepted=Math.min(ah*.85,(1-a.charge)*e.capacityAh);a.charge=clamp(a.charge+accepted/e.capacityAh,0,1);a.chargedAh+=accepted;}
  else {const used=Math.min(-ah,a.charge*e.capacityAh);a.charge=clamp(a.charge-used/e.capacityAh,0,1);a.dischargedAh+=used;}
- const heat={belt:e.beltSlip*e.beltDrive*2200,alternator:e.generatorW*(1/.68-1),starter:e.starterA*e.voltage*.6};
+ const heat={belt:e.beltSlip*e.beltDrive*2200+(e.inductionSlipPowerW??0),alternator:e.generatorW*(1/.68-1),starter:e.starterA*e.voltage*.6};
  for(const [id,capacity,cooling] of [['belt',2500,9],['alternator',11000,18],['starter',6500,5]])t[id]=24+(t[id]+heat[id]*dt/capacity-24)*Math.exp(-(cooling+Math.abs(speed)*.7)*dt/capacity);
  if(damageEnabled){
-  h.accessoryBelt=clamp(h.accessoryBelt-dt*e.beltSlip*e.beltDrive*(.0006+.018*smooth((t.belt-100)/90)),0,1);
+  h.accessoryBelt=clamp(h.accessoryBelt-dt*(e.beltSlip*e.beltDrive*(.0006+.018*smooth((t.belt-100)/90))+(e.inductionBeltWear??0)),0,1);
   h.starterMotor=clamp(h.starterMotor-dt*.02*smooth((t.starter-135)/90),0,1);
   h.alternator=clamp(h.alternator-dt*.008*smooth((t.alternator-155)/100),0,1);
  }

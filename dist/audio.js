@@ -162,7 +162,7 @@ export class GameAudio {
   const gearWear=1-clamp(s?.gearboxHealth??1,0,1),diffWear=1-clamp(Math.min(1,...(s?.mechanical?.components||[]).filter(part=>part.applicable!==false&&['differential','frontDifferential','centerDifferential'].includes(part.id)).map(part=>part.health)),0,1);
   this._gearTarget=gear===0?0:clamp(shaft/750,0,1)*(.008+torque*.014+clamp(speed/20,0,1)*.004)*this.gearboxGain*this.mix.mechanical*(1+gearWear*1.5)*(gear<0?2.4:1)*(hood?1.2:.85);
   const firing=s?.engineRunning&&engine.rpm>250?1:0;this._intakeLeakTarget=(s?.mechanical?.intakeLeak??0)*.05*firing*this.mix.mechanical;this._exhaustLeakTarget=Math.max(s?.mechanical?.exhaustLeak??0,exteriorMissing(s?.bodyDamage,'exhaustTip')?.30:0)*.08*firing*this.mix.mechanical;this._exhaustLeakCase.tune(100+Math.abs(engine.rpm)*.045,1.1);
-  const aux=s?.mechanical?.auxiliaries;this._fanTarget=(aux?.fan??0)*.045*this.mix.mechanical;this._beltTarget=(aux?.beltSlip??0)*(aux?.beltDrive??0)*.055*this.mix.mechanical;this._beltCase.tune(1500+clamp(engine.rpm,0,8000)*.45,2);
+  const aux=s?.mechanical?.auxiliaries;this._fanTarget=(aux?.fan??0)*.045*this.mix.mechanical;this._beltTarget=(aux?.beltSlip??0)*Math.max(aux?.beltDrive??0,Math.min(1,(aux?.inductionSlipPowerW??0)/15000))*.055*this.mix.mechanical;this._beltCase.tune(1500+clamp(engine.rpm,0,8000)*.45,2);
   const starter=!!(s?.starterActive??engine.controls?.starter)&&!(s?.engineRunning&&engine.rpm>1000);
   this._starterTarget=starter?.065*this.mix.mechanical:0;this._starterCase.tune(260+clamp(engine.rpm,0,700)*.45,1.2);
   if(starter&&!this._lastStarter)this._event('starter',.065,0,.055,1600,430);

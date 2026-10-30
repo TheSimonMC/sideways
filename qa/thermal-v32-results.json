@@ -1,0 +1,109 @@
+{
+  "status": "passed",
+  "scope": "Lumped physical heat and damage with specified power inputs; fictional calibration, not a vehicle-engineering model.",
+  "checks": [
+    "Healthy cooling reaches a stable working range; loss of radiator area/flow causes heat, leaks and gasket damage.",
+    "Oil starvation removes pressure, increases physical drag and seizes bearings without a blanket heat kill.",
+    "Clutch friction work produces heat, torque fade and wear; disengagement cools without repairing the plate.",
+    "A fuel cut cannot prevent wheel-driven overrev; component failures follow actual crank speed.",
+    "A stronger clutch can overload the original shaft and selected gear, while the other gears stay intact.",
+    "Brakes and tyres receive work per corner; unloaded corners stay cool and sustained abuse wears only loaded parts.",
+    "Damage-off preserves all irreversible condition and fluids even during overrev, heat and leaks.",
+    "Thermal results stay stable at120Hz and60Hz, including energy, fluids and component wear.",
+    "Selective repairs and fluid service preserve unrelated failures, fuel and NOS; warnings do not repeat each frame.",
+    "Old saves migrate, nested states deep-copy and individual gear/gasket damage survive repeated round trips."
+  ],
+  "fixtures": {
+    "Healthy cooling reaches a stable working range; loss of radiator area/flow causes heat, leaks and gasket damage.": {
+      "healthy": 109.58025227353065,
+      "radiator": 166.60727803592764,
+      "pump": 181.38861135602062,
+      "gasketHealth": 0.49797351618380553
+    },
+    "Oil starvation removes pressure, increases physical drag and seizes bearings without a blanket heat kill.": {
+      "failure": "Crank bearings seized",
+      "pressure": 0,
+      "temperature": 95.91287838438906,
+      "drag": 1018.9759033522852
+    },
+    "Clutch friction work produces heat, torque fade and wear; disengagement cools without repairing the plate.": {
+      "hotC": 599.941511049023,
+      "coolC": 450.66796543214446,
+      "health": 0.37776083315149833
+    },
+    "A fuel cut cannot prevent wheel-driven overrev; component failures follow actual crank speed.": {
+      "forced": {
+        "engineBlock": 1,
+        "cylinderHead": 1,
+        "connectingRods": 0.6186741368104367,
+        "crankshaft": 0.8940761491140061,
+        "timingDrive": 0.94915655157472,
+        "intake": 1,
+        "exhaust": 1,
+        "thermostat": 1,
+        "fuelPump": 1,
+        "ignition": 1,
+        "pistons": 0.682228447342033,
+        "bearings": 0.8517066087596086,
+        "valvetrain": 0.02550057184888224,
+        "headGasket": 1,
+        "radiator": 1,
+        "waterPump": 0.9745782757873673,
+        "oilPump": 0.9661043677164849,
+        "oilPan": 1,
+        "clutch": 1,
+        "gearbox": 1,
+        "differential": 1,
+        "driveshaft": 1,
+        "frontDifferential": 1,
+        "frontDriveshaft": 1,
+        "centerDifferential": 1,
+        "supercharger": 1,
+        "chargeCooler": 1,
+        "turbo": 1
+      },
+      "safeEngineHealth": 1
+    },
+    "A stronger clutch can overload the original shaft and selected gear, while the other gears stay intact.": {
+      "shaft": 0.7663875739645079,
+      "gear3": 0.8317990532544286
+    },
+    "Brakes and tyres receive work per corner; unloaded corners stay cool and sustained abuse wears only loaded parts.": {
+      "brakes": [
+        857.3493792276693,
+        24,
+        24,
+        24
+      ],
+      "tyres": [
+        24,
+        24,
+        447.1483324652772,
+        24
+      ],
+      "health": [
+        1,
+        1,
+        0.2566268607532188,
+        1
+      ]
+    }
+  },
+  "version": 32,
+  "verifiedInRelease": 32,
+  "suiteSource": "qa/thermal-v15-check.mjs",
+  "suiteSHA256": "a3093d33334f95a4af978146d1331e9c7423d1a4de1e1e0f70011082bacd12cd",
+  "sourceSHA256": {
+    "dist/drivetrain.js": "9927f12d0ab5de0ad2de6f59b5f5f21cfb1ec0ce6c1efc81ca253ded1efb16d3",
+    "dist/physics.js": "bf87e52ec17bbf5393e808ab6fda37f50d5f13504f388296c30f4b895787c2f7",
+    "dist/mechanical.js": "21e2dd3521c7bedc6c267916f6bdbd66ea0a7a54e7d495aa417419fb6d157e19",
+    "dist/car.js": "e35b63f998b969e2b80798453128409174e04c74a8747d7c21084b70e6a5b723",
+    "dist/catalog.js": "5abffdbcf0d4e0937e9a803a5a420968095482dbe01be849a4846269ded40c13",
+    "dist/career.js": "7746fca09092f045af45da8438d0b6019908b19878b7f33ff1720945dbd4b215",
+    "dist/garage.js": "18300618333d8a65a618323e2fb59b4f003b8607c8843eb7d128deccf41f85aa",
+    "dist/audio.js": "53e1a85513683f4626bf8e9db85fa12841b56051fc70651f2d29de9fb9e16361",
+    "dist/audio-anchors.js": "ed65635fad9d265e2ab6cd964489bcd703b28397999fd16d4e609fd6fb7a15e5",
+    "dist/main.js": "c988fa3368214e05b2ecd0065259ca752c40c23b8f6aad023e93df9329178293",
+    "dist/multiplayer.js": "a9b29eace743ea96f99462fce323723d94b7541950f6515528f33eba7b6251de"
+  }
+}

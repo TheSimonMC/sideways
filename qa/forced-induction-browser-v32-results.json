@@ -1,0 +1,136 @@
+{
+  "version": 32,
+  "status": "passed",
+  "checks": [
+    "All four original bodies render installed blower, matching pulleys, hoses and cooler below the hood.",
+    "Belt failure changes actual framebuffer pixels and stops the driven pulley while the crank keeps rotating.",
+    "Stock/tuned render cost measured over 40 warmed frames with GPU completion."
+  ],
+  "cars": [
+    {
+      "id": "hachi",
+      "intact": {
+        "fitted": true,
+        "cooler": true,
+        "meshes": 28,
+        "blowerAngle": 3.3161255787892263,
+        "crankAngle": 1.7453292519943293,
+        "beltVisible": true,
+        "top": 0.6023658197006613,
+        "housingTop": 0.5923658197006613,
+        "calls": 264
+      },
+      "broken": {
+        "fitted": true,
+        "cooler": true,
+        "meshes": 28,
+        "blowerAngle": 3.3161255787892263,
+        "crankAngle": 3.4906585039886586,
+        "beltVisible": false,
+        "top": 0.6023658197006613,
+        "housingTop": 0.5923658197006613,
+        "calls": 263
+      }
+    },
+    {
+      "id": "atlas",
+      "intact": {
+        "fitted": true,
+        "cooler": true,
+        "meshes": 28,
+        "blowerAngle": 3.3161255787892263,
+        "crankAngle": 1.7453292519943293,
+        "beltVisible": true,
+        "top": 0.747145294897283,
+        "housingTop": 0.737145294897283,
+        "calls": 263
+      },
+      "broken": {
+        "fitted": true,
+        "cooler": true,
+        "meshes": 28,
+        "blowerAngle": 3.3161255787892263,
+        "crankAngle": 3.4906585039886586,
+        "beltVisible": false,
+        "top": 0.747145294897283,
+        "housingTop": 0.737145294897283,
+        "calls": 262
+      }
+    },
+    {
+      "id": "kitsune",
+      "intact": {
+        "fitted": true,
+        "cooler": true,
+        "meshes": 28,
+        "blowerAngle": 3.3161255787892263,
+        "crankAngle": 1.7453292519943293,
+        "beltVisible": true,
+        "top": 0.41755614973262034,
+        "housingTop": 0.40755614973262033,
+        "calls": 246
+      },
+      "broken": {
+        "fitted": true,
+        "cooler": true,
+        "meshes": 28,
+        "blowerAngle": 3.3161255787892263,
+        "crankAngle": 3.4906585039886586,
+        "beltVisible": false,
+        "top": 0.41755614973262034,
+        "housingTop": 0.40755614973262033,
+        "calls": 245
+      }
+    },
+    {
+      "id": "vector",
+      "intact": {
+        "fitted": true,
+        "cooler": true,
+        "meshes": 28,
+        "blowerAngle": 3.3161255787892263,
+        "crankAngle": 1.7453292519943293,
+        "beltVisible": true,
+        "top": 0.7536539301310043,
+        "housingTop": 0.7436539301310043,
+        "calls": 262
+      },
+      "broken": {
+        "fitted": true,
+        "cooler": true,
+        "meshes": 28,
+        "blowerAngle": 3.3161255787892263,
+        "crankAngle": 3.4906585039886586,
+        "beltVisible": false,
+        "top": 0.7536539301310043,
+        "housingTop": 0.7436539301310043,
+        "calls": 261
+      }
+    }
+  ],
+  "measurements": [
+    {
+      "kit": "stock",
+      "meanMs": 0.8449999999254942,
+      "p95Ms": 1.699999999254942,
+      "calls": 236
+    },
+    {
+      "kit": "race",
+      "meanMs": 1.3100000000558794,
+      "p95Ms": 2.899999998509884,
+      "calls": 264
+    }
+  ],
+  "errors": [],
+  "sourceSHA256": {
+    "dist/induction-view.js": "58ef6d2449b73d65ee6ee0aba55654694fd05d6770b5910f99d22519646fd59c",
+    "dist/car.js": "e35b63f998b969e2b80798453128409174e04c74a8747d7c21084b70e6a5b723",
+    "dist/catalog.js": "5abffdbcf0d4e0937e9a803a5a420968095482dbe01be849a4846269ded40c13",
+    "dist/forced-induction.js": "a586aec8581a69a964c8bda8d2af51700ba7c81331638a591b4072316a7724f3",
+    "dist/main.js": "c988fa3368214e05b2ecd0065259ca752c40c23b8f6aad023e93df9329178293"
+  },
+  "limits": [
+    "Controlled source-module scene with fixture telemetry and software Chromium; render cost is not whole-game hardware FPS."
+  ]
+}

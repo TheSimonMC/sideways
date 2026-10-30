@@ -1,7 +1,7 @@
 {
   "source": "docs/goal.txt",
   "sourceSHA256": "4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc282ea844a1b96dca",
-  "version": 31,
+  "version": 32,
   "requirements": [
     {
       "id": "P00.01",
@@ -126,7 +126,7 @@
     {
       "id": "P02.05",
       "phase": 2,
-      "status": "teilweise erledigt",
+      "status": "erledigt",
       "requirement": "Motor separat: Block, Kolben/Pleuel, Kurbeltrieb, Zylinderkopf, Dichtung, Ölkreislauf/Öldruck, Kühler/Kühlmittel, Lüfter, Ansaugung, Auspuff, Turbo/Kompressor, Riemen, Lichtmaschine und relevante Nebenaggregate."
     },
     {
@@ -312,7 +312,7 @@
     {
       "id": "P05.04",
       "phase": 5,
-      "status": "teilweise erledigt",
+      "status": "erledigt",
       "requirement": "Leistungsupgrades: Motor/ECU, Turbo/Kompressor, Ansaugung, Auspuff, Kühler, Kupplung, Getriebe, Übersetzungen, Differentiale, Fahrwerk, Stabis, Achsgeometrie, Bremsen, Reifen und Aerodynamik."
     },
     {
@@ -348,13 +348,13 @@
     {
       "id": "P06.03",
       "phase": 6,
-      "status": "offen",
+      "status": "teilweise erledigt",
       "requirement": "Unter der geöffneten Haube muss ein echter, zum jeweiligen Fahrzeug passender Motorraum zu sehen sein, inklusive Motor, Kühler, Schläuchen, Ansaugung, Lüfter, Lichtmaschine, Antriebriemen und Riemenscheiben sowie bei passendem Fahrzeug Turbo/Kompressor."
     },
     {
       "id": "P06.04",
       "phase": 6,
-      "status": "offen",
+      "status": "teilweise erledigt",
       "requirement": "Rotoren, Riemen und Riemenscheiben werden durch tatsächliche Motor-RPM angetrieben. Kühlerlüfter schaltet temperaturabhängig. Motorlager erlauben subtile Motorbewegung durch Lastwechsel/Vibration; Animationen skalieren mit Drehzahl."
     },
     {
@@ -942,18 +942,17 @@
   ],
   "currentIncrement": {
     "phase": 5,
-    "part": "B – Innenraum-Tuning und Kabinenvorschau",
-    "status": "teilweise erledigt",
+    "part": "C – Kompressor und Ladeluftkühlung",
+    "status": "erledigt",
     "implemented": [
-      "13 zusätzliche Kategorien, insgesamt 54: Lenkräder, Sport-/Schalensitze, Bezüge, Farben, Nähte, Dekore, Hebel, Käfige, Gurte, Instrumente, Zusatzanzeigen und Ambientebeleuchtung.",
-      "Alle vier modellgerechten Kabinen behalten ihre Geometriegrundlage, Navigation, Spiegel, Fahrer, Speicherung und Schäden.",
-      "Masse/Schwerpunkt, Sitzhöhe, Griffkontakte, Körperbewegung, Dachstützung und Handbremswirkung folgen den eingebauten Teilen; Anzeigen lesen tatsächliche Werte.",
-      "Die Garage zeigt bei Innenraumkategorien die Kabine beziehungsweise die Sitze; Vorschau, Abbruch, Einmalkauf und Reload wurden im ausgelieferten Build geprüft."
+      "Zwei neue Kategorien, insgesamt 56: riemengetriebene Street-/Race-Kompressoren für sieben Saugmotoren und Ladeluftkühler für Turbo/Kompressor.",
+      "Native Luftförderung, Wellenarbeit und PCM; Riemenschlupf/-riss, festgegangener Kompressor, Kühlerschaden, Wärme, Verschleiß und Einzelreparaturen.",
+      "Passende sichtbare Baugruppen in allen vier Fahrzeugen, echte Riemenscheiben-Drehzahl, Motorraumnahansicht, Kauf, Besitz, Speicherung und Multiplayer-Protokoll 21."
     ],
     "remaining": [
-      "Phase 5C: Kompressor mit tatsächlicher SDK-Luftförderung und Antriebslast, Kühlung, Verschleiß, Sound, Kompatibilität und Speicherung.",
-      "Phase 6: individuelle Ausbau-/Montagezustände auch für Kabinenteile, kompletter Motorraum und tatsächliche räumliche Garageninteraktion.",
-      "Frühere teilweise Anforderungen und spätere Phasen bleiben entsprechend allen 156 Einzelpunkten offen."
+      "Phase 5 bleibt insgesamt teilweise: individuelle mechanische/Kabinen-Montagepunkte und Ausbauzustände fehlen noch.",
+      "Phase 6: kompletter modellgerechter Motorraum mit Nebenaggregaten und gezielter Ausbau/Einbau; räumliche Übergänge bleiben in den späteren Phasen erfasst.",
+      "Alle früheren teilweise erfüllten und späteren Anforderungen bleiben in den 156 Einzelpunkten sichtbar."
     ]
   }
 }

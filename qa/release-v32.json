@@ -1,0 +1,237 @@
+{
+  "game": "SIDEWAYS",
+  "version": 32,
+  "date": "2026-10-30",
+  "status": "verified-with-documented-limits",
+  "scope": "Phase 5C supercharger and charge-air cooler integration. Phase 5 and complete goal remain partial.",
+  "delivery": {
+    "entry": "SIDEWAYS.html",
+    "separateFile": "SIDEWAYS-v32.html",
+    "htmlBytes": 10729108,
+    "htmlSha256": "89637cf946787d81a6d7d76e43e60e4af4e8595896ec4c878d8e1c0ec378b52c",
+    "offlineSinglePlayer": true,
+    "externalRuntimeRequestsDuringOfflineTest": 0,
+    "publishedToSites": false
+  },
+  "currentFunctionalSuites": [
+    {
+      "file": "qa/archipelago-v32-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "ab778c3f61a0cd7ff86e2b7e6c4f09b93afbf6e290dcd7e1aef6d712a4b11dd9"
+    },
+    {
+      "file": "qa/audio-v32-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "3138f83bd0c9dbffb6a19666604b8ecfe60bd60237881322e066ccc2ea9f4832"
+    },
+    {
+      "file": "qa/body-panels-v32-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "6c76c0c7aee57714162d0080546e9dc20057abdc0287453ac32200b9b1154a4e"
+    },
+    {
+      "file": "qa/chassis-v32-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "a3f205891a9317fcaad785f5c77fc632daccc550dc91ce5eea4a15a8d33e9deb"
+    },
+    {
+      "file": "qa/cockpit-browser-v32-results.json",
+      "status": "passed",
+      "groups": 2,
+      "sha256": "8fe69436a134a15197316b1155290a29fe518f2953838fc9000048b6127b78f5"
+    },
+    {
+      "file": "qa/cockpit-game-browser-v32-results.json",
+      "status": "passed",
+      "groups": 5,
+      "sha256": "a9e1aa540431b6a77de51300029b0939742d4df2f3ceeefc03374288785a806c"
+    },
+    {
+      "file": "qa/cockpit-v32-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "951b67d3731912e41aa83c4910b2377644ac7a316367965dd76d06eb76006a7a"
+    },
+    {
+      "file": "qa/cosmetics-v32-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "3f70fcbfad32966bff7650dd0c4efe35ebc564275cf28abe025154a3dffddbc9"
+    },
+    {
+      "file": "qa/damage-v32-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "afe66b52c240cd37e5ccaea7749148deea522e85d252f671159cab20f639b0f5"
+    },
+    {
+      "file": "qa/exterior-tuning-browser-v32-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "c90d5879092a14c7c26558a261f203a90c91d00514907bf9ab4f245e64059829"
+    },
+    {
+      "file": "qa/exterior-tuning-game-browser-v32-results.json",
+      "status": "passed",
+      "groups": 3,
+      "sha256": "119bddc4cff250704ee2803fdff70805dcd8bcd48c087b9914c11dba2f1ba506"
+    },
+    {
+      "file": "qa/exterior-tuning-v32-results.json",
+      "status": "passed",
+      "groups": 5,
+      "sha256": "c910c3b215d93572e1fe63d85bb827f36155475d8bda4f1d0aac328905fa0a5c"
+    },
+    {
+      "file": "qa/forced-induction-browser-v32-results.json",
+      "status": "passed",
+      "groups": 3,
+      "sha256": "d5930fe13ae4671d5857badebb9c6e4d484c74a95ee0b7cc4fbe04a82755a172"
+    },
+    {
+      "file": "qa/forced-induction-game-browser-v32-results.json",
+      "status": "passed",
+      "groups": 3,
+      "sha256": "261dce947d64af6d30461b0ce65f9bebede55432dc7139ce8bb2b620f0ba2d6c"
+    },
+    {
+      "file": "qa/forced-induction-v32-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "813541303bea34474df3024d69fb3dc87d0a195f76351ed4347c72e2d28e35e3"
+    },
+    {
+      "file": "qa/input-taps-v32-results.json",
+      "status": "passed",
+      "groups": 11,
+      "sha256": "5a19bda75494cfca2750f13ca4efc4f27611ea74c109c60392a4e8a555b8e363"
+    },
+    {
+      "file": "qa/input-v32-results.json",
+      "status": "passed",
+      "groups": 16,
+      "sha256": "1b7097bde88c7084a260ed6489409079e2c55abb06ad4396d0e462700c2ac86f"
+    },
+    {
+      "file": "qa/interior-tuning-browser-v32-results.json",
+      "status": "passed",
+      "groups": 2,
+      "sha256": "89c3d9de2fcc3e7a73ef16a28dcff0e219b13a34522df3fff37565d992cc23e7"
+    },
+    {
+      "file": "qa/interior-tuning-game-browser-v32-results.json",
+      "status": "passed",
+      "groups": 3,
+      "sha256": "07072b05396d878210af6c38d9bb7ee56edaef682645288b5d09a5397c1fe782"
+    },
+    {
+      "file": "qa/interior-tuning-v32-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "0c8a9ae12045f685414b8434483dc66ab46de23a2ef718f7ba92a3c99959d6e8"
+    },
+    {
+      "file": "qa/modular-v32-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "9696731345096ab4f94fb5447ee9564dbfa57f5e6786f9443be129b6bc01944d"
+    },
+    {
+      "file": "qa/multiplayer-browser-v32-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "8377aad5e7e1e7da28d8401ac4506a6ec3052b817840b515918b412bc4bbf55c"
+    },
+    {
+      "file": "qa/multiplayer-burst-browser-v32-results.json",
+      "status": "passed",
+      "groups": 3,
+      "sha256": "3a72bbd96a6543a31dfd98eb351e85d6f822a63471df5b99fa27b43ec3456bb3"
+    },
+    {
+      "file": "qa/multiplayer-burst-v32-results.json",
+      "status": "passed",
+      "groups": 5,
+      "sha256": "d2f6c9f6acb7406dc37ed9edc109ae2e259bae782713226cdcbf555842d3b5e4"
+    },
+    {
+      "file": "qa/multiplayer-v32-results.json",
+      "status": "passed",
+      "groups": 11,
+      "sha256": "e9d829fa9645c0a2642224632083dbeee373c0608eecc4a814d1c7a5e2431df1"
+    },
+    {
+      "file": "qa/navigation-main-v32-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "f4603f31114ff0091c8c6caddd034820491a60c51e89fb46e40342d9bae39f6d"
+    },
+    {
+      "file": "qa/physics-v32-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "3c5fa2e97a739197146e907a5b94d2e51900dd43f21fc83101cd713f90513964"
+    },
+    {
+      "file": "qa/police-v32-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "a0f81663d9438c7f3da787f4e2c292e44ec9aceb17b5e4c507fbc40f20052c42"
+    },
+    {
+      "file": "qa/race-v32-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "cb9fed3dea67f193d09206acce8cd69032baa94405a7a8acf290440c046b9b83"
+    },
+    {
+      "file": "qa/responsive-panels-browser-v32-results.json",
+      "status": "passed",
+      "groups": 3,
+      "sha256": "73c398c0ea9fc18e2db74d8c726a605c89714442893cf94bbcc61fcced71a7df"
+    },
+    {
+      "file": "qa/restart-v32-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "d1cd16db33e4eb6436edc4e762b2fe0a2d3e97be8c675744898c94054d879a38"
+    },
+    {
+      "file": "qa/standalone-browser-v32-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "1be839657a57330726513630d4e0d25e7e95d14dffe92f88ba24db7c2545aff3"
+    },
+    {
+      "file": "qa/standalone-v32-results.json",
+      "status": "passed",
+      "groups": 0,
+      "sha256": "53ce4190f109d6b4675c99c80de8f7a00984e00ce1c0148ff9b700e276618a1a"
+    },
+    {
+      "file": "qa/thermal-v32-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "2299b830d832b2f44a182fb8eb185ba4a23337791088bd2cb2c2ebc16ed047e9"
+    },
+    {
+      "file": "qa/underbody-v32-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "92df939b4c497c15921c32d8ad05e3a6741799a380a0aa8c858818686613e901"
+    }
+  ],
+  "review": {
+    "file": "qa/review-v32.json",
+    "sha256": "46e5c407ba3941363b7d14c3b09b488ba990cbf831c13a38e6a4b975664d022c"
+  },
+  "limits": [
+    "Phase 5 remains partial: full individual mechanical/cabin removal and mounting states are Phase 6. The 156-item objective remains active.",
+    "Pinned MotorLab 1.6.3 private coefficient adapter; fictional lumped belt/thermal/wear calibration and native cooler efficiency approximation. Full engine-bay detail is not yet delivered.",
+    "Local software Chromium; no physical wheel/FFB, mobile-GPU, separate-PC/TURN or subjective-listening acceptance. Fixture timings are not whole-game FPS."
+  ]
+}

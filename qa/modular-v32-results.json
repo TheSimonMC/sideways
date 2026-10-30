@@ -1,0 +1,90 @@
+{
+  "version": 32,
+  "status": "passed",
+  "checks": [
+    "Fifty-six independent part slots are priced, migrate old builds and purchase atomically without charging owned parts twice.",
+    "All eight native engine families accept combined hardware upgrades with finite configuration and unchanged stock solver values.",
+    "Gearing, body mass, wheel width and track alter the actual constraint solver and native intake geometry.",
+    "Larger radiator and oil cooler reject measured heat and add fluid capacity instead of multiplying engine power.",
+    "Upgraded rotating parts and gearsets resist the same overrev/torque load while severe abuse can still break them.",
+    "Front, rear and side hits create independent persistent crush zones and functional wheel alignment damage.",
+    "Chassis reinforcement reduces the same collision damage; switching builds and saved garage state never repairs crush zones.",
+    "Broken bumpers detach with finite motion, selective panel repair leaves other damage and fluids alone, and damage-off suppresses crush.",
+    "Mesh deformation changes only the damaged car, keeps all vertices finite and renders actual wider tyres with removable bumpers."
+  ],
+  "fixtures": {
+    "Fifty-six independent part slots are priced, migrate old builds and purchase atomically without charging owned parts twice.": {
+      "categories": 56,
+      "choices": 181,
+      "purchaseCost": 28700
+    },
+    "All eight native engine families accept combined hardware upgrades with finite configuration and unchanged stock solver values.": {
+      "sdk": "1.6.3",
+      "engines": [
+        "i4",
+        "i6t",
+        "v8",
+        "rotary",
+        "boxer6",
+        "v6",
+        "v10",
+        "v12"
+      ]
+    },
+    "Gearing, body mass, wheel width and track alter the actual constraint solver and native intake geometry.": {
+      "stockMass": 1160,
+      "reinforcedWideMass": 1236,
+      "stockTrack": 1.74,
+      "wideTrack": 1.816,
+      "shortThirdRatio": 7.788480000000001
+    },
+    "Larger radiator and oil cooler reject measured heat and add fluid capacity instead of multiplying engine power.": {
+      "coolantStock": 116.46083254666244,
+      "coolantRace": 97.25746808484116,
+      "oilStock": 144.47218265450417,
+      "oilRace": 123.31087930405944
+    },
+    "Upgraded rotating parts and gearsets resist the same overrev/torque load while severe abuse can still break them.": {
+      "stockValve": 0.8543417228099237,
+      "raceValve": 0.9608829231938039,
+      "stockShaft": 0.7984585798817037,
+      "raceShaft": 0.9951725729592766
+    },
+    "Front, rear and side hits create independent persistent crush zones and functional wheel alignment damage.": {
+      "frontCrush": 0.2,
+      "rearCrush": 0.2,
+      "wheelToe": [
+        0,
+        -0.07329407272757456,
+        0,
+        0
+      ]
+    },
+    "Chassis reinforcement reduces the same collision damage; switching builds and saved garage state never repairs crush zones.": {
+      "stockHealth": 0.7844827586206897,
+      "reinforcedHealth": 0.852114758947057
+    },
+    "Mesh deformation changes only the damaged car, keeps all vertices finite and renders actual wider tyres with removable bumpers.": {
+      "changedCoordinates": 2001,
+      "meshes": 222,
+      "wideTyreMetres": 0.34
+    }
+  },
+  "limits": [
+    "Deterministic native engine, contact/thermal mechanics and real Three.js geometry in Node. No browser GPU or hardware test.",
+    "Crush zones deform the render mesh and collision damage affects vehicle mechanics; this is not a soft-body solver."
+  ],
+  "sourceSHA256": {
+    "dist/catalog.js": "5abffdbcf0d4e0937e9a803a5a420968095482dbe01be849a4846269ded40c13",
+    "dist/career.js": "7746fca09092f045af45da8438d0b6019908b19878b7f33ff1720945dbd4b215",
+    "dist/garage.js": "18300618333d8a65a618323e2fb59b4f003b8607c8843eb7d128deccf41f85aa",
+    "dist/physics.js": "bf87e52ec17bbf5393e808ab6fda37f50d5f13504f388296c30f4b895787c2f7",
+    "dist/mechanical.js": "21e2dd3521c7bedc6c267916f6bdbd66ea0a7a54e7d495aa417419fb6d157e19",
+    "dist/vehicle-state.js": "888f606612f2a452c8fe4693a77fba4020a1b7aa3538f9ae8e848129bef4af3e",
+    "dist/body-damage.js": "ed4e65e8ec90dc825cb39de7047abfbe49fe8844361c701db0156f98cf1a6284",
+    "dist/car.js": "e35b63f998b969e2b80798453128409174e04c74a8747d7c21084b70e6a5b723"
+  },
+  "verifiedInRelease": 32,
+  "suiteSource": "qa/modular-v15-check.mjs",
+  "suiteSHA256": "af7c687cb24ac32942353ba0f8c78eca5aa7017c6dcda899514333dfb8923ebe"
+}

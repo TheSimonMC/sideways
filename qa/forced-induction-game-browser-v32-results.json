@@ -1,0 +1,30 @@
+{
+  "version": 32,
+  "status": "passed",
+  "checks": [
+    "Garage rejects factory-turbo stacking and unfitted coolers; a compatible draft previews actual hardware, and Cancel leaves wallet/build unchanged.",
+    "Install charges the displayed price once; blower/cooler ownership, the open hood and pre-existing body damage survive reload.",
+    "The installed blower drives in the real city with actual rotor telemetry, native PCM, component diagnostics and a visible belt; narrow and landscape garage previews render."
+  ],
+  "charged": 29000,
+  "drive": {
+    "speed": 5.3407334405683775,
+    "rpm": 4400.5505719493585,
+    "induction": {
+      "rpm": 7607.590497730636,
+      "drive": 1,
+      "health": 1,
+      "coolerHealth": 1,
+      "beltHealth": 1,
+      "temperature": 24.097282550844607,
+      "coolerTemperature": 24.30989766981001
+    },
+    "audioClock": "pcm"
+  },
+  "errors": [],
+  "external": [],
+  "htmlSha256": "89637cf946787d81a6d7d76e43e60e4af4e8595896ec4c878d8e1c0ec378b52c",
+  "limits": [
+    "Local Chromium software rendering, not a physical-device performance or subjective audio acceptance."
+  ]
+}

@@ -1,8 +1,8 @@
 # SIDEWAYS – verbindliche Fortschrittsliste
 
-Stand: V31, Phase 0, Phase 1 Teile A/B/C/D/E, Phase 2 Teile A/B/C/D und Phase 3 Teile A/B/C/D sowie Phase 4 und Phase 5 Teile A/B. Grundlage: unveränderte Kopie in `docs/goal.txt`.
+Stand: V32, Phase 0, Phase 1 Teile A/B/C/D/E, Phase 2 Teile A/B/C/D und Phase 3 Teile A/B/C/D sowie Phase 4 und Phase 5 Teile A/B/C. Grundlage: unveränderte Kopie in `docs/goal.txt`.
 
-Status bezieht sich auf den gesamten Wortlaut eines Punktes. Teilweise bedeutet, dass wesentliche Teile noch fehlen. Phase 0, Phase 3 und Phase 4 sind innerhalb der dokumentierten Browser-Näherungen abgeschlossen. V19 ergänzt die gemeinsame Reifen-Grundlage aus Phase 2 und ihre Folgen für Phase 1. V24 schließt die Nässe-Anbindung. Phase 1 bleibt für breitere Grenzbereichs- und Eingabegeräte-Kalibrierung teilweise; Phase 2 wegen noch fehlendem Kompressortuning und der späteren Montage-/Ausbauintegration. Die umfassende Wetterdarstellung wird in Phase 7 weitergeführt.
+Status bezieht sich auf den gesamten Wortlaut eines Punktes. Teilweise bedeutet, dass wesentliche Teile noch fehlen. Phase 0, Phase 3 und Phase 4 sind innerhalb der dokumentierten Browser-Näherungen abgeschlossen. V19 ergänzt die gemeinsame Reifen-Grundlage aus Phase 2 und ihre Folgen für Phase 1. V24 schließt die Nässe-Anbindung. Phase 1 bleibt für breitere Grenzbereichs- und Eingabegeräte-Kalibrierung teilweise; Phase 2 wegen der noch fehlenden vollständigen Montage-/Ausbauintegration. Die umfassende Wetterdarstellung wird in Phase 7 weitergeführt.
 
 Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc282ea844a1b96dca`.
 
@@ -34,13 +34,13 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 2: EINZELNE MECHANISCHE SCHÄDEN, TEMPERATUR UND VERSCHLEISS
 
-**teilweise erledigt** — V23 ergänzt Block/Kopf, Pleuel, Kurbelwelle, Steuerkette, Ansaugung, Auspuff, Thermostat, Kraftstoffpumpe und Zündung. Luftzufuhr, Gemisch, Verbrennung, Kurbelwellenlast, Wärme, Lecks, Fehlzündungen und Geräusche folgen getrennten Zuständen. Ölverlust/Überdrehen schädigen Kurbeltrieb und Kette; eine ausgefallene Kette kann Ventile beschädigen. Beim Wankel gelten Gehäuse und Exzenterwelle; Pleuel und Ventilsteuertrieb sind nicht verbaut. V21/V22-Systeme bleiben erhalten. P02.07/P02.08/P02.11/P02.12 sind durch thermische, Antriebs-, Diagnose-, Reparatur- und Speicherprüfungen nachgewiesen; P02.02–P02.04/P02.09/P02.10 bleiben erfüllt. P02.01/P02.05/P02.06 bleiben teilweise für Kompressortuning sowie die noch fehlenden Verbindungen zu sichtbaren Befestigungen und ausgebauten Teilen in Phase 3/5/6. Alle verbauten Motorarten sind in der mechanischen Näherung abgedeckt.
+**teilweise erledigt** — V23 ergänzt Block/Kopf, Pleuel, Kurbelwelle, Steuerkette, Ansaugung, Auspuff, Thermostat, Kraftstoffpumpe und Zündung. Luftzufuhr, Gemisch, Verbrennung, Kurbelwellenlast, Wärme, Lecks, Fehlzündungen und Geräusche folgen getrennten Zuständen. Ölverlust/Überdrehen schädigen Kurbeltrieb und Kette; eine ausgefallene Kette kann Ventile beschädigen. Beim Wankel gelten Gehäuse und Exzenterwelle; Pleuel und Ventilsteuertrieb sind nicht verbaut. V21/V22-Systeme bleiben erhalten. P02.07/P02.08/P02.11/P02.12 sind durch thermische, Antriebs-, Diagnose-, Reparatur- und Speicherprüfungen nachgewiesen; P02.02–P02.04/P02.09/P02.10 bleiben erfüllt. V32 ergänzt separate Kompressor-/Ladeluftkühlerzustände und schließt P02.05 ab. P02.01/P02.06 bleiben für die vollständige Verbindung zu sichtbaren Befestigungen und ausgebauten Teilen in Phase 6 teilweise. Alle verbauten Motorarten sind in der mechanischen Näherung abgedeckt.
 
 - **P02.01 · teilweise erledigt** — Weg vom einzigen allgemeinen Auto-Health-Wert als Schadensquelle. Jede wesentliche Baugruppe erhält einen eigenen Zustand, Verschleiß und bei Bedarf Temperatur, Belastung und Ausfallart.
 - **P02.02 · erledigt** — Vier unabhängige Reifen: Temperatur, Luftdruck, Reifenmischung, Abrieb, Gripverlust, Flatspots, Platten, Beschädigung und Blowout.
 - **P02.03 · erledigt** — Längere Burnouts oder dauerhaft hohe Schlupfwerte erhitzen die Reifen. Nach nachvollziehbarer Überlast können sie einzeln platzen. Reaktion: plötzlicher Druckverlust, veränderte Seitenführung, Fahrwerks-/Lenkreaktion, Geräusch und Partikeleffekte.
 - **P02.04 · erledigt** — Rauchmenge hängt von Radschlupf, Temperatur und Oberfläche ab. Nicht jeder Reifen platzt nach einer festen Zeit unabhängig von den Umständen.
-- **P02.05 · teilweise erledigt** — Motor separat: Block, Kolben/Pleuel, Kurbeltrieb, Zylinderkopf, Dichtung, Ölkreislauf/Öldruck, Kühler/Kühlmittel, Lüfter, Ansaugung, Auspuff, Turbo/Kompressor, Riemen, Lichtmaschine und relevante Nebenaggregate.
+- **P02.05 · erledigt** — Motor separat: Block, Kolben/Pleuel, Kurbeltrieb, Zylinderkopf, Dichtung, Ölkreislauf/Öldruck, Kühler/Kühlmittel, Lüfter, Ansaugung, Auspuff, Turbo/Kompressor, Riemen, Lichtmaschine und relevante Nebenaggregate.
 - **P02.06 · teilweise erledigt** — Schaden durch Überdrehen, schlechte Kühlung, Ölverlust, Überlast, Kollisionen und lange Überhitzung. Folgen: Leistungsverlust, ungewöhnliche Geräusche, Fehlzündungen, Rauch, Ruckeln, Klopfen, Lecks und schlimmstenfalls Motorausfall.
 - **P02.07 · erledigt** — Beschädigter Kühler verursacht Kühlmittelverlust und steigende Motortemperatur; falsches Weiterfahren kann Folgeschäden erzeugen.
 - **P02.08 · erledigt** — Kupplung: Verschleiß, Hitze, Schlupf, verringerte Kraftübertragung bis zum kompletten Ausfall. Getriebe: Schäden durch Überlast und schlechte Schaltvorgänge, mögliche Gangprobleme. Differenzial und Antriebswellen ebenfalls getrennt.
@@ -81,24 +81,24 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 5: MEHR EXTERIEUR-, INTERIEUR- UND MECHANISCHES TUNING
 
-**teilweise erledigt** — V30 liefert Exterieur und transparente Tönung. V31 ergänzt 13 Innenraumkategorien auf insgesamt 54: Lenkräder, Sport-/Schalensitze, Bezüge, Nähte, Farben, Dekore, Schaltknäufe, Handbremsen, Käfige, Gurte, Instrumente, Zusatzanzeigen und Ambientebeleuchtung. Handkontakte, Sitzhöhe, Masse/Schwerpunkt, Körperbewegung, Handbremswirkung, Messwerte und Beleuchtung folgen den Teilen. Alle vier Kabinen bleiben modellgerecht. Kauf, Abbruch, Besitz und Schäden bleiben erhalten; die Garage zeigt eine passende Innenansicht. **Offen bleiben** Kompressortuning und vollständige individuelle Montage-/Ausbauzustände. [Exterieurbericht](phase-5a-exterior-report.md), [Innenraumbericht](phase-5b-interior-report.md).
+**teilweise erledigt** — V30/V31 liefern Exterieur, transparente Tönung und Innenraumteile. V32 ergänzt tatsächliche Kompressoraufladung und Ladeluftkühlung auf insgesamt 56 Kategorien. Native Gasförderung/Wellenarbeit, Riemenfehler, Wärme, Verschleiß, Sound, Kauf, Speichern und sichtbare Technik sind verbunden. P05.04 ist umgesetzt. Individueller Ausbau und vollständige Montage-/Abrisszustände für mechanische und Kabinenteile bleiben Phase 6. Die dazu fehlenden Zustände, Interaktionen und vollständigen Motorraumgeometrien sind noch zu bauen. [Bericht Phase 5C](phase-5c-induction-report.md).
 
 - **P05.01 · erledigt** — Exterieurteile: unterschiedliche Front-/Heckstoßstangen, Spoiler, Splitter, Lippen, Schweller, Diffusoren, Kotflügel, Widebody-Kits, Hauben, Grills, Auspuffendrohre, Felgen, Reifen, Lichtdesign, Lacke, Folierungen und Decals.
 - **P05.02 · erledigt** — Interieurteile: Lenkräder, Sportsitze, Schalensitze, Bezüge, Nähte, Farben, Dashboard-Dekore, Schaltknäufe, Handbremsen, Überrollkäfige, Gurte, Instrumente, Zusatzanzeigen und Ambientebeleuchtung.
 - **P05.03 · erledigt** — Scheibentönung mit einstellbarer Stärke und richtiger Lichtdurchlässigkeit; von außen bei passenden Bedingungen weiterhin hineinschauen können. Keine undurchsichtige schwarze Fläche als Ersatz für Glas.
-- **P05.04 · teilweise erledigt** — Leistungsupgrades: Motor/ECU, Turbo/Kompressor, Ansaugung, Auspuff, Kühler, Kupplung, Getriebe, Übersetzungen, Differentiale, Fahrwerk, Stabis, Achsgeometrie, Bremsen, Reifen und Aerodynamik.
+- **P05.04 · erledigt** — Leistungsupgrades: Motor/ECU, Turbo/Kompressor, Ansaugung, Auspuff, Kühler, Kupplung, Getriebe, Übersetzungen, Differentiale, Fahrwerk, Stabis, Achsgeometrie, Bremsen, Reifen und Aerodynamik.
 - **P05.05 · teilweise erledigt** — Optische und mechanische Teile an echte Befestigungspunkte knüpfen, sodass sie bei Schaden abfallen und in der Garage ausgebaut werden können.
 - **P05.06 · teilweise erledigt** — Upgrades haben echte Unterschiede und Nachteile: mehr Leistung bedeutet unter Umständen mehr Wärme/Stress; ein Rennfahrwerk kann auf Schlaglöchern schlechter sein; Drift-Reifen unterscheiden sich von Straßenreifen; Bremsen funktionieren je nach Temperatur anders.
 - **P05.07 · teilweise erledigt** — Kompatibilität mit dem jeweiligen Fahrzeug prüfen, damit Teile nicht falsch positioniert sind.
 
 ## Phase 6: INTERAKTIVE GARAGE UND SICHTBARER, BEWEGLICHER MOTOR
 
-**teilweise erledigt** — V25 ermöglicht das Öffnen und Schließen von Türen, Haube und Kofferraum in der bestehenden Garage. V29 liefert die Innenräume; der einfache Motorraum-Boden mit Blockgrundform ersetzt weiterhin nicht den geforderten Motor mit Nebenaggregaten. Gezielt ausbaubare Komponenten, Motorraumdetails, RPM-gekoppelte Animationen und räumliche Werkstattübergänge sind weiterhin offen.
+**teilweise erledigt** — V25 ermöglicht das Öffnen und Schließen von Türen, Haube und Kofferraum in der bestehenden Garage. V29 liefert die Innenräume. V32 ergänzt sichtbare Kompressoren, Scheiben, Riemen, Schlauchwege und Ladeluftkühler sowie tatsächliche Rotor-/Kurbelwellenanimation. P06.03/P06.04 sind damit teilweise. Vollständige motorabhängige Geometrien, Lüfter-/Nebenaggregatanimation und gezielter Ausbau/Einbau fehlen weiterhin. Räumliche Werkstattübergänge bleiben in ihrer späteren Phase.
 
 - **P06.01 · teilweise erledigt** — In der bestehenden Garage mit dem Fahrzeug interagieren: Haube öffnen, Türen öffnen, Räder, Stoßstangen, Spoiler, Motorraumteile und andere Komponenten gezielt aus- oder wieder einbauen.
 - **P06.02 · offen** — Ausbau verändert das Fahrzeug sofort sichtbar und, sofern relevant, physikalisch. Ohne Räder, Kühler oder andere wichtige Komponenten kann nicht normal gefahren werden.
-- **P06.03 · offen** — Unter der geöffneten Haube muss ein echter, zum jeweiligen Fahrzeug passender Motorraum zu sehen sein, inklusive Motor, Kühler, Schläuchen, Ansaugung, Lüfter, Lichtmaschine, Antriebriemen und Riemenscheiben sowie bei passendem Fahrzeug Turbo/Kompressor.
-- **P06.04 · offen** — Rotoren, Riemen und Riemenscheiben werden durch tatsächliche Motor-RPM angetrieben. Kühlerlüfter schaltet temperaturabhängig. Motorlager erlauben subtile Motorbewegung durch Lastwechsel/Vibration; Animationen skalieren mit Drehzahl.
+- **P06.03 · teilweise erledigt** — Unter der geöffneten Haube muss ein echter, zum jeweiligen Fahrzeug passender Motorraum zu sehen sein, inklusive Motor, Kühler, Schläuchen, Ansaugung, Lüfter, Lichtmaschine, Antriebriemen und Riemenscheiben sowie bei passendem Fahrzeug Turbo/Kompressor.
+- **P06.04 · teilweise erledigt** — Rotoren, Riemen und Riemenscheiben werden durch tatsächliche Motor-RPM angetrieben. Kühlerlüfter schaltet temperaturabhängig. Motorlager erlauben subtile Motorbewegung durch Lastwechsel/Vibration; Animationen skalieren mit Drehzahl.
 - **P06.05 · offen** — Motorraumteile einzeln auswählen, Zustand ablesen, ausbauen, reparieren oder ersetzen. Beschädigungen und fehlende Teile werden sichtbar.
 - **P06.06 · offen** — Garagenoberfläche für Komponenten, Kosten, Kompatibilität, Verschleiß und Montagezustand. Der Wagen muss nach Umbauten weiterhin korrekt geladen und gespeichert werden.
 - **P06.07 · offen** — Interaktion praktikabel halten, keine unnötige Schraube-für-Schraube-Simulation erzwingen, wenn sie dem Spiel keinen Nutzen bringt.
@@ -318,3 +318,7 @@ P05.01 und P05.03 sind mit den dokumentierten Browser-Näherungen umgesetzt. P05
 ## V31 – Phase 5 Teil B
 
 P05.02 ist innerhalb der beschriebenen Näherungen umgesetzt. P05.04–P05.07 bleiben wegen Kompressor und vollständiger Montageintegration teilweise. Alle 156 Originalformulierungen bleiben erhalten. Nächster Teil: Kompressor, danach interaktive Garage und Motorraum. [Nachweise und Grenzen](phase-5b-interior-report.md).
+
+## V32 – Phase 5 Teil C
+
+P05.04 ist umgesetzt. P05.05–P05.07 und Phase 5 insgesamt bleiben teilweise; der vollständige Wortlaut aller 156 Anforderungen bleibt erhalten. Nächster Schritt ist Phase 6: Motorraum, einzelne Montage-/Ausbauzustände und räumliche Garageninteraktion. [Nachweise und Grenzen](phase-5c-induction-report.md).

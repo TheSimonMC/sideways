@@ -1,3 +1,4 @@
+import {createInductionView} from './induction-view.js';
 import {makePaintFinish,bindPaintCoordinates,makeWindowMaterial,addExteriorTuning} from './exterior-tuning-view.js';
 import {outletPositions,outletHeight} from './exterior-tuning.js';
 import {createInterior} from './interior.js';
@@ -236,11 +237,13 @@ export function createCar(scene, initialBuild = resolveBuild()) {
 
     if(build.selection.radiator!=='stock'||build.selection.oilCooler!=='stock'){for(let n=0;n<5;n++)box(chassis,0,.38+n*.035,L*.965,W*.93,.012,.025,chrome);}
     const bayZ=(layout.front+L*.89)/2,bayLength=Math.max(.3,L*.89-layout.front);
-    box(chassis,0,.40,bayZ,W*1.36,.06,bayLength,graphite);
+    box(chassis,0,build.physics.induction.supercharged?.18:.40,bayZ,W*1.36,.06,bayLength,graphite);
     for(const side of [-1,1])box(chassis,side*W*.70,.54,bayZ,.05,.30,bayLength,graphite);
     box(chassis,0,.54,layout.front-.015,W*1.40,.30,.04,graphite);
     const engineBlock=box(chassis,0,.52,bayZ,kind==='muscle'?.72:.48,.22,bayLength*.70,chrome,true);engineBlock.name='engine-block-foundation';
-    box(chassis,0,.65,bayZ,kind==='muscle'?.62:.39,.06,bayLength*.62,dark);
+    const engineCover=box(chassis,0,.65,bayZ,kind==='muscle'?.62:.39,.06,bayLength*.62,dark);
+    const induction=createInductionView(chassis,build);
+    if(build.physics.induction.supercharged){engineBlock.position.y=Math.min(.52,induction.diagnostics().top-.24);engineCover.position.y=Math.min(.65,induction.diagnostics().top-.15);}
     const trunkZ=(layout.back-L*.92)/2,trunkLength=Math.max(.15,layout.back+L*.92);
     box(chassis,0,.39,trunkZ,W*1.32,.06,trunkLength,graphite);
     for(const side of [-1,1])box(chassis,side*W*.68,.53,trunkZ,.04,.28,trunkLength,graphite);
@@ -288,12 +291,14 @@ export function createCar(scene, initialBuild = resolveBuild()) {
     for(const root of Object.values(panelRoots))chassis.add(root);
     for(const [id,root]of Object.entries(exteriorRoots)){const parent=panelRoots[EXTERIOR_PARTS[id].parent];if(parent){root.position.sub(parent.position);parent.add(root);}}
     chassis.updateMatrixWorld(true);const bodyInverse=chassis.matrixWorld.clone().invert(),deformables=[];
-    chassis.traverse(node=>{if(node.isMesh){let ancestor=node;while(ancestor){if(ancestor.userData.panel&&!node.userData.panel)node.userData.panel=ancestor.userData.panel;if(ancestor.userData.exterior&&!node.userData.exterior)node.userData.exterior=ancestor.userData.exterior;ancestor=ancestor.parent;}}if(node.userData.interior||node.userData.underbody||!node.isMesh||!node.geometry?.attributes.position||node.material?.blending===THREE.AdditiveBlending)return;const toBody=bodyInverse.clone().multiply(node.matrixWorld);deformables.push({mesh:node,base:node.geometry.attributes.position.array.slice(),toBody,toLocal:toBody.clone().invert()});});
-    model={content,chassis,interior,windshieldGlint,underbody,layout,panelRoots,exteriorRoots,lampMaterials,paint,glass,headlamp,tail,glow,shadow,flames,exhaustMouths,ribbon,wheels,spinGroups,shell,shellBase,deformables,bodyRevision:-1,bodyState:null,health:1};
+    chassis.traverse(node=>{if(node.isMesh){let ancestor=node;while(ancestor){if(ancestor.userData.panel&&!node.userData.panel)node.userData.panel=ancestor.userData.panel;if(ancestor.userData.exterior&&!node.userData.exterior)node.userData.exterior=ancestor.userData.exterior;ancestor=ancestor.parent;}}if(node.userData.induction||node.parent?.userData.induction||node.parent?.parent?.userData.induction||node.userData.interior||node.userData.underbody||!node.isMesh||!node.geometry?.attributes.position||node.material?.blending===THREE.AdditiveBlending)return;const toBody=bodyInverse.clone().multiply(node.matrixWorld);deformables.push({mesh:node,base:node.geometry.attributes.position.array.slice(),toBody,toLocal:toBody.clone().invert()});});
+    model={content,chassis,induction,interior,windshieldGlint,underbody,layout,panelRoots,exteriorRoots,lampMaterials,paint,glass,headlamp,tail,glow,shadow,flames,exhaustMouths,ribbon,wheels,spinGroups,shell,shellBase,deformables,bodyRevision:-1,bodyState:null,health:1};
   }
   assemble(initialBuild);
   return {
     group,
+    inductionInspectionPose(){return model.induction.inspectionPose();},
+    inductionDiagnostics(){return model.induction.diagnostics();},
     get cockpitMirrors(){return model.interior.mirrors;},
     get cockpitScreen(){return model.interior.screen;},
     cabinInspectionPose(seats){return model.interior.inspectionPose(seats);},
@@ -337,7 +342,7 @@ export function createCar(scene, initialBuild = resolveBuild()) {
         const t=state.tyres?.[w.index],scale=t?.casingScale??1,spot=t?.flatspot??0,shape=Math.round(scale*1000)+':'+Math.round(spot*1000)+':'+(t?.flatspotAngle??0);
         if(shape!==w.tyreShape){w.tyreShape=shape;const pos=w.tyre.geometry.attributes.position;for(let j=0;j<pos.count;j++){const x=w.tyreBase[j*3],y=w.tyreBase[j*3+1],z=w.tyreBase[j*3+2],r=Math.hypot(x,z),f=scale*(1-.045*spot*Math.max(0,(-x*Math.cos(t?.flatspotAngle??0)+z*Math.sin(t?.flatspotAngle??0))/Math.max(r,.001))**8);pos.setXYZ(j,x*f,y*(1+(1-scale)*.5),z*f);}pos.needsUpdate=true;w.tyre.geometry.computeVertexNormals();w.tyre.geometry.computeBoundingSphere();}
       }
-      m.underbody.update(state);if(!cockpitManaged)m.interior.update(state,dt,time);
+      m.induction.update(state,dt);m.underbody.update(state);if(!cockpitManaged)m.interior.update(state,dt,time);
       for(const [id,mat]of Object.entries(m.lampMaterials))mat.emissiveIntensity=(id.startsWith('lampF')?(state.headlights?2.8:.015):(state.brake>.1?3:state.headlights?.9:.15))*(state.mechanical?.auxiliaries?.lampFactor??1)*lampOutput(state.bodyDamage,id);
       m.paint.color.set(paintHex).lerp(damageColour,(1-(state.bodyHealth??1))*.5);
       const body=state.bodyDamage,revision=body?.revision??0,bodyKey=body===m.bodyState?m.bodyKey:JSON.stringify([Object.entries(body?.zones||{}).map(([id,p])=>[id,p.crush,p.x,p.z,p.pushX,p.pushZ,p.detached,p.scratches]),body?.exterior]);
