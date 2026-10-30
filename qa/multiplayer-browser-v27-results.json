@@ -1,0 +1,157 @@
+{
+  "version": 27,
+  "status": "passed",
+  "checks": [
+    "Two independent Chromium processes create and join a real public lobby, ready up and load Neon Archipelago from the shipped HTML",
+    "Host rain and road moisture reach a guest that started dry, using authoritative world snapshots",
+    "Both full games exchange poses/world updates and construct the remote car without a kick while driving",
+    "Late join restores the current host weather and moisture",
+    "Guest leaves through the real UI and rejoins the running host, without ending the host session"
+  ],
+  "states": [
+    {
+      "version": 27,
+      "phase": "playing",
+      "status": "playing",
+      "players": 2,
+      "issue": null,
+      "stats": {
+        "sent": 162,
+        "received": 150,
+        "dropped": 0,
+        "backpressure": 0,
+        "coalesced": 0,
+        "invalid": 0,
+        "lastPacketBytes": 27648,
+        "maxPacketBytes": 27667
+      },
+      "weather": {
+        "elapsed": 401.4127000000025,
+        "rain": 0.9613668060949961,
+        "wetness": 1,
+        "drops": 115,
+        "capacity": 360,
+        "wetMaterials": 2,
+        "wheels": [
+          {
+            "wetness": 1,
+            "depth": 0,
+            "grip": 0.7299999999963325,
+            "aquaplaning": 0
+          },
+          {
+            "wetness": 1,
+            "depth": 0,
+            "grip": 0.7299999999963356,
+            "aquaplaning": 0
+          },
+          {
+            "wetness": 1,
+            "depth": 0,
+            "grip": 0.7299981050527193,
+            "aquaplaning": 0
+          },
+          {
+            "wetness": 1,
+            "depth": 0,
+            "grip": 0.7299981084099241,
+            "aquaplaning": 0
+          }
+        ],
+        "spray": 0
+      },
+      "rules": {
+        "maxPlayers": 4,
+        "traffic": "normal",
+        "police": true,
+        "damage": true,
+        "time": "cycle",
+        "weather": "rain",
+        "collisions": "ghost"
+      },
+      "remotes": {
+        "count": 1,
+        "visible": 1,
+        "buffers": [
+          2
+        ],
+        "teleports": 0
+      }
+    },
+    {
+      "version": 27,
+      "phase": "playing",
+      "status": "playing",
+      "players": 2,
+      "issue": null,
+      "stats": {
+        "sent": 149,
+        "received": 162,
+        "dropped": 0,
+        "backpressure": 0,
+        "coalesced": 0,
+        "invalid": 0,
+        "lastPacketBytes": 3890,
+        "maxPacketBytes": 4241
+      },
+      "weather": {
+        "elapsed": 401.26270000000244,
+        "rain": 0.9608808603376021,
+        "wetness": 1,
+        "drops": 115,
+        "capacity": 360,
+        "wetMaterials": 2,
+        "wheels": [
+          {
+            "wetness": 1,
+            "depth": 0,
+            "grip": 0.73,
+            "aquaplaning": 0
+          },
+          {
+            "wetness": 1,
+            "depth": 0,
+            "grip": 0.73,
+            "aquaplaning": 0
+          },
+          {
+            "wetness": 1,
+            "depth": 0,
+            "grip": 0.73,
+            "aquaplaning": 0
+          },
+          {
+            "wetness": 1,
+            "depth": 0,
+            "grip": 0.73,
+            "aquaplaning": 0
+          }
+        ],
+        "spray": 0
+      },
+      "rules": {
+        "maxPlayers": 4,
+        "traffic": "normal",
+        "police": true,
+        "damage": true,
+        "time": "cycle",
+        "weather": "rain",
+        "collisions": "ghost"
+      },
+      "remotes": {
+        "count": 1,
+        "visible": 1,
+        "buffers": [
+          2
+        ],
+        "teleports": 0
+      }
+    }
+  ],
+  "errors": [],
+  "htmlSha256": "3d71fe9d20ee1d20e81def374c3f917780e53d3467aec74683e16ebd9f3d3814",
+  "limits": [
+    "Two local independent Chromium processes over real public PeerJS signaling/WebRTC. Separate PCs, mobile networks and TURN fallback were not tested.",
+    "Software rendering, no FPS guarantee or physical-controller test."
+  ]
+}

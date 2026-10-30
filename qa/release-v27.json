@@ -1,0 +1,204 @@
+{
+  "game": "SIDEWAYS",
+  "version": 27,
+  "date": "2026-10-30",
+  "status": "verified-with-documented-limits",
+  "base": "Published V26 bf49d2bdd2904eba01792342b0863b5644a2634b",
+  "scope": "Phase 3C: spatial open-panel/debris contacts, rolling loose wheels, world collider heights, preserved repairs/saves/network. Full objective remains active.",
+  "delivery": {
+    "entry": "SIDEWAYS.html",
+    "separateFile": "SIDEWAYS-v27.html",
+    "htmlBytes": 10645861,
+    "htmlSha256": "3d71fe9d20ee1d20e81def374c3f917780e53d3467aec74683e16ebd9f3d3814",
+    "offlineSinglePlayer": true,
+    "externalRuntimeRequestsDuringOfflineTest": 0,
+    "publishedToSites": false
+  },
+  "currentFunctionalSuites": [
+    {
+      "file": "qa/archipelago-v27-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "14b14c390084ab38e385b46034bc1e46ca294b2b9463c3c04b17281b73204bba"
+    },
+    {
+      "file": "qa/audio-v27-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "743739029b2d4c58be883611ed2790bab00ef41603908068e902e95f56e78e50"
+    },
+    {
+      "file": "qa/body-panels-browser-v27-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "a20980fab2d6d34444ca02564f08d60c4a9c8e05ad73957f354012d359f82faf"
+    },
+    {
+      "file": "qa/body-panels-v27-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "785418e2729f964e051776a87180fa042dbf7006fe643566956a9cc2539d76fa"
+    },
+    {
+      "file": "qa/chassis-v27-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "8e9f6f2af8f519cc0a0da6f8c7a9cc7a8887ddaf3949b2421b9aa979aad73efb"
+    },
+    {
+      "file": "qa/cosmetics-v27-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "df9d27d0137dd8e4f65c77f2e61e84470dd073341e51e4e51846f587e851806c"
+    },
+    {
+      "file": "qa/damage-v27-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "991ad8339f728c92fce0c4977b73066f13ef35a59f3377da449693c3d064d9e6"
+    },
+    {
+      "file": "qa/exterior-browser-v27-results.json",
+      "status": "passed",
+      "groups": 5,
+      "sha256": "a0b0669462cf4b8ebea5160e517b0a89a6e3de0c45ec1a7b116c134aa19ede04"
+    },
+    {
+      "file": "qa/exterior-v27-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "88bcfde931c51e59fcecd7314887c3f55af3fdc9eae0c0d7111479f2c40c1de7"
+    },
+    {
+      "file": "qa/goal-coverage-v27-results.json",
+      "status": "passed",
+      "groups": 2,
+      "sha256": "061f2408b84a33dc4f16646ea5b08ff1953a90897b8b9af89de26827567639d3"
+    },
+    {
+      "file": "qa/input-taps-v27-results.json",
+      "status": "passed",
+      "groups": 11,
+      "sha256": "7a61534dd06573d0801ed3fd6bed760e6ea2b7112ef897cccb7fcd57e89a3c5c"
+    },
+    {
+      "file": "qa/modular-v27-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "6be95ff5d768f3f193f4cdd2d0ba3a44a3a4831efdf5ee7f18a0a51435dbe91e"
+    },
+    {
+      "file": "qa/multiplayer-browser-v27-results.json",
+      "status": "passed",
+      "groups": 5,
+      "sha256": "5e45cdedfceae875f00c8f71c281de6cf0b9032a64f858378fc45c847730624a"
+    },
+    {
+      "file": "qa/multiplayer-burst-browser-v27-results.json",
+      "status": "passed",
+      "groups": 3,
+      "sha256": "deebd5073a95b4ab1bc82fc0d8fd8122dc8bdac15b90f8aea501399af301ee9a"
+    },
+    {
+      "file": "qa/multiplayer-burst-v27-results.json",
+      "status": "passed",
+      "groups": 5,
+      "sha256": "b36eecf1a507b20b4805bed2c35aa9b15fcefb753cc0414abb8f706da29aff29"
+    },
+    {
+      "file": "qa/multiplayer-v27-results.json",
+      "status": "passed",
+      "groups": 11,
+      "sha256": "f98864179e7f16c5cdc764f2cba1e64cee799135a142d8a81761e0b7acb14b21"
+    },
+    {
+      "file": "qa/navigation-main-v27-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "8012cc4a17fc4b87ff5ce00acac4da70d5beb8ef212c9146420063e9bab61a0b"
+    },
+    {
+      "file": "qa/part-contacts-browser-v27-results.json",
+      "status": "passed",
+      "groups": 2,
+      "sha256": "643bdee8859759d105385887c11e987573285eaf1cd8a58fccbf996ea3697320"
+    },
+    {
+      "file": "qa/part-contacts-v27-results.json",
+      "status": "passed",
+      "groups": 11,
+      "sha256": "646f8a33ddbca9f11d04337d73c0b2082bab775ee7ef8fe71c49ce29f649061a"
+    },
+    {
+      "file": "qa/physics-v27-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "ecb5f007b343a27e0a831fd61f9cb202ce125a2f23f3cc9c04626e1b0348d195"
+    },
+    {
+      "file": "qa/police-v27-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "ea8e1f4af71ab92cf1b844b28d44d48b8f6f22e41bde2d663f115c27bf659ce4"
+    },
+    {
+      "file": "qa/race-v27-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "003026438a9a06ea999dc7fef746e34f4dc82a14f487b5682a4e715c8433d0ce"
+    },
+    {
+      "file": "qa/responsive-panels-browser-v27-results.json",
+      "status": "passed",
+      "groups": 2,
+      "sha256": "1424c264f39678b91b401ad95f21061d3e35caacd72793c20cf17742d947e930"
+    },
+    {
+      "file": "qa/restart-v27-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "8a61805728b9af35d6a52e3389c56828a53b2c801d255ce442ced4f0cb3b142f"
+    },
+    {
+      "file": "qa/standalone-browser-v27-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "618a4c5c4a3af20cc1fd93ee8647e37df81edd903b26005c320a3109efa2862f"
+    },
+    {
+      "file": "qa/standalone-v27-results.json",
+      "status": "passed",
+      "groups": 0,
+      "sha256": "7304bd47fb9079b1b9d14630de037f2022386f69a76b51711a1551d59bc3b1be"
+    },
+    {
+      "file": "qa/thermal-v27-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "f9e8b96ae7de586b1dab7008a7772c4e5ae216e58b0b8c12cbf9a0f6de809855"
+    }
+  ],
+  "performanceMeasurements": [
+    {
+      "file": "qa/chassis-performance-v27-results.json",
+      "status": "measured",
+      "sha256": "88cebd3f9035933139e65d57f86d1dc958103688ff997044bbf52e93014eccd8"
+    },
+    {
+      "file": "qa/part-contacts-performance-v27-results.json",
+      "status": "measured",
+      "sha256": "041d7bd0f0966eed2753bbb2c440cbd6e7f8f3eeda79609fd1e3ad567a20562d"
+    }
+  ],
+  "review": {
+    "file": "qa/review-v27.json",
+    "sha256": "faae5b537ad75b2ec02d096840256dc84ed85333c85bb90d08fd25adf5c1eed2"
+  },
+  "limits": [
+    "Phase 3 remains partial: individual detachable suspension members and full exhaust routing are next, followed by Phase 4 interiors/cockpit/driver. The entire 156-item objective remains active.",
+    "Authored rigid boxes approximate trim and dents. Wheels use cylinder-sized wall boxes and analytic ground support; no full tyre or multibody solver.",
+    "Debris uses static world contacts, stays local and does not collide with other loose parts or dynamic traffic/remote cars.",
+    "Browser checks use local Chromium software rendering and real public PeerJS/WebRTC. No separate physical PCs, mobile networks, TURN, physical controllers or listening acceptance.",
+    "CPU samples have explicitly separate scopes and are not a frame-rate guarantee."
+  ]
+}

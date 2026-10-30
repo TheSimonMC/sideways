@@ -1,7 +1,7 @@
 {
   "source": "docs/goal.txt",
   "sourceSHA256": "4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc282ea844a1b96dca",
-  "version": 26,
+  "version": 27,
   "requirements": [
     {
       "id": "P00.01",
@@ -192,7 +192,7 @@
     {
       "id": "P03.04",
       "phase": 3,
-      "status": "teilweise erledigt",
+      "status": "erledigt",
       "requirement": "Abfallende Teile werden kurzzeitig physikalische Objekte mit Kollision, Reibung, Rollen und Rutschen. Performancebewusst nach Entfernung/Lebensdauer aufräumen."
     },
     {
@@ -942,19 +942,18 @@
   ],
   "currentIncrement": {
     "phase": 3,
-    "part": "B – Glas, Leuchten, Anbauteile und Oberflächenschäden",
+    "part": "C – Räumliche Kontakte und rollende lose Räder",
     "status": "erledigt",
     "implemented": [
-      "20 unabhängige Exterieurkomponenten mit gespeichertem Zustand, treffseitigem Schaden und Einzelreparatur.",
-      "Vier Scheiben mit Rissen, Bruch, Wind und bis zu 24 lokalen Splittern; vier einzeln ausfallende Leuchten mit passender Emission/Lichtkegel.",
-      "Spiegel, Schweller, Kotflügel, Splitter, Diffusor, Grill und Auspuffauslass besitzen getrennte Meshes; Abreißen ändert Masse und gegebenenfalls Abtrieb oder Geräusch.",
-      "Protocol 18 überträgt begrenzte Komponenten- und Kratzerzustände in vorhandenen Pose-Nachrichten."
+      "Gemeinsame räumliche Boxkontakte für offene Türen, Haube, Kofferraum, Karosserietrümmer und lose Räder.",
+      "Scharnierbewegung wird zwischen vorheriger und neuer Stellung geprüft; Impulse wirken auf Scharnier, Fahrzeug und passende Befestigungen.",
+      "Lose Räder koppeln Drehung und Bewegung über Reibung, rollen an Hängen, prallen ab und kippen bei geringer Geschwindigkeit.",
+      "Höhendaten für bestehende Gebäude, Brückenleitplanken, Dock-Hindernisse und Stadtobjekte; begrenzte Trümmerpools mit Entfernung und Lebensdauer."
     ],
     "remaining": [
-      "Phase 3: genauere räumliche Kontakte insbesondere für offene Hauben und lose Räder; ablösbare einzelne Fahrwerksglieder und vollständige Auspuffführung.",
-      "Lose Trümmer bleiben lokal; keine gegenseitigen Trümmerkollisionen.",
-      "Phase 4 vollständige Innenräume/Cockpit/Fahrer/Spiegel und Phase 6 Motorraum/Ausbau bleiben offen.",
-      "Restliche Anforderungen aller Phasen bleiben unverändert in der 156-Punkte-Liste."
+      "Phase 3: einzelne ablösbare Fahrwerksglieder und vollständige Auspuffführung.",
+      "Kontakte nutzen vereinfachte Starrkörper; keine gegenseitige Kollision loser Teile und kein Netzverkehr für lokale Trümmer.",
+      "Phase 4 Innenräume/Cockpit/Fahrer/Spiegel, Phase 6 Motorraum/Ausbau und alle weiteren offenen Anforderungen bleiben auf der 156-Punkte-Liste."
     ]
   }
 }

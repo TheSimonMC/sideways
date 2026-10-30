@@ -1,0 +1,22 @@
+SIDEWAYS V27 – SPATIAL PART CONTACTS
+
+Open SIDEWAYS.html for offline single-player. Multiplayer requires internet.
+Online: https://thesimonmc.github.io/sideways/
+
+Open doors, hood and trunk now catch obstacles in three dimensions. Loose body
+panels and wheels bounce from static walls and bridge rails. Wheel spin and
+rolling speed interact through friction; wheels settle onto their side at low speed.
+Garage controls, component repairs, saved damage and protocol 18 remain.
+
+Report: docs/phase-3c-contacts-report.md
+Full checklist: docs/goal.txt and docs/goal-progress.md
+Evidence: qa/release-v27.json
+Phase 3 still needs separate suspension members and full exhaust piping.
+Interiors, cockpit, driver, engine bays and later phases remain on the checklist.
+
+Build: npm ci, then node build.mjs (Node.js 24).
+Checks: node qa/regressions-v27.mjs and *-v27-check.mjs.
+Browser: *-browser-v27.cjs, using Playwright and Chromium. Set
+CODEX_PRIMARY_RUNTIME_NODE_MODULES to node_modules containing playwright;
+PLAYWRIGHT_CHROMIUM_EXECUTABLE to the Chromium binary.
+Package: node qa/package-v27.mjs <output-directory>.

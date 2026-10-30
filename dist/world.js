@@ -51,7 +51,7 @@ export function createWorld(scene) {
     if (!list) byGeometry.set('box', list = []);
     list.push(dummy.matrix.clone());
   }
-  function addCollider(x, z, hx, hz, heading=0, material='metal', kind='structure') { colliders.push({ x, z, hx, hz, heading, material, kind }); }
+  function addCollider(x, z, hx, hz, heading=0, material='metal', kind='structure',baseY=0,height=3) { colliders.push({ x, z, hx, hz, heading, material, kind,baseY,height }); }
 
   const control = [
     [-174, 68], [-181, -46], [-142, -139], [-56, -171],
@@ -311,7 +311,7 @@ export function createWorld(scene) {
   for(const side of [-1,1]) {
     const x=finish.x+finish.tz*15*side,z=finish.z-finish.tx*15*side;
     box(x,4,z,.7,8,.7,M.ink);box(x,1.1,z,1.7,2.2,1.7,M.lime);
-    addCollider(x,z,1.1,1.1);
+    addCollider(x,z,1.1,1.1,0,'metal','gantry',0,8);
   }
   sign(finish.x,8.1,finish.z,31,3.8,finish.heading,'SIDEWAYS','DOCK 09  /  NEVER LIFT');
   const raceSign=at(.025,-20);sign(raceSign.x,3.8,raceSign.z,8,3,raceSign.heading+.4,'09','INDUSTRIAL DISTRICT','#f06a80','#17262c');
@@ -322,7 +322,7 @@ export function createWorld(scene) {
     for(let j=-2;j<=2;j++){
       const p=at(t+j*.0048,15.6);
       box(p.x,.62,p.z,1.2,1.25,3.8,j%2?M.coral:M.pale,p.heading);
-      addCollider(p.x,p.z,.6,1.9,p.heading,'concrete','barrier');
+      addCollider(p.x,p.z,.6,1.9,p.heading,'concrete','barrier',-.005,1.25);
     }
     const p=at(t,19);
     sign(p.x,2.4,p.z,6,2.2,p.heading+Math.PI*.22,'>>>','KEEP IT SIDEWAYS','#d7ff45','#17262c');
@@ -331,7 +331,7 @@ export function createWorld(scene) {
 
   function warehouse(x,z,w,d,h,color=M.teal,number='09') {
     if(getRoadInfo(x,z).distance<Math.hypot(w,d)/2+22)return false;
-    box(x,h/2-.2,z,w,h,d,color);addCollider(x,z,w/2+.4,d/2+.4);
+    box(x,h/2-.2,z,w,h,d,color);addCollider(x,z,w/2+.4,d/2+.4,0,'concrete','warehouse',-.2,h+.53);
     box(x,h+.08,z,w+1,.5,d+1,M.ink);
     const bays=Math.max(2,Math.floor(w/9));
     for(let i=0;i<bays;i++){
@@ -364,7 +364,7 @@ export function createWorld(scene) {
     }
     if(rot){box(x+w/2+.03,y+1.55,z,.08,2.75,.10,M.pale);}
     else{box(x,y+1.55,z+d/2+.03,.1,2.75,.08,M.pale);}
-    if(y<.5)addCollider(x,z,w/2+.12,d/2+.12);
+    if(y<.5)addCollider(x,z,w/2+.12,d/2+.12,0,'metal','container',y,3.26);
   }
   const containerMats=[M.coral,M.teal,M.lime,M.purple,M.pale,M.brick];
   for(const cluster of [{x:91,z:3,cols:4,rows:3,rot:false},{x:17,z:-105,cols:5,rows:2,rot:true},{x:-90,z:57,cols:3,rows:2,rot:true},{x:220,z:-50,cols:2,rows:5,rot:false}]){
@@ -398,10 +398,10 @@ export function createWorld(scene) {
   const stationX=-6,stationZ=102;
   box(stationX,4.2,stationZ,29,.8,14,M.pale);
   box(stationX,4.65,stationZ,29,.2,14,M.coral);
-  for(const x of [-17,5]){box(x,2.1,stationZ,.55,4.2,.55,M.ink);addCollider(x,stationZ,.5,.5);}
+  for(const x of [-17,5]){box(x,2.1,stationZ,.55,4.2,.55,M.ink);addCollider(x,stationZ,.5,.5,0,'metal','post',0,4.2);}
   for(let i=0;i<3;i++){
     const x=stationX-9+i*9;box(x,1.25,stationZ,1.5,2.5,1.1,M.coral);box(x,1.8,stationZ+.58,1.1,.7,.08,M.ink);
-    box(x,.13,stationZ,3.7,.25,5,M.pale);addCollider(x,stationZ,1.8,2.5);
+    box(x,.13,stationZ,3.7,.25,5,M.pale);addCollider(x,stationZ,1.8,2.5,0,'metal','pump',0,2.5);
   }
   sign(stationX,5.5,stationZ+7.16,23,2,0,'NITRO','MORE NOISE. MORE NIGHT.','#d7ff45','#17262c');
 

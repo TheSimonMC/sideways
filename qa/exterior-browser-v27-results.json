@@ -1,0 +1,392 @@
+{
+  "version": 27,
+  "status": "passed",
+  "htmlSha256": "3d71fe9d20ee1d20e81def374c3f917780e53d3467aec74683e16ebd9f3d3814",
+  "checks": [
+    "New-run service restores all exterior parts; the actual condition UI lists all twenty components",
+    "hachi: saved cracked/missing glass, mirror, skirt and failed single lamp render, move with the door and persist after reload",
+    "atlas: saved cracked/missing glass, mirror, skirt and failed single lamp render, move with the door and persist after reload",
+    "kitsune: saved cracked/missing glass, mirror, skirt and failed single lamp render, move with the door and persist after reload",
+    "vector: saved cracked/missing glass, mirror, skirt and failed single lamp render, move with the door and persist after reload"
+  ],
+  "views": [
+    {
+      "carId": "hachi",
+      "parts": {
+        "glassFront": {
+          "visible": true,
+          "meshes": 2
+        },
+        "glassRear": {
+          "visible": true,
+          "meshes": 1
+        },
+        "glassLeft": {
+          "visible": false,
+          "meshes": 1
+        },
+        "glassRight": {
+          "visible": true,
+          "meshes": 1
+        },
+        "lampFL": {
+          "visible": true,
+          "meshes": 2,
+          "emissive": 0
+        },
+        "lampFR": {
+          "visible": true,
+          "meshes": 2,
+          "emissive": 2.8
+        },
+        "lampRL": {
+          "visible": true,
+          "meshes": 3,
+          "emissive": 0.9
+        },
+        "lampRR": {
+          "visible": true,
+          "meshes": 3,
+          "emissive": 0.9
+        },
+        "mirrorLeft": {
+          "visible": false,
+          "meshes": 1
+        },
+        "mirrorRight": {
+          "visible": true,
+          "meshes": 1
+        },
+        "skirtLeft": {
+          "visible": true,
+          "meshes": 1
+        },
+        "skirtRight": {
+          "visible": false,
+          "meshes": 1
+        },
+        "fenderFL": {
+          "visible": true,
+          "meshes": 4
+        },
+        "fenderFR": {
+          "visible": true,
+          "meshes": 4
+        },
+        "fenderRL": {
+          "visible": true,
+          "meshes": 4
+        },
+        "fenderRR": {
+          "visible": true,
+          "meshes": 4
+        },
+        "splitter": {
+          "visible": true,
+          "meshes": 1
+        },
+        "diffuser": {
+          "visible": true,
+          "meshes": 3
+        },
+        "grille": {
+          "visible": true,
+          "meshes": 1
+        },
+        "exhaustTip": {
+          "visible": true,
+          "meshes": 4
+        }
+      },
+      "lights": [
+        0,
+        45
+      ]
+    },
+    {
+      "carId": "atlas",
+      "parts": {
+        "glassFront": {
+          "visible": true,
+          "meshes": 2
+        },
+        "glassRear": {
+          "visible": true,
+          "meshes": 1
+        },
+        "glassLeft": {
+          "visible": false,
+          "meshes": 1
+        },
+        "glassRight": {
+          "visible": true,
+          "meshes": 1
+        },
+        "lampFL": {
+          "visible": true,
+          "meshes": 4,
+          "emissive": 0
+        },
+        "lampFR": {
+          "visible": true,
+          "meshes": 4,
+          "emissive": 2.8
+        },
+        "lampRL": {
+          "visible": true,
+          "meshes": 3,
+          "emissive": 0.9
+        },
+        "lampRR": {
+          "visible": true,
+          "meshes": 3,
+          "emissive": 0.9
+        },
+        "mirrorLeft": {
+          "visible": false,
+          "meshes": 1
+        },
+        "mirrorRight": {
+          "visible": true,
+          "meshes": 1
+        },
+        "skirtLeft": {
+          "visible": true,
+          "meshes": 1
+        },
+        "skirtRight": {
+          "visible": false,
+          "meshes": 1
+        },
+        "fenderFL": {
+          "visible": true,
+          "meshes": 4
+        },
+        "fenderFR": {
+          "visible": true,
+          "meshes": 4
+        },
+        "fenderRL": {
+          "visible": true,
+          "meshes": 4
+        },
+        "fenderRR": {
+          "visible": true,
+          "meshes": 4
+        },
+        "splitter": {
+          "visible": true,
+          "meshes": 1
+        },
+        "diffuser": {
+          "visible": true,
+          "meshes": 3
+        },
+        "grille": {
+          "visible": true,
+          "meshes": 1
+        },
+        "exhaustTip": {
+          "visible": true,
+          "meshes": 4
+        }
+      },
+      "lights": [
+        0,
+        45
+      ]
+    },
+    {
+      "carId": "kitsune",
+      "parts": {
+        "glassFront": {
+          "visible": true,
+          "meshes": 2
+        },
+        "glassRear": {
+          "visible": true,
+          "meshes": 1
+        },
+        "glassLeft": {
+          "visible": false,
+          "meshes": 1
+        },
+        "glassRight": {
+          "visible": true,
+          "meshes": 1
+        },
+        "lampFL": {
+          "visible": true,
+          "meshes": 2,
+          "emissive": 0
+        },
+        "lampFR": {
+          "visible": true,
+          "meshes": 2,
+          "emissive": 2.8
+        },
+        "lampRL": {
+          "visible": true,
+          "meshes": 2,
+          "emissive": 0.9
+        },
+        "lampRR": {
+          "visible": true,
+          "meshes": 2,
+          "emissive": 0.9
+        },
+        "mirrorLeft": {
+          "visible": false,
+          "meshes": 1
+        },
+        "mirrorRight": {
+          "visible": true,
+          "meshes": 1
+        },
+        "skirtLeft": {
+          "visible": true,
+          "meshes": 1
+        },
+        "skirtRight": {
+          "visible": false,
+          "meshes": 1
+        },
+        "fenderFL": {
+          "visible": true,
+          "meshes": 4
+        },
+        "fenderFR": {
+          "visible": true,
+          "meshes": 4
+        },
+        "fenderRL": {
+          "visible": true,
+          "meshes": 4
+        },
+        "fenderRR": {
+          "visible": true,
+          "meshes": 4
+        },
+        "splitter": {
+          "visible": true,
+          "meshes": 1
+        },
+        "diffuser": {
+          "visible": true,
+          "meshes": 3
+        },
+        "grille": {
+          "visible": true,
+          "meshes": 1
+        },
+        "exhaustTip": {
+          "visible": true,
+          "meshes": 2
+        }
+      },
+      "lights": [
+        0,
+        45
+      ]
+    },
+    {
+      "carId": "vector",
+      "parts": {
+        "glassFront": {
+          "visible": true,
+          "meshes": 2
+        },
+        "glassRear": {
+          "visible": true,
+          "meshes": 1
+        },
+        "glassLeft": {
+          "visible": false,
+          "meshes": 1
+        },
+        "glassRight": {
+          "visible": true,
+          "meshes": 1
+        },
+        "lampFL": {
+          "visible": true,
+          "meshes": 2,
+          "emissive": 0
+        },
+        "lampFR": {
+          "visible": true,
+          "meshes": 2,
+          "emissive": 2.8
+        },
+        "lampRL": {
+          "visible": true,
+          "meshes": 2,
+          "emissive": 0.9
+        },
+        "lampRR": {
+          "visible": true,
+          "meshes": 2,
+          "emissive": 0.9
+        },
+        "mirrorLeft": {
+          "visible": false,
+          "meshes": 1
+        },
+        "mirrorRight": {
+          "visible": true,
+          "meshes": 1
+        },
+        "skirtLeft": {
+          "visible": true,
+          "meshes": 1
+        },
+        "skirtRight": {
+          "visible": false,
+          "meshes": 1
+        },
+        "fenderFL": {
+          "visible": true,
+          "meshes": 4
+        },
+        "fenderFR": {
+          "visible": true,
+          "meshes": 4
+        },
+        "fenderRL": {
+          "visible": true,
+          "meshes": 4
+        },
+        "fenderRR": {
+          "visible": true,
+          "meshes": 4
+        },
+        "splitter": {
+          "visible": true,
+          "meshes": 1
+        },
+        "diffuser": {
+          "visible": true,
+          "meshes": 3
+        },
+        "grille": {
+          "visible": true,
+          "meshes": 1
+        },
+        "exhaustTip": {
+          "visible": true,
+          "meshes": 4
+        }
+      },
+      "lights": [
+        0,
+        45
+      ]
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "limits": [
+    "Seeded save fixtures plus real game UI; local Chromium software rendering.",
+    "Individual repair and crash impulses are exercised through the actual native physics controller in the companion suite."
+  ]
+}

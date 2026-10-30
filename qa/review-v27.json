@@ -1,0 +1,34 @@
+{
+  "status": "reviewed",
+  "result": "No findings.",
+  "method": "Read-only review of the complete runtime diff, new modules, callers, tests and release workflow using review-agent; self-review by the implementing agent, not an independent review.",
+  "baseCommit": "bf49d2bdd2904eba01792342b0863b5644a2634b",
+  "sourceSHA256": {
+    "dist/part-contacts.js": "eb8300d164aabe1276f3c02ac71a9491aee36677d17452af8bf0e92ea9fa58b2",
+    "dist/part-shapes.js": "8f4c2ffde33ad29e10e5fdcd926b49139e1b2b6e0357889eedadb2ee191bb765",
+    "dist/hinge-contacts.js": "4a6a093c093b50b426d4a64b7548dd41839f46a8301c6223911f2bb2dbcdde45",
+    "dist/body-hinges.js": "b55276075949355d8b169a7f049dad2f89d0b6905ce9fdca05709e6ed39b244c",
+    "dist/physics.js": "865b93e98b9547932dba3b95484b9d1886b7dc90575d9251087b1bfa9f711bb8",
+    "dist/panel-debris.js": "216ff0fcdc218f9ec96c11e94a9ca6c8acb3e2c492d7b955f86f864a7e10f822",
+    "dist/car.js": "261084a90d493f0c106889587e777253ca338ce0747eb9b9cb745d6d2f421ad9",
+    "dist/city.js": "d59d5cfcfefbed3e3643766ef51887a1ed0c2557278a21576279d3a4694ec63c",
+    "dist/county-architecture.js": "88214dd57d2d1be855b068fb63842a9b4ec96e08d2533d4b4ef9c68f597fdc3a",
+    "dist/region.js": "3202c9abeecf4e573c851a61d18154a3c646508899e68b68b99c7704785bd087",
+    "dist/world.js": "311f82bb73af9726395490cbe7bdc5409fad12c1cc2abfaa21eb29b48b033b2f",
+    "dist/main.js": "4faec43a33d3e9643096765beda359ee04967ac60ac50b839ed0696169a54f56",
+    "dist/index.html": "824de6cc2dec6b567a4b6d7cf1bc33a9729dada039631993779d8c9009afe58c",
+    ".github/workflows/pages.yml": "d006e401434a64dbbad603206ec3829e0307ecefb03f5d22c07467bf15e8f4df"
+  },
+  "resolvedDuringImplementation": [
+    "Keep parked inspection pose and velocities separate from the paused driving state.",
+    "Interpolate the short rotation when heading wraps around 2 pi.",
+    "Filter distant static candidates before box construction, including worlds that expose their complete collider list."
+  ],
+  "limits": [
+    "Phase 3 remains partial: individual detachable suspension members and full exhaust routing are next, followed by Phase 4 interiors/cockpit/driver. The entire 156-item objective remains active.",
+    "Authored rigid boxes approximate trim and dents. Wheels use cylinder-sized wall boxes and analytic ground support; no full tyre or multibody solver.",
+    "Debris uses static world contacts, stays local and does not collide with other loose parts or dynamic traffic/remote cars.",
+    "Browser checks use local Chromium software rendering and real public PeerJS/WebRTC. No separate physical PCs, mobile networks, TURN, physical controllers or listening acceptance.",
+    "CPU samples have explicitly separate scopes and are not a frame-rate guarantee."
+  ]
+}

@@ -21,7 +21,7 @@ jobs:
       - uses: actions/configure-pages@v5
       - name: Prepare verified standalone game
         run: |
-          node --input-type=module -e "import fs from 'node:fs'; import {createHash} from 'node:crypto'; const report=JSON.parse(fs.readFileSync('qa/standalone-browser-v26-results.json')); const hash=createHash('sha256').update(fs.readFileSync('SIDEWAYS.html')).digest('hex'); if(report.status!=='passed'||report.htmlSha256!==hash) throw Error('Standalone differs from verified build');"
+          node --input-type=module -e "import fs from 'node:fs'; import {createHash} from 'node:crypto'; const report=JSON.parse(fs.readFileSync('qa/standalone-browser-v27-results.json')); const hash=createHash('sha256').update(fs.readFileSync('SIDEWAYS.html')).digest('hex'); if(report.status!=='passed'||report.htmlSha256!==hash) throw Error('Standalone differs from verified build');"
           mkdir -p _site
           cp SIDEWAYS.html _site/index.html
           touch _site/.nojekyll

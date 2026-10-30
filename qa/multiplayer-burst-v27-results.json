@@ -1,0 +1,14 @@
+{
+  "version": 27,
+  "status": "passed",
+  "checks": [
+    "A delayed burst keeps the newest pose and latest world even when its last frame contains no world; replay and oversized snapshots are rejected.",
+    "Excess guest poses remain bounded to one pending state and cannot kick the host or lose the latest position.",
+    "Control-message floods still disconnect only the offending guest; strikes reset across separate rate windows.",
+    "Leaving a session clears its queued snapshot and timer; stale callbacks cannot revive the old room.",
+    "Slow channel negotiation leaves a fresh handshake window; silent negotiation and silent open channels still time out."
+  ],
+  "sourceSHA256": {
+    "dist/multiplayer.js": "afb2851cb15e9f9a310aea1916a8ea1f4423950773793070449be71e28fd8c9c"
+  }
+}

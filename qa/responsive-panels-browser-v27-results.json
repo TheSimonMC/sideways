@@ -1,0 +1,13 @@
+{
+  "version": 27,
+  "status": "passed",
+  "htmlSha256": "3d71fe9d20ee1d20e81def374c3f917780e53d3467aec74683e16ebd9f3d3814",
+  "checks": [
+    "900×480: panel opener and real tuning cards are reachable through the scrollable garage despite the sticky install bar",
+    "390×844: both door controls work, another-car preview disables panel actions, return preserves the installed car and previews do not spend points"
+  ],
+  "errors": [],
+  "limits": [
+    "Automated pointer input and viewport resizing; no physical touch device."
+  ]
+}

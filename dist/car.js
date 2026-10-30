@@ -103,6 +103,7 @@ export function createCar(scene, initialBuild = resolveBuild()) {
   const clearLoose=()=>{for(const item of loosePanels){item.view.traverse(n=>n.geometry?.dispose());debris.remove(item.view);}loosePanels.length=0;};
   const rodStart=new THREE.Vector3(),rodEnd=new THREE.Vector3(),rodMid=new THREE.Vector3(),rodDirection=new THREE.Vector3(),rodAxis=new THREE.Vector3(0,1,0);
   const damagePoint=new THREE.Vector3(),damageOffset={x:0,y:0,z:0},damageColour=new THREE.Color(0x52555a);
+  const debrisRotation=new THREE.Matrix4();
   const looseWheels=Array.from({length:8},()=>{const pivot=new THREE.Group(),spin=new THREE.Group();pivot.add(spin);for(const [geo,mat]of [[debrisTyre,debrisRubber],[debrisRim,debrisMetal]]){const mesh=new THREE.Mesh(geo,mat);mesh.rotation.z=Math.PI/2;mesh.castShadow=true;spin.add(mesh);}pivot.visible=false;debris.add(pivot);return {pivot,spin};});
   let model=null, build=initialBuild, paintHex=initialBuild.vehicle.color || '#d8fa50';
   const disposeModel=()=>{
@@ -365,12 +366,12 @@ export function createCar(scene, initialBuild = resolveBuild()) {
         let item=loosePanels.find(p=>p.id===part.id);
         if(!item){
           const source=part.panel.startsWith('exterior:')?m.exteriorRoots[part.panel.slice(9)]:m.panelRoots[part.panel];if(!source)continue;
-          const view=new THREE.Group(),copy=source.clone(true);copy.visible=true;copy.traverse(n=>{if(n.userData.exterior)n.visible=!body?.exterior?.[n.userData.exterior]?.detached||part.panel==='exterior:'+n.userData.exterior;if(n.geometry)n.geometry=n.geometry.clone();if(n.isMesh)n.visible=!n.userData.exterior||!body?.exterior?.[n.userData.exterior]?.detached||part.panel==='exterior:'+n.userData.exterior;});view.add(copy);view.updateMatrixWorld(true);
+          const view=new THREE.Group(),copy=source.clone(true);copy.rotation.set(0,0,0);copy.visible=true;copy.traverse(n=>{if(n.userData.exterior)n.visible=!body?.exterior?.[n.userData.exterior]?.detached||part.panel==='exterior:'+n.userData.exterior;if(n.geometry)n.geometry=n.geometry.clone();if(n.isMesh)n.visible=!n.userData.exterior||!body?.exterior?.[n.userData.exterior]?.detached||part.panel==='exterior:'+n.userData.exterior;});view.add(copy);view.updateMatrixWorld(true);
           const center=new THREE.Box3().setFromObject(view).getCenter(new THREE.Vector3());copy.position.sub(center);debris.add(view);item={id:part.id,view};loosePanels.push(item);
         }
-        item.view.position.set(part.x,part.y,part.z);item.view.rotation.set(part.rotation||0,part.heading||0,(part.rotation||0)*.35);
+        item.view.position.set(part.x,part.y,part.z);if(part.axes){const [a,b,c]=part.axes;debrisRotation.set(a[0],b[0],c[0],0,a[1],b[1],c[1],0,a[2],b[2],c[2],0,0,0,0,1);item.view.quaternion.setFromRotationMatrix(debrisRotation);}else item.view.rotation.set(part.rotation||0,part.heading||0,(part.rotation||0)*.35);
       }
-      for(let i=0;i<looseWheels.length;i++){const body=state.detachedWheels?.[i],view=looseWheels[i];view.pivot.visible=!!body;if(body){view.pivot.position.set(body.x,body.y,body.z);view.pivot.rotation.set(0,body.heading||0,Math.min(.8,(body.age||0)*.03));view.pivot.scale.setScalar(body.radius||p.wheelRadius);view.spin.rotation.x=body.spin||0;}}
+      for(let i=0;i<looseWheels.length;i++){const body=state.detachedWheels?.[i],view=looseWheels[i];view.pivot.visible=!!body;if(body){view.pivot.position.set(body.x,body.y,body.z);view.pivot.rotation.set(0,body.heading||0,body.lean||0,'YXZ');const radius=body.radius||p.wheelRadius;view.pivot.scale.set((body.width||radius*.72)/.72,radius,radius);view.spin.rotation.x=body.spin||0;}}
 
       m.glow.material.opacity=state.boosting?.26:.065;m.glow.material.color.set(state.boosting?NOS_BLUE:CYAN);
       const terrain=state.suspension?.length?state.suspension.reduce((a,w)=>a+(w.groundHeight||0),0)/4:0;
