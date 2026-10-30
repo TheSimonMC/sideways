@@ -385,3 +385,5 @@ input[type="range"]{appearance:none;-webkit-appearance:none;height:4px;border:0;
 body.cockpit-view .speedometer,body.hide-speed-hud .speedometer,body.cockpit-view .map-panel{display:none}
 body.cockpit-view .phone-panel{opacity:.85}
 body.cockpit-view.cockpit-rhd .phone-panel{left:auto;right:var(--hud-right)}
+
+.garage-interior .garage-stage .garage-preview-label,.garage-interior .garage-stage .stage-stamp{display:none}

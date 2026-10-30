@@ -1,0 +1,117 @@
+{
+  "version": 31,
+  "status": "passed",
+  "checks": [
+    "Real Garage UI rejects six-point harnesses without compatible seats/cage; every new category previews freely and Cancel restores the installed model.",
+    "Install charges the displayed price once; all tuning choices, ownership and existing shattered glass survive reload.",
+    "The purchased build drives in the actual city; the installed seats, wheel, live gauges, ambient lighting and mirrors remain usable at night."
+  ],
+  "charged": 24500,
+  "savedBuild": {
+    "hood": "stock",
+    "spoiler": "stock",
+    "sideSkirts": "stock",
+    "rims": "stock",
+    "frontBumper": "stock",
+    "rearBumper": "stock",
+    "splitter": "stock",
+    "diffuser": "stock",
+    "fenders": "stock",
+    "widebody": "stock",
+    "grille": "stock",
+    "exhaustTips": "stock",
+    "lightDesign": "stock",
+    "paintFinish": "stock",
+    "livery": "stock",
+    "decals": "stock",
+    "windowTint": "stock",
+    "steeringWheel": "dish",
+    "frontSeats": "bucket",
+    "upholstery": "suede",
+    "interiorColour": "red",
+    "stitching": "diamond",
+    "dashTrim": "carbon",
+    "shiftKnob": "tall",
+    "handbrakeLever": "hydraulic",
+    "rollCage": "full",
+    "harness": "six",
+    "instruments": "digital",
+    "auxGauges": "triple",
+    "ambientLighting": "teal",
+    "steeringRack": "stock",
+    "alignment": "stock",
+    "antiRollBars": "stock",
+    "driveKit": "stock",
+    "frontDifferential": "open",
+    "centerDifferential": "open",
+    "wingAngle": "stock",
+    "tractionLinks": "stock",
+    "carId": "hachi",
+    "engineId": "i6t",
+    "ecu": "stock",
+    "turbo": "stock",
+    "exhaust": "street",
+    "tyres": "street",
+    "suspension": "street",
+    "brakes": "street",
+    "differential": "lsd",
+    "clutch": "street",
+    "intake": "stock",
+    "radiator": "stock",
+    "oilCooler": "stock",
+    "internals": "stock",
+    "transmission": "stock",
+    "finalDrive": "stock",
+    "chassis": "stock",
+    "tyreWidth": "stock"
+  },
+  "drive": {
+    "speed": 1.386823255674092,
+    "rpm": 2316.709759924089,
+    "headlights": [
+      45,
+      45
+    ],
+    "tuning": {
+      "selection": {
+        "steeringWheel": "dish",
+        "frontSeats": "bucket",
+        "upholstery": "suede",
+        "interiorColour": "red",
+        "stitching": "diamond",
+        "dashTrim": "carbon",
+        "shiftKnob": "tall",
+        "handbrakeLever": "hydraulic",
+        "rollCage": "full",
+        "harness": "six",
+        "instruments": "digital",
+        "auxGauges": "triple",
+        "ambientLighting": "teal"
+      },
+      "wheelRadius": 0.155,
+      "shiftLength": 0.125,
+      "handbrakeLength": 0.19,
+      "restraint": 0.396,
+      "ambientLevel": 0.9999999999853356,
+      "ambientIntensity": 0.21999999999677383,
+      "auxiliary": {
+        "fields": [
+          "manifoldBar",
+          "oilPressure",
+          "coolant"
+        ],
+        "values": {
+          "manifoldBar": -0.936289770660291,
+          "oilPressure": 3.114915903454715,
+          "coolant": 84.89208261596849
+        }
+      }
+    }
+  },
+  "errors": [],
+  "external": [],
+  "htmlSha256": "37238a7f31fd2d9d5013b8bf09edb877053d7df1f57ec4f761fc4f219471f623",
+  "limits": [
+    "Local Chromium software rendering with keyboard and pointer, not physical wheel or mobile GPU validation."
+  ]
+}

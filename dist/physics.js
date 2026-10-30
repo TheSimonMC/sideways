@@ -108,7 +108,7 @@ export class CarPhysics {
   const plane=this._roadPlane=roadPlane(samples,this.frontAxle,this.rearAxle,this.halfTrack);
   this._tyreContact=this.condition.tyres.map((t,i)=>tyreResponse(t,this._tyreTemps[i]));this._tyreRadii=this._tyreContact.map(t=>this.wheelRadius*t.radiusScale);this._previousTyreRadii=[...this._tyreRadii];
   const stance=roadPlane(samples.map((s,i)=>({...s,height:s.height+this._tyreRadii[i]-this.wheelRadius})),this.frontAxle,this.rearAxle,this.halfTrack),ground=stance.height;
-  this.state=Object.assign(this.state||{}, {x,z,heading,vx:0,vz:0,yawRate:0,speed:0,forwardSpeed:0,lateralSpeed:0,rpm:this.engineState.rpm,gear:neutral?0:1,
+  this.state=Object.assign(this.state||{}, {x,z,heading,vx:0,vz:0,yawRate:0,speed:0,forwardSpeed:0,lateralSpeed:0,rpm:this.engineState.rpm,manifoldBar:((this.engineState.intake?.p??101325)-(this.engineState.config.ambientP??101325))/100000,gear:neutral?0:1,
    throttle:0,brake:0,steer:0,driftAngle:0,drifting:false,boost:this.condition.boost,boosting:false,boostAvailable:true,nitrousIntensity:0,nitrousTorque:0,combustionTorque:this.engineState.meanTorque,wheelSpinL:0,wheelSpinR:0,wheelSpinFL:0,wheelSpinFR:0,
    wheelSlipL:0,wheelSlipR:0,differentialLock:this.coastLock,bodyHeight:ground,bodyRoll:stance.lateral,bodyPitch:-stance.longitudinal,groundHeight:plane.height,roadGradeLong:plane.longitudinal,roadGradeLat:plane.lateral,
    engineTorque:this.engineState.meanTorque,clutchTorque:0,tyreForceL:0,tyreForceR:0,surface:1,
@@ -466,14 +466,15 @@ export class CarPhysics {
    const friction=tyreGrip({front,load:corner.normalLoad,referenceLoad:this._staticLoads[i]/plane.normalScale,temperature:this._tyreTemps[i],health:this.condition.wheelHealth[i],slipRatio:(wheels[i]*this._tyreRadii[i]-contactLong)/Math.max(3,Math.abs(contactLong)),slipAngle:Math.atan2(contactLat,Math.max(2.5,Math.abs(contactLong))),compound:this.build.selection.tyres,chassis:this.build.physics,roll:s.bodyRoll})*this.muMultiplier*corner.grip*this._tyreContact[i].grip*wet.grip;
    tireBounds[i]=Math.max(0,corner.normalLoad*friction*dt);
    let requested=brake;
-   // ABS controls hydraulic pressure only. Parking brake remains mechanical.
+   // ABS modulates the service pedal. A fitted inline handbrake shares rear
+   // circuit health/fade; the factory cable bypasses hydraulic failures.
    const contactV=contactLong;
    if(this.build.physics.abs&&this.condition.mechanical.brakeHydraulics.absValves[i]>.25&&Math.abs(contactV)>4&&brake>.05&&Math.sign(contactV)*wheels[i]*this._tyreRadii[i]<Math.abs(contactV)*.82){requested=brake*.12;s.absActive=true;}
    const pressureRate=requested<this._brakePressures[i]?22:7;
    this._brakePressures[i]+=(requested-this._brakePressures[i])*Math.min(1,dt*pressureRate);
    const fade=1-.42*smooth((this._brakeTemps[i]-520)/280);
    const health=this.condition.brakeHealth[i],bind=this.brakeTorque*.026*(1-health)**2*Math.min(1,Math.abs(wheels[i])*.08);
-   const total=this.brakeTorque*(front?this.brakeBias:1-this.brakeBias)*.5*this._brakePressures[i]*mechanical.brakeHydraulicFactors[i]*fade*(.15+.85*health)+(front?0:handbrake*4800)+bind;
+   const total=this.brakeTorque*(front?this.brakeBias:1-this.brakeBias)*.5*this._brakePressures[i]*mechanical.brakeHydraulicFactors[i]*fade*(.15+.85*health)+(front?0:handbrake*4800*(this.build.physics.handbrakeFactor??1)*(this.build.physics.hydraulicHandbrake?mechanical.brakeHydraulicFactors[i]*fade*(.15+.85*health):1))+bind;
    brakeBounds[i]=this.condition.wheelAttached[i]?total*dt:0;
    // Static contact is rigid at parking speeds. At speed tyre carcass
    // relaxation gives finite slip instead of infinite longitudinal stiffness.
@@ -562,14 +563,14 @@ export class CarPhysics {
   s.rpm=Math.max(0,omega*60/TAU);this._stallTime=s.rpm<220&&!starter?this._stallTime+dt:0;
   if(this._stallTime>.12)this._stalled=true;
   s.engineStalled=this._stalled;s.engineRunning=!this._stalled&&!this.condition.engineFault&&this.condition.fuelLitres>0&&s.rpm>250;
-  s.combustionTorque=this.engineState.meanTorque;s.engineTorque=s.combustionTorque+s.nitrousTorque;s.clutchTorque=Jclutch/dt;s.clutchSlipRPM=clutchSlip*60/TAU;s.inputShaftRpm=Math.abs(shaft)*60/TAU;s.clutchTemperature=this._clutchTemp;
+  s.manifoldBar=((this.engineState.intake?.p??101325)-(this.engineState.config.ambientP??101325))/100000;s.combustionTorque=this.engineState.meanTorque;s.engineTorque=s.combustionTorque+s.nitrousTorque;s.clutchTorque=Jclutch/dt;s.clutchSlipRPM=clutchSlip*60/TAU;s.inputShaftRpm=Math.abs(shaft)*60/TAU;s.clutchTemperature=this._clutchTemp;
   s.tyreForceL=Jlong[this._drive.main]/dt;s.tyreForceR=Jlong[this._drive.main+1]/dt;
   Object.assign(s,{driveLayout:this.build.physics.driveLayout,drivenWheels:this._drive.driven,axleTorques:drive.axleTorques,centerSlipRPM:drive.centerSlipRPM,differentialLock:drive.differentialLock,frontDifferentialLock:drive.frontDifferentialLock,centerDifferentialLock:drive.centerDifferentialLock,diffSlipRPM:drive.diffSlipRPM,diffTorque:drive.diffTorque,diffPower:drive.diffPower});
   s.wheelSpinFL=s.wheelSpins[0];s.wheelSpinFR=s.wheelSpins[1];s.wheelSpinL=s.wheelSpins[2];s.wheelSpinR=s.wheelSpins[3];s.wheelSlipL=s.wheelSlip[2];s.wheelSlipR=s.wheelSlip[3];
   const drivenSlipSpeed=Math.max(...this._drive.driven.map(i=>Math.abs(s.wheelAudio[i].slipSpeed)));
   s.burnoutIntensity=clamp((drivenSlipSpeed-2)/15,0,1)*clamp(1-s.speed/12,0,1);s.burnout=s.burnoutIntensity>.12;
   s.shiftProgress=clamp(this._shift/.19,0,1);s.engineClock=this.engine.getTiming().clock;
-  this._updateCondition(dt,omega,{...drive,fuelLitres:this.condition.fuelLitres,headlights:!!input.headlights,starterRequested:restartRequested,starterTorque:this.engineState.config.starterTorque,starterNoLoadRpm:this.engineState.config.starterNoLoadRpm,brakePedal:brake,clutchWorkJ,bearingWorkJ,referenceLoads:this._staticLoads,wheelOmegas:wheels,attached:this.condition.wheelAttached,brakeWorkJ,tyreWorkJ,tyreLockedWorkJ,tyreRollingWorkJ,tyreSpeeds:s.wheelAudio.map(w=>w.longitudinalSpeed),tyreLoads:s.wheelLoads,tyreAngles:s.wheelSpins,tyreWetness:s.suspension.map(w=>w.contact?w.wetness:0)});this._stepPanels(dt,previousPanelPose);if(this.damageEnabled)this._releaseUnderbody(stepUnderbody(this.condition.bodyDamage,this.build,s,dt));this._updateDebris(dt);this._publishCondition();
+  this._updateCondition(dt,omega,{...drive,fuelLitres:this.condition.fuelLitres,headlights:!!input.headlights,starterRequested:restartRequested,starterTorque:this.engineState.config.starterTorque,starterNoLoadRpm:this.engineState.config.starterNoLoadRpm,brakePedal:Math.max(brake,this.build.physics.hydraulicHandbrake?handbrake:0),clutchWorkJ,bearingWorkJ,referenceLoads:this._staticLoads,wheelOmegas:wheels,attached:this.condition.wheelAttached,brakeWorkJ,tyreWorkJ,tyreLockedWorkJ,tyreRollingWorkJ,tyreSpeeds:s.wheelAudio.map(w=>w.longitudinalSpeed),tyreLoads:s.wheelLoads,tyreAngles:s.wheelSpins,tyreWetness:s.suspension.map(w=>w.contact?w.wetness:0)});this._stepPanels(dt,previousPanelPose);if(this.damageEnabled)this._releaseUnderbody(stepUnderbody(this.condition.bodyDamage,this.build,s,dt));this._updateDebris(dt);this._publishCondition();
   return s;
  }
 }

@@ -1,0 +1,115 @@
+{
+  "version": 31,
+  "status": "passed",
+  "checks": [
+    "Seat/FOV sanitation preserves legacy defaults and stays within each authored cabin; eight engine swaps use their actual redline.",
+    "Instruments expose actual units, gears, coolant/oil, pressure, fuel and component warnings; electrical loss disables the screen.",
+    "All four existing cars retain fitted animated interiors, camera transforms, real hand contacts, correct console hand, pedal feet and door/mirror damage.",
+    "Mirror rendering stays bounded, skips removed mirrors, restores renderer state and releases targets without flipping UVs twice.",
+    "A calibrated wheel maps its declared rotation through each fitted rack; keyboard/gamepad demand and legacy full-range wheel mapping remain unchanged.",
+    "Existing pose packets retain bounded driver controls and physical instrument state without a new message stream.",
+    "Keyboard and assigned controller radio actions work; wheel rotation, bindings and profiles survive saving/loading.",
+    "Cockpit wind is quieter when closed and responds to the actual missing window; processed native audio remains finite and limited."
+  ],
+  "fixtures": {
+    "Seat/FOV sanitation preserves legacy defaults and stays within each authored cabin; eight engine swaps use their actual redline.": {},
+    "Instruments expose actual units, gears, coolant/oil, pressure, fuel and component warnings; electrical loss disables the screen.": {
+      "manifoldBar": 0,
+      "speed": 90,
+      "rpm": 4200,
+      "redline": 7400,
+      "gear": "R",
+      "fuel": 0.08,
+      "coolant": 118,
+      "oil": 123,
+      "oilPressure": 0.2,
+      "voltage": 10,
+      "powered": true,
+      "warnings": {
+        "oil": true,
+        "heat": true,
+        "battery": true,
+        "brake": true,
+        "fuel": true,
+        "engine": true
+      },
+      "lights": false
+    },
+    "All four existing cars retain fitted animated interiors, camera transforms, real hand contacts, correct console hand, pedal feet and door/mirror damage.": [
+      {
+        "car": "hachi",
+        "regrips": 213,
+        "style": "twin"
+      },
+      {
+        "car": "atlas",
+        "regrips": 213,
+        "style": "classic"
+      },
+      {
+        "car": "kitsune",
+        "regrips": 212,
+        "style": "sport"
+      },
+      {
+        "car": "vector",
+        "regrips": 213,
+        "style": "digital"
+      }
+    ],
+    "Mirror rendering stays bounded, skips removed mirrors, restores renderer state and releases targets without flipping UVs twice.": {
+      "rendered": 27,
+      "targets": 3
+    },
+    "A calibrated wheel maps its declared rotation through each fitted rack; keyboard/gamepad demand and legacy full-range wheel mapping remain unchanged.": [
+      {
+        "car": "hachi",
+        "roadAngle": 0.25335424623861236,
+        "expected": 0.2533542462572414
+      },
+      {
+        "car": "atlas",
+        "roadAngle": 0.2309994596896695,
+        "expected": 0.23099945982277892
+      },
+      {
+        "car": "kitsune",
+        "roadAngle": 0.27082695289168807,
+        "expected": 0.2708269528956718
+      },
+      {
+        "car": "vector",
+        "roadAngle": 0.23799944338179552,
+        "expected": 0.23799944345377222
+      }
+    ],
+    "Existing pose packets retain bounded driver controls and physical instrument state without a new message stream.": {
+      "bytes": 975
+    },
+    "Keyboard and assigned controller radio actions work; wheel rotation, bindings and profiles survive saving/loading.": {},
+    "Cockpit wind is quieter when closed and responds to the actual missing window; processed native audio remains finite and limited.": {
+      "outside": 0.0620256,
+      "inside": 0.023856,
+      "open": 0.08282505
+    }
+  },
+  "sourceSHA256": {
+    "dist/car.js": "5dfe5651b3d4c7ae0ba5b7b8fd39e0dc5f5401357994dc091e4da46e06a307d8",
+    "dist/interior.js": "80f2428b578fff39efed12131915f8088dd3d9241daf52f1ed1d33fe029439b0",
+    "dist/driver.js": "637b93fbcd926b39f44ecdfd7ae28bfa999f50428fbaed8b65ba09d9586f3bc1",
+    "dist/cockpit-state.js": "1fa1643a19c5d86a36e2ba3a0e06a84352faecd97c57a366202211b7d9d62aac",
+    "dist/cockpit-mirrors.js": "437341887954348cd389bb567e22856017a359e67048812dd53fdf1bcfad28e9",
+    "dist/main.js": "d82dc3075e5a36b73f70b23fa816e2e842fb78ca786a31ff1ddef49d078cf386",
+    "dist/input.js": "1b44d5e48e61de92cbef80081b15507ba78f55f531ae0ff1d2df67cbbbbf344e",
+    "dist/controls-ui.js": "6459fb3e9434bb97626de56fbd2653f14fda1a746160dcde279dcfc12f0b3e73",
+    "dist/physics.js": "76b0f4d4efd715f39aaf03a66fec9cbc4612bd0ae75f31953d3ef3fb61b3e6ef",
+    "dist/chassis-setup.js": "b12d15842415df1fe4647bdbeb015ee5b15e31566c63234472d6f1c4ad73ac96",
+    "dist/audio.js": "df58985fdfd8228901e2dc9db5c1c4862eaab688ed08da1f4bd1cb7e780ce61e",
+    "dist/multiplayer.js": "57467c1ac37f3914257903aee464e8716d7983cb8ec65f67e8ab6ba0dade8e04",
+    "dist/network-cars.js": "ca0588ed14bf67daaf2136ebcc1e4ff8ce6ebfa4d3d851c480f16aa25ef6a7e7"
+  },
+  "limits": [
+    "Native state/Three.js geometry and mocked browser-visible input. No physical wheel or force-feedback hardware validation.",
+    "Canvas drawing, actual mirror pixels and full-game UI are covered by separate browser checks."
+  ]
+}

@@ -1,0 +1,36 @@
+{
+  "status": "reviewed",
+  "result": "No findings.",
+  "method": "Read-only review of complete runtime diff/new modules, callers and tests using review-agent. Self-review by implementing agent, not independent.",
+  "baseCommit": "0994f17eb56b5a33977981bcf7bae1560ae6d141",
+  "sourceSHA256": {
+    "dist/body-damage.js": "ed4e65e8ec90dc825cb39de7047abfbe49fe8844361c701db0156f98cf1a6284",
+    "dist/car.js": "5dfe5651b3d4c7ae0ba5b7b8fd39e0dc5f5401357994dc091e4da46e06a307d8",
+    "dist/career.js": "4d1be13f752265f0057cae4441c095a9325f0f774cc97d98640c1c957bbcc669",
+    "dist/catalog.js": "5abd5a86545250e8d417484feb30b77f29f42433e567411c94ac2f3aafe02250",
+    "dist/cockpit-state.js": "1fa1643a19c5d86a36e2ba3a0e06a84352faecd97c57a366202211b7d9d62aac",
+    "dist/driver.js": "637b93fbcd926b39f44ecdfd7ae28bfa999f50428fbaed8b65ba09d9586f3bc1",
+    "dist/garage.js": "e862497f77bd51bb0793b46e721e52ef202a28e2b23575ae26afede9f7834f8f",
+    "dist/interior.js": "80f2428b578fff39efed12131915f8088dd3d9241daf52f1ed1d33fe029439b0",
+    "dist/interior-tuning.js": "54a720d59bfe1796d61537bf93126177eb33d1772b9af6c0117675dc848751de",
+    "dist/interior-tuning-view.js": "f9bdb46f93d15a41a3d234500e43bf60572b31fbfbbb9767263e92f5a6aee01d",
+    "dist/main.js": "d82dc3075e5a36b73f70b23fa816e2e842fb78ca786a31ff1ddef49d078cf386",
+    "dist/multiplayer.js": "57467c1ac37f3914257903aee464e8716d7983cb8ec65f67e8ab6ba0dade8e04",
+    "dist/physics.js": "76b0f4d4efd715f39aaf03a66fec9cbc4612bd0ae75f31953d3ef3fb61b3e6ef",
+    "dist/index.html": "d11e81e852b6c2b2f7e044c7de066cec613f63134fa7f0ad2f48ad9f14ce9331",
+    "dist/style.css": "106337707bf3fa3be01388f21f8de917e1cd7d2553a7b77b604019b816248b1c",
+    ".github/workflows/pages.yml": "5bb16f44e40766e8cc9d3ca9402b28606076965c32b1c9f0845154c70a2a15eb"
+  },
+  "resolvedDuringImplementation": [
+    "Moved full-cage front legs to the actual A-pillar profile so they no longer cover instruments.",
+    "Moved auxiliary gauges above the centre console and added actual mounts.",
+    "Made hydraulic handbrake pressure pump circuit leaks, while preserving factory cable behavior.",
+    "Added direct Garage cabin/seat inspection and resting belts on empty seats.",
+    "Clipped the off-axis cabin render to the visible Garage stage after responsive visual review found stretched geometry behind scrolled menus."
+  ],
+  "limits": [
+    "Phase 5 remains partial: supercharger and full individual removal/mounting integration remain. The complete 156-item goal is active.",
+    "Lumped fictional restraint/roof/inline-hydraulic calibration; no occupant injury or rollover safety simulation. Cabin floor attachments do not yet have individual removal/detachment states.",
+    "Local Chromium software rendering; no physical wheel/FFB, mobile-GPU, separate-PC/TURN or subjective-listening acceptance. Fixture render timings are not whole-game FPS guarantees."
+  ]
+}

@@ -34,7 +34,7 @@ export function deformBody(body,build,{local,energyJ,closingSpeed}){
   if(id==='spoiler'&&build.selection.spoiler==='none')continue;
   const zone=body.zones[id];if(!zone||zone.detached)continue;const cx=definition.x*width,cz=definition.z*length;
   let weight=Math.max(0,1-Math.hypot((local.x-cx)*1.15,local.z-cz)/(definition.radius*length));
-  if(id==='roof')weight*=specific>.9?.16:0;
+  if(id==='roof')weight*=specific>.9?.16/(build.physics.roofSupport??1):0;
   if(id==='left'&&local.x>0||id==='right'&&local.x<0)weight*=.05;
   if(id==='front'&&!front||(id==='rear'||id==='spoiler')&&!rear)weight*=.10;
   if((id==='hood'&&!front||id==='boot'&&!rear)&&side)weight*=.32;

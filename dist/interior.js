@@ -1,3 +1,4 @@
+import {cabinMaterials,addCabinParts,addAuxiliaryGauges} from './interior-tuning-view.js';
 import * as THREE from './vendor/three.module.js';
 import {cockpitLayout,cockpitReadings,steeringWheelAngle} from './cockpit-state.js';
 import {createDriver} from './driver.js';
@@ -5,7 +6,8 @@ const clamp=(n,a,b)=>Math.max(a,Math.min(b,n));
 export function createInterior(chassis,build){
  const layout=cockpitLayout(build),l=layout,q=l.q,W=l.W,root=new THREE.Group();root.name='interior-'+build.vehicle.id;root.userData.interior=true;chassis.add(root);
  const material=(color,extra={})=>new THREE.MeshStandardMaterial({color,roughness:.86,metalness:.04,flatShading:true,...extra});
- const dark=material(0x20262e),trim=material(l.trim),cloth=material(l.seat),accent=material(l.accent),metal=material(0xa0a8aa,{roughness:.35,metalness:.65});
+ const dark=material(0x20262e),{trim,cloth,stitch,decor}=cabinMaterials(build,l,material),accent=material(l.accent),metal=material(0xa0a8aa,{roughness:.35,metalness:.65});
+ const selection=build.selection,tuning=l.tuning;if(selection.instruments==='analog')l.dial='twin';else if(selection.instruments==='digital')l.dial='digital';
  const groups=new Map();
  const add=(geometry,mat,position=[0,0,0],rotation=[0,0,0],tag='')=>{geometry.applyMatrix4(new THREE.Matrix4().compose(new THREE.Vector3(...position),new THREE.Quaternion().setFromEuler(new THREE.Euler(...rotation)),new THREE.Vector3(1,1,1)));const key=mat.uuid+tag;if(!groups.has(key))groups.set(key,{mat,tag,geos:[]});groups.get(key).geos.push(geometry);};
  const box=(x,y,z,w,h,d,mat=trim,tag='',rotation=[0,0,0])=>add(new THREE.BoxGeometry(w,h,d),mat,[x,y,z],rotation,tag);
@@ -22,9 +24,9 @@ export function createInterior(chassis,build){
  // Seats and trim follow the actual cabin profile, including the small two-seat wedge.
  for(const side of [-1,1]){
   const x=side*W*.46;
-  box(x,.46,l.seatZ,.38,.12,.45,cloth);box(x,.70,l.seatZ-.22,.37,.43,.10,cloth,'',[-.15,0,0]);box(x,.955,l.seatZ-.26,.23,.15,.10,dark);
-  for(const s of [-1,1]){box(x+s*.165,.54,l.seatZ,.045,.15,.40,dark);box(x+s*.165,.75,l.seatZ-.19,.05,.34,.10,dark);}
-  for(let k=0;k<3;k++)box(x+(k-1)*.09,.526,l.seatZ-.01,.012,.008,.31,accent);
+
+
+
   const tag=side<0?'left':'right',doorZ=(l.front+l.back)/2;
   box(side*W*.865,.59,doorZ,.03,.28,l.front-l.back-.13,trim,tag);
   box(side*W*.835,.63,doorZ,.07,.055,.45,dark,tag);
@@ -41,18 +43,20 @@ export function createInterior(chassis,build){
  // Physical radio knobs and climate controls accompany the display.
  for(const x of [-.10,.10])cyl(x,q.sill-.31,l.dashZ-.146,.026,.025,metal);
  for(let k=0;k<3;k++)cyl((k-1)*.07,.56,l.dashZ-.19,.019,.02,dark);
+ const cabinParts=addCabinParts({build,l,box,add,material,dark,cloth,stitch,decor,metal});
  for(const {mat,tag,geos}of groups.values()){
   const position=[],normal=[];for(const g of geos){const n=g.toNonIndexed();position.push(...n.attributes.position.array);normal.push(...n.attributes.normal.array);n.dispose();g.dispose();}
   const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(position,3));geometry.setAttribute('normal',new THREE.Float32BufferAttribute(normal,3));geometry.computeBoundingSphere();
-  const mesh=new THREE.Mesh(geometry,mat);mesh.name=tag?'interior-door-'+tag:'interior-trim';mesh.castShadow=mesh.receiveShadow=true;mesh.userData.interior=true;if(tag){mesh.userData.panel=tag;chassis.add(mesh);}else root.add(mesh);
+  const mesh=new THREE.Mesh(geometry,mat);const door=tag==='left'||tag==='right';mesh.name=door?'interior-door-'+tag:tag?'interior-'+tag:'interior-trim';mesh.castShadow=mesh.receiveShadow=true;mesh.userData.interior=true;mesh.userData.mount=door?'door-'+tag:tag||'cabin';if(door){mesh.userData.panel=tag;chassis.add(mesh);}else root.add(mesh);
  }
  const mesh=(geo,mat,name,parent=root)=>{const m=new THREE.Mesh(geo,mat);m.name=name;m.userData.interior=true;parent.add(m);return m;};
  const wheel=new THREE.Group();wheel.name='steering-column';wheel.position.set(...l.wheel);wheel.rotation.x=-.25;root.add(wheel);
  const rim=new THREE.Group();rim.name='steering-wheel';wheel.add(rim);mesh(new THREE.TorusGeometry(l.wheelRadius,.014,6,28),dark,'steering-rim',rim);
- mesh(new THREE.CylinderGeometry(.038,.038,.035,10).rotateX(Math.PI/2),metal,'steering-hub',rim);
- for(const a of l.kind==='muscle'?[0,Math.PI]:[0,Math.PI,Math.PI*1.5]){const m=mesh(new THREE.BoxGeometry(l.wheelRadius-.03,.018,.025),metal,'steering-spoke',rim);m.position.set(Math.cos(a)*l.wheelRadius*.53,Math.sin(a)*l.wheelRadius*.53,0);m.rotation.z=a;}
- const lever=(name,position,length)=>{const group=new THREE.Group();group.name=name;group.position.set(...position);root.add(group);const stem=mesh(new THREE.CylinderGeometry(.012,.012,length,6),metal,name+'-stem',group);stem.position.y=length/2;const knob=mesh(new THREE.IcosahedronGeometry(.028,1),dark,name+'-knob',group);knob.position.y=length;return group;};
- const shifter=lever('gear-lever',l.shifter,.075),handbrake=lever('handbrake-lever',l.handbrake,.10);
+ const hub=mesh(new THREE.CylinderGeometry(.038,.038,.035,10).rotateX(Math.PI/2),metal,'steering-hub',rim);hub.position.z=tuning.wheelDish;
+ if(selection.steeringWheel!=='stock'){const marker=mesh(new THREE.BoxGeometry(.028,.017,.032),stitch,'wheel-centre-mark',rim);marker.position.y=l.wheelRadius;}
+ for(const a of l.kind==='muscle'&&selection.steeringWheel==='stock'?[0,Math.PI]:[0,Math.PI,Math.PI*1.5]){const m=mesh(new THREE.BoxGeometry(l.wheelRadius-.03,.018,.025),metal,'steering-spoke',rim);m.position.set(Math.cos(a)*l.wheelRadius*.53,Math.sin(a)*l.wheelRadius*.53,0);m.rotation.z=a;if(tuning.wheelDish){m.position.z=tuning.wheelDish*.5;m.rotateY(Math.atan2(tuning.wheelDish,l.wheelRadius-.03));}}
+ const lever=(name,position,length)=>{const group=new THREE.Group();group.name=name;group.position.set(...position);root.add(group);const stem=mesh(new THREE.CylinderGeometry(.012,.012,length,6),metal,name+'-stem',group);stem.position.y=length/2;const isShift=name==='gear-lever',tall=isShift?selection.shiftKnob==='tall':selection.handbrakeLever!=='stock';const knob=mesh(tall?new THREE.CylinderGeometry(.022,.024,.065,10):new THREE.IcosahedronGeometry(.028,2),isShift&&selection.shiftKnob==='ball'?metal:dark,name+'-knob',group);knob.position.y=length;group.userData.gripHeight=length;return group;};
+ const shifter=lever('gear-lever',l.shifter,tuning.shiftLength),handbrake=lever('handbrake-lever',l.handbrake,tuning.handbrakeLength);
  const pedals=Array.from({length:3},(_,i)=>{const p=mesh(new THREE.BoxGeometry(i===2?.045:.065,.09,.025),metal,'pedal-'+i);p.position.set(l.driverX+(1-i)*.08,.34,l.dashZ+.04);return p;});
  const surface=(name,position,size,canvasSize)=>{const canvas=document.createElement('canvas');canvas.width=canvasSize[0];canvas.height=canvasSize[1];const texture=new THREE.CanvasTexture(canvas);texture.colorSpace=THREE.SRGBColorSpace;texture.minFilter=THREE.LinearFilter;texture.generateMipmaps=false;
   const m=mesh(new THREE.PlaneGeometry(...size),new THREE.MeshBasicMaterial({map:texture,toneMapped:false}),name);m.position.set(...position);m.rotation.y=Math.PI;return {mesh:m,canvas,ctx:canvas.getContext('2d'),texture};};
@@ -67,8 +71,9 @@ export function createInterior(chassis,build){
  }
  const lamp=mesh(new THREE.BoxGeometry(.085,.016,.055),new THREE.MeshStandardMaterial({color:0xffe6ba,emissive:0xffdfaf,emissiveIntensity:0}),'cabin-lamp');lamp.position.set(0,q.roof-.07,(q.roofBack+q.roofFront)/2);
  const light=new THREE.PointLight(0xffd7a1,0,1.8,2);light.position.set(0,q.roof-.16,-.15);root.add(light);
- const driver=createDriver(root,l,wheel,{shifter,handbrake});root.traverse(n=>n.userData.interior=true);
- let displayClock=0,screenClock=0,lastReadings=null,frameData={},eye=new THREE.Vector3(),ahead=new THREE.Vector3(),up=new THREE.Vector3();
+ const auxiliary=addAuxiliaryGauges({build,l,root,dark,metal});
+ const driver=createDriver(root,l,wheel,{shifter,handbrake},selection),restingBelts=root.getObjectByName('interior-resting-belts');root.traverse(n=>n.userData.interior=true);
+ let displayClock=0,screenClock=0,ambientLevel=0,lastReadings=null,frameData={},eye=new THREE.Vector3(),ahead=new THREE.Vector3(),up=new THREE.Vector3();
  function drawCluster(r){
   const c=cluster.ctx;if(!c?.stroke)return;const w=768,h=352;c.fillStyle=r.powered?'#10191e':'#101316';c.fillRect(0,0,w,h);const color=r.powered?l.face:'#526063';c.strokeStyle=color;c.fillStyle=color;c.textAlign='center';c.textBaseline='middle';
   const text=(s,x,y,size=24)=>{c.font=`600 ${size}px monospace`;c.fillText(s,x,y);};
@@ -83,19 +88,20 @@ export function createInterior(chassis,build){
   const warnings=Object.entries(r.warnings);warnings.forEach(([id,on],i)=>{c.fillStyle=r.powered&&on?'#ff8868':'#344047';text(id.toUpperCase(),70+i*125,64,21);});cluster.texture.needsUpdate=true;
  }
  function update(s,dt,time,options={}){
-  frameData=options;const angle=steeringWheelAngle(s,build);rim.rotation.z=angle;rim.visible=!options.cockpit||options.settings?.wheel!==false;
+  frameData=options;driver.root.visible=!options.inspection;if(restingBelts)restingBelts.visible=!!options.inspection;const angle=steeringWheelAngle(s,build);rim.rotation.z=angle;rim.visible=!options.cockpit||options.settings?.wheel!==false;
   shifter.rotation.x=s.gear===0?0:(s.gear%2?-.22:.22);shifter.rotation.z=s.gear<0?.22:((Math.ceil((s.gear||1)/2)-2)*-.16);handbrake.rotation.x=-(s.handbrake||0)*.65;
   pedals[0].rotation.x=-(s.clutch||0)*.35;pedals[1].rotation.x=-(s.brake||0)*.35;pedals[2].rotation.x=-(s.throttle||0)*.35;
   driver.update(s,dt,angle,{cockpit:options.cockpit,hands:options.settings?.hands!==false});
   const readings=lastReadings=cockpitReadings(s,build),open=['left','right'].some(id=>{const p=s.bodyDamage?.zones?.[id];return p?.detached||Math.abs(p?.angle||0)>.08;}),on=readings.powered&&(open||readings.lights);
-  lamp.material.emissiveIntensity=on?.75:0;light.intensity=options.cockpit&&on?.45:0;
-  displayClock-=dt;screenClock-=dt;if(displayClock<=0||dt===0){drawCluster(readings);displayClock=options.cockpit?1/30:.2;}
+  lamp.material.emissiveIntensity=on?.75:0;const target=readings.powered&&readings.lights&&tuning.ambient?1:0;ambientLevel=readings.powered?(dt>0?ambientLevel+(target-ambientLevel)*(1-Math.exp(-dt*12)):target):0;if(cabinParts.ambient)cabinParts.ambient.emissiveIntensity=ambientLevel*.9;light.color.setHex(open||!ambientLevel?0xffd7a1:tuning.ambient);light.intensity=options.cockpit?(open&&readings.powered?.45:ambientLevel?.22*ambientLevel:on?.45:0):0;
+  displayClock-=dt;screenClock-=dt;if(displayClock<=0||dt===0){drawCluster(readings);auxiliary?.update(readings);displayClock=options.cockpit?1/30:.2;}
   if(screenClock<=0||dt===0){const c=screen.ctx;if(c?.drawImage){c.fillStyle='#101d24';c.fillRect(0,0,512,336);if(readings.powered){options.drawNavigation?.(c,512,266);c.fillStyle='#12232c';c.fillRect(0,266,512,70);c.fillStyle=l.face;c.font='600 22px monospace';c.textAlign='center';c.fillText(options.music?.enabled===false?'RADIO OFF':'RADIO · '+Math.round((options.music?.volume??.42)*100)+'%',256,290);c.font='600 24px monospace';['MAP',options.music?.enabled===false?'PLAY':'PAUSE','− VOL','VOL +'].forEach((label,i)=>c.fillText(label,64+i*128,322));}screen.texture.needsUpdate=true;}screenClock=options.cockpit?.125:.6;}
  }
  function cameraPose(settings={},yaw=0,pitch=0,state={}){
-  root.updateWorldMatrix(true,false);const motion=settings.motion??.35,lat=clamp(state.accelerationLat||0,-12,12)*-.0016*motion,long=clamp(state.accelerationLong||0,-12,12)*-.0018*motion;
+  root.updateWorldMatrix(true,false);const motion=(settings.motion??.35)*tuning.restraint,lat=clamp(state.accelerationLat||0,-12,12)*-.0016*motion,long=clamp(state.accelerationLong||0,-12,12)*-.0018*motion;
   eye.set(l.eye[0]+lat,l.eye[1]+(settings.seatHeight||0)+driver.bob*motion,l.eye[2]+(settings.seatDistance||0)+long);
   ahead.copy(eye).add(new THREE.Vector3(Math.sin(yaw),-pitch,Math.cos(yaw)).multiplyScalar(12));up.set(0,1,0).transformDirection(root.matrixWorld);eye.applyMatrix4(root.matrixWorld);ahead.applyMatrix4(root.matrixWorld);return {position:eye,look: ahead,up};
  }
- return {root,layout,mirrors,screen:screen.mesh,update,cameraPose,diagnostics:()=>({kind:l.kind,style:l.dial,eye:l.eye,readings:lastReadings,wheelAngle:rim.rotation.z,wheelVisible:rim.visible,pedals:pedals.map(p=>({position:p.position.toArray(),angle:p.rotation.x})),driver:driver.diagnostics(),screenPowered:lastReadings?.powered,settings:frameData.settings})};
+ function inspectionPose(seats=false){root.updateWorldMatrix(true,false);const position=new THREE.Vector3(...(seats?[0,q.roof-.21,l.front-.14]:[l.driverX,l.eye[1]+.02,l.eye[2]-.09])),look=new THREE.Vector3(...(seats?[0,.67,l.seatZ-.19]:[l.driverX*.35,q.sill-.14,l.dashZ-.13]));return {position:position.applyMatrix4(root.matrixWorld),look:look.applyMatrix4(root.matrixWorld),up:new THREE.Vector3(0,1,0).transformDirection(root.matrixWorld)};}
+ return {root,layout,mirrors,inspectionPose,screen:screen.mesh,update,cameraPose,diagnostics:()=>({kind:l.kind,style:l.dial,eye:l.eye,tuning:{selection:Object.fromEntries(Object.entries(selection).filter(([k])=>['steeringWheel','frontSeats','upholstery','interiorColour','stitching','dashTrim','shiftKnob','handbrakeLever','rollCage','harness','instruments','auxGauges','ambientLighting'].includes(k))),wheelRadius:l.wheelRadius,shiftLength:tuning.shiftLength,handbrakeLength:tuning.handbrakeLength,restraint:tuning.restraint,ambientLevel,ambientIntensity:light.intensity,auxiliary:auxiliary?.diagnostics()??null},readings:lastReadings,wheelAngle:rim.rotation.z,wheelVisible:rim.visible,pedals:pedals.map(p=>({position:p.position.toArray(),angle:p.rotation.x})),driver:driver.diagnostics(),screenPowered:lastReadings?.powered,settings:frameData.settings})};
 }

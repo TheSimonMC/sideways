@@ -1,6 +1,6 @@
 # SIDEWAYS – verbindliche Fortschrittsliste
 
-Stand: V30, Phase 0, Phase 1 Teile A/B/C/D/E, Phase 2 Teile A/B/C/D und Phase 3 Teile A/B/C/D sowie Phase 4 und Phase 5 Teil A. Grundlage: unveränderte Kopie in `docs/goal.txt`.
+Stand: V31, Phase 0, Phase 1 Teile A/B/C/D/E, Phase 2 Teile A/B/C/D und Phase 3 Teile A/B/C/D sowie Phase 4 und Phase 5 Teile A/B. Grundlage: unveränderte Kopie in `docs/goal.txt`.
 
 Status bezieht sich auf den gesamten Wortlaut eines Punktes. Teilweise bedeutet, dass wesentliche Teile noch fehlen. Phase 0, Phase 3 und Phase 4 sind innerhalb der dokumentierten Browser-Näherungen abgeschlossen. V19 ergänzt die gemeinsame Reifen-Grundlage aus Phase 2 und ihre Folgen für Phase 1. V24 schließt die Nässe-Anbindung. Phase 1 bleibt für breitere Grenzbereichs- und Eingabegeräte-Kalibrierung teilweise; Phase 2 wegen noch fehlendem Kompressortuning und der späteren Montage-/Ausbauintegration. Die umfassende Wetterdarstellung wird in Phase 7 weitergeführt.
 
@@ -81,10 +81,10 @@ Die Referenzdatei hat SHA-256 `4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc2
 
 ## Phase 5: MEHR EXTERIEUR-, INTERIEUR- UND MECHANISCHES TUNING
 
-**teilweise erledigt** — V30 erweitert die vorhandenen 30 Kategorien um elf Exterieurkategorien. Alle vier Autos erhalten getrennte Lippe/Diffusor-Auswahl, Kotflügel-/Widebody-Varianten, Grills, Auspuffenden, Lichtdesigns, Lackoberflächen, Folierungen, Decals und abgestufte transparente Tönung. Vorschau, Kosten, Besitz, Speicherung und vorhandene Schäden bleiben verbunden. Spurweite, Kollisionsbreite, Masse, Abtrieb/Widerstand, Abgasanschlüsse und Lichtkegel reagieren auf die Auswahl. Einzelteile hängen an den vorhandenen beschädigbaren Baugruppen. GT-Kits erfordern breitere Reifen. **Offen bleiben** das Interieur-Tuning, Kompressortuning und die weitergehende Montage-/Ausbauintegration. [Nachweise und Grenzen](phase-5a-exterior-report.md).
+**teilweise erledigt** — V30 liefert Exterieur und transparente Tönung. V31 ergänzt 13 Innenraumkategorien auf insgesamt 54: Lenkräder, Sport-/Schalensitze, Bezüge, Nähte, Farben, Dekore, Schaltknäufe, Handbremsen, Käfige, Gurte, Instrumente, Zusatzanzeigen und Ambientebeleuchtung. Handkontakte, Sitzhöhe, Masse/Schwerpunkt, Körperbewegung, Handbremswirkung, Messwerte und Beleuchtung folgen den Teilen. Alle vier Kabinen bleiben modellgerecht. Kauf, Abbruch, Besitz und Schäden bleiben erhalten; die Garage zeigt eine passende Innenansicht. **Offen bleiben** Kompressortuning und vollständige individuelle Montage-/Ausbauzustände. [Exterieurbericht](phase-5a-exterior-report.md), [Innenraumbericht](phase-5b-interior-report.md).
 
 - **P05.01 · erledigt** — Exterieurteile: unterschiedliche Front-/Heckstoßstangen, Spoiler, Splitter, Lippen, Schweller, Diffusoren, Kotflügel, Widebody-Kits, Hauben, Grills, Auspuffendrohre, Felgen, Reifen, Lichtdesign, Lacke, Folierungen und Decals.
-- **P05.02 · offen** — Interieurteile: Lenkräder, Sportsitze, Schalensitze, Bezüge, Nähte, Farben, Dashboard-Dekore, Schaltknäufe, Handbremsen, Überrollkäfige, Gurte, Instrumente, Zusatzanzeigen und Ambientebeleuchtung.
+- **P05.02 · erledigt** — Interieurteile: Lenkräder, Sportsitze, Schalensitze, Bezüge, Nähte, Farben, Dashboard-Dekore, Schaltknäufe, Handbremsen, Überrollkäfige, Gurte, Instrumente, Zusatzanzeigen und Ambientebeleuchtung.
 - **P05.03 · erledigt** — Scheibentönung mit einstellbarer Stärke und richtiger Lichtdurchlässigkeit; von außen bei passenden Bedingungen weiterhin hineinschauen können. Keine undurchsichtige schwarze Fläche als Ersatz für Glas.
 - **P05.04 · teilweise erledigt** — Leistungsupgrades: Motor/ECU, Turbo/Kompressor, Ansaugung, Auspuff, Kühler, Kupplung, Getriebe, Übersetzungen, Differentiale, Fahrwerk, Stabis, Achsgeometrie, Bremsen, Reifen und Aerodynamik.
 - **P05.05 · teilweise erledigt** — Optische und mechanische Teile an echte Befestigungspunkte knüpfen, sodass sie bei Schaden abfallen und in der Garage ausgebaut werden können.
@@ -314,3 +314,7 @@ Alle zwölf Phase-4-Punkte und die End-to-End-Punkte P18.08/P18.09 sind mit den 
 ## V30 – Phase 5 Teil A
 
 P05.01 und P05.03 sind mit den dokumentierten Browser-Näherungen umgesetzt. P05.05–P05.07 und die Integrations-/Testphasen werden weitergeführt, bleiben im vollständigen Umfang teilweise. Alle 156 Originalformulierungen bleiben erhalten. Nächster Teil: Innenraum-Tuning, danach Kompressor und Montageintegration. [Phasenbericht](phase-5a-exterior-report.md).
+
+## V31 – Phase 5 Teil B
+
+P05.02 ist innerhalb der beschriebenen Näherungen umgesetzt. P05.04–P05.07 bleiben wegen Kompressor und vollständiger Montageintegration teilweise. Alle 156 Originalformulierungen bleiben erhalten. Nächster Teil: Kompressor, danach interaktive Garage und Motorraum. [Nachweise und Grenzen](phase-5b-interior-report.md).

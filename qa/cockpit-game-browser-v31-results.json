@@ -1,0 +1,292 @@
+{
+  "version": 31,
+  "status": "passed",
+  "checks": [
+    "Existing route selection reaches the in-car map renderer; the independent HUD speed and minimap are hidden in cockpit.",
+    "Clicking the actual radio screen changes saved music/volume and opens the route map; U and ] control the same settings.",
+    "Seat/FOV, wheel/hands/mirrors/HUD settings and a 900-degree wheel range save through the UI; driving works with hidden wheel/hands and all four camera modes remain available.",
+    "Reload preserves cockpit and wheel settings, the existing car build and career save.",
+    "All four original cars drive in the exact standalone at day and night, with live readings, look input, working headlights and actual mirror render targets; no JS errors or external runtime loads."
+  ],
+  "cars": [
+    {
+      "car": "hachi",
+      "style": "twin",
+      "readings": {
+        "manifoldBar": -0.9318315228392867,
+        "speed": 5.139647397428943,
+        "rpm": 2368.4581685226385,
+        "redline": 7400,
+        "gear": "1",
+        "fuel": 0.9999603553129252,
+        "coolant": 85.16662447648369,
+        "oil": 82.39458851742283,
+        "oilPressure": 3.1699653110905293,
+        "voltage": 14.2,
+        "powered": true,
+        "warnings": {
+          "oil": false,
+          "heat": false,
+          "battery": false,
+          "brake": false,
+          "fuel": false,
+          "engine": false
+        },
+        "lights": true
+      },
+      "mirrors": {
+        "frames": 26,
+        "lastMs": 2.699999999254942,
+        "lastCalls": 100,
+        "mirrors": [
+          {
+            "id": "inside",
+            "frames": 9,
+            "width": 256,
+            "height": 128,
+            "position": [
+              -4.499995331329622,
+              1.1618868550342436,
+              -73.41962099858834
+            ]
+          },
+          {
+            "id": "mirrorLeft",
+            "frames": 9,
+            "width": 256,
+            "height": 128,
+            "position": [
+              -5.475809013637738,
+              0.8667914638291458,
+              -72.97035858064535
+            ]
+          },
+          {
+            "id": "mirrorRight",
+            "frames": 8,
+            "width": 256,
+            "height": 128,
+            "position": [
+              -3.524171827881047,
+              0.8665339286528104,
+              -73.26051412740624
+            ]
+          }
+        ]
+      },
+      "drawCalls": 760,
+      "fps": 20
+    },
+    {
+      "car": "atlas",
+      "style": "classic",
+      "readings": {
+        "manifoldBar": -0.9310321627406328,
+        "speed": 4.9975636667834165,
+        "rpm": 2725.363954469462,
+        "redline": 6500,
+        "gear": "1",
+        "fuel": 0.9999445826340962,
+        "coolant": 85.19488636755985,
+        "oil": 82.46133826341354,
+        "oilPressure": 3.5494635203749927,
+        "voltage": 14.2,
+        "powered": true,
+        "warnings": {
+          "oil": false,
+          "heat": false,
+          "battery": false,
+          "brake": false,
+          "fuel": false,
+          "engine": false
+        },
+        "lights": true
+      },
+      "mirrors": {
+        "frames": 26,
+        "lastMs": 3.800000000745058,
+        "lastCalls": 100,
+        "mirrors": [
+          {
+            "id": "inside",
+            "frames": 9,
+            "width": 256,
+            "height": 128,
+            "position": [
+              -4.500000518420992,
+              1.3119415777481365,
+              -73.64308518208937
+            ]
+          },
+          {
+            "id": "mirrorLeft",
+            "frames": 9,
+            "width": 256,
+            "height": 128,
+            "position": [
+              -5.528691662717465,
+              0.9368812241199679,
+              -73.16796990739589
+            ]
+          },
+          {
+            "id": "mirrorRight",
+            "frames": 8,
+            "width": 256,
+            "height": 128,
+            "position": [
+              -3.4712998879385424,
+              0.9365637087468799,
+              -73.44962352910967
+            ]
+          }
+        ]
+      },
+      "drawCalls": 738,
+      "fps": 20
+    },
+    {
+      "car": "kitsune",
+      "style": "sport",
+      "readings": {
+        "manifoldBar": -0.9330024176405625,
+        "speed": 4.391291740186424,
+        "rpm": 2501.1434665655306,
+        "redline": 9000,
+        "gear": "1",
+        "fuel": 0.9999568314601583,
+        "coolant": 84.99135898958048,
+        "oil": 82.36812155881202,
+        "oilPressure": 3.31093834818037,
+        "voltage": 14.2,
+        "powered": true,
+        "warnings": {
+          "oil": false,
+          "heat": false,
+          "battery": false,
+          "brake": false,
+          "fuel": false,
+          "engine": false
+        },
+        "lights": true
+      },
+      "mirrors": {
+        "frames": 27,
+        "lastMs": 2.300000000745058,
+        "lastCalls": 98,
+        "mirrors": [
+          {
+            "id": "inside",
+            "frames": 9,
+            "width": 256,
+            "height": 128,
+            "position": [
+              -4.499999860184068,
+              1.031927766968971,
+              -73.7622640435941
+            ]
+          },
+          {
+            "id": "mirrorLeft",
+            "frames": 9,
+            "width": 256,
+            "height": 128,
+            "position": [
+              -5.413318783723071,
+              0.7967953871604629,
+              -73.25274428722372
+            ]
+          },
+          {
+            "id": "mirrorRight",
+            "frames": 9,
+            "width": 256,
+            "height": 128,
+            "position": [
+              -3.586656149564486,
+              0.7967534839554447,
+              -73.12989941731236
+            ]
+          }
+        ]
+      },
+      "drawCalls": 749,
+      "fps": 20
+    },
+    {
+      "car": "vector",
+      "style": "digital",
+      "readings": {
+        "manifoldBar": -0.9246486811744036,
+        "speed": 5.320707927466091,
+        "rpm": 2398.2455576644625,
+        "redline": 7600,
+        "gear": "1",
+        "fuel": 0.9999734177334754,
+        "coolant": 85.00741183488795,
+        "oil": 82.34783315161098,
+        "oilPressure": 3.1978732375609438,
+        "voltage": 14.2,
+        "powered": true,
+        "warnings": {
+          "oil": false,
+          "heat": false,
+          "battery": false,
+          "brake": false,
+          "fuel": false,
+          "engine": false
+        },
+        "lights": true
+      },
+      "mirrors": {
+        "frames": 26,
+        "lastMs": 3,
+        "lastCalls": 100,
+        "mirrors": [
+          {
+            "id": "inside",
+            "frames": 9,
+            "width": 256,
+            "height": 128,
+            "position": [
+              -4.499994869125844,
+              1.3518680020592981,
+              -73.32824391133819
+            ]
+          },
+          {
+            "id": "mirrorLeft",
+            "frames": 9,
+            "width": 256,
+            "height": 128,
+            "position": [
+              -5.461389404246489,
+              0.9168109349358893,
+              -72.98399777335416
+            ]
+          },
+          {
+            "id": "mirrorRight",
+            "frames": 8,
+            "width": 256,
+            "height": 128,
+            "position": [
+              -3.538594278907983,
+              0.9165876478479924,
+              -73.28425014780558
+            ]
+          }
+        ]
+      },
+      "drawCalls": 742,
+      "fps": 20
+    }
+  ],
+  "errors": [],
+  "external": [],
+  "htmlSha256": "37238a7f31fd2d9d5013b8bf09edb877053d7df1f57ec4f761fc4f219471f623",
+  "limits": [
+    "Local Chromium software rendering and automated keyboard/pointer/UI input. No physical wheel, mobile GPU or subjective audio acceptance.",
+    "FPS and mirror timings are observations of this software-rendered test, not target-hardware guarantees."
+  ]
+}

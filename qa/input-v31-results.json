@@ -1,0 +1,47 @@
+{
+  "status": "passed",
+  "checks": [
+    "Standard layout is A/Cross NOS, B/Circle handbrake, Y/Triangle camera, held R3 rear view; menu face buttons remain contextual",
+    "Meaningful activity selects glyphs without connected-device, idle-stick or held-trigger flicker; keyboard and touch reclaim immediately",
+    "Detected wheels report calibration needs and real assigned button numbers; calibrated wheel profiles do not disable standard controllers",
+    "Per-device custom bindings override conflicting standard driving buttons but do not steal canonical menu confirm/back",
+    "Escape emits game home without legacy duplicate pause; nested UI Escape stays back and P remains pause",
+    "Held menu confirm, back and D-pad navigation cannot accidentally fire NOS, handbrake, starter, horn or rear view when resuming",
+    "Visibility restoration accepts the first fresh Escape while still requiring held controller buttons to be released",
+    "Controller navigation repeats at a bounded rate, suppresses held buttons through context changes and keeps saved mappings intact",
+    "Right-stick look is signed, deadzoned and independent of steering; keyboard look and held rear view release immediately",
+    "X interacts, View opens the map, D-pad right switches lights once and D-pad left holds the horn; menus retain their own directions",
+    "Custom rear-view and look-axis bindings override only the assigned device; saved R3 transmission overrides remain intentional",
+    "Keyboard capture ignores device activity, moves driving-key conflicts, preserves menu navigation and persists across reloads",
+    "Calibration, profile and binding errors are usable English messages",
+    "NOS rumble remains continuous with bounded calls/promises, and pause, disabled haptics, keyboard takeover, visibility and disconnect stop hardware immediately",
+    "Drift slip work, ABS, curb shocks, gear changes and additive collision pulses create distinct feedback; parked idle settles to zero",
+    "Hung and rejected haptic promises cannot create an unbounded queue; unsupported wheel force feedback is never invoked"
+  ],
+  "haptics": {
+    "sustained": {
+      "gaps": 0,
+      "pending": 2,
+      "calls": 42,
+      "resets": 5
+    }
+  },
+  "verificationLimit": "Deterministic Gamepad and actuator hosts, no physical controller or wheel test.",
+  "version": 31,
+  "verifiedInRelease": 31,
+  "suiteSource": "qa/input-v6-check.mjs",
+  "suiteSHA256": "c7d6f69cdfef06119795820adb9038069ade49d92e9f743ddecc610e1912f465",
+  "sourceSHA256": {
+    "dist/drivetrain.js": "9927f12d0ab5de0ad2de6f59b5f5f21cfb1ec0ce6c1efc81ca253ded1efb16d3",
+    "dist/physics.js": "76b0f4d4efd715f39aaf03a66fec9cbc4612bd0ae75f31953d3ef3fb61b3e6ef",
+    "dist/mechanical.js": "e471161ba8f51d2bf6b6c4d95fdc35752c7f93799068609ce2eafcf4f50e278c",
+    "dist/car.js": "5dfe5651b3d4c7ae0ba5b7b8fd39e0dc5f5401357994dc091e4da46e06a307d8",
+    "dist/catalog.js": "5abd5a86545250e8d417484feb30b77f29f42433e567411c94ac2f3aafe02250",
+    "dist/career.js": "4d1be13f752265f0057cae4441c095a9325f0f774cc97d98640c1c957bbcc669",
+    "dist/garage.js": "e862497f77bd51bb0793b46e721e52ef202a28e2b23575ae26afede9f7834f8f",
+    "dist/audio.js": "df58985fdfd8228901e2dc9db5c1c4862eaab688ed08da1f4bd1cb7e780ce61e",
+    "dist/audio-anchors.js": "ed65635fad9d265e2ab6cd964489bcd703b28397999fd16d4e609fd6fb7a15e5",
+    "dist/main.js": "d82dc3075e5a36b73f70b23fa816e2e842fb78ca786a31ff1ddef49d078cf386",
+    "dist/multiplayer.js": "57467c1ac37f3914257903aee464e8716d7983cb8ec65f67e8ab6ba0dade8e04"
+  }
+}

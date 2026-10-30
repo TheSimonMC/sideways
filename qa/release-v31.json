@@ -1,0 +1,219 @@
+{
+  "game": "SIDEWAYS",
+  "version": 31,
+  "date": "2026-10-30",
+  "status": "verified-with-documented-limits",
+  "scope": "Phase 5B interior tuning and cabin inspection. Phase 5 and the full objective remain partial.",
+  "delivery": {
+    "entry": "SIDEWAYS.html",
+    "separateFile": "SIDEWAYS-v31.html",
+    "htmlBytes": 10716388,
+    "htmlSha256": "37238a7f31fd2d9d5013b8bf09edb877053d7df1f57ec4f761fc4f219471f623",
+    "offlineSinglePlayer": true,
+    "externalRuntimeRequestsDuringOfflineTest": 0,
+    "publishedToSites": false
+  },
+  "currentFunctionalSuites": [
+    {
+      "file": "qa/archipelago-v31-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "cb793c21b11e8ba8e5abe1c21e87e8a8a58c64af1e5ff2856da86f4dfc95355f"
+    },
+    {
+      "file": "qa/audio-v31-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "9a1d4666c00729f156fb54850fcc83441a5b6a292e7232f9b95e91693a03761a"
+    },
+    {
+      "file": "qa/body-panels-v31-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "ad1b8e067e7d5232d4dd23206caf658307a9cbeee3a49034b2723f7287ef5c8e"
+    },
+    {
+      "file": "qa/chassis-v31-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "dc46e658949694ad072965ea72b92ab5f19f7b9c591e19b8817f08f0afaab12c"
+    },
+    {
+      "file": "qa/cockpit-browser-v31-results.json",
+      "status": "passed",
+      "groups": 2,
+      "sha256": "f82c8c39f3c35636ee4ed601ad62d29f4c6eedab709a05f78fb93286a17ff7ff"
+    },
+    {
+      "file": "qa/cockpit-game-browser-v31-results.json",
+      "status": "passed",
+      "groups": 5,
+      "sha256": "1b52155dbfe581bba43a9c61db2a2e1a4c025657e95a5717d14547280a46f34f"
+    },
+    {
+      "file": "qa/cockpit-v31-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "46e01a0485e964f0e7d3e6520c7e551d4810fcade38748a983f50e8333637fd1"
+    },
+    {
+      "file": "qa/cosmetics-v31-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "997732c9f39bcf812de1e4cc39bdb04061113938956df756fb36753ac0917eba"
+    },
+    {
+      "file": "qa/damage-v31-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "e9d60c9caa86401e6cce194cec5fccf72aaa0966e682409ed602352c3c37db11"
+    },
+    {
+      "file": "qa/exterior-tuning-browser-v31-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "55068cf0314cfab30dd81526b18a285c4de4ffc906e8f58ad22bab2b03e1131c"
+    },
+    {
+      "file": "qa/exterior-tuning-game-browser-v31-results.json",
+      "status": "passed",
+      "groups": 3,
+      "sha256": "2921ed7ef7129c70f1fc174b652cb30a1999cd6a49aacfdf379e71b91f7f29c2"
+    },
+    {
+      "file": "qa/exterior-tuning-v31-results.json",
+      "status": "passed",
+      "groups": 5,
+      "sha256": "d14588c33faa21725f20a55a0423c4302852f830f7f7f7665592a4db60955a3c"
+    },
+    {
+      "file": "qa/input-taps-v31-results.json",
+      "status": "passed",
+      "groups": 11,
+      "sha256": "63bd76b3d1b9fc3eb9925ac3e9f242f8369715149366d2ec0786b39cba244633"
+    },
+    {
+      "file": "qa/input-v31-results.json",
+      "status": "passed",
+      "groups": 16,
+      "sha256": "4bb3eff1631c71667a8f36bacde944699c7ff16d8a0bf5fd6201941a8daec99e"
+    },
+    {
+      "file": "qa/interior-tuning-browser-v31-results.json",
+      "status": "passed",
+      "groups": 2,
+      "sha256": "5f291e10a7158fe8137610b65ed359898a61b74224edcc585fc94d15f04f2542"
+    },
+    {
+      "file": "qa/interior-tuning-game-browser-v31-results.json",
+      "status": "passed",
+      "groups": 3,
+      "sha256": "0339491d9cf0eebba8c6f06c45429fd261e04ff5e9a894286e34579504ed4a93"
+    },
+    {
+      "file": "qa/interior-tuning-v31-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "8c63e76a2a59805567fa6d2f3046398179454762f0838239c2201a0afda99251"
+    },
+    {
+      "file": "qa/modular-v31-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "16f449e7f042c89cf606b6c3c6b7062fd5c71e0e6b270505ed5759531b70542f"
+    },
+    {
+      "file": "qa/multiplayer-browser-v31-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "ef144ed467a846aacb6d2d9dd23c456028de2f900eb5796f64dc62732479b228"
+    },
+    {
+      "file": "qa/multiplayer-burst-browser-v31-results.json",
+      "status": "passed",
+      "groups": 3,
+      "sha256": "235cef11f843ac6ed78653f54e46fb70bf719f5dadeb79ab81d9b151634c8648"
+    },
+    {
+      "file": "qa/multiplayer-burst-v31-results.json",
+      "status": "passed",
+      "groups": 5,
+      "sha256": "142eb1b5d6a24a6582e70b9878d00a41963f4e2fedd6b647d39ddfa6e03a982b"
+    },
+    {
+      "file": "qa/multiplayer-v31-results.json",
+      "status": "passed",
+      "groups": 11,
+      "sha256": "d4d15ee989bf02ed8e376795d643786a7ac6f4b770d60d373c28fa37f4b44bd3"
+    },
+    {
+      "file": "qa/navigation-main-v31-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "d02d135d2bd7fc6882929e478ce7d467a2d5482307e6884e43c8ee49f1dac18c"
+    },
+    {
+      "file": "qa/physics-v31-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "0b24359ea1cf0af66750e2a65b521ecdd2f47003e1a61272b3bc73cadd49e18f"
+    },
+    {
+      "file": "qa/police-v31-results.json",
+      "status": "passed",
+      "groups": 9,
+      "sha256": "940053959126b7ef7305370d8475c3fb1524ea85ffa5c268e9a9ddfefaeccd24"
+    },
+    {
+      "file": "qa/race-v31-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "558f384f41e18612e7ab539b21e3ff5b1a6ce8a3999a1b811410c7a37dd66265"
+    },
+    {
+      "file": "qa/responsive-panels-browser-v31-results.json",
+      "status": "passed",
+      "groups": 3,
+      "sha256": "b9dabef5d2ef87c60170e94adef43216b7b595294157810af44bb41ed5d6533e"
+    },
+    {
+      "file": "qa/restart-v31-results.json",
+      "status": "passed",
+      "groups": 4,
+      "sha256": "79392c62e82adeacd13509d7427a21102a20b360efacb643100eb40f5ff48e7e"
+    },
+    {
+      "file": "qa/standalone-browser-v31-results.json",
+      "status": "passed",
+      "groups": 6,
+      "sha256": "dd064e8216b1ceccb113943d4edf3507c6ddd33d9d3ea9ebe80ff8da4ab1b9bc"
+    },
+    {
+      "file": "qa/standalone-v31-results.json",
+      "status": "passed",
+      "groups": 0,
+      "sha256": "cbfd52fed3ebacaf8dbf29d56715f1c5b35d32e8404a59d71cf9906e3c72f475"
+    },
+    {
+      "file": "qa/thermal-v31-results.json",
+      "status": "passed",
+      "groups": 10,
+      "sha256": "afd73da640b9b01621c0ed05a6f3d17186a39d655f7f25ce5e7f305382288c1a"
+    },
+    {
+      "file": "qa/underbody-v31-results.json",
+      "status": "passed",
+      "groups": 8,
+      "sha256": "073d80fdb641c1c864904d45c15a77f08fe44a4414e92284d79a3868f7254aa6"
+    }
+  ],
+  "review": {
+    "file": "qa/review-v31.json",
+    "sha256": "ee1c3ecdbf6532e87b732da88868af78b6c5f4cce87b469e8ff73845359e48b4"
+  },
+  "limits": [
+    "Phase 5 remains partial: supercharger and full individual removal/mounting integration remain. The complete 156-item goal is active.",
+    "Lumped fictional restraint/roof/inline-hydraulic calibration; no occupant injury or rollover safety simulation. Cabin floor attachments do not yet have individual removal/detachment states.",
+    "Local Chromium software rendering; no physical wheel/FFB, mobile-GPU, separate-PC/TURN or subjective-listening acceptance. Fixture render timings are not whole-game FPS guarantees."
+  ]
+}

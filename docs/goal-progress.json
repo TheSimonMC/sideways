@@ -1,7 +1,7 @@
 {
   "source": "docs/goal.txt",
   "sourceSHA256": "4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc282ea844a1b96dca",
-  "version": 30,
+  "version": 31,
   "requirements": [
     {
       "id": "P00.01",
@@ -300,7 +300,7 @@
     {
       "id": "P05.02",
       "phase": 5,
-      "status": "offen",
+      "status": "erledigt",
       "requirement": "Interieurteile: Lenkräder, Sportsitze, Schalensitze, Bezüge, Nähte, Farben, Dashboard-Dekore, Schaltknäufe, Handbremsen, Überrollkäfige, Gurte, Instrumente, Zusatzanzeigen und Ambientebeleuchtung."
     },
     {
@@ -942,17 +942,18 @@
   ],
   "currentIncrement": {
     "phase": 5,
-    "part": "A – Exterieurteile, Folierungen und Scheibentönung",
+    "part": "B – Innenraum-Tuning und Kabinenvorschau",
     "status": "teilweise erledigt",
     "implemented": [
-      "Elf zusätzliche Kategorien, insgesamt 41; getrennte Lippen/Diffusoren, Kotflügel, Widebody, Grills, Auspuffenden und Lichtdesigns auf allen vier vorhandenen Fahrzeugen.",
-      "Lackoberflächen, drei eigene Folierungen, Decals und vier Glas-Durchlassstufen, mit Vorschau, Kauf und Speicherung.",
-      "Spurweite, Kollisionsbreite, Masse, Aero, abfallende Baugruppen, Abgasanschlüsse und Lichtkegel folgen den Teilen; GT-Kompatibilität wird geprüft."
+      "13 zusätzliche Kategorien, insgesamt 54: Lenkräder, Sport-/Schalensitze, Bezüge, Farben, Nähte, Dekore, Hebel, Käfige, Gurte, Instrumente, Zusatzanzeigen und Ambientebeleuchtung.",
+      "Alle vier modellgerechten Kabinen behalten ihre Geometriegrundlage, Navigation, Spiegel, Fahrer, Speicherung und Schäden.",
+      "Masse/Schwerpunkt, Sitzhöhe, Griffkontakte, Körperbewegung, Dachstützung und Handbremswirkung folgen den eingebauten Teilen; Anzeigen lesen tatsächliche Werte.",
+      "Die Garage zeigt bei Innenraumkategorien die Kabine beziehungsweise die Sitze; Vorschau, Abbruch, Einmalkauf und Reload wurden im ausgelieferten Build geprüft."
     ],
     "remaining": [
-      "Phase 5B: vollständiges Interieur-Tuning mit passenden Geometrien, Befestigungen, Masse und erhaltenen Fahrer-/Instrumentfunktionen.",
-      "Phase 5C: Kompressor und restliche mechanische Kompatibilität; Montage/Ausbau gemeinsam mit Phase 6 erweitern.",
-      "Frühere teilweise Anforderungen und alle späteren Phasen bleiben gemäß den 156 Einzelpunkten offen."
+      "Phase 5C: Kompressor mit tatsächlicher SDK-Luftförderung und Antriebslast, Kühlung, Verschleiß, Sound, Kompatibilität und Speicherung.",
+      "Phase 6: individuelle Ausbau-/Montagezustände auch für Kabinenteile, kompletter Motorraum und tatsächliche räumliche Garageninteraktion.",
+      "Frühere teilweise Anforderungen und spätere Phasen bleiben entsprechend allen 156 Einzelpunkten offen."
     ]
   }
 }

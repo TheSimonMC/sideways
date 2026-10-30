@@ -1,0 +1,24 @@
+SIDEWAYS V31 – INTERIOR TUNING
+
+Open SIDEWAYS.html for offline single-player. Multiplayer needs internet.
+Online: https://thesimonmc.github.io/sideways/
+
+Garage now contains 54 categories. Interior choices change the existing cabins,
+driver contacts, weight, seat height, gauges and powered lighting. Selecting an
+interior category previews the cabin or seats. Preview is free; Install charges
+the displayed price once. Existing damage remains. Harness cards explain their
+seat/cage requirements. The hydraulic handbrake depends on rear brake circuits.
+All multiplayer participants must reload V31 (protocol 20).
+
+Report: docs/phase-5b-interior-report.md
+Checklist: docs/goal.txt and docs/goal-progress.md/.json
+Evidence: qa/release-v31.json
+Next: Phase 5C supercharger, then full component mounting and engine bays.
+
+Build: npm ci, then node build.mjs (Node.js 24).
+Checks: node qa/regressions-v31.mjs and *-v31-check.mjs.
+Browser: *-browser-v31.cjs with Playwright and Chromium. Set
+CODEX_PRIMARY_RUNTIME_NODE_MODULES to node_modules containing playwright;
+PLAYWRIGHT_CHROMIUM_EXECUTABLE to the Chromium executable.
+Run browser suites and CPU-heavy native suites serially.
+Package: node qa/package-v31.mjs <output-directory>.

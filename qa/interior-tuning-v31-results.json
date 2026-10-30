@@ -1,0 +1,80 @@
+{
+  "version": 31,
+  "status": "passed",
+  "checks": [
+    "54 categories preserve legacy builds; incompatible harness mounts are rejected before purchase and all new options have prices.",
+    "Seat/cage weight shifts centre of mass; the fitted cage reduces actual roof deformation without protecting bumper skins.",
+    "Every interior variant fits every original body; real hands follow wheel and lever grips, door trim follows damage and resources dispose.",
+    "Manifold gauge reads native intake pressure; oil/coolant and bounded network telemetry retain actual values.",
+    "Hydraulic handbrake loses force with empty circuits and pumps leaking fluid; the factory cable still works.",
+    "Harness/seat restraints reduce the animated body and cockpit displacement; setup ownership and damage survive reload."
+  ],
+  "fixtures": {
+    "54 categories preserve legacy builds; incompatible harness mounts are rejected before purchase and all new options have prices.": {},
+    "Seat/cage weight shifts centre of mass; the fitted cage reduces actual roof deformation without protecting bumper skins.": {
+      "base": 0.49,
+      "bucket": 0.48690893169877403,
+      "cage": 0.50153078202995
+    },
+    "Every interior variant fits every original body; real hands follow wheel and lever grips, door trim follows damage and resources dispose.": {
+      "variants": 168,
+      "maxMeshes": 241
+    },
+    "Manifold gauge reads native intake pressure; oil/coolant and bounded network telemetry retain actual values.": {
+      "manifoldBar": -0.10835831841566629,
+      "readings": {
+        "manifoldBar": -0.10835831841566629,
+        "speed": 0,
+        "rpm": 3457.2262287539966,
+        "redline": 7400,
+        "gear": "N",
+        "fuel": 0.9999753284969877,
+        "coolant": 84.21470219556517,
+        "oil": 82.05998051179058,
+        "oilPressure": 4.289185503951575,
+        "voltage": 14.2,
+        "powered": true,
+        "warnings": {
+          "oil": false,
+          "heat": false,
+          "battery": false,
+          "brake": false,
+          "fuel": false,
+          "engine": false
+        },
+        "lights": false
+      }
+    },
+    "Hydraulic handbrake loses force with empty circuits and pumps leaking fluid; the factory cable still works.": {
+      "healthy": 20.450047991320382,
+      "failed": 24.642633722257955,
+      "cable": 20.402069600429304
+    },
+    "Harness/seat restraints reduce the animated body and cockpit displacement; setup ownership and damage survive reload.": {
+      "responses": [
+        0.020000000000000018,
+        0.007919999999999983
+      ],
+      "charged": 24500
+    }
+  },
+  "sourceSHA256": {
+    "dist/interior-tuning.js": "54a720d59bfe1796d61537bf93126177eb33d1772b9af6c0117675dc848751de",
+    "dist/interior-tuning-view.js": "f9bdb46f93d15a41a3d234500e43bf60572b31fbfbbb9767263e92f5a6aee01d",
+    "dist/interior.js": "80f2428b578fff39efed12131915f8088dd3d9241daf52f1ed1d33fe029439b0",
+    "dist/driver.js": "637b93fbcd926b39f44ecdfd7ae28bfa999f50428fbaed8b65ba09d9586f3bc1",
+    "dist/cockpit-state.js": "1fa1643a19c5d86a36e2ba3a0e06a84352faecd97c57a366202211b7d9d62aac",
+    "dist/catalog.js": "5abd5a86545250e8d417484feb30b77f29f42433e567411c94ac2f3aafe02250",
+    "dist/career.js": "4d1be13f752265f0057cae4441c095a9325f0f774cc97d98640c1c957bbcc669",
+    "dist/garage.js": "e862497f77bd51bb0793b46e721e52ef202a28e2b23575ae26afede9f7834f8f",
+    "dist/car.js": "5dfe5651b3d4c7ae0ba5b7b8fd39e0dc5f5401357994dc091e4da46e06a307d8",
+    "dist/physics.js": "76b0f4d4efd715f39aaf03a66fec9cbc4612bd0ae75f31953d3ef3fb61b3e6ef",
+    "dist/body-damage.js": "ed4e65e8ec90dc825cb39de7047abfbe49fe8844361c701db0156f98cf1a6284",
+    "dist/multiplayer.js": "57467c1ac37f3914257903aee464e8716d7983cb8ec65f67e8ab6ba0dade8e04",
+    "dist/main.js": "d82dc3075e5a36b73f70b23fa816e2e842fb78ca786a31ff1ddef49d078cf386"
+  },
+  "limits": [
+    "Fictional lumped restraint/roof/handbrake calibration. Cabin floor attachments are not yet individually removable; full Phase 6 component mounting remains open.",
+    "Native checks do not validate rendered UI or hardware performance."
+  ]
+}

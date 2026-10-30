@@ -1,0 +1,2334 @@
+{
+  "version": 31,
+  "status": "passed",
+  "checks": [
+    "All four original models render distinct cockpit styles with actual 90 km/h, 4200 RPM state, three updated mirror targets and a hidden local head.",
+    "Wheel/hand visibility settings change the actual model; daytime, night and external screenshots captured for visual review."
+  ],
+  "results": [
+    {
+      "id": "hachi",
+      "day": {
+        "cockpit": {
+          "kind": "coupe",
+          "style": "twin",
+          "eye": [
+            -0.429548,
+            1.02,
+            -0.27
+          ],
+          "tuning": {
+            "selection": {
+              "steeringWheel": "stock",
+              "frontSeats": "stock",
+              "upholstery": "stock",
+              "interiorColour": "stock",
+              "stitching": "stock",
+              "dashTrim": "stock",
+              "shiftKnob": "stock",
+              "handbrakeLever": "stock",
+              "rollCage": "stock",
+              "harness": "stock",
+              "instruments": "stock",
+              "auxGauges": "stock",
+              "ambientLighting": "stock"
+            },
+            "wheelRadius": 0.16,
+            "shiftLength": 0.075,
+            "handbrakeLength": 0.1,
+            "restraint": 1,
+            "ambientLevel": 0,
+            "ambientIntensity": 0,
+            "auxiliary": null
+          },
+          "readings": {
+            "manifoldBar": -0.9342107045516383,
+            "speed": 90,
+            "rpm": 4200,
+            "redline": 7400,
+            "gear": "3",
+            "fuel": 1,
+            "coolant": 88,
+            "oil": 94,
+            "oilPressure": 2.3355246463522024,
+            "voltage": 14.2,
+            "powered": true,
+            "warnings": {
+              "oil": false,
+              "heat": false,
+              "battery": false,
+              "brake": false,
+              "fuel": false,
+              "engine": false
+            },
+            "lights": false
+          },
+          "wheelAngle": 0,
+          "wheelVisible": true,
+          "pedals": [
+            {
+              "position": [
+                -0.34954799999999997,
+                0.34,
+                0.69
+              ],
+              "angle": -0.35
+            },
+            {
+              "position": [
+                -0.429548,
+                0.34,
+                0.69
+              ],
+              "angle": 0
+            },
+            {
+              "position": [
+                -0.509548,
+                0.34,
+                0.69
+              ],
+              "angle": -0.13999999999999999
+            }
+          ],
+          "driver": {
+            "hands": [
+              {
+                "gripping": true,
+                "error": -8.326672684688674e-17,
+                "visible": true,
+                "position": [
+                  -0.589548,
+                  0.63,
+                  0.3299999999999999
+                ],
+                "regripping": false
+              },
+              {
+                "gripping": true,
+                "error": 2.7755575615628914e-17,
+                "visible": true,
+                "position": [
+                  -0.269548,
+                  0.63,
+                  0.3299999999999999
+                ],
+                "regripping": false
+              }
+            ],
+            "feet": [
+              [
+                -0.509548,
+                0.34,
+                0.6659999999999999
+              ],
+              [
+                -0.34954799999999997,
+                0.34,
+                0.6749999999999999
+              ]
+            ],
+            "headVisible": false,
+            "belts": 2,
+            "torso": [
+              -0.429548,
+              0.74,
+              -0.42000000000000004
+            ],
+            "shift": 0,
+            "bob": 0
+          },
+          "screenPowered": true,
+          "settings": {
+            "seatHeight": 0,
+            "seatDistance": 0,
+            "fov": 76,
+            "motion": 0.35,
+            "wheel": true,
+            "hands": true,
+            "mirrors": true,
+            "hud": true
+          }
+        },
+        "camera": [
+          -0.429548,
+          1.02,
+          -0.27
+        ],
+        "mirrors": {
+          "frames": 4,
+          "lastMs": 0.2000000011175871,
+          "lastCalls": 20,
+          "mirrors": [
+            {
+              "id": "inside",
+              "frames": 2,
+              "width": 256,
+              "height": 128,
+              "position": [
+                0,
+                1.15,
+                0.255
+              ]
+            },
+            {
+              "id": "mirrorLeft",
+              "frames": 1,
+              "width": 256,
+              "height": 128,
+              "position": [
+                -0.9758209999999999,
+                0.855,
+                0.5599999999999999
+              ]
+            },
+            {
+              "id": "mirrorRight",
+              "frames": 1,
+              "width": 256,
+              "height": 128,
+              "position": [
+                0.9758209999999999,
+                0.855,
+                0.5599999999999999
+              ]
+            }
+          ]
+        },
+        "calls": 161
+      },
+      "night": {
+        "cockpit": {
+          "kind": "coupe",
+          "style": "twin",
+          "eye": [
+            -0.429548,
+            1.02,
+            -0.27
+          ],
+          "tuning": {
+            "selection": {
+              "steeringWheel": "stock",
+              "frontSeats": "stock",
+              "upholstery": "stock",
+              "interiorColour": "stock",
+              "stitching": "stock",
+              "dashTrim": "stock",
+              "shiftKnob": "stock",
+              "handbrakeLever": "stock",
+              "rollCage": "stock",
+              "harness": "stock",
+              "instruments": "stock",
+              "auxGauges": "stock",
+              "ambientLighting": "stock"
+            },
+            "wheelRadius": 0.16,
+            "shiftLength": 0.075,
+            "handbrakeLength": 0.1,
+            "restraint": 1,
+            "ambientLevel": 0,
+            "ambientIntensity": 0.45,
+            "auxiliary": null
+          },
+          "readings": {
+            "manifoldBar": -0.9342107045516383,
+            "speed": 90,
+            "rpm": 4200,
+            "redline": 7400,
+            "gear": "3",
+            "fuel": 1,
+            "coolant": 88,
+            "oil": 94,
+            "oilPressure": 2.3355246463522024,
+            "voltage": 14.2,
+            "powered": true,
+            "warnings": {
+              "oil": false,
+              "heat": false,
+              "battery": false,
+              "brake": false,
+              "fuel": false,
+              "engine": false
+            },
+            "lights": true
+          },
+          "wheelAngle": 0,
+          "wheelVisible": true,
+          "pedals": [
+            {
+              "position": [
+                -0.34954799999999997,
+                0.34,
+                0.69
+              ],
+              "angle": -0.35
+            },
+            {
+              "position": [
+                -0.429548,
+                0.34,
+                0.69
+              ],
+              "angle": 0
+            },
+            {
+              "position": [
+                -0.509548,
+                0.34,
+                0.69
+              ],
+              "angle": -0.13999999999999999
+            }
+          ],
+          "driver": {
+            "hands": [
+              {
+                "gripping": true,
+                "error": -8.326672684688674e-17,
+                "visible": true,
+                "position": [
+                  -0.589548,
+                  0.63,
+                  0.3299999999999999
+                ],
+                "regripping": false
+              },
+              {
+                "gripping": true,
+                "error": 2.7755575615628914e-17,
+                "visible": true,
+                "position": [
+                  -0.269548,
+                  0.63,
+                  0.3299999999999999
+                ],
+                "regripping": false
+              }
+            ],
+            "feet": [
+              [
+                -0.509548,
+                0.34,
+                0.6659999999999999
+              ],
+              [
+                -0.34954799999999997,
+                0.34,
+                0.6749999999999999
+              ]
+            ],
+            "headVisible": false,
+            "belts": 2,
+            "torso": [
+              -0.429548,
+              0.74,
+              -0.42000000000000004
+            ],
+            "shift": 0,
+            "bob": 0
+          },
+          "screenPowered": true,
+          "settings": {
+            "seatHeight": 0,
+            "seatDistance": 0,
+            "fov": 76,
+            "motion": 0.35,
+            "wheel": true,
+            "hands": true,
+            "mirrors": true,
+            "hud": true
+          }
+        },
+        "camera": [
+          -0.429548,
+          1.02,
+          -0.27
+        ],
+        "mirrors": {
+          "frames": 10,
+          "lastMs": 0.19999999925494194,
+          "lastCalls": 20,
+          "mirrors": [
+            {
+              "id": "inside",
+              "frames": 4,
+              "width": 256,
+              "height": 128,
+              "position": [
+                0,
+                1.15,
+                0.255
+              ]
+            },
+            {
+              "id": "mirrorLeft",
+              "frames": 3,
+              "width": 256,
+              "height": 128,
+              "position": [
+                -0.9758209999999999,
+                0.855,
+                0.5599999999999999
+              ]
+            },
+            {
+              "id": "mirrorRight",
+              "frames": 3,
+              "width": 256,
+              "height": 128,
+              "position": [
+                0.9758209999999999,
+                0.855,
+                0.5599999999999999
+              ]
+            }
+          ]
+        },
+        "calls": 160
+      },
+      "hidden": {
+        "cockpit": {
+          "kind": "coupe",
+          "style": "twin",
+          "eye": [
+            -0.429548,
+            1.02,
+            -0.27
+          ],
+          "tuning": {
+            "selection": {
+              "steeringWheel": "stock",
+              "frontSeats": "stock",
+              "upholstery": "stock",
+              "interiorColour": "stock",
+              "stitching": "stock",
+              "dashTrim": "stock",
+              "shiftKnob": "stock",
+              "handbrakeLever": "stock",
+              "rollCage": "stock",
+              "harness": "stock",
+              "instruments": "stock",
+              "auxGauges": "stock",
+              "ambientLighting": "stock"
+            },
+            "wheelRadius": 0.16,
+            "shiftLength": 0.075,
+            "handbrakeLength": 0.1,
+            "restraint": 1,
+            "ambientLevel": 0,
+            "ambientIntensity": 0,
+            "auxiliary": null
+          },
+          "readings": {
+            "manifoldBar": -0.9342107045516383,
+            "speed": 90,
+            "rpm": 4200,
+            "redline": 7400,
+            "gear": "3",
+            "fuel": 1,
+            "coolant": 88,
+            "oil": 94,
+            "oilPressure": 2.3355246463522024,
+            "voltage": 14.2,
+            "powered": true,
+            "warnings": {
+              "oil": false,
+              "heat": false,
+              "battery": false,
+              "brake": false,
+              "fuel": false,
+              "engine": false
+            },
+            "lights": false
+          },
+          "wheelAngle": 0,
+          "wheelVisible": false,
+          "pedals": [
+            {
+              "position": [
+                -0.34954799999999997,
+                0.34,
+                0.69
+              ],
+              "angle": -0.35
+            },
+            {
+              "position": [
+                -0.429548,
+                0.34,
+                0.69
+              ],
+              "angle": 0
+            },
+            {
+              "position": [
+                -0.509548,
+                0.34,
+                0.69
+              ],
+              "angle": -0.13999999999999999
+            }
+          ],
+          "driver": {
+            "hands": [
+              {
+                "gripping": true,
+                "error": -8.326672684688674e-17,
+                "visible": false,
+                "position": [
+                  -0.589548,
+                  0.63,
+                  0.3299999999999999
+                ],
+                "regripping": false
+              },
+              {
+                "gripping": true,
+                "error": 2.7755575615628914e-17,
+                "visible": false,
+                "position": [
+                  -0.269548,
+                  0.63,
+                  0.3299999999999999
+                ],
+                "regripping": false
+              }
+            ],
+            "feet": [
+              [
+                -0.509548,
+                0.34,
+                0.6659999999999999
+              ],
+              [
+                -0.34954799999999997,
+                0.34,
+                0.6749999999999999
+              ]
+            ],
+            "headVisible": false,
+            "belts": 2,
+            "torso": [
+              -0.429548,
+              0.74,
+              -0.42000000000000004
+            ],
+            "shift": 0,
+            "bob": 0
+          },
+          "screenPowered": true,
+          "settings": {
+            "seatHeight": 0,
+            "seatDistance": 0,
+            "fov": 76,
+            "motion": 0.35,
+            "wheel": false,
+            "hands": false,
+            "mirrors": true,
+            "hud": true
+          }
+        },
+        "camera": [
+          -0.429548,
+          1.02,
+          -0.27
+        ],
+        "mirrors": {
+          "frames": 16,
+          "lastMs": 0.2000000011175871,
+          "lastCalls": 20,
+          "mirrors": [
+            {
+              "id": "inside",
+              "frames": 6,
+              "width": 256,
+              "height": 128,
+              "position": [
+                0,
+                1.15,
+                0.255
+              ]
+            },
+            {
+              "id": "mirrorLeft",
+              "frames": 5,
+              "width": 256,
+              "height": 128,
+              "position": [
+                -0.9758209999999999,
+                0.855,
+                0.5599999999999999
+              ]
+            },
+            {
+              "id": "mirrorRight",
+              "frames": 5,
+              "width": 256,
+              "height": 128,
+              "position": [
+                0.9758209999999999,
+                0.855,
+                0.5599999999999999
+              ]
+            }
+          ]
+        },
+        "calls": 149
+      }
+    },
+    {
+      "id": "atlas",
+      "day": {
+        "cockpit": {
+          "kind": "muscle",
+          "style": "classic",
+          "eye": [
+            0.45282400000000006,
+            1.17,
+            -0.36
+          ],
+          "tuning": {
+            "selection": {
+              "steeringWheel": "stock",
+              "frontSeats": "stock",
+              "upholstery": "stock",
+              "interiorColour": "stock",
+              "stitching": "stock",
+              "dashTrim": "stock",
+              "shiftKnob": "stock",
+              "handbrakeLever": "stock",
+              "rollCage": "stock",
+              "harness": "stock",
+              "instruments": "stock",
+              "auxGauges": "stock",
+              "ambientLighting": "stock"
+            },
+            "wheelRadius": 0.18,
+            "shiftLength": 0.075,
+            "handbrakeLength": 0.1,
+            "restraint": 1,
+            "ambientLevel": 0,
+            "ambientIntensity": 0,
+            "auxiliary": null
+          },
+          "readings": {
+            "manifoldBar": -0.9328112568765415,
+            "speed": 90,
+            "rpm": 4200,
+            "redline": 6500,
+            "gear": "3",
+            "fuel": 1,
+            "coolant": 88,
+            "oil": 94,
+            "oilPressure": 2.323730117526278,
+            "voltage": 14.2,
+            "powered": true,
+            "warnings": {
+              "oil": false,
+              "heat": false,
+              "battery": false,
+              "brake": false,
+              "fuel": false,
+              "engine": false
+            },
+            "lights": false
+          },
+          "wheelAngle": 0,
+          "wheelVisible": true,
+          "pedals": [
+            {
+              "position": [
+                0.5328240000000001,
+                0.34,
+                0.55
+              ],
+              "angle": -0.35
+            },
+            {
+              "position": [
+                0.45282400000000006,
+                0.34,
+                0.55
+              ],
+              "angle": 0
+            },
+            {
+              "position": [
+                0.37282400000000004,
+                0.34,
+                0.55
+              ],
+              "angle": -0.13999999999999999
+            }
+          ],
+          "driver": {
+            "hands": [
+              {
+                "gripping": true,
+                "error": 5.551115123125783e-17,
+                "visible": true,
+                "position": [
+                  0.27282400000000007,
+                  0.7000000000000001,
+                  0.19
+                ],
+                "regripping": false
+              },
+              {
+                "gripping": true,
+                "error": -5.551115123125783e-17,
+                "visible": true,
+                "position": [
+                  0.632824,
+                  0.7000000000000001,
+                  0.19
+                ],
+                "regripping": false
+              }
+            ],
+            "feet": [
+              [
+                0.37282400000000004,
+                0.34,
+                0.526
+              ],
+              [
+                0.5328240000000001,
+                0.34,
+                0.535
+              ]
+            ],
+            "headVisible": false,
+            "belts": 2,
+            "torso": [
+              0.45282400000000006,
+              0.8899999999999999,
+              -0.51
+            ],
+            "shift": 0,
+            "bob": 0
+          },
+          "screenPowered": true,
+          "settings": {
+            "seatHeight": 0,
+            "seatDistance": 0,
+            "fov": 76,
+            "motion": 0.35,
+            "wheel": true,
+            "hands": true,
+            "mirrors": true,
+            "hud": true
+          }
+        },
+        "camera": [
+          0.45282400000000006,
+          1.17,
+          -0.36
+        ],
+        "mirrors": {
+          "frames": 22,
+          "lastMs": 0.2000000011175871,
+          "lastCalls": 20,
+          "mirrors": [
+            {
+              "id": "inside",
+              "frames": 2,
+              "width": 256,
+              "height": 128,
+              "position": [
+                0,
+                1.2999999999999998,
+                0.08499999999999999
+              ]
+            },
+            {
+              "id": "mirrorLeft",
+              "frames": 2,
+              "width": 256,
+              "height": 128,
+              "position": [
+                -1.028698,
+                0.925,
+                0.42000000000000004
+              ]
+            },
+            {
+              "id": "mirrorRight",
+              "frames": 2,
+              "width": 256,
+              "height": 128,
+              "position": [
+                1.028698,
+                0.925,
+                0.42000000000000004
+              ]
+            }
+          ]
+        },
+        "calls": 150
+      },
+      "night": {
+        "cockpit": {
+          "kind": "muscle",
+          "style": "classic",
+          "eye": [
+            0.45282400000000006,
+            1.17,
+            -0.36
+          ],
+          "tuning": {
+            "selection": {
+              "steeringWheel": "stock",
+              "frontSeats": "stock",
+              "upholstery": "stock",
+              "interiorColour": "stock",
+              "stitching": "stock",
+              "dashTrim": "stock",
+              "shiftKnob": "stock",
+              "handbrakeLever": "stock",
+              "rollCage": "stock",
+              "harness": "stock",
+              "instruments": "stock",
+              "auxGauges": "stock",
+              "ambientLighting": "stock"
+            },
+            "wheelRadius": 0.18,
+            "shiftLength": 0.075,
+            "handbrakeLength": 0.1,
+            "restraint": 1,
+            "ambientLevel": 0,
+            "ambientIntensity": 0.45,
+            "auxiliary": null
+          },
+          "readings": {
+            "manifoldBar": -0.9328112568765415,
+            "speed": 90,
+            "rpm": 4200,
+            "redline": 6500,
+            "gear": "3",
+            "fuel": 1,
+            "coolant": 88,
+            "oil": 94,
+            "oilPressure": 2.323730117526278,
+            "voltage": 14.2,
+            "powered": true,
+            "warnings": {
+              "oil": false,
+              "heat": false,
+              "battery": false,
+              "brake": false,
+              "fuel": false,
+              "engine": false
+            },
+            "lights": true
+          },
+          "wheelAngle": 0,
+          "wheelVisible": true,
+          "pedals": [
+            {
+              "position": [
+                0.5328240000000001,
+                0.34,
+                0.55
+              ],
+              "angle": -0.35
+            },
+            {
+              "position": [
+                0.45282400000000006,
+                0.34,
+                0.55
+              ],
+              "angle": 0
+            },
+            {
+              "position": [
+                0.37282400000000004,
+                0.34,
+                0.55
+              ],
+              "angle": -0.13999999999999999
+            }
+          ],
+          "driver": {
+            "hands": [
+              {
+                "gripping": true,
+                "error": 5.551115123125783e-17,
+                "visible": true,
+                "position": [
+                  0.27282400000000007,
+                  0.7000000000000001,
+                  0.19
+                ],
+                "regripping": false
+              },
+              {
+                "gripping": true,
+                "error": -5.551115123125783e-17,
+                "visible": true,
+                "position": [
+                  0.632824,
+                  0.7000000000000001,
+                  0.19
+                ],
+                "regripping": false
+              }
+            ],
+            "feet": [
+              [
+                0.37282400000000004,
+                0.34,
+                0.526
+              ],
+              [
+                0.5328240000000001,
+                0.34,
+                0.535
+              ]
+            ],
+            "headVisible": false,
+            "belts": 2,
+            "torso": [
+              0.45282400000000006,
+              0.8899999999999999,
+              -0.51
+            ],
+            "shift": 0,
+            "bob": 0
+          },
+          "screenPowered": true,
+          "settings": {
+            "seatHeight": 0,
+            "seatDistance": 0,
+            "fov": 76,
+            "motion": 0.35,
+            "wheel": true,
+            "hands": true,
+            "mirrors": true,
+            "hud": true
+          }
+        },
+        "camera": [
+          0.45282400000000006,
+          1.17,
+          -0.36
+        ],
+        "mirrors": {
+          "frames": 28,
+          "lastMs": 0.09999999962747097,
+          "lastCalls": 20,
+          "mirrors": [
+            {
+              "id": "inside",
+              "frames": 4,
+              "width": 256,
+              "height": 128,
+              "position": [
+                0,
+                1.2999999999999998,
+                0.08499999999999999
+              ]
+            },
+            {
+              "id": "mirrorLeft",
+              "frames": 4,
+              "width": 256,
+              "height": 128,
+              "position": [
+                -1.028698,
+                0.925,
+                0.42000000000000004
+              ]
+            },
+            {
+              "id": "mirrorRight",
+              "frames": 4,
+              "width": 256,
+              "height": 128,
+              "position": [
+                1.028698,
+                0.925,
+                0.42000000000000004
+              ]
+            }
+          ]
+        },
+        "calls": 149
+      },
+      "hidden": {
+        "cockpit": {
+          "kind": "muscle",
+          "style": "classic",
+          "eye": [
+            0.45282400000000006,
+            1.17,
+            -0.36
+          ],
+          "tuning": {
+            "selection": {
+              "steeringWheel": "stock",
+              "frontSeats": "stock",
+              "upholstery": "stock",
+              "interiorColour": "stock",
+              "stitching": "stock",
+              "dashTrim": "stock",
+              "shiftKnob": "stock",
+              "handbrakeLever": "stock",
+              "rollCage": "stock",
+              "harness": "stock",
+              "instruments": "stock",
+              "auxGauges": "stock",
+              "ambientLighting": "stock"
+            },
+            "wheelRadius": 0.18,
+            "shiftLength": 0.075,
+            "handbrakeLength": 0.1,
+            "restraint": 1,
+            "ambientLevel": 0,
+            "ambientIntensity": 0,
+            "auxiliary": null
+          },
+          "readings": {
+            "manifoldBar": -0.9328112568765415,
+            "speed": 90,
+            "rpm": 4200,
+            "redline": 6500,
+            "gear": "3",
+            "fuel": 1,
+            "coolant": 88,
+            "oil": 94,
+            "oilPressure": 2.323730117526278,
+            "voltage": 14.2,
+            "powered": true,
+            "warnings": {
+              "oil": false,
+              "heat": false,
+              "battery": false,
+              "brake": false,
+              "fuel": false,
+              "engine": false
+            },
+            "lights": false
+          },
+          "wheelAngle": 0,
+          "wheelVisible": false,
+          "pedals": [
+            {
+              "position": [
+                0.5328240000000001,
+                0.34,
+                0.55
+              ],
+              "angle": -0.35
+            },
+            {
+              "position": [
+                0.45282400000000006,
+                0.34,
+                0.55
+              ],
+              "angle": 0
+            },
+            {
+              "position": [
+                0.37282400000000004,
+                0.34,
+                0.55
+              ],
+              "angle": -0.13999999999999999
+            }
+          ],
+          "driver": {
+            "hands": [
+              {
+                "gripping": true,
+                "error": 5.551115123125783e-17,
+                "visible": false,
+                "position": [
+                  0.27282400000000007,
+                  0.7000000000000001,
+                  0.19
+                ],
+                "regripping": false
+              },
+              {
+                "gripping": true,
+                "error": -5.551115123125783e-17,
+                "visible": false,
+                "position": [
+                  0.632824,
+                  0.7000000000000001,
+                  0.19
+                ],
+                "regripping": false
+              }
+            ],
+            "feet": [
+              [
+                0.37282400000000004,
+                0.34,
+                0.526
+              ],
+              [
+                0.5328240000000001,
+                0.34,
+                0.535
+              ]
+            ],
+            "headVisible": false,
+            "belts": 2,
+            "torso": [
+              0.45282400000000006,
+              0.8899999999999999,
+              -0.51
+            ],
+            "shift": 0,
+            "bob": 0
+          },
+          "screenPowered": true,
+          "settings": {
+            "seatHeight": 0,
+            "seatDistance": 0,
+            "fov": 76,
+            "motion": 0.35,
+            "wheel": false,
+            "hands": false,
+            "mirrors": true,
+            "hud": true
+          }
+        },
+        "camera": [
+          0.45282400000000006,
+          1.17,
+          -0.36
+        ],
+        "mirrors": {
+          "frames": 34,
+          "lastMs": 0.10000000149011612,
+          "lastCalls": 20,
+          "mirrors": [
+            {
+              "id": "inside",
+              "frames": 6,
+              "width": 256,
+              "height": 128,
+              "position": [
+                0,
+                1.2999999999999998,
+                0.08499999999999999
+              ]
+            },
+            {
+              "id": "mirrorLeft",
+              "frames": 6,
+              "width": 256,
+              "height": 128,
+              "position": [
+                -1.028698,
+                0.925,
+                0.42000000000000004
+              ]
+            },
+            {
+              "id": "mirrorRight",
+              "frames": 6,
+              "width": 256,
+              "height": 128,
+              "position": [
+                1.028698,
+                0.925,
+                0.42000000000000004
+              ]
+            }
+          ]
+        },
+        "calls": 139
+      }
+    },
+    {
+      "id": "kitsune",
+      "day": {
+        "cockpit": {
+          "kind": "wedge",
+          "style": "sport",
+          "eye": [
+            -0.40204,
+            0.8899999999999999,
+            -0.27
+          ],
+          "tuning": {
+            "selection": {
+              "steeringWheel": "stock",
+              "frontSeats": "stock",
+              "upholstery": "stock",
+              "interiorColour": "stock",
+              "stitching": "stock",
+              "dashTrim": "stock",
+              "shiftKnob": "stock",
+              "handbrakeLever": "stock",
+              "rollCage": "stock",
+              "harness": "stock",
+              "instruments": "stock",
+              "auxGauges": "stock",
+              "ambientLighting": "stock"
+            },
+            "wheelRadius": 0.16,
+            "shiftLength": 0.075,
+            "handbrakeLength": 0.1,
+            "restraint": 1,
+            "ambientLevel": 0,
+            "ambientIntensity": 0,
+            "auxiliary": null
+          },
+          "readings": {
+            "manifoldBar": -0.9181505820349035,
+            "speed": 90,
+            "rpm": 4200,
+            "redline": 9000,
+            "gear": "3",
+            "fuel": 1,
+            "coolant": 88,
+            "oil": 94,
+            "oilPressure": 2.320845957940257,
+            "voltage": 14.2,
+            "powered": true,
+            "warnings": {
+              "oil": false,
+              "heat": false,
+              "battery": false,
+              "brake": false,
+              "fuel": false,
+              "engine": false
+            },
+            "lights": false
+          },
+          "wheelAngle": 0,
+          "wheelVisible": true,
+          "pedals": [
+            {
+              "position": [
+                -0.32204,
+                0.34,
+                0.6600000000000001
+              ],
+              "angle": -0.35
+            },
+            {
+              "position": [
+                -0.40204,
+                0.34,
+                0.6600000000000001
+              ],
+              "angle": 0
+            },
+            {
+              "position": [
+                -0.48204,
+                0.34,
+                0.6600000000000001
+              ],
+              "angle": -0.13999999999999999
+            }
+          ],
+          "driver": {
+            "hands": [
+              {
+                "gripping": true,
+                "error": -8.326672684688674e-17,
+                "visible": true,
+                "position": [
+                  -0.56204,
+                  0.56,
+                  0.3000000000000001
+                ],
+                "regripping": false
+              },
+              {
+                "gripping": true,
+                "error": 5.551115123125783e-17,
+                "visible": true,
+                "position": [
+                  -0.24204,
+                  0.56,
+                  0.3000000000000001
+                ],
+                "regripping": false
+              }
+            ],
+            "feet": [
+              [
+                -0.48204,
+                0.34,
+                0.6360000000000001
+              ],
+              [
+                -0.32204,
+                0.34,
+                0.6450000000000001
+              ]
+            ],
+            "headVisible": false,
+            "belts": 2,
+            "torso": [
+              -0.40204,
+              0.6099999999999999,
+              -0.42000000000000004
+            ],
+            "shift": 0,
+            "bob": 0
+          },
+          "screenPowered": true,
+          "settings": {
+            "seatHeight": 0,
+            "seatDistance": 0,
+            "fov": 76,
+            "motion": 0.35,
+            "wheel": true,
+            "hands": true,
+            "mirrors": true,
+            "hud": true
+          }
+        },
+        "camera": [
+          -0.40204,
+          0.8899999999999999,
+          -0.27
+        ],
+        "mirrors": {
+          "frames": 40,
+          "lastMs": 0,
+          "lastCalls": 20,
+          "mirrors": [
+            {
+              "id": "inside",
+              "frames": 2,
+              "width": 256,
+              "height": 128,
+              "position": [
+                0,
+                1.02,
+                0.145
+              ]
+            },
+            {
+              "id": "mirrorLeft",
+              "frames": 2,
+              "width": 256,
+              "height": 128,
+              "position": [
+                -0.91333,
+                0.785,
+                0.53
+              ]
+            },
+            {
+              "id": "mirrorRight",
+              "frames": 2,
+              "width": 256,
+              "height": 128,
+              "position": [
+                0.91333,
+                0.785,
+                0.53
+              ]
+            }
+          ]
+        },
+        "calls": 164
+      },
+      "night": {
+        "cockpit": {
+          "kind": "wedge",
+          "style": "sport",
+          "eye": [
+            -0.40204,
+            0.8899999999999999,
+            -0.27
+          ],
+          "tuning": {
+            "selection": {
+              "steeringWheel": "stock",
+              "frontSeats": "stock",
+              "upholstery": "stock",
+              "interiorColour": "stock",
+              "stitching": "stock",
+              "dashTrim": "stock",
+              "shiftKnob": "stock",
+              "handbrakeLever": "stock",
+              "rollCage": "stock",
+              "harness": "stock",
+              "instruments": "stock",
+              "auxGauges": "stock",
+              "ambientLighting": "stock"
+            },
+            "wheelRadius": 0.16,
+            "shiftLength": 0.075,
+            "handbrakeLength": 0.1,
+            "restraint": 1,
+            "ambientLevel": 0,
+            "ambientIntensity": 0.45,
+            "auxiliary": null
+          },
+          "readings": {
+            "manifoldBar": -0.9181505820349035,
+            "speed": 90,
+            "rpm": 4200,
+            "redline": 9000,
+            "gear": "3",
+            "fuel": 1,
+            "coolant": 88,
+            "oil": 94,
+            "oilPressure": 2.320845957940257,
+            "voltage": 14.2,
+            "powered": true,
+            "warnings": {
+              "oil": false,
+              "heat": false,
+              "battery": false,
+              "brake": false,
+              "fuel": false,
+              "engine": false
+            },
+            "lights": true
+          },
+          "wheelAngle": 0,
+          "wheelVisible": true,
+          "pedals": [
+            {
+              "position": [
+                -0.32204,
+                0.34,
+                0.6600000000000001
+              ],
+              "angle": -0.35
+            },
+            {
+              "position": [
+                -0.40204,
+                0.34,
+                0.6600000000000001
+              ],
+              "angle": 0
+            },
+            {
+              "position": [
+                -0.48204,
+                0.34,
+                0.6600000000000001
+              ],
+              "angle": -0.13999999999999999
+            }
+          ],
+          "driver": {
+            "hands": [
+              {
+                "gripping": true,
+                "error": -8.326672684688674e-17,
+                "visible": true,
+                "position": [
+                  -0.56204,
+                  0.56,
+                  0.3000000000000001
+                ],
+                "regripping": false
+              },
+              {
+                "gripping": true,
+                "error": 5.551115123125783e-17,
+                "visible": true,
+                "position": [
+                  -0.24204,
+                  0.56,
+                  0.3000000000000001
+                ],
+                "regripping": false
+              }
+            ],
+            "feet": [
+              [
+                -0.48204,
+                0.34,
+                0.6360000000000001
+              ],
+              [
+                -0.32204,
+                0.34,
+                0.6450000000000001
+              ]
+            ],
+            "headVisible": false,
+            "belts": 2,
+            "torso": [
+              -0.40204,
+              0.6099999999999999,
+              -0.42000000000000004
+            ],
+            "shift": 0,
+            "bob": 0
+          },
+          "screenPowered": true,
+          "settings": {
+            "seatHeight": 0,
+            "seatDistance": 0,
+            "fov": 76,
+            "motion": 0.35,
+            "wheel": true,
+            "hands": true,
+            "mirrors": true,
+            "hud": true
+          }
+        },
+        "camera": [
+          -0.40204,
+          0.8899999999999999,
+          -0.27
+        ],
+        "mirrors": {
+          "frames": 46,
+          "lastMs": 0.09999999962747097,
+          "lastCalls": 20,
+          "mirrors": [
+            {
+              "id": "inside",
+              "frames": 4,
+              "width": 256,
+              "height": 128,
+              "position": [
+                0,
+                1.02,
+                0.145
+              ]
+            },
+            {
+              "id": "mirrorLeft",
+              "frames": 4,
+              "width": 256,
+              "height": 128,
+              "position": [
+                -0.91333,
+                0.785,
+                0.53
+              ]
+            },
+            {
+              "id": "mirrorRight",
+              "frames": 4,
+              "width": 256,
+              "height": 128,
+              "position": [
+                0.91333,
+                0.785,
+                0.53
+              ]
+            }
+          ]
+        },
+        "calls": 163
+      },
+      "hidden": {
+        "cockpit": {
+          "kind": "wedge",
+          "style": "sport",
+          "eye": [
+            -0.40204,
+            0.8899999999999999,
+            -0.27
+          ],
+          "tuning": {
+            "selection": {
+              "steeringWheel": "stock",
+              "frontSeats": "stock",
+              "upholstery": "stock",
+              "interiorColour": "stock",
+              "stitching": "stock",
+              "dashTrim": "stock",
+              "shiftKnob": "stock",
+              "handbrakeLever": "stock",
+              "rollCage": "stock",
+              "harness": "stock",
+              "instruments": "stock",
+              "auxGauges": "stock",
+              "ambientLighting": "stock"
+            },
+            "wheelRadius": 0.16,
+            "shiftLength": 0.075,
+            "handbrakeLength": 0.1,
+            "restraint": 1,
+            "ambientLevel": 0,
+            "ambientIntensity": 0,
+            "auxiliary": null
+          },
+          "readings": {
+            "manifoldBar": -0.9181505820349035,
+            "speed": 90,
+            "rpm": 4200,
+            "redline": 9000,
+            "gear": "3",
+            "fuel": 1,
+            "coolant": 88,
+            "oil": 94,
+            "oilPressure": 2.320845957940257,
+            "voltage": 14.2,
+            "powered": true,
+            "warnings": {
+              "oil": false,
+              "heat": false,
+              "battery": false,
+              "brake": false,
+              "fuel": false,
+              "engine": false
+            },
+            "lights": false
+          },
+          "wheelAngle": 0,
+          "wheelVisible": false,
+          "pedals": [
+            {
+              "position": [
+                -0.32204,
+                0.34,
+                0.6600000000000001
+              ],
+              "angle": -0.35
+            },
+            {
+              "position": [
+                -0.40204,
+                0.34,
+                0.6600000000000001
+              ],
+              "angle": 0
+            },
+            {
+              "position": [
+                -0.48204,
+                0.34,
+                0.6600000000000001
+              ],
+              "angle": -0.13999999999999999
+            }
+          ],
+          "driver": {
+            "hands": [
+              {
+                "gripping": true,
+                "error": -8.326672684688674e-17,
+                "visible": false,
+                "position": [
+                  -0.56204,
+                  0.56,
+                  0.3000000000000001
+                ],
+                "regripping": false
+              },
+              {
+                "gripping": true,
+                "error": 5.551115123125783e-17,
+                "visible": false,
+                "position": [
+                  -0.24204,
+                  0.56,
+                  0.3000000000000001
+                ],
+                "regripping": false
+              }
+            ],
+            "feet": [
+              [
+                -0.48204,
+                0.34,
+                0.6360000000000001
+              ],
+              [
+                -0.32204,
+                0.34,
+                0.6450000000000001
+              ]
+            ],
+            "headVisible": false,
+            "belts": 2,
+            "torso": [
+              -0.40204,
+              0.6099999999999999,
+              -0.42000000000000004
+            ],
+            "shift": 0,
+            "bob": 0
+          },
+          "screenPowered": true,
+          "settings": {
+            "seatHeight": 0,
+            "seatDistance": 0,
+            "fov": 76,
+            "motion": 0.35,
+            "wheel": false,
+            "hands": false,
+            "mirrors": true,
+            "hud": true
+          }
+        },
+        "camera": [
+          -0.40204,
+          0.8899999999999999,
+          -0.27
+        ],
+        "mirrors": {
+          "frames": 52,
+          "lastMs": 0.19999999925494194,
+          "lastCalls": 20,
+          "mirrors": [
+            {
+              "id": "inside",
+              "frames": 6,
+              "width": 256,
+              "height": 128,
+              "position": [
+                0,
+                1.02,
+                0.145
+              ]
+            },
+            {
+              "id": "mirrorLeft",
+              "frames": 6,
+              "width": 256,
+              "height": 128,
+              "position": [
+                -0.91333,
+                0.785,
+                0.53
+              ]
+            },
+            {
+              "id": "mirrorRight",
+              "frames": 6,
+              "width": 256,
+              "height": 128,
+              "position": [
+                0.91333,
+                0.785,
+                0.53
+              ]
+            }
+          ]
+        },
+        "calls": 152
+      }
+    },
+    {
+      "id": "vector",
+      "day": {
+        "cockpit": {
+          "kind": "tourer",
+          "style": "digital",
+          "eye": [
+            0.4232,
+            1.21,
+            -0.35
+          ],
+          "tuning": {
+            "selection": {
+              "steeringWheel": "stock",
+              "frontSeats": "stock",
+              "upholstery": "stock",
+              "interiorColour": "stock",
+              "stitching": "stock",
+              "dashTrim": "stock",
+              "shiftKnob": "stock",
+              "handbrakeLever": "stock",
+              "rollCage": "stock",
+              "harness": "stock",
+              "instruments": "stock",
+              "auxGauges": "stock",
+              "ambientLighting": "stock"
+            },
+            "wheelRadius": 0.16,
+            "shiftLength": 0.075,
+            "handbrakeLength": 0.1,
+            "restraint": 1,
+            "ambientLevel": 0,
+            "ambientIntensity": 0,
+            "auxiliary": null
+          },
+          "readings": {
+            "manifoldBar": -0.9266941864099411,
+            "speed": 90,
+            "rpm": 4200,
+            "redline": 7600,
+            "gear": "3",
+            "fuel": 1,
+            "coolant": 88,
+            "oil": 94,
+            "oilPressure": 2.492405459762019,
+            "voltage": 14.2,
+            "powered": true,
+            "warnings": {
+              "oil": false,
+              "heat": false,
+              "battery": false,
+              "brake": false,
+              "fuel": false,
+              "engine": false
+            },
+            "lights": false
+          },
+          "wheelAngle": 0,
+          "wheelVisible": true,
+          "pedals": [
+            {
+              "position": [
+                0.5032,
+                0.34,
+                0.6200000000000001
+              ],
+              "angle": -0.35
+            },
+            {
+              "position": [
+                0.4232,
+                0.34,
+                0.6200000000000001
+              ],
+              "angle": 0
+            },
+            {
+              "position": [
+                0.3432,
+                0.34,
+                0.6200000000000001
+              ],
+              "angle": -0.13999999999999999
+            }
+          ],
+          "driver": {
+            "hands": [
+              {
+                "gripping": true,
+                "error": 8.326672684688674e-17,
+                "visible": true,
+                "position": [
+                  0.2632,
+                  0.68,
+                  0.26000000000000006
+                ],
+                "regripping": false
+              },
+              {
+                "gripping": true,
+                "error": -2.7755575615628914e-17,
+                "visible": true,
+                "position": [
+                  0.5832,
+                  0.68,
+                  0.26000000000000006
+                ],
+                "regripping": false
+              }
+            ],
+            "feet": [
+              [
+                0.3432,
+                0.34,
+                0.5960000000000001
+              ],
+              [
+                0.5032,
+                0.34,
+                0.6050000000000001
+              ]
+            ],
+            "headVisible": false,
+            "belts": 2,
+            "torso": [
+              0.4232,
+              0.9299999999999999,
+              -0.5
+            ],
+            "shift": 0,
+            "bob": 0
+          },
+          "screenPowered": true,
+          "settings": {
+            "seatHeight": 0,
+            "seatDistance": 0,
+            "fov": 76,
+            "motion": 0.35,
+            "wheel": true,
+            "hands": true,
+            "mirrors": true,
+            "hud": true
+          }
+        },
+        "camera": [
+          0.4232,
+          1.21,
+          -0.35
+        ],
+        "mirrors": {
+          "frames": 58,
+          "lastMs": 0.09999999962747097,
+          "lastCalls": 20,
+          "mirrors": [
+            {
+              "id": "inside",
+              "frames": 2,
+              "width": 256,
+              "height": 128,
+              "position": [
+                0,
+                1.3399999999999999,
+                0.29500000000000004
+              ]
+            },
+            {
+              "id": "mirrorLeft",
+              "frames": 2,
+              "width": 256,
+              "height": 128,
+              "position": [
+                -0.9613999999999999,
+                0.905,
+                0.49
+              ]
+            },
+            {
+              "id": "mirrorRight",
+              "frames": 2,
+              "width": 256,
+              "height": 128,
+              "position": [
+                0.9613999999999999,
+                0.905,
+                0.49
+              ]
+            }
+          ]
+        },
+        "calls": 146
+      },
+      "night": {
+        "cockpit": {
+          "kind": "tourer",
+          "style": "digital",
+          "eye": [
+            0.4232,
+            1.21,
+            -0.35
+          ],
+          "tuning": {
+            "selection": {
+              "steeringWheel": "stock",
+              "frontSeats": "stock",
+              "upholstery": "stock",
+              "interiorColour": "stock",
+              "stitching": "stock",
+              "dashTrim": "stock",
+              "shiftKnob": "stock",
+              "handbrakeLever": "stock",
+              "rollCage": "stock",
+              "harness": "stock",
+              "instruments": "stock",
+              "auxGauges": "stock",
+              "ambientLighting": "stock"
+            },
+            "wheelRadius": 0.16,
+            "shiftLength": 0.075,
+            "handbrakeLength": 0.1,
+            "restraint": 1,
+            "ambientLevel": 0,
+            "ambientIntensity": 0.45,
+            "auxiliary": null
+          },
+          "readings": {
+            "manifoldBar": -0.9266941864099411,
+            "speed": 90,
+            "rpm": 4200,
+            "redline": 7600,
+            "gear": "3",
+            "fuel": 1,
+            "coolant": 88,
+            "oil": 94,
+            "oilPressure": 2.492405459762019,
+            "voltage": 14.2,
+            "powered": true,
+            "warnings": {
+              "oil": false,
+              "heat": false,
+              "battery": false,
+              "brake": false,
+              "fuel": false,
+              "engine": false
+            },
+            "lights": true
+          },
+          "wheelAngle": 0,
+          "wheelVisible": true,
+          "pedals": [
+            {
+              "position": [
+                0.5032,
+                0.34,
+                0.6200000000000001
+              ],
+              "angle": -0.35
+            },
+            {
+              "position": [
+                0.4232,
+                0.34,
+                0.6200000000000001
+              ],
+              "angle": 0
+            },
+            {
+              "position": [
+                0.3432,
+                0.34,
+                0.6200000000000001
+              ],
+              "angle": -0.13999999999999999
+            }
+          ],
+          "driver": {
+            "hands": [
+              {
+                "gripping": true,
+                "error": 8.326672684688674e-17,
+                "visible": true,
+                "position": [
+                  0.2632,
+                  0.68,
+                  0.26000000000000006
+                ],
+                "regripping": false
+              },
+              {
+                "gripping": true,
+                "error": -2.7755575615628914e-17,
+                "visible": true,
+                "position": [
+                  0.5832,
+                  0.68,
+                  0.26000000000000006
+                ],
+                "regripping": false
+              }
+            ],
+            "feet": [
+              [
+                0.3432,
+                0.34,
+                0.5960000000000001
+              ],
+              [
+                0.5032,
+                0.34,
+                0.6050000000000001
+              ]
+            ],
+            "headVisible": false,
+            "belts": 2,
+            "torso": [
+              0.4232,
+              0.9299999999999999,
+              -0.5
+            ],
+            "shift": 0,
+            "bob": 0
+          },
+          "screenPowered": true,
+          "settings": {
+            "seatHeight": 0,
+            "seatDistance": 0,
+            "fov": 76,
+            "motion": 0.35,
+            "wheel": true,
+            "hands": true,
+            "mirrors": true,
+            "hud": true
+          }
+        },
+        "camera": [
+          0.4232,
+          1.21,
+          -0.35
+        ],
+        "mirrors": {
+          "frames": 64,
+          "lastMs": 0.09999999962747097,
+          "lastCalls": 20,
+          "mirrors": [
+            {
+              "id": "inside",
+              "frames": 4,
+              "width": 256,
+              "height": 128,
+              "position": [
+                0,
+                1.3399999999999999,
+                0.29500000000000004
+              ]
+            },
+            {
+              "id": "mirrorLeft",
+              "frames": 4,
+              "width": 256,
+              "height": 128,
+              "position": [
+                -0.9613999999999999,
+                0.905,
+                0.49
+              ]
+            },
+            {
+              "id": "mirrorRight",
+              "frames": 4,
+              "width": 256,
+              "height": 128,
+              "position": [
+                0.9613999999999999,
+                0.905,
+                0.49
+              ]
+            }
+          ]
+        },
+        "calls": 145
+      },
+      "hidden": {
+        "cockpit": {
+          "kind": "tourer",
+          "style": "digital",
+          "eye": [
+            0.4232,
+            1.21,
+            -0.35
+          ],
+          "tuning": {
+            "selection": {
+              "steeringWheel": "stock",
+              "frontSeats": "stock",
+              "upholstery": "stock",
+              "interiorColour": "stock",
+              "stitching": "stock",
+              "dashTrim": "stock",
+              "shiftKnob": "stock",
+              "handbrakeLever": "stock",
+              "rollCage": "stock",
+              "harness": "stock",
+              "instruments": "stock",
+              "auxGauges": "stock",
+              "ambientLighting": "stock"
+            },
+            "wheelRadius": 0.16,
+            "shiftLength": 0.075,
+            "handbrakeLength": 0.1,
+            "restraint": 1,
+            "ambientLevel": 0,
+            "ambientIntensity": 0,
+            "auxiliary": null
+          },
+          "readings": {
+            "manifoldBar": -0.9266941864099411,
+            "speed": 90,
+            "rpm": 4200,
+            "redline": 7600,
+            "gear": "3",
+            "fuel": 1,
+            "coolant": 88,
+            "oil": 94,
+            "oilPressure": 2.492405459762019,
+            "voltage": 14.2,
+            "powered": true,
+            "warnings": {
+              "oil": false,
+              "heat": false,
+              "battery": false,
+              "brake": false,
+              "fuel": false,
+              "engine": false
+            },
+            "lights": false
+          },
+          "wheelAngle": 0,
+          "wheelVisible": false,
+          "pedals": [
+            {
+              "position": [
+                0.5032,
+                0.34,
+                0.6200000000000001
+              ],
+              "angle": -0.35
+            },
+            {
+              "position": [
+                0.4232,
+                0.34,
+                0.6200000000000001
+              ],
+              "angle": 0
+            },
+            {
+              "position": [
+                0.3432,
+                0.34,
+                0.6200000000000001
+              ],
+              "angle": -0.13999999999999999
+            }
+          ],
+          "driver": {
+            "hands": [
+              {
+                "gripping": true,
+                "error": 8.326672684688674e-17,
+                "visible": false,
+                "position": [
+                  0.2632,
+                  0.68,
+                  0.26000000000000006
+                ],
+                "regripping": false
+              },
+              {
+                "gripping": true,
+                "error": -2.7755575615628914e-17,
+                "visible": false,
+                "position": [
+                  0.5832,
+                  0.68,
+                  0.26000000000000006
+                ],
+                "regripping": false
+              }
+            ],
+            "feet": [
+              [
+                0.3432,
+                0.34,
+                0.5960000000000001
+              ],
+              [
+                0.5032,
+                0.34,
+                0.6050000000000001
+              ]
+            ],
+            "headVisible": false,
+            "belts": 2,
+            "torso": [
+              0.4232,
+              0.9299999999999999,
+              -0.5
+            ],
+            "shift": 0,
+            "bob": 0
+          },
+          "screenPowered": true,
+          "settings": {
+            "seatHeight": 0,
+            "seatDistance": 0,
+            "fov": 76,
+            "motion": 0.35,
+            "wheel": false,
+            "hands": false,
+            "mirrors": true,
+            "hud": true
+          }
+        },
+        "camera": [
+          0.4232,
+          1.21,
+          -0.35
+        ],
+        "mirrors": {
+          "frames": 70,
+          "lastMs": 0.09999999962747097,
+          "lastCalls": 20,
+          "mirrors": [
+            {
+              "id": "inside",
+              "frames": 6,
+              "width": 256,
+              "height": 128,
+              "position": [
+                0,
+                1.3399999999999999,
+                0.29500000000000004
+              ]
+            },
+            {
+              "id": "mirrorLeft",
+              "frames": 6,
+              "width": 256,
+              "height": 128,
+              "position": [
+                -0.9613999999999999,
+                0.905,
+                0.49
+              ]
+            },
+            {
+              "id": "mirrorRight",
+              "frames": 6,
+              "width": 256,
+              "height": 128,
+              "position": [
+                0.9613999999999999,
+                0.905,
+                0.49
+              ]
+            }
+          ]
+        },
+        "calls": 136
+      }
+    }
+  ],
+  "reflected": {
+    "before": [
+      1800832650,
+      1123411929,
+      3063769281
+    ],
+    "after": [
+      4292464342,
+      367851240,
+      2270097985
+    ]
+  },
+  "measurements": [
+    {
+      "mirrors": false,
+      "samples": 40,
+      "meanMs": 1.4774999999906868,
+      "p95Ms": 3,
+      "mirrorPasses": 0,
+      "geometries": 167,
+      "textures": 6
+    },
+    {
+      "mirrors": true,
+      "samples": 40,
+      "meanMs": 2.137500000046566,
+      "p95Ms": 7.799999998882413,
+      "mirrorPasses": 15,
+      "geometries": 167,
+      "textures": 6
+    }
+  ],
+  "errors": [],
+  "sourceSHA256": {
+    "dist/car.js": "5dfe5651b3d4c7ae0ba5b7b8fd39e0dc5f5401357994dc091e4da46e06a307d8",
+    "dist/interior.js": "80f2428b578fff39efed12131915f8088dd3d9241daf52f1ed1d33fe029439b0",
+    "dist/driver.js": "637b93fbcd926b39f44ecdfd7ae28bfa999f50428fbaed8b65ba09d9586f3bc1",
+    "dist/cockpit-state.js": "1fa1643a19c5d86a36e2ba3a0e06a84352faecd97c57a366202211b7d9d62aac",
+    "dist/cockpit-mirrors.js": "437341887954348cd389bb567e22856017a359e67048812dd53fdf1bcfad28e9"
+  },
+  "limits": [
+    "Source-module fixture, controlled vehicle readings and a fixture route. Real game route, UI, audio and saving require separate standalone acceptance.",
+    "Local Chromium software rendering. Render measurements include gl.finish() in a small authored street fixture; they are not whole-world hardware FPS guarantees."
+  ]
+}

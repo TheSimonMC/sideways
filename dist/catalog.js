@@ -1,3 +1,4 @@
+import {INTERIOR_PARTS,INTERIOR_LABELS,INTERIOR_DEFAULTS,sanitizeInteriorSelection,resolveInteriorTuning} from './interior-tuning.js';
 import {EXTERIOR_TUNING_PARTS,EXTERIOR_TUNING_LABELS,EXTERIOR_TUNING_DEFAULTS,sanitizeExteriorSelection,resolveExteriorTuning} from './exterior-tuning.js';
 import {AERO_PARTS,AERO_LABELS,AERO_DEFAULTS,resolveAero} from './aerodynamics.js';
 import {HOP_PARTS,HOP_LABELS,HOP_DEFAULTS} from './wheel-hop.js';
@@ -26,7 +27,7 @@ export const ENGINES = [
 ];
 
 export const PARTS = {
-  ...COSMETIC_PARTS,...EXTERIOR_TUNING_PARTS,
+  ...COSMETIC_PARTS,...EXTERIOR_TUNING_PARTS,...INTERIOR_PARTS,
   ...CHASSIS_PARTS,
   ...DRIVE_PARTS,...AERO_PARTS,...HOP_PARTS,
   ecu:[{id:'stock',name:'STOCK',description:'Stock redline and boost pressure.'},{id:'sport',name:'SPORT ECU',description:'Rev limit +300 RPM. Turbo target +0.12 bar.'},{id:'track',name:'TRACK ECU',description:'Rev limit +500 RPM. Turbo target +0.20 bar.'}],
@@ -46,8 +47,8 @@ export const PARTS = {
   tyreWidth:[{id:'stock',name:'STOCK WIDTH',description:'Factory tyre width, wheel track and rotational inertia.'},{id:'wide',name:'WIDE WHEELS',description:'300 mm tyres, wider track and more grip. More rolling resistance.'},{id:'race',name:'EXTRA-WIDE WHEELS',description:'340 mm tyres and wider track. More grip, wheel inertia and drag.'}],
   clutch:[{id:'street',name:'STREET CLUTCH',description:'Stock clamp force and progressive engagement.'},{id:'sport',name:'SPORT CLUTCH',description:'35% more clutch torque capacity.'},{id:'race',name:'RACE CLUTCH',description:'75% more clutch torque capacity.'}]
 };
-export const PART_LABELS = {...COSMETIC_LABELS,...EXTERIOR_TUNING_LABELS,...CHASSIS_LABELS,...DRIVE_LABELS,...AERO_LABELS,...HOP_LABELS,ecu:'ECU',turbo:'TURBO',exhaust:'EXHAUST',tyres:'TYRES',suspension:'SUSPENSION',brakes:'BRAKES',differential:'DIFFERENTIAL',clutch:'CLUTCH',intake:'INTAKE',radiator:'RADIATOR',oilCooler:'OIL COOLING',internals:'ENGINE INTERNALS',transmission:'GEARSET',finalDrive:'FINAL DRIVE',chassis:'CHASSIS',tyreWidth:'WHEEL WIDTH'};
-export const DEFAULT_SELECTION = Object.freeze({...COSMETIC_DEFAULTS,...EXTERIOR_TUNING_DEFAULTS,...CHASSIS_DEFAULTS,...DRIVE_DEFAULTS,...AERO_DEFAULTS,...HOP_DEFAULTS,carId:'hachi',engineId:'i6t',ecu:'stock',turbo:'stock',exhaust:'street',tyres:'street',suspension:'street',brakes:'street',differential:'lsd',clutch:'street',intake:'stock',radiator:'stock',oilCooler:'stock',internals:'stock',transmission:'stock',finalDrive:'stock',chassis:'stock',tyreWidth:'stock'});
+export const PART_LABELS = {...COSMETIC_LABELS,...EXTERIOR_TUNING_LABELS,...INTERIOR_LABELS,...CHASSIS_LABELS,...DRIVE_LABELS,...AERO_LABELS,...HOP_LABELS,ecu:'ECU',turbo:'TURBO',exhaust:'EXHAUST',tyres:'TYRES',suspension:'SUSPENSION',brakes:'BRAKES',differential:'DIFFERENTIAL',clutch:'CLUTCH',intake:'INTAKE',radiator:'RADIATOR',oilCooler:'OIL COOLING',internals:'ENGINE INTERNALS',transmission:'GEARSET',finalDrive:'FINAL DRIVE',chassis:'CHASSIS',tyreWidth:'WHEEL WIDTH'};
+export const DEFAULT_SELECTION = Object.freeze({...COSMETIC_DEFAULTS,...EXTERIOR_TUNING_DEFAULTS,...INTERIOR_DEFAULTS,...CHASSIS_DEFAULTS,...DRIVE_DEFAULTS,...AERO_DEFAULTS,...HOP_DEFAULTS,carId:'hachi',engineId:'i6t',ecu:'stock',turbo:'stock',exhaust:'street',tyres:'street',suspension:'street',brakes:'street',differential:'lsd',clutch:'street',intake:'stock',radiator:'stock',oilCooler:'stock',internals:'stock',transmission:'stock',finalDrive:'stock',chassis:'stock',tyreWidth:'stock'});
 const copy = value => JSON.parse(JSON.stringify(value));
 const find = (items,id,fallback) => items.find(item=>item.id===id) || items.find(item=>item.id===fallback) || items[0];
 
@@ -57,7 +58,7 @@ export function resolveBuild(request = {}) {
   const selection={...DEFAULT_SELECTION,carId:vehicle.id,engineId:engine.id};
   for(const key of Object.keys(PARTS))selection[key]=find(PARTS[key],request[key],DEFAULT_SELECTION[key]).id;
   if(!engine.turbo)selection.turbo='stock';
-  sanitizeDriveSelection(selection);sanitizeExteriorSelection(selection);if(selection.spoiler!=='gt')selection.wingAngle='stock';
+  sanitizeDriveSelection(selection);sanitizeExteriorSelection(selection);sanitizeInteriorSelection(selection);if(selection.spoiler!=='gt')selection.wingAngle='stock';
   const ecu=selection.ecu==='track'?2:selection.ecu==='sport'?1:0;
   const turbo=selection.turbo==='race'?2:selection.turbo==='street'?1:0;
   const exhaust=selection.exhaust==='race'?2:selection.exhaust==='sport'?1:0;
@@ -79,8 +80,8 @@ export function resolveBuild(request = {}) {
   }
   if(intake)Object.assign(engineOptions.overrides,{throttleCd:[.72,.77,.82][intake],intakeCd:[.70,.75,.79][intake],intakeLength:(engine.rotors?.30:.40)*[1,.86,.70][intake]});
   if(internals)engineOptions.overrides.inertia=(engineOptions.overrides.inertia??.27)*[1,.95,.88][internals];
-  const chassis=resolveChassis(vehicle,selection),drivetrain=resolveDrivetrain(selection),aero=resolveAero(vehicle,selection),exterior=resolveExteriorTuning(selection);
-  const mass=exterior.mass+aero.mass+(selection.tractionLinks==='braced'?3:0)+drivetrain.driveMass+chassis.rackMass+chassis.barMass+vehicle.mass+engine.mass-vehicle.engineMass+[0,4,9][radiator]+[0,3,6][oilCooler]+(selection.chassis==='light'?-80:selection.chassis==='reinforced'?65:0)+[0,5,11][tyreWidth];
+  const chassis=resolveChassis(vehicle,selection),drivetrain=resolveDrivetrain(selection),aero=resolveAero(vehicle,selection),exterior=resolveExteriorTuning(selection),interior=resolveInteriorTuning(selection);
+  const mass=interior.mass+exterior.mass+aero.mass+(selection.tractionLinks==='braced'?3:0)+drivetrain.driveMass+chassis.rackMass+chassis.barMass+vehicle.mass+engine.mass-vehicle.engineMass+[0,4,9][radiator]+[0,3,6][oilCooler]+(selection.chassis==='light'?-80:selection.chassis==='reinforced'?65:0)+[0,5,11][tyreWidth];
   const gears=transmission===2?vehicle.gears.map((ratio,i)=>ratio*[.90,.98,1.05,1.11,1.18,1.23][i]):transmission===1?vehicle.gears.map((ratio,i)=>ratio*[1,1.02,1.07,1.11,1.14,1.17][i]):[...vehicle.gears];
   const physics={...chassis,...drivetrain,aero,mass,inertia:vehicle.inertia*(mass/vehicle.mass),wheelRadius:vehicle.wheelRadius,wheelInertia:vehicle.wheelInertia*[1,1.08,1.18][tyreWidth],halfTrack:vehicle.halfTrack+[0,.018,.038][tyreWidth]+exterior.trackExtra,frontAxle:vehicle.frontAxle,rearAxle:vehicle.rearAxle,cgHeight:vehicle.cgHeight-[0,.018,.035][suspension],gears,finalDrive:vehicle.finalDrive*(selection.finalDrive==='short'?1.12:selection.finalDrive==='long'?.90:1),
     tyreWidth:[.27,.30,.34][tyreWidth],rollingResistanceFactor:[1,1.04,1.10][tyreWidth],radiatorEfficiency:[1,1.45,1.9][radiator],coolantCapacityExtra:[0,1,2][radiator],oilCoolingFactor:[1,2.1,3.3][oilCooler],oilCapacityExtra:[0,.7,1.2][oilCooler],oilSurgeProtection:[1,1.12,1.35][oilCooler],internalStrength:[1,1.35,1.8][internals],safeRpmFactor:[1,1.035,1.075][internals],drivetrainStrength:[1,1.3,1.65][transmission],bodyStrength:selection.chassis==='light'?.84:selection.chassis==='reinforced'?1.38:1,
@@ -88,8 +89,10 @@ export function resolveBuild(request = {}) {
     clutchCapacity:engine.clutchCapacity*[1,1.35,1.75][clutch],brakeTorque:vehicle.brakeTorque*[1,1.16,1.32][brakes],brakeBias:brakes?[.74,.77,.82][brakes]:vehicle.brakeBias,muMultiplier:(selection.tyres==='sport'?1.12:selection.tyres==='drift'?.88:1)*[1,1.045,1.085][tyreWidth],
     springRate:vehicle.springRate*[1,1.32,1.68][suspension],damperRate:vehicle.damperRate*[1,1.16,1.32][suspension],antiRollRate:vehicle.antiRollRate*[1,1.3,1.65][suspension],rideHeight:-[0,.025,.045][suspension],suspensionTravel:[.145,.125,.11][suspension],
     powerLock:selection.differential==='open'?0:selection.differential==='locked'?.96:.68,coastLock:selection.differential==='open'?0:selection.differential==='locked'?.72:.24,engineOptions,boostTarget,redlineRpm};
+  if(interior.mass||interior.seatDrop)physics.cgHeight=(physics.cgHeight*(mass-interior.mass)+interior.momentY)/mass;
+  physics.handbrakeFactor=interior.handbrakeFactor;physics.hydraulicHandbrake=interior.hydraulicHandbrake;physics.roofSupport=interior.roofSupport;
   physics.bodyWidth=exterior.trackExtra?Math.max(vehicle.model.width,2*(physics.halfTrack+physics.tyreWidth*.5+.018)):vehicle.model.width;
   const audio={...engine.audio,intake:Math.min(1,engine.audio.intake+[0,.05,.10][intake]),engineId:engine.id,exhaust:Math.min(1,engine.audio.exhaust+[0,.07,.12][exhaust]),brightness:engine.audio.brightness+[0,800,1600][exhaust],gearboxGain:engine.audio.gearboxGain*(clutch===2?1.15:1)};
   const stats={aeroDownforce100:Math.round((aero.bodyFront+aero.bodyRear+aero.front+aero.rear+aero.wing)*(100/3.6)**2),aeroDrag100:Math.round((aero.bodyDrag+aero.frontDrag+aero.rearDrag+aero.wingDrag)*(100/3.6)**2),driveLayout:physics.driveLayout,frontDrivePercent:Math.round(physics.frontDriveShare*100),massKg:Math.round(mass),displacementCc:engine.displacementCc,redlineRpm,boostBar:boostTarget/100000,gearCount:vehicle.gears.length,clutchNm:Math.round(physics.clutchCapacity),brakeBias:Math.round(physics.brakeBias*100),wheelbaseM:vehicle.frontAxle+vehicle.rearAxle,finalDrive:physics.finalDrive,firstGear:gears[0],topGear:gears.at(-1),radiatorEfficiency:physics.radiatorEfficiency,oilCoolingFactor:physics.oilCoolingFactor,internalStrength:physics.internalStrength,bodyStrength:physics.bodyStrength,steeringLockDeg:physics.steeringLock*180/Math.PI,steeringRatio:physics.steeringRatio,frontRollRate:physics.antiRollRate*physics.frontRollFactor,rearRollRate:physics.antiRollRate*physics.rearRollFactor,tyreWidthMm:Math.round(physics.tyreWidth*1000)};
-  return {selection,vehicle:copy(vehicle),engine:copy(engine),physics,audio,stats,exterior,signature:JSON.stringify(selection)};
+  return {selection,vehicle:copy(vehicle),engine:copy(engine),physics,audio,stats,exterior,interior,signature:JSON.stringify(selection)};
 }

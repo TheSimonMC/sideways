@@ -4,10 +4,10 @@ import {BODY_PANELS} from './body-damage.js';
 import {normalizeWeather,WEATHER_MODES} from './weather.js';
 import {resolveBuild} from './catalog.js';
 
-export const MULTIPLAYER_VERSION=19;
+export const MULTIPLAYER_VERSION=20;
 export const DEFAULT_LOBBY_RULES=Object.freeze({maxPlayers:4,traffic:'normal',police:true,damage:true,time:'cycle',weather:'cycle',collisions:'ghost'});
 const CODE_ALPHABET='ABCDEFGHJKLMNPQRSTUVWXYZ23456789';
-const PREFIX='sideways-v19-';
+const PREFIX='sideways-v20-';
 const LIMITS={packet:96000,buffer:256000,events:64,links:7,rate:90,worldNodes:10000};
 const JOIN_TIMEOUT={overall:45000,channel:30000,handshake:15000};
 const utf8=new TextEncoder();
@@ -55,7 +55,7 @@ export function normalizeLobbyRules(value={}){
 export function sanitizeNetworkPose(value){
  if(!object(value)||![value.x,value.z,value.heading].every(Number.isFinite)||!bounded(value.x,-8192,8192)||!bounded(value.z,-8192,8192))return null;
  const out={x:value.x,z:value.z,heading:wrap(value.heading)};
- const ranges={vx:[-170,170],vz:[-170,170],yawRate:[-12,12],speed:[0,180],forwardSpeed:[-180,180],bodyHeight:[-32,512],groundHeight:[-32,512],bodyPitch:[-.8,.8],bodyRoll:[-.8,.8],steer:[-1.5,1.5],clutch:[0,1],handbrake:[0,1],accelerationLong:[-30,30],accelerationLat:[-30,30],fuelLitres:[0,150],fuelCapacity:[1,150],brake:[0,1],throttle:[0,1],rpm:[0,16000],bodyHealth:[0,1],engineHealth:[0,1],nitrousIntensity:[0,1],driftAngle:[-Math.PI,Math.PI],gear:[-1,8]};
+ const ranges={vx:[-170,170],vz:[-170,170],yawRate:[-12,12],speed:[0,180],forwardSpeed:[-180,180],bodyHeight:[-32,512],groundHeight:[-32,512],bodyPitch:[-.8,.8],bodyRoll:[-.8,.8],steer:[-1.5,1.5],clutch:[0,1],handbrake:[0,1],accelerationLong:[-30,30],accelerationLat:[-30,30],fuelLitres:[0,150],fuelCapacity:[1,150],brake:[0,1],throttle:[0,1],rpm:[0,16000],manifoldBar:[-1,5],bodyHealth:[0,1],engineHealth:[0,1],nitrousIntensity:[0,1],driftAngle:[-Math.PI,Math.PI],gear:[-1,8]};
  for(const [key,[a,b]]of Object.entries(ranges))out[key]=clamp(value[key]??(key.endsWith('Health')?1:0),a,b);
  for(const key of ['headlights','boosting','horn','drifting'])out[key]=!!value[key];out.engineRunning=value.engineRunning!==false;
  out.wheelAttached=Array.from({length:4},(_,i)=>value.wheelAttached?.[i]!==false);
@@ -160,7 +160,7 @@ export class MultiplayerSession{
    if(this.isHost){this.members.set(id,{id,...this.profile,ready:true,active:false,state:null,updatedAt:this._now()});this._status('lobby','Lobby ready. Share the code with your friends.');this._emitRoom();this._finishPending();}
    // PeerJS JSON cannot carry a city frame: it rejects messages at 16,300 bytes.
    // BinaryPack includes fragmentation and reassembly for larger world updates.
-   else{try{const connection=peer.connect(this.hostId,{label:'sideways-v19',serialization:'binary',reliable:true,metadata:{version:MULTIPLAYER_VERSION,transport:'binary-v1'}});this._bindConnection(connection,false);}catch(error){this._fail(this._issue(errorCode(error),{detail:this._errorDetail(error),stage:'joining'}));}}
+   else{try{const connection=peer.connect(this.hostId,{label:'sideways-v20',serialization:'binary',reliable:true,metadata:{version:MULTIPLAYER_VERSION,transport:'binary-v1'}});this._bindConnection(connection,false);}catch(error){this._fail(this._issue(errorCode(error),{detail:this._errorDetail(error),stage:'joining'}));}}
   });
   peer.on('connection',connection=>{if(!live()||!this.isHost||this.links.size>=LIMITS.links){connection.close?.();return;}const reject=connection.metadata?.version!==MULTIPLAYER_VERSION?'PROTOCOL_MISMATCH':connection.serialization&&connection.serialization!=='binary'?'TRANSPORT_OUTDATED':null;this._bindConnection(connection,true,reject);});
   peer.on('call',call=>call.close?.());

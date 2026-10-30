@@ -1,22 +1,22 @@
-# SIDEWAYS V30
+# SIDEWAYS V31
 
 [Play in your browser](https://thesimonmc.github.io/sideways/) · [Download ZIP or offline HTML](https://github.com/TheSimonMC/sideways/releases/latest)
 
 GitHub Pages publishes the tested `SIDEWAYS.html` on every push to `main`. To publish source changes, rebuild and rerun the standalone checks described below, then copy `dist/SIDEWAYS.html` to `SIDEWAYS.html` and commit it with the updated browser report. The deployment verifies that their SHA-256 values match.
 
-Start with **READ-ME-V30.txt** for this update, offline setup and verification limits.
+Start with **READ-ME-V31.txt** for this update, offline setup and verification limits.
 
-V30 adds independent aero trim, fitted fenders and widebody kits, grilles, exhaust outlets, light designs, paint finishes, authored wraps/decals and transparent tint. Parts affect mass, track, collision width, aero, light and mounted damage as applicable. Preview, purchase and saved ownership use the existing garage. Phase 5 remains partial: interior tuning, superchargers and full removal/mounting integration are next.
+V31 adds model-fitted interior tuning: steering wheels, seats, upholstery, colours, seams, dash decor, controls, cages, harnesses, instruments, live auxiliary gauges and powered ambient lighting. The garage previews the cabin directly. Mass, centre of gravity, driver contacts, restraint and hydraulic handbrake faults follow the installed parts. Supercharger and full mounting/removal integration remain next.
 
 ## SIDEWAYS / City Sessions
 
 SIDEWAYS is a 3D driving game with low-poly comic graphics, a top-down camera, a manual drivetrain and a city to explore. Earn points from close passes, drifts and jobs, then buy cars, engine swaps and parts. Up to four friends can share a city through an eight-character lobby code.
 
-The player engine and its sound use the supplied MotorLab SDK 1.6.3, Physics Release 14 and Audio Release 14. The game has four fictional cars and eight engine families, with 41 independently selected part categories, including seventeen exterior categories. City Free Roam uses Neon Archipelago; Time Attack and Drift Rush use the separate Dock 09 track. Chase, hood and cockpit cameras are available alongside the default top-down view.
+The player engine and its sound use the supplied MotorLab SDK 1.6.3, Physics Release 14 and Audio Release 14. The game has four fictional cars and eight engine families, with 54 independently selected part categories, including seventeen exterior and thirteen interior categories. City Free Roam uses Neon Archipelago; Time Attack and Drift Rush use the separate Dock 09 track. Chase, hood and cockpit cameras are available alongside the default top-down view.
 
 ## Play the downloaded game
 
-Open `SIDEWAYS-v30.html` from the chat attachment. The complete ZIP includes the same game as `SIDEWAYS.html` at its root, along with the editable project, SDK, credits and instructions. Extract the ZIP before opening its HTML. Single-player, including NPC racing, needs no server or network download. Multiplayer still needs internet access to signaling and peers.
+Open `SIDEWAYS-v31.html` from the chat attachment. The complete ZIP includes the same game as `SIDEWAYS.html` at its root, along with the editable project, SDK, credits and instructions. Extract the ZIP before opening its HTML. Single-player, including NPC racing, needs no server or network download. Multiplayer still needs internet access to signaling and peers.
 
 The HTML includes code, fonts, models and sound. No Sites address is used by the game. Progress stays in the browser and origin where you played. Copying the HTML to another PC copies the game assets; it does not copy browser storage. Click or press a key to enable sound. A browser must expose a controller or wheel through its Gamepad API before the game can bind it.
 
@@ -27,7 +27,11 @@ npm ci
 node build.mjs
 ```
 
-This creates `dist/SIDEWAYS.html`. After running `node qa/standalone-v30-check.mjs` and `node qa/standalone-browser-v30.cjs` on that build, `node qa/package-v30.mjs` creates `release/SIDEWAYS-v30.html` and `release/SIDEWAYS-v30.zip`. The browser check needs Playwright; dependency and browser path options are in READ-ME-V30.txt. Packaging verifies that the tested HTML matches the delivered bytes. These commands do not publish a Site or push a repository.
+This creates `dist/SIDEWAYS.html`. After running `node qa/standalone-v31-check.mjs` and `node qa/standalone-browser-v31.cjs` on that build, `node qa/package-v31.mjs` creates `release/SIDEWAYS-v31.html` and `release/SIDEWAYS-v31.zip`. The browser check needs Playwright; dependency and browser path options are in READ-ME-V31.txt. Packaging verifies that the tested HTML matches the delivered bytes. These commands do not publish a Site or push a repository.
+
+## V31: Interior tuning and cabin inspection
+
+See [the Phase 5B report](docs/phase-5b-interior-report.md), [all 156 requirements](docs/goal-progress.md) and qa/release-v31.json. Twenty-two native/build suites and ten browser flows cover the delivered code. Multiplayer uses protocol 20; all players must reload V31. Individual cabin-part removal/detachment remains Phase 6. The following sections describe historical releases.
 
 ## V30: Exterior tuning and tinted glass
 

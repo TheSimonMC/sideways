@@ -233,7 +233,7 @@ export function createCar(scene, initialBuild = resolveBuild()) {
       const flame=new THREE.Mesh(new THREE.ConeGeometry(.12,.90,5),new THREE.MeshBasicMaterial({color:NOS_BLUE,transparent:true,opacity:.85,side:THREE.DoubleSide,blending:THREE.AdditiveBlending,depthWrite:false}));flame.rotation.x=-Math.PI/2;flame.position.set(x,outletY,-L*.976-.48);flame.visible=false;chassis.add(flame);flames.push(flame);
       const core=new THREE.Mesh(new THREE.ConeGeometry(.055,.58,5),new THREE.MeshBasicMaterial({color:0xe5ffff,transparent:true,opacity:.9,blending:THREE.AdditiveBlending,depthWrite:false}));flame.add(core);
     }
-    if(build.selection.chassis==='reinforced'){for(const side of [-1,1]){beam(chassis,[side*W*.68,.40,-.80],[side*q.roofW*.88,q.roof-.08,-.46],.045,graphite);beam(chassis,[side*q.roofW*.88,q.roof-.08,-.46],[-side*W*.68,.40,-.80],.035,graphite);}}
+
     if(build.selection.radiator!=='stock'||build.selection.oilCooler!=='stock'){for(let n=0;n<5;n++)box(chassis,0,.38+n*.035,L*.965,W*.93,.012,.025,chrome);}
     const bayZ=(layout.front+L*.89)/2,bayLength=Math.max(.3,L*.89-layout.front);
     box(chassis,0,.40,bayZ,W*1.36,.06,bayLength,graphite);
@@ -296,6 +296,7 @@ export function createCar(scene, initialBuild = resolveBuild()) {
     group,
     get cockpitMirrors(){return model.interior.mirrors;},
     get cockpitScreen(){return model.interior.screen;},
+    cabinInspectionPose(seats){return model.interior.inspectionPose(seats);},
     cockpitPose(settings,yaw,pitch,state){return model.interior.cameraPose(settings,yaw,pitch,state);},
     updateCockpit(state,dt,time,options){cockpitManaged=true;model.windshieldGlint.visible=!options?.cockpit;model.interior.update(state,dt,time,options);},
     cockpitDiagnostics(){return model.interior.diagnostics();},
