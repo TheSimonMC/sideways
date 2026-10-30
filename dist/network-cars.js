@@ -60,7 +60,7 @@ export function createNetworkCars(scene,{now=()=>performance.now(),createVehicle
  function getColliders(player,radius=45){
   const x=player?.x??0,z=player?.z??0;return [...records.values()].filter(r=>r.active&&r.car.group.visible&&r.state&&Math.hypot(r.state.x-x,r.state.z-z)<radius).map(r=>({kind:'network',material:'metal',peerId:r.id,x:r.state.x,z:r.state.z,heading:r.state.heading,hx:r.build.vehicle.model.width*.5,hz:r.build.vehicle.model.length*.5,vx:r.state.vx,vz:r.state.vz,visible:true}));
  }
- function getStates(){return [...records.values()].filter(r=>r.active&&r.state).map(r=>({...r.state,playerId:r.id,name:r.name,width:r.build.vehicle.model.width,length:r.build.vehicle.model.length,mass:bodyMassProperties(r.build,r.state.bodyDamage).mass,inertia:bodyMassProperties(r.build,r.state.bodyDamage).inertia}));}
+ function getStates(){return [...records.values()].filter(r=>r.active&&r.state).map(r=>({...r.state,playerId:r.id,name:r.name,width:r.build.vehicle.model.width,length:r.build.vehicle.model.length,mass:bodyMassProperties(r.build,r.state.bodyDamage,r.state.wheelAttached).mass,inertia:bodyMassProperties(r.build,r.state.bodyDamage,r.state.wheelAttached).inertia}));}
  function dispose(){if(disposed)return;disposed=true;for(const item of [...records.values()])remove(item);}
  return {sync,update,getNearbyAudio,getColliders,getStates,dispose,reset(){for(const item of [...records.values()])remove(item);},diagnostics(){return {count:records.size,visible:[...records.values()].filter(r=>r.car.group.visible).length,buffers:[...records.values()].map(r=>r.queue.length),teleports:[...records.values()].reduce((n,r)=>n+r.teleports,0)};}};
 }

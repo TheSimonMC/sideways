@@ -1,12 +1,12 @@
-# SIDEWAYS V27
+# SIDEWAYS V28
 
 [Play in your browser](https://thesimonmc.github.io/sideways/) · [Download ZIP or offline HTML](https://github.com/TheSimonMC/sideways/releases/latest)
 
 GitHub Pages publishes the tested `SIDEWAYS.html` on every push to `main`. To publish source changes, rebuild and rerun the standalone checks described below, then copy `dist/SIDEWAYS.html` to `SIDEWAYS.html` and commit it with the updated browser report. The deployment verifies that their SHA-256 values match.
 
-Start with **READ-ME-V27.txt** for this update, offline setup and verification limits.
+Start with **READ-ME-V28.txt** for this update, offline setup and verification limits.
 
-V27 adds spatial contacts for open doors, hood and trunk, oriented loose bodywork and rolling detached wheels. Existing glass, light, damage, repair and save systems remain. Full interiors and animated engine bays remain pending.
+V28 adds thirteen detachable underbody assemblies, working suspension/steering failures and a connected exhaust route with obstruction, leaks and moving sound sources. It extends V27 spatial contacts and rolling detached wheels. Existing glass, light, damage, repair and save systems remain. Full interiors and animated engine bays remain pending.
 
 ## SIDEWAYS / City Sessions
 
@@ -16,7 +16,7 @@ The player engine and its sound use the supplied MotorLab SDK 1.6.3, Physics Rel
 
 ## Play the downloaded game
 
-Open `SIDEWAYS-v27.html` from the chat attachment. The complete ZIP includes the same game as `SIDEWAYS.html` at its root, along with the editable project, SDK, credits and instructions. Extract the ZIP before opening its HTML. Single-player, including NPC racing, needs no server or network download. Multiplayer still needs internet access to signaling and peers.
+Open `SIDEWAYS-v28.html` from the chat attachment. The complete ZIP includes the same game as `SIDEWAYS.html` at its root, along with the editable project, SDK, credits and instructions. Extract the ZIP before opening its HTML. Single-player, including NPC racing, needs no server or network download. Multiplayer still needs internet access to signaling and peers.
 
 The HTML includes code, fonts, models and sound. No Sites address is used by the game. Progress stays in the browser and origin where you played. Copying the HTML to another PC copies the game assets; it does not copy browser storage. Click or press a key to enable sound. A browser must expose a controller or wheel through its Gamepad API before the game can bind it.
 
@@ -27,7 +27,11 @@ npm ci
 node build.mjs
 ```
 
-This creates `dist/SIDEWAYS.html`. After running `node qa/standalone-v27-check.mjs` and `node qa/standalone-browser-v27.cjs` on that build, `node qa/package-v27.mjs` creates `release/SIDEWAYS-v27.html` and `release/SIDEWAYS-v27.zip`. The browser check needs Playwright; dependency and browser path options are in READ-ME-V27.txt. Packaging verifies that the tested HTML matches the delivered bytes. These commands do not publish a Site or push a repository.
+This creates `dist/SIDEWAYS.html`. After running `node qa/standalone-v28-check.mjs` and `node qa/standalone-browser-v28.cjs` on that build, `node qa/package-v28.mjs` creates `release/SIDEWAYS-v28.html` and `release/SIDEWAYS-v28.zip`. The browser check needs Playwright; dependency and browser path options are in READ-ME-V28.txt. Packaging verifies that the tested HTML matches the delivered bytes. These commands do not publish a Site or push a repository.
+
+## V28: Underbody assemblies and exhaust routing
+
+Thirteen visible assemblies connect damage, missing support, steering, exhaust flow, sound, mass and individual repairs. See [the V28 report](docs/phase-3d-underbody-report.md), [the complete checklist](docs/goal-progress.md) and qa/release-v28.json. Phase 4 interiors, cockpit, navigation, mirrors and driver are next. Older sections describe their historical releases.
 
 ## V27: Spatial contacts and loose wheels
 

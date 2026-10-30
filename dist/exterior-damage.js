@@ -39,7 +39,7 @@ export function exteriorLayout(build){
   splitter:[0,.28,L*.95],diffuser:[0,.23,-L*.94],grille:[0,.53,L*.974],exhaustTip:[build.vehicle.model.kind==='muscle'?0:.68,.32,-L*.976]};
  return Object.fromEntries(Object.entries(EXTERIOR_PARTS).map(([id,d])=>[id,{...d,center:centers[id],radius:Math.min(.65,d.radius*.55)}]));
 }
-export function exteriorMissing(body,id){const d=EXTERIOR_PARTS[id];return !!body?.exterior?.[id]?.detached||!!(d?.parent&&body?.zones?.[d.parent]?.detached);}
+export function exteriorMissing(body,id){const d=EXTERIOR_PARTS[id];return !!body?.exterior?.[id]?.detached||!!(d?.parent&&body?.zones?.[d.parent]?.detached)||id==='exhaustTip'&&!!body?.underbody?.exhaustRear?.detached;}
 export function lampOutput(body,id){const p=body?.exterior?.[id];return exteriorMissing(body,id)||p?.health<=.25?0:clamp(p?.health??1,.3,1);}
 export function windowAir(body){return Math.max(0,...['glassFront','glassRear','glassLeft','glassRight'].map(id=>exteriorMissing(body,id)?id==='glassFront'?1:.75:0));}
 export function damageExterior(body,build,{local,energyJ,closingSpeed}){

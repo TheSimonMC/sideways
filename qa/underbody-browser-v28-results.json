@@ -1,0 +1,307 @@
+{
+  "version": 28,
+  "status": "passed",
+  "checks": [
+    "All four original models render thirteen authored underbody assemblies in actual Chromium/Three.js.",
+    "Controlled physical impacts detach control arms, wheels and rear exhaust; actual meshes disappear, cloned debris remains and exhaust anchors move.",
+    "Persisted damage survives restoration; full repair restores assemblies and clears debris."
+  ],
+  "results": [
+    {
+      "id": "hachi",
+      "before": {
+        "parts": 13,
+        "drawCalls": 194,
+        "triangles": 5402
+      },
+      "damaged": {
+        "armVisible": false,
+        "pipeVisible": false,
+        "wheelVisible": false,
+        "loose": [
+          {
+            "panel": "underbody:armFL",
+            "half": [
+              0.31000000000000005,
+              0.06499999999999999,
+              0.29000000000000004
+            ],
+            "mass": 4.8,
+            "contacts": 0,
+            "age": 1.4999999999999971,
+            "floorClearance": 2.220446049250313e-16
+          },
+          {
+            "panel": "underbody:exhaustRear",
+            "half": [
+              0.43750000000000006,
+              0.13,
+              0.496475
+            ],
+            "mass": 9.5,
+            "contacts": 0,
+            "age": 1.4999999999999971,
+            "floorClearance": 0
+          },
+          {
+            "panel": "exterior:exhaustTip",
+            "half": [
+              0.22,
+              0.08,
+              0.18
+            ],
+            "mass": 3.2,
+            "contacts": 0,
+            "age": 1.4999999999999971,
+            "floorClearance": 2.220446049250313e-16
+          }
+        ],
+        "anchors": [
+          [
+            0.23,
+            0.18,
+            -1.1713
+          ]
+        ],
+        "missingMass": 39.5
+      },
+      "repaired": {
+        "persisted": true,
+        "visible": true,
+        "loose": 0,
+        "wheels": [
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "id": "atlas",
+      "before": {
+        "parts": 13,
+        "drawCalls": 189,
+        "triangles": 5760
+      },
+      "damaged": {
+        "armVisible": false,
+        "pipeVisible": false,
+        "wheelVisible": false,
+        "loose": [
+          {
+            "panel": "underbody:armFL",
+            "half": [
+              0.345,
+              0.06499999999999999,
+              0.29000000000000004
+            ],
+            "mass": 4.8,
+            "contacts": 0,
+            "age": 1.4999999999999971,
+            "floorClearance": 0
+          },
+          {
+            "panel": "underbody:exhaustRear",
+            "half": [
+              0.76,
+              0.13,
+              0.5567125
+            ],
+            "mass": 9.5,
+            "contacts": 0,
+            "age": 1.4999999999999971,
+            "floorClearance": 0
+          },
+          {
+            "panel": "exterior:exhaustTip",
+            "half": [
+              0.78,
+              0.08,
+              0.18
+            ],
+            "mass": 3.2,
+            "contacts": 0,
+            "age": 1.4999999999999971,
+            "floorClearance": 0
+          }
+        ],
+        "anchors": [
+          [
+            0.23,
+            0.18,
+            -1.33295
+          ]
+        ],
+        "missingMass": 44.5
+      },
+      "repaired": {
+        "persisted": true,
+        "visible": true,
+        "loose": 0,
+        "wheels": [
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "id": "kitsune",
+      "before": {
+        "parts": 13,
+        "drawCalls": 183,
+        "triangles": 5352
+      },
+      "damaged": {
+        "armVisible": false,
+        "pipeVisible": false,
+        "wheelVisible": false,
+        "loose": [
+          {
+            "panel": "underbody:armFL",
+            "half": [
+              0.28500000000000003,
+              0.075,
+              0.29000000000000004
+            ],
+            "mass": 4.8,
+            "contacts": 0,
+            "age": 1.4999999999999971,
+            "floorClearance": 0
+          },
+          {
+            "panel": "underbody:exhaustRear",
+            "half": [
+              0.3525,
+              0.13,
+              0.4629000000000001
+            ],
+            "mass": 9.5,
+            "contacts": 0,
+            "age": 1.4999999999999971,
+            "floorClearance": 0
+          },
+          {
+            "panel": "exterior:exhaustTip",
+            "half": [
+              0.22,
+              0.08,
+              0.18
+            ],
+            "mass": 3.2,
+            "contacts": 0,
+            "age": 1.4999999999999971,
+            "floorClearance": 0
+          }
+        ],
+        "anchors": [
+          [
+            0.23,
+            0.18,
+            -1.0812000000000002
+          ]
+        ],
+        "missingMass": 44.5
+      },
+      "repaired": {
+        "persisted": true,
+        "visible": true,
+        "loose": 0,
+        "wheels": [
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    },
+    {
+      "id": "vector",
+      "before": {
+        "parts": 13,
+        "drawCalls": 189,
+        "triangles": 5396
+      },
+      "damaged": {
+        "armVisible": false,
+        "pipeVisible": false,
+        "wheelVisible": false,
+        "loose": [
+          {
+            "panel": "underbody:armFL",
+            "half": [
+              0.31000000000000005,
+              0.06499999999999999,
+              0.29000000000000004
+            ],
+            "mass": 4.8,
+            "contacts": 0,
+            "age": 1.4999999999999971,
+            "floorClearance": 0
+          },
+          {
+            "panel": "underbody:exhaustRear",
+            "half": [
+              0.43750000000000006,
+              0.13,
+              0.5122750000000001
+            ],
+            "mass": 9.5,
+            "contacts": 0,
+            "age": 1.4999999999999971,
+            "floorClearance": 0
+          },
+          {
+            "panel": "exterior:exhaustTip",
+            "half": [
+              0.22,
+              0.08,
+              0.18
+            ],
+            "mass": 3.2,
+            "contacts": 0,
+            "age": 1.4999999999999971,
+            "floorClearance": 0
+          }
+        ],
+        "anchors": [
+          [
+            0.23,
+            0.18,
+            -1.2137
+          ]
+        ],
+        "missingMass": 44.5
+      },
+      "repaired": {
+        "persisted": true,
+        "visible": true,
+        "loose": 0,
+        "wheels": [
+          true,
+          true,
+          true,
+          true
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "sourceSHA256": {
+    "dist/underbody.js": "8350ea27ad6e48e6126072c34f2853211500daffffc1a6ace412b518819f1205",
+    "dist/underbody-view.js": "78ae5a4208a8ac4fdcbd958d98c249a3e3b5b0e8c1515afa7c4cafdd0be9ea02",
+    "dist/exterior-damage.js": "c33235d1d858d4c0a6d9e39b7ee11fd6a9aa378076610f49b92a478d543536f2",
+    "dist/physics.js": "c75028998bc97172c578780b5a3c64035a6f3626ddcebc4afff0ec824398af91",
+    "dist/mechanical.js": "2b2b87a7107f89529fa0dc31736892d484498d335633633e453c8f010666b0b9",
+    "dist/car.js": "2cc58d807fe8cc09347b19cef419aa0091b0942e5c577d4eafa8449dc17a85fb",
+    "dist/body-damage.js": "f55beaadbcbf101620007d75b56ab042b521a076d3f7865ff213c13dfff3be97",
+    "dist/body-hinges.js": "2f59f6d0eb1bb31ffa9a1e8128be3f58b57275ea1ee768b57813e3b1c18c1a24",
+    "dist/part-shapes.js": "9db246c07371b8291857419108dfcceb366003c3298dbd16b83bbaeb1fc3697a"
+  },
+  "limits": [
+    "Source integration fixture, static inspection camera under the car and controlled collision inputs.",
+    "Chromium software rendering; draw calls describe this fixture only, not gameplay FPS."
+  ]
+}

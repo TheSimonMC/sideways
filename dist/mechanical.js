@@ -3,6 +3,7 @@
  * and friction work feed these thermal masses; wheel/clutch work is supplied
  * by the constraint solver. Masses, thresholds and wear coefficients are
  * fictional vehicle calibration, not a reproduction of another simulator. */
+import {UNDERBODY_PARTS,underbodyHealth,repairUnderbody,exhaustRoute} from './underbody.js';
 import {createAuxiliaries,snapshotAuxiliaries,auxiliaryResponse,stepAuxiliaries,repairAuxiliary,AUXILIARY_PARTS} from './engine-auxiliaries.js';
 import {createBrakeHydraulics,snapshotBrakeHydraulics,hydraulicFactors,stepBrakeHydraulics,BRAKE_CIRCUITS,BRAKE_FLUID_CAPACITY,brakePedalTravel,repairBrakeCircuit} from './brake-hydraulics.js';
 import {createChassisDamage,snapshotChassisDamage,stepChassisDamage} from './chassis-damage.js';
@@ -17,7 +18,7 @@ export const CORNERS=['FL','FR','RL','RR'];
 const CORNER_NAMES=['Front left','Front right','Rear left','Rear right'];
 const PARTS={
  engineBlock:['Engine block','engine','engine'],cylinderHead:['Cylinder head','engine','engine'],connectingRods:['Connecting rods','engine','oil'],crankshaft:['Crankshaft','engine','oil'],timingDrive:['Timing chain','engine','oil'],
- intake:['Intake tract','engine',null],exhaust:['Exhaust manifold and pipe','engine',null],thermostat:['Thermostat','cooling','coolant'],fuelPump:['Fuel pump','engine',null],ignition:['Ignition coils and plugs','engine',null],
+ intake:['Intake tract','engine',null],exhaust:['Exhaust manifold','engine',null],thermostat:['Thermostat','cooling','coolant'],fuelPump:['Fuel pump','engine',null],ignition:['Ignition coils and plugs','engine',null],
  pistons:['Pistons and rings','engine','engine'],bearings:['Crank bearings','engine','oil'],
  valvetrain:['Valvetrain','engine','engine'],headGasket:['Head gasket','engine','engine'],
  radiator:['Radiator','cooling','coolant'],waterPump:['Water pump','cooling','coolant'],
@@ -119,10 +120,11 @@ export class MechanicalSystem{
   const rods=this.build.engine.rotors?1:h.connectingRods,timing=this.build.engine.rotors?1:h.timingDrive;
   e.loadTorqueNm+=(1-h.crankshaft)**2*(12+Math.abs(omega)*.035)+(1-rods)**2*25;
   // A crushed exhaust raises pumping work; the SDK load channel owns this work.
-  e.exhaustLoadNm=(1-h.exhaust)**2*(4+rpm*.003)*smooth(rpm/400);e.loadTorqueNm+=e.exhaustLoadNm;
+  const routing=exhaustRoute(this.condition.bodyDamage);e.exhaustRouting=routing;
+  e.exhaustLoadNm=Math.max(1-h.exhaust,routing.restriction)**2*(4+rpm*.003)*smooth(rpm/400);e.loadTorqueNm+=e.exhaustLoadNm;
   e.intakeFactor=.12+.88*h.intake;e.fuelAvailable=h.fuelPump>.025;e.ignitionAvailable=h.ignition>.025;
   e.lambdaOffset=(1-h.fuelPump)**2*.65;
-  e.intakeLeak=(1-h.intake)*smooth(rpm/800);e.exhaustLeak=(1-h.exhaust)*smooth(rpm/800);
+  e.intakeLeak=(1-h.intake)*smooth(rpm/800);e.exhaustLeak=Math.max(1-h.exhaust,routing.leak)*smooth(rpm/800);
   e.misfire=clamp(Math.max(0,.65-h.pistons)*.8+Math.max(0,.65-h.valvetrain)*(this.build.engine.rotors?0:.65)+(1-h.headGasket)*.38+(1-h.engineBlock)*.25+(1-h.cylinderHead)*.3+(1-rods)*.25+(1-timing)**2*.65+(1-h.ignition)**2*.8+(1-h.fuelPump)**2*.3,0,.95);
   e.boostFactor=h.turbo<=.025?0:h.intake*h.turbo*(1-.45*smooth((t.turbo-850)/250));
   e.knock=clamp((1-h.bearings)*.8+(1-rods)*.55+(1-h.crankshaft)*.55+(1-timing)*.3+starvation*.65+smooth((rpmRatio-1.05)/.5)*.4,0,1)*smooth(rpm/400);
@@ -148,7 +150,7 @@ export class MechanicalSystem{
   const severityEngine=damage*(.12+.75*front)*clamp((closing-7)/17,0,1);
   this._damage('pistons',severityEngine,'Front impact');this._damage('bearings',severityEngine*.55,'Impact load');
   this._damage('engineBlock',severityEngine*.55,'Block cracked by impact');this._damage('cylinderHead',severityEngine*.35,'Head impact');this._damage('intake',damage*front*.9,'Intake crushed by impact');
-  this._damage('exhaust',damage*(.15+.65*(1-front)),'Exhaust crushed by impact');this._damage('fuelPump',damage*(1-front)*.3,'Rear impact');this._damage('ignition',severityEngine*.25,'Ignition impact');
+  this._damage('exhaust',damage*front*.8,'Exhaust manifold impact');this._damage('fuelPump',damage*(1-front)*.3,'Rear impact');this._damage('ignition',severityEngine*.25,'Ignition impact');
   this._damage('gearbox',damage*.12,'Impact load');
   if(front>.5){const cooling=damage*front*1.2;this._damage('radiator',cooling,'Front impact');this._damage('waterPump',cooling*.25,'Front impact');this._damage('headGasket',severityEngine*.16,'Front impact');}
   const center=1-smooth((Math.abs(local.x)-.15)/1.2);
@@ -282,7 +284,9 @@ export class MechanicalSystem{
   add('body','Body structure','chassis',c.bodyHealth,null);
   for(const [id,panel]of Object.entries(BODY_PANELS)){const zone=c.bodyDamage?.zones[id];if(zone&&(id!=='spoiler'||this.build.selection.spoiler!=='none')){add('panel:'+id,panel.label,'chassis',Math.min(zone.health,zone.mounts??1,zone.latch??1),null);const row=components.at(-1);if(zone.detached){row.status='failed';row.reason='Panel detached';}else{row.reason=[zone.latch<.08?'Latch broken':zone.open?'Open':null,zone.mounts<.75?'Mounts '+Math.round(zone.mounts*100)+'%':null,zone.crush>.01?Math.round(zone.crush*100)+' cm local crush':null].filter(Boolean).join(' · ');}}}
   for(const [id,part]of Object.entries(EXTERIOR_PARTS)){const p=c.bodyDamage?.exterior?.[id];if(!p)continue;add('exterior:'+id,part.label,'chassis',Math.min(p.health,p.mounts,1-p.scratches*.4),null);const row=components.at(-1);row.reason=exteriorMissing(c.bodyDamage,id)?(p.detached?'Missing / shattered':'Mounting assembly missing'):part.kind==='lamp'&&p.health<=.25?'Lamp circuit broken':p.cracked?'Cracked':p.scratches>.015?'Surface scraped':'';if(exteriorMissing(c.bodyDamage,id))row.status='failed';}
+  for(const [id,d]of Object.entries(UNDERBODY_PARTS)){const part=c.bodyDamage?.underbody?.[id];add('underbody:'+id,d.label,d.kind==='pipe'?'engine':'chassis',underbodyHealth(part),null);const row=components.at(-1);row.reason=part?.detached?'Assembly missing':part?.crush>.01?'Crush '+Math.round(part.crush*100)+'% · mounts '+Math.round(part.mounts*100)+'%':part?.mounts<.99?'Mounts '+Math.round(part.mounts*100)+'%':'';}
   const warn=(id,label,severity,reason)=>warnings.push({id,label,severity,reason});
+  for(const [id,d]of Object.entries(UNDERBODY_PARTS))if(c.bodyDamage?.underbody?.[id]?.detached)warn('mount-'+id,d.label+' missing',d.kind==='pipe'?'warning':'critical','Replace this assembly; other damaged components need separate repairs');
   for(let i=0;i<4;i++){const tyre=c.tyres[i],pressure=tyrePressure(tyre,t.tyres[i]);if(!c.wheelAttached[i])warn('wheel-'+CORNERS[i],CORNER_NAMES[i]+' wheel missing','critical','Replace the wheel assembly');else if(tyre.blown||pressure<1.5)warn('tyre-'+CORNERS[i],CORNER_NAMES[i]+(tyre.blown?' tyre burst':' tyre pressure low'),tyre.blown||pressure<.6?'critical':'warning',pressure.toFixed(1)+' bar; replace the damaged tyre');}
 
   for(let i=0;i<2;i++){const pair=BRAKE_CIRCUITS[i],factor=e.brakeHydraulicFactors[pair[0]];if(factor<.8)warn('brake-hydraulic-'+i,'Brake circuit '+(i?'FR / RL':'FL / RR')+(factor<=.01?' failed':' pressure loss'),factor<.25?'critical':'warning','Inspect lines, fluid, master cylinder and booster; cool boiling fluid and bleed trapped air');}
@@ -320,19 +324,20 @@ export class MechanicalSystem{
   for(const id of selected){
    if(!applicable(this.build,id)||AWD_PARTS.includes(id)&&this.build.physics.driveLayout!=='AWD')continue;
    if(id==='fluids'){m.oilLitres=m.oilCapacity;m.coolantLitres=m.coolantCapacity;m.oilQuality=1;m.brakeHydraulics.fluid.fill(BRAKE_FLUID_CAPACITY);repaired.push(id);continue;}
+   if(id.startsWith('underbody:')){const key=id.slice(10),d=UNDERBODY_PARTS[key];if(d&&repairUnderbody(c.bodyDamage,key)){if(d.kind==='strut')c.suspensionHealth[d.corner]=1;if(d.kind==='rod')m.chassisDamage.tieRods[d.corner]={health:1,bend:0};repaired.push(id);}continue;}
    if(repairAuxiliary(m.auxiliaries,id)){repaired.push(id);continue;}
    if(id in m.health){m.health[id]=1;delete m.causes[id];const temp=PARTS[id][2];if(temp&&!['engine','oil','coolant'].includes(temp))m.temperatures[temp]=AMBIENT;this._revisionHealth[id]=1;repaired.push(id);continue;}
    const gear=/^gear(R|[1-9])$/.exec(id);if(gear){const index=gear[1]==='R'?0:Number(gear[1]);if(index<m.gearHealth.length){m.gearHealth[index]=1;delete m.causes[id];repaired.push(id);}continue;}
    if(repairBrakeCircuit(m.brakeHydraulics,id)){repaired.push(id);continue;}
    if(id==='steeringRack'){m.chassisDamage.rack=1;repaired.push(id);continue;}
    let chassisCorner=CORNERS.findIndex(v=>id==='wheelBearing'+v);if(chassisCorner>=0){m.chassisDamage.bearings[chassisCorner]={health:1,temperature:24,workJ:0};repaired.push(id);continue;}
-   chassisCorner=CORNERS.slice(0,2).findIndex(v=>id==='tieRod'+v);if(chassisCorner>=0){m.chassisDamage.tieRods[chassisCorner]={health:1,bend:0};repaired.push(id);continue;}
+   chassisCorner=CORNERS.slice(0,2).findIndex(v=>id==='tieRod'+v);if(chassisCorner>=0){m.chassisDamage.tieRods[chassisCorner]={health:1,bend:0};repairUnderbody(c.bodyDamage,'tieRod'+CORNERS[chassisCorner]);repaired.push(id);continue;}
    chassisCorner=CORNERS.findIndex(v=>id==='absValve'+v);if(chassisCorner>=0&&this.build.physics.abs){m.brakeHydraulics.absValves[chassisCorner]=1;repaired.push(id);continue;}
    if(/^brakeFluid[01]$/.test(id)){m.brakeHydraulics.fluid[Number(id.at(-1))]=BRAKE_FLUID_CAPACITY;repaired.push(id);continue;}
    let corner=CORNERS.findIndex(v=>id==='brakeLine'+v);if(corner>=0){m.brakeHydraulics.lines[corner]=1;repaired.push(id);continue;}
    corner=CORNERS.findIndex(v=>id==='brake'+v);if(corner>=0){c.brakeHealth[corner]=1;m.temperatures.brakes[corner]=AMBIENT;delete m.causes[id];repaired.push(id);continue;}
    corner=CORNERS.findIndex(v=>id==='tyre'+v);if(corner>=0){c.wheelHealth[corner]=1;c.tyres[corner]=createTyre();c.wheelAttached[corner]=true;m.temperatures.tyres[corner]=AMBIENT;delete m.causes[id];repaired.push(id);continue;}
-   corner=CORNERS.findIndex(v=>id==='suspension'+v);if(corner>=0){c.suspensionHealth[corner]=1;c.wheelToe[corner]=0;delete m.causes[id];repaired.push(id);continue;}
+   corner=CORNERS.findIndex(v=>id==='suspension'+v);if(corner>=0){c.suspensionHealth[corner]=1;c.wheelToe[corner]=0;repairUnderbody(c.bodyDamage,'strut'+CORNERS[corner]);delete m.causes[id];repaired.push(id);continue;}
    if(id==='body'){c.bodyHealth=1;if(c.bodyDamage)repairBody(c.bodyDamage);repaired.push(id);}
    else if((id.startsWith('panel:')||id.startsWith('exterior:'))&&c.bodyDamage&&repairBody(c.bodyDamage,id))repaired.push(id);
   }

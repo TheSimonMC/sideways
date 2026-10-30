@@ -1,3 +1,4 @@
+import {underbodyLayout} from './underbody.js';
 import {bodyLayout,panelCenter} from './body-layout.js';
 import {exteriorLayout} from './exterior-damage.js';
 import {add,transform,multiply,eulerAxes} from './part-contacts.js';
@@ -16,6 +17,7 @@ export function partShapes(build){
   const half=id.startsWith('glass')?[W*.72,.23,.05]:id.startsWith('lamp')?[.27,.14,.15]:id.startsWith('mirror')?[.14,.10,.16]:id.startsWith('skirt')?[.10,.10,L*.68]:id.startsWith('fender')?[.16,.29,.57]:id==='splitter'||id==='diffuser'?[W*1.10,.07,.32]:id==='grille'?[W*.58,.14,.05]:[build.vehicle.model.kind==='muscle'?.78:.22,.08,.18];
   const hinge=all[part.parent];all['exterior:'+id]={...part,half,...(hinge?.pivot?{pivot:hinge.pivot,axis:hinge.axis,sign:hinge.sign}: {})};
  }
+ for(const [id,part]of Object.entries(underbodyLayout(build)))all['underbody:'+id]=part;
  cache.set(build,all);return all;
 }
 export function chassisAxes(state){return multiply(eulerAxes(0,state.heading||0,0),eulerAxes(Math.max(-.40,Math.min(.40,state.bodyPitch||0)),0,Math.max(-.42,Math.min(.42,state.bodyRoll||0))));}

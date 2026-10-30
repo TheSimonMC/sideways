@@ -1,0 +1,142 @@
+{
+  "version": 28,
+  "status": "passed",
+  "checks": [
+    "Three-dimensional box bases match Three.js, including combined yaw, pitch and roll; separated heights never collide.",
+    "All four body types catch both doors, hood and trunk in space, with correct height filtering and per-panel damage.",
+    "Swept hinge travel catches a thin post between its old and final positions; damage-off still resolves contact.",
+    "Heading wrap uses the short physical turn and produces the same open-panel contact as an unwrapped heading.",
+    "A fast long body panel catches a thin rotated wall, its full width stays above terrain, and no upward collision occurs across a height gap.",
+    "Wheel translation and spin exchange energy through friction, slopes accelerate downhill and slow wheels settle on their side.",
+    "Fast loose wheels hit walls and elevated sloped bridge rails; wheels below that bridge do not hit its rail.",
+    "Actual physics bounds all loose pools, removes distant/expired wheels, preserves saved absence and removes pieces on selective repair.",
+    "Parked inspection uses the displayed stationary pose and never changes paused position, velocity, heave or damage.",
+    "Loose panel renderer uses simulated axes and loose wheels use physical lean and original tyre width on all four models.",
+    "Bridge collider centre, pitch and dimensions follow the actual rendered rail on a sloped elevated road."
+  ],
+  "fixtures": {
+    "Three-dimensional box bases match Three.js, including combined yaw, pitch and roll; separated heights never collide.": {},
+    "All four body types catch both doors, hood and trunk in space, with correct height filtering and per-panel damage.": [
+      {
+        "car": "hachi",
+        "panel": "left",
+        "energy": 13391.853666395513
+      },
+      {
+        "car": "hachi",
+        "panel": "right",
+        "energy": 13314.714937058085
+      },
+      {
+        "car": "hachi",
+        "panel": "hood",
+        "energy": 11164.026081204987
+      },
+      {
+        "car": "hachi",
+        "panel": "boot",
+        "energy": 10018.885749880088
+      },
+      {
+        "car": "atlas",
+        "panel": "left",
+        "energy": 13573.363004050248
+      },
+      {
+        "car": "atlas",
+        "panel": "right",
+        "energy": 13496.83738785541
+      },
+      {
+        "car": "atlas",
+        "panel": "hood",
+        "energy": 9634.348480971385
+      },
+      {
+        "car": "atlas",
+        "panel": "boot",
+        "energy": 11754.569382213034
+      },
+      {
+        "car": "kitsune",
+        "panel": "left",
+        "energy": 12727.410141420944
+      },
+      {
+        "car": "kitsune",
+        "panel": "right",
+        "energy": 12649.1248170968
+      },
+      {
+        "car": "kitsune",
+        "panel": "hood",
+        "energy": 11767.182968310397
+      },
+      {
+        "car": "kitsune",
+        "panel": "boot",
+        "energy": 11533.922771905642
+      },
+      {
+        "car": "vector",
+        "panel": "left",
+        "energy": 12944.997897783569
+      },
+      {
+        "car": "vector",
+        "panel": "right",
+        "energy": 12847.3570191953
+      },
+      {
+        "car": "vector",
+        "panel": "hood",
+        "energy": 10251.567915096693
+      },
+      {
+        "car": "vector",
+        "panel": "boot",
+        "energy": 30260.391986798313
+      }
+    ],
+    "Swept hinge travel catches a thin post between its old and final positions; damage-off still resolves contact.": {},
+    "Heading wrap uses the short physical turn and produces the same open-panel contact as an unwrapped heading.": {},
+    "A fast long body panel catches a thin rotated wall, its full width stays above terrain, and no upward collision occurs across a height gap.": {
+      "contacts": 8,
+      "lowestCorner": 0
+    },
+    "Wheel translation and spin exchange energy through friction, slopes accelerate downhill and slow wheels settle on their side.": {
+      "initialEnergy": 72,
+      "finalEnergy": 35.715991632434566,
+      "rollingSpeed": 6.787700977660464,
+      "omega": 19.97131424366757,
+      "leanAtRest": 1.5707963267948966
+    },
+    "Fast loose wheels hit walls and elevated sloped bridge rails; wheels below that bridge do not hit its rail.": {
+      "wallContacts": 1,
+      "railContacts": 1
+    },
+    "Actual physics bounds all loose pools, removes distant/expired wheels, preserves saved absence and removes pieces on selective repair.": {},
+    "Parked inspection uses the displayed stationary pose and never changes paused position, velocity, heave or damage.": {},
+    "Loose panel renderer uses simulated axes and loose wheels use physical lean and original tyre width on all four models.": {},
+    "Bridge collider centre, pitch and dimensions follow the actual rendered rail on a sloped elevated road.": {}
+  },
+  "sourceSHA256": {
+    "dist/part-contacts.js": "eb8300d164aabe1276f3c02ac71a9491aee36677d17452af8bf0e92ea9fa58b2",
+    "dist/part-shapes.js": "9db246c07371b8291857419108dfcceb366003c3298dbd16b83bbaeb1fc3697a",
+    "dist/hinge-contacts.js": "4a6a093c093b50b426d4a64b7548dd41839f46a8301c6223911f2bb2dbcdde45",
+    "dist/panel-debris.js": "216ff0fcdc218f9ec96c11e94a9ca6c8acb3e2c492d7b955f86f864a7e10f822",
+    "dist/body-hinges.js": "2f59f6d0eb1bb31ffa9a1e8128be3f58b57275ea1ee768b57813e3b1c18c1a24",
+    "dist/body-layout.js": "42f35ee176becaa444c807ed7418541763a1d40ad73542beff173d9c29126043",
+    "dist/physics.js": "c75028998bc97172c578780b5a3c64035a6f3626ddcebc4afff0ec824398af91",
+    "dist/car.js": "2cc58d807fe8cc09347b19cef419aa0091b0942e5c577d4eafa8449dc17a85fb",
+    "dist/world.js": "311f82bb73af9726395490cbe7bdc5409fad12c1cc2abfaa21eb29b48b033b2f",
+    "dist/city.js": "d59d5cfcfefbed3e3643766ef51887a1ed0c2557278a21576279d3a4694ec63c",
+    "dist/region.js": "3202c9abeecf4e573c851a61d18154a3c646508899e68b68b99c7704785bd087",
+    "dist/county-architecture.js": "88214dd57d2d1be855b068fb63842a9b4ec96e08d2533d4b4ef9c68f597fdc3a"
+  },
+  "limits": [
+    "Authored rigid boxes approximate trim and dents. The rolling wheel uses a cylinder-sized box for walls and analytic ground support, not a full multibody tyre solver.",
+    "Local static contacts only; loose objects do not collide with one another or remote/traffic cars.",
+    "Remaining individual detachable suspension members and full exhaust routing are outside this contact increment."
+  ]
+}

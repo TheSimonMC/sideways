@@ -1,0 +1,63 @@
+{
+  "version": 28,
+  "status": "passed",
+  "checks": [
+    "Old saves get intact independent brake circuits; malformed values are bounded and snapshots do not alias fluid or lines.",
+    "A torn FL hose drains and disables only the FL/RR circuit; damage-off stops fluid loss and refilling cannot seal a leak.",
+    "Actual service braking loses stopping force and pulls under a diagonal failure; the mechanical handbrake remains available.",
+    "Wheel impacts damage local hoses and wheel detachment tears them; tyre replacement, tuning and save/reload preserve the hydraulic fault.",
+    "Repeated braking through the native solver heats the real discs into the glow range; cooling and replacement remove the glow.",
+    "Every vehicle has four independent rotor materials; only hot discs glow and condition diagnostics expose all hoses and both fluid reservoirs."
+  ],
+  "fixtures": {
+    "Old saves get intact independent brake circuits; malformed values are bounded and snapshots do not alias fluid or lines.": {},
+    "A torn FL hose drains and disables only the FL/RR circuit; damage-off stops fluid loss and refilling cannot seal a leak.": {
+      "remainingAfterLineRepair": 0.29939849999999985
+    },
+    "Actual service braking loses stopping force and pulls under a diagonal failure; the mechanical handbrake remains available.": {
+      "healthy": {
+        "speed": 3.5055778900785928,
+        "x": 0.000005187454204662706,
+        "heading": 0.0000021123553229880836,
+        "pressure": [
+          0.6227814923197753,
+          0.6227814923197753,
+          0.7765383431145013,
+          0.7765383431145013
+        ]
+      },
+      "failed": {
+        "speed": 13.956566992290698,
+        "x": 2.02051268328303,
+        "heading": 0.1467107326990509,
+        "pressure": [
+          0,
+          0.3516581568344573,
+          0.9572585268765488,
+          0
+        ]
+      },
+      "handbrake": 16.120316583426167
+    },
+    "Wheel impacts damage local hoses and wheel detachment tears them; tyre replacement, tuning and save/reload preserve the hydraulic fault.": {
+      "impactHoseHealth": 0.844176245210728
+    },
+    "Repeated braking through the native solver heats the real discs into the glow range; cooling and replacement remove the glow.": {
+      "hot": 514.2274180971704
+    },
+    "Every vehicle has four independent rotor materials; only hot discs glow and condition diagnostics expose all hoses and both fluid reservoirs.": {
+      "bodies": 4
+    }
+  },
+  "sourceSHA256": {
+    "dist/brake-hydraulics.js": "e39673b289e3ef7eb2c8ad322889c120918566ca6d17144a7607ecc0758b7636",
+    "dist/mechanical.js": "2b2b87a7107f89529fa0dc31736892d484498d335633633e453c8f010666b0b9",
+    "dist/physics.js": "c75028998bc97172c578780b5a3c64035a6f3626ddcebc4afff0ec824398af91",
+    "dist/car.js": "2cc58d807fe8cc09347b19cef419aa0091b0942e5c577d4eafa8449dc17a85fb",
+    "dist/vehicle-panel.js": "8b93816403142d3ab9b2ad0a96a54d3ec1128a653c1369bd47bcb2ffc4ae52b8"
+  },
+  "limits": [
+    "Fictional diagonal circuit layout for all four cars; lumped pressure and separated fluid reservoirs, additional master cylinder, booster, ABS and fluid faults are covered in chassis-damage-v28-check.mjs.",
+    "Native pressure/temperature/geometry checks, no claim of real-car brake calibration."
+  ]
+}

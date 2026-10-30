@@ -1,5 +1,6 @@
 /* Persistent local crush zones. This is a lightweight plastic deformation
  * model coupled to collision energy, not a soft-body structural solver. */
+import {createUnderbody} from './underbody.js';
 import {createExterior,repairExterior} from './exterior-damage.js';
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,Number.isFinite(v)?v:a));
 export const BODY_PANELS={
@@ -19,9 +20,9 @@ export function createBodyDamage(build,saved={},legacyHealth=1){
   const prior=saved?.zones?.[id]||{},legacy=Object.keys(saved?.zones||{}).length?0:(1-clamp(legacyHealth,0,1))*.25;
   zones[id]={scratches:clamp(prior.scratches??0,0,1),health:clamp(prior.health??1-legacy,0,1),crush:clamp(prior.crush??legacy*.25,0,.7),x:clamp(prior.x??definition.x*width,-width,width),z:clamp(prior.z??definition.z*length,-length,length),pushX:clamp(prior.pushX??0,-1,1),pushZ:clamp(prior.pushZ??(definition.z>0?-1:1),-1,1),detached:!!definition.detach&&prior.detached===true,mounts:clamp(prior.mounts??prior.health??1,0,1),latch:clamp(prior.latch??prior.health??1,0,1),open:!!definition.hinged&&prior.open===true,angle:definition.hinged?clamp(prior.angle??0,0,1.16):0,velocity:definition.hinged?clamp(prior.velocity??0,-5,5):0};
  }
- return {version:3,exterior:createExterior(saved?.exterior),revision:Math.round(clamp(saved?.revision??0,0,1e9)),zones};
+ return {version:4,underbody:createUnderbody(saved?.underbody),exterior:createExterior(saved?.exterior),revision:Math.round(clamp(saved?.revision??0,0,1e9)),zones};
 }
-export const snapshotBodyDamage=body=>({version:3,exterior:createExterior(body.exterior),revision:body.revision,zones:Object.fromEntries(Object.entries(body.zones).map(([id,zone])=>[id,{...zone}]))});
+export const snapshotBodyDamage=body=>({version:4,underbody:createUnderbody(body.underbody),exterior:createExterior(body.exterior),revision:body.revision,zones:Object.fromEntries(Object.entries(body.zones).map(([id,zone])=>[id,{...zone}]))});
 
 export function deformBody(body,build,{local,energyJ,closingSpeed}){
  const width=build.vehicle.model.width,length=build.vehicle.model.length,scale=build.physics.bodyStrength??1;

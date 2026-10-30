@@ -1,0 +1,64 @@
+{
+  "version": 28,
+  "status": "passed",
+  "checks": [
+    "Old saves gain ten healthy components, existing damage survives, and new internal failures reload without damaging unrelated pistons.",
+    "Engine swaps and inactive-car sanitization do not transfer piston-only failures to a rotary or invent failed pistons.",
+    "All eight engine choices and four stock cars run; rotary diagnosis exposes housings and eccentric shaft without imaginary rods or timing chain.",
+    "Fuel pump and ignition failures cut native combustion and NOS without destroying internals; recovery, tuning and reload cannot bypass them.",
+    "Crushed intake reduces native air admission and boost, fuel-pump wear leans the native mixture, and exhaust obstruction creates measured shaft load work.",
+    "Cracked block and head leak independently; replacing the radiator or refilling does not heal either component.",
+    "Stuck thermostat causes heat and subsequent internal damage; cooling repairs preserve that damage and fluid loss.",
+    "Oil starvation and mechanical overrev damage crank and chain; a broken chain damages valves while turning, and chain replacement cannot repair them.",
+    "Front impacts damage the engine and manifold; rear impacts preserve the manifold; diagnostic rows and warning messages name the faulty component.",
+    "Damaged intake and exhaust produce separate PCM targets tied to running state and mechanical volume; reset clears them."
+  ],
+  "fixtures": {
+    "Old saves gain ten healthy components, existing damage survives, and new internal failures reload without damaging unrelated pistons.": {},
+    "Engine swaps and inactive-car sanitization do not transfer piston-only failures to a rotary or invent failed pistons.": {},
+    "All eight engine choices and four stock cars run; rotary diagnosis exposes housings and eccentric shaft without imaginary rods or timing chain.": [
+      {
+        "car": "hachi",
+        "rpm": 1167.4545419545875
+      },
+      {
+        "car": "atlas",
+        "rpm": 1131.7517860393205
+      },
+      {
+        "car": "kitsune",
+        "rpm": 1018.8842104257172
+      },
+      {
+        "car": "vector",
+        "rpm": 1361.415942950638
+      }
+    ],
+    "Fuel pump and ignition failures cut native combustion and NOS without destroying internals; recovery, tuning and reload cannot bypass them.": {},
+    "Crushed intake reduces native air admission and boost, fuel-pump wear leans the native mixture, and exhaust obstruction creates measured shaft load work.": {
+      "throttle": 0.20713131325557677,
+      "lambda": 1.2746250000000001,
+      "loadWork": 890.9982340516132
+    },
+    "Cracked block and head leak independently; replacing the radiator or refilling does not heal either component.": {},
+    "Stuck thermostat causes heat and subsequent internal damage; cooling repairs preserve that damage and fluid loss.": {
+      "healthy": 108.55006902320893,
+      "failed": 210.17522115781435,
+      "headHealth": 0.5497817926896611
+    },
+    "Oil starvation and mechanical overrev damage crank and chain; a broken chain damages valves while turning, and chain replacement cannot repair them.": {},
+    "Front impacts damage the engine and manifold; rear impacts preserve the manifold; diagnostic rows and warning messages name the faulty component.": {},
+    "Damaged intake and exhaust produce separate PCM targets tied to running state and mechanical volume; reset clears them.": {}
+  },
+  "sourceSHA256": {
+    "dist/mechanical.js": "2b2b87a7107f89529fa0dc31736892d484498d335633633e453c8f010666b0b9",
+    "dist/physics.js": "c75028998bc97172c578780b5a3c64035a6f3626ddcebc4afff0ec824398af91",
+    "dist/audio.js": "ede050780bbf0c34cec437ec2bc5e791b6a8a5be4cbf74c09e59dc6ea4a6b2fc",
+    "dist/vehicle-state.js": "888f606612f2a452c8fe4693a77fba4020a1b7aa3538f9ae8e848129bef4af3e"
+  },
+  "limits": [
+    "Lumped component model, not finite-element or calibrated real-car damage.",
+    "Timing loss uses misfires, valve-contact damage and combustion cut; no new tooth-by-tooth chain solver.",
+    "Exhaust restriction uses the native dissipative crank-load channel. Internal parts share engine/oil thermal nodes."
+  ]
+}

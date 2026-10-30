@@ -1,7 +1,7 @@
 {
   "source": "docs/goal.txt",
   "sourceSHA256": "4baa27bd5a4d96ab40582166e0fd6095b803dc262f6140dc282ea844a1b96dca",
-  "version": 27,
+  "version": 28,
   "requirements": [
     {
       "id": "P00.01",
@@ -174,19 +174,19 @@
     {
       "id": "P03.01",
       "phase": 3,
-      "status": "teilweise erledigt",
+      "status": "erledigt",
       "requirement": "BeamNG-inspirierte modulare Kollisionen, soweit in der Browser-Engine sinnvoll."
     },
     {
       "id": "P03.02",
       "phase": 3,
-      "status": "teilweise erledigt",
+      "status": "erledigt",
       "requirement": "Einzelteile: Türen, Motorhaube, Kofferraum, Stoßstangen, Lippe/Splitter, Seitenschweller, Spoiler, Diffusor, Kotflügel, Spiegel, Grill, Scheinwerfer, Rückleuchten, Auspuff, Scheiben, Felgen/Räder und Fahrwerksteile."
     },
     {
       "id": "P03.03",
       "phase": 3,
-      "status": "teilweise erledigt",
+      "status": "erledigt",
       "requirement": "Treffpunkt, Aufprallrichtung, Energie und Bauteilbefestigungen bestimmen Schaden: Kratzer, Risse, Verformung, lockere Befestigung, Funktionsausfall, Abreißen."
     },
     {
@@ -216,7 +216,7 @@
     {
       "id": "P03.08",
       "phase": 3,
-      "status": "teilweise erledigt",
+      "status": "erledigt",
       "requirement": "Keine volle Soft-Body-Simulation erzwingen, wenn eine modulare, lokale Deformation mit passenden Kollisionspunkten besser läuft."
     },
     {
@@ -942,18 +942,17 @@
   ],
   "currentIncrement": {
     "phase": 3,
-    "part": "C – Räumliche Kontakte und rollende lose Räder",
+    "part": "D – Fahrwerksglieder und vollständige Auspuffführung",
     "status": "erledigt",
     "implemented": [
-      "Gemeinsame räumliche Boxkontakte für offene Türen, Haube, Kofferraum, Karosserietrümmer und lose Räder.",
-      "Scharnierbewegung wird zwischen vorheriger und neuer Stellung geprüft; Impulse wirken auf Scharnier, Fahrzeug und passende Befestigungen.",
-      "Lose Räder koppeln Drehung und Bewegung über Reibung, rollen an Hängen, prallen ab und kippen bei geringer Geschwindigkeit.",
-      "Höhendaten für bestehende Gebäude, Brückenleitplanken, Dock-Hindernisse und Stadtobjekte; begrenzte Trümmerpools mit Entfernung und Lebensdauer."
+      "13 getrennte Unterbodenbaugruppen: vier Querlenker, vier Federbeine, zwei Spurstangen und drei Auspuffabschnitte.",
+      "Befestigungsschaden, Verformung, Abreißen, Radabstützung/Lenkverlust und Verlust von Masse/Achslasten sind verbunden.",
+      "Gequetschte Rohre erzeugen Pumpverluste; vorzeitige Abgasöffnung umgeht nachfolgende Blockaden und ändert Geräusch-/Rauchquelle.",
+      "Gezielte Reparatur, Diagnose, alte Speicherstände und begrenzte Multiplayer-Zustände sind integriert."
     ],
     "remaining": [
-      "Phase 3: einzelne ablösbare Fahrwerksglieder und vollständige Auspuffführung.",
-      "Kontakte nutzen vereinfachte Starrkörper; keine gegenseitige Kollision loser Teile und kein Netzverkehr für lokale Trümmer.",
-      "Phase 4 Innenräume/Cockpit/Fahrer/Spiegel, Phase 6 Motorraum/Ausbau und alle weiteren offenen Anforderungen bleiben auf der 156-Punkte-Liste."
+      "Phase 4: vier passende Innenräume, Cockpit, Instrumente, Navigation, Spiegel und Fahrer.",
+      "Boxkontakte, vereinfachte Federbein-/Lenkerbewegung und Unterbodenabrieb über die vorhandene Straßenebene; keine Soft-Body-/Mehrkörpersimulation. Trümmer bleiben lokal. Alle späteren offenen Anforderungen bleiben erhalten."
     ]
   }
 }

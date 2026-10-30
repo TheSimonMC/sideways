@@ -1,0 +1,179 @@
+{
+  "version": 28,
+  "status": "passed",
+  "checks": [
+    "All four actual browser CarPhysics/Three.js cars lose an open hood from an elevated obstacle, render the missing panel and collide their loose hood and wheel with a wall.",
+    "Serializing and restoring each condition retains absence; selective hood and tyre replacement restores the real mesh and removes debris."
+  ],
+  "results": [
+    {
+      "id": "hachi",
+      "hood": true,
+      "hoodVisible": false,
+      "pieces": [
+        {
+          "panel": "hood",
+          "contacts": 12,
+          "axes": [
+            [
+              0.3965400756465687,
+              -0.001579028743170698,
+              -0.9180160538217419
+            ],
+            [
+              0.0004225306711023317,
+              0.999998728735252,
+              -0.0015375290940147447
+            ],
+            [
+              0.9180173145829265,
+              0.00022180196394557558,
+              0.39654023872722216
+            ]
+          ]
+        }
+      ],
+      "wheelContacts": 5,
+      "wheelAbsent": true,
+      "missingMass": 40
+    },
+    {
+      "id": "atlas",
+      "hood": true,
+      "hoodVisible": false,
+      "pieces": [
+        {
+          "panel": "hood",
+          "contacts": 6,
+          "axes": [
+            [
+              -0.8891029965914072,
+              -0.0013089187970747828,
+              -0.45770530713959967
+            ],
+            [
+              -0.0017597279995139692,
+              0.9999982956740573,
+              0.0005585752826428959
+            ],
+            [
+              0.45770379593088417,
+              0.0013020678021201959,
+              -0.8891037846111606
+            ]
+          ]
+        }
+      ],
+      "wheelContacts": 5,
+      "wheelAbsent": true,
+      "missingMass": 40
+    },
+    {
+      "id": "kitsune",
+      "hood": true,
+      "hoodVisible": false,
+      "pieces": [
+        {
+          "panel": "hood",
+          "contacts": 9,
+          "axes": [
+            [
+              0.3634222181725327,
+              -0.0012118277631380553,
+              -0.9316237560367472
+            ],
+            [
+              -0.00006626075052028548,
+              0.9999991178488743,
+              -0.001326616367442539
+            ],
+            [
+              0.931624541834349,
+              0.0005438519522015108,
+              0.3634218172825983
+            ]
+          ]
+        }
+      ],
+      "wheelContacts": 5,
+      "wheelAbsent": true,
+      "missingMass": 40
+    },
+    {
+      "id": "vector",
+      "hood": true,
+      "hoodVisible": false,
+      "pieces": [
+        {
+          "panel": "hood",
+          "contacts": 6,
+          "axes": [
+            [
+              -0.7437494579972381,
+              -0.0009568605286854032,
+              -0.6684577983289197
+            ],
+            [
+              0.00027410097497917215,
+              0.9999984548610914,
+              -0.0017364170253997004
+            ],
+            [
+              0.6684584269776793,
+              -0.0014746841557561074,
+              -0.7437480465246067
+            ]
+          ]
+        }
+      ],
+      "wheelContacts": 5,
+      "wheelAbsent": true,
+      "missingMass": 40
+    }
+  ],
+  "repairs": [
+    {
+      "missing": true,
+      "hood": false,
+      "visible": true,
+      "wheel": true,
+      "pieces": 0
+    },
+    {
+      "missing": true,
+      "hood": false,
+      "visible": true,
+      "wheel": true,
+      "pieces": 0
+    },
+    {
+      "missing": true,
+      "hood": false,
+      "visible": true,
+      "wheel": true,
+      "pieces": 0
+    },
+    {
+      "missing": true,
+      "hood": false,
+      "visible": true,
+      "wheel": true,
+      "pieces": 0
+    }
+  ],
+  "errors": [],
+  "sourceSHA256": {
+    "dist/part-contacts.js": "eb8300d164aabe1276f3c02ac71a9491aee36677d17452af8bf0e92ea9fa58b2",
+    "dist/part-shapes.js": "9db246c07371b8291857419108dfcceb366003c3298dbd16b83bbaeb1fc3697a",
+    "dist/hinge-contacts.js": "4a6a093c093b50b426d4a64b7548dd41839f46a8301c6223911f2bb2dbcdde45",
+    "dist/panel-debris.js": "216ff0fcdc218f9ec96c11e94a9ca6c8acb3e2c492d7b955f86f864a7e10f822",
+    "dist/physics.js": "c75028998bc97172c578780b5a3c64035a6f3626ddcebc4afff0ec824398af91",
+    "dist/car.js": "2cc58d807fe8cc09347b19cef419aa0091b0942e5c577d4eafa8449dc17a85fb",
+    "dist/body-hinges.js": "2f59f6d0eb1bb31ffa9a1e8128be3f58b57275ea1ee768b57813e3b1c18c1a24",
+    "dist/body-layout.js": "42f35ee176becaa444c807ed7418541763a1d40ad73542beff173d9c29126043"
+  },
+  "limits": [
+    "Source-module browser integration fixture with native MotorLab and actual renderer. Final standalone game/UI is covered separately.",
+    "Controlled collision inputs and loose-part release velocities on one local Chromium with software rendering; not a real-device performance benchmark."
+  ]
+}

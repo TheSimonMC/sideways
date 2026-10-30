@@ -1,0 +1,157 @@
+{
+  "version": 28,
+  "status": "passed",
+  "checks": [
+    "Two independent Chromium processes create and join a real public lobby, ready up and load Neon Archipelago from the shipped HTML",
+    "Host rain and road moisture reach a guest that started dry, using authoritative world snapshots",
+    "Both full games exchange poses/world updates and construct the remote car without a kick while driving",
+    "Late join restores the current host weather and moisture",
+    "Guest leaves through the real UI and rejoins the running host, without ending the host session"
+  ],
+  "states": [
+    {
+      "version": 28,
+      "phase": "playing",
+      "status": "playing",
+      "players": 2,
+      "issue": null,
+      "stats": {
+        "sent": 169,
+        "received": 157,
+        "dropped": 0,
+        "backpressure": 0,
+        "coalesced": 0,
+        "invalid": 0,
+        "lastPacketBytes": 84,
+        "maxPacketBytes": 30445
+      },
+      "weather": {
+        "elapsed": 403.65200000000306,
+        "rain": 0.9679433862503469,
+        "wetness": 1,
+        "drops": 116,
+        "capacity": 360,
+        "wetMaterials": 2,
+        "wheels": [
+          {
+            "wetness": 1,
+            "depth": 0,
+            "grip": 0.7299999999963325,
+            "aquaplaning": 0
+          },
+          {
+            "wetness": 1,
+            "depth": 0,
+            "grip": 0.7299999999963356,
+            "aquaplaning": 0
+          },
+          {
+            "wetness": 1,
+            "depth": 0,
+            "grip": 0.7299981046537034,
+            "aquaplaning": 0
+          },
+          {
+            "wetness": 1,
+            "depth": 0,
+            "grip": 0.729998108409924,
+            "aquaplaning": 0
+          }
+        ],
+        "spray": 0
+      },
+      "rules": {
+        "maxPlayers": 4,
+        "traffic": "normal",
+        "police": true,
+        "damage": true,
+        "time": "cycle",
+        "weather": "rain",
+        "collisions": "ghost"
+      },
+      "remotes": {
+        "count": 1,
+        "visible": 1,
+        "buffers": [
+          2
+        ],
+        "teleports": 0
+      }
+    },
+    {
+      "version": 28,
+      "phase": "playing",
+      "status": "playing",
+      "players": 2,
+      "issue": null,
+      "stats": {
+        "sent": 157,
+        "received": 166,
+        "dropped": 0,
+        "backpressure": 0,
+        "coalesced": 0,
+        "invalid": 0,
+        "lastPacketBytes": 84,
+        "maxPacketBytes": 5618
+      },
+      "weather": {
+        "elapsed": 403.502000000003,
+        "rain": 0.9675401636877401,
+        "wetness": 1,
+        "drops": 116,
+        "capacity": 360,
+        "wetMaterials": 2,
+        "wheels": [
+          {
+            "wetness": 1,
+            "depth": 0,
+            "grip": 0.7299998390659023,
+            "aquaplaning": 0
+          },
+          {
+            "wetness": 1,
+            "depth": 0,
+            "grip": 0.7299998390659023,
+            "aquaplaning": 0
+          },
+          {
+            "wetness": 1,
+            "depth": 0,
+            "grip": 0.7299997613242819,
+            "aquaplaning": 0
+          },
+          {
+            "wetness": 1,
+            "depth": 0,
+            "grip": 0.7299997613242819,
+            "aquaplaning": 0
+          }
+        ],
+        "spray": 0
+      },
+      "rules": {
+        "maxPlayers": 4,
+        "traffic": "normal",
+        "police": true,
+        "damage": true,
+        "time": "cycle",
+        "weather": "rain",
+        "collisions": "ghost"
+      },
+      "remotes": {
+        "count": 1,
+        "visible": 1,
+        "buffers": [
+          2
+        ],
+        "teleports": 0
+      }
+    }
+  ],
+  "errors": [],
+  "htmlSha256": "6c937df03c4be9a297f9fb8b5c8b133e73b679f3e51607b14abf463d0c24fbf5",
+  "limits": [
+    "Two local independent Chromium processes over real public PeerJS signaling/WebRTC. Separate PCs, mobile networks and TURN fallback were not tested.",
+    "Software rendering, no FPS guarantee or physical-controller test."
+  ]
+}

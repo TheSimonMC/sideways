@@ -1,0 +1,21 @@
+SIDEWAYS V28 – UNDERBODY ASSEMBLIES
+
+Open SIDEWAYS.html for offline single-player. Multiplayer requires internet.
+Online: https://thesimonmc.github.io/sideways/
+
+Thirteen new assemblies connect visible control arms, spring units, tie rods
+and exhaust pipes to impact damage, missing support, steering, pumping loss,
+sound, individual repair and persistence. Original cars, maps and SDK remain.
+
+Report: docs/phase-3d-underbody-report.md
+Full requirements: docs/goal.txt and docs/goal-progress.md
+Evidence: qa/release-v28.json
+Next: Phase 4 interiors, cockpit, navigation, mirrors and animated driver.
+
+Build: npm ci, then node build.mjs (Node.js 24).
+Checks: node qa/regressions-v28.mjs and *-v28-check.mjs.
+Browser: *-browser-v28.cjs, using Playwright and Chromium. Set
+CODEX_PRIMARY_RUNTIME_NODE_MODULES to node_modules containing playwright;
+PLAYWRIGHT_CHROMIUM_EXECUTABLE to the Chromium executable.
+Run browser suites and native CPU measurements serially.
+Package: node qa/package-v28.mjs <output-directory>.

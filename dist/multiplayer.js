@@ -1,3 +1,4 @@
+import {createUnderbody} from './underbody.js';
 import {createExterior} from './exterior-damage.js';
 import {BODY_PANELS} from './body-damage.js';
 import {normalizeWeather,WEATHER_MODES} from './weather.js';
@@ -58,6 +59,8 @@ export function sanitizeNetworkPose(value){
  for(const [key,[a,b]]of Object.entries(ranges))out[key]=clamp(value[key]??(key.endsWith('Health')?1:0),a,b);
  for(const key of ['headlights','boosting','horn','drifting'])out[key]=!!value[key];out.engineRunning=value.engineRunning!==false;
  out.wheelAttached=Array.from({length:4},(_,i)=>value.wheelAttached?.[i]!==false);
+ out.wheelCamber=Array.from({length:4},(_,i)=>clamp(value.wheelCamber?.[i]??0,-.3,.3));
+ out.mechanical={chassisDamage:{tieRods:Array.from({length:2},(_,i)=>({health:clamp(value.mechanical?.chassisDamage?.tieRods?.[i]?.health??1,0,1),bend:clamp(value.mechanical?.chassisDamage?.tieRods?.[i]?.bend??0,-.18,.18)}))}};
  out.wheelSpins=Array.from({length:4},(_,i)=>wrap(value.wheelSpins?.[i]));
  out.wheelSteers=Array.from({length:4},(_,i)=>clamp(value.wheelSteers?.[i]??(i<2?out.steer:0),-1.5,1.5));
  out.suspension=Array.from({length:4},(_,i)=>({wheelY:clamp(value.suspension?.[i]?.wheelY??out.groundHeight+.34,-32,513),groundHeight:clamp(value.suspension?.[i]?.groundHeight??out.groundHeight,-32,512),contact:value.suspension?.[i]?.contact!==false}));
@@ -67,7 +70,7 @@ export function sanitizeNetworkPose(value){
   const zones={};for(const [id,def]of Object.entries(BODY_PANELS)){
    const p=value.bodyDamage.zones?.[id]||{};zones[id]={scratches:clamp(p.scratches??0,0,1),health:clamp(p.health??1,0,1),crush:clamp(p.crush??0,0,.7),x:clamp(p.x??0,-3,3),z:clamp(p.z??0,-5,5),pushX:clamp(p.pushX??0,-1,1),pushZ:clamp(p.pushZ??0,-1,1),mounts:clamp(p.mounts??1,0,1),latch:clamp(p.latch??1,0,1),detached:!!def.detach&&p.detached===true,open:!!def.hinged&&p.open===true,angle:def.hinged?clamp(p.angle??0,0,1.16):0,velocity:0};
   }
-  out.bodyDamage={version:3,exterior:createExterior(value.bodyDamage.exterior),revision:Math.round(clamp(value.bodyDamage.revision??0,0,1e9)),zones};
+  out.bodyDamage={version:4,underbody:createUnderbody(value.bodyDamage.underbody),exterior:createExterior(value.bodyDamage.exterior),revision:Math.round(clamp(value.bodyDamage.revision??0,0,1e9)),zones};
  }
  if(object(value.lastImpactLocal))out.lastImpactLocal={x:clamp(value.lastImpactLocal.x,-3,3),z:clamp(value.lastImpactLocal.z,-5,5)};
  return out;

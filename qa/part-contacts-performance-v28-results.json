@@ -1,0 +1,56 @@
+{
+  "version": 28,
+  "status": "measured",
+  "cases": [
+    {
+      "world": "four synthetic walls",
+      "totalColliders": 4,
+      "panels": 1,
+      "glass": 6,
+      "wheels": 1,
+      "steps": 600,
+      "meanMs": 0.06585666666666713,
+      "medianMs": 0.041600000000002524,
+      "p95Ms": 0.18080000000000496,
+      "colliderQueries": 5280,
+      "surfaceSamples": 45189
+    },
+    {
+      "world": "four synthetic walls",
+      "totalColliders": 4,
+      "panels": 8,
+      "glass": 24,
+      "wheels": 8,
+      "steps": 600,
+      "meanMs": 0.16621799999999978,
+      "medianMs": 0.1436999999999955,
+      "p95Ms": 0.29630000000000223,
+      "colliderQueries": 26400,
+      "surfaceSamples": 209168
+    },
+    {
+      "world": "actual Dock 09",
+      "totalColliders": 90,
+      "panels": 8,
+      "glass": 24,
+      "wheels": 8,
+      "steps": 600,
+      "meanMs": 0.5864178333333347,
+      "medianMs": 0.5139000000000351,
+      "p95Ms": 0.9775000000000205,
+      "colliderQueries": 26400,
+      "surfaceSamples": 222020
+    }
+  ],
+  "sourceSHA256": {
+    "dist/panel-debris.js": "216ff0fcdc218f9ec96c11e94a9ca6c8acb3e2c492d7b955f86f864a7e10f822",
+    "dist/part-contacts.js": "eb8300d164aabe1276f3c02ac71a9491aee36677d17452af8bf0e92ea9fa58b2",
+    "dist/part-shapes.js": "9db246c07371b8291857419108dfcceb366003c3298dbd16b83bbaeb1fc3697a",
+    "dist/hinge-contacts.js": "4a6a093c093b50b426d4a64b7548dd41839f46a8301c6223911f2bb2dbcdde45",
+    "dist/world.js": "311f82bb73af9726395490cbe7bdc5409fad12c1cc2abfaa21eb29b48b033b2f"
+  },
+  "limits": [
+    "Local Node.js CPU sample, 600 steps after 60 warm-up steps. Objects remain allocated and active throughout the sample, including settled ones.",
+    "Two synthetic-wall cases and one case at the actual Dock 09 spawn with its complete collider list and surface sampler. Includes rigid contacts only, not native engine, GPU, AI or audio; no frame-rate guarantee."
+  ]
+}

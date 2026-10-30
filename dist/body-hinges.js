@@ -1,3 +1,4 @@
+import {underbodyLayout} from './underbody.js';
 import {bodyLayout} from './body-layout.js';
 import {exteriorLayout,exteriorMissing} from './exterior-damage.js';
 export const HINGED_PANELS=['hood','left','right','boot'];
@@ -34,12 +35,14 @@ export function stepBodyHinges(body,dt,state,damage=true){
  }
  return detached;
 }
-export function bodyMassProperties(build,body){
+export function bodyMassProperties(build,body,wheelAttached){
  const {parts}=bodyLayout(build),p=build.physics;let missing=0,momentY=0,momentZ=0,momentX=0,inertia=0;
  for(const [id,part]of Object.entries(parts))if(body?.zones?.[id]?.detached){
   const [x,y,z]=part.center,m=part.mass;missing+=m;momentY+=m*y;momentZ+=m*z;momentX+=m*x;inertia+=m*(x*x+z*z);
  }
  for(const [id,part]of Object.entries(exteriorLayout(build)))if(exteriorMissing(body,id)&&!(part.parent&&body?.zones?.[part.parent]?.detached)){const [x,y,z]=part.center,m=part.mass;missing+=m;momentY+=m*y;momentZ+=m*z;momentX+=m*x;inertia+=m*(x*x+z*z);}
+ for(const [id,part]of Object.entries(underbodyLayout(build)))if(body?.underbody?.[id]?.detached){const [x,y,z]=part.center,m=part.mass;missing+=m;momentY+=m*y;momentZ+=m*z;momentX+=m*x;inertia+=m*(x*x+z*z);}
+ for(let i=0;i<4;i++)if(wheelAttached?.[i]===false){const x=(i%2?1:-1)*p.halfTrack,z=i<2?p.frontAxle:-p.rearAxle,m=22*(p.tyreWidth||.27)/.27;missing+=m;momentY+=m*p.wheelRadius;momentZ+=m*z;momentX+=m*x;inertia+=m*(x*x+z*z);}
  const mass=Math.max(p.mass*.65,p.mass-missing),wheelbase=p.frontAxle+p.rearAxle;
  const cgX=-momentX/mass,cgZ=-momentZ/mass;
  const front=clamp((p.rearAxle+cgZ)/wheelbase,.2,.8),left=clamp((p.halfTrack-cgX)/(2*p.halfTrack),.25,.75);

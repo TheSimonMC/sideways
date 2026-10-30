@@ -1,0 +1,91 @@
+{
+  "version": 28,
+  "status": "passed",
+  "checks": [
+    "Legacy saves gain intact fixed-key mounts, malformed input is finite and detached flags survive deep snapshots.",
+    "All four cars lose the struck control arm, wheel and mass; the opposite corner remains attached and selective repair leaves other damage.",
+    "A detached spring assembly removes that corner support despite a fitted wheel; repair restores support without replacing unrelated tyres.",
+    "Crushed connected exhaust adds shaft load; an upstream break bypasses downstream blockage and moves the actual emission route.",
+    "High impacts above the underfloor miss pipes; direct local pipe impacts detach the correct section and damage-off prevents structural changes.",
+    "Every one of the thirteen structural assemblies can lose its own mounts on all four models; stationary undamaged mounts never fatigue.",
+    "A detached tie rod disconnects only its wheel from steering, survives a save and is restored by the existing tie-rod repair.",
+    "Network sanitization retains bounded mounts and repairs, and all component meshes exist, animate, disappear and return in every original model."
+  ],
+  "fixtures": {
+    "Legacy saves gain intact fixed-key mounts, malformed input is finite and detached flags survive deep snapshots.": {},
+    "All four cars lose the struck control arm, wheel and mass; the opposite corner remains attached and selective repair leaves other damage.": [
+      {
+        "car": "hachi",
+        "massBefore": 1160,
+        "massDamaged": true
+      },
+      {
+        "car": "atlas",
+        "massBefore": 1480,
+        "massDamaged": true
+      },
+      {
+        "car": "kitsune",
+        "massBefore": 1030,
+        "massDamaged": true
+      },
+      {
+        "car": "vector",
+        "massBefore": 1240,
+        "massDamaged": true
+      }
+    ],
+    "A detached spring assembly removes that corner support despite a fitted wheel; repair restores support without replacing unrelated tyres.": {
+      "loadAfter": 3133.496145711337
+    },
+    "Crushed connected exhaust adds shaft load; an upstream break bypasses downstream blockage and moves the actual emission route.": {
+      "blocked": 8.977127305465222
+    },
+    "High impacts above the underfloor miss pipes; direct local pipe impacts detach the correct section and damage-off prevents structural changes.": {
+      "parts": [
+        "underbody:exhaustCenter"
+      ]
+    },
+    "Every one of the thirteen structural assemblies can lose its own mounts on all four models; stationary undamaged mounts never fatigue.": {},
+    "A detached tie rod disconnects only its wheel from steering, survives a save and is restored by the existing tie-rod repair.": {},
+    "Network sanitization retains bounded mounts and repairs, and all component meshes exist, animate, disappear and return in every original model.": [
+      {
+        "car": "hachi",
+        "meshes": 13,
+        "packetBytes": 4660
+      },
+      {
+        "car": "atlas",
+        "meshes": 13,
+        "packetBytes": 4646
+      },
+      {
+        "car": "kitsune",
+        "meshes": 13,
+        "packetBytes": 4622
+      },
+      {
+        "car": "vector",
+        "meshes": 13,
+        "packetBytes": 4620
+      }
+    ]
+  },
+  "sourceSHA256": {
+    "dist/underbody.js": "8350ea27ad6e48e6126072c34f2853211500daffffc1a6ace412b518819f1205",
+    "dist/underbody-view.js": "78ae5a4208a8ac4fdcbd958d98c249a3e3b5b0e8c1515afa7c4cafdd0be9ea02",
+    "dist/exterior-damage.js": "c33235d1d858d4c0a6d9e39b7ee11fd6a9aa378076610f49b92a478d543536f2",
+    "dist/physics.js": "c75028998bc97172c578780b5a3c64035a6f3626ddcebc4afff0ec824398af91",
+    "dist/mechanical.js": "2b2b87a7107f89529fa0dc31736892d484498d335633633e453c8f010666b0b9",
+    "dist/vehicle-state.js": "888f606612f2a452c8fe4693a77fba4020a1b7aa3538f9ae8e848129bef4af3e",
+    "dist/body-damage.js": "f55beaadbcbf101620007d75b56ab042b521a076d3f7865ff213c13dfff3be97",
+    "dist/body-hinges.js": "2f59f6d0eb1bb31ffa9a1e8128be3f58b57275ea1ee768b57813e3b1c18c1a24",
+    "dist/car.js": "2cc58d807fe8cc09347b19cef419aa0091b0942e5c577d4eafa8449dc17a85fb",
+    "dist/part-shapes.js": "9db246c07371b8291857419108dfcceb366003c3298dbd16b83bbaeb1fc3697a",
+    "dist/multiplayer.js": "369f3a9fc400249cb5efa38137672769ff1f20d72661026a629e4cd8384927fd",
+    "dist/network-cars.js": "27428a6234a48b89f80ef76aa9df7d0bb461361473327420a2d8fb6c7e75bedb"
+  },
+  "limits": [
+    "Authored component forms and bounded rigid contacts, not a full multibody suspension. Underfloor abrasion uses the existing sampled road plane. Native fixtures use controlled component/impact inputs."
+  ]
+}

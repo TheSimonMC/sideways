@@ -1,0 +1,231 @@
+{
+  "version": 28,
+  "status": "passed",
+  "checks": [
+    "Rain accumulates moisture, clearing preserves it then dries; queries and pause never advance the clock",
+    "Wet friction depends on surface, tread, pressure, compound and water speed; no water gives a neutral multiplier",
+    "All four original cars take longer to stop and turn less sharply on a wet road",
+    "A one-sided puddle produces yaw and dissipates energy without adding rolling heat to the tyres",
+    "Wet contact cools tyres and rain audio continues with a stopped engine",
+    "Spray and rain use bounded pools and do not emit tyre smoke on an ordinarily rolling wet wheel",
+    "Traffic traction and stopping respond to the same wet surface; network validates and preserves host weather"
+  ],
+  "fixtures": {
+    "Rain accumulates moisture, clearing preserves it then dries; queries and pause never advance the clock": {
+      "wet": {
+        "elapsed": 120.00000000004157,
+        "rain": 0.9999546000702386,
+        "wetness": 1
+      },
+      "afterDry": {
+        "elapsed": 720.0083333333818,
+        "rain": 1.9273233989927776e-22,
+        "wetness": 0
+      },
+      "dtDifference": 0.00038259726588296683
+    },
+    "Wet friction depends on surface, tread, pressure, compound and water speed; no water gives a neutral multiplier": {
+      "slow": {
+        "grip": 0.73,
+        "aquaplaning": 0
+      },
+      "fast": {
+        "grip": 0.3554869684499314,
+        "aquaplaning": 0.5130315500685871
+      },
+      "worn": {
+        "grip": 0.36065633260799995,
+        "aquaplaning": 0.42680176
+      },
+      "low": {
+        "grip": 0.30860667504682615,
+        "aquaplaning": 0.5772511300728409
+      },
+      "street": {
+        "grip": 0.73,
+        "aquaplaning": 0
+      },
+      "drift": {
+        "grip": 0.2764934777503429,
+        "aquaplaning": 0.5981199451303155
+      }
+    },
+    "All four original cars take longer to stop and turn less sharply on a wet road": [
+      {
+        "car": "hachi",
+        "measurements": [
+          {
+            "wet": 0,
+            "distance": 29.418821099557157,
+            "heading": 1.0779446805268649,
+            "side": 12.424297330293191,
+            "grip": 1
+          },
+          {
+            "wet": 1,
+            "distance": 38.91310868805046,
+            "heading": 0.7619265609478795,
+            "side": 10.271025926874119,
+            "grip": 0.7299549803453429
+          }
+        ]
+      },
+      {
+        "car": "atlas",
+        "measurements": [
+          {
+            "wet": 0,
+            "distance": 30.835747768429524,
+            "heading": 1.0812128388356723,
+            "side": 11.258157322633963,
+            "grip": 1
+          },
+          {
+            "wet": 1,
+            "distance": 40.66944171775452,
+            "heading": 0.8138078512244085,
+            "side": 9.409016297196693,
+            "grip": 0.7299433130684967
+          }
+        ]
+      },
+      {
+        "car": "kitsune",
+        "measurements": [
+          {
+            "wet": 0,
+            "distance": 28.754303256559822,
+            "heading": 1.085232475335982,
+            "side": 12.943097872837784,
+            "grip": 1
+          },
+          {
+            "wet": 1,
+            "distance": 38.1127374361593,
+            "heading": 0.7607246164053513,
+            "side": 10.617879846431743,
+            "grip": 0.729959697750092
+          }
+        ]
+      },
+      {
+        "car": "vector",
+        "measurements": [
+          {
+            "wet": 0,
+            "distance": 29.964821606415647,
+            "heading": 1.044560336928863,
+            "side": 12.012315014092906,
+            "grip": 1
+          },
+          {
+            "wet": 1,
+            "distance": 39.5951915902516,
+            "heading": 0.7533343046548889,
+            "side": 9.984427897327983,
+            "grip": 0.7299524034713859
+          }
+        ]
+      }
+    ],
+    "A one-sided puddle produces yaw and dissipates energy without adding rolling heat to the tyres": [
+      {
+        "speed": 44.84257015300731,
+        "yaw": 8.018470336602449e-8,
+        "wet": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "rollingHeat": 0
+      },
+      {
+        "speed": 44.197000512179564,
+        "yaw": -0.000013297755528047678,
+        "wet": [
+          0.6644743275625198,
+          0.6644759569971487,
+          0.6644637690474634,
+          0.6644653710896455
+        ],
+        "rollingHeat": 0
+      },
+      {
+        "speed": 44.51794252978023,
+        "yaw": -0.1498399233111901,
+        "wet": [
+          0.67619060737824,
+          0,
+          0.6763024394083667,
+          0
+        ],
+        "rollingHeat": 0
+      }
+    ],
+    "Wet contact cools tyres and rain audio continues with a stopped engine": {
+      "temps": [
+        116.97663187960295,
+        112.44210803485021
+      ],
+      "rainPCM": 0.7420889965424466
+    },
+    "Spray and rain use bounded pools and do not emit tyre smoke on an ordinarily rolling wet wheel": {
+      "wheelParticles": [
+        6,
+        6,
+        6,
+        6
+      ],
+      "activeParticles": 22,
+      "burstParticles": 0,
+      "activeRubber": 0,
+      "activeSmoke": 0,
+      "activeSpray": 22,
+      "activeSteam": 0,
+      "activeEngineSmoke": 0,
+      "activeDust": 0,
+      "terrain": {
+        "activeClods": 0,
+        "activeGrass": 0,
+        "activeTracks": 0,
+        "counts": {
+          "clods": 0,
+          "grass": 0,
+          "tracks": 0
+        },
+        "capacity": 680
+      },
+      "skidCursor": 0,
+      "carId": "hachi"
+    },
+    "Traffic traction and stopping respond to the same wet surface; network validates and preserves host weather": [
+      {
+        "speed": 13.199999999999878,
+        "z": 16.571666666666577
+      },
+      {
+        "speed": 15.036000000000158,
+        "z": 17.497316666666762
+      }
+    ]
+  },
+  "sourceSHA256": {
+    "dist/weather.js": "cdf1e4697a10daca96358d9f0f11265140094d252abddfc4937045ef2495fa18",
+    "dist/weather-renderer.js": "fb8d4ce8f2ecbb00dcce6579e40b8745563c4348ae63e0e3a1cc3ee33ea338ea",
+    "dist/physics.js": "c75028998bc97172c578780b5a3c64035a6f3626ddcebc4afff0ec824398af91",
+    "dist/mechanical.js": "2b2b87a7107f89529fa0dc31736892d484498d335633633e453c8f010666b0b9",
+    "dist/environment.js": "dfad44a6dbda6878c1417883c69a3a0f8a3b1c31ca9715443d3d453ab56c61bd",
+    "dist/car.js": "2cc58d807fe8cc09347b19cef419aa0091b0942e5c577d4eafa8449dc17a85fb",
+    "dist/audio.js": "ede050780bbf0c34cec437ec2bc5e791b6a8a5be4cbf74c09e59dc6ea4a6b2fc",
+    "dist/audio/world.js": "e2d0eae486e5f182ed9f57c37e352065c6f856bc2a1306f829bf7413f0be3b3a",
+    "dist/main.js": "e085639b70814bfa260a44119e1a730b685dbfe7a40be6ce3d83f696c6627140",
+    "dist/multiplayer.js": "369f3a9fc400249cb5efa38137672769ff1f20d72661026a629e4cd8384927fd",
+    "dist/traffic.js": "290170cb1f3d264d09a3a96534d42d183a9d540a190454c4f906af2c11f4eb2f",
+    "dist/race.js": "3254ef2b87156cde7e5cd7dcfffeb03b0552a6d638d6431be5e63b824600cba4"
+  },
+  "limits": [
+    "Fictional tyre and weather calibration; comparative tests do not establish real-car stopping distances.",
+    "Renderer pool checks here do not compile shaders; final HTML browser test covers rendering."
+  ]
+}
